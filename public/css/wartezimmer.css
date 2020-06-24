@@ -1,0 +1,86 @@
+.user-connect {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  transition: var(--ls-transition);
+}
+.user-connect:not(.active) {
+  filter: grayscale(100%);
+}
+.user-connect img {
+  max-height: 80px;
+  position: relative;
+  z-index: 1;
+}
+.user-connect__name {
+  color: var(--ls-alfa-color);
+  font-size: var(--ls-font-base);
+  line-height: 24px;
+  width: min(194px, 100%);
+  border: 1px solid var(--ls-alfa-color);
+  box-sizing: border-box;
+  border-radius: 10px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  padding: 8px 8px 8px 41px;
+  margin-left: -26px;
+  background-color: var(--ls-thin-color);
+}
+.user-connect__now {
+  color: var(--ls-alfa-color);
+  font-size: var(--ls-font-base);
+  line-height: 24px;
+  background: linear-gradient(90.51deg, #45FE39 0.2%, rgba(255, 255, 255, 0) 99.8%);
+  line-height: 66px;
+  margin-left: -15px;
+  padding: 0 35px;
+  box-sizing: border-box;
+  position: relative;
+  z-index: -1;
+}
+.wartezimmer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  grid-gap: 60px;
+}
+@media screen and (max-width: 1200px) {
+  .wartezimmer {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  }
+}
+.wartezimmer p {
+  margin: 42px 0 20px;
+}
+.wartezimmer ul {
+  margin-bottom: 30px;
+}
+.wartezimmer:before,
+.wartezimmer:after {
+  content: " ";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-size: auto;
+  background-repeat: no-repeat;
+}
+.wartezimmer iframe {
+  background-color: #e4e4e4;
+  width: 100%;
+}
+.wartezimmer__addition {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  grid-gap: 40px;
+  max-width: 1450px;
+  margin: 40px 0;
+}
+@media screen and (min-width: 1201px) {
+  .wartezimmer__addition {
+    grid-column: span 2;
+  }
+}

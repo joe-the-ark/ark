@@ -1,0 +1,36 @@
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.tags span {
+  color: var(--ls-alfa-color);
+  font-size: var(--ls-font-large);
+  line-height: 48px;
+  border: 1px solid var(--ls-brand-color);
+  box-sizing: border-box;
+  padding: 0 20px;
+  margin: 0 40px 30px 0;
+  cursor: pointer;
+  transition: var(--ls-transition);
+}
+@media screen and (max-width: 1200px) {
+  .tags span {
+    margin: 0 15px 15px 0;
+  }
+}
+.tags span:hover {
+  color: var(--ls-brand-color);
+}
+.tags span.line-through {
+  text-decoration: line-through;
+  color: var(--ls-between-color);
+  border-color: var(--ls-between-color);
+}
+.ubung-1 p {
+  max-width: 842px;
+  margin: 42px 0 20px;
+}
+.ubung-1 input {
+  max-width: 410px;
+}

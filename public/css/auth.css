@@ -1,0 +1,93 @@
+.slider {
+  padding: 10px 20px;
+  border: 1px solid var(--ls-between-color);
+  box-sizing: border-box;
+}
+.slider label {
+  color: var(--ls-alfa-color);
+  font-size: var(--ls-font-large);
+  line-height: 29px;
+  text-align: left;
+  display: block;
+}
+.slider img {
+  max-height: 100px;
+  border: 5px solid transparent;
+  border-radius: 50%;
+  padding: 5px;
+}
+.slider .swiper-container {
+  padding: 0 30px;
+  box-sizing: border-box;
+  text-align: center;
+  margin: 10px 0 4px;
+}
+.slider .swiper-slide-active img {
+  border-color: var(--ls-accent-2-color);
+}
+.slider .swiper-button-prev:after,
+.slider .swiper-button-next:after {
+  font-size: 19px;
+  font-weight: bold;
+}
+.slider .swiper-button-prev {
+  left: -8px;
+}
+.slider .swiper-button-next {
+  right: -8px;
+}
+.form__field {
+  position: relative;
+}
+.form__field:not(:last-child) {
+  margin-bottom: 40px;
+}
+.form input:focus + .form__placeholder,
+.form input:valid + .form__placeholder {
+  font-size: var(--ls-font-less);
+  line-height: 17px;
+  top: -7px;
+}
+.form input[name="link"] {
+  padding-right: 55px;
+}
+.form span[class*="icon"] {
+  font-size: 20px;
+  position: absolute;
+  right: 20px;
+  bottom: 18px;
+}
+.form p {
+  text-align: left;
+}
+.form p + input {
+  margin-top: 20px;
+}
+.form__placeholder {
+  color: var(--ls-between-color);
+  font-size: var(--ls-font-large);
+  line-height: 42px;
+  position: absolute;
+  top: 7px;
+  left: 20px;
+  pointer-events: none;
+  transition: var(--ls-transition);
+  background-color: var(--ls-thin-color);
+  padding: 0 2px;
+}
+.auth {
+  text-align: center;
+}
+.auth h1 + p {
+  margin: 20px 0 50px;
+}
+.auth form {
+  width: min(641px, 100%);
+  margin: 0 auto;
+}
+.auth form > div:nth-child(1),
+.auth form > div:nth-child(2) {
+  width: min(519px, 100%);
+  margin-right: auto;
+  margin-left: auto;
+}

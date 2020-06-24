@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="icon" href="../public/images/favicon.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
+    <meta name="theme-color" content="#51ceec"/>
+    <meta name="description" content="ARK"/>
+    <title>Ubung 2</title>
+    <link rel="stylesheet" href="../public/css/app.css">
+    <link rel="stylesheet" href="../public/css/ubung-2.css">
+</head>
+<body>
+<div class="app">
+    <div class="app__head">
+        <header class="header-main container">
+            <div class="header-main__title">
+                <span class="icon-logo"></span>
+                <span>ARK</span>
+            </div>
+            <div class="header-main__user">
+                <div class="user">
+                    <div class="user__subtitle">
+                        Fische im Aquarium
+                    </div>
+                    <img src="../public/images/avatars/boar.svg" alt="boar">
+                    <div class="user__title">
+                        Vasilisa Kochetkova
+                    </div>
+                </div>
+            </div>
+            <div class="header-main__progress">
+                <div class="progress">
+                    <label>Mission 1</label>
+                    <div class="progress__bar">
+                        <div style="width: 10%">10%</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+    <div class="app__body">
+        <div class="container">
+            <main class="screen ubung-2">
+                <h1>
+                    Übung 2: Wie gut nutzt ihr das Team Potential?
+                </h1>
+                <p>
+                    Schätze anonym die durchschnittliche Performance dieses Teams auf einer Skala von 1 (low performing)
+                    bis 99 (high performing) ein.
+                    <br/>
+                    <br/>
+                </p>
+                <div class="ui-slider">
+                    <div class="ui-slider__marker">
+                        <div class="ui-slider__marker-thumb">
+                            <span>0</span>
+                            <img src="../public/images/avatars/penguin-1.svg" alt=""/>
+                        </div>
+                        <div class="ui-slider__marker-name">
+                            Vasilisa<br/> Kochetkova
+                        </div>
+                    </div>
+                    <div class="ui-slider__range">
+                        <input id="ui-range" class="input-range" type="range" value="0" min="1" max="99">
+                    </div>
+                </div>
+                <p>
+                    Bewege bitte deine Spielfigur auf den Punkt der Skala, der am Besten passt. Später im Spiel siehst
+                    du die anonymisierte Einschätzung aller Mitspieler.
+                </p>
+                <div class="center">
+                    <a href="#" class="button">
+                        Weiterspielen
+                    </a>
+                </div>
+            </main>
+        </div>
+    </div>
+</div>
+
+<script src="../public/js/AppUiSlider.js"></script>
+<script>
+    new AppUiSlider({
+        inputSlider: '#ui-range',
+        countSlider: '.ui-slider__marker-thumb span',
+        thumbSlider: '.ui-slider__marker',
+        rangeMaxWidthContainer: 973 - 110,
+        range: {
+            min: 1,
+            max: 99
+        },
+        callback(value) {
+            // console.log(value)
+        }
+    });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="icon" href="../public/images/favicon.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
+    <meta name="theme-color" content="#51ceec"/>
+    <meta name="description" content="ARK"/>
+    <title>Auth</title>
+    <link rel="stylesheet" href="../public/css/app.css">
+    <link rel="stylesheet" href="../public/css/auth.css">
+    <!--  plugins  -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
+</head>
+<body>
+<div class="app started">
+    <div class="app__head">
+        <header class="header-main">
+            <div class="header-main__title">
+                <span class="icon-logo"></span>
+                <span>ARK</span>
+            </div>
+        </header>
+    </div>
+    <div class="app__body">
+        <div class="container">
+            <main class="screen auth">
+                <h1>
+                    Wie steht es um eure Psychologische Sicherheit?
+                </h1>
+                <p>
+                    Die Arche ist ein soziales Spiel, um das psychologische Sicherheitsgefühl in <br/>Teams zu entwickeln.
+                    Die
+                    Spielzeit beträgt maximal eine Stunde.
+                </p>
+                <form action="#" method="POST" id="auth-form" class="form">
+                    <div class="form__field">
+                        <input id="nutzername" type="text" name="Nutzername" value="" required />
+                        <span class="form__placeholder">Nutzername</span>
+                    </div>
+                    <div class="form__field">
+                        <input id="name-des-spiels" type="text" name="name-des-spiels" value="" required/>
+                        <span class="form__placeholder">Name des Spiels</span>
+                    </div>
+                    <div class="form__field">
+                        <div class="slider">
+                            <label>
+                                Benutzerbild
+                            </label>
+                            <div class="swiper-container">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <img src="../public/images/avatars/anteater.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="../public/images/avatars/bear.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="../public/images/avatars/boar.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="../public/images/avatars/beaver.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="../public/images/avatars/buffalo-1.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="../public/images/avatars/buffalo.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="../public/images/avatars/cat.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="../public/images/avatars/chicken.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="../public/images/avatars/cow.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="../public/images/avatars/crow.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="../public/images/avatars/dog-1.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="../public/images/avatars/dog.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="../public/images/avatars/donkey.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="../public/images/avatars/elephant.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="../public/images/avatars/fox.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="../public/images/avatars/giraffe.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="../public/images/avatars/hedgehog.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="../public/images/avatars/hen.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="../public/images/avatars/hippopotamus.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="../public/images/avatars/horse.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="../public/images/avatars/kangaroo.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="../public/images/avatars/koala.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="../public/images/avatars/leopard.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="../public/images/avatars/lion.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="../public/images/avatars/marten.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="../public/images/avatars/monkey-1.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="../public/images/avatars/monkey.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="../public/images/avatars/mouse.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="../public/images/avatars/octopus.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="../public/images/avatars/ostrich.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="../public/images/avatars/owl.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="../public/images/avatars/panda.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="../public/images/avatars/parrot.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="../public/images/avatars/penguin-1.svg" alt=""/>
+                                    </div>
+                                </div>
+                                <div class="swiper-button-prev"></div>
+                                <div class="swiper-button-next"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form__field">
+                        <p>
+                            Teile diesen Link, um dein Team mitzunehmen:
+                        </p>
+                        <input id="link" type="text" name="link" value=""/>
+                        <span class="icon-link"></span>
+                    </div>
+                    <div class="form__field">
+                        <button type="button">
+                            Weiterspielen
+                        </button>
+                    </div>
+                </form>
+            </main>
+        </div>
+    </div>
+</div>
+
+<script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
+<script>
+    var mySwiper = new Swiper('.swiper-container', {
+        slidesPerView: 4,
+        spaceBetween: 30,
+        grabCursor: true,
+        loop: true,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    })
+</script>
+</body>
+</html>
