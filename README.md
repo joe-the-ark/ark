@@ -2,7 +2,7 @@
 The Ark is a social game to develop your teams sense of psychological safety. New ARK version. Frontend Omsk.
 
 ## Some Screenshot of Version 2.0
-* https://dark.xaoni.dev/
+* [Screenshots by Xaoni](https://dark.xaoni.dev/)
 
 ## Gameflow of Version 2.1
 * [Version 2.1 of the Gameflow PDF](https://www.dropbox.com/s/0vc0qslbv5dskop/ARK_Gameflow_Five.pdf?dl=0)
