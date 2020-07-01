@@ -11,7 +11,7 @@ The Ark is a social game to develop your teams sense of psychological safety. Ne
 
 ## Useful Links
 * [Power Sources & Energy Drainers in Teams – the powers to build tension scales in Version 2.0](https://www.dropbox.com/s/ytqzk3k22vwyeah/2020_Motivsysteme_Multilanguage.jpg?dl=0)
-* [First version of the game](https://github.com/joe-the-ark/arks)
+* [Github Repository of the First version of the game](https://github.com/joe-the-ark/arks)
 * [Play the First version of the game in English](irkutsk.arks.ch/)
 * [Play the First version of the game in German](zurich.arks.ch/)
 * [Visual Documentation of my journey towards completion of the First version of the game](https://photos.app.goo.gl/4fHKgDkx9ChjeiuV8)
