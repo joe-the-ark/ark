@@ -14,4 +14,4 @@ The Ark is a social game to develop your teams sense of psychological safety. Ne
 * [First version of the game](https://github.com/joe-the-ark/arks)
 * [Play the First version of the game in English](irkutsk.arks.ch/)
 * [Play the First version of the game in German](zurich.arks.ch/)
-* [Visual Documentation of my journey towards completion of the First version of the game] (https://photos.app.goo.gl/4fHKgDkx9ChjeiuV8)
+* [Visual Documentation of my journey towards completion of the First version of the game](https://photos.app.goo.gl/4fHKgDkx9ChjeiuV8)
