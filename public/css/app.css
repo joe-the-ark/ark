@@ -192,19 +192,6 @@ html:not([theme]) {
   --ls-alfa-color: #160449;
   --ls-beta-color: #000000;
 }
-html[theme="dark"] {
-  --ls-brand-color: #000000;
-  --ls-accent-1-color: #000000;
-  --ls-accent-2-color: #000000;
-  --ls-bg-global-color: #000000;
-  --ls-thin-color: #ffffff;
-  --ls-meta-color: #d7e6fc;
-  --ls-extra-color: #eaeaea;
-  --ls-between-color: #afafaf;
-  --ls-ultra-color: #626262;
-  --ls-alfa-color: #160449;
-  --ls-beta-color: #000000;
-}
 body {
   background-color: var(--ls-bg-global-color);
 }
