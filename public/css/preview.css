@@ -1,19 +1,31 @@
 .preview {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-  grid-gap: 60px;
-  padding-bottom: 300px;
+  padding-bottom: 203px;
 }
 @media screen and (max-width: 1200px) {
   .preview {
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   }
 }
+@media (max-height: 763px) and (min-width: 1200px) {
+  .preview {
+    padding-bottom: 0;
+  }
+}
 .preview p {
-  margin: 42px 0 20px;
+  margin: var(--ls-paragraph-offset);
+}
+@media (max-height: 763px) and (min-width: 1200px) {
+  .preview p {
+    margin: 22px 0 10px;
+  }
 }
 .preview ul {
   margin-bottom: 30px;
+}
+@media screen and (max-width: 1200px) {
+  .preview ul + .button {
+    display: none;
+  }
 }
 .preview:before,
 .preview:after {
@@ -26,6 +38,7 @@
   pointer-events: none;
   background-size: auto;
   background-repeat: no-repeat;
+  z-index: -1;
 }
 .preview:before {
   background-image: url("../images/general/ship.png");
@@ -36,13 +49,77 @@
     background-image: url("../images/general/ship-min.png");
   }
 }
+@media (max-height: 763px) and (min-width: 1200px) {
+  .preview:before {
+    background-position: -50px calc(100% + 30px);
+  }
+}
 @media screen and (min-width: 1201px) {
   .preview:after {
     background-image: url("../images/general/buoy.png");
     background-position: calc(100% - 99px) bottom;
   }
 }
+@media (max-height: 763px) and (min-width: 1200px) {
+  .preview:after {
+    background-position: calc(100% - 99px) calc(100% + 50px);
+  }
+}
 .preview iframe {
   background-color: #e4e4e4;
   width: 100%;
+  margin-top: 30px;
+}
+@media (max-height: 763px) and (min-width: 1200px) {
+  .preview iframe {
+    height: 300px;
+    margin-top: 0;
+  }
+}
+@media screen and (min-width: 1201px) {
+  .preview iframe + .button {
+    display: none;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .preview iframe {
+    height: 292px;
+  }
+  .preview iframe + .button {
+    display: inline-block;
+  }
+}
+.preview .button {
+  margin-top: 30px;
+}
+@media (max-height: 763px) and (min-width: 1200px) {
+  .preview .button {
+    margin-top: 0;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .preview .button {
+    margin-top: 60px;
+  }
+}
+.preview__main {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, calc(50% + 78px) calc(50% - 138px));
+  grid-gap: 60px;
+}
+@media screen and (max-width: 1200px) {
+  .preview__main {
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    grid-gap: 0;
+  }
+}
+@media screen and (max-width: 540px) {
+  .preview__main {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+@media screen and (max-width: 1200px) {
+  .preview__thumbnail {
+    text-align: center;
+  }
 }

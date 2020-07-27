@@ -60,8 +60,10 @@
 .form p {
   text-align: left;
 }
-.form p + input {
-  margin-top: 20px;
+@media screen and (min-width: 769px) {
+  .form p + input {
+    margin-top: 20px;
+  }
 }
 .form__placeholder {
   color: var(--ls-between-color);
@@ -78,8 +80,18 @@
 .auth {
   text-align: center;
 }
+@media screen and (max-width: 768px) {
+  .auth h1 {
+    margin-bottom: 30px;
+  }
+}
 .auth h1 + p {
   margin: 20px 0 50px;
+}
+@media screen and (max-width: 768px) {
+  .auth p {
+    display: none;
+  }
 }
 .auth form {
   width: min(641px, 100%);
@@ -90,4 +102,26 @@
   width: min(519px, 100%);
   margin-right: auto;
   margin-left: auto;
+}
+.auth form > div p + button {
+  display: none;
+}
+@media screen and (min-width: 540px) and (max-width: 768px) {
+  .auth form > div p + button {
+    color: var(--ls-alfa-color);
+    font-size: var(--ls-font-large);
+    line-height: 1;
+    display: block;
+    position: absolute;
+    background-color: #dcf5fb;
+    box-shadow: none;
+    top: 1px;
+    bottom: 1px;
+    left: 1px;
+    border-right: 1px solid var(--ls-between-color);
+    padding: 0 20px;
+  }
+  .auth form > div p + button + input {
+    padding-left: 243px;
+  }
 }

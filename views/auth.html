@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../public/css/app.css">
     <link rel="stylesheet" href="../public/css/auth.css">
     <!--  plugins  -->
-    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 </head>
 <body>
 <div class="app started">
@@ -25,17 +25,18 @@
     <div class="app__body">
         <div class="container">
             <main class="screen auth">
-                <h1>
+                <h1 id="title-game">
                     Wie steht es um eure Psychologische Sicherheit?
                 </h1>
                 <p>
-                    Die Arche ist ein soziales Spiel, um das psychologische Sicherheitsgefühl in <br/>Teams zu entwickeln.
+                    Die Arche ist ein soziales Spiel, um das psychologische Sicherheitsgefühl in <br/>Teams zu
+                    entwickeln.
                     Die
                     Spielzeit beträgt maximal eine Stunde.
                 </p>
                 <form action="#" method="POST" id="auth-form" class="form">
                     <div class="form__field">
-                        <input id="nutzername" type="text" name="Nutzername" value="" required />
+                        <input id="nutzername" type="text" name="Nutzername" value="" required/>
                         <span class="form__placeholder">Nutzername</span>
                     </div>
                     <div class="form__field">
@@ -161,6 +162,9 @@
                         <p>
                             Teile diesen Link, um dein Team mitzunehmen:
                         </p>
+                        <button>
+                            Einen Link teilen:
+                        </button>
                         <input id="link" type="text" name="link" value=""/>
                         <span class="icon-link"></span>
                     </div>
@@ -175,18 +179,28 @@
     </div>
 </div>
 
-<script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
     var mySwiper = new Swiper('.swiper-container', {
         slidesPerView: 4,
-        spaceBetween: 30,
+        spaceBetween: 40,
         grabCursor: true,
         loop: true,
         navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
         },
-    })
+    });
+
+
+    window.addEventListener('load', defaultLoad);
+    window.addEventListener('resize', defaultLoad);
+
+    function defaultLoad() {
+        const el = document.getElementById('title-game');
+        el.innerHTML = window.innerWidth < 768 ? 'Spiel erstellen' : 'Wie steht es um eure Psychologische Sicherheit?'
+    }
+
 </script>
 </body>
 </html>

@@ -18,7 +18,7 @@
   width: 473px;
   min-height: 152px;
 }
-.distry__thembnails {
+.distry__thumbnails {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -33,6 +33,51 @@
   display: inline-block;
   margin: 0 5px 10px;
   border-radius: 50%;
+}
+.distry__user:nth-last-child(7):first-child,
+.distry__user:nth-last-child(7):first-child ~ div {
+  width: 30px;
+  height: 30px;
+}
+.distry__user:nth-last-child(8):first-child,
+.distry__user:nth-last-child(8):first-child ~ div {
+  width: 30px;
+  height: 30px;
+}
+.distry__user:nth-last-child(9):first-child,
+.distry__user:nth-last-child(9):first-child ~ div {
+  width: 30px;
+  height: 30px;
+}
+.distry__user:nth-last-child(10):first-child,
+.distry__user:nth-last-child(10):first-child ~ div {
+  width: 30px;
+  height: 30px;
+}
+.distry__user:nth-last-child(11):first-child,
+.distry__user:nth-last-child(11):first-child ~ div {
+  width: 30px;
+  height: 30px;
+}
+.distry__user:nth-last-child(12):first-child,
+.distry__user:nth-last-child(12):first-child ~ div {
+  width: 30px;
+  height: 30px;
+}
+.distry__user:nth-last-child(13):first-child,
+.distry__user:nth-last-child(13):first-child ~ div {
+  width: 30px;
+  height: 30px;
+}
+.distry__user:nth-last-child(14):first-child,
+.distry__user:nth-last-child(14):first-child ~ div {
+  width: 30px;
+  height: 30px;
+}
+.distry__user:nth-last-child(15):first-child,
+.distry__user:nth-last-child(15):first-child ~ div {
+  width: 30px;
+  height: 30px;
 }
 .user-connect {
   display: flex;
@@ -80,6 +125,17 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
   grid-gap: 30px;
+  margin: 50px 0;
+  min-width: 1400px;
+}
+@media screen and (max-width: 1600px) {
+  .distribution {
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  }
+}
+.distribution__item {
+  display: flex;
+  align-items: center;
 }
 .distribution__item:first-child,
 .distribution__item:last-child {
@@ -92,7 +148,11 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin: 0px 32px 0px;
+}
+@media screen and (min-width: 1601px) {
+  .distribution__users {
+    margin: 0 32px;
+  }
 }
 .distribution .user-connect {
   max-width: 210px;

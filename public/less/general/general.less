@@ -1,0 +1,22 @@
+.reset();
+//.mobileLayout('#root');
+
+html:not([theme]) {
+    .defaultTheme();
+}
+
+html[theme="dark"] {
+    .darkTheme();
+}
+
+body{
+    background-color: @bg-global-color;
+}
+
+.container {
+    .container(end);
+    margin: 0 15px;
+}
+
+//.debug();
+

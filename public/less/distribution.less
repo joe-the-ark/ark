@@ -1,0 +1,89 @@
+@import './general/xnls';
+@import "general/variables";
+@import "components/distry";
+@import "components/user";
+
+.distribution {
+    display: grid;
+    grid-gap: 30px;
+    margin: 50px 0;
+    min-width: 1400px;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+
+    .lg({
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    });
+
+    .max(1440px, {
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        min-width: auto;
+    });
+
+    .max(1300px, {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    });
+
+    .sm({
+        grid-template-columns: 1fr;
+    });
+
+    &__item {
+        display: flex;
+        align-items: center;
+
+        .sm(min, {
+
+            &:first-child, &:last-child {
+                grid-column: span 3;
+            }
+
+            &:nth-child(3) {
+                grid-row: span 2;
+            }
+        });
+
+        .sm({
+            > div {
+                width: 100%;
+            }
+
+            &:not(:nth-child(3)){
+                order: 1;
+            }
+
+            &:nth-child(3) {
+                order: 0;
+            }
+        })
+    }
+
+    &__users {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: 100%;
+        cursor: pointer;
+
+        .lg(min, {
+            //margin: 0 32px;
+        });
+    }
+
+    .user-connect {
+        max-width: 210px;
+        margin-bottom: 20px;
+
+        img {
+            max-width: 60px;
+        }
+
+        &__name {
+            padding: 2px 6px 2px 41px;
+        }
+
+        &__now {
+            display: none;
+        }
+    }
+
+}

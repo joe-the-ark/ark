@@ -1,0 +1,29 @@
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+
+    span {
+        .font(@alfa-color @font-large 48px);
+        border: 1px solid @brand-color;
+        box-sizing: border-box;
+        padding: 0 20px;
+        margin: 0 40px 30px 0;
+        cursor: pointer;
+        transition: @transition;
+
+        .sm({
+            margin: 0 15px 15px 0;
+        });
+
+        &:hover {
+            color: @brand-color;
+        }
+
+        &.line-through {
+            text-decoration: line-through;
+            color: @between-color;
+            border-color: @between-color;
+        }
+    }
+}

@@ -1,0 +1,105 @@
+@import './general/xnls';
+@import "./general/variables";
+@import "components/custom-graph";
+@import "components/custom-graph-info";
+@import "components/rang";
+@import "components/fields-fill";
+@import "boxings";
+
+.assessment {
+    > p {
+        max-width: 660px;
+        margin: 20px 0 40px;
+    }
+
+    h1 {
+        margin-bottom: 40px;
+    }
+
+    h3 {
+
+    }
+
+    ul {
+        max-width: 842px;
+
+        + .swiper-container{
+            margin: 70px 0;
+
+            + .custom-graph-info {
+                margin: 0 auto;
+            }
+        }
+    }
+
+    .swiper-pagination{
+        display: none;
+    }
+
+    .xs(min, {
+        .swiper-container {
+            .custom-graph {
+                margin: 0 70px;
+            }
+        }
+    });
+
+    [class*= "swiper-button" ] {
+        .xs({
+            display: none;
+        })
+    }
+
+    .user .custom-graph {
+        width: 100%;
+    }
+
+    .custom-graph-info {
+        max-width: 432px;
+    }
+
+    .fields-fill{
+        textarea{
+            min-height: 316px;
+        }
+    }
+}
+
+.max(1300px, {
+    .slider-button-prev, .slider-button-next {
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        background-color: @accent-2-color;
+        border-radius: 50%;
+        position: absolute;
+        top: 74px;
+        z-index: 2;
+        text-align: center;
+
+        &:before {
+            content: " ";
+            width: 10px;
+            height: 10px;
+            border-top: 2px solid @thin-color;
+            border-left: 2px solid @thin-color;
+            display: inline-block;
+            vertical-align: middle;
+        }
+    }
+
+    .slider-button-prev {
+        left: 0;
+        &:before {
+            transform: translateX(2px) rotate(-45deg);
+        }
+    }
+
+    .slider-button-next {
+        right: 0;
+        &:before {
+            transform: translateX(-2px) rotate(135deg);
+        }
+    }
+});
+

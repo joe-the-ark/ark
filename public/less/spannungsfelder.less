@@ -1,0 +1,37 @@
+@import './general/xnls';
+@import "./general/variables";
+@import "components/custom-graph";
+@import "components/custom-graph-info";
+@import "components/rang";
+
+.spannungsfelder {
+    p {
+        max-width: 908px;
+        margin: 42px 0 20px;
+    }
+
+    .rang{
+        margin: 70px 0;
+    }
+
+    .xs(min, {
+        .custom-graph {
+            margin: 0 70px;
+        }
+    });
+
+    [class*= "swiper-button" ] {
+        .xs({
+            display: none;
+        })
+    }
+
+    .swiper-pagination{
+        display: none;
+    }
+
+    .custom-graph-info{
+        max-width: 432px;
+        margin: 0 auto;
+    }
+}

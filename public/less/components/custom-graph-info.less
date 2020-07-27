@@ -1,0 +1,39 @@
+.custom-graph-info {
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+
+    &__item {
+        .font(@size: @h-font-small, @line: 92px);
+        text-align: center;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border: 4px solid #3781ee;
+        box-sizing: border-box;
+        position: relative;
+        margin-bottom: 60px;
+
+        &.small {
+            color: #ee6331
+        }
+
+        &.base {
+            color: #d4f131;
+            margin: 0 60px;
+        }
+
+        &.large {
+            color: #45fe39
+        }
+
+        &:before {
+            content: attr(data-text);
+            .font(@alfa-color @font-large 29px);
+            position: absolute;
+            top: calc(100% + 15px);
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+}

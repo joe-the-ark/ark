@@ -2,13 +2,18 @@
   position: relative;
   padding: 70px 0 150px 45px;
 }
+@media screen and (max-width: 1200px) {
+  .custom-graph {
+    padding: 70px 0 70px 45px;
+  }
+}
 .custom-graph__items {
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-evenly;
   border-bottom: 4px solid var(--ls-alfa-color);
   align-items: stretch;
-  height: min(382px, 39vh);
+  height: min(382px, 30vh);
   padding-bottom: 60px;
   box-sizing: border-box;
   position: relative;
@@ -33,6 +38,12 @@
     margin-top: -30px;
   }
 }
+@media (max-height: 763px) and (min-width: 1200px) {
+  .statistic .custom-graph__items {
+    height: min(400px, 30vh);
+    margin-top: 0;
+  }
+}
 .custom-graph__item {
   text-align: center;
   max-width: 138px;
@@ -43,7 +54,7 @@
 }
 .custom-graph__item input {
   position: absolute;
-  width: min(382px, calc(39vh - 19px));
+  width: min(382px, calc(30vh - 19px));
   transform: translateX(-50%) rotate(-90deg) translateX(calc(50% - 93px / 2));
   bottom: 0;
   left: 50%;
@@ -200,10 +211,20 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  filter: hue-rotate(-80deg);
+  filter: hue-rotate(-80deg) saturate(200%);
 }
 .custom-graph__item-count {
   bottom: 100%;
+}
+.custom-graph__item-side[data-dependency]:before {
+  position: absolute;
+  content: attr(data-dependency);
+  background-color: var(--ls-thin-color);
+  width: 33px;
+  height: 33px;
+  top: 1px;
+  left: -6px;
+  border-radius: 50%;
 }
 .custom-graph__item-line {
   position: absolute;
@@ -240,8 +261,8 @@
   background: linear-gradient(to top, #F53131 0%, #E1F131 52.91%, #3DFF39 101.58%);
   left: 45px;
   bottom: 0;
-  top: 55px;
-  height: calc(100% - 205px);
+  top: 70px;
+  height: calc(100% - 220px);
 }
 .custom-graph__status-down,
 .custom-graph__status-up {
@@ -249,7 +270,7 @@
   font-size: var(--ls-font-large);
   line-height: 29px;
   position: absolute;
-  right: calc(100% + 22px);
+  right: calc(100% + 17px);
 }
 .custom-graph__status-down {
   bottom: -4px;
@@ -385,14 +406,14 @@
   position: relative;
   margin-bottom: 60px;
 }
-.custom-graph-info__item[data-text="Minimal"] {
+.custom-graph-info__item.small {
   color: #ee6331;
 }
-.custom-graph-info__item[data-text="Median"] {
+.custom-graph-info__item.base {
   color: #d4f131;
   margin: 0 60px;
 }
-.custom-graph-info__item[data-text="Maximal"] {
+.custom-graph-info__item.large {
   color: #45fe39;
 }
 .custom-graph-info__item:before {
@@ -408,11 +429,24 @@
 .team-potential p {
   float: left;
   max-width: 908px;
-  margin: 42px 0 20px;
+  margin: var(--ls-paragraph-offset);
 }
 .team-potential .custom-graph-info {
   float: right;
 }
 .team-potential .custom-graph {
   clear: both;
+}
+@media (max-height: 763px) and (min-width: 1200px) {
+  .team-potential .custom-graph-info {
+    margin-top: -40px;
+  }
+  .team-potential .custom-graph {
+    padding-top: 20px;
+    padding-bottom: 108px;
+  }
+  .team-potential .custom-graph__status {
+    top: 20px;
+    height: calc(100% - 128px);
+  }
 }

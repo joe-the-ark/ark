@@ -1,0 +1,88 @@
+@import './general/xnls';
+@import './general/mixins';
+@import "general/variables";
+@import "components/slider";
+@import "components/form";
+
+.auth-link {
+    text-align: center;
+    max-width: 1300px;
+    margin: 0 auto;
+
+    h1 {
+        .xs({
+            margin-bottom: 30px;
+        });
+
+        + p {
+            margin: 20px 0 50px;
+        }
+    }
+
+    p {
+        .xs({
+            display: none;
+        });
+    }
+
+    .form {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(530px, 1fr));
+        grid-column-gap: 60px;
+
+        .xs(min, {
+            margin-top: 51px;
+        });
+
+        .lg({
+            grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+
+            .forMisha({
+                grid-template-columns: repeat(auto-fit, minmax(530px, 1fr));
+            });
+        });
+
+        .max(540px, {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        });
+
+        &__field {
+            .sm(min, {
+                &:nth-child(2) {
+                    grid-row: span 2;
+                }
+                .last({
+                    grid-column: span 2;
+                    text-align: center;
+                });
+            });
+
+            &:nth-last-child(3) {
+                .xs({
+                    display: none;
+                })
+            }
+
+            p {
+                + button {
+                    display: none;
+                    .minmax(540px, 768px, {
+                        .font(@alfa-color @font-large 1);
+                        display: block;
+                        position: absolute;
+                        background-color: #dcf5fb;
+                        box-shadow: none;
+                        top: 1px;
+                        bottom: 1px;
+                        left: 1px;
+                        border-right: 1px solid @between-color;
+                        padding: 0 20px;
+                        + input {
+                            padding-left: 243px;
+                        }
+                    });
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,125 @@
+@import './general/xnls';
+@import "general/variables";
+@import "general/mixins";
+
+.preview-2 {
+    padding-bottom: 203px;
+
+    .sm({
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    });
+
+    .forMisha({
+        padding-bottom: 0;
+    });
+
+    p {
+        margin: @paragraph-offset;
+
+        .forMisha({
+            margin: 22px 0 10px;
+        });
+    }
+
+    ul {
+        margin-bottom: 30px;
+
+        + .button {
+            .sm({
+                display: none;
+            })
+        }
+    }
+
+    &:before, &:after {
+        content: " ";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        background-size: auto;
+        background-repeat: no-repeat;
+        z-index: -1;
+    }
+
+    &:before {
+        background-image: url("../images/general/boat-big.png");
+        background-position: left bottom;
+
+        .sm({
+            background-image: url("../images/general/ship-min.png");
+        });
+
+        .forMisha({
+            background-size: 350px;
+        })
+    }
+    &:after {
+        .sm(min, {
+            background-image: url("../images/general/anchor.png");
+            background-position: right bottom;
+        });
+        .forMisha({
+            background-size: 230px;
+        })
+    }
+
+    iframe {
+        background-color: #e4e4e4;
+        width: 100%;
+        margin-top: 30px;
+
+        .forMisha({
+            height: 300px;
+            margin-top: 0;
+        });
+
+        .sm(min, {
+            + .button {
+                display: none;
+            }
+        });
+
+        .sm({
+            height: 292px;
+            + .button {
+                display: inline-block;
+            }
+        });
+    }
+
+    .button {
+        margin-top: 30px;
+
+        .forMisha({
+            margin-top: 0;
+        });
+
+        .sm({
+            margin-top: 60px;
+        })
+    }
+}
+
+.preview__main {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, calc(50% + 78px) calc(50% - 138px));
+    grid-gap: 60px;
+
+    .sm({
+        grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+        grid-gap: 0;
+    });
+
+    .max(540px, {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    })
+}
+
+.preview__thumbnail {
+    .sm({
+        text-align: center;
+    });
+}

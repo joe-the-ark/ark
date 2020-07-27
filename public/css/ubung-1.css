@@ -28,8 +28,22 @@
   border-color: var(--ls-between-color);
 }
 .ubung-1 p {
+  margin: var(--ls-paragraph-offset);
+}
+.ubung-1 p:first-of-type {
   max-width: 842px;
-  margin: 42px 0 20px;
+}
+.ubung-1 p:last-of-type {
+  letter-spacing: 0.2px;
+  margin-bottom: 30px;
+}
+@media (max-height: 763px) and (min-width: 1200px) {
+  .ubung-1 p {
+    margin: 22px 0 10px;
+  }
+  .ubung-1 p:last-of-type {
+    margin-bottom: 10px;
+  }
 }
 .ubung-1 input {
   max-width: 410px;

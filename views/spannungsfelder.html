@@ -9,7 +9,7 @@
     <title>Title</title>
     <link rel="stylesheet" href="../public/css/app.css">
     <link rel="stylesheet" href="../public/css/spannungsfelder.css">
-    <link rel="stylesheet" href="../public/library/swiper/swiper.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 </head>
 <body>
 <div class="app">
@@ -78,20 +78,30 @@
                     Fremdwahrnehmung durch das Team? Möchtest du erraten, wie du von jedem
                     Teammitglied eingeschätzt wirst? Dann spiel weiter!
                 </p>
-
-                <div class="swiper-container">
+                <div id="rang-slider" class="swiper-container">
                     <div class="swiper-wrapper">
                     </div>
                 </div>
-
-                <div class="custom-graph1">
-
+                <div class="custom-graph-info">
+                    <div class="custom-graph-info__item small" data-text="Minimal">
+                        15
+                    </div>
+                    <div class="custom-graph-info__item base" data-text="Median">
+                        49
+                    </div>
+                    <div class="custom-graph-info__item large" data-text="Maximal">
+                        99
+                    </div>
                 </div>
-
-                <div class="custom-graph2">
-
+                <div id="graph-slider" class="swiper-container">
+                    <div class="swiper-wrapper">
+                    </div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-pagination"></div>
                 </div>
-                s
+                <div class="custom-graph1"></div>
+                <div class="custom-graph2"></div>
                 <div class="center">
                     <a href="#" class="button" id="button">
                         Weiterspielen
@@ -101,9 +111,11 @@
         </div>
     </div>
 </div>
+<script src="../public/js/AppRange.js"></script>
 <script src="../public/js/AppGraph.js"></script>
-<script src="../public/library/swiper/swiper.min.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
+    const isMobile = () => window.innerWidth <= 1200;
     const data = [
         {
             range: [1, 99],
@@ -157,6 +169,8 @@
                     statusSide: 10
                 },
                 {
+                    name: 'Vasilisa Kochetkova',
+                    avatar: '../public/images/avatars/boar.svg',
                     statusSide: 20
                 },
                 {
@@ -166,8 +180,6 @@
                     statusSide: 49
                 },
                 {
-                    name: 'Vasilisa Kochetkova',
-                    avatar: '../public/images/avatars/boar.svg',
                     statusSide: 49
                 },
                 {
@@ -192,10 +204,447 @@
                     statusSide: 99
                 },
             ]
+        },
+        {
+            range: [1, 99],
+            labelRange: [1, 99],
+            data: [
+                {
+                    statusSide: 10
+                },
+                {
+                    name: 'Vasilisa Kochetkova',
+                    avatar: '../public/images/avatars/boar.svg',
+                    statusSide: 20
+                },
+                {
+                    statusSide: 45
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 60
+                },
+                {
+                    statusSide: 70
+                },
+                {
+                    statusSide: 99
+                },
+            ]
+        },
+        {
+            range: [1, 99],
+            labelRange: [1, 99],
+            data: [
+                {
+                    statusSide: 10
+                },
+                {
+                    statusSide: 45
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    name: 'Vasilisa Kochetkova',
+                    avatar: '../public/images/avatars/boar.svg',
+                    statusSide: 70
+                },
+                {
+                    statusSide: 70
+                },
+                {
+                    statusSide: 99
+                },
+            ]
+        },
+        {
+            range: [1, 99],
+            labelRange: [1, 99],
+            data: [
+                {
+                    statusSide: 10
+                },
+                {
+                    name: 'Vasilisa Kochetkova',
+                    avatar: '../public/images/avatars/boar.svg',
+                    statusSide: 20
+                },
+                {
+                    statusSide: 45
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 60
+                },
+                {
+                    statusSide: 70
+                },
+                {
+                    statusSide: 99
+                },
+            ]
+        },
+        {
+            range: [1, 99],
+            labelRange: [1, 99],
+            data: [
+                {
+                    statusSide: 10
+                },
+                {
+                    name: 'Vasilisa Kochetkova',
+                    avatar: '../public/images/avatars/boar.svg',
+                    statusSide: 20
+                },
+                {
+                    statusSide: 45
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 60
+                },
+                {
+                    statusSide: 70
+                },
+                {
+                    statusSide: 99
+                },
+            ]
+        },
+        {
+            range: [1, 99],
+            labelRange: [1, 99],
+            data: [
+                {
+                    statusSide: 10
+                },
+                {
+                    name: 'Vasilisa Kochetkova',
+                    avatar: '../public/images/avatars/boar.svg',
+                    statusSide: 20
+                },
+                {
+                    statusSide: 45
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 60
+                },
+                {
+                    statusSide: 70
+                },
+                {
+                    statusSide: 99
+                },
+            ]
+        },
+        {
+            range: [1, 99],
+            labelRange: [1, 99],
+            data: [
+                {
+                    statusSide: 10
+                },
+                {
+                    name: 'Vasilisa Kochetkova',
+                    avatar: '../public/images/avatars/boar.svg',
+                    statusSide: 20
+                },
+                {
+                    statusSide: 45
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 60
+                },
+                {
+                    statusSide: 70
+                },
+                {
+                    statusSide: 99
+                },
+            ]
+        },
+        {
+            range: [1, 99],
+            labelRange: [1, 99],
+            data: [
+                {
+                    statusSide: 10
+                },
+                {
+                    name: 'Vasilisa Kochetkova',
+                    avatar: '../public/images/avatars/boar.svg',
+                    statusSide: 20
+                },
+                {
+                    statusSide: 45
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 60
+                },
+                {
+                    statusSide: 70
+                },
+                {
+                    statusSide: 99
+                },
+            ]
+        },
+        {
+            range: [1, 99],
+            labelRange: [1, 99],
+            data: [
+                {
+                    statusSide: 10
+                },
+                {
+                    name: 'Vasilisa Kochetkova',
+                    avatar: '../public/images/avatars/boar.svg',
+                    statusSide: 20
+                },
+                {
+                    statusSide: 45
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 60
+                },
+                {
+                    statusSide: 70
+                },
+                {
+                    statusSide: 99
+                },
+            ]
+        },
+        {
+            range: [1, 99],
+            labelRange: [1, 99],
+            data: [
+                {
+                    statusSide: 10
+                },
+                {
+                    name: 'Vasilisa Kochetkova',
+                    avatar: '../public/images/avatars/boar.svg',
+                    statusSide: 20
+                },
+                {
+                    statusSide: 45
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 60
+                },
+                {
+                    statusSide: 70
+                },
+                {
+                    statusSide: 99
+                },
+            ]
+        },
+        {
+            range: [1, 99],
+            labelRange: [1, 99],
+            data: [
+                {
+                    statusSide: 10
+                },
+                {
+                    statusSide: 45
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 60
+                },
+                {
+                    statusSide: 70
+                },
+                {
+                    statusSide: 83
+                },
+                {
+                    name: 'Vasilisa Kochetkova',
+                    avatar: '../public/images/avatars/boar.svg',
+                    statusSide: 99
+                },
+            ]
         }
-    ]
+    ];
 
-    const wrapper = document.querySelector('.swiper-wrapper');
+    const wrapper = document.querySelector('#graph-slider .swiper-wrapper');
     let htmlWrappers = ``;
 
     data.forEach((item, i) => {
@@ -203,6 +652,68 @@
     });
 
     wrapper.innerHTML = htmlWrappers;
+
+    new AppRange({
+        container: '#rang-slider',
+        innerWrapper: isMobile() ? 'rang swiper-wrapper' : 'rang',
+        data: data.map(({data}) => {
+            const dataSort = data.filter(el => el.name);
+            const {name, avatar, statusSide} = dataSort[0];
+            return {
+                name,
+                avatar,
+                statusSide
+            }
+        }),
+        callback(item, i) {
+            if (!isMobile()) {
+                const itemClickable = document.querySelectorAll('#graph-slider .swiper-pagination-bullet');
+                itemClickable[i].click();
+                item.classList.add('active');
+            }
+        },
+        update(item) {
+            if (!isMobile()) {
+                item.classList.remove('active');
+            }
+        },
+        loadEnd() {
+            if (isMobile()) {
+                new Swiper(this.container, {
+                    slidesPerView: 6,
+                    spaceBetween: 0,
+                    centeredSlides: true,
+                    grabCursor: true,
+                    loop: true,
+                    breakpoints: {
+                        768: {
+                            slidesPerView: 3,
+                            spaceBetween: 0,
+                        },
+                        480: {
+                            slidesPerView: 2,
+                            spaceBetween: 0,
+                        },
+                        320: {
+                            slidesPerView: 1,
+                            spaceBetween: 0,
+                        },
+                    },
+                    navigation: {
+                        nextEl: '.rang-button-next',
+                        prevEl: '.rang-button-prev',
+                    },
+                    on: {
+                        slideChange(a, b, c) {
+                            const index = a.realIndex;
+                            const itemClickable = document.querySelectorAll('#graph-slider .swiper-pagination-bullet');
+                            itemClickable[index].click();
+                        }
+                    }
+                });
+            }
+        }
+    });
 
     data.forEach((item, i) => {
         new AppGraph({
@@ -213,9 +724,19 @@
             statistic: true,
             data: item.data
         });
-    })
+    });
 
-    var swiper = new Swiper('.swiper-container');
+    new Swiper('#graph-slider', {
+        grabCursor: true,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true
+        }
+    });
 
 </script>
 </body>
