@@ -1,12 +1,14 @@
 class AppGraph {
-    constructor({container, data, range, statistic, mobile, labelRange, auto = true}) {
+    constructor({container, data, range, statistic, mobile, labelRange, auto = true, dependency = false}) {
         this.container = document.querySelector(container);
+        console.log(container)
         this.data = data;
         this.range = range;
         this.labelRange = labelRange;
         this.statistic = statistic;
         this.mobile = mobile;
         this.auto = auto;
+        this.dependency = dependency;
         this.effect = function () {
         };
 
@@ -75,6 +77,8 @@ class AppGraph {
         this.updateDots();
         this.update();
         this.effectDot(item);
+        // console.log(item)
+        // this.dependency(item, index)
     }
 
     removeDot(item, index) {
@@ -226,18 +230,32 @@ class AppGraph {
         const countDot = this.find(thumb, `.custom-graph__item-count`);
         if (countDot) {
             countDot.innerHTML = value;
-            countDot.style.filter = `hue-rotate(-${180 - +value}deg)`;
+            countDot.style.filter = `hue-rotate(-${180 - +value}deg)  saturate(200%)`;
             index !== undefined && this.setDataStatus(index, value);
         }
         if (this.statistic) {
             const countSide = this.find(thumb, `.custom-graph__item-side`);
             if (countSide) {
                 countSide.innerHTML = value;
-                countSide.style.filter = `hue-rotate(-${180 - +value}deg)`;
+                countSide.style.filter = `hue-rotate(-${180 - +value}deg)  saturate(200%)`;
                 index !== undefined && this.setDataStatus(index, value);
             }
         }
+        this.getDependency(inputSlider, thumb, index, value);
         this.update();
+    }
+
+    getDependency(inputSlider, thumb, index, value) {
+        if (this.dependency) {
+            const countSide = this.find(thumb, `.custom-graph__item-side`);
+            if (countSide) {
+                const amount = countSide.innerHTML - value;
+                const amountMax = amount < 0 ? amount * -1 : amount;
+                countSide.setAttribute('data-dependency', amountMax);
+                countSide.style.filter = `hue-rotate(-${amount < 0 ? 180 : 80}deg)  saturate(200%)`;
+                // index !== undefined && this.setDataStatus(index, value);
+            }
+        }
     }
 
     render() {

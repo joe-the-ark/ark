@@ -1,0 +1,116 @@
+.fields-fill {
+
+}
+
+.fields-fill__head {
+    margin: 60px 0;
+}
+
+.fields-fill__body {
+    margin-bottom: 40px;
+}
+
+.fields-fill__connect {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+
+    .max(1300px, {
+        justify-content: center;
+
+    });
+
+    img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        object-position: center;
+        position: relative;
+        z-index: 1;
+
+        .sm({
+            width: 80px;
+            height: 80px;
+        });
+    }
+
+    &-name {
+        .font(@alfa-color @font-large 29px);
+        width: ~"min(294px, 100%)";
+        border: 1px solid @alfa-color;
+        box-sizing: border-box;
+        border-radius: 10px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        padding: 8px 45px 8px 64px;
+        margin-left: -50px;
+        background-color: @thin-color;
+        min-width: 176px;
+        min-height: 76px;
+        position: relative;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+
+        .max(1300px, {
+            padding: 2px 45px 2px 64px;
+            width: ~"min(210px, 100%)";
+            min-height: 66px;
+        });
+
+        &:after {
+            content: " ";
+            position: absolute;
+            top: calc(50% - 3px);
+            right: 18px;
+            width: 12px;
+            height: 12px;
+            border-bottom: 2px solid @accent-2-color;
+            border-right: 2px solid @accent-2-color;
+            transform: translateY(-50%) rotate(45deg);
+        }
+    }
+}
+
+.fields-fill__field-wrapper {
+    &:not(.active) {
+        display: none;
+    }
+}
+
+.fields-fill__field {
+    margin-bottom: 40px;
+
+    p {
+        margin-bottom: 10px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    textarea {
+        .font(@alfa-color @font-large 29px, {
+            font-family: @lato-regular;
+        });
+        .placeholder(font-size, @font-large);
+        .placeholder(color, @between-color);
+        padding: 15px 20px;
+        min-width: 100%;
+        max-width: 100%;
+        min-height: 167px;
+        resize: none;
+        border: 1px solid @between-color;
+        outline: none;
+        box-sizing: border-box;
+        .scroll({
+            background-color: @extra-color;
+            width: 10px;
+        }, {
+            background-color: @accent-2-color;
+            width: 10px;
+        })
+    }
+
+}

@@ -1,0 +1,136 @@
+@import "../general/xnls";
+@import "../general/variables";
+
+.header-main {
+    display: flex;
+    flex-wrap: wrap;
+
+    &.center {
+        align-items: center;
+    }
+
+    .sm({
+        justify-content: center;
+        text-align: center;
+    });
+
+    &__title {
+
+        .sm({
+            width: 100%;
+            margin-bottom: 26px;
+        });
+
+        span {
+            vertical-align: bottom;
+
+            .first({
+                .font(@thin-color 44px 1);
+                .sm({
+                    font-size: 35px;
+                })
+            });
+
+            .last({
+                .font(@thin-color 33px 27px, {
+                    font-family: 'Lato-Bold', sans-serif;
+                    .sm({
+                        font-size: 25px;
+                        line-height: 20px;
+                    })
+                });
+
+                margin-left: 4px;
+            })
+        }
+    }
+
+    &__user {
+        margin: 0 0 17px 0;
+        .sm(min, {
+            flex: 0 0 284px;
+            margin: 14px 0 0 auto;
+        });
+    }
+
+    &__progress {
+        width: 100%;
+        .md(min, {
+            margin-top: -29px;
+        });
+    }
+}
+
+.user {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    .sm({
+        justify-content: center;
+    });
+
+    &__subtitle {
+        .font(@alfa-color @font-base 24px);
+        width: 100%;
+        margin: 0 0 10px 70px;
+        .sm({
+            margin-bottom: 2px;
+        });
+    }
+
+    &__title {
+        .font(@alfa-color @font-large 29px 700);
+        margin-left: 20px;
+        max-width: calc(100% - 70px);
+    }
+
+    img {
+        max-height: 50px;
+    }
+}
+
+.progress {
+    display: flex;
+    align-items: center;
+
+    .sm({
+        flex-wrap: wrap;
+        justify-content: center;
+    });
+
+    .forMisha({
+    margin-top: -20px;
+});
+
+    label {
+        .font(@alfa-color @font-large 29px);
+        .sm({
+            width: 100%;
+            margin-bottom: 10px;
+        });
+    }
+
+    &__bar {
+        width: ~"min(481px, 100%)";
+        height: 22px;
+        position: relative;
+        background-color: @thin-color;
+
+        .sm(min, {
+            margin-left: 32px;
+        });
+
+        div {
+            .font(@meta-color @font-less 22px, {
+                text-align: right;
+            });
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            background-color: @accent-2-color;
+            padding: 0 4px;
+        }
+    }
+}

@@ -1,0 +1,33 @@
+@import './general/xnls';
+@import "general/variables";
+@import "components/tags";
+@import "general/mixins";
+
+.ubung-1 {
+    p {
+        margin: @paragraph-offset;
+
+        .first(type, {
+            max-width: 842px;
+        });
+
+        .last(type, {
+            letter-spacing: .2px;
+            margin-bottom: 30px;
+        });
+
+        .forMisha({
+            margin: 22px 0 10px;
+
+            .last(type, {
+                margin-bottom: 10px;
+            });
+        });
+
+    }
+
+    input {
+        max-width: 410px;
+    }
+
+}

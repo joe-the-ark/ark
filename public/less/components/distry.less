@@ -1,0 +1,50 @@
+.distry {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    width: ~"min(560px, 100%)";
+    margin: 0 auto;
+    border: 1px solid @between-color;
+
+    &.active{
+        border-color: #3781EE
+    }
+
+    &__description {
+        .font(@alfa-color @font-large 29px);
+        border-right: 1px solid @between-color;
+        padding: 10px 18px;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        width: calc(50% + 70px);
+        min-height: 152px;
+        max-width: 307px;
+    }
+
+    &__thumbnails {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 20px 20px 10px;
+        margin: 0 -5px;
+        width: calc(50% - 70px);
+    }
+
+    &__user {
+        width: 50px;
+        height: 50px;
+        background-color: @between-color;
+        display: inline-block;
+        margin: 0 5px 10px;
+        border-radius: 50%;
+        @array: 7, 8, 9, 10, 11, 12, 13, 14, 15;
+        each(@array, {
+            &:nth-last-child(@{value}):first-child, &:nth-last-child(@{value}):first-child ~ div {
+                width: 30px;
+                height: 30px;
+            }
+        });
+    }
+}

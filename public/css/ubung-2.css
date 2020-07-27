@@ -1,9 +1,15 @@
 .ui-slider {
   position: relative;
   width: min(973px, 100%);
-  padding: 123px 0;
+  padding: 153px 0;
 }
-@media screen and (max-width: 1600px) {
+@media (max-height: 763px) and (min-width: 1200px) {
+  .ui-slider {
+    padding: 100px 0;
+    margin-bottom: 0;
+  }
+}
+@media screen and (max-width: 1200px) {
   .ui-slider {
     transform: scale(0.8);
   }
@@ -121,5 +127,15 @@
   margin: 42px 0 20px;
 }
 .ubung-2 .ui-slider {
-  margin-bottom: 70px;
+  margin-bottom: 20px;
+}
+@media (max-height: 763px) and (min-width: 1200px) {
+  .ubung-2 .ui-slider {
+    margin-left: 30px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .ubung-2 .ui-slider {
+    padding: 73px 0;
+  }
 }

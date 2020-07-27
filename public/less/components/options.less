@@ -1,0 +1,24 @@
+.options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+    grid-gap: 70px;
+    margin: 30px auto 40px;
+    text-align: left;
+    max-width: 1500px;
+
+    .max(540px, {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        grid-gap: 30px;
+    });
+
+    &__item {
+        [class*="icon"] {
+            font-size: 60px;
+            color: @alfa-color;
+            float: left;
+        }
+        p {
+            margin-left: 80px;
+        }
+    }
+}

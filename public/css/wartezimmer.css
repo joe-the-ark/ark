@@ -4,6 +4,25 @@
   flex-wrap: nowrap;
   transition: var(--ls-transition);
 }
+.user-connect.outline {
+  outline: 1px solid var(--ls-accent-1-color);
+  padding: 10px;
+}
+body > .user-connect {
+  max-width: 210px;
+  transition: none;
+  cursor: pointer;
+  pointer-events: none;
+}
+body > .user-connect img {
+  max-width: 60px;
+}
+body > .user-connect .user-connect__name {
+  padding: 2px 6px 2px 41px;
+}
+.user-connect > * {
+  pointer-events: none;
+}
 .user-connect:not(.active) {
   filter: grayscale(100%);
 }
@@ -27,6 +46,8 @@
   padding: 8px 8px 8px 41px;
   margin-left: -26px;
   background-color: var(--ls-thin-color);
+  min-width: 176px;
+  min-height: 54px;
 }
 .user-connect__now {
   color: var(--ls-alfa-color);

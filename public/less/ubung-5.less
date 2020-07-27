@@ -1,0 +1,23 @@
+@import './general/xnls';
+@import "general/variables";
+@import "components/custom-graph";
+
+.ubung-5 {
+
+    p {
+        max-width: 908px;
+        margin: @paragraph-offset;
+    }
+
+    .forMisha({
+        .custom-graph {
+            padding-top: 30px;
+            padding-bottom: 118px;
+            &__status {
+                top: 30px;
+                height: calc(100% - 148px);
+            }
+        }
+    })
+
+}

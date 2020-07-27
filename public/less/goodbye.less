@@ -1,0 +1,87 @@
+@import './general/xnls';
+@import "general/variables";
+@import "general/mixins";
+
+.goodbye {
+
+    padding-bottom: 203px;
+
+    .sm({
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    });
+
+    .forMisha({
+        padding-bottom: 0;
+    });
+
+    p {
+        margin: @paragraph-offset;
+
+        .forMisha({
+            margin: 22px 0 10px;
+        });
+    }
+
+    button{
+        margin-top: 30px;
+    }
+
+    button + button{
+        margin-left: 30px;
+    }
+
+    &:before, &:after {
+        content: " ";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        background-size: auto;
+        background-repeat: no-repeat;
+        z-index: -1;
+    }
+
+    &:before {
+        background-image: url("../images/general/large-ship.png");
+        background-position: left bottom;
+
+        .sm({
+            background-image: url("../images/general/ship-min.png");
+        });
+
+        .forMisha({
+            background-size: calc(50vw - 50px);
+        })
+    }
+    &:after {
+        .sm(min, {
+            background-image: url("../images/general/anchor.png");
+            background-position: right bottom;
+        });
+
+        .forMisha({
+            background-size: 240px;
+        })
+    }
+
+    iframe {
+        background-color: #e4e4e4;
+        width: 100%;
+        .forMisha({
+            height: 300px;
+            margin-top: 0;
+        });
+    }
+}
+
+.goodbye__main {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, calc(50% + 78px) calc(50% - 138px));
+    grid-gap: 60px;
+
+    .sm({
+        grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    })
+}

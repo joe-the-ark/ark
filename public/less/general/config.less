@@ -1,0 +1,100 @@
+:root {
+  //fonts:
+  --ls-lato-regular: 'Lato-Regular', sans-serif;
+  --ls-lato-bold: 'Lato-Bold', sans-serif;
+  --ls-font-less: 14px;
+  --ls-font-small: 18px;
+  --ls-font-base: 20px;
+  --ls-font-large: 24px;
+  --ls-h-font-small: 32px;
+  --ls-h-font-base: 36px;
+  --ls-h-font-large: 48px;
+  //pages:
+  --ls-transition: all .3s ease;
+  //position:
+
+  //media
+  --ls-paragraph-offset: 38px 0 10px;
+
+  //images:
+}
+
+//
+
+.lg({
+  :root {
+    //fonts:
+
+    //pages:
+
+    //position:
+
+    //media
+
+    //images:
+  }
+});
+
+.md({
+  :root {
+    //fonts:
+
+    //pages:
+
+    //position:
+
+    //media
+
+    //images:
+  }
+});
+
+.sm({
+  :root {
+    //fonts:
+    --ls-h-font-large: 40px;
+
+    //pages:
+
+    //position:
+
+    //media
+
+    //images:
+  }
+});
+
+.xs({
+  :root {
+    //fonts:
+
+    //pages:
+
+    //position:
+
+    //media
+
+    //images:
+  }
+});
+
+.theme(@end:{}) {
+  .general(@brand-color, @accent-1-color, @accent-2-color) {
+    --ls-brand-color: @brand-color;
+    --ls-accent-1-color: @accent-1-color;
+    --ls-accent-2-color: @accent-2-color;
+  }
+  .backgrounds(@bg-global-color) {
+    --ls-bg-global-color: @bg-global-color;
+  }
+  .colors(@thin-color, @meta-color, @extra-color, @between-color, @ultra-color, @alfa-color, @beta-color) {
+    --ls-thin-color: @thin-color;
+    --ls-meta-color: @meta-color;
+    --ls-extra-color: @extra-color;
+    --ls-between-color: @between-color;
+    --ls-ultra-color: @ultra-color;
+    --ls-alfa-color: @alfa-color;
+    --ls-beta-color: @beta-color;
+  }
+  @end();
+}

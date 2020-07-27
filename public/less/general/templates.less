@@ -1,0 +1,95 @@
+@import "variables";
+
+.app {
+    min-height: 100vh;
+    position: relative;
+
+    .animate({
+        .action("fade-in");
+    });
+
+    &.started {
+        .app__head {
+            padding: 73px 0 86px;
+            position: relative;
+            background-image: url("../images/general/bg-global-started.png"),
+            url("../images/general/buoy-started.png"),
+            url("../images/general/buoy-min-started.png"),
+            url("../images/general/boat.png");
+            background-position: 100% 0%, 35% 92%, 22% 65%, 5% 30%;
+            background-size: auto;
+            background-repeat: no-repeat;
+            background-color: @accent-1-color;
+            .sm({
+                padding: 65px 0 40px;
+                background-position: 100% 0%, 25% 92%, 12% 65%, -76% -200%;
+            });
+            &:before {
+                content: " ";
+                position: absolute;
+                top: 100%;
+                right: 0;
+                width: ~"min(32%, 1053px)";
+                height: ~"min(200%, 609px)";
+                transform: translatey(-55%);
+                background: url("../images/general/ship-boat.png") top right / contain no-repeat;
+                pointer-events: none;
+                .sm({
+                    height: ~"min(200%, 209px)";
+                });
+            }
+
+        }
+
+        .header-main {
+            justify-content: center;
+        }
+
+        .header-main__title {
+            span {
+                display: block;
+                text-align: center;
+
+                .first({
+                    font-size: 150px;
+                    margin-bottom: 14px;
+                    .sm({
+                        font-size: 72px;
+                        margin-bottom: 6px;
+                    });
+                });
+
+                .last({
+                    font-size: 84px;
+                    line-height: 1;
+                    .sm({
+                        font-size: 39px;
+                        line-height: 1;
+                    });
+                });
+            }
+        }
+    }
+}
+
+.app__head {
+    background: url("../images/general/bg-global.png") left center / contain no-repeat @accent-1-color;
+    padding: 52px 0 39px;
+    .sm({
+        padding: 20px 0;
+    });
+
+    .forMisha({
+       padding: 10px 0;
+    });
+}
+
+.app__body {
+    padding: 62px 0;
+
+    .forMisha({
+        padding: 32px 0;
+    });
+}
+
+//.debug();
