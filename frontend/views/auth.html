@@ -1,14 +1,16 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <link rel="icon" href="../public/images/favicon.ico"/>
+    <link rel="icon" href="/static/images/favicon.ico"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
     <meta name="theme-color" content="#51ceec"/>
     <meta name="description" content="ARK"/>
     <title>Auth</title>
-    <link rel="stylesheet" href="../public/css/app.css">
-    <link rel="stylesheet" href="../public/css/auth.css">
+    <link rel="stylesheet" href="/static/css/app.css">
+    <link rel="stylesheet" href="/static/css/auth.css">
     <!--  plugins  -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 </head>
@@ -35,6 +37,7 @@
                     Spielzeit beträgt maximal eine Stunde.
                 </p>
                 <form action="#" method="POST" id="auth-form" class="form">
+                {% csrf_token %}
                     <div class="form__field">
                         <input id="nutzername" type="text" name="Nutzername" value="" required/>
                         <span class="form__placeholder">Nutzername</span>
@@ -51,106 +54,106 @@
                             <div class="swiper-container">
                                 <div class="swiper-wrapper">
                                     <div class="swiper-slide">
-                                        <img src="../public/images/avatars/anteater.svg" alt=""/>
+                                        <img src="/static/images/avatars/anteater.svg" alt=""/>
                                     </div>
                                     <div class="swiper-slide">
-                                        <img src="../public/images/avatars/bear.svg" alt=""/>
+                                        <img src="/static/images/avatars/bear.svg" alt=""/>
                                     </div>
                                     <div class="swiper-slide">
-                                        <img src="../public/images/avatars/boar.svg" alt=""/>
+                                        <img src="/static/images/avatars/boar.svg" alt=""/>
                                     </div>
                                     <div class="swiper-slide">
-                                        <img src="../public/images/avatars/beaver.svg" alt=""/>
+                                        <img src="/static/images/avatars/beaver.svg" alt=""/>
                                     </div>
                                     <div class="swiper-slide">
-                                        <img src="../public/images/avatars/buffalo-1.svg" alt=""/>
+                                        <img src="/static/images/avatars/buffalo-1.svg" alt=""/>
                                     </div>
                                     <div class="swiper-slide">
-                                        <img src="../public/images/avatars/buffalo.svg" alt=""/>
+                                        <img src="/static/images/avatars/buffalo.svg" alt=""/>
                                     </div>
                                     <div class="swiper-slide">
-                                        <img src="../public/images/avatars/cat.svg" alt=""/>
+                                        <img src="/static/images/avatars/cat.svg" alt=""/>
                                     </div>
                                     <div class="swiper-slide">
-                                        <img src="../public/images/avatars/chicken.svg" alt=""/>
+                                        <img src="/static/images/avatars/chicken.svg" alt=""/>
                                     </div>
                                     <div class="swiper-slide">
-                                        <img src="../public/images/avatars/cow.svg" alt=""/>
+                                        <img src="/static/images/avatars/cow.svg" alt=""/>
                                     </div>
                                     <div class="swiper-slide">
-                                        <img src="../public/images/avatars/crow.svg" alt=""/>
+                                        <img src="/static/images/avatars/crow.svg" alt=""/>
                                     </div>
                                     <div class="swiper-slide">
-                                        <img src="../public/images/avatars/dog-1.svg" alt=""/>
+                                        <img src="/static/images/avatars/dog-1.svg" alt=""/>
                                     </div>
                                     <div class="swiper-slide">
-                                        <img src="../public/images/avatars/dog.svg" alt=""/>
+                                        <img src="/static/images/avatars/dog.svg" alt=""/>
                                     </div>
                                     <div class="swiper-slide">
-                                        <img src="../public/images/avatars/donkey.svg" alt=""/>
+                                        <img src="/static/images/avatars/donkey.svg" alt=""/>
                                     </div>
                                     <div class="swiper-slide">
-                                        <img src="../public/images/avatars/elephant.svg" alt=""/>
+                                        <img src="/static/images/avatars/elephant.svg" alt=""/>
                                     </div>
                                     <div class="swiper-slide">
-                                        <img src="../public/images/avatars/fox.svg" alt=""/>
+                                        <img src="/static/images/avatars/fox.svg" alt=""/>
                                     </div>
                                     <div class="swiper-slide">
-                                        <img src="../public/images/avatars/giraffe.svg" alt=""/>
+                                        <img src="/static/images/avatars/giraffe.svg" alt=""/>
                                     </div>
                                     <div class="swiper-slide">
-                                        <img src="../public/images/avatars/hedgehog.svg" alt=""/>
+                                        <img src="/static/images/avatars/hedgehog.svg" alt=""/>
                                     </div>
                                     <div class="swiper-slide">
-                                        <img src="../public/images/avatars/hen.svg" alt=""/>
+                                        <img src="/static/images/avatars/hen.svg" alt=""/>
                                     </div>
                                     <div class="swiper-slide">
-                                        <img src="../public/images/avatars/hippopotamus.svg" alt=""/>
+                                        <img src="/static/images/avatars/hippopotamus.svg" alt=""/>
                                     </div>
                                     <div class="swiper-slide">
-                                        <img src="../public/images/avatars/horse.svg" alt=""/>
+                                        <img src="/static/images/avatars/horse.svg" alt=""/>
                                     </div>
                                     <div class="swiper-slide">
-                                        <img src="../public/images/avatars/kangaroo.svg" alt=""/>
+                                        <img src="/static/images/avatars/kangaroo.svg" alt=""/>
                                     </div>
                                     <div class="swiper-slide">
-                                        <img src="../public/images/avatars/koala.svg" alt=""/>
+                                        <img src="/static/images/avatars/koala.svg" alt=""/>
                                     </div>
                                     <div class="swiper-slide">
-                                        <img src="../public/images/avatars/leopard.svg" alt=""/>
+                                        <img src="/static/images/avatars/leopard.svg" alt=""/>
                                     </div>
                                     <div class="swiper-slide">
-                                        <img src="../public/images/avatars/lion.svg" alt=""/>
+                                        <img src="/static/images/avatars/lion.svg" alt=""/>
                                     </div>
                                     <div class="swiper-slide">
-                                        <img src="../public/images/avatars/marten.svg" alt=""/>
+                                        <img src="/static/images/avatars/marten.svg" alt=""/>
                                     </div>
                                     <div class="swiper-slide">
-                                        <img src="../public/images/avatars/monkey-1.svg" alt=""/>
+                                        <img src="/static/images/avatars/monkey-1.svg" alt=""/>
                                     </div>
                                     <div class="swiper-slide">
-                                        <img src="../public/images/avatars/monkey.svg" alt=""/>
+                                        <img src="/static/images/avatars/monkey.svg" alt=""/>
                                     </div>
                                     <div class="swiper-slide">
-                                        <img src="../public/images/avatars/mouse.svg" alt=""/>
+                                        <img src="/static/images/avatars/mouse.svg" alt=""/>
                                     </div>
                                     <div class="swiper-slide">
-                                        <img src="../public/images/avatars/octopus.svg" alt=""/>
+                                        <img src="/static/images/avatars/octopus.svg" alt=""/>
                                     </div>
                                     <div class="swiper-slide">
-                                        <img src="../public/images/avatars/ostrich.svg" alt=""/>
+                                        <img src="/static/images/avatars/ostrich.svg" alt=""/>
                                     </div>
                                     <div class="swiper-slide">
-                                        <img src="../public/images/avatars/owl.svg" alt=""/>
+                                        <img src="/static/images/avatars/owl.svg" alt=""/>
                                     </div>
                                     <div class="swiper-slide">
-                                        <img src="../public/images/avatars/panda.svg" alt=""/>
+                                        <img src="/static/images/avatars/panda.svg" alt=""/>
                                     </div>
                                     <div class="swiper-slide">
-                                        <img src="../public/images/avatars/parrot.svg" alt=""/>
+                                        <img src="/static/images/avatars/parrot.svg" alt=""/>
                                     </div>
                                     <div class="swiper-slide">
-                                        <img src="../public/images/avatars/penguin-1.svg" alt=""/>
+                                        <img src="/static/images/avatars/penguin-1.svg" alt=""/>
                                     </div>
                                 </div>
                                 <div class="swiper-button-prev"></div>
@@ -169,7 +172,7 @@
                         <span class="icon-link"></span>
                     </div>
                     <div class="form__field">
-                        <button type="button">
+                        <button type="submit">
                             Weiterspielen
                         </button>
                     </div>
