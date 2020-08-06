@@ -106,4 +106,4 @@ ENV/
 .DS_Store
 media
 
-backend/db.splite3
+backend/db.sqlite3
