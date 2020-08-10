@@ -42,42 +42,50 @@
     </div>
     <div class="app__body">
         <div class="container">
-            <main class="screen ubung-2">
-                <h1>
-                    Übung 2: Wie gut nutzt ihr das Team Potential?
-                </h1>
-                <p>
-                    Schätze anonym die durchschnittliche Performance dieses Teams auf einer Skala von 1 (low performing)
-                    bis 99 (high performing) ein.
-                </p>
-                <div class="ui-slider">
-                    <div class="ui-slider__marker">
-                        <div class="ui-slider__marker-thumb">
-                            <span>0</span>
-                            <img src="/static/images/avatars/penguin-1.svg" alt=""/>
+            <form action="#" method="POST" id="ubung-1-form" class="form">
+            {% csrf_token %}
+                <main class="screen ubung-2">
+                    <h1>
+                        Übung 2: Wie gut nutzt ihr das Team Potential?
+                    </h1>
+                    <p>
+                        Schätze anonym die durchschnittliche Performance dieses Teams auf einer Skala von 1 (low performing)
+                        bis 99 (high performing) ein.
+                    </p>
+                    <div class="ui-slider">
+                        <div class="ui-slider__marker">
+                            <div class="ui-slider__marker-thumb">
+                                <span>0</span>
+                                <img src="/static/images/avatars/penguin-1.svg" alt=""/>
+                            </div>
+                            <div class="ui-slider__marker-name">
+                                Vasilisa<br/> Kochetkova
+                            </div>
                         </div>
-                        <div class="ui-slider__marker-name">
-                            Vasilisa<br/> Kochetkova
+                        <div class="ui-slider__range">
+                            <input id="ui-range" class="input-range" type="range" value="0" min="1" max="99">
                         </div>
                     </div>
-                    <div class="ui-slider__range">
-                        <input id="ui-range" class="input-range" type="range" value="0" min="1" max="99">
+                    <p>
+                        Bewege bitte deine Spielfigur auf den Punkt der Skala, der am Besten passt. Später im Spiel siehst
+                        du die anonymisierte Einschätzung aller Mitspieler.
+                    </p>
+                    <input id="digit_value" type="hidden" name="digit_value" value="输入你要传bai递的值">
+                    <div class="center">
+                        <button href="#" class="submit">
+                            Weiterspielen
+                        </button>
                     </div>
-                </div>
-                <p>
-                    Bewege bitte deine Spielfigur auf den Punkt der Skala, der am Besten passt. Später im Spiel siehst
-                    du die anonymisierte Einschätzung aller Mitspieler.
-                </p>
-                <div class="center">
-                    <a href="#" class="button">
-                        Weiterspielen
-                    </a>
-                </div>
-            </main>
+                </main>
+            </form>
         </div>
     </div>
 </div>
 
+<script
+  src="http://code.jquery.com/jquery-3.5.1.slim.min.js"
+  integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
+  crossorigin="anonymous"></script>
 <script src="/static/js/AppUiSlider.js"></script>
 <script>
     new AppUiSlider({
@@ -90,9 +98,11 @@
             max: 99
         },
         callback(value) {
-            // console.log(value)
+            //console.log(value);
+            $('#digit_value').val(value);
         }
     });
+
 
 </script>
 </body>

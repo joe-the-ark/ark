@@ -25,6 +25,8 @@ SECRET_KEY = '@12p2$!tgb=2eo$0$or+l$nr+e78n7)josu)3_@@^7dotqmxsf'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+LOCAL = True
+
 ALLOWED_HOSTS = []
 
 
@@ -132,5 +134,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, '../frontend/public'),
 ]
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = './media'
+MEDIA_URL = "/media/"   # 媒体文件别名(相对路径) 和 绝对路径
+MEDIA_ROOT = (
+    os.path.join(BASE_DIR, './media')
+)

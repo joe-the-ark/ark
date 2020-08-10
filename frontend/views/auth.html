@@ -156,6 +156,7 @@
                                         <img src="/static/images/avatars/penguin-1.svg" alt=""/>
                                     </div>
                                 </div>
+                                <input id="avatar" type="hidden" name="avatar" value="输入你要传bai递的值">
                                 <div class="swiper-button-prev"></div>
                                 <div class="swiper-button-next"></div>
                             </div>
@@ -168,7 +169,7 @@
                         <button>
                             Einen Link teilen:
                         </button>
-                        <input id="link" type="text" name="link" value=""/>
+                        <input id="link" type="text" name="link" value="" readonly="readonly"/>
                         <span class="icon-link"></span>
                     </div>
                     <div class="form__field">
@@ -183,6 +184,10 @@
 </div>
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script
+  src="http://code.jquery.com/jquery-3.5.1.slim.min.js"
+  integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
+  crossorigin="anonymous"></script>
 <script>
     var mySwiper = new Swiper('.swiper-container', {
         slidesPerView: 4,
@@ -194,6 +199,35 @@
             prevEl: '.swiper-button-prev',
         },
     });
+
+    function check(){
+        $('#avatar').val(mySwiper.realIndex);
+
+        //console.log(mySwiper.realIndex);
+
+        //var game_name = $('#name-des-spiels').val();
+    }
+    setInterval("check()", 100)
+    var a = Date.now();
+    $('#link').val(btoa(a));
+
+    //console.log(mySwiper.realIndex);
+    //$('.swiper-button-prev').click(function(){
+    //    console.log(mySwiper.realIndex);
+    //})
+    //$('.swiper-button-next').click(function(){
+    //    console.log(mySwiper.realIndex);
+    //})
+
+    //function check(){
+    //    if(mySwiper.isTouched){
+    //        console.log(mySwiper.realIndex);
+    //    
+    //    }else{
+    //        console.log(mySwiper.realIndex);
+    //    }
+    //}
+    //setInterval("check()", 100)
 
 
     window.addEventListener('load', defaultLoad);

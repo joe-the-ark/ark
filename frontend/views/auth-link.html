@@ -144,6 +144,7 @@
                                         <img src="/static/images/avatars/penguin-1.svg" alt=""/>
                                     </div>
                                 </div>
+                                <input id="avatar" type="hidden" name="avatar" value="输入你要传bai递的值">
                                 <div class="swiper-button-prev"></div>
                                 <div class="swiper-button-next"></div>
                             </div>
@@ -172,7 +173,7 @@
                         <span class="icon-link"></span>
                     </div>
                     <div class="form__field">
-                        <button type="button">
+                        <button type="submit">
                             Weiterspielen
                         </button>
                     </div>
@@ -183,6 +184,10 @@
 </div>
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script
+  src="http://code.jquery.com/jquery-3.5.1.slim.min.js"
+  integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
+  crossorigin="anonymous"></script>
 
 <script>
     var mySwiper = new Swiper('.swiper-container', {
@@ -195,6 +200,11 @@
             prevEl: '.swiper-button-prev',
         },
     });
+
+    function check(){
+        $('#avatar').val(mySwiper.realIndex);
+    }
+    setInterval("check()", 100);
 
     window.addEventListener('load', defaultLoad);
     window.addEventListener('resize', defaultLoad);

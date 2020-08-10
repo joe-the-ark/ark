@@ -42,10 +42,20 @@ urlpatterns = [
     path('goodbye/',server_views.goodbye),
     path('arche/',server_views.arche),
     path('wartezimmer/',server_views.wartezimmer),
+    
+    path('wartezimmer/<str:link>/', server_views.wartezimmer),
+
     path('psychologischer/',server_views.psychologischer),
+
+
+
 
 
     # path('', restapi.vue()),
     path('result/<str:name>/<str:player>/<str:game_secret>/<str:inviter>/', server_views.result),
 
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] 
+# + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+if settings.LOCAL:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

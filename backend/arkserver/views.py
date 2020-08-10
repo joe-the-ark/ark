@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .utils import *
+from .decorators import user_required
 
 # Create your views here.
 from .models import *
@@ -53,10 +55,39 @@ def auth(request):
     ctx = {}
 
     if request.method == 'POST':
+
         username = request.POST.get('Nutzername')
         gamename = request.POST.get('name-des-spiels')
         avatar = request.POST.get('avatar')
         link = request.POST.get('link')
+
+        if (not Player.objects.filter(name=username).first()):
+            avatar = get_avatar_link(avatar)
+
+            new_player = Player.objects.create(
+                name = username,
+                avatar = avatar,
+            )
+            new_game = Game.objects.create(
+                name = gamename,
+                link = link,
+                creator = new_player,
+                status = 0,
+            )
+
+            new_game.members.set([new_player])
+
+            request.session['uid'] = new_player.id
+            
+            print('username', username)
+            print('gamename', gamename)
+            print('avatar', avatar)
+            print('link', link)
+            return redirect(f'/wartezimmer/{link}/')
+        else:
+            # same player-name or same game-name
+            ctx['error'] = 1
+            return render(request,'./views/auth.html', ctx)
 
     return render(request,'./views/auth.html', ctx)
 
@@ -68,6 +99,22 @@ def auth_link(request):
         avatar = request.POST.get('name-des-spiels')
         gamename = request.POST.get('name-des-spiels')
         link = request.POST.get('link')
+        print('username', username)
+        print('gamename', gamename)
+        print('avatar', avatar)
+        print('link', link)
+
+        if (not Player.objects.filter(name=username).first()):
+            avatar = get_avatar_link(avatar)
+            new_player = Player.objects.create(
+                name = username,
+                avatar = avatar,
+            )
+
+            game = Game.objects.filter(name=gamename).first()
+
+
+
 
     return render(request,'./views/auth-link.html', ctx)
 
@@ -77,14 +124,42 @@ def preview(request):
 
 def ubung_1(request):
     ctx = {}
+    if request.method == 'POST':
+        kraftquelle = request.POST.get('kraftquelle')
+        tags = request.POST.get('tags')
+        tags = tags + kraftquelle
+        tag_list = tags.split(',')
+        uu = 0
+        while uu < len(tag_list):
+            if tag_list[uu] == '':
+                del tag_list[uu]
+            uu += 1
+        print("tag_list", tag_list)
+
     return render(request, './views/ubung-1.html', ctx)
 
 def ubung_2(request):
     ctx = {}
+    if request.method == 'POST':
+        digit_value = request.POST.get('digit_value')
+        print('digit_value',digit_value)
+
     return render(request, './views/ubung-2.html', ctx)
 
 def ubung_3(request):
     ctx = {}
+    if request.method == 'POST':
+        energiefresser = request.POST.get('energiefresser')
+        tags = request.POST.get('tags')
+        tags = tags + energiefresser
+        tag_list = tags.split(',')
+        uu = 0
+        while uu < len(tag_list):
+            if tag_list[uu] == '':
+                del tag_list[uu]
+            uu += 1
+        print("tag_list", tag_list)
+
     return render(request, './views/ubung-3.html', ctx)
 
 def ubung_4(request):
@@ -127,9 +202,15 @@ def arche(request):
     ctx = {}
     return render(request, './views/arche.html', ctx)
 
-def wartezimmer(request):
+
+# @user_required
+def wartezimmer(request, link):
     ctx = {}
+    user = ctx['user'] = Player.objects.filter(id=request.session.get('uid')).first()
+    ctx['avatar'] = user.avatar
+    ctx['player_name'] = user.name
     return render(request, './views/wartezimmer.html', ctx)
+
 
 def psychologischer(request):
     ctx = {}
