@@ -10,6 +10,12 @@
     <title>Wartezimmer</title>
     <link rel="stylesheet" href="/static/css/app.css">
     <link rel="stylesheet" href="/static/css/wartezimmer.css">
+
+    <!-- vue cdn  -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- axios cdn -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 </head>
 <body>
 <div class="app">
@@ -66,7 +72,37 @@
                             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
                 </div>
-                <div class="wartezimmer__addition">
+                <div class="wartezimmer__addition" id="app-1">
+                    <div class="user-connect active" v-for='(value, index) in waiting_list'>
+                        <img :src="value.avatar" alt=""/>
+                        <div class="user-connect__name">
+                            [[ value.name ]]
+                        </div>
+                        <div class="user-connect__now">
+                            bereit
+                        </div>
+                    </div>
+
+                    {% comment %} <div class="user-connect">
+                        <img src="/static/images/avatars/penguin-1.svg" alt=""/>
+                        <div class="user-connect__name">
+                            Constantin
+                            Constantinopol
+                        </div>
+                        <div class="user-connect__now">
+                            bereit
+                        </div>
+                    </div>
+                    <div class="user-connect">
+                        <img src="/static/images/avatars/penguin-1.svg" alt=""/>
+                        <div class="user-connect__name">
+                            Constantin
+                            Constantinopol
+                        </div>
+                        <div class="user-connect__now">
+                            bereit
+                        </div>
+                    </div>
                     <div class="user-connect active">
                         <img src="/static/images/avatars/penguin-1.svg" alt=""/>
                         <div class="user-connect__name">
@@ -97,16 +133,6 @@
                             bereit
                         </div>
                     </div>
-                    <div class="user-connect active">
-                        <img src="/static/images/avatars/penguin-1.svg" alt=""/>
-                        <div class="user-connect__name">
-                            Constantin
-                            Constantinopol
-                        </div>
-                        <div class="user-connect__now">
-                            bereit
-                        </div>
-                    </div>
                     <div class="user-connect">
                         <img src="/static/images/avatars/penguin-1.svg" alt=""/>
                         <div class="user-connect__name">
@@ -196,27 +222,7 @@
                         <div class="user-connect__now">
                             bereit
                         </div>
-                    </div>
-                    <div class="user-connect">
-                        <img src="/static/images/avatars/penguin-1.svg" alt=""/>
-                        <div class="user-connect__name">
-                            Constantin
-                            Constantinopol
-                        </div>
-                        <div class="user-connect__now">
-                            bereit
-                        </div>
-                    </div>
-                    <div class="user-connect">
-                        <img src="/static/images/avatars/penguin-1.svg" alt=""/>
-                        <div class="user-connect__name">
-                            Constantin
-                            Constantinopol
-                        </div>
-                        <div class="user-connect__now">
-                            bereit
-                        </div>
-                    </div>
+                    </div> {% endcomment %}
                 </div>
             </main>
             <div class="center">
@@ -227,6 +233,72 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    var app = new Vue({
+        delimiters: ['[[', ']]'],
+        el: '#app-1',
+        data() {
+            return {
+                activeIndex: '1',
+                message: 'Hello Vue!',
+                waiting_list: [
+                {
+                    'id': -1,
+                    'name': '',
+                    'avatar': '',
+                }],
+            }
+        },
+        mounted(){
+            var waiting_post = {"player_id": "{{player_id}}","link":"{{link}}"};
+            axios
+                .post(`/api/waiting_room/`,waiting_post)
+                .then(function(response){
+                    var result = response.data.result;
+                    //console.log('result', result);
+                    app.waiting_list.splice(0);
+                    var uu = 0;
+                    while (uu < result.length){
+                        app.waiting_list.push((result)[uu]);
+                        uu += 1;
+                    }
+                    this.waiting_list = result;
+                })
+                .catch(function(error) { // 请求失败处理
+                    console.log(error);
+                }); 
+            
+            setInterval(function (){
+                var waiting_post = {"player_id": "{{player_id}}","link":"{{link}}"};
+                axios
+                    .post(`/api/waiting_room/`,waiting_post)
+                    .then(function(response){
+                        var result = response.data.result;
+                        //console.log('result', result);
+                        app.waiting_list.splice(0);
+                        var uu = 0;
+                        while (uu < result.length){
+                            app.waiting_list.push((result)[uu]);
+                            uu += 1;
+                        }
+                        this.waiting_list = result;
+                    })
+                    .catch(function(error) { // 请求失败处理
+                        console.log(error);
+                    }); 
+            },6000);
+
+        },
+        methods: {
+            handleSelect(key, keyPath) {
+                console.log(key, keyPath);
+            },
+        },
+    })
+
+</script>
 
 </body>
 </html>

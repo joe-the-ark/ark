@@ -6,12 +6,20 @@ class Player(models.Model):
     name = models.CharField(max_length=100, verbose_name='player_name')
     # avatar = models.ImageField(upload_to='avatar', default='', blank=True, null=True)
     avatar = models.CharField(max_length=100, default='', blank=True, null=True)
-    
+
     # nickname = models.CharField(max_length=100, verbose_name='nickname', default='')
     # openid = models.CharField(max_length=100, verbose_name='openid', default='')
     # game_secret = models.CharField(max_length=200, verbose_name='game_password', null=True, blank=True)
     # game_name = models.CharField(max_length=200, verbose_name='game_name')
     # inviter_name = models.CharField(max_length=200, verbose_name='creater')
+
+    @property
+    def player_json(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'avatar': self.avatar,
+        }
 
     class Meta(object):
             verbose_name = verbose_name_plural = 'players'

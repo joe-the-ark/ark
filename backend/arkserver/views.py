@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .utils import *
 from .decorators import user_required
+from meta.decorators import api, APIError
 
 # Create your views here.
 from .models import *
@@ -97,24 +98,27 @@ def auth_link(request):
     if request.method == 'POST':
         username = request.POST.get('Nutzername')
         avatar = request.POST.get('name-des-spiels')
-        gamename = request.POST.get('name-des-spiels')
+        # gamename = request.POST.get('name-des-spiels')
         link = request.POST.get('link')
         print('username', username)
-        print('gamename', gamename)
+        # print('gamename', gamename)
         print('avatar', avatar)
         print('link', link)
 
-        if (not Player.objects.filter(name=username).first()):
+        if not Game.objects.filter(link=link).first().members.filter(name=username).first():
             avatar = get_avatar_link(avatar)
             new_player = Player.objects.create(
                 name = username,
                 avatar = avatar,
             )
+            game = Game.objects.filter(link=link).first()
+            new_game.members.set([new_player])
+            return redirect(f'/wartezimmer/{link}/')
 
-            game = Game.objects.filter(name=gamename).first()
-
-
-
+        else:
+            # detect same name in this game
+            ctx['error'] = 1
+            return render(request,'./views/auth.html', ctx)
 
     return render(request,'./views/auth-link.html', ctx)
 
@@ -209,6 +213,8 @@ def wartezimmer(request, link):
     user = ctx['user'] = Player.objects.filter(id=request.session.get('uid')).first()
     ctx['avatar'] = user.avatar
     ctx['player_name'] = user.name
+    ctx['player_id'] = user.id
+    ctx['link'] = link
     return render(request, './views/wartezimmer.html', ctx)
 
 
@@ -216,3 +222,21 @@ def psychologischer(request):
     ctx = {}
     return render(request, './views/psychologischer.html', ctx)
 
+
+@api
+def waiting_room(player_id, link):
+    from .models import Player, Game
+
+    player = Player.objects.filter(id=player_id).first()
+    game = Game.objects.filter(link=link).first()
+    members = list(game.members.all())
+    uu = 0
+    # while uu < len(members):
+    #     if members[uu] == game:
+    #         del members[uu]
+    #     uu += 1
+    members_list = []
+    for i in members:
+        members_list.append(i.player_json)
+    player = player.player_json
+    return members_list
