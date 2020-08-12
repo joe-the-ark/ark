@@ -283,7 +283,8 @@
             },
 
         ],
-        data: [
+        data:{{ member_list|safe }},
+        {% comment %} data: [
             {
                 name: 'Constantin Constantinopol',
                 avatar: '/static/images/avatars/boar.svg'
@@ -312,7 +313,7 @@
                 name: 'Some test1',
                 avatar: '/static/images/avatars/boar.svg'
             }
-        ],
+        ], {% endcomment %}
         after: 2
     });
 

@@ -61,6 +61,7 @@ def auth(request):
         gamename = request.POST.get('name-des-spiels')
         avatar = request.POST.get('avatar')
         link = request.POST.get('link')
+        request.session['link'] = link
 
         if (not Player.objects.filter(name=username).first()):
             avatar = get_avatar_link(avatar)
@@ -75,6 +76,11 @@ def auth(request):
                 creator = new_player,
                 status = 0,
             )
+            WaitingRoomMember.objects.create(
+                game = new_game,
+                player = new_player,
+                state = 0,
+            )
 
             new_game.members.set([new_player])
 
@@ -84,7 +90,9 @@ def auth(request):
             print('gamename', gamename)
             print('avatar', avatar)
             print('link', link)
-            return redirect(f'/wartezimmer/{link}/')
+
+            return redirect(f'/preview/')
+            # return redirect(f'/wartezimmer/{link}/')
         else:
             # same player-name or same game-name
             ctx['error'] = 1
@@ -104,6 +112,7 @@ def auth_link(request):
         # print('gamename', gamename)
         print('avatar', avatar)
         print('link', link)
+        request.session['link'] = link
 
         if not Game.objects.filter(link=link).first().members.filter(name=username).first():
             avatar = get_avatar_link(avatar)
@@ -112,8 +121,14 @@ def auth_link(request):
                 avatar = avatar,
             )
             game = Game.objects.filter(link=link).first()
-            new_game.members.set([new_player])
-            return redirect(f'/wartezimmer/{link}/')
+            game.members.set([new_player])
+            WaitingRoomMember.objects.create(
+                game = game,
+                player = new_player,
+                state = 0,
+            )
+            return redirect(f'/preview/')
+            # return redirect(f'/wartezimmer/{link}/')
 
         else:
             # detect same name in this game
@@ -122,13 +137,18 @@ def auth_link(request):
 
     return render(request,'./views/auth-link.html', ctx)
 
-def preview(request):
+@user_required
+def preview(request, user):
     ctx = {}
     return render(request, './views/preview.html', ctx)
 
-def ubung_1(request):
+
+@user_required
+def ubung_1(request, user):
     ctx = {}
     if request.method == 'POST':
+        link = request.session['link']
+
         kraftquelle = request.POST.get('kraftquelle')
         tags = request.POST.get('tags')
         tags = tags + kraftquelle
@@ -140,19 +160,38 @@ def ubung_1(request):
             uu += 1
         print("tag_list", tag_list)
 
+        game = Game.objects.filter(link=link).first()
+        for i in tag_list:
+            Ubung1.objects.create(
+                game = game,
+                player = user,
+                power = i,
+            )
+        return redirect(f'/ubung-2/')
+
     return render(request, './views/ubung-1.html', ctx)
 
-def ubung_2(request):
+@user_required
+def ubung_2(request, user):
     ctx = {}
     if request.method == 'POST':
+        link = request.session['link']
         digit_value = request.POST.get('digit_value')
-        print('digit_value',digit_value)
+        game = Game.objects.filter(link=link).first()
+        Ubung2.objects.create(
+            game = game,
+            player = user,
+            value = digit_value, 
+        )
+        return redirect(f'/ubung-3/')
 
     return render(request, './views/ubung-2.html', ctx)
 
-def ubung_3(request):
+@user_required
+def ubung_3(request, user):
     ctx = {}
     if request.method == 'POST':
+        link = request.session['link']
         energiefresser = request.POST.get('energiefresser')
         tags = request.POST.get('tags')
         tags = tags + energiefresser
@@ -164,11 +203,33 @@ def ubung_3(request):
             uu += 1
         print("tag_list", tag_list)
 
+        game = Game.objects.filter(link=link).first()
+        for i in tag_list:
+            Ubung3.objects.create(
+                game = game,
+                player = user,
+                drainer = i,
+            )
+        return redirect(f'/wartezimmer/{link}/')
+
     return render(request, './views/ubung-3.html', ctx)
 
-def ubung_4(request):
+@user_required
+def ubung_4(request, user):
     ctx = {}
+    link = request.session['link']
+    game = Game.objects.filter(link=link).first()
+    waiting_room = list(WaitingRoomMember.objects.filter(game=game).exclude(player=user))
+    member_list = [i.player.player_json for i in waiting_room]
+    ctx['member_list'] = member_list
+    
+    if request.method == 'POST':
+        pass
+
+    print('member_list', member_list)
+    
     return render(request, './views/ubung-4.html', ctx)
+
 
 def ubung_5(request):
     ctx = {}
@@ -207,10 +268,16 @@ def arche(request):
     return render(request, './views/arche.html', ctx)
 
 
-# @user_required
-def wartezimmer(request, link):
+@user_required
+def wartezimmer(request, user, link):
     ctx = {}
-    user = ctx['user'] = Player.objects.filter(id=request.session.get('uid')).first()
+    link = request.session['link']
+    # user = ctx['user'] = Player.objects.filter(id=request.session.get('uid')).first()
+    game = Game.objects.filter(link=link).first()
+    room_member = WaitingRoomMember.objects.filter(game=game,player=user).first()
+    room_member.state = 1
+    room_member.save()
+
     ctx['avatar'] = user.avatar
     ctx['player_name'] = user.name
     ctx['player_id'] = user.id
@@ -224,19 +291,23 @@ def psychologischer(request):
 
 
 @api
-def waiting_room(player_id, link):
+def waiting_room_active(player_id, link):
     from .models import Player, Game
 
-    player = Player.objects.filter(id=player_id).first()
+    # player = Player.objects.filter(id=player_id).first()
     game = Game.objects.filter(link=link).first()
-    members = list(game.members.all())
-    uu = 0
-    # while uu < len(members):
-    #     if members[uu] == game:
-    #         del members[uu]
-    #     uu += 1
-    members_list = []
-    for i in members:
-        members_list.append(i.player_json)
-    player = player.player_json
+    waiting_room = list(WaitingRoomMember.objects.filter(game=game,state=1))
+    
+    members_list = [i.player.player_json for i in waiting_room]
+
+    return members_list
+
+
+@api
+def waiting_room_yet(player_id, link):
+    from .models import Player, Game
+    game = Game.objects.filter(link=link).first()
+    waiting_room = list(WaitingRoomMember.objects.filter(game=game,state=0))
+    
+    members_list = [i.player.player_json for i in waiting_room]
     return members_list

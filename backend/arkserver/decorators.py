@@ -22,12 +22,13 @@ def user_required(func):
 
     def view(request, *args, **kwargs):
         user = _check_user(request)
-        print('user2', user)
+
         
         if not user:
             return redirect(f'/')
 
         request.user = user
+        print('link', request.session['link'])
 
         return func(request, user=user, *args, **kwargs)
 

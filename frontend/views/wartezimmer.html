@@ -73,7 +73,7 @@
                             allowfullscreen></iframe>
                 </div>
                 <div class="wartezimmer__addition" id="app-1">
-                    <div class="user-connect active" v-for='(value, index) in waiting_list'>
+                    <div class="user-connect active" v-for='(value, index) in waiting_list_active'>
                         <img :src="value.avatar" alt=""/>
                         <div class="user-connect__name">
                             [[ value.name ]]
@@ -83,17 +83,16 @@
                         </div>
                     </div>
 
-                    {% comment %} <div class="user-connect">
-                        <img src="/static/images/avatars/penguin-1.svg" alt=""/>
+                    <div class="user-connect" v-for='(value, index) in waiting_list_yet'>
+                        <img :src="value.avatar" alt=""/>
                         <div class="user-connect__name">
-                            Constantin
-                            Constantinopol
+                            [[ value.name ]]
                         </div>
                         <div class="user-connect__now">
                             bereit
                         </div>
                     </div>
-                    <div class="user-connect">
+                    {% comment %} <div class="user-connect">
                         <img src="/static/images/avatars/penguin-1.svg" alt=""/>
                         <div class="user-connect__name">
                             Constantin
@@ -222,7 +221,7 @@
                         <div class="user-connect__now">
                             bereit
                         </div>
-                    </div> {% endcomment %}
+                    </div>  {% endcomment %}
                 </div>
             </main>
             <div class="center">
@@ -243,8 +242,13 @@
             return {
                 activeIndex: '1',
                 message: 'Hello Vue!',
-                waiting_list: [
+                waiting_list_active: [
                 {
+                    'id': -1,
+                    'name': '',
+                    'avatar': '',
+                }],
+                waiting_list_yet:[{
                     'id': -1,
                     'name': '',
                     'avatar': '',
@@ -254,17 +258,33 @@
         mounted(){
             var waiting_post = {"player_id": "{{player_id}}","link":"{{link}}"};
             axios
-                .post(`/api/waiting_room/`,waiting_post)
+                .post(`/api/waiting_room_active/`,waiting_post)
                 .then(function(response){
                     var result = response.data.result;
                     //console.log('result', result);
-                    app.waiting_list.splice(0);
+                    app.waiting_list_active.splice(0);
                     var uu = 0;
                     while (uu < result.length){
-                        app.waiting_list.push((result)[uu]);
+                        app.waiting_list_active.push((result)[uu]);
                         uu += 1;
                     }
-                    this.waiting_list = result;
+                    this.waiting_list_active = result;
+                })
+                .catch(function(error) { // 请求失败处理
+                    console.log(error);
+                }); 
+            axios
+                .post(`/api/waiting_room_yet/`,waiting_post)
+                .then(function(response){
+                    var result = response.data.result;
+                    //console.log('result', result);
+                    app.waiting_list_yet.splice(0);
+                    var uu = 0;
+                    while (uu < result.length){
+                        app.waiting_list_yet.push((result)[uu]);
+                        uu += 1;
+                    }
+                    this.waiting_list_yet = result;
                 })
                 .catch(function(error) { // 请求失败处理
                     console.log(error);
@@ -273,17 +293,33 @@
             setInterval(function (){
                 var waiting_post = {"player_id": "{{player_id}}","link":"{{link}}"};
                 axios
-                    .post(`/api/waiting_room/`,waiting_post)
+                    .post(`/api/waiting_room_active/`,waiting_post)
                     .then(function(response){
                         var result = response.data.result;
                         //console.log('result', result);
-                        app.waiting_list.splice(0);
+                        app.waiting_list_active.splice(0);
                         var uu = 0;
                         while (uu < result.length){
-                            app.waiting_list.push((result)[uu]);
+                            app.waiting_list_active.push((result)[uu]);
                             uu += 1;
                         }
-                        this.waiting_list = result;
+                        this.waiting_list_active = result;
+                    })
+                    .catch(function(error) { // 请求失败处理
+                        console.log(error);
+                    }); 
+                axios
+                    .post(`/api/waiting_room_yet/`,waiting_post)
+                    .then(function(response){
+                        var result = response.data.result;
+                        //console.log('result', result);
+                        app.waiting_list_yet.splice(0);
+                        var uu = 0;
+                        while (uu < result.length){
+                            app.waiting_list_yet.push((result)[uu]);
+                            uu += 1;
+                        }
+                        this.waiting_list_yet = result;
                     })
                     .catch(function(error) { // 请求失败处理
                         console.log(error);

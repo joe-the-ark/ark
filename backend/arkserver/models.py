@@ -6,6 +6,7 @@ class Player(models.Model):
     name = models.CharField(max_length=100, verbose_name='player_name')
     # avatar = models.ImageField(upload_to='avatar', default='', blank=True, null=True)
     avatar = models.CharField(max_length=100, default='', blank=True, null=True)
+    create_time = models.DateTimeField(auto_now_add=True)
 
     # nickname = models.CharField(max_length=100, verbose_name='nickname', default='')
     # openid = models.CharField(max_length=100, verbose_name='openid', default='')
@@ -40,6 +41,7 @@ class Game(models.Model):
         choices=((0, 'start'), (1, 'running'), (2, 'end')),
         verbose_name='game_status'
     )
+    create_time = models.DateTimeField(auto_now_add=True)
     
     # game_secret = models.CharField(max_length=200, verbose_name='game_password', null=True, blank=True)
     # inviter = models.ForeignKey(Player, on_delete=models.CASCADE, verbose_name='creater', related_name='inviter_game')
@@ -54,6 +56,99 @@ class Game(models.Model):
 
     def __str__(self):
         return 'name:' + self.name + '，' + 'creator:'
+
+
+class WaitingRoomMember(models.Model):
+    game = models.ForeignKey(Game, on_delete=models.CASCADE, verbose_name='game')
+    player = models.ForeignKey(Player, on_delete=models.CASCADE, verbose_name='player')
+    state = models.IntegerField(
+        default = 0,
+        choices = ((0, 'not ready'), (1, 'ready'), (2, 'end')),
+        verbose_name = 'player waiting room state'
+    )
+    create_time = models.DateTimeField(auto_now_add=True)
+
+    @property
+    def json(self):
+        return {
+            'game': self.game.link,
+            'name': self.palyer.name,
+            'avatar': self.palyer.avatar,
+            'state': self.state,
+        }
+
+    class Meta(object):
+        verbose_name = verbose_name_plural = 'room member'
+
+    def __str__(self):
+        return self.game.name
+
+
+class Ubung1(models.Model):
+    game = models.ForeignKey(Game, on_delete=models.CASCADE, verbose_name='game')
+    player = models.ForeignKey(Player, on_delete=models.CASCADE, verbose_name='player')
+    power = models.CharField(max_length=100, default='')
+    create_time = models.DateTimeField(auto_now_add=True)
+
+    @property
+    def json(self):
+        return {
+            'game': self.game.link,
+            'player': self.player.name,
+            'power': self.power,
+        }
+
+    class Meta(object):
+        verbose_name = verbose_name_plural = 'Ubung-1'
+    
+    def __str__(self):
+        return f'{self.game.name} {self.player.name} {self.power}'
+
+class Ubung2(models.Model):
+    game = models.ForeignKey(Game, on_delete=models.CASCADE, verbose_name='game')
+    player = models.ForeignKey(Player, on_delete=models.CASCADE, verbose_name='player')
+    value = models.IntegerField(default=0)
+    create_time = models.DateTimeField(auto_now_add=True)
+
+    @property
+    def json(self):
+        return {
+            'game': self.game.link,
+            'player': self.player.name,
+            'value': self.value,
+        }  
+
+    class Meta(object):
+        verbose_name = verbose_name_plural = 'Ubung-2'
+    def __str__(self):
+        return f'{self.game.name} {self.player.name} {self.value}'
+
+
+class Ubung3(models.Model):
+    game = models.ForeignKey(Game, on_delete=models.CASCADE, verbose_name='game')
+    player = models.ForeignKey(Player, on_delete=models.CASCADE, verbose_name='player')
+    drainer = models.CharField(max_length=100, default='')
+    create_time = models.DateTimeField(auto_now_add=True)
+
+    @property
+    def json(self):
+        return {
+            'game': self.game.link,
+            'player': self.player.name,
+            'drainer': self.drainer,
+        }
+
+    class Meta(object):
+        verbose_name = verbose_name_plural = 'Ubung-3'
+    
+    def __str__(self):
+        return f'{self.game.name} {self.player.name} {self.drainer}'
+
+class Ubung4(models.Model):
+    game = models.ForeignKey(Game, on_delete=models.CASCADE, verbose_name='game')
+    author = models.ForeignKey(Player, on_delete=models.CASCADE, verbose_name='author')
+    
+
 
 # class Character(models.Model):
 #     name = models.CharField(max_length=100, verbose_name='scale')
