@@ -146,8 +146,23 @@ class Ubung3(models.Model):
 
 class Ubung4(models.Model):
     game = models.ForeignKey(Game, on_delete=models.CASCADE, verbose_name='game')
-    author = models.ForeignKey(Player, on_delete=models.CASCADE, verbose_name='author')
+    player = models.ForeignKey(Player, on_delete=models.CASCADE, verbose_name='author')
     
+    row0 = models.ManyToManyField(Player, blank=True, null=True, related_name='row0')
+    row1 = models.ManyToManyField(Player, blank=True, null=True, related_name='row1')
+    row2 = models.ManyToManyField(Player, blank=True, null=True, related_name='row2')
+    row3 = models.ManyToManyField(Player, blank=True, null=True, related_name='row3')
+    row4 = models.ManyToManyField(Player, blank=True, null=True, related_name='row4')
+    row5 = models.ManyToManyField(Player, blank=True, null=True, related_name='row5')
+
+    class Meta(object):
+        verbose_name = verbose_name_plural = 'Ubung-4'
+    def __str__(self):
+        return f'{self.game}---{self.author}'
+
+
+
+
 
 
 # class Character(models.Model):

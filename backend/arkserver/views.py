@@ -214,6 +214,7 @@ def ubung_3(request, user):
 
     return render(request, './views/ubung-3.html', ctx)
 
+
 @user_required
 def ubung_4(request, user):
     ctx = {}
@@ -222,12 +223,64 @@ def ubung_4(request, user):
     waiting_room = list(WaitingRoomMember.objects.filter(game=game).exclude(player=user))
     member_list = [i.player.player_json for i in waiting_room]
     ctx['member_list'] = member_list
-    
-    if request.method == 'POST':
-        pass
 
-    print('member_list', member_list)
-    
+    if request.method == 'POST':
+        # send user.id
+        row0 = request.POST.get('row-0')
+        row1 = request.POST.get('row-1')
+        row2 = request.POST.get('row-2')
+        row3 = request.POST.get('row-3')
+        row4 = request.POST.get('row-4')
+        row5 = request.POST.get('row-5')
+        
+        print(11111111111111111111111111111111)
+        print(row0)
+        print(row1)
+        print(row2)
+        print(row3)
+        print(row4)
+        print(row5)
+        from .utils import list2int
+        row0 = list2int(row0.split(','))
+        row1 = list2int(row1.split(','))
+        row2 = list2int(row2.split(','))
+        row3 = list2int(row3.split(','))
+        row4 = list2int(row4.split(','))
+        row5 = list2int(row5.split(','))
+        
+        ubung4 = Ubung4.objects.filter(game=game,user=user).first()
+        if not ubung4:
+            ubung4 = Ubung4.objects.create(
+                game = game,
+                player = user,
+            )
+
+        for i in row0:
+            for u in i:
+                mem = Player.objects.filter(id=u).first()
+                ubung4.row0.add(mem)
+        for i in row1:
+            for u in i:
+                mem = Player.objects.filter(id=u).first()
+                ubung4.row1.add(mem)
+        for i in row2:
+            for u in i:
+                mem = Player.objects.filter(id=u).first()
+                ubung4.row2.add(mem)
+        for i in row3:
+            for u in i:
+                mem = Player.objects.filter(id=u).first()
+                ubung4.row3.add(mem)
+        for i in row4:
+            for u in i:
+                mem = Player.objects.filter(id=u).first()
+                ubung4.row4.add(mem)
+        for i in row5:
+            for u in i:
+                mem = Player.objects.filter(id=u).first()
+                ubung4.row5.add(mem)     
+        return redirect('/ubung-5/')
+
     return render(request, './views/ubung-4.html', ctx)
 
 

@@ -41,3 +41,11 @@ def get_avatar_link(digit):
     avatar = static(f'images/avatars/{name}')
     return avatar
     
+
+def list2int(input_list):
+    result = []
+    uu = 0
+    while uu < len(input_list):
+        result.append(int(input_list[uu]))
+        uu += 1
+    return result
