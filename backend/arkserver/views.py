@@ -288,8 +288,23 @@ def ubung_5(request):
     ctx = {}
     return render(request, './views/ubung-5.html', ctx)
 
-def team_potential(request):
+
+@user_required
+def team_potential(request, user):
     ctx = {}
+    link = request.session['link']
+    game = Game.objects.filter(link=link).first()
+    ubung2 = Ubung2.objects.filter(game=game)
+    value_list = [int(i.value) for i in ubung2]
+    value_list = list(set(value_list))
+    temp = len(value_list)/2
+    if temp.__class__ == int:
+        result = (value_list[temp-1] + value_list[temp])/2
+    else:
+        temp = round(temp)
+        result = value_list[temp]
+    ctx['result'] = result
+
     return render(request, './views/team-potential.html', ctx)
 
 def spannungsfelder(request):
@@ -364,3 +379,5 @@ def waiting_room_yet(player_id, link):
     
     members_list = [i.player.player_json for i in waiting_room]
     return members_list
+
+

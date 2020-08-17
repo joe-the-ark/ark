@@ -53,18 +53,31 @@
                     <br/>
                 </p>
                 <div class="distribution__wrapper"></div>
-
-                <div class="center">
-                    <a href="#" class="button" id="button" data-tippy-content="Another Tooltip">
-                        Weiterspielen
-                    </a>
-                </div>
+                
+                <form action="#" method="POST" class="form">
+                {% csrf_token %}
+                    <div class="center">
+                        <input id="row0" type="hidden" name="row-0" value=""/>
+                        <input id="row1" type="hidden" name="row-1" value=""/>
+                        <input id="row2" type="hidden" name="row-2" value=""/>
+                        <input id="row3" type="hidden" name="row-3" value=""/>
+                        <input id="row4" type="hidden" name="row-4" value=""/>
+                        <input id="row5" type="hidden" name="row-5" value=""/>
+                        <button type="submit" id="button" data-tippy-content="Another Tooltip">
+                            Weiterspielen
+                        </button>
+                    </div>
+                </form>
             </main>
         </div>
     </div>
 </div>
 <script src="https://unpkg.com/@popperjs/core@2"></script>
 <script src="https://unpkg.com/tippy.js@6"></script>
+<script
+  src="http://code.jquery.com/jquery-3.5.1.slim.min.js"
+  integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
+  crossorigin="anonymous"></script>
 <script>
 
 
@@ -317,10 +330,32 @@
         after: 2
     });
 
-    document.getElementById('button').addEventListener('click', function (e) {
-        e.preventDefault();
-        console.log(app.getData())
-    });
+    //document.getElementById('button').addEventListener('click', function (e) {
+    //    e.preventDefault();
+    //    console.log(app.getData())
+    //});
+
+
+    function get_id(in_value){
+        var uu = 0;
+        var output = [];
+        while (uu < in_value.length){
+            output.push(in_value[uu]['id']);
+            uu += 1;
+        }
+        return output;
+    }
+
+    function refresh(){
+        $('#row0').val(get_id(app.containersTo[0].items));
+        $('#row1').val(get_id(app.containersTo[1].items));
+        $('#row2').val(get_id(app.containersTo[2].items));
+        $('#row3').val(get_id(app.containersTo[3].items));
+        $('#row4').val(get_id(app.containersTo[4].items));
+        $('#row5').val(get_id(app.containersTo[5].items));
+        //console.log(app.containersTo[0].items);
+    }
+    setInterval("refresh()", 1000)
 
 </script>
 
