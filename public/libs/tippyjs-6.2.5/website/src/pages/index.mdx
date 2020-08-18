@@ -1,0 +1,477 @@
+---
+title: Demo
+path: /
+index: 0
+---
+
+import {ALL_PLACEMENTS, EXTRA_ANIMATIONS} from '../utils';
+import Dropdown from '../components/examples/Dropdown';
+import Singleton from '../components/examples/Singleton';
+import Nesting from '../components/examples/Nesting';
+
+import brain from '../images/brain.svg';
+import lightning from '../images/lightning.svg';
+import pointer from '../images/pointer.svg';
+import wheelchair from '../images/wheelchair.svg';
+import paintbrush from '../images/paintbrush.svg';
+import typescript from '../images/typescript.svg';
+import browser from '../images/browser.svg';
+
+Tippy.js is the complete tooltip, popover, dropdown, and menu solution for the
+web, powered by [Popper](https://popper.js.org).
+
+It's a generic abstraction for the logic and styling of elements that pop out
+from the flow of the document and float next to a reference element, overlaid on
+top of the UI.
+
+- <Icon src={brain} alt="brain" float /> <strong>Smart:</strong> optimized positioning
+  engine for flipping and overflow prevention
+- <Icon src={pointer} alt="mobile" float /> <strong>Universal:</strong> works with
+  mouse, keyboard, and touch inputs
+- <Icon src={wheelchair} alt="wheelchair" float /> <strong>Accessible:</strong> WAI-ARIA
+  compliant
+- <Icon src={paintbrush} alt="paintbrush" float /> <strong>Themeable:</strong> style
+  via custom CSS, includes extra themes and animations
+- <Icon src={typescript} alt="typescript" float /> <strong>Typed:</strong> TypeScript
+  support out of the box
+
+Ready to start? Visit [Getting Started](/v6/getting-started/), or view a demo of
+Tippy's features below.
+
+---
+
+### Default
+
+The default tippy tooltip looks like this:
+
+<Demo>
+  <Tippy>
+    <Button>My Button</Button>
+  </Tippy>
+</Demo>
+
+It has a background color of `#333` and an arrow pointing toward the element,
+and is triggered by either `mouseenter` or `focus` events so it appears when
+hovered, focused via keyboard navigation, or tapped when using a touch device.
+
+With a button element on the document like this:
+
+```html
+<button id="myButton">My Button</button>
+```
+
+You can initialize it like so:
+
+```js
+tippy('#myButton', {
+  content: "I'm a Tippy tooltip!",
+});
+```
+
+---
+
+### Placement
+
+Tooltips can be placed in four base ways in relation to the reference element.
+Additionally, the tooltip can be shifted along the axis using the suffix
+`-start` or `-end`.
+
+<Demo>
+  <Row>
+    {ALL_PLACEMENTS.map((placement, i) => (
+      <Col
+        key={placement}
+        base={12}
+        xs={6}
+        md={4}
+        lg={6}
+        xl={4}
+        style={{margin: '8px 0'}}
+      >
+        <Tippy
+          key={placement}
+          content="Tooltip"
+          placement={placement}
+          arrow={false}
+          popperOptions={{
+            modifiers: [
+              {
+                name: 'flip',
+                enabled: false,
+              },
+              {
+                name: 'preventOverflow',
+                options: {
+                  altAxis: true,
+                },
+              },
+            ],
+          }}
+        >
+          <Button
+            style={{
+              display: 'inline-block',
+              width: '100%',
+              height: '100%',
+            }}
+          >
+            {placement}
+          </Button>
+        </Tippy>
+      </Col>
+    ))}
+  </Row>
+</Demo>
+
+If a tippy cannot fit within its desired placement, it will flip to the opposite
+placement if there is not enough space. In the above examples, flipping has been
+disabled to demonstrate each placement properly.
+
+---
+
+### Arrows
+
+The arrow that points toward the element can have its proportion or shape
+modified, or be disabled completely.
+
+<Demo>
+  <Tippy arrow animation="fade">
+    <Button>Default</Button>
+  </Tippy>
+  <Tippy arrow="round" animation="fade" animation="fade">
+    <Button>Round</Button>
+  </Tippy>
+  <Tippy animation="fade" theme="large-arrow" offset={[0, 16]}>
+    <Button>Large</Button>
+  </Tippy>
+  <Tippy animation="fade" theme="small-arrow" offset={[0, 8]}>
+    <Button>Small</Button>
+  </Tippy>
+  <Tippy animation="fade" theme="wide-arrow">
+    <Button>Wide</Button>
+  </Tippy>
+  <Tippy animation="fade" theme="narrow-arrow">
+    <Button>Narrow</Button>
+  </Tippy>
+</Demo>
+
+---
+
+### Animations
+
+Tooltips can have different types of transition animations. By default, it's a
+simple `fade` (opacity transition).
+
+#### Extra included animations
+
+These animations are included in the package and can be imported separately.
+
+<Demo>
+  <Row>
+    {EXTRA_ANIMATIONS.map((animation) => (
+      <Col
+        key={animation}
+        base={12}
+        md={4}
+        lg={6}
+        xl={4}
+        style={{margin: '8px 0'}}
+      >
+        <Tippy animation={animation} animateFill={false}>
+          <Button
+            style={{
+              width: '100%',
+              height: '100%',
+            }}
+          >
+            {animation}
+          </Button>
+        </Tippy>
+      </Col>
+    ))}
+  </Row>
+</Demo>
+
+#### Material filling effect
+
+<Demo>
+  <Tippy animateFill={true} animation="shift-away">
+    <Button>Text</Button>
+  </Tippy>
+</Demo>
+
+#### Inertia / slingshot elastic effect
+
+Add CSS spring physics to the animation using `transition-timing-function`.
+
+<Demo>
+  {EXTRA_ANIMATIONS.filter((animation) => animation.includes('scale')).map(
+    (animation) => (
+      <Tippy
+        key={animation}
+        animation={animation}
+        animateFill={false}
+        inertia={true}
+        duration={[450, 175]}
+      >
+        <Button>{animation}</Button>
+      </Tippy>
+    )
+  )}
+</Demo>
+
+#### CSS keyframe animations
+
+Getting more advanced, you can use actual CSS animations (`@keyframes` rules),
+for example using the `animate.css` package:
+
+<Demo>
+  <Tippy
+    animation="fade"
+    animateFill={false}
+    duration={[500, 200]}
+    onMount={(instance) => {
+      requestAnimationFrame(() => {
+        instance.popper.firstElementChild.classList.add(
+          'rubberBand',
+          'animated'
+        );
+      });
+    }}
+    onHidden={(instance) => {
+      instance.popper.firstElementChild.classList.remove(
+        'rubberBand',
+        'animated'
+      );
+    }}
+  >
+    <Button>rubberBand</Button>
+  </Tippy>
+  <Tippy
+    animation="fade"
+    animateFill={false}
+    duration={[500, 200]}
+    onMount={(instance) => {
+      requestAnimationFrame(() => {
+        instance.popper.firstElementChild.classList.add('tada', 'animated');
+      });
+    }}
+    onHidden={(instance) => {
+      instance.popper.firstElementChild.classList.remove('tada', 'animated');
+    }}
+  >
+    <Button>tada</Button>
+  </Tippy>
+</Demo>
+
+#### Duration
+
+<Demo>
+  <Tippy duration={0}>
+    <Button>0</Button>
+  </Tippy>
+  <Tippy duration={1000}>
+    <Button>1000</Button>
+  </Tippy>
+  <Tippy duration={[0, 500]}>
+    <Button>[0, 500]</Button>
+  </Tippy>
+  <Tippy duration={[500, 0]}>
+    <Button>[500, 0]</Button>
+  </Tippy>
+</Demo>
+
+---
+
+### Themes
+
+Tooltips can have custom styling.
+
+#### Included themes
+
+These themes are included in the package and can be imported separately.
+
+<Demo>
+  {['light', 'light-border', 'material', 'translucent'].map((theme) => (
+    <Tippy key={theme} theme={theme} animateFill={false}>
+      <Button>{theme}</Button>
+    </Tippy>
+  ))}
+</Demo>
+
+#### Custom themes
+
+You can apply any CSS to a tippy via a theme.
+
+<Demo>
+  {['gradient', 'retro', 'forest'].map((theme) => (
+    <Tippy key={theme} theme={theme} animateFill={false} arrow={false}>
+      <Button>{theme}</Button>
+    </Tippy>
+  ))}
+</Demo>
+
+---
+
+### Triggers
+
+Tooltips can also be triggered by `click` or `focus` events.
+
+<Demo>
+  <Tippy trigger="click">
+    <Button>Click</Button>
+  </Tippy>
+  <Tippy trigger="focus" hideOnClick={false}>
+    <Button>Focus</Button>
+  </Tippy>
+</Demo>
+
+---
+
+### Interactivity
+
+Tooltips can be interactive, allowing you to hover over and click inside them.
+
+<Demo>
+  <Tippy interactive content="You can select the text inside here.">
+    <Button>Interactive</Button>
+  </Tippy>
+</Demo>
+
+---
+
+### HTML Content
+
+Tooltips can contain HTML.
+
+<Demo>
+  <Tippy
+    content={
+      <strong>
+        Bolded <span style={{color: 'aqua'}}>content</span>
+      </strong>
+    }
+  >
+    <Button>HTML Content</Button>
+  </Tippy>
+  <Dropdown />
+</Demo>
+
+---
+
+### Delay
+
+Tooltips can delay hiding or showing after a trigger.
+
+<Demo>
+  <Tippy delay={500}>
+    <Button>500</Button>
+  </Tippy>
+  <Tippy delay={[800, 0]}>
+    <Button>[800, 0]</Button>
+  </Tippy>
+  <Tippy delay={[0, 800]}>
+    <Button>[0, 800]</Button>
+  </Tippy>
+</Demo>
+
+---
+
+### Follow Cursor
+
+Tooltips can follow the mouse cursor and abide by a certain axis. Additionally,
+the tooltip can follow the cursor until it shows, at which point it will stop
+following (initial).
+
+<Demo>
+  <Tippy followCursor animateFill={false} duration={200} animation="fade">
+    <Button>Default</Button>
+  </Tippy>
+  <Tippy
+    followCursor="horizontal"
+    animateFill={false}
+    duration={200}
+    animation="fade"
+  >
+    <Button>Horizontal</Button>
+  </Tippy>
+  <Tippy
+    followCursor="vertical"
+    animateFill={false}
+    duration={200}
+    animation="fade"
+  >
+    <Button>Vertical</Button>
+  </Tippy>
+  <Tippy
+    followCursor="initial"
+    animateFill={false}
+    delay={200}
+    duration={200}
+    animation="fade"
+  >
+    <Button>Initial</Button>
+  </Tippy>
+</Demo>
+
+---
+
+### SVGs
+
+Tooltips can be placed on SVG nodes, where `followCursor: 'initial'` becomes
+very useful, since it can be placed directly on the line.
+
+<svg height="150" width="150">
+  <Tippy followCursor="initial" animation="fade" delay={100}>
+    <line
+      x1="0"
+      y1="0"
+      x2="150"
+      y2="150"
+      style={{stroke: 'tomato', strokeWidth: 5}}
+    />
+  </Tippy>
+</svg>
+
+---
+
+### Singleton
+
+Use a single tooltip for many different reference elements. This allows you to
+"group" tooltips with a shared timer to improve UX when elements near each other
+have tooltips with a `delay` prop.
+
+Non-singleton tippy with `delay: 500`:
+
+<Demo>
+  <Singleton />
+</Demo>
+
+Singleton tippy to group each tippy's `delay: 500`:
+
+<Demo>
+  <Singleton group />
+</Demo>
+
+Singleton tippy with a transition:
+
+<Demo>
+  <Singleton group transition />
+</Demo>
+
+---
+
+### Nesting
+
+A tippy can be nested within another one.
+
+<Demo>
+  <Nesting />
+</Demo>
+
+This allows you to create a hover menu system.
+
+### Plenty more...
+
+The above is not a complete list of features. Tippy is capable of many more
+things.
