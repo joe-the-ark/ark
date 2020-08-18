@@ -1,7 +1,6 @@
 class AppGraph {
     constructor({container, data, range, statistic, mobile, labelRange, auto = true, dependency = false}) {
         this.container = document.querySelector(container);
-        console.log(container)
         this.data = data;
         this.range = range;
         this.labelRange = labelRange;
@@ -16,6 +15,7 @@ class AppGraph {
     }
 
     isPermission({dynamic, statics}) {
+        this.prePermission();
         if (!this.statistic) {
             return dynamic;
         } else {
@@ -23,10 +23,35 @@ class AppGraph {
         }
     }
 
+    getMaxOfArray(numArray) {
+        return Math.max.apply(null, numArray);
+    }
+
+    prePermission() {
+        const wrappers = document.querySelectorAll('.custom-graph');
+        wrappers.forEach((item, i) => {
+            const status = item.querySelector('.custom-graph__status');
+            if (window.innerWidth > this.mobile) {
+
+                const statusChildren = status.children;
+                const searchInnerWidth = [...statusChildren].map((child) => child.clientWidth);
+                const offsetStatus = this.getMaxOfArray(searchInnerWidth);
+                item.style.paddingLeft = `${offsetStatus + 20}px`;
+                status.style.left = `${offsetStatus + 16}px`;
+            } else {
+                item.style.paddingLeft = `inherit`;
+                status.style.left = `inherit`;
+            }
+        });
+    }
+
     buildGraph() {
         this.render();
 
-        window.addEventListener('resize', () => this.updateDots());
+        window.addEventListener('resize', () => {
+            this.updateDots()
+            this.prePermission();
+        });
 
         this.auto ? window.addEventListener('load', () => this.isAuto()) : this.isAuto();
     }
@@ -290,7 +315,7 @@ class AppGraph {
         })}
             </div>`;
 
-        const html = htmlDown + htmlUp.split(`,`).join('') + (this.mobile ? htmlDown : '');
+        const html = htmlDown + htmlUp.split(`,`).join('') + (window.innerWidth <= this.mobile ? htmlDown : '');
 
         this.container.innerHTML = `<div class="custom-graph ${this.statistic ? `statistic` : ''}">${html}</div>`;
 

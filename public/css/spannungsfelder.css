@@ -406,6 +406,14 @@
   position: relative;
   margin-bottom: 60px;
 }
+@media screen and (max-width: 540px) {
+  .custom-graph-info__item {
+    width: 60px;
+    height: 60px;
+    line-height: 52px;
+    font-size: 24px;
+  }
+}
 .custom-graph-info__item.small {
   color: #ee6331;
 }

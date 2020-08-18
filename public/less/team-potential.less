@@ -6,13 +6,22 @@
 .team-potential {
 
     p {
-        float: left;
         max-width: 908px;
         margin: @paragraph-offset;
+
+        .xs(min, {
+            float: left;
+        });
     }
 
     .custom-graph-info {
-        float: right;
+        .xs(min, {
+            float: right;
+        });
+
+        .xs({
+            justify-content: center;
+        });
     }
 
     .custom-graph {
@@ -20,7 +29,7 @@
     }
 
     .forMisha({
-        .custom-graph-info{
+        .custom-graph-info {
             margin-top: -40px;
         }
 

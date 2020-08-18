@@ -18,7 +18,7 @@ body > .user-connect img {
   max-width: 60px;
 }
 body > .user-connect .user-connect__name {
-  padding: 2px 6px 2px 41px;
+  padding: 2px 6px 2px 31px;
 }
 .user-connect > * {
   pointer-events: none;
