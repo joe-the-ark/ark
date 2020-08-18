@@ -406,6 +406,14 @@
   position: relative;
   margin-bottom: 60px;
 }
+@media screen and (max-width: 540px) {
+  .custom-graph-info__item {
+    width: 60px;
+    height: 60px;
+    line-height: 52px;
+    font-size: 24px;
+  }
+}
 .custom-graph-info__item.small {
   color: #ee6331;
 }
@@ -427,12 +435,23 @@
   transform: translateX(-50%);
 }
 .team-potential p {
-  float: left;
   max-width: 908px;
   margin: var(--ls-paragraph-offset);
 }
-.team-potential .custom-graph-info {
-  float: right;
+@media screen and (min-width: 769px) {
+  .team-potential p {
+    float: left;
+  }
+}
+@media screen and (min-width: 769px) {
+  .team-potential .custom-graph-info {
+    float: right;
+  }
+}
+@media screen and (max-width: 768px) {
+  .team-potential .custom-graph-info {
+    justify-content: center;
+  }
 }
 .team-potential .custom-graph {
   clear: both;
