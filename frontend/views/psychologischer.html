@@ -40,7 +40,7 @@
             </div>
         </header>
     </div>
-    <div class="app__body">
+    <div class="app__body" id="app-1">
         <div class="container">
             <main class="screen psychologischer">
                 <h1>
@@ -60,22 +60,7 @@
                             Probleme und schwierige Themen kann ich bei dir ansprechen.
                         </div>
                         <div class="distry__thumbnails">
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
+                            <div class="distry__user" v-for="count in row0">
 
                             </div>
                         </div>
@@ -83,133 +68,58 @@
                     <div class="team-average">
                         <div class="team-average__wrapper">
                             <div class="team-average__range" style="width: 27%">
-                                <div class="team-average__circle">2.7</div>
+                                <div class="team-average__circle">[[ score ]]</div>
                             </div>
                             <div class="team-average__down">0</div>
-                            <div class="team-average__up">0</div>
+                            <div class="team-average__up">5</div>
                         </div>
                     </div>
                     <div class="distry">
                         <div class="distry__description">
-                            Probleme und schwierige Themen kann ich bei dir ansprechen.
+                            Du schliesst manchmal Menschen aus dem Team aus, weil sie anders sind.
                         </div>
                         <div class="distry__thumbnails">
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
+                            <div class="distry__user" v-for="count in row1">
 
                             </div>
                         </div>
                     </div>
                     <div class="distry">
                         <div class="distry__description">
-                            Probleme und schwierige Themen kann ich bei dir ansprechen.
+                            Du arbeitest manchmal im Team auch gegen mich.
                         </div>
                         <div class="distry__thumbnails">
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
+                            <div class="distry__user" v-for="count in row2">
 
                             </div>
                         </div>
                     </div>
                     <div class="distry">
                         <div class="distry__description">
-                            Probleme und schwierige Themen kann ich bei dir ansprechen.
+                            Meine Talente werden von dir gesehen, geschätzt und ausgeschöpft.
                         </div>
                         <div class="distry__thumbnails">
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
+                            <div class="distry__user" v-for="count in row3">
 
                             </div>
                         </div>
                     </div>
                     <div class="distry">
                         <div class="distry__description">
-                            Probleme und schwierige Themen kann ich bei dir ansprechen.
+                            Wenn im Team Fehler passieren, verwendest du das gegen die Betroffenen.
                         </div>
                         <div class="distry__thumbnails">
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
+                            <div class="distry__user" v-for="count in row4">
 
                             </div>
                         </div>
                     </div>
                     <div class="distry">
                         <div class="distry__description">
-                            Probleme und schwierige Themen kann ich bei dir ansprechen.
+                            Es fällt mir schwer, dich um Hilfe zu bitten.
                         </div>
                         <div class="distry__thumbnails">
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
+                            <div class="distry__user" v-for="count in row5">
 
                             </div>
                         </div>
@@ -225,5 +135,31 @@
     </div>
 </div>
 </body>
+<!-- vue cdn  -->
+<script src="/static/vue.js"></script>
+<script>
+    var app = new Vue({
+        delimiters: ['[[', ']]'],
+        el: '#app-1',
+        data() {
+            return {
+                message: 'Hello Vue!',
+                row0: {{row0}},
+                row1: {{row1}},
+                row2: {{row2}},
+                row3: {{row3}},
+                row4: {{row4}},
+                row5: {{row5}},
+                score: {{score}},
+            }
+        },
+        methods: {
+            handleSelect(key, keyPath) {
+                console.log(key, keyPath);
+            },
+        },
+    })
+
+</script>
 </html>
 

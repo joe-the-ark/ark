@@ -148,11 +148,22 @@ class Ubung4(models.Model):
     game = models.ForeignKey(Game, on_delete=models.CASCADE, verbose_name='game')
     player = models.ForeignKey(Player, on_delete=models.CASCADE, verbose_name='author')
     
+    # for 'Probleme und schwierige Themen kann ich bei dir ansprechen.'
     row0 = models.ManyToManyField(Player, blank=True, null=True, related_name='row0')
+
+    # for 'Du schliesst manchmal Menschen aus dem Team aus, weil sie anders sind.'
     row1 = models.ManyToManyField(Player, blank=True, null=True, related_name='row1')
+
+    # for 'Du arbeitest manchmal im Team auch gegen mich.'
     row2 = models.ManyToManyField(Player, blank=True, null=True, related_name='row2')
+
+    # for 'Meine Talente werden von dir gesehen, geschätzt und ausgeschöpft.'
     row3 = models.ManyToManyField(Player, blank=True, null=True, related_name='row3')
+    
+    # for 'Wenn im Team Fehler passieren, verwendest du das gegen die Betroffenen.'
     row4 = models.ManyToManyField(Player, blank=True, null=True, related_name='row4')
+
+    # for 'Es fällt mir schwer, dich um Hilfe zu bitten.'
     row5 = models.ManyToManyField(Player, blank=True, null=True, related_name='row5')
 
     class Meta(object):

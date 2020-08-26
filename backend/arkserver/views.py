@@ -370,8 +370,46 @@ def wartezimmer(request, user, link):
     return render(request, './views/wartezimmer.html', ctx)
 
 
-def psychologischer(request):
+@user_required
+def psychologischer(request, user):
     ctx = {}
+    link = request.session['link']
+    game = Game.objects.filter(link=link).first()
+    game_place = list(Ubung4.objects.filter(game=game))
+    row_0 = 0
+    row_1 = 0
+    row_2 = 0
+    row_3 = 0
+    row_4 = 0
+    row_5 = 0
+    for game in game_place:
+        if game.player == user:
+            continue
+        else:
+            if user in game.row0:
+                row_0 += 1
+            if user in game.row1:
+                row_1 += 1
+            if user in game.row2:
+                row_2 += 1
+            if user in game.row3:
+                row_3 += 1
+            if user in game.row4:
+                row_4 += 1
+            if user in game.row5:
+                row_5 += 1
+
+    score = row_0 * 4 + row_1 * 1 + row_2 * 3 + row_3 * 5 + row_4 * 0 + row_5 * 2
+    num = (WaitingRoomMember.objects.filter(game=game,state=1).count()) ** 2
+    score = score / num
+
+    ctx['score'] = score
+    ctx['row0'] = row_0
+    ctx['row1'] = row_1
+    ctx['row2'] = row_2
+    ctx['row3'] = row_3
+    ctx['row4'] = row_4
+    ctx['row5'] = row_5
     return render(request, './views/psychologischer.html', ctx)
 
 
