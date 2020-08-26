@@ -299,12 +299,28 @@ def team_potential(request, user):
     value_list = list(set(value_list))
     temp = len(value_list)/2
     if temp.__class__ == int:
-        result = (value_list[temp-1] + value_list[temp])/2
+        median = (value_list[temp-1] + value_list[temp])/2
     else:
         temp = round(temp)
-        result = value_list[temp]
-    ctx['result'] = result
+        median = value_list[temp]
+    ctx['minimal'] = min(value_list)
+    ctx['maximal'] = max(value_list)
+    ctx['median'] = median
+    ctx['user'] = user
 
+    all_result = []
+    for i in value_list:
+        if i == ubung2.filter(player=user).first().value:
+            all_result.append(
+                {
+                    'name': user.name,
+                    'avatar': user.avatar,
+                    'statusSide': i
+                }
+            )
+        else:
+            all_result.append({"statusSide": i})
+    ctx['all_result'] = all_result
     return render(request, './views/team-potential.html', ctx)
 
 def spannungsfelder(request):
@@ -323,7 +339,8 @@ def mission_2_ubung_2(request):
     ctx = {}
     return render(request, './views/mission-2-ubung-2.html', ctx)
 
-def assessment(request):
+@user_required
+def assessment(request, user):
     ctx = {}
     return render(request, './views/assessment.html', ctx)
 

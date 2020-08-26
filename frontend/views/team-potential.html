@@ -24,9 +24,9 @@
                     <div class="user__subtitle">
                         Fische im Aquarium
                     </div>
-                    <img src="/static/images/avatars/boar.svg" alt="boar">
+                    <img src="{{ user.avatar }}" alt="boar">
                     <div class="user__title">
-                        Vasilisa Kochetkova
+                        {{ user.name }}
                     </div>
                 </div>
             </div>
@@ -53,13 +53,13 @@
                 </p>
                 <div class="custom-graph-info">
                     <div class="custom-graph-info__item small" data-text="Minimal">
-                        15
+                        {{ minimal }}
                     </div>
                     <div class="custom-graph-info__item base" data-text="Median">
-                        49
+                        {{ median }}
                     </div>
                     <div class="custom-graph-info__item large" data-text="Maximal">
-                        99
+                        {{ maximal }}
                     </div>
                 </div>
                 <div class="custom-graph-wrapper"></div>
@@ -82,7 +82,8 @@
         labelRange: [1, 99],
         statistic: true,
         mobile: 1200,
-        data: [
+        data: {{ all_result|safe }}
+        {% comment %} [
             {
                statusSide: 10
             },
@@ -118,7 +119,7 @@
             {
                statusSide: 99
             },
-        ]
+        ] {% endcomment %}
     });
 
     document.getElementById('button').addEventListener('click', function (e) {
