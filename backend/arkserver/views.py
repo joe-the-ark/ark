@@ -283,8 +283,8 @@ def ubung_4(request, user):
 
     return render(request, './views/ubung-4.html', ctx)
 
-
-def ubung_5(request):
+@user_required
+def ubung_5(request, user):
     ctx = {}
     return render(request, './views/ubung-5.html', ctx)
 
@@ -323,11 +323,18 @@ def team_potential(request, user):
     ctx['all_result'] = all_result
     return render(request, './views/team-potential.html', ctx)
 
-def spannungsfelder(request):
+@user_required
+def spannungsfelder(request, user):
     ctx = {}
+    link = request.session['link']  
+    game = Game.objects.filter(link=link).first()
+
+
+
     return render(request, './views/spannungsfelder.html', ctx)
 
-def preview_2(request):
+@user_required
+def preview_2(request, user):
     ctx = {}
     return render(request, './views/preview-2.html', ctx)
 
@@ -344,11 +351,13 @@ def assessment(request, user):
     ctx = {}
     return render(request, './views/assessment.html', ctx)
 
-def goodbye(request):
+@user_required
+def goodbye(request, user):
     ctx = {}
     return render(request, './views/goodbye.html', ctx)
 
-def arche(request):
+@user_required
+def arche(request, user):
     ctx = {}
     return render(request, './views/arche.html', ctx)
 
@@ -412,6 +421,9 @@ def psychologischer(request, user):
     ctx['row5'] = row_5
     return render(request, './views/psychologischer.html', ctx)
 
+
+
+# apis
 
 @api
 def waiting_room_active(player_id, link):
