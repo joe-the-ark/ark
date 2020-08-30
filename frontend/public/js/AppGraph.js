@@ -96,7 +96,8 @@ class AppGraph {
                             ${statusSide !== undefined ? `<div class="custom-graph__item-side">${statusSide}</div>` : `<img src="${avatar}" alt=""/>`}
                          </div>
                              <div class="custom-graph__item-line"></div>
-                             <div class="custom-graph__item-polygon"></div>`;
+                             <div class="custom-graph__item-polygon"></div>
+                             <div class="custom-graph__item-trace"></div>`;
         item.classList.toggle('inactive');
         item.querySelector('.custom-graph__item-head').innerHTML = html;
         this.updateDots();
@@ -311,6 +312,8 @@ class AppGraph {
                             </div>
                            <div class="custom-graph__item-name">${name ? name : ''}</div>
                         </div>
+                    <div class="custom-graph__item-name_mobile">${name ? name : ''}</div>
+                    <div class="custom-graph__item-trace"></div>
                     </div>`
         })}
             </div>`;
