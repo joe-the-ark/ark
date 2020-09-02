@@ -388,6 +388,12 @@
   .custom-graph__item-name {
     display: none;
   }
+  .custom-graph__item-name_mobile {
+    color: Black;
+    font-size: var(--ls-font-base);
+    line-height: 22px;
+    margin: auto;
+  }
 }
 .ubung-5 p {
   max-width: 908px;

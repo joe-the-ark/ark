@@ -31,6 +31,7 @@
   width: calc(100% - 2px);
   background-color: #f5fcfe;
   border: 1px solid #51ceec;
+
 }
 @media screen and (min-width: 1201px) {
   .statistic .custom-graph__items {
@@ -322,6 +323,7 @@
     top: 0;
     width: min(190px, 50%);
     height: 100%;
+
   }
   .custom-graph__item {
     flex-direction: row;
@@ -387,6 +389,18 @@
   }
   .custom-graph__item-name {
     display: none;
+  }
+  .custom-graph__item-name_mobile {
+    color: Black;
+    font-size: var(--ls-font-base);
+    line-height: 22px;
+    margin: auto;
+  }
+  .custom-graph__item-trace {
+    border-top: 2px dashed var(--ls-extra-color);
+    position: absolute;
+    width: 100%;
+    z-index: -1;
   }
 }
 .custom-graph-info {
