@@ -31,7 +31,7 @@
   width: calc(100% - 2px);
   background-color: #f5fcfe;
   border: 1px solid #51ceec;
-  display: none;
+
 }
 @media screen and (min-width: 1201px) {
   .statistic .custom-graph__items {
@@ -324,7 +324,7 @@
     top: 0;
     width: min(190px, 50%);
     height: 100%;
-    display: none;
+
   }
   .custom-graph__item {
     flex-direction: row;
@@ -380,12 +380,7 @@
     border-top: 2px solid var(--ls-between-color);
     z-index: -1;
   }
-  .custom-graph__item-trace {
-    border-top: 2px dashed var(--ls-extra-color);
-    position: absolute;
-    width: 100%;
-    z-index: -1;
-  }
+
   .custom-graph__item-foot {
     margin: 0 0 0 -45px;
   }
@@ -402,6 +397,12 @@
     font-size: var(--ls-font-base);
     line-height: 22px;
     margin: auto;
+  }
+  .custom-graph__item-trace {
+    border-top: 2px dashed var(--ls-extra-color);
+    position: absolute;
+    width: 100%;
+    z-index: -1;
   }
 }
 .custom-graph-info {

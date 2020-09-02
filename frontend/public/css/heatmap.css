@@ -1,0 +1,26 @@
+
+.heat_table {
+  border-collapse: collapse; /*убираем пустые промежутки между ячейками*/
+
+  font-size: 20px;
+
+}
+.heat {
+  border: 3px solid black;
+  padding: 10px;
+  font-size: 25px;
+  width: 50px;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.player {
+  writing-mode: sideways-lr;
+}
+
+.property {
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  justify-content: center;
+}
