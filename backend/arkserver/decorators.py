@@ -13,7 +13,7 @@ def _check_user(request):
         return 
 
     user = Player.objects.filter(id=request.session['uid']).first()
-    print('user',user)
+    # print('user',user)
     
     return user
 
@@ -28,7 +28,7 @@ def user_required(func):
             return redirect(f'/')
 
         request.user = user
-        print('link', request.session['link'])
+        # print('link', request.session['link'])
 
         return func(request, user=user, *args, **kwargs)
 

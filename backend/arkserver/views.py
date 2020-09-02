@@ -248,37 +248,36 @@ def ubung_4(request, user):
         row4 = list2int(row4.split(','))
         row5 = list2int(row5.split(','))
         
-        ubung4 = Ubung4.objects.filter(game=game,user=user).first()
+        ubung4 = Ubung4.objects.filter(game=game,player=user).first()
         if not ubung4:
             ubung4 = Ubung4.objects.create(
                 game = game,
                 player = user,
             )
-
+        print(row0)
+        print(row1)
+        print(row2)
+        print(row3)
+        print(row4)
+        print(row5)
         for i in row0:
-            for u in i:
-                mem = Player.objects.filter(id=u).first()
-                ubung4.row0.add(mem)
+            mem = Player.objects.filter(id=i).first()
+            ubung4.row0.add(mem)
         for i in row1:
-            for u in i:
-                mem = Player.objects.filter(id=u).first()
-                ubung4.row1.add(mem)
+            mem = Player.objects.filter(id=i).first()
+            ubung4.row1.add(mem)
         for i in row2:
-            for u in i:
-                mem = Player.objects.filter(id=u).first()
-                ubung4.row2.add(mem)
+            mem = Player.objects.filter(id=i).first()
+            ubung4.row2.add(mem)
         for i in row3:
-            for u in i:
-                mem = Player.objects.filter(id=u).first()
-                ubung4.row3.add(mem)
+            mem = Player.objects.filter(id=i).first()
+            ubung4.row3.add(mem)
         for i in row4:
-            for u in i:
-                mem = Player.objects.filter(id=u).first()
-                ubung4.row4.add(mem)
+            mem = Player.objects.filter(id=i).first()
+            ubung4.row4.add(mem)
         for i in row5:
-            for u in i:
-                mem = Player.objects.filter(id=u).first()
-                ubung4.row5.add(mem)     
+            mem = Player.objects.filter(id=i).first()
+            ubung4.row5.add(mem)     
         return redirect('/ubung-5/')
 
     return render(request, './views/ubung-4.html', ctx)
@@ -286,6 +285,25 @@ def ubung_4(request, user):
 @user_required
 def ubung_5(request, user):
     ctx = {}
+    link = request.session['link'] 
+    game = Game.objects.filter(link=link).first()
+    waiting_room = list(WaitingRoomMember.objects.filter(game=game))
+    member_list = [i.player.player_json for i in waiting_room]
+    ctx['member_list'] = member_list
+
+    if request.method == 'POST':
+        data = request.POST.get('data')
+        # [{'id': 0,"score": 12},{'id': 1,"score": 12}]
+        for i in data:
+            Ubung5.objects.create(
+                game = game,
+                player = user,
+                goal = Player.objects.filter(id=int(i['id'])).first(),
+                score = int(i['score']),
+            )
+    
+        return redirect('/team-potential/')
+
     return render(request, './views/ubung-5.html', ctx)
 
 
@@ -323,14 +341,23 @@ def team_potential(request, user):
     ctx['all_result'] = all_result
     return render(request, './views/team-potential.html', ctx)
 
+
 @user_required
 def spannungsfelder(request, user):
     ctx = {}
     link = request.session['link']  
     game = Game.objects.filter(link=link).first()
+    ubung5 = list(Ubung5.objects.filter(goal=user).exclude(player=user))
+    other_list = [i.score for i in ubung5]
+    if len(other_list) != 0:
+        others = sum(other_list) / len(other_list)
+    ubung5 = Ubung5.objects.filter(player=user).first()
+    himself = ubung5.score
+    tension = others - himself
 
-
-
+    ctx['others'] = others
+    ctx['himself'] = himself
+    ctx['tension'] = tension
     return render(request, './views/spannungsfelder.html', ctx)
 
 @user_required
@@ -338,17 +365,44 @@ def preview_2(request, user):
     ctx = {}
     return render(request, './views/preview-2.html', ctx)
 
-def mission_2_ubung_1(request):
+
+@user_required
+def mission_2_ubung_1(request, user):
     ctx = {}
+    link = request.session['link']  
+    game = Game.objects.filter(link=link).first()
+    waiting_room = list(WaitingRoomMember.objects.filter(game=game))
+    member_list = [i.player.player_json for i in waiting_room]
+    ctx['member_list'] = member_list
+
+    if request.method == 'POST':
+        data = request.POST.get('data')
+        for i in data:
+            M2Ubung1.objects.create(
+                game = game,
+                player = user,
+                goal = Player.objects.filter(id=int(i['id'])).first(),
+                score = int(i['score']),
+            )
+        return redirect('/mission-2-ubung-2/')
+
     return render(request, './views/mission-2-ubung-1.html', ctx)
 
-def mission_2_ubung_2(request):
+
+@user_required
+def mission_2_ubung_2(request, user):
     ctx = {}
+    link = request.session['link']  
+    game = Game.objects.filter(link=link).first()
+
     return render(request, './views/mission-2-ubung-2.html', ctx)
+
 
 @user_required
 def assessment(request, user):
     ctx = {}
+    link = request.session['link']  
+    game = Game.objects.filter(link=link).first()
     return render(request, './views/assessment.html', ctx)
 
 @user_required

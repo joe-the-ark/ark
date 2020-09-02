@@ -169,12 +169,31 @@ class Ubung4(models.Model):
     class Meta(object):
         verbose_name = verbose_name_plural = 'Ubung-4'
     def __str__(self):
-        return f'{self.game}---{self.author}'
+        return f'{self.game}---{self.player}'
 
 
+class Ubung5(models.Model):
+    game = models.ForeignKey(Game, on_delete=models.CASCADE, verbose_name='game')
+    player = models.ForeignKey(Player, on_delete=models.CASCADE, verbose_name='author')
+    goal = models.ForeignKey(Player, on_delete=models.CASCADE, verbose_name='goal',related_name='goal')
+    score = models.IntegerField(default=0)
 
+    class Meta(object):
+        verbose_name = verbose_name_plural = 'Ubung-5'
+    def __str__(self):
+        return f'{self.game} -- {self.player} -- {self.goal} -- {self.score}'
+    
 
+class M2Ubung1(models.Model):
+    game = models.ForeignKey(Game, on_delete=models.CASCADE, verbose_name='game')
+    player = models.ForeignKey(Player, on_delete=models.CASCADE, verbose_name='author')
+    goal = models.ForeignKey(Player, on_delete=models.CASCADE, verbose_name='goal',related_name='m2_goal')
+    score = models.IntegerField(default=0)
 
+    class Meta(object):
+        verbose_name = verbose_name_plural = 'M2Ubung1'
+    def __str__(self):
+        return f'{self.game} -- {self.player} -- {self.goal} -- {self.score}'
 
 # class Character(models.Model):
 #     name = models.CharField(max_length=100, verbose_name='scale')
