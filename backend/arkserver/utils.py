@@ -43,6 +43,8 @@ def get_avatar_link(digit):
     
 
 def list2int(input_list):
+    if input_list[0] == '':
+        return []
     result = []
     uu = 0
     while uu < len(input_list):
