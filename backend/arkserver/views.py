@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .utils import *
 from .decorators import user_required
 from meta.decorators import api, APIError
+import json
 
 # Create your views here.
 from .models import *
@@ -220,10 +221,10 @@ def ubung_4(request, user):
     ctx = {}
     link = request.session['link']
     game = Game.objects.filter(link=link).first()
-    waiting_room = list(WaitingRoomMember.objects.filter(game=game).exclude(player=user))
+    # waiting_room = list(WaitingRoomMember.objects.filter(game=game).exclude(player=user))
+    waiting_room = list(WaitingRoomMember.objects.filter(game=game))
     member_list = [i.player.player_json for i in waiting_room]
-    ctx['member_list'] = member_list
-
+    ctx['member_list'] = member_list 
     if request.method == 'POST':
         # send user.id
         row0 = request.POST.get('row-0')
@@ -282,6 +283,7 @@ def ubung_4(request, user):
 
     return render(request, './views/ubung-4.html', ctx)
 
+
 @user_required
 def ubung_5(request, user):
     ctx = {}
@@ -293,13 +295,16 @@ def ubung_5(request, user):
 
     if request.method == 'POST':
         data = request.POST.get('data')
-        # [{'id': 0,"score": 12},{'id': 1,"score": 12}]
+        data = json.loads(data)
+        ubung5 = Ubung5.objects.filter(game=game,player=user).first()
+        if ubung5:
+            ubung5.delete()
         for i in data:
             Ubung5.objects.create(
                 game = game,
                 player = user,
                 goal = Player.objects.filter(id=int(i['id'])).first(),
-                score = int(i['score']),
+                score = int(i['status']),
             )
     
         return redirect('/team-potential/')
@@ -351,6 +356,8 @@ def spannungsfelder(request, user):
     other_list = [i.score for i in ubung5]
     if len(other_list) != 0:
         others = sum(other_list) / len(other_list)
+    else:
+        others = sum(other_list) / 1
     ubung5 = Ubung5.objects.filter(player=user).first()
     himself = ubung5.score
     tension = others - himself
@@ -358,7 +365,13 @@ def spannungsfelder(request, user):
     ctx['others'] = others
     ctx['himself'] = himself
     ctx['tension'] = tension
+
+    json_list = [ i.span_1 for i in list(Ubung5.objects.filter(goal=user)) ]
+    json_list.sort(key = lambda x:x['statusSide'])
+    ctx['json_list'] = json_list
+    ctx['user'] = user
     return render(request, './views/spannungsfelder.html', ctx)
+
 
 @user_required
 def preview_2(request, user):
@@ -377,12 +390,16 @@ def mission_2_ubung_1(request, user):
 
     if request.method == 'POST':
         data = request.POST.get('data')
+        data = json.loads(data)
+        m2ubung1 = M2Ubung1.objects.filter(game=game,player=user).first()
+        if m2ubung1:
+            m2ubung1.delete()
         for i in data:
             M2Ubung1.objects.create(
                 game = game,
                 player = user,
                 goal = Player.objects.filter(id=int(i['id'])).first(),
-                score = int(i['score']),
+                score = int(i['status']),
             )
         return redirect('/mission-2-ubung-2/')
 
@@ -394,6 +411,34 @@ def mission_2_ubung_2(request, user):
     ctx = {}
     link = request.session['link']  
     game = Game.objects.filter(link=link).first()
+    waiting_room = list(WaitingRoomMember.objects.filter(game=game))
+    member_list = [i.player.player_json for i in waiting_room]
+    ctx['member_list'] = member_list
+
+    if request.method == 'POST':
+        data = request.POST.get('data')
+        print(data)
+        data = json.loads(data)
+        m2ubung2 = M2Ubung2.objects.filter(game=game,player=user).first()
+        if m2ubung2:
+            m2ubung2.delete()
+        for i in data:
+            M2Ubung2.objects.create(
+                game = game,
+                player = user,
+                goal  = Player.objects.filter(id=int(i['id'])).first(),
+                row1 = i['feedback'][0]['text'],
+                row2 = i['feedback'][1]['text'],
+                row3 = i['feedback'][2]['text'],
+            )
+        
+        return redirect('/goodbye/')
+
+
+    json_list = [ i.span_1 for i in list(Ubung5.objects.filter(goal=user)) ]
+    json_list.sort(key = lambda x:x['statusSide'])
+    ctx['json_list'] = json_list
+    
 
     return render(request, './views/mission-2-ubung-2.html', ctx)
 
@@ -403,6 +448,72 @@ def assessment(request, user):
     ctx = {}
     link = request.session['link']  
     game = Game.objects.filter(link=link).first()
+    ubung2 = Ubung2.objects.filter(game=game)
+    value_list = [int(i.value) for i in ubung2]
+    value_list = list(set(value_list))
+    temp = len(value_list)/2
+    if temp.__class__ == int:
+        median = (value_list[temp-1] + value_list[temp])/2
+    else:
+        temp = round(temp)
+        median = value_list[temp]
+    ctx['team_potential_minimal'] = min(value_list)
+    ctx['team_potential_maximal'] = max(value_list)
+    ctx['team_potential_median'] = median
+    ctx['user'] = user
+
+    all_result = []
+    for i in value_list:
+        if i == ubung2.filter(player=user).first().value:
+            all_result.append(
+                {
+                    'name': user.name,
+                    'avatar': user.avatar,
+                    'statusSide': i
+                }
+            )
+        else:
+            all_result.append({"statusSide": i})
+    ctx['team_potential_all_result'] = all_result
+
+    game_place = list(Ubung4.objects.filter(game=game))
+    row_0 = 0
+    row_1 = 0
+    row_2 = 0
+    row_3 = 0
+    row_4 = 0
+    row_5 = 0
+    for game_ in game_place:
+        if game_.player == user:
+            continue
+        else:
+            if user in game_.row0:
+
+                row_0 += 1
+            if user in game_.row1:
+                row_1 += 1
+            if user in game_.row2:
+                row_2 += 1
+            if user in game_.row3:
+                row_3 += 1
+            if user in game_.row4:
+                row_4 += 1
+            if user in game_.row5:
+                row_5 += 1
+
+    score = row_0 * 4 + row_1 * 1 + row_2 * 3 + row_3 * 5 + row_4 * 0 + row_5 * 2
+    num = (WaitingRoomMember.objects.filter(game=game,state=1).count()) ** 2
+    score = score / num
+
+    ctx['psy_score'] = score
+    ctx['psy_row0'] = row_0
+    ctx['psy_row1'] = row_1
+    ctx['psy_row2'] = row_2
+    ctx['psy_row3'] = row_3
+    ctx['psy_row4'] = row_4
+    ctx['psy_row5'] = row_5
+
+
     return render(request, './views/assessment.html', ctx)
 
 @user_required
@@ -430,6 +541,15 @@ def wartezimmer(request, user, link):
     ctx['player_name'] = user.name
     ctx['player_id'] = user.id
     ctx['link'] = link
+
+    if request.method == 'POST':
+        nums = WaitingRoomMember.objects.filter(game=game).count()
+        if nums < 3:
+            # pass
+            return redirect('/ubung-4/')
+        else:
+            return redirect('/ubung-4/')
+
     return render(request, './views/wartezimmer.html', ctx)
 
 
@@ -445,21 +565,21 @@ def psychologischer(request, user):
     row_3 = 0
     row_4 = 0
     row_5 = 0
-    for game in game_place:
-        if game.player == user:
+    for game_ in game_place:
+        if game_.player == user:
             continue
         else:
-            if user in game.row0:
+            if user in game_.row0:
                 row_0 += 1
-            if user in game.row1:
+            if user in game_.row1:
                 row_1 += 1
-            if user in game.row2:
+            if user in game_.row2:
                 row_2 += 1
-            if user in game.row3:
+            if user in game_.row3:
                 row_3 += 1
-            if user in game.row4:
+            if user in game_.row4:
                 row_4 += 1
-            if user in game.row5:
+            if user in game_.row5:
                 row_5 += 1
 
     score = row_0 * 4 + row_1 * 1 + row_2 * 3 + row_3 * 5 + row_4 * 0 + row_5 * 2

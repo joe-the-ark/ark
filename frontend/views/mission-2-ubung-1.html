@@ -51,16 +51,23 @@
                     Sensibilität ist die erste Vorausetzung für psychologischen Sicherheit.
                 </p>
                 <div class="custom-graph-wrapper"></div>
-                <div class="center">
-                    <a href="#" class="button" id="button">
-                        Weiterspielen
-                    </a>
-                </div>
+                <form action="#" method="POST" class="form">
+                {% csrf_token %}
+                    <div class="center">
+                        <input id="data" type="hidden" name="data" value=""/>
+                        <button type="submit" id="button">
+                            Weiterspielen
+                        </button>
+                    </div>
             </main>
         </div>
     </div>
 </div>
 <script src="/static/js/AppGraph.js"></script>
+<script
+  src="http://code.jquery.com/jquery-3.5.1.slim.min.js"
+  integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
+  crossorigin="anonymous"></script>
 <script>
     const {log} = console;
 
@@ -70,7 +77,8 @@
         labelRange: [0, 100],
         mobile: 1200,
         dependency: true,
-        data: [
+        data: {{ member_list|safe }}
+        {% comment %} [
             {
                 name: 'Vasilisa Kochetkova',
                 avatar: '/static/images/avatars/boar.svg',
@@ -130,14 +138,22 @@
                 name: 'Vasilisa Kochetkova',
                 avatar: '/static/images/avatars/boar.svg',
                 statusSide: 12
-            },
-        ]
+            }, 
+        ]{% endcomment %}
     });
 
     document.getElementById('button').addEventListener('click', function (e) {
-        e.preventDefault();
+        //e.preventDefault();
         log(app.getData())
     });
+
+    function refresh(){
+        var result = app.getData();
+        var st = JSON.stringify(result);
+        $('#data').val(st);
+    }
+    setInterval("refresh()", 100);
+
 
 </script>
 </body>

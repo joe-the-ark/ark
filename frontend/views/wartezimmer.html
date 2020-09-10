@@ -224,11 +224,14 @@
                     </div>  {% endcomment %}
                 </div>
             </main>
-            <div class="center">
-                <a href="#" class="button">
-                    Weiterspielen
-                </a>
-            </div>
+            <form action="#" method="POST" class="form">
+            {% csrf_token %}
+                <div class="center">
+                    <button type="submit" id="button">
+                        Weiterspielen
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

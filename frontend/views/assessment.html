@@ -57,13 +57,13 @@
                 </p>
                 <div class="custom-graph-info">
                     <div class="custom-graph-info__item small" data-text="Minimal">
-                        15
+                        {{ team_potential_minimal }}
                     </div>
                     <div class="custom-graph-info__item base" data-text="Median">
-                        49
+                        {{ team_potential_median }}
                     </div>
                     <div class="custom-graph-info__item large" data-text="Maximal">
-                        99
+                        {{ team_potential_maximal }}
                     </div>
                 </div>
                 <div class="custom-graph-wrapper user"></div>
@@ -75,36 +75,20 @@
                     unsicher) und 5 (aussergewöhnlich sicher). Wie verhält sich dieser Wert zu deiner Einschätzung der
                     gefühlten Sicherheit im Team?
                 </p>
-                <div class="psychologischer__container">
+                <div class="psychologischer__container" id="app-1">
                     <div class="distry">
                         <div class="distry__description">
                             Probleme und schwierige Themen kann ich bei dir ansprechen.
                         </div>
                         <div class="distry__thumbnails">
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
+                            <div class="distry__user" v-for="count in row0">
                             </div>
                         </div>
                     </div>
                     <div class="team-average">
                         <div class="team-average__wrapper">
                             <div class="team-average__range" style="width: 27%">
-                                <div class="team-average__circle">2.7</div>
+                                <div class="team-average__circle">{{ psy_score }}</div>
                             </div>
                             <div class="team-average__down">0</div>
                             <div class="team-average__up">0</div>
@@ -115,22 +99,16 @@
                             Probleme und schwierige Themen kann ich bei dir ansprechen.
                         </div>
                         <div class="distry__thumbnails">
-                            <div class="distry__user">
-
+                            <div class="distry__user" v-for="count in row1">
                             </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
+                        </div>
+                    </div>
+                    <div class="distry">
+                        <div class="distry__description">
+                            Probleme und schwierige Themen kann ich bei dir ansprechen.
+                        </div>
+                        <div class="distry__thumbnails">
+                            <div class="distry__user" v-for="count in row2">
 
                             </div>
                         </div>
@@ -140,23 +118,7 @@
                             Probleme und schwierige Themen kann ich bei dir ansprechen.
                         </div>
                         <div class="distry__thumbnails">
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
+                            <div class="distry__user" v-for="count in row3">
                             </div>
                         </div>
                     </div>
@@ -165,23 +127,7 @@
                             Probleme und schwierige Themen kann ich bei dir ansprechen.
                         </div>
                         <div class="distry__thumbnails">
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
+                            <div class="distry__user" v-for="count in row4">
                             </div>
                         </div>
                     </div>
@@ -190,48 +136,7 @@
                             Probleme und schwierige Themen kann ich bei dir ansprechen.
                         </div>
                         <div class="distry__thumbnails">
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="distry">
-                        <div class="distry__description">
-                            Probleme und schwierige Themen kann ich bei dir ansprechen.
-                        </div>
-                        <div class="distry__thumbnails">
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
-                            </div>
-                            <div class="distry__user">
-
+                            <div class="distry__user" v-for="count in row5">
                             </div>
                         </div>
                     </div>
@@ -311,62 +216,62 @@
             data: [
               {
                   name: 'Bob Stampton',
-                  avatar: '../public/images/avatars/hen.svg',
+                  avatar: '/static/images/avatars/hen.svg',
                   statusSide: 10
               },
               {
                   name: 'Garry Garrison',
-                  avatar: '../public/images/avatars/horse.svg',
+                  avatar: '/static/images/avatars/horse.svg',
                   statusSide: 20
               },
               {
                   name: 'Johny Depp',
-                  avatar: '../public/images/avatars/crow.svg',
+                  avatar: '/static/images/avatars/crow.svg',
                   statusSide: 45
               },
               {
                   name: 'Vasilisa Kochetkova',
-                  avatar: '../public/images/avatars/boar.svg',
+                  avatar: '/static/images/avatars/boar.svg',
                   statusSide: 49
               },
               {
                   name: 'Bruce Vilis',
-                  avatar: '../public/images/avatars/bear.svg',
+                  avatar: '/static/images/avatars/bear.svg',
                   statusSide: 49
               },
               {
                   name: 'Donkey kong',
-                  avatar: '../public/images/avatars/dog.svg',
+                  avatar: '/static/images/avatars/dog.svg',
                   statusSide: 49
               },
               {
                   name: 'Mister V',
-                  avatar: '../public/images/avatars/beaver.svg',
+                  avatar: '/static/images/avatars/beaver.svg',
                   statusSide: 49
               },
               {
                   name: 'Graf Dracula',
-                  avatar: '../public/images/avatars/buffalo.svg',
+                  avatar: '/static/images/avatars/buffalo.svg',
                   statusSide: 49
               },
               {
                   name: 'Anthony Hopkins',
-                  avatar: '../public/images/avatars/kangaroo.svg',
+                  avatar: '/static/images/avatars/kangaroo.svg',
                   statusSide: 49
               },
               {
                   name: 'Vladimir',
-                  avatar: '../public/images/avatars/donkey.svg',
+                  avatar: '/static/images/avatars/donkey.svg',
                   statusSide: 60
               },
               {
                   name: 'Irina Shake',
-                  avatar: '../public/images/avatars/giraffe.svg',
+                  avatar: '/static/images/avatars/giraffe.svg',
                   statusSide: 70
               },
               {
                   name: 'Conan Barbarian',
-                  avatar: '../public/images/avatars/fox.svg',
+                  avatar: '/static/images/avatars/fox.svg',
                   statusSide: 99
               },
             ]
@@ -954,7 +859,8 @@
         labelRange: ['Betrug', 'Ehrlichkeit'],
         mobile: 1200,
         statistic: true,
-        data: [
+        data: {{ team_potential_all_result|safe }}
+        {% comment %} [
             {
                 statusSide: 10
             },
@@ -993,8 +899,8 @@
             {
                 statusSide: 99
             },
-        ]
-    });//user
+        ]{% endcomment %}
+    });//user 
 
     const dataFeedback = [
         {
@@ -1269,6 +1175,30 @@
             });
         }
     });
+
+</script>
+<script src="/static/vue.js"></script>
+<script>
+    var app = new Vue({
+        delimiters: ['[[', ']]'],
+        el: '#app-1',
+        data() {
+            return {
+                message: 'Hello Vue!',
+                row0: {{psy_row0}},
+                row1: {{psy_row1}},
+                row2: {{psy_row2}},
+                row3: {{psy_row3}},
+                row4: {{psy_row4}},
+                row5: {{psy_row5}},
+            }
+        },
+        methods: {
+            handleSelect(key, keyPath) {
+                console.log(key, keyPath);
+            },
+        },
+    })
 
 </script>
 </body>
