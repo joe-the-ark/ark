@@ -1,0 +1,13 @@
+/* pages/pay/pay.wxss */
+
+.logo {
+  width: 200px;
+  height: 200px;
+  border: 1px solid 0xdfdfdf;
+  border-radius: 50%;
+  margin: 20px;
+}
+
+.login {
+  width: 200px;
+}

@@ -65,7 +65,7 @@
                 </div>
                 <div class="custom-graph-wrapper"></div>
                 <div class="center">
-                    <a href="#" class="button" id="button">
+                    <a href="/psychologischer/" class="button" id="button">
                         Weiterspielen
                     </a>
                 </div>
@@ -123,10 +123,30 @@
         ] {% endcomment %}
     });
 
-    document.getElementById('button').addEventListener('click', function (e) {
-        e.preventDefault();
-        log(app.getData())
-    });
+    console.log({{ all_result|safe }});
+    {% comment %} var css_change = function(t,s){
+        s = document.createElement('style');
+        s.innerText = t;
+        document.body.appendChild(s);
+    };
+    
+    var median = {{ median }};
+    var low = median - 16;
+    var high = median + 16;
+    if (low < 0){
+        low = 0;
+    }
+    if (high > 100){
+        high = 100;
+    }
+    var blue_range = high - low;
+    css_change(`.statistic .custom-graph__items:before{left:${low}%;width:min(${blue_range}%);}`); {% endcomment %}
+
+
+    //document.getElementById('button').addEventListener('click', function (e) {
+    //    e.preventDefault();
+    //    log(app.getData())
+    //});
 
 </script>
 </body>

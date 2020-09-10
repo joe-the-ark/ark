@@ -8,6 +8,14 @@ admin.site.register(WaitingRoomMember)
 admin.site.register(Ubung1)
 admin.site.register(Ubung2)
 admin.site.register(Ubung3)
+admin.site.register(Ubung4)
+admin.site.register(Ubung5)
+admin.site.register(M2Ubung1)
+admin.site.register(M2Ubung2)
+
+
+
+
 # admin.site.register(Ubung4)
 # admin.site.register(Character)
 # admin.site.register(CharacterChoose)

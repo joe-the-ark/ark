@@ -1,5 +1,6 @@
 class AppFeedback {
     constructor({container, data, loadEnd, update}) {
+        //this.order = order;
         this.container = document.querySelector(container);
         this.data = data;
         this.loadEnd = loadEnd;
@@ -39,7 +40,7 @@ class AppFeedback {
                                 <p class="bold">
                                    ${title}
                                 </p>
-                                <textarea placeholder="Schreib hier dein Feedback…">${text}</textarea>
+                                a<textarea placeholder="Schreib hier dein Feedback…">${text}</textarea>
                             </div>
         `).join('')}</div>`).join('')}</div>`;
 
@@ -48,8 +49,13 @@ class AppFeedback {
                                         <div class="slider-button-prev"></div>
                                         <div class="slider-button-next"></div>
                                     </div>`;
-
+        //this.order = this.order + 1;
         return this;
+    }
+
+    
+    getData() {
+        return this.data;
     }
 
 }

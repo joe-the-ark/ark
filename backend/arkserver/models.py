@@ -178,6 +178,17 @@ class Ubung5(models.Model):
     goal = models.ForeignKey(Player, on_delete=models.CASCADE, verbose_name='goal',related_name='goal')
     score = models.IntegerField(default=0)
 
+
+    @property
+    def span_1(self):
+        return {
+            'id': self.player.id,
+            'name': self.player.name,
+            'avatar': self.player.avatar,
+            'statusSide': self.score,
+        }
+
+
     class Meta(object):
         verbose_name = verbose_name_plural = 'Ubung-5'
     def __str__(self):
@@ -194,6 +205,23 @@ class M2Ubung1(models.Model):
         verbose_name = verbose_name_plural = 'M2Ubung1'
     def __str__(self):
         return f'{self.game} -- {self.player} -- {self.goal} -- {self.score}'
+
+class M2Ubung2(models.Model):
+    game = models.ForeignKey(Game, on_delete=models.CASCADE, verbose_name='game')
+    player = models.ForeignKey(Player, on_delete=models.CASCADE, verbose_name='author')
+    goal = models.ForeignKey(Player, on_delete=models.CASCADE, verbose_name='goal',related_name='m2_goal2')
+
+    row1 = models.TextField()
+    row2 = models.TextField()
+    row3 = models.TextField()
+    
+    class Meta(object):
+        verbose_name = verbose_name_plural = 'M2Ubung2'
+    def __str__(self):
+        return f'{self.game} -- {self.player} -- {self.goal}'
+
+
+
 
 # class Character(models.Model):
 #     name = models.CharField(max_length=100, verbose_name='scale')

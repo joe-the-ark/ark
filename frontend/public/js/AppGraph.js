@@ -1,5 +1,5 @@
 class AppGraph {
-    constructor({container, data, range, statistic, mobile, labelRange, auto = true, dependency = false}) {
+    constructor({ container, data, range, statistic, mobile, labelRange, auto = true, dependency = false }) {
         this.container = document.querySelector(container);
         this.data = data;
         this.range = range;
@@ -8,13 +8,48 @@ class AppGraph {
         this.mobile = mobile;
         this.auto = auto;
         this.dependency = dependency;
-        this.effect = function () {
-        };
+        this.effect = function() {};
 
         this.auto && this.buildGraph();
     }
 
-    isPermission({dynamic, statics}) {
+    safeArea() {
+        var css_change = function(t, s) {
+            s = document.createElement('style');
+            s.innerText = t;
+            document.body.appendChild(s);
+        };
+        var data_list = []
+        var uu = 0;
+        while (uu < this.data.length) {
+            data_list.push((this.data)[uu].statusSide)
+            uu += 1;
+        }
+
+        let _median = arr => {
+            arr.sort();
+            //求中位数
+            if (arr.length % 2 == 0) {
+                return (arr[arr.length / 2 - 1] + arr[arr.length / 2]) / 2;
+            } else {
+                return arr[Math.floor(arr.length / 2)];
+            }
+        };
+        var median = _median(data_list);
+        var low = median - 16;
+        var high = median + 16;
+        if (low < 0) {
+            low = 0;
+        }
+        if (high > 100) {
+            high = 100;
+        }
+        var blue_range = high - low;
+        //console.log(this.data);
+        css_change(`.statistic .custom-graph__items:before{left:${low}%;width:min(${blue_range}%);}`);
+    }
+
+    isPermission({ dynamic, statics }) {
         this.prePermission();
         if (!this.statistic) {
             return dynamic;
@@ -76,12 +111,12 @@ class AppGraph {
         this.templates.forEach((item, i) => {
             const itemAvatar = this.find(item, '.custom-graph__item-avatar');
 
-            itemAvatar.addEventListener('click', function (e) {
+            itemAvatar.addEventListener('click', function(e) {
                 e.preventDefault();
                 $self.removeDot(item, i);
             });
 
-            item.addEventListener('contextmenu', function (e) {
+            item.addEventListener('contextmenu', function(e) {
                 e.preventDefault();
                 $self.removeDot(this, i);
             })
@@ -89,9 +124,9 @@ class AppGraph {
     }
 
     addDot(item, index) {
-        if (this.getDots(item)) return;
-        const {statusSide, avatar} = this.data[index];
-        const html = `<div class="custom-graph__item-circle">
+            if (this.getDots(item)) return;
+            const { statusSide, avatar } = this.data[index];
+            const html = `<div class="custom-graph__item-circle">
                             <div class="custom-graph__item-count"></div>
                             ${statusSide !== undefined ? `<div class="custom-graph__item-side">${statusSide}</div>` : `<img src="${avatar}" alt=""/>`}
                          </div>
@@ -238,6 +273,7 @@ class AppGraph {
         this.templates.forEach((item) => {
             this.searchInnerElNext(item);
         });
+        this.safeArea();
     }
 
     showSliderValue(inputSlider, thumb, index) {

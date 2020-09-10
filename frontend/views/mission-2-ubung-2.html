@@ -201,11 +201,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="center">
-                    <a href="#" class="button" id="button">
-                        Weiterspielen
-                    </a>
-                </div>
+                <form action="#" method="POST" class="form">
+                {% csrf_token %}
+                    <div class="center">
+                        <input id="data" type="hidden" name="data" value=""/>
+                        <button type="submit" id="button">
+                            Weiterspielen
+                        </button>
+                    </div>
+                </form>
             </main>
         </div>
     </div>
@@ -213,10 +217,48 @@
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="/static/js/AppRange.js"></script>
 <script src="/static/js/AppFeedback.js"></script>
+<script
+  src="http://code.jquery.com/jquery-3.5.1.slim.min.js"
+  integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
+  crossorigin="anonymous"></script>
 <script>
     const {log} = console;
+    var member_list = {{ json_list|safe }};
 
-    const data = [
+    function format_list(member_list){
+        var num = member_list.length;
+        var uu = 0;
+        var result = [];
+        while (uu < num){
+            var temp = {
+                id: member_list[uu]['id'],
+                name: member_list[uu]['name'],
+                avatar: member_list[uu]['avatar'],
+                statusSide: member_list[uu]['statusSide'],
+                feedback: [
+                    {
+                        title: 'MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team…',
+                        text: 'On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying'
+                    },
+                    {
+                        title: 'ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem...',
+                        text: ''
+                    },
+                    {
+                        title: 'FRAGEZEICHEN: ich wollte dich schon immer mal fragen…',
+                        text: ''
+                    }
+                ],
+            };
+            result.push(temp);
+            uu += 1;
+        }
+        return result;
+    }
+
+    var data = format_list(member_list);
+
+    {% comment %} [
         {
             name: "Vasilisa Kochetkova",
             avatar: "/static/images/avatars/boar.svg",
@@ -445,7 +487,7 @@
                 }
             ]
         },
-    ];
+    ]; {% endcomment %}
 
     new AppRange({
         container: '.rang-wrapper',
@@ -494,6 +536,15 @@
         }
     });
 
+    //console.log(app.data);
+
+    function refresh(){
+        var st = JSON.stringify(appfeed.data);
+        $('#data').val(st);
+        //console.log(appfeed.data);
+    }
+    setInterval("refresh()", 100);
+    
 
 </script>
 <script src="/static/js/update_fix.js"></script>
