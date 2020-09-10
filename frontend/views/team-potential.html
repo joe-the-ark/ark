@@ -9,6 +9,7 @@
     <meta name="description" content="ARK"/>
     <title>Team potential</title>
     <link rel="stylesheet" href="/static/css/app.css">
+    <link rel="stylesheet" href="/static/css/app_graph.css">
     <link rel="stylesheet" href="/static/css/team-potential.css">
 </head>
 <body>
@@ -79,7 +80,7 @@
     const app = new AppGraph({
         container: ".custom-graph-wrapper",
         range: [1, 99],
-        labelRange: [1, 99],
+        labelRange: ['Ehrlichkeit', 'Betrug'],
         statistic: true,
         mobile: 1200,
         data: {{ all_result|safe }}
