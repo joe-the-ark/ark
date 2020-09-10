@@ -369,6 +369,7 @@ def spannungsfelder(request, user):
     json_list = [ i.span_1 for i in list(Ubung5.objects.filter(goal=user)) ]
     json_list.sort(key = lambda x:x['statusSide'])
     ctx['json_list'] = json_list
+    # print(json_list)
     ctx['user'] = user
     return render(request, './views/spannungsfelder.html', ctx)
 
@@ -435,7 +436,7 @@ def mission_2_ubung_2(request, user):
         return redirect('/goodbye/')
 
 
-    json_list = [ i.span_1 for i in list(Ubung5.objects.filter(goal=user)) ]
+    json_list = [ i.span_1 for i in list(Ubung5.objects.filter(goal=user,game=game)) ]
     json_list.sort(key = lambda x:x['statusSide'])
     ctx['json_list'] = json_list
     
@@ -464,7 +465,7 @@ def assessment(request, user):
 
     all_result = []
     for i in value_list:
-        if i == ubung2.filter(player=user).first().value:
+        if i == ubung2.filter(player=user,game=game).first().value:
             all_result.append(
                 {
                     'name': user.name,
@@ -513,7 +514,59 @@ def assessment(request, user):
     ctx['psy_row4'] = row_4
     ctx['psy_row5'] = row_5
 
+    ubung5 = list(Ubung5.objects.filter(goal=user,game=game).exclude(player=user))
+    other_list = [i.score for i in ubung5]
+    if len(other_list) != 0:
+        others = sum(other_list) / len(other_list)
+    else:
+        others = sum(other_list) / 1
+    ubung5 = Ubung5.objects.filter(player=user).first()
+    himself = ubung5.score
+    tension = others - himself
 
+    ctx['others'] = others
+    ctx['himself'] = himself
+    ctx['tension'] = tension
+
+    json_list = [ i.span_1 for i in list(Ubung5.objects.filter(goal=user,game=game)) ]
+    json_list.sort(key = lambda x:x['statusSide'])
+    ctx['span_json_list'] = json_list
+
+
+    feedback1 = []
+    feedback2 = []
+    feedback3 = []
+    m2ubung2 = list(M2Ubung2.objects.filter(game=game,goal=user))
+    for i in m2ubung2:
+        feedback1.append(i.row1)
+        feedback2.append(i.row2)
+        feedback3.append(i.row3)
+    ctx['feedback1'] = feedback1
+    ctx['feedback2'] = feedback2
+    ctx['feedback3'] = feedback3
+
+    # for i in m2ubung2:
+    #     feedback.append(
+    #         {
+    #             'name': i.player.name,
+    #             'avatar': i.player.avatar,
+    #             'statusSide': Ubung5.objects.filter(goal=user,game=game,player=i.player).first().score,
+    #             'feedback': [
+    #                 {
+    #                     'title': 'MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team…',
+    #                     'text': i.row1,
+    #                 },
+    #                 {
+    #                     'title':  'ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem...',
+    #                     'text': i.row2,
+    #                 },
+    #                 {
+    #                     'title': 'FRAGEZEICHEN: ich wollte dich schon immer mal fragen…',
+    #                     'text': i.row3,
+    #                 }
+    #             ]
+    #         }
+    #     ) 
     return render(request, './views/assessment.html', ctx)
 
 @user_required

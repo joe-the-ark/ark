@@ -1,0 +1,72 @@
+{% extends 'meta/base.html' %}
+
+
+{% block page %}
+
+<div class="content">
+<p>
+    {{ user.wechat_user.nickname }}
+    <img src="{{ user.wechat_user.head_img }}" width="120" />
+</p>
+<p>
+    <a id="btnPing" href="#" class="button button-big button-success">Ping</a>
+</p>
+
+<p>
+    <a id="btnError" href="#" class="button button-big button-danger">Error</a>
+</p>
+
+<p>
+    <a id="btnScan" href="#" class="button button-big button-success">Scan</a>
+</p>
+
+<p>
+    <a id="btnBuy" href="#" class="button button-big button-success">Buy</a>
+</p>
+
+<p>
+    <a id="btnShare" href="#" class="button button-big button-success">Share</a>
+</p>
+
+</div>
+
+{% endblock %}
+
+
+{% block js %}
+
+<script>
+
+$('#btnPing').click(()=>{
+    meta.api('ping').then((r) => {
+        alert(r);
+    });
+});
+
+$('#btnError').click(()=>{
+    meta.api('error').catch((r) => {
+        alert(r.msg);
+    });
+});
+
+meta.wechat(function() {
+    $('#btnScan').click(() => {
+        meta.scan().then(function (result) {
+            alert(result);
+        });
+    });
+
+    $('#btnBuy').click(() => {
+        meta.buy(1);
+    });
+
+    meta.share({
+        "desc" : "测试分享摘要",//摘要,如果分享到朋友圈的话，不显示摘要。
+        "title" : '测试分享标题',//分享卡片标题
+        "link": window.location.href,//分享出去后的链接，这里可以将链接设置为另一个页面。
+    })
+});
+
+</script>
+
+{% endblock %}

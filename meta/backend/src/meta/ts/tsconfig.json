@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "experimentalDecorators": true,
+        "outFile": "../static/js/meta.0.0.1.js"
+    },
+    "include": [
+        "src"
+    ]
+}

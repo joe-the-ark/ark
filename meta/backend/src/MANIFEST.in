@@ -1,0 +1,2 @@
+recursive-include meta/templates *
+recursive-include meta/static *

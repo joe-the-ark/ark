@@ -1,0 +1,29 @@
+{% extends 'meta/base.html' %}
+
+
+{% block page %}
+
+{% endblock %}
+
+
+{% block js %}
+
+<script>
+
+setTimeout(function (){
+   if (typeof WeixinJSBridge == 'undefined') {
+        alert('非微信');
+   }
+}, 1000);
+
+wx.miniProgram.getEnv(function (res) {
+    if (res.miniprogram) {
+        wx.miniProgram.redirectTo({ url: '/pages/login/login?next_url={{ next_url }}' });
+    } else {
+        window.location = "{% url 'login_public_account' %}?next={{ next_url }}";
+    }
+});
+
+</script>
+
+{% endblock %}

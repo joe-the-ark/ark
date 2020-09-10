@@ -174,14 +174,14 @@
                     </div>
                 </div>
                 <div class="custom-graph-info">
-                    <div class="custom-graph-info__item small" data-text="Senkung">
-                        15
+                    <div class="custom-graph-info__item small" data-text="Others">
+                        {{others}}
                     </div>
-                    <div class="custom-graph-info__item base" data-text="Durchschnittlich">
-                        49
+                    <div class="custom-graph-info__item base" data-text="Self">
+                        {{himself}}
                     </div>
-                    <div class="custom-graph-info__item large" data-text="Hoch">
-                        99
+                    <div class="custom-graph-info__item large" data-text="Tension">
+                        {{tension}}
                     </div>
                 </div>
                 <div id="graph-slider" class="swiper-container">
@@ -195,6 +195,26 @@
                     Anonymes Feedback
                 </h3>
                 <div class="fields-fill__wrapper"></div>
+
+                <p class="bold">
+                    MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team…
+                </p>
+                {% for feedback in feedback1 %}
+                    <p style="font-size: 20px;color: blue;">{{feedback}}</p>
+                {% endfor %}
+                <p class="bold">
+                    ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem…
+                </p>
+                {% for feedback in feedback2 %}
+                    <p style="font-size: 20px;color: blue;">{{feedback}}</p>
+                {% endfor %}
+                <p class="bold">
+                    FRAGEZEICHEN: ich wollte dich schon immer mal fragen…
+                </p>
+                {% for feedback in feedback3 %}
+                    <p style="font-size: 20px;color: blue;">{{feedback}}</p>
+                {% endfor %}
+
                 <div class="center">
                     <a href="#" class="button" id="button">
                         Auf wiedersehen sagen
@@ -210,6 +230,44 @@
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
     const isMobile = () => window.innerWidth <= 1200;
+
+    var json_list = {{ span_json_list|safe }};
+    function deal_json(json_list, num){
+        var new_json_list = [];
+        var uu = 0;
+        while (uu < json_list.length){
+            if (uu == num){
+                new_json_list.push(json_list[uu]);
+            }else{
+                var temp = {statusSide:json_list[uu]['statusSide'] };
+                new_json_list.push(temp);
+            }
+            uu += 1;
+        }
+        return new_json_list;
+    }
+
+    //console.log(json_list);
+    //console.log(deal_json(json_list, 0));
+
+    function format_data(json_list){
+        var num = json_list.length;
+        var result = [];
+        var uu = 0;
+        while (uu < num){
+            var temp = {
+                range: [1, 99],
+                labelRange: ['Ehrlichkeit', 'Betrug'],
+                data: deal_json(json_list, uu)
+            };
+            result.push(temp);
+            uu += 1;
+        }
+        return result;
+    }
+    const data = format_data(json_list);
+    console.log(data);
+{% comment %} 
     const data = [
         {
             range: [1, 99],
@@ -758,7 +816,7 @@
                 },
             ]
         }
-    ];
+    ]; {% endcomment %}
 
     const wrapper = document.querySelector('#graph-slider .swiper-wrapper');
     let htmlWrappers = ``;
@@ -903,6 +961,8 @@
         ]{% endcomment %}
     });//user 
 
+
+{% comment %} 
     const dataFeedback = [
         {
             name: 'Bob Stampton',
@@ -1175,10 +1235,11 @@
                 }
             });
         }
-    });
+    });{% endcomment %}
+    
 
 </script>
-<script src="/static/js/update_fix.js"></script>
+{% comment %} <script src="/static/js/update_fix.js"></script> {% endcomment %}
 <script src="/static/vue.js"></script>
 <script>
     var app = new Vue({

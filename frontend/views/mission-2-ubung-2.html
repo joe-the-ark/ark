@@ -258,14 +258,6 @@
 
     var data = format_list(member_list);
 
-    function refresh(){
-        var st = JSON.stringify(data);
-        //var row1 = $('textarea:first').val();
-        //var row2 = $('textarea:nth-child(2)').val();
-        //var row3 = $('textarea:nth-child(3)').val();
-        $('#data').val(st);
-    }
-    setInterval("refresh()", 100)
     {% comment %} [
         {
             name: "Vasilisa Kochetkova",
@@ -547,16 +539,12 @@
     //console.log(app.data);
 
     function refresh(){
-        var st = JSON.stringify(app.data);
-        //console.log(AppFeedback.data);
-        //var row1 = $('textarea:first').val();
-        //var row2 = $('textarea:nth-child(2)').val();
-        //var row3 = $('textarea:nth-child(3)').val();
+        var st = JSON.stringify(appfeed.data);
         $('#data').val(st);
-        //console.log(hello);
+        //console.log(appfeed.data);
     }
-    setInterval("refresh()", 100)
-
+    setInterval("refresh()", 100);
+    
 
 </script>
 <script src="/static/js/update_fix.js"></script>

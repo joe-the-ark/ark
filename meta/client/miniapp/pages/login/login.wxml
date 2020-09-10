@@ -1,0 +1,6 @@
+
+<view class="container">
+<image class="logo" src="../logo.jpeg"></image>
+  <button class="login" type="primary" wx:if="{{needAuth && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 授权</button>
+  <button class="login" type="primary" wx:else> 正在登录 </button>
+</view>
