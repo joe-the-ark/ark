@@ -1,0 +1,18 @@
+server {
+  listen 80;
+
+  client_max_body_size 1000m;
+
+
+  location /static {
+    root /var/ark2020;
+  }
+
+  location /media {
+    root /var/ark2020;
+  }
+
+  location / {
+    proxy_pass http://127.0.0.1:8888;
+  }
+}
