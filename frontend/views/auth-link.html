@@ -39,7 +39,7 @@
                             <label>
                                 Benutzerbild
                             </label>
-                            <div class="swiper-container">
+                            <div class="swiper-container" id="app-1">
                                 <div class="swiper-wrapper">
                                     <div class="swiper-slide" v-for="item in avatar_list" v-bind:key="item.id">
                                         <img :src="item" alt=""/>
@@ -187,6 +187,7 @@
 </div>
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="/static/vue.js"></script>
 <script
   src="http://code.jquery.com/jquery-3.5.1.slim.min.js"
   integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
