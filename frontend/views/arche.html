@@ -29,12 +29,13 @@
                     Danke für deine Reise mit der ARCHE
                 </h1>
                 <div class="user">
-                    <img src="/static/images/avatars/penguin-1.svg" alt=""/>
+                    <img src="{{user.avatar}}" alt=""/>
                     <div class="user__data">
-                        <div class="user__subname">Fische im Aquarium</div>
+                        <div class="user__subname">{{game.name}}</div>
                         <div class="user__name">
-                            Vasilisa<br/>
-                            Kochetkova
+                            {{user.name}}
+                            {% comment %} Vasilisa<br/>
+                            Kochetkova {% endcomment %}
                         </div>
                     </div>
                 </div>

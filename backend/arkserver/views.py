@@ -141,12 +141,14 @@ def auth_link(request):
 @user_required
 def preview(request, user):
     ctx = {}
+    ctx['game'] = Game.objects.filter(link=request.session['link']).first()
     return render(request, './views/preview.html', ctx)
 
 
 @user_required
 def ubung_1(request, user):
     ctx = {}
+    ctx['game'] = Game.objects.filter(link=request.session['link']).first()
     if request.method == 'POST':
         link = request.session['link']
 
@@ -191,6 +193,7 @@ def ubung_2(request, user):
 @user_required
 def ubung_3(request, user):
     ctx = {}
+    ctx['game'] = Game.objects.filter(link=request.session['link']).first()
     if request.method == 'POST':
         link = request.session['link']
         energiefresser = request.POST.get('energiefresser')
@@ -219,6 +222,7 @@ def ubung_3(request, user):
 @user_required
 def ubung_4(request, user):
     ctx = {}
+    ctx['game'] = Game.objects.filter(link=request.session['link']).first()
     link = request.session['link']
     game = Game.objects.filter(link=link).first()
     # waiting_room = list(WaitingRoomMember.objects.filter(game=game).exclude(player=user))
@@ -287,6 +291,7 @@ def ubung_4(request, user):
 @user_required
 def ubung_5(request, user):
     ctx = {}
+    ctx['game'] = Game.objects.filter(link=request.session['link']).first()
     link = request.session['link'] 
     game = Game.objects.filter(link=link).first()
     waiting_room = list(WaitingRoomMember.objects.filter(game=game))
@@ -315,6 +320,7 @@ def ubung_5(request, user):
 @user_required
 def team_potential(request, user):
     ctx = {}
+    ctx['game'] = Game.objects.filter(link=request.session['link']).first()
     link = request.session['link']
     game = Game.objects.filter(link=link).first()
     ubung2 = Ubung2.objects.filter(game=game)
@@ -350,6 +356,7 @@ def team_potential(request, user):
 @user_required
 def spannungsfelder(request, user):
     ctx = {}
+    ctx['game'] = Game.objects.filter(link=request.session['link']).first()
     link = request.session['link']  
     game = Game.objects.filter(link=link).first()
     ubung5 = list(Ubung5.objects.filter(goal=user).exclude(player=user))
@@ -377,12 +384,14 @@ def spannungsfelder(request, user):
 @user_required
 def preview_2(request, user):
     ctx = {}
+    ctx['game'] = Game.objects.filter(link=request.session['link']).first()
     return render(request, './views/preview-2.html', ctx)
 
 
 @user_required
 def mission_2_ubung_1(request, user):
     ctx = {}
+    ctx['game'] = Game.objects.filter(link=request.session['link']).first()
     link = request.session['link']  
     game = Game.objects.filter(link=link).first()
     waiting_room = list(WaitingRoomMember.objects.filter(game=game))
@@ -410,6 +419,7 @@ def mission_2_ubung_1(request, user):
 @user_required
 def mission_2_ubung_2(request, user):
     ctx = {}
+    ctx['game'] = Game.objects.filter(link=request.session['link']).first()
     link = request.session['link']  
     game = Game.objects.filter(link=link).first()
     waiting_room = list(WaitingRoomMember.objects.filter(game=game))
@@ -447,6 +457,7 @@ def mission_2_ubung_2(request, user):
 @user_required
 def assessment(request, user):
     ctx = {}
+    ctx['game'] = Game.objects.filter(link=request.session['link']).first()
     link = request.session['link']  
     game = Game.objects.filter(link=link).first()
     ubung2 = Ubung2.objects.filter(game=game)
@@ -572,17 +583,20 @@ def assessment(request, user):
 @user_required
 def goodbye(request, user):
     ctx = {}
+    ctx['game'] = Game.objects.filter(link=request.session['link']).first()
     return render(request, './views/goodbye.html', ctx)
 
 @user_required
 def arche(request, user):
     ctx = {}
+    ctx['game'] = Game.objects.filter(link=request.session['link']).first()
     return render(request, './views/arche.html', ctx)
 
 
 @user_required
 def wartezimmer(request, user, link):
     ctx = {}
+    ctx['game'] = Game.objects.filter(link=request.session['link']).first()
     link = request.session['link']
     # user = ctx['user'] = Player.objects.filter(id=request.session.get('uid')).first()
     game = Game.objects.filter(link=link).first()
@@ -609,6 +623,7 @@ def wartezimmer(request, user, link):
 @user_required
 def psychologischer(request, user):
     ctx = {}
+    ctx['game'] = Game.objects.filter(link=request.session['link']).first()
     link = request.session['link']
     game = Game.objects.filter(link=link).first()
     game_place = list(Ubung4.objects.filter(game=game))
