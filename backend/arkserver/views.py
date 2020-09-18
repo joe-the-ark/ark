@@ -65,7 +65,7 @@ def auth(request):
         request.session['link'] = link
 
         if (not Player.objects.filter(name=username).first()):
-            avatar = get_avatar_link(avatar)
+            # avatar = get_avatar_link(avatar)
 
             new_player = Player.objects.create(
                 name = username,
