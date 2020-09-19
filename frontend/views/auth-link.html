@@ -39,12 +39,13 @@
                             <label>
                                 Benutzerbild
                             </label>
-                            <div class="swiper-container">
+                            <div class="swiper-container" id="app-1">
                                 <div class="swiper-wrapper">
-                                    <div class="swiper-slide">
-                                        <img src="/static/images/avatars/anteater.svg" alt=""/>
+                                    <div class="swiper-slide" v-for="item in avatar_list" v-bind:key="item.id">
+                                        <img :src="item" alt=""/>
                                     </div>
-                                    <div class="swiper-slide">
+
+                                    {% comment %} <div class="swiper-slide">
                                         <img src="/static/images/avatars/bear.svg" alt=""/>
                                     </div>
                                     <div class="swiper-slide">
@@ -142,7 +143,7 @@
                                     </div>
                                     <div class="swiper-slide">
                                         <img src="/static/images/avatars/penguin-1.svg" alt=""/>
-                                    </div>
+                                    </div> {% endcomment %}
                                 </div>
                                 <input id="avatar" type="hidden" name="avatar" value="输入你要传bai递的值">
                                 <div class="swiper-button-prev"></div>
@@ -186,12 +187,70 @@
 </div>
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="/static/vue.js"></script>
 <script
   src="http://code.jquery.com/jquery-3.5.1.slim.min.js"
   integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
   crossorigin="anonymous"></script>
 
 <script>
+   var app = new Vue({
+        delimiters: ['[[', ']]'],
+        el: '#app-1',
+        data() {
+            return {
+                avatar_list: [
+                    'anteater.svg',
+                    'bear.svg',
+                    'boar.svg',
+                    'beaver.svg',
+                    'buffalo-1.svg',
+                    'buffalo.svg',
+                    'cat.svg',
+                    'chicken.svg',
+                    'cow.svg',
+                    'crow.svg',
+                    'dog-1.svg',
+                    'dog.svg',
+                    'donkey.svg',
+                    'elephant.svg',
+                    'fox.svg',
+                    'giraffe.svg',
+                    'hedgehog.svg',
+                    'hen.svg',
+                    'hippopotamus.svg',
+                    'horse.svg',
+                    'kangaroo.svg',
+                    'koala.svg',
+                    'leopard.svg',
+                    'lion.svg',
+                    'marten.svg',
+                    'monkey-1.svg',
+                    'monkey.svg',
+                    'mouse.svg',
+                    'octopus.svg',
+                    'ostrich.svg',
+                    'owl.svg',
+                    'panda.svg',
+                    'parrot.svg',
+                    'penguin-1.svg',
+                ],
+            }
+        },
+        created(){
+            this.avatar_list.sort(function(){return Math.random()>0.5?-1:1;}); 
+            var uu = 0;
+            while (uu < this.avatar_list.length){
+                var temp = this.avatar_list[uu];
+                var result = '/static/images/avatars/' + temp;
+                this.avatar_list[uu] = result;
+                uu += 1;
+            }
+        }
+    })
+
+ 
+
     var mySwiper = new Swiper('.swiper-container', {
         slidesPerView: 4,
         spaceBetween: 40,
@@ -204,7 +263,9 @@
     });
 
     function check(){
-        $('#avatar').val(mySwiper.realIndex);
+        var temp = app.avatar_list[mySwiper.realIndex];
+        $('#avatar').val(temp);
+        //$('#avatar').val(mySwiper.realIndex);
     }
     setInterval("check()", 100);
 
