@@ -1,9 +1,9 @@
 .custom-graph-wrapper .custom-graph__items:before {
-  display: none;
+  /* display: none; */
 }
 @media screen and (max-width: 1200px) {
   .custom-graph-wrapper .custom-graph__items:before {
-    display: none;
+    /* display: none; */
   }
 }
 .rang {
