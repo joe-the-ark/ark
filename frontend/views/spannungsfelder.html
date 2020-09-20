@@ -72,14 +72,16 @@
                         psychologischen Sicherheitszone eures Teams.
                     </li>
                 </ul>
-                <p>
-                    (please put this text bellow the tension scale) Grün eingefärbt siehst du die
-                    psychologischen Sicherheitszonen deines Teams. Erkennst du, ob dein
-                    Beitrag zur Teamdynamik eher als ausgleichend oder spaltend wahrgenommen
-                    wird? Wie erklärst du die Unterschiede in deiner Selbstwahrnehmung und der
-                    Fremdwahrnehmung durch das Team? Möchtest du erraten, wie du von jedem
-                    Teammitglied eingeschätzt wirst? Dann spiel weiter!
-                </p>
+
+                <div id="graph-slider" class="swiper-container">
+                    <div class="swiper-wrapper">
+                    </div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+                <div class="custom-graph1"></div>
+                <div class="custom-graph2"></div>
                 <div id="rang-slider" class="swiper-container">
                     <div class="swiper-wrapper">
                     </div>
@@ -95,20 +97,20 @@
                         {{ tension }}
                     </div>
                 </div>
-                <div id="graph-slider" class="swiper-container">
-                    <div class="swiper-wrapper">
-                    </div>
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-pagination"></div>
-                </div>
-                <div class="custom-graph1"></div>
-                <div class="custom-graph2"></div>
+                <p>
+                    Grün eingefärbt siehst du die
+                    psychologischen Sicherheitszonen deines Teams. Erkennst du, ob dein
+                    Beitrag zur Teamdynamik eher als ausgleichend oder spaltend wahrgenommen
+                    wird? Wie erklärst du die Unterschiede in deiner Selbstwahrnehmung und der
+                    Fremdwahrnehmung durch das Team? Möchtest du erraten, wie du von jedem
+                    Teammitglied eingeschätzt wirst? Dann spiel weiter!
+                </p>
                 <div class="center">
                     <a href="/mission-2-ubung-1/" class="button" id="button">
                         Weiterspielen
                     </a>
                 </div>
+
             </main>
         </div>
     </div>
@@ -143,7 +145,7 @@
         while (uu < num){
             var temp = {
                 range: [1, 99],
-                labelRange: ['Ehrlichkeit', 'Betrug'],
+                labelRange: ['Low', 'High'],
                 data: deal_json(json_list, uu)
             };
             result.push(temp);
@@ -702,7 +704,7 @@
                     avatar: '/static/images/avatars/boar.svg',
                     statusSide: 99
                 },
-            ] 
+            ]
         }
     ];{% endcomment %}
 
@@ -778,7 +780,7 @@
     });
 
     data.forEach((item, i) => {
-        new AppGraph({
+        appgraph = new AppGraph({
             container: `.swiper-slide.slide-${i}`,
             range: item.range,
             labelRange: item.labelRange,
@@ -786,6 +788,7 @@
             statistic: true,
             data: item.data
         });
+        appgraph.safeArea()
     });
 
     new Swiper('#graph-slider', {

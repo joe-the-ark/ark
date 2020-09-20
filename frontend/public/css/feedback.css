@@ -1,3 +1,9 @@
+.form {
+  margin:auto;
+}
+.screen.feedback {
+  margin: 0 0 0 15px;
+}
 .rang {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(241px, 1fr));

@@ -38,8 +38,8 @@
 
 @media screen and (min-width: 1201px) {
     .statistic .custom-graph__items {
-        height: min(400px, 42vh);
-        margin-top: -30px;
+        /* height: min(400px, 42vh); */
+        /* margin-top: -30px; */
     }
 }
 

@@ -257,7 +257,7 @@
         while (uu < num){
             var temp = {
                 range: [1, 99],
-                labelRange: ['Ehrlichkeit', 'Betrug'],
+                labelRange: ['Low', 'High'],
                 data: deal_json(json_list, uu)
             };
             result.push(temp);
@@ -267,11 +267,11 @@
     }
     const data = format_data(json_list);
     console.log(data);
-{% comment %} 
+{% comment %}
     const data = [
         {
             range: [1, 99],
-            labelRange: ['Betrug', 'Ehrlichkeit'],
+            labelRange: ['Low', 'High'],
             data: [
               {
                   name: 'Bob Stampton',
@@ -337,7 +337,7 @@
         },
         {
             range: [1, 99],
-            labelRange: ['Betrug', 'Ehrlichkeit'],
+            labelRange: ['Low', 'High'],
             data: [
                 {
                     statusSide: 10
@@ -381,7 +381,7 @@
         },
         {
             range: [1, 99],
-            labelRange: ['Betrug', 'Ehrlichkeit'],
+            labelRange: ['Low', 'High'],
             data: [
                 {
                     statusSide: 10
@@ -425,7 +425,7 @@
         },
         {
             range: [1, 99],
-            labelRange: ['Betrug', 'Ehrlichkeit'],
+            labelRange: ['Low', 'High'],
             data: [
                 {
                     statusSide: 10
@@ -466,51 +466,7 @@
         },
         {
             range: [1, 99],
-            labelRange: ['Betrug', 'Ehrlichkeit'],
-            data: [
-                {
-                    statusSide: 10
-                },
-                {
-                    name: 'Vasilisa Kochetkova',
-                    avatar: '/static/images/avatars/boar.svg',
-                    statusSide: 20
-                },
-                {
-                    statusSide: 45
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 60
-                },
-                {
-                    statusSide: 70
-                },
-                {
-                    statusSide: 99
-                },
-            ]
-        },
-        {
-            range: [1, 99],
-            labelRange: ['Betrug', 'Ehrlichkeit'],
+            labelRange: ['Low', 'High'],
             data: [
                 {
                     statusSide: 10
@@ -554,7 +510,7 @@
         },
         {
             range: [1, 99],
-            labelRange: ['Betrug', 'Ehrlichkeit'],
+            labelRange: ['Low', 'High'],
             data: [
                 {
                     statusSide: 10
@@ -598,7 +554,7 @@
         },
         {
             range: [1, 99],
-            labelRange: ['Betrug', 'Ehrlichkeit'],
+            labelRange: ['Low', 'High'],
             data: [
                 {
                     statusSide: 10
@@ -642,7 +598,7 @@
         },
         {
             range: [1, 99],
-            labelRange: ['Betrug', 'Ehrlichkeit'],
+            labelRange: ['Low', 'High'],
             data: [
                 {
                     statusSide: 10
@@ -686,7 +642,7 @@
         },
         {
             range: [1, 99],
-            labelRange: ['Betrug', 'Ehrlichkeit'],
+            labelRange: ['Low', 'High'],
             data: [
                 {
                     statusSide: 10
@@ -730,7 +686,7 @@
         },
         {
             range: [1, 99],
-            labelRange: ['Betrug', 'Ehrlichkeit'],
+            labelRange: ['Low', 'High'],
             data: [
                 {
                     statusSide: 10
@@ -774,7 +730,51 @@
         },
         {
             range: [1, 99],
-            labelRange: ['Betrug', 'Ehrlichkeit'],
+            labelRange: ['Low', 'High'],
+            data: [
+                {
+                    statusSide: 10
+                },
+                {
+                    name: 'Vasilisa Kochetkova',
+                    avatar: '/static/images/avatars/boar.svg',
+                    statusSide: 20
+                },
+                {
+                    statusSide: 45
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 49
+                },
+                {
+                    statusSide: 60
+                },
+                {
+                    statusSide: 70
+                },
+                {
+                    statusSide: 99
+                },
+            ]
+        },
+        {
+            range: [1, 99],
+            labelRange: ['Low', 'High'],
             data: [
                 {
                     statusSide: 10
@@ -915,7 +915,7 @@
     new AppGraph({
         container: '.custom-graph-wrapper.user',
         range: [1, 99],
-        labelRange: ['Betrug', 'Ehrlichkeit'],
+        labelRange: ['Low', 'High'],
         mobile: 1200,
         statistic: true,
         data: {{ team_potential_all_result|safe }}
@@ -959,10 +959,10 @@
                 statusSide: 99
             },
         ]{% endcomment %}
-    });//user 
+    });//user
 
 
-{% comment %} 
+{% comment %}
     const dataFeedback = [
         {
             name: 'Bob Stampton',
@@ -1236,7 +1236,7 @@
             });
         }
     });{% endcomment %}
-    
+
 
 </script>
 {% comment %} <script src="/static/js/update_fix.js"></script> {% endcomment %}
