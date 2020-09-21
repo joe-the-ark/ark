@@ -116,7 +116,7 @@ def auth_link(request):
         request.session['link'] = link
 
         if not Game.objects.filter(link=link).first().members.filter(name=username).first():
-            avatar = get_avatar_link(avatar)
+            # avatar = get_avatar_link(avatar)
             new_player = Player.objects.create(
                 name = username,
                 avatar = avatar,
