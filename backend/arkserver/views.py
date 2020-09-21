@@ -121,6 +121,7 @@ def auth_link(request):
                 name = username,
                 avatar = avatar,
             )
+            request.session['uid'] = new_player.id
             game = Game.objects.filter(link=link).first()
             game.members.set([new_player])
             WaitingRoomMember.objects.create(
@@ -134,7 +135,7 @@ def auth_link(request):
         else:
             # detect same name in this game
             ctx['error'] = 1
-            return render(request,'./views/auth.html', ctx)
+            return render(request,'./views/auth_link.html', ctx)
 
     return render(request,'./views/auth-link.html', ctx)
 
