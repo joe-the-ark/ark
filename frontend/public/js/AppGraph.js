@@ -46,7 +46,11 @@ class AppGraph {
         }
         var blue_range = high - low;
         //console.log(this.data);
-        css_change(`.statistic .custom-graph__items:before{left:${low}%;width:min(${blue_range}%);}`);
+        if (window.innerWidth <= this.mobile) {
+          css_change(`.statistic .custom-graph__items:before{left:${low}%;width:min(${blue_range}%);}`);
+        } else {
+          css_change(`.statistic .custom-graph__items:before{bottom:${low}%;height:min(${blue_range}%);}`);
+        }
     }
 
     isPermission({ dynamic, statics }) {
@@ -273,7 +277,7 @@ class AppGraph {
         this.templates.forEach((item) => {
             this.searchInnerElNext(item);
         });
-        this.safeArea();
+        // this.safeArea();
     }
 
     showSliderValue(inputSlider, thumb, index) {

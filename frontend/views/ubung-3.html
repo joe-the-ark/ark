@@ -63,19 +63,35 @@
                         </b>
                     </p>
                     <div class="tags">
-                        <span id="Zorn" class="tag">Zorn</span>
-                        <span id="Der-Neid" class="tag" class="line-through">Der Neid</span>
-                        <span id="Arroganz" class="tag">Arroganz</span>
-                        <span id="Grausamkeit" class="tag">Grausamkeit</span>
-                        <span id="Betrug" class="tag">Betrug</span>
-                        <span id="Selbstsucht" class="tag">Selbstsucht</span>
-                        <span id="Heuchelei" class="tag">Heuchelei</span>
-                        <span id="Gier" class="tag">Gier</span>
-                        <span id="Rache" class="tag" class="line-through">Rache</span>
-                        <span id="Frechheit" class="tag">Frechheit</span>
-                        <span id="Empathie" class="tag">Empathie</span>
-                        <span id="Verantwortungslosigkeit" class="tag">Verantwortungslosigkeit</span>
-                        <span id="Gesprächigkeit" class="tag">Gesprächigkeit</span>
+                        <span id="Abhängigkeit" class="tag">Abhängigkeit</span>
+                        <span id="Achtlosigkeit" class="tag" class="line-through">Achtlosigkeit</span>
+                        <span id="Angepasstheit" class="tag">Angepasstheit</span>
+                        <span id="Angsẗ" class="tag">Angst</span>
+                        <span id="Aufgeregtheit" class="tag">Aufgeregtheit</span>
+                        <span id="Desinteresse" class="tag">Desinteresse</span>
+                        <span id="Distanz" class="tag">Distanz</span>
+                        <span id="Egoismus" class="tag">Egoismus</span>
+                        <span id="Ehrlosigkeit" class="tag" class="line-through">Ehrlosigkeit</span>
+                        <span id="Einfallslosigkeit" class="tag">Einfallslosigkeit</span>
+                        <span id="Feindseligkeit" class="tag">Feindseligkeit</span>
+                        <span id="Gehorsam" class="tag">Gehorsam</span>
+                        <span id="Gleichgültigkeit" class="tag">Gleichgültigkeit</span>
+                        <span id="Leistungsschwäche" class="tag" class="line-through">Leistungsschwäche</span>
+                        <span id="Müßiggang" class="tag">Müßiggang</span>
+                        <span id="Neid" class="tag">Neid</span>
+                        <span id="Rangordnung" class="tag">Rangordnung</span>
+                        <span id="Rechthaberei" class="tag">Rechthaberei</span>
+                        <span id="Risiko" class="tag">Risiko</span>
+                        <span id="Sinnlosigkeit" class="tag">Sinnlosigkeit</span>
+                        <span id="Starrheit" class="tag" class="line-through">Starrheit</span>
+                        <span id="Treulosigkeit" class="tag">Treulosigkeit</span>
+                        <span id="Unachtsamkeit" class="tag">Unachtsamkeit</span>
+                        <span id="Unterordnung" class="tag">Unterordnung</span>
+                        <span id="Unzuverlässigkeit" class="tag">Unzuverlässigkeit</span>
+                        <span id="Verbot" class="tag">Verbot</span>
+                        <span id="Verkrampftheit" class="tag">Verkrampftheit</span>
+                        <span id="Versagen" class="tag">Versagen</span>
+                        <span id="Willkür" class="tag">Willkür</span>
                     </div>
                     <input id="tags" type="hidden" name="tags" value="输入你要传bai递的值">
                     <div class="center">
@@ -113,123 +129,268 @@
     setInterval("check_tag()", 100);
     
 
-    $('#Zorn').on("click",function(){
-        if ($('#Zorn').is('.line-through')){
-            $("#Zorn").removeClass("line-through");
+    $('#Abhängigkeit').on("click",function(){
+        if ($('#Abhängigkeit').is('.line-through')){
+            $("#Abhängigkeit").removeClass("line-through");
         }
         else{
-            $("#Zorn").addClass("line-through");
+            $("#Abhängigkeit").addClass("line-through");
         }
     })
 
-    $('#Der-Neid').on("click",function(){
-        if ($('#Der-Neid').is('.line-through')){
-            $("#Der-Neid").removeClass("line-through");
+    $('#Achtlosigkeit').on("click",function(){
+        if ($('#Achtlosigkeit').is('.line-through')){
+            $("#Achtlosigkeit").removeClass("line-through");
         }
         else{
-            $("#Der-Neid").addClass("line-through");
+            $("#Achtlosigkeit").addClass("line-through");
         }
     })
 
-    $('#Arroganz').on("click",function(){
-        if ($('#Arroganz').is('.line-through')){
-            $("#Arroganz").removeClass("line-through");
+    $('#Angepasstheit').on("click",function(){
+        if ($('#Angepasstheit').is('.line-through')){
+            $("#Angepasstheit").removeClass("line-through");
         }
         else{
-            $("#Arroganz").addClass("line-through");
+            $("#Angepasstheit").addClass("line-through");
         }
     })
 
-    $('#Grausamkeit').on("click",function(){
-        if ($('#Grausamkeit').is('.line-through')){
-            $("#Grausamkeit").removeClass("line-through");
+    $('#Angst').on("click",function(){
+        if ($('#Angst').is('.line-through')){
+            $("#Angst").removeClass("line-through");
         }
         else{
-            $("#Grausamkeit").addClass("line-through");
+            $("#Angst").addClass("line-through");
         }
     })
 
-    $('#Betrug').on("click",function(){
-        if ($('#Betrug').is('.line-through')){
-            $("#Betrug").removeClass("line-through");
+    $('#Aufgeregtheit').on("click",function(){
+        if ($('#Aufgeregtheit').is('.line-through')){
+            $("#Aufgeregtheit").removeClass("line-through");
         }
         else{
-            $("#Betrug").addClass("line-through");
+            $("#Aufgeregtheit").addClass("line-through");
         }
     })
 
-    $('#Selbstsucht').on("click",function(){
-        if ($('#Selbstsucht').is('.line-through')){
-            $("#Selbstsucht").removeClass("line-through");
+    $('#Desinteresse').on("click",function(){
+        if ($('#Desinteresse').is('.line-through')){
+            $("#Desinteresse").removeClass("line-through");
         }
         else{
-            $("#Selbstsucht").addClass("line-through");
+            $("#Desinteresse").addClass("line-through");
         }
     })
 
-    $('#Heuchelei').on("click",function(){
-        if ($('#Heuchelei').is('.line-through')){
-            $("#Heuchelei").removeClass("line-through");
+    $('#Distanz').on("click",function(){
+        if ($('#Distanz').is('.line-through')){
+            $("#Distanz").removeClass("line-through");
         }
         else{
-            $("#Heuchelei").addClass("line-through");
+            $("#Distanz").addClass("line-through");
         }
     })
 
-    $('#Gier').on("click",function(){
-        if ($('#Gier').is('.line-through')){
-            $("#Gier").removeClass("line-through");
+    $('#Egoismus').on("click",function(){
+        if ($('#Egoismus').is('.line-through')){
+            $("#Egoismus").removeClass("line-through");
         }
         else{
-            $("#Gier").addClass("line-through");
+            $("#Egoismus").addClass("line-through");
         }
     })
 
-    $('#Rache').on("click",function(){
-        if ($('#Rache').is('.line-through')){
-            $("#Rache").removeClass("line-through");
+    $('#Ehrlosigkeit').on("click",function(){
+        if ($('#Ehrlosigkeit').is('.line-through')){
+            $("#Ehrlosigkeit").removeClass("line-through");
         }
         else{
-            $("#Rache").addClass("line-through");
+            $("#Ehrlosigkeit").addClass("line-through");
         }
     })
 
-    $('#Frechheit').on("click",function(){
-        if ($('#Frechheit').is('.line-through')){
-            $("#Frechheit").removeClass("line-through");
+    $('#Einfallslosigkeit').on("click",function(){
+        if ($('#Einfallslosigkeit').is('.line-through')){
+            $("#Einfallslosigkeit").removeClass("line-through");
         }
         else{
-            $("#Frechheit").addClass("line-through");
+            $("#Einfallslosigkeit").addClass("line-through");
         }
     })
 
-    $('#Empathie').on("click",function(){
-        if ($('#Empathie').is('.line-through')){
-            $("#Empathie").removeClass("line-through");
+    $('#Feindseligkeit').on("click",function(){
+        if ($('#Feindseligkeit').is('.line-through')){
+            $("#Feindseligkeit").removeClass("line-through");
         }
         else{
-            $("#Empathie").addClass("line-through");
+            $("#Feindseligkeit").addClass("line-through");
         }
     })
 
-    $('#Verantwortungslosigkeit').on("click",function(){
-        if ($('#Verantwortungslosigkeit').is('.line-through')){
-            $("#Verantwortungslosigkeit").removeClass("line-through");
+    $('#Gehorsam').on("click",function(){
+        if ($('#Gehorsam').is('.line-through')){
+            $("#Gehorsam").removeClass("line-through");
         }
         else{
-            $("#Verantwortungslosigkeit").addClass("line-through");
+            $("#Gehorsam").addClass("line-through");
         }
     })
 
-    $('#Gesprächigkeit').on("click",function(){
-        if ($('#Gesprächigkeit').is('.line-through')){
-            $("#Gesprächigkeit").removeClass("line-through");
+    $('#Gleichgültigkeit').on("click",function(){
+        if ($('#Gleichgültigkeit').is('.line-through')){
+            $("#Gleichgültigkeit").removeClass("line-through");
         }
         else{
-            $("#Gesprächigkeit").addClass("line-through");
+            $("#Gleichgültigkeit").addClass("line-through");
         }
     })
 
+    $('#Leistungsschwäche').on("click",function(){
+        if ($('#Leistungsschwäche').is('.line-through')){
+            $("#Leistungsschwäche").removeClass("line-through");
+        }
+        else{
+            $("#Leistungsschwäche").addClass("line-through");
+        }
+    })
+
+    $('#Müßiggang').on("click",function(){
+        if ($('#Müßiggang').is('.line-through')){
+            $("#Müßiggang").removeClass("line-through");
+        }
+        else{
+            $("#Müßiggang").addClass("line-through");
+        }
+    })
+
+    $('#Neid').on("click",function(){
+        if ($('#Neid').is('.line-through')){
+            $("#Neid").removeClass("line-through");
+        }
+        else{
+            $("#Neid").addClass("line-through");
+        }
+    })
+
+    $('#Rangordnung').on("click",function(){
+        if ($('#Rangordnung').is('.line-through')){
+            $("#Rangordnung").removeClass("line-through");
+        }
+        else{
+            $("#Rangordnung").addClass("line-through");
+        }
+    })
+
+    $('#Rechthaberei').on("click",function(){
+        if ($('#Rechthaberei').is('.line-through')){
+            $("#Rechthaberei").removeClass("line-through");
+        }
+        else{
+            $("#Rechthaberei").addClass("line-through");
+        }
+    })
+
+    $('#Risiko').on("click",function(){
+        if ($('#Risiko').is('.line-through')){
+            $("#Risiko").removeClass("line-through");
+        }
+        else{
+            $("#Risiko").addClass("line-through");
+        }
+    })
+
+    $('#Sinnlosigkeit').on("click",function(){
+        if ($('#Sinnlosigkeit').is('.line-through')){
+            $("#Sinnlosigkeit").removeClass("line-through");
+        }
+        else{
+            $("#Sinnlosigkeit").addClass("line-through");
+        }
+    })
+
+    $('#Starrheit').on("click",function(){
+        if ($('#Starrheit').is('.line-through')){
+            $("#Starrheit").removeClass("line-through");
+        }
+        else{
+            $("#Starrheit").addClass("line-through");
+        }
+    })
+
+    $('#Treulosigkeit').on("click",function(){
+        if ($('#Treulosigkeit').is('.line-through')){
+            $("#Treulosigkeit").removeClass("line-through");
+        }
+        else{
+            $("#Treulosigkeit").addClass("line-through");
+        }
+    })
+
+    $('#Unachtsamkeit').on("click",function(){
+        if ($('#Unachtsamkeit').is('.line-through')){
+            $("#Unachtsamkeit").removeClass("line-through");
+        }
+        else{
+            $("#Unachtsamkeit").addClass("line-through");
+        }
+    })
+
+    $('#Unterordnung').on("click",function(){
+        if ($('#Unterordnung').is('.line-through')){
+            $("#Unterordnung").removeClass("line-through");
+        }
+        else{
+            $("#Unterordnung").addClass("line-through");
+        }
+    })
+
+    $('#Unzuverlässigkeit').on("click",function(){
+        if ($('#Unzuverlässigkeit').is('.line-through')){
+            $("#Unzuverlässigkeit").removeClass("line-through");
+        }
+        else{
+            $("#Unzuverlässigkeit").addClass("line-through");
+        }
+    })
+    
+    $('#Verbot').on("click",function(){
+        if ($('#Verbot').is('.line-through')){
+            $("#Verbot").removeClass("line-through");
+        }
+        else{
+            $("#Verbot").addClass("line-through");
+        }
+    })
+
+    $('#Verkrampftheit').on("click",function(){
+        if ($('#Verkrampftheit').is('.line-through')){
+            $("#Verkrampftheit").removeClass("line-through");
+        }
+        else{
+            $("#Verkrampftheit").addClass("line-through");
+        }
+    })
+
+    $('#Versagen').on("click",function(){
+        if ($('#Versagen').is('.line-through')){
+            $("#Versagen").removeClass("line-through");
+        }
+        else{
+            $("#Versagen").addClass("line-through");
+        }
+    })
+
+    $('#Willkür').on("click",function(){
+        if ($('#Willkür').is('.line-through')){
+            $("#Willkür").removeClass("line-through");
+        }
+        else{
+            $("#Willkür").addClass("line-through");
+        }
+    })
+    
+    
 </script>
 
 

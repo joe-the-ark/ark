@@ -80,7 +80,7 @@
     const app = new AppGraph({
         container: ".custom-graph-wrapper",
         range: [1, 99],
-        labelRange: ['Ehrlichkeit', 'Betrug'],
+        labelRange: ['Low', 'High'],
         statistic: true,
         mobile: 1200,
         data: {{ all_result|safe }}
@@ -129,7 +129,7 @@
         s.innerText = t;
         document.body.appendChild(s);
     };
-    
+
     var median = {{ median }};
     var low = median - 16;
     var high = median + 16;

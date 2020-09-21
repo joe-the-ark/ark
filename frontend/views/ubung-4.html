@@ -1,4 +1,4 @@
-{% load static %}
+<!-- {% load static %} -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,7 +53,7 @@
                     <br/>
                 </p>
                 <div class="distribution__wrapper"></div>
-                
+
                 <form action="#" method="POST" class="form">
                 {% csrf_token %}
                     <div class="center">
@@ -102,9 +102,11 @@
             const $self = this;
             let start = false;
             const usersFrom = document.querySelectorAll('.user-connect--to');
-
-
             const body = document.body;
+
+            const usersDistr = document.querySelectorAll('.distry__user');
+            let name = '';
+            let whichContainer = 0;
 
 
             if (window.innerWidth > 768) {
@@ -164,6 +166,20 @@
                         }
                     }
                 });
+                if (usersDistr) {
+                  usersDistr.forEach((item, i) => {
+                    item.addEventListener('click', function (event) {
+                      name = event.target.parentNode.getAttribute('data-tippy-content');
+                      whichContainer = event.target.parentNode.parentNode.getAttribute('data-id');
+                      let contItems = $self.containersTo[whichContainer].items.filter(item => item.name != name);
+                      $self.containersTo[whichContainer].items = contItems;
+                      $self.data.forEach((item, i) => {
+                        if (item.name == name) {item.hidden = false}
+                      });
+                      $self.render();
+                    })
+                  });
+                }
             }
 
             if (window.innerWidth <= 768) {
@@ -254,6 +270,7 @@
                 </div>`;
 
             this.container.innerHTML = renderHtml.split(`,`).join('');
+            console.log(renderHtml.__proto__);
             this.handlers();
             // With the above scripts loaded, you can call `tippy()` with a CSS
             // selector and a `content` prop:
@@ -331,10 +348,10 @@
         after: 2
     });
 
-    //document.getElementById('button').addEventListener('click', function (e) {
-    //    e.preventDefault();
-    //    console.log(app.getData())
-    //});
+    document.getElementById('button').addEventListener('click', function (e) {
+       e.preventDefault();
+       console.log(app.getData())
+    });
 
     function get_id(in_value){
         var uu = 0;
