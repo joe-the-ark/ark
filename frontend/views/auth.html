@@ -171,7 +171,7 @@
                             Einen Link teilen:
                         </button>
                         <input id="link" type="text" name="link" value="" readonly="readonly"/>
-                        <span class="icon-link"></span>
+                        <button type="button" class="icon-link" id="icon-link" data-clipboard-target="#link" alt="Copy to clipboard"></button>
                     </div>
                     <div class="form__field">
                         <button type="submit">
@@ -190,7 +190,12 @@
   src="http://code.jquery.com/jquery-3.5.1.slim.min.js"
   integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
   crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/clipboard@2/dist/clipboard.min.js"></script>
 <script>
+    new ClipboardJS('.icon-link');
+    $('#icon-link').click(function(){
+        alert('The link is copied.');
+    })
     var app = new Vue({
         delimiters: ['[[', ']]'],
         el: '#app-1',
@@ -294,8 +299,6 @@
         const el = document.getElementById('title-game');
         el.innerHTML = window.innerWidth < 768 ? 'Spiel erstellen' : 'Wie steht es um eure Psychologische Sicherheit?'
     }
-
-
 
 </script>
 </body>
