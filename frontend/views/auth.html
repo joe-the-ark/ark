@@ -171,7 +171,9 @@
                             Einen Link teilen:
                         </button>
                         <input id="link" type="text" name="link" value="" readonly="readonly"/>
-                        <button type="button" class="icon-link" id="icon-link" data-clipboard-target="#link" alt="Copy to clipboard"></button>
+                        <!-- <button type="button" class="icon-link" id="icon-link" data-clipboard-target="#link" alt="Copy to clipboard"></button> -->
+                        <span class="icon-link" data-clipboard-target="#link">
+                        </span>
                     </div>
                     <div class="form__field">
                         <button type="submit">
@@ -183,7 +185,8 @@
         </div>
     </div>
 </div>
-
+<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+<script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="/static/vue.js"></script>
 <script
@@ -192,10 +195,18 @@
   crossorigin="anonymous"></script>
   <script src="https://unpkg.com/clipboard@2/dist/clipboard.min.js"></script>
 <script>
+    // Copy and tooltip
     new ClipboardJS('.icon-link');
-    $('#icon-link').click(function(){
-        alert('The link is copied.');
-    })
+    let linkSpan = tippy(document.querySelector('.icon-link'));
+    tippy('.icon-link', {
+      content: 'Copy to clipboard',
+    });
+    tippy('.icon-link', {
+      trigger: 'click',
+      content: 'Copied',
+    });
+    
+
     var app = new Vue({
         delimiters: ['[[', ']]'],
         el: '#app-1',
@@ -240,7 +251,7 @@
             }
         },
         created(){
-            this.avatar_list.sort(function(){return Math.random()>0.5?-1:1;}); 
+            this.avatar_list.sort(function(){return Math.random()>0.5?-1:1;});
             var uu = 0;
             while (uu < this.avatar_list.length){
                 var temp = this.avatar_list[uu];
@@ -284,7 +295,7 @@
     //function check(){
     //    if(mySwiper.isTouched){
     //        console.log(mySwiper.realIndex);
-    //    
+    //
     //    }else{
     //        console.log(mySwiper.realIndex);
     //    }

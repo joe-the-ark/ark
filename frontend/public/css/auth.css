@@ -125,3 +125,6 @@
     padding-left: 243px;
   }
 }
+.icon-link:hover {
+  font-weight: bold;
+}
