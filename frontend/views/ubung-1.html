@@ -42,9 +42,7 @@
         </header>
     </div>
     <div class="app__body">
-        <div class="container">
-            <form action="#" method="POST" id="ubung-1-form" class="form">
-            {% csrf_token %}
+        <div class="container" id="app-1">    
                 <main class="screen ubung-1">
                     <h1>
                         Übung 1: Kraftquelle des Teams.
@@ -55,15 +53,17 @@
                         <br/>
                         <br/>
                     </p>
-                    <input type="text" placeholder="Kraftquelle" name="kraftquelle"/>
-                    <labe>*Diese Qualität wurde bereits von einem anderen Spieler ausgewählt.</labe>
+                    <input type="text" placeholder="Kraftquelle" name="kraftquelle" v-model="text_input" @keyup.enter="add_term"/>
+                    <label>*Diese Qualität wurde bereits von einem anderen Spieler ausgewählt.</label>
                     <p>
                         <b>
                             Schreib in das leere Feld oder beweg den passenden Begriff.
                         </b>
                     </p>
                     <div class="tags">
-                        <span id="Aufmüpfigkeit" class="tag">Aufmüpfigkeit</span>
+                        <span :id="item.value" v-bind:class="{ tag: item.state==='tag', 'line-through': item.state !== 'tag'}" v-for="item in term_list" @click="mark( item.value )">[[ item.value ]]</span>
+
+                        {% comment %} <span id="Aufmüpfigkeit" class="tag">Aufmüpfigkeit</span>
                         <span id="Autonomie" class="line-through" class="tag">Autonomie</span>
                         <span id="Dominanz" class="tag">Dominanz</span>
                         <span id="Effizienz" class="tag">Effizienz</span>
@@ -91,7 +91,7 @@
                         <span id="Vergnügen" class="tag">Vergnügen</span>
                         <span id="Vertrautheit" class="tag">Vertrautheit</span>
                         <span id="Würde" class="tag">Würde</span>
-                        <span id="Zuverlässigkeit" class="tag">Zuverlässigkeit</span>
+                        <span id="Zuverlässigkeit" class="tag">Zuverlässigkeit</span> {% endcomment %}
                     </div>
                     <input id="tags" type="hidden" name="tags" value="输入你要传bai递的值">
                     <div class="center">
@@ -100,7 +100,6 @@
                         </button>
                     </div>
                 </main>
-            </form>
         </div>
     </div>
 </div>
@@ -109,8 +108,231 @@
   src="http://code.jquery.com/jquery-3.5.1.slim.min.js"
   integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
   crossorigin="anonymous"></script>
-  
+  <script src="/static/axios.min.js"></script>
+  <script src="/static/vue.js"></script>
 <script>
+
+    var app = new Vue({
+        delimiters: ['[[', ']]'],
+        el: '#app-1',
+        data:{
+            text_input: '',
+            term_list: [
+                {
+                    'state': 'tag',
+                    'value': 'Aufmüpfigkeit'
+                },
+                {
+                    'state': 'tag',
+                    'value': 'Autonomie',
+                },
+                {
+                    'state': 'tag',
+                    'value': 'Dominanz'
+                },
+                {
+                    'state': 'tag',
+                    'value': 'Effizienz'
+                },
+                {
+                    'state': 'tag',
+                    'value': 'Ehrgeiz',
+                },
+                {
+                    'state': 'tag',
+                    'value': 'Einzigartigkeit',
+                },
+                {
+                    'state': 'tag',
+                    'value': 'Erfolg',
+                },
+                {
+                    'state': 'tag',
+                    'value': 'Flexibilität',
+                },
+                {
+                    'state': 'tag',
+                    'value': 'Freundschaft'
+                },
+                {
+                    'state': 'tag',
+                    'value': 'Gelassenheit',
+                },
+                {
+                    'state': 'tag',
+                    'value': 'Gerechtigkeit'
+                },
+                {
+                    'state': 'tag',
+                    'value': 'Geselligkeit'
+                },
+                {
+                    'state': 'tag',
+                    'value': 'Gleichberechtigung'
+                },
+                {
+                    'state': 'tag',
+                    'value': 'Großzügigkeit'
+                },
+                {
+                    'state': 'tag',
+                    'value': 'Imagination'
+                },
+                {
+                    'state': 'tag',
+                    'value': 'Leidenschaft'
+                },
+                {
+                    'state': 'tag',
+                    'value': 'Loyalität'
+                },
+                {
+                    'state': 'tag',
+                    'value': 'Mut'
+                },
+                {
+                    'state': 'tag',
+                    'value': 'Nachhaltigkeit'
+                },
+                {
+                    'state': 'tag',
+                    'value': 'Neugier'
+                },
+                {
+                    'state': 'tag',
+                    'value': 'Offenheit'
+                },
+                {
+                    'state': 'tag',
+                    'value': 'Sicherheit'
+                },
+                {
+                    'state': 'tag',
+                    'value': 'Sinnhaftigkeit'
+                },
+                {
+                    'state': 'tag',
+                    'value': 'Solidarität'
+                },
+                {
+                    'state': 'tag',
+                    'value': 'Sorgfalt'
+                },
+                {
+                    'state': 'tag',
+                    'value': 'Vergnügen'
+                },
+                {
+                    'state': 'tag',
+                    'value': 'Vertrautheit'
+                },
+                {
+                    'state': 'tag',
+                    'value': 'Würde'
+                },
+                {
+                    'state': 'tag',
+                    'value': 'Zuverlässigkeit'
+                },
+            ]
+        },
+        mounted(){
+            //var data = this.term_list;
+            var that = this;
+            function get_api_data(){
+                var data_ = {
+                    'player_id': '{{user.id}}', 
+                    'link': '{{game.link}}', 
+                }
+                axios
+                    .post(`/api/ubung_1_get_data/`, data_)
+                    .then(function(response){
+                        var result = response.data.result;
+                        //console.log(result);
+                        that.term_list.splice(0);
+                        var uu = 0;
+                        while (uu < result.length){
+                            that.term_list.push(result[uu]);
+                            uu += 1;
+                        }
+                    })
+                    .catch(function(error){
+                        console.log(error);
+                    })
+            }
+
+            setInterval(get_api_data,2000); 
+            
+        },
+        methods:{
+            add_term: function(){
+                console.log('press');
+                var that = this;
+                if (that.text_input ===  ''){
+                    return
+                }
+                that.term_list.unshift({
+                    'state': 'tag',
+                    'value': that.text_input,
+                });
+                var data_ = {
+                    'player_id': '{{user.id}}', 
+                    'link': '{{game.link}}', 
+                    'data': that.term_list,
+                };
+                axios
+                    .post(`/api/ubung_1_api/`, data_)
+                    .then(function(response){
+                        var result = response.data.result;
+                        console.log(result);
+                        that.term_list.splice(0);
+                        var uu = 0;
+                        while (uu < result.length){
+                            that.term_list.push(result[uu]);
+                            uu += 1;
+                        }
+                    })
+                    .catch(function(error){
+                        console.log(error);
+                    })
+                that.text_input = '';
+            },
+            mark: function(item){
+                var that = this;
+                var uu = 0;
+                while (uu < this.term_list.length){
+                    if (this.term_list[uu].value == item){
+                        this.term_list[uu].state = 'line-through';
+                        break;
+                    }
+                    uu += 1;
+                }
+                var data_ = {
+                    'player_id': '{{user.id}}', 
+                    'link': '{{game.link}}', 
+                    'data': that.term_list,
+                };
+                //console.log(this.term_list);
+                //console.log(data_)
+                axios
+                    .post(`/api/ubung_1_api/`, data_)
+                    .then(function(response){
+                        var result = response.data.result;
+                        console.log(result);
+                        that.term_list.splice(0);
+                        var uu = 0;
+                        while (uu < result.length){
+                            that.term_list.push(result[uu]);
+                            uu += 1;
+                        }
+                    })
+                    .catch(function(error){
+                        console.log(error);
+                    })
+            
+            }
+        }
+    })
 
     function check_tag(){
         var tag_str_list = '';
@@ -127,7 +349,7 @@
 
     setInterval("check_tag()", 100);
     
-
+{% comment %} 
     $('#Aufmüpfigkeit').on("click",function(){
         if ($('#Aufmüpfigkeit').is('.line-through')){
             $("#Aufmüpfigkeit").removeClass("line-through");
@@ -396,7 +618,7 @@
         else{
             $("#Zuverlässigkeit").addClass("line-through");
         }
-    })
+    }) {% endcomment %}
     
 </script>
 

@@ -150,28 +150,28 @@ def preview(request, user):
 def ubung_1(request, user):
     ctx = {}
     ctx['game'] = Game.objects.filter(link=request.session['link']).first()
-    if request.method == 'POST':
-        link = request.session['link']
+    # if request.method == 'POST':
+    #     link = request.session['link']
 
-        kraftquelle = request.POST.get('kraftquelle')
-        tags = request.POST.get('tags')
-        tags = tags + kraftquelle
-        tag_list = tags.split(',')
-        uu = 0
-        while uu < len(tag_list):
-            if tag_list[uu] == '':
-                del tag_list[uu]
-            uu += 1
-        print("tag_list", tag_list)
+    #     kraftquelle = request.POST.get('kraftquelle')
+    #     tags = request.POST.get('tags')
+    #     tags = tags + kraftquelle
+    #     tag_list = tags.split(',')
+    #     uu = 0
+    #     while uu < len(tag_list):
+    #         if tag_list[uu] == '':
+    #             del tag_list[uu]
+    #         uu += 1
+    #     print("tag_list", tag_list)
 
-        game = Game.objects.filter(link=link).first()
-        for i in tag_list:
-            Ubung1.objects.create(
-                game = game,
-                player = user,
-                power = i,
-            )
-        return redirect(f'/ubung-2/')
+    #     game = Game.objects.filter(link=link).first()
+    #     for i in tag_list:
+    #         Ubung1.objects.create(
+    #             game = game,
+    #             player = user,
+    #             power = i,
+    #         )
+    #     return redirect(f'/ubung-2/')
 
     return render(request, './views/ubung-1.html', ctx)
 
@@ -691,3 +691,43 @@ def waiting_room_yet(player_id, link):
     return members_list
 
 
+@api
+def ubung_1_get_data(player_id, link):
+    from .models import Player, Game, Ubung1
+    game = Game.objects.filter(link=link).first()
+    player = Player.objects.filter(id=player_id).first()
+    result = [i.api_json for i in Ubung1.objects.filter(game=game)]
+    return result
+
+@api
+def ubung_1_api(player_id, link, data):
+    from .models import Player, Game, Ubung1
+    game = Game.objects.filter(link=link).first()
+    player = Player.objects.filter(id=player_id).first()
+    
+    already = Ubung1.objects.filter(game=game)
+    already_term_list = [i.power for i in already]
+    for i in data:
+        if i['value'] not in already_term_list:
+            Ubung1.objects.create(
+                game=game,
+                player=player,
+                power=i['value'],
+                state=i['state'],
+            )
+            continue
+        else:
+            temp = Ubung1.objects.filter(game=game,power=i['value']).first()
+            if temp.state == i['state']:
+                continue
+            else:
+                if temp.state == 'tag':
+                    temp.state = 'line-through'
+                    temp.save()
+                elif temp.state == 'line-through':
+                    continue
+                    # temp.state = 'tag'
+                    # temp.save()
+
+    result_data = [i.api_json for i in list(Ubung1.objects.filter(game=game))]
+    return result_data

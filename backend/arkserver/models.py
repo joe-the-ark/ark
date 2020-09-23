@@ -88,6 +88,8 @@ class Ubung1(models.Model):
     game = models.ForeignKey(Game, on_delete=models.CASCADE, verbose_name='game')
     player = models.ForeignKey(Player, on_delete=models.CASCADE, verbose_name='player')
     power = models.CharField(max_length=100, default='')
+    # 2 state: 'tag', 'line-through'
+    state = models.CharField(max_length=100, default='')
     create_time = models.DateTimeField(auto_now_add=True)
 
     @property
@@ -96,6 +98,14 @@ class Ubung1(models.Model):
             'game': self.game.link,
             'player': self.player.name,
             'power': self.power,
+            'state': self.state,
+        }
+    
+    @property
+    def api_json(self):
+        return {
+            'state': self.state,
+            'value': self.power,
         }
 
     class Meta(object):
