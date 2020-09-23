@@ -239,11 +239,46 @@
         mounted(){
             //var data = this.term_list;
             var that = this;
+            var data_ = {
+                'player_id': '{{user.id}}', 
+                'link': '{{game.link}}', 
+            }
+            axios
+                .post(`/api/check_ubung_1/`, data_)
+                .then(function(response){
+                    var result = response.data.result;
+                    if (String(result) === "0"){
+                        var data_ = {
+                            'player_id': '{{user.id}}', 
+                            'link': '{{game.link}}', 
+                            'data': that.term_list,
+                        };
+                        //console.log(this.term_list);
+                        //console.log(data_)
+                        axios
+                            .post(`/api/ubung_1_api/`, data_)
+                            .then(function(response){
+                                var result = response.data.result;
+                                console.log(result);
+                                that.term_list.splice(0);
+                                var uu = 0;
+                                while (uu < result.length){
+                                    that.term_list.push(result[uu]);
+                                    uu += 1;
+                                }
+                            })
+                            .catch(function(error){
+                                console.log(error);
+                            })
+                    }
+                })
             function get_api_data(){
                 var data_ = {
                     'player_id': '{{user.id}}', 
                     'link': '{{game.link}}', 
                 }
+
+
                 axios
                     .post(`/api/ubung_1_get_data/`, data_)
                     .then(function(response){
