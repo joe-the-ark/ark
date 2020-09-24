@@ -41,9 +41,7 @@
         </header>
     </div>
     <div class="app__body">
-        <div class="container">
-        <form action="#" method="POST" id="ubung-1-form" class="form">
-        {% csrf_token %}
+        <div class="container" id="app-1">
                 <main class="screen ubung-1">
                     <h1>
                         Übung 3: Energiefresser im Team?
@@ -54,8 +52,8 @@
                         <br/>
                         <br/>
                     </p>
-                    <input type="text" placeholder="Energiefresser" name="energiefresser"/>
-                    <labe>*Diese Qualität wurde bereits von einem anderen Spieler ausgewählt.</labe>
+                    <input type="text" placeholder="Energiefresser" name="energiefresser" v-model="text_input" @keyup.enter="add_term"/>
+                    <label>*Diese Qualität wurde bereits von einem anderen Spieler ausgewählt.</label>
                     <p>
                         <b>
                             Benenne nun bitte den mutmasslichen Gegenspieler, die Kraft die der vollen
@@ -63,7 +61,9 @@
                         </b>
                     </p>
                     <div class="tags">
-                        <span id="Abhängigkeit" class="tag">Abhängigkeit</span>
+                        <span :id="item.value" v-bind:class="{ tag: item.state==='tag', 'line-through': item.state !== 'tag'}" v-for="item in term_list" @click="mark( item.value )">[[ item.value ]]</span>
+
+                        {% comment %} <span id="Abhängigkeit" class="tag">Abhängigkeit</span>
                         <span id="Achtlosigkeit" class="tag" class="line-through">Achtlosigkeit</span>
                         <span id="Angepasstheit" class="tag">Angepasstheit</span>
                         <span id="Angsẗ" class="tag">Angst</span>
@@ -91,16 +91,15 @@
                         <span id="Verbot" class="tag">Verbot</span>
                         <span id="Verkrampftheit" class="tag">Verkrampftheit</span>
                         <span id="Versagen" class="tag">Versagen</span>
-                        <span id="Willkür" class="tag">Willkür</span>
+                        <span id="Willkür" class="tag">Willkür</span> {% endcomment %}
                     </div>
                     <input id="tags" type="hidden" name="tags" value="输入你要传bai递的值">
                     <div class="center">
-                        <button href="#" class="submit">
+                        <button href="/wartezimmer/{{game.link}}/" class="submit">
                             Weiterspielen
                         </button>
                     </div>
                 </main>
-            </form>
         </div>
     </div>
 </div>
@@ -110,8 +109,259 @@
   src="http://code.jquery.com/jquery-3.5.1.slim.min.js"
   integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
   crossorigin="anonymous"></script>
+  <script src="/static/axios.min.js"></script>
+  <script src="/static/vue.js"></script>
 
 <script>
+    var app = new Vue({
+        delimiters: ['[[', ']]'],
+        el: '#app-1',
+        data:{
+            text_input: '',
+            term_list:[
+            {
+                'state': 'tag',
+                'value': 'Abhängigkeit',
+            },
+            {
+                'state': 'tag',
+                'value': 'Achtlosigkeit',
+            },
+            {
+                'state': 'tag',
+                'value': 'Angepasstheit',
+            },
+            {
+                'state': 'tag',
+                'value': 'Angsẗ',
+            },
+            {
+                'state': 'tag',
+                'value': 'Aufgeregtheit',
+            },
+            {
+                'state': 'tag',
+                'value': 'Desinteresse',
+            },
+            {
+                'state': 'tag',
+                'value': 'Distanz',
+            },
+            {
+                'state': 'tag',
+                'value': 'Egoismus',
+            },
+            {
+                'state': 'tag',
+                'value': 'Ehrlosigkeit',
+            },
+            {
+                'state': 'tag',
+                'value': 'Einfallslosigkeit',
+            },
+            {
+                'state': 'tag',
+                'value': 'Feindseligkeit',
+            },
+            {
+                'state': 'tag',
+                'value': 'Gehorsam',
+            },
+            {
+                'state': 'tag',
+                'value': 'Gleichgültigkeit',
+            },
+            {
+                'state': 'tag',
+                'value': 'Leistungsschwäche',
+            },
+            {
+                'state': 'tag',
+                'value': 'Müßiggang',
+            },
+            {
+                'state': 'tag',
+                'value': 'Neid',
+            },
+            {
+                'state': 'tag',
+                'value': 'Rangordnung',
+            },
+            {
+                'state': 'tag',
+                'value': 'Rechthaberei',
+            },
+            {
+                'state': 'tag',
+                'value': 'Risiko',
+            },
+            {
+                'state': 'tag',
+                'value': 'Sinnlosigkeit',
+            },
+            {
+                'state': 'tag',
+                'value': 'Starrheit',
+            },
+            {
+                'state': 'tag',
+                'value': 'Treulosigkeit',
+            },
+            {
+                'state': 'tag',
+                'value': 'Unachtsamkeit',
+            },
+            {
+                'state': 'tag',
+                'value': 'Unterordnung',
+            },
+            {
+                'state': 'tag',
+                'value': 'Unzuverlässigkeit',
+            },
+            {
+                'state': 'tag',
+                'value': 'Verbot',
+            },
+            {
+                'state': 'tag',
+                'value': 'Verkrampftheit',
+            },
+            {
+                'state': 'tag',
+                'value': 'Versagen',
+            },
+            {
+                'state': 'tag',
+                'value': 'Willkür',
+            }]
+        },
+        mounted(){
+            var that = this;
+            var data_ = {
+                'player_id': '{{user.id}}', 
+                'link': '{{game.link}}', 
+            }
+            axios
+                .post(`/api/check_ubung_3/`, data_)
+                .then(function(response){
+                    var result = response.data.result;
+                    if (String(result) === "0"){
+                        var data_ = {
+                            'player_id': '{{user.id}}', 
+                            'link': '{{game.link}}', 
+                            'data': that.term_list,
+                        };
+                        //console.log(this.term_list);
+                        //console.log(data_)
+                        axios
+                            .post(`/api/ubung_3_api/`, data_)
+                            .then(function(response){
+                                var result = response.data.result;
+                                console.log(result);
+                                that.term_list.splice(0);
+                                var uu = 0;
+                                while (uu < result.length){
+                                    that.term_list.push(result[uu]);
+                                    uu += 1;
+                                }
+                            })
+                            .catch(function(error){
+                                console.log(error);
+                            })
+                    }
+                })
+            function get_api_data(){
+                var data_ = {
+                    'player_id': '{{user.id}}',
+                    'link': '{{game.link}}',
+                }
+                
+                axios
+                    .post(`/api/ubung_3_get_data/`, data_)
+                    .then(function(response){
+                        var result = response.data.result;
+                        that.term_list.splice(0);
+                        var uu = 0;
+                        while (uu < result.length){
+                            that.term_list.push(result[uu]);
+                            uu += 1;
+                        }
+                    })
+                    .catch(function(error){
+                        console.log(error);
+                    })
+            }
+            setInterval(get_api_data, 2000);
+        },
+        methods:{
+            add_term: function(){
+                console.log('press');
+                var that = this;
+                if (that.text_input ===  ''){
+                    return
+                }
+                that.term_list.unshift({
+                    'state': 'tag',
+                    'value': that.text_input,
+                });
+                var data_ = {
+                    'player_id': '{{user.id}}', 
+                    'link': '{{game.link}}', 
+                    'data': that.term_list,
+                };
+                axios
+                    .post(`/api/ubung_3_api/`, data_)
+                    .then(function(response){
+                        var result = response.data.result;
+                        console.log(result);
+                        that.term_list.splice(0);
+                        var uu = 0;
+                        while (uu < result.length){
+                            that.term_list.push(result[uu]);
+                            uu += 1;
+                        }
+                    })
+                    .catch(function(error){
+                        console.log(error);
+                    })
+                that.text_input = '';
+            },
+            mark: function(item){
+                console.log('item', item)
+                var that = this;
+                var uu = 0;
+                while (uu < this.term_list.length){
+                    if (this.term_list[uu].value == item){
+                        this.term_list[uu].state = 'line-through';
+                        break;
+                    }
+                    uu += 1;
+                }
+                var data_ = {
+                    'player_id': '{{user.id}}',
+                    'link': '{{game.link}}',
+                    'data': that.term_list,
+                };
+                axios
+                    .post(`/api/ubung_3_api/`, data_)
+                    .then(function(response){
+                        var result = response.data.result;
+                        console.log(result);
+                        that.term_list.splice(0);
+                        var uu = 0;
+                        while (uu < result.length){
+                            that.term_list.push(result[uu]);
+                            uu += 1;
+                        }
+                    })
+                    .catch(function(error){
+                        console.log(error);
+                    })
+            }
+        }
+    })
+
 
     function check_tag(){
         var tag_str_list = '';
@@ -126,10 +376,10 @@
         //console.log(tag_str_list)
     }
 
-    setInterval("check_tag()", 100);
+    //setInterval("check_tag()", 100);
     
 
-    $('#Abhängigkeit').on("click",function(){
+    {% comment %} $('#Abhängigkeit').on("click",function(){
         if ($('#Abhängigkeit').is('.line-through')){
             $("#Abhängigkeit").removeClass("line-through");
         }
@@ -388,7 +638,7 @@
         else{
             $("#Willkür").addClass("line-through");
         }
-    })
+    }) {% endcomment %}
     
     
 </script>
