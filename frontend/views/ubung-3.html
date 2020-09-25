@@ -119,118 +119,147 @@
             {
                 'state': 'tag',
                 'value': 'Abhängigkeit',
+                'player_id': -1,
             },
             {
                 'state': 'tag',
                 'value': 'Achtlosigkeit',
+                'player_id': -1,
             },
             {
                 'state': 'tag',
                 'value': 'Angepasstheit',
+                'player_id': -1,
             },
             {
                 'state': 'tag',
                 'value': 'Angsẗ',
+                'player_id': -1,
             },
             {
                 'state': 'tag',
                 'value': 'Aufgeregtheit',
+                'player_id': -1,
             },
             {
                 'state': 'tag',
                 'value': 'Desinteresse',
+                'player_id': -1,
             },
             {
                 'state': 'tag',
                 'value': 'Distanz',
+                'player_id': -1,
             },
             {
                 'state': 'tag',
                 'value': 'Egoismus',
+                'player_id': -1,
             },
             {
                 'state': 'tag',
                 'value': 'Ehrlosigkeit',
+                'player_id': -1,
             },
             {
                 'state': 'tag',
                 'value': 'Einfallslosigkeit',
+                'player_id': -1,
             },
             {
                 'state': 'tag',
                 'value': 'Feindseligkeit',
+                'player_id': -1,
             },
             {
                 'state': 'tag',
                 'value': 'Gehorsam',
+                'player_id': -1,
             },
             {
                 'state': 'tag',
                 'value': 'Gleichgültigkeit',
+                'player_id': -1,
             },
             {
                 'state': 'tag',
                 'value': 'Leistungsschwäche',
+                'player_id': -1,
             },
             {
                 'state': 'tag',
                 'value': 'Müßiggang',
+                'player_id': -1,
             },
             {
                 'state': 'tag',
                 'value': 'Neid',
+                'player_id': -1,
             },
             {
                 'state': 'tag',
                 'value': 'Rangordnung',
+                'player_id': -1,
             },
             {
                 'state': 'tag',
                 'value': 'Rechthaberei',
+                'player_id': -1,
             },
             {
                 'state': 'tag',
                 'value': 'Risiko',
+                'player_id': -1,
             },
             {
                 'state': 'tag',
                 'value': 'Sinnlosigkeit',
+                'player_id': -1,
             },
             {
                 'state': 'tag',
                 'value': 'Starrheit',
+                'player_id': -1,
             },
             {
                 'state': 'tag',
                 'value': 'Treulosigkeit',
+                'player_id': -1,
             },
             {
                 'state': 'tag',
                 'value': 'Unachtsamkeit',
+                'player_id': -1,
             },
             {
                 'state': 'tag',
                 'value': 'Unterordnung',
+                'player_id': -1,
             },
             {
                 'state': 'tag',
                 'value': 'Unzuverlässigkeit',
+                'player_id': -1,
             },
             {
                 'state': 'tag',
                 'value': 'Verbot',
+                'player_id': -1,
             },
             {
                 'state': 'tag',
                 'value': 'Verkrampftheit',
+                'player_id': -1,
             },
             {
                 'state': 'tag',
                 'value': 'Versagen',
+                'player_id': -1,
             },
             {
                 'state': 'tag',
                 'value': 'Willkür',
+                'player_id': -1,
             }]
         },
         mounted(){
@@ -289,18 +318,31 @@
                         console.log(error);
                     })
             }
-            setInterval(get_api_data, 2000);
+            setInterval(get_api_data, 3000);
         },
         methods:{
             add_term: function(){
-                console.log('press');
                 var that = this;
                 if (that.text_input ===  ''){
-                    return
+                    return;
                 }
-                that.term_list.unshift({
+                var flag = 0; // test whether the user have already select the term.
+                var uu = 0;
+                var player_id = {{user.id}};
+                while (uu < that.term_list.length){
+                    if (that.term_list[uu].player_id === player_id){
+                        flag = 1;
+                        break;
+                    }
+                    uu += 1;
+                }
+                if (flag === 1){
+                    return;
+                }
+                that.term_list.push({
                     'state': 'tag',
                     'value': that.text_input,
+                    'player_id': {{user.id}},
                 });
                 var data_ = {
                     'player_id': '{{user.id}}', 
@@ -311,7 +353,7 @@
                     .post(`/api/ubung_3_api/`, data_)
                     .then(function(response){
                         var result = response.data.result;
-                        console.log(result);
+                        //console.log(result);
                         that.term_list.splice(0);
                         var uu = 0;
                         while (uu < result.length){
@@ -322,16 +364,43 @@
                     .catch(function(error){
                         console.log(error);
                     })
-                that.text_input = '';
             },
             mark: function(item){
-                console.log('item', item)
+                console.log('press');
                 var that = this;
+                var player_id = {{user.id}};
+
+                var flag = 0; // test whether the user have already select the term.
                 var uu = 0;
-                while (uu < this.term_list.length){
-                    if (this.term_list[uu].value == item){
-                        this.term_list[uu].state = 'line-through';
+                while (uu < that.term_list.length){
+                    if (that.term_list[uu].player_id === player_id){
+                        flag = 1;
                         break;
+                    }
+                    uu += 1;
+                }
+
+                var uu = 0;
+                while (uu < that.term_list.length){
+                    if (that.term_list[uu].value == item){
+                        //this.term_list[uu].state = 'line-through';
+                        //break;
+                        if (that.term_list[uu].state === 'tag'){
+                            if (flag == 1){
+                                return;
+                            }
+                            that.term_list[uu].state = 'line-through'; 
+                            that.text_input = item;                 
+                            break;
+                        }
+                        if (that.term_list[uu].state === 'line-through'){
+                            if (that.term_list[uu].player_id !== player_id){
+                                return;
+                            }
+                            that.term_list[uu].state = 'tag';
+                            that.text_input = '';      
+                            break;
+                        }
                     }
                     uu += 1;
                 }
@@ -344,7 +413,7 @@
                     .post(`/api/ubung_3_api/`, data_)
                     .then(function(response){
                         var result = response.data.result;
-                        console.log(result);
+                        //console.log(result);
                         that.term_list.splice(0);
                         var uu = 0;
                         while (uu < result.length){
@@ -355,12 +424,13 @@
                     .catch(function(error){
                         console.log(error);
                     })
+                console.log(that.term_list);
             }
         }
     })
 
 
-    function check_tag(){
+    {% comment %} function check_tag(){
         var tag_str_list = '';
         $('.tag').each(function(i,e){
             if ($(this).is('.line-through')){
@@ -371,7 +441,7 @@
         })
         $('#tags').val(tag_str_list);
         //console.log(tag_str_list)
-    }
+    } {% endcomment %}
 
     //setInterval("check_tag()", 100);
     

@@ -279,7 +279,7 @@
                             'link': '{{game.link}}', 
                             'data': that.term_list,
                         };
-                        console.log(that.term_list);
+                        //console.log(that.term_list);
                         //console.log(this.term_list);
                         //console.log(data_)
                         axios
@@ -305,7 +305,6 @@
                     'link': '{{game.link}}', 
                 }
 
-
                 axios
                     .post(`/api/ubung_1_get_data/`, data_)
                     .then(function(response){
@@ -330,7 +329,7 @@
             add_term: function(){
                 var that = this;
                 if (that.text_input ===  ''){
-                    return
+                    return;
                 }
                 var flag = 0; // test whether the user have already select the term.
                 var uu = 0;
@@ -359,7 +358,7 @@
                     .post(`/api/ubung_1_api/`, data_)
                     .then(function(response){
                         var result = response.data.result;
-                        console.log(result);
+                        //console.log(result);
                         that.term_list.splice(0);
                         var uu = 0;
                         while (uu < result.length){
@@ -392,7 +391,7 @@
                         //break;
                         if (that.term_list[uu].state === 'tag'){
                             if (flag == 1){
-                                return 
+                                return; 
                             }
                             that.term_list[uu].state = 'line-through'; 
                             that.text_input = item;                 
@@ -414,7 +413,7 @@
                     'link': '{{game.link}}', 
                     'data': that.term_list,
                 };
-                console.log(that.term_list);
+                //console.log(that.term_list);
                 //console.log(data_)
                 axios
                     .post(`/api/ubung_1_api/`, data_)
@@ -431,8 +430,6 @@
                     .catch(function(error){
                         console.log(error);
                     })
-                
-            
             }
         }
     })

@@ -785,28 +785,35 @@ def ubung_3_api(player_id, link, data):
     already_term_list = [i.drainer for i in already]
     for i in data:
         if i['value'] not in already_term_list:
-            Ubung3.objects.create(
-                game=game,
-                player=player,
-                drainer=i['value'],
-                state=i['state'],
-            )
-            continue
+            if i['player_id'] == -1:
+                Ubung3.objects.create(
+                    game=game,
+                    player=None,
+                    drainer=i['value'],
+                    state=i['state'],
+                )
+                continue
+            else:
+                Ubung3.objects.create(
+                    game=game,
+                    player=player,
+                    drainer=i['value'],
+                    state=i['state'],
+                )
+                continue    
         else:
             temp = Ubung3.objects.filter(game=game,drainer=i['value']).first()
             if temp.state == i['state']:
                 continue
             else:
-                if temp.state == 'tag':
-                    temp.state = 'line-through'
+                if i['state'] == 'tag':
+                    temp.state = i['state']
+                    temp.player = None
                     temp.save()
-                elif temp.state == 'line-through':
-                    # continue
-                    temp.state = 'tag'
+                elif i['state'] == 'line-through':
+                    temp.state = i['state']
+                    temp.player = player
                     temp.save()
+
     result_data = [i.api_json for i in list(Ubung3.objects.filter(game=game))]
     return result_data
-
-
-
-    

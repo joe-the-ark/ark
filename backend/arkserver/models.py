@@ -144,7 +144,7 @@ class Ubung2(models.Model):
 
 class Ubung3(models.Model):
     game = models.ForeignKey(Game, on_delete=models.CASCADE, verbose_name='game')
-    player = models.ForeignKey(Player, on_delete=models.CASCADE, verbose_name='player')
+    player = models.ForeignKey(Player, on_delete=models.CASCADE, verbose_name='player', blank=True, null=True,)
     drainer = models.CharField(max_length=100, default='')
     # 2 state: 'tag', 'line-through'
     state = models.CharField(max_length=100, default='')
@@ -160,10 +160,18 @@ class Ubung3(models.Model):
 
     @property
     def api_json(self):
-        return {
-            'state': self.state,
-            'value': self.drainer,
-        }
+        if self.player:    
+            return {
+                'state': self.state,
+                'value': self.drainer,
+                'player_id': self.player.id,
+            }
+        else:
+            return {
+                'state': self.state,
+                'value': self.drainer,
+                'player_id': -1,
+            }
 
     class Meta(object):
         verbose_name = verbose_name_plural = 'Ubung-3'
