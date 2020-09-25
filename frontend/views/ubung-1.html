@@ -328,14 +328,27 @@
         },
         methods:{
             add_term: function(){
-                console.log('press');
                 var that = this;
                 if (that.text_input ===  ''){
                     return
                 }
-                that.term_list.unshift({
+                var flag = 0; // test whether the user have already select the term.
+                var uu = 0;
+                var player_id = {{user.id}};
+                while (uu < that.term_list.length){
+                    if (that.term_list[uu].player_id === player_id){
+                        flag = 1;
+                        break;
+                    }
+                    uu += 1;
+                }
+                if (flag === 1){
+                    return;
+                }
+                that.term_list.push({
                     'state': 'line-through',
                     'value': that.text_input,
+                    'player_id': {{user.id}},
                 });
                 var data_ = {
                     'player_id': '{{user.id}}', 
@@ -357,7 +370,6 @@
                     .catch(function(error){
                         console.log(error);
                     })
-                that.text_input = '';
             },
             mark: function(item){
                 var that = this;
