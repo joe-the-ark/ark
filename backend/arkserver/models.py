@@ -86,7 +86,7 @@ class WaitingRoomMember(models.Model):
 
 class Ubung1(models.Model):
     game = models.ForeignKey(Game, on_delete=models.CASCADE, verbose_name='game')
-    player = models.ForeignKey(Player, on_delete=models.CASCADE, verbose_name='player')
+    player = models.ForeignKey(Player, on_delete=models.CASCADE, verbose_name='player', blank=True, null=True,)
     power = models.CharField(max_length=100, default='')
     # 2 state: 'tag', 'line-through'
     state = models.CharField(max_length=100, default='')
@@ -103,10 +103,18 @@ class Ubung1(models.Model):
     
     @property
     def api_json(self):
-        return {
-            'state': self.state,
-            'value': self.power,
-        }
+        if self.player:    
+            return {
+                'state': self.state,
+                'value': self.power,
+                'player_id': self.player.id,
+            }
+        else:
+            return {
+                'state': self.state,
+                'value': self.power,
+                'player_id': -1,
+            }
 
     class Meta(object):
         verbose_name = verbose_name_plural = 'Ubung-1'

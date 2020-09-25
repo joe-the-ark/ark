@@ -104,10 +104,7 @@
     </div>
 </div>
 
-<script
-  src="http://code.jquery.com/jquery-3.5.1.slim.min.js"
-  integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
-  crossorigin="anonymous"></script>
+<script src="/static/jquery-3.5.1.min.js"></script>
   <script src="/static/axios.min.js"></script>
   <script src="/static/vue.js"></script>
 <script>
@@ -120,119 +117,148 @@
             term_list: [
                 {
                     'state': 'tag',
-                    'value': 'Aufmüpfigkeit'
+                    'value': 'Aufmüpfigkeit',
+                    'player_id': -1,
                 },
                 {
                     'state': 'tag',
                     'value': 'Autonomie',
+                    'player_id': -1,
                 },
                 {
                     'state': 'tag',
-                    'value': 'Dominanz'
+                    'value': 'Dominanz',
+                    'player_id': -1,
                 },
                 {
                     'state': 'tag',
-                    'value': 'Effizienz'
+                    'value': 'Effizienz',
+                    'player_id': -1,
                 },
                 {
                     'state': 'tag',
                     'value': 'Ehrgeiz',
+                    'player_id': -1,
                 },
                 {
                     'state': 'tag',
                     'value': 'Einzigartigkeit',
+                    'player_id': -1,
                 },
                 {
                     'state': 'tag',
                     'value': 'Erfolg',
+                    'player_id': -1,
                 },
                 {
                     'state': 'tag',
                     'value': 'Flexibilität',
+                    'player_id': -1,
                 },
                 {
                     'state': 'tag',
-                    'value': 'Freundschaft'
+                    'value': 'Freundschaft',
+                    'player_id': -1,
                 },
                 {
                     'state': 'tag',
                     'value': 'Gelassenheit',
+                    'player_id': -1,
                 },
                 {
                     'state': 'tag',
-                    'value': 'Gerechtigkeit'
+                    'value': 'Gerechtigkeit',
+                    'player_id': -1,
                 },
                 {
                     'state': 'tag',
-                    'value': 'Geselligkeit'
+                    'value': 'Geselligkeit',
+                    'player_id': -1,
                 },
                 {
                     'state': 'tag',
-                    'value': 'Gleichberechtigung'
+                    'value': 'Gleichberechtigung',
+                    'player_id': -1,
                 },
                 {
                     'state': 'tag',
-                    'value': 'Großzügigkeit'
+                    'value': 'Großzügigkeit',
+                    'player_id': -1,
                 },
                 {
                     'state': 'tag',
-                    'value': 'Imagination'
+                    'value': 'Imagination',
+                    'player_id': -1,
                 },
                 {
                     'state': 'tag',
-                    'value': 'Leidenschaft'
+                    'value': 'Leidenschaft',
+                    'player_id': -1,
                 },
                 {
                     'state': 'tag',
-                    'value': 'Loyalität'
+                    'value': 'Loyalität',
+                    'player_id': -1,
                 },
                 {
                     'state': 'tag',
-                    'value': 'Mut'
+                    'value': 'Mut',
+                    'player_id': -1,
                 },
                 {
                     'state': 'tag',
-                    'value': 'Nachhaltigkeit'
+                    'value': 'Nachhaltigkeit',
+                    'player_id': -1,
                 },
                 {
                     'state': 'tag',
-                    'value': 'Neugier'
+                    'value': 'Neugier',
+                    'player_id': -1,
                 },
                 {
                     'state': 'tag',
-                    'value': 'Offenheit'
+                    'value': 'Offenheit',
+                    'player_id': -1,
                 },
                 {
                     'state': 'tag',
-                    'value': 'Sicherheit'
+                    'value': 'Sicherheit',
+                    'player_id': -1,
                 },
                 {
                     'state': 'tag',
-                    'value': 'Sinnhaftigkeit'
+                    'value': 'Sinnhaftigkeit',
+                    'player_id': -1,
                 },
                 {
                     'state': 'tag',
-                    'value': 'Solidarität'
+                    'value': 'Solidarität',
+                    'player_id': -1,
                 },
                 {
                     'state': 'tag',
-                    'value': 'Sorgfalt'
+                    'value': 'Sorgfalt',
+                    'player_id': -1,
                 },
                 {
                     'state': 'tag',
-                    'value': 'Vergnügen'
+                    'value': 'Vergnügen',
+                    'player_id': -1,
                 },
                 {
                     'state': 'tag',
-                    'value': 'Vertrautheit'
+                    'value': 'Vertrautheit',
+                    'player_id': -1,
                 },
                 {
                     'state': 'tag',
-                    'value': 'Würde'
+                    'value': 'Würde',
+                    'player_id': -1,
                 },
                 {
                     'state': 'tag',
-                    'value': 'Zuverlässigkeit'
+                    'value': 'Zuverlässigkeit',
+                    'player_id': -1,
                 },
             ]
         },
@@ -253,6 +279,7 @@
                             'link': '{{game.link}}', 
                             'data': that.term_list,
                         };
+                        console.log(that.term_list);
                         //console.log(this.term_list);
                         //console.log(data_)
                         axios
@@ -296,7 +323,7 @@
                     })
             }
 
-            setInterval(get_api_data,2000); 
+            setInterval(get_api_data,3000); 
             
         },
         methods:{
@@ -307,7 +334,7 @@
                     return
                 }
                 that.term_list.unshift({
-                    'state': 'tag',
+                    'state': 'line-through',
                     'value': that.text_input,
                 });
                 var data_ = {
@@ -334,11 +361,39 @@
             },
             mark: function(item){
                 var that = this;
+                var player_id = {{user.id}};
+                
+                var flag = 0; // test whether the user have already select the term.
                 var uu = 0;
-                while (uu < this.term_list.length){
-                    if (this.term_list[uu].value == item){
-                        this.term_list[uu].state = 'line-through';
+                while (uu < that.term_list.length){
+                    if (that.term_list[uu].player_id === player_id){
+                        flag = 1;
                         break;
+                    }
+                    uu += 1;
+                }
+                
+                var uu = 0;
+                while (uu < that.term_list.length){
+                    if (that.term_list[uu].value == item){
+                        //this.term_list[uu].state = 'line-through';
+                        //break;
+                        if (that.term_list[uu].state === 'tag'){
+                            if (flag == 1){
+                                return 
+                            }
+                            that.term_list[uu].state = 'line-through'; 
+                            that.text_input = item;                 
+                            break;
+                        }
+                        if (that.term_list[uu].state === 'line-through'){
+                            if (that.term_list[uu].player_id !== player_id){
+                                return;
+                            }
+                            that.term_list[uu].state = 'tag';
+                            that.text_input = '';      
+                            break;
+                        }
                     }
                     uu += 1;
                 }
@@ -347,13 +402,13 @@
                     'link': '{{game.link}}', 
                     'data': that.term_list,
                 };
-                //console.log(this.term_list);
+                console.log(that.term_list);
                 //console.log(data_)
                 axios
                     .post(`/api/ubung_1_api/`, data_)
                     .then(function(response){
                         var result = response.data.result;
-                        console.log(result);
+                        //console.log(result);
                         that.term_list.splice(0);
                         var uu = 0;
                         while (uu < result.length){
@@ -364,12 +419,13 @@
                     .catch(function(error){
                         console.log(error);
                     })
+                
             
             }
         }
     })
 
-    function check_tag(){
+    {% comment %} function check_tag(){
         var tag_str_list = '';
         $('.tag').each(function(i,e){
             if ($(this).is('.line-through')){
@@ -382,7 +438,7 @@
         //console.log(tag_str_list)
     }
 
-    setInterval("check_tag()", 100);
+    setInterval("check_tag()", 100); {% endcomment %}
     
 {% comment %} 
     $('#Aufmüpfigkeit').on("click",function(){
