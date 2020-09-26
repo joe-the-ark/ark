@@ -595,7 +595,7 @@ def arche(request, user):
 
 
 @user_required
-def wartezimmer(request, user, link):
+def wartezimmer(request, user):
     ctx = {}
     ctx['game'] = Game.objects.filter(link=request.session['link']).first()
     link = request.session['link']
@@ -663,6 +663,15 @@ def psychologischer(request, user):
     ctx['row4'] = row_4
     ctx['row5'] = row_5
     return render(request, './views/psychologischer.html', ctx)
+
+
+def logout(request):
+    if 'uid' in request.session:
+        del request.session['uid']
+    if 'link' in request.session:
+        del request.session['link']
+    return redirect('/')
+
 
 
 

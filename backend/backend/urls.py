@@ -43,9 +43,11 @@ urlpatterns = [
     path('arche/',server_views.arche),
     path('wartezimmer/',server_views.wartezimmer),
     
-    path('wartezimmer/<str:link>/', server_views.wartezimmer),
+    # path('wartezimmer/<str:link>/', server_views.wartezimmer),
 
     path('psychologischer/',server_views.psychologischer),
+
+    path('logout/', server_views.logout),
 
 
 
