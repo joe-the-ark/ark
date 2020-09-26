@@ -149,7 +149,20 @@ def preview(request, user):
 @user_required
 def ubung_1(request, user):
     ctx = {}
-    ctx['game'] = Game.objects.filter(link=request.session['link']).first()
+    ctx['game'] = game = Game.objects.filter(link=request.session['link']).first()
+    player = user
+    temp = Ubung1.objects.filter(game=game).first()
+    if not temp:
+        from .utils import ubung_1_term_list
+        term_list = ubung_1_term_list
+        for i in term_list:
+            Ubung1.objects.create(
+                game = game,
+                player = None,
+                state = 'tag',
+                power = i['value'],
+            )
+    ctx['term_list'] = [i.api_json for i in list(Ubung1.objects.filter(game=game))]
     # if request.method == 'POST':
     #     link = request.session['link']
 
@@ -194,7 +207,24 @@ def ubung_2(request, user):
 @user_required
 def ubung_3(request, user):
     ctx = {}
-    ctx['game'] = Game.objects.filter(link=request.session['link']).first()
+    ctx['game'] = game = Game.objects.filter(link=request.session['link']).first()
+
+
+    player = user
+    temp = Ubung3.objects.filter(game=game).first()
+    if not temp:
+        from .utils import ubung_3_term_list
+        term_list = ubung_3_term_list
+        for i in term_list:
+            Ubung1.objects.create(
+                game = game,
+                player = None,
+                state = 'tag',
+                drainer = i['value'],
+            )
+    
+    ctx['term_list'] = [i.api_json for i in list(Ubung3.objects.filter(game=game))]
+
     # if request.method == 'POST':
     #     link = request.session['link']
     #     energiefresser = request.POST.get('energiefresser')

@@ -116,153 +116,7 @@
         el: '#app-1',
         data:{
             text_input: '',
-            term_list: [
-                {
-                    'state': 'tag',
-                    'value': 'Aufmüpfigkeit',
-                    'player_id': -1,
-                },
-                {
-                    'state': 'tag',
-                    'value': 'Autonomie',
-                    'player_id': -1,
-                },
-                {
-                    'state': 'tag',
-                    'value': 'Dominanz',
-                    'player_id': -1,
-                },
-                {
-                    'state': 'tag',
-                    'value': 'Effizienz',
-                    'player_id': -1,
-                },
-                {
-                    'state': 'tag',
-                    'value': 'Ehrgeiz',
-                    'player_id': -1,
-                },
-                {
-                    'state': 'tag',
-                    'value': 'Einzigartigkeit',
-                    'player_id': -1,
-                },
-                {
-                    'state': 'tag',
-                    'value': 'Erfolg',
-                    'player_id': -1,
-                },
-                {
-                    'state': 'tag',
-                    'value': 'Flexibilität',
-                    'player_id': -1,
-                },
-                {
-                    'state': 'tag',
-                    'value': 'Freundschaft',
-                    'player_id': -1,
-                },
-                {
-                    'state': 'tag',
-                    'value': 'Gelassenheit',
-                    'player_id': -1,
-                },
-                {
-                    'state': 'tag',
-                    'value': 'Gerechtigkeit',
-                    'player_id': -1,
-                },
-                {
-                    'state': 'tag',
-                    'value': 'Geselligkeit',
-                    'player_id': -1,
-                },
-                {
-                    'state': 'tag',
-                    'value': 'Gleichberechtigung',
-                    'player_id': -1,
-                },
-                {
-                    'state': 'tag',
-                    'value': 'Großzügigkeit',
-                    'player_id': -1,
-                },
-                {
-                    'state': 'tag',
-                    'value': 'Imagination',
-                    'player_id': -1,
-                },
-                {
-                    'state': 'tag',
-                    'value': 'Leidenschaft',
-                    'player_id': -1,
-                },
-                {
-                    'state': 'tag',
-                    'value': 'Loyalität',
-                    'player_id': -1,
-                },
-                {
-                    'state': 'tag',
-                    'value': 'Mut',
-                    'player_id': -1,
-                },
-                {
-                    'state': 'tag',
-                    'value': 'Nachhaltigkeit',
-                    'player_id': -1,
-                },
-                {
-                    'state': 'tag',
-                    'value': 'Neugier',
-                    'player_id': -1,
-                },
-                {
-                    'state': 'tag',
-                    'value': 'Offenheit',
-                    'player_id': -1,
-                },
-                {
-                    'state': 'tag',
-                    'value': 'Sicherheit',
-                    'player_id': -1,
-                },
-                {
-                    'state': 'tag',
-                    'value': 'Sinnhaftigkeit',
-                    'player_id': -1,
-                },
-                {
-                    'state': 'tag',
-                    'value': 'Solidarität',
-                    'player_id': -1,
-                },
-                {
-                    'state': 'tag',
-                    'value': 'Sorgfalt',
-                    'player_id': -1,
-                },
-                {
-                    'state': 'tag',
-                    'value': 'Vergnügen',
-                    'player_id': -1,
-                },
-                {
-                    'state': 'tag',
-                    'value': 'Vertrautheit',
-                    'player_id': -1,
-                },
-                {
-                    'state': 'tag',
-                    'value': 'Würde',
-                    'player_id': -1,
-                },
-                {
-                    'state': 'tag',
-                    'value': 'Zuverlässigkeit',
-                    'player_id': -1,
-                },
-            ]
+            term_list: {{ term_list|safe }}
         },
         mounted(){
             //var data = this.term_list;
@@ -281,9 +135,6 @@
                             'link': '{{game.link}}', 
                             'data': that.term_list,
                         };
-                        //console.log(that.term_list);
-                        //console.log(this.term_list);
-                        //console.log(data_)
                         axios
                             .post(`/api/ubung_1_api/`, data_)
                             .then(function(response){
@@ -300,7 +151,7 @@
                                 console.log(error);
                             })
                     }
-                })
+                }) 
             function get_api_data(){
                 var data_ = {
                     'player_id': '{{user.id}}', 
@@ -323,7 +174,7 @@
                         console.log(error);
                     })
             }
-
+            get_api_data();
             setInterval(get_api_data,3000); 
             
         },
