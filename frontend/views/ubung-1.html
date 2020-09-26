@@ -121,6 +121,19 @@
         mounted(){
             //var data = this.term_list;
             var that = this;
+
+            var flag = 0; // test whether the user have already select the term.
+            var uu = 0;
+            var player_id = {{user.id}};
+            while (uu < that.term_list.length){
+                if (that.term_list[uu].player_id === player_id){
+                    flag = 1;
+                    that.text_input = that.term_list[uu].value;
+                    break;
+                }
+                uu += 1;
+            }
+            
             var data_ = {
                 'player_id': '{{user.id}}', 
                 'link': '{{game.link}}', 
