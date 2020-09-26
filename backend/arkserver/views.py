@@ -101,12 +101,13 @@ def auth(request):
 
     return render(request,'./views/auth.html', ctx)
 
+
 def auth_link(request):
     ctx = {}
 
     if request.method == 'POST':
         username = request.POST.get('Nutzername')
-        avatar = request.POST.get('name-des-spiels')
+        avatar = request.POST.get('avatar')
         # gamename = request.POST.get('name-des-spiels')
         link = request.POST.get('link')
         print('username', username)
