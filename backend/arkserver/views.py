@@ -217,7 +217,7 @@ def ubung_3(request, user):
         from .utils import ubung_3_term_list
         term_list = ubung_3_term_list
         for i in term_list:
-            Ubung1.objects.create(
+            Ubung3.objects.create(
                 game = game,
                 player = None,
                 state = 'tag',

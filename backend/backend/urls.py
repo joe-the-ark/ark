@@ -42,15 +42,9 @@ urlpatterns = [
     path('goodbye/',server_views.goodbye),
     path('arche/',server_views.arche),
     path('wartezimmer/',server_views.wartezimmer),
-    
-    # path('wartezimmer/<str:link>/', server_views.wartezimmer),
-
     path('psychologischer/',server_views.psychologischer),
-
     path('logout/', server_views.logout),
-
-
-
+    # path('wartezimmer/<str:link>/', server_views.wartezimmer),
 
 
     # path('', restapi.vue()),
