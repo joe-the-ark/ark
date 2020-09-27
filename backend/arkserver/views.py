@@ -63,8 +63,11 @@ def auth(request):
         avatar = request.POST.get('avatar')
         link = request.POST.get('link')
         request.session['link'] = link
+        game = Game.objects.filter(link=link).first()
 
-        if (not Player.objects.filter(name=username).first()):
+        user_name_list =  [i.name for i in game.members]
+        # if (not Player.objects.filter(name=username).first()):
+        if not ((username in user_name_list) or (Game.objects.filter(name=gamename).first())):
             # avatar = get_avatar_link(avatar)
 
             new_player = Player.objects.create(
