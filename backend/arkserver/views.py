@@ -63,11 +63,9 @@ def auth(request):
         avatar = request.POST.get('avatar')
         link = request.POST.get('link')
         request.session['link'] = link
-        game = Game.objects.filter(link=link).first()
 
-        user_name_list =  [i.name for i in game.members]
         # if (not Player.objects.filter(name=username).first()):
-        if not ((username in user_name_list) or (Game.objects.filter(name=gamename).first())):
+        if not Game.objects.filter(name=gamename).first():
             # avatar = get_avatar_link(avatar)
 
             new_player = Player.objects.create(
@@ -195,6 +193,8 @@ def ubung_1(request, user):
 @user_required
 def ubung_2(request, user):
     ctx = {}
+    ctx['game'] = game = Game.objects.filter(link=request.session['link']).first()
+    
     if request.method == 'POST':
         link = request.session['link']
         digit_value = request.POST.get('digit_value')
@@ -672,17 +672,17 @@ def psychologischer(request, user):
         if game_.player == user:
             continue
         else:
-            if user in game_.row0:
+            if user in game_.row0.all():
                 row_0 += 1
-            if user in game_.row1:
+            if user in game_.row1.all():
                 row_1 += 1
-            if user in game_.row2:
+            if user in game_.row2.all():
                 row_2 += 1
-            if user in game_.row3:
+            if user in game_.row3.all():
                 row_3 += 1
-            if user in game_.row4:
+            if user in game_.row4.all():
                 row_4 += 1
-            if user in game_.row5:
+            if user in game_.row5.all():
                 row_5 += 1
 
     score = row_0 * 4 + row_1 * 1 + row_2 * 3 + row_3 * 5 + row_4 * 0 + row_5 * 2
@@ -696,6 +696,13 @@ def psychologischer(request, user):
     ctx['row3'] = row_3
     ctx['row4'] = row_4
     ctx['row5'] = row_5
+    # print(score)
+    # print(row_0)
+    # print(row_1)
+    # print(row_2)
+    # print(row_3)
+    # print(row_4)
+    # print(row_5)
     return render(request, './views/psychologischer.html', ctx)
 
 
