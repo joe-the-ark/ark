@@ -173,7 +173,7 @@
                             Spiellink teilen:
                         </button>
                         {% if link %}
-                            <input id="link" type="text" name="link" value="{{link}}" readonly="readonly"/>
+                            {% comment %} <input id="link" type="text" name="link" value="{{link}}" readonly="readonly"/> {% endcomment %}
                             <input id="link_url" type="text" name="link_url" value="" readonly="readonly"/>
                         {% else %}
                             <input id="link" type="text" name="link" value=""/>
