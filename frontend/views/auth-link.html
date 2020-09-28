@@ -172,7 +172,11 @@
                         <button>
                             Einen Link teilen:
                         </button>
-                        <input id="link" type="text" name="link" value=""/>
+                        {% if link %}
+                            <input id="link" type="text" name="link" value="{{link}}"/>
+                        {% else %}
+                            <input id="link" type="text" name="link" value=""/>
+                        {% endif %}
                         <span class="icon-link"></span>
                     </div>
                     <div class="form__field">

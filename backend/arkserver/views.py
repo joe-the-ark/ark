@@ -141,6 +141,13 @@ def auth_link(request):
 
     return render(request,'./views/auth-link.html', ctx)
 
+
+def link_enter(request, link):
+    ctx = {}
+    ctx['link'] = link
+    return render(request,'./views/auth-link.html', ctx)
+
+
 @user_required
 def preview(request, user):
     ctx = {}
