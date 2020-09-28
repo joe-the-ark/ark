@@ -146,12 +146,12 @@ def auth_link(request):
 def link_enter(request, link):
     ctx = {}
     ctx['link'] = link
-    
+
     if request.method == 'POST':
         username = request.POST.get('Nutzername')
         avatar = request.POST.get('avatar')
         # gamename = request.POST.get('name-des-spiels')
-        link = request.POST.get('link')
+        # link = request.POST.get('link')
         print('username', username)
         # print('gamename', gamename)
         print('avatar', avatar)
