@@ -146,6 +146,40 @@ def auth_link(request):
 def link_enter(request, link):
     ctx = {}
     ctx['link'] = link
+    
+    if request.method == 'POST':
+        username = request.POST.get('Nutzername')
+        avatar = request.POST.get('avatar')
+        # gamename = request.POST.get('name-des-spiels')
+        link = request.POST.get('link')
+        print('username', username)
+        # print('gamename', gamename)
+        print('avatar', avatar)
+        print('link', link)
+        request.session['link'] = link
+
+        if not Game.objects.filter(link=link).first().members.filter(name=username).first():
+            # avatar = get_avatar_link(avatar)
+            new_player = Player.objects.create(
+                name = username,
+                avatar = avatar,
+            )
+            request.session['uid'] = new_player.id
+            game = Game.objects.filter(link=link).first()
+            game.members.set([new_player])
+            WaitingRoomMember.objects.create(
+                game = game,
+                player = new_player,
+                state = 0,
+            )
+            return redirect(f'/preview/')
+            # return redirect(f'/wartezimmer/{link}/')
+
+        else:
+            # detect same name in this game
+            ctx['error'] = 1
+            return render(request,'./views/auth_link.html', ctx)
+
     return render(request,'./views/auth-link.html', ctx)
 
 
