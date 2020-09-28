@@ -27,7 +27,7 @@ urlpatterns = [
     path('', server_views.index),
     path('auth/',server_views.auth),
     path('auth-link/',server_views.auth_link),
-    path('<str:link>/',server_views.link_enter),
+    path('link/<str:link>/',server_views.link_enter),
 
     path('preview/',server_views.preview),
     path('ubung-1/',server_views.ubung_1),
