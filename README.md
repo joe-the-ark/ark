@@ -17,6 +17,8 @@ If you work on your local branches, make sure to do a `git pull origin master` b
 - p.s.: you should run django 2.2
     - if you're on a higher version type anywhere in your console ```pip3 uninstall django```
     - then ```pip3 install django==2.2.```
+## The Gameflow in a Nutshell
+https://www.dropbox.com/s/8n2k3ewent6omc5/ARK_2_Gameflow_Six.pdf?dl=0
 ## Creator of the Game
 * [Dr. Joachim Maier, creator of the game](https://www.linkedin.com/in/dr-joachim-maier/)
 * [Some pictures how the Game was developed](https://photos.app.goo.gl/4fHKgDkx9ChjeiuV8)
