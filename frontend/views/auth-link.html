@@ -174,10 +174,12 @@
                         </button>
                         {% if link %}
                             <input id="link" type="text" name="link" value="{{link}}" readonly="readonly"/>
+                            <input id="link_url" type="text" name="link_url" value="" readonly="readonly"/>
                         {% else %}
                             <input id="link" type="text" name="link" value=""/>
                         {% endif %}
-                        <span class="icon-link"></span>
+                        <span class="icon-link" data-clipboard-target="#link_url">
+                        </span>
                     </div>
                     <div class="form__field">
                         <button type="submit">
@@ -189,12 +191,30 @@
         </div>
     </div>
 </div>
-
+<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+<script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="/static/vue.js"></script>
 <script src="/static/jquery-3.5.1.min.js"></script>
-
+<script src="https://unpkg.com/clipboard@2/dist/clipboard.min.js"></script>
 <script>
+    // Copy and tooltip
+    new ClipboardJS('.icon-link');
+    let linkSpan = tippy(document.querySelector('.icon-link'));
+    tippy('.icon-link', {
+      content: 'Copy to clipboard',
+    });
+    tippy('.icon-link', {
+      trigger: 'click',
+      content: 'Copied',
+    });
+
+    var a = Date.now();
+    var temp_link = btoa(a);
+    var url_host = window.location.host;
+    var temp_link_ = url_host + '/link/' + '{{link}}' + '/';
+    $('#link_url').val(temp_link_);
+
    var app = new Vue({
         delimiters: ['[[', ']]'],
         el: '#app-1',
