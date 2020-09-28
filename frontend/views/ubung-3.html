@@ -95,9 +95,11 @@
                     </div>
                     <input id="tags" type="hidden" name="tags" value="输入你要传bai递的值">
                     <div class="center">
-                        <button href="/wartezimmer/{{game.link}}/" class="submit">
-                            Weiterspielen
-                        </button>
+                        <a href="/wartezimmer/">
+                            <button class="submit">
+                                Weiterspielen
+                            </button>
+                        </a>
                     </div>
                 </main>
         </div>
@@ -105,10 +107,7 @@
 </div>
 
 
-<script
-  src="http://code.jquery.com/jquery-3.5.1.slim.min.js"
-  integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
-  crossorigin="anonymous"></script>
+<script src="/static/jquery-3.5.1.min.js"></script>
   <script src="/static/axios.min.js"></script>
   <script src="/static/vue.js"></script>
 
@@ -118,126 +117,23 @@
         el: '#app-1',
         data:{
             text_input: '',
-            term_list:[
-            {
-                'state': 'tag',
-                'value': 'Abhängigkeit',
-            },
-            {
-                'state': 'tag',
-                'value': 'Achtlosigkeit',
-            },
-            {
-                'state': 'tag',
-                'value': 'Angepasstheit',
-            },
-            {
-                'state': 'tag',
-                'value': 'Angsẗ',
-            },
-            {
-                'state': 'tag',
-                'value': 'Aufgeregtheit',
-            },
-            {
-                'state': 'tag',
-                'value': 'Desinteresse',
-            },
-            {
-                'state': 'tag',
-                'value': 'Distanz',
-            },
-            {
-                'state': 'tag',
-                'value': 'Egoismus',
-            },
-            {
-                'state': 'tag',
-                'value': 'Ehrlosigkeit',
-            },
-            {
-                'state': 'tag',
-                'value': 'Einfallslosigkeit',
-            },
-            {
-                'state': 'tag',
-                'value': 'Feindseligkeit',
-            },
-            {
-                'state': 'tag',
-                'value': 'Gehorsam',
-            },
-            {
-                'state': 'tag',
-                'value': 'Gleichgültigkeit',
-            },
-            {
-                'state': 'tag',
-                'value': 'Leistungsschwäche',
-            },
-            {
-                'state': 'tag',
-                'value': 'Müßiggang',
-            },
-            {
-                'state': 'tag',
-                'value': 'Neid',
-            },
-            {
-                'state': 'tag',
-                'value': 'Rangordnung',
-            },
-            {
-                'state': 'tag',
-                'value': 'Rechthaberei',
-            },
-            {
-                'state': 'tag',
-                'value': 'Risiko',
-            },
-            {
-                'state': 'tag',
-                'value': 'Sinnlosigkeit',
-            },
-            {
-                'state': 'tag',
-                'value': 'Starrheit',
-            },
-            {
-                'state': 'tag',
-                'value': 'Treulosigkeit',
-            },
-            {
-                'state': 'tag',
-                'value': 'Unachtsamkeit',
-            },
-            {
-                'state': 'tag',
-                'value': 'Unterordnung',
-            },
-            {
-                'state': 'tag',
-                'value': 'Unzuverlässigkeit',
-            },
-            {
-                'state': 'tag',
-                'value': 'Verbot',
-            },
-            {
-                'state': 'tag',
-                'value': 'Verkrampftheit',
-            },
-            {
-                'state': 'tag',
-                'value': 'Versagen',
-            },
-            {
-                'state': 'tag',
-                'value': 'Willkür',
-            }]
+            term_list: {{term_list|safe}},
         },
         mounted(){
             var that = this;
+    
+            var flag = 0; // test whether the user have already select the term.
+            var uu = 0;
+            var player_id = {{user.id}};
+            while (uu < that.term_list.length){
+                if (that.term_list[uu].player_id === player_id){
+                    flag = 1;
+                    that.text_input = that.term_list[uu].value;
+                    break;
+                }
+                uu += 1;
+            }
+
             var data_ = {
                 'player_id': '{{user.id}}', 
                 'link': '{{game.link}}', 
@@ -292,18 +188,31 @@
                         console.log(error);
                     })
             }
-            setInterval(get_api_data, 2000);
+            setInterval(get_api_data, 3000);
         },
         methods:{
             add_term: function(){
-                console.log('press');
                 var that = this;
                 if (that.text_input ===  ''){
-                    return
+                    return;
                 }
-                that.term_list.unshift({
+                var flag = 0; // test whether the user have already select the term.
+                var uu = 0;
+                var player_id = {{user.id}};
+                while (uu < that.term_list.length){
+                    if (that.term_list[uu].player_id === player_id){
+                        flag = 1;
+                        break;
+                    }
+                    uu += 1;
+                }
+                if (flag === 1){
+                    return;
+                }
+                that.term_list.push({
                     'state': 'tag',
                     'value': that.text_input,
+                    'player_id': {{user.id}},
                 });
                 var data_ = {
                     'player_id': '{{user.id}}', 
@@ -314,7 +223,7 @@
                     .post(`/api/ubung_3_api/`, data_)
                     .then(function(response){
                         var result = response.data.result;
-                        console.log(result);
+                        //console.log(result);
                         that.term_list.splice(0);
                         var uu = 0;
                         while (uu < result.length){
@@ -325,16 +234,43 @@
                     .catch(function(error){
                         console.log(error);
                     })
-                that.text_input = '';
             },
             mark: function(item){
-                console.log('item', item)
+                console.log('press');
                 var that = this;
+                var player_id = {{user.id}};
+
+                var flag = 0; // test whether the user have already select the term.
                 var uu = 0;
-                while (uu < this.term_list.length){
-                    if (this.term_list[uu].value == item){
-                        this.term_list[uu].state = 'line-through';
+                while (uu < that.term_list.length){
+                    if (that.term_list[uu].player_id === player_id){
+                        flag = 1;
                         break;
+                    }
+                    uu += 1;
+                }
+
+                var uu = 0;
+                while (uu < that.term_list.length){
+                    if (that.term_list[uu].value == item){
+                        //this.term_list[uu].state = 'line-through';
+                        //break;
+                        if (that.term_list[uu].state === 'tag'){
+                            if (flag == 1){
+                                return;
+                            }
+                            that.term_list[uu].state = 'line-through'; 
+                            that.text_input = item;                 
+                            break;
+                        }
+                        if (that.term_list[uu].state === 'line-through'){
+                            if (that.term_list[uu].player_id !== player_id){
+                                return;
+                            }
+                            that.term_list[uu].state = 'tag';
+                            that.text_input = '';      
+                            break;
+                        }
                     }
                     uu += 1;
                 }
@@ -347,7 +283,7 @@
                     .post(`/api/ubung_3_api/`, data_)
                     .then(function(response){
                         var result = response.data.result;
-                        console.log(result);
+                        //console.log(result);
                         that.term_list.splice(0);
                         var uu = 0;
                         while (uu < result.length){
@@ -358,12 +294,13 @@
                     .catch(function(error){
                         console.log(error);
                     })
+                console.log(that.term_list);
             }
         }
     })
 
 
-    function check_tag(){
+    {% comment %} function check_tag(){
         var tag_str_list = '';
         $('.tag').each(function(i,e){
             if ($(this).is('.line-through')){
@@ -374,7 +311,7 @@
         })
         $('#tags').val(tag_str_list);
         //console.log(tag_str_list)
-    }
+    } {% endcomment %}
 
     //setInterval("check_tag()", 100);
     

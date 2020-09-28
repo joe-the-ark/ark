@@ -27,6 +27,8 @@ urlpatterns = [
     path('', server_views.index),
     path('auth/',server_views.auth),
     path('auth-link/',server_views.auth_link),
+    path('link/<str:link>/',server_views.link_enter),
+
     path('preview/',server_views.preview),
     path('ubung-1/',server_views.ubung_1),
     path('ubung-2/',server_views.ubung_2),
@@ -42,13 +44,9 @@ urlpatterns = [
     path('goodbye/',server_views.goodbye),
     path('arche/',server_views.arche),
     path('wartezimmer/',server_views.wartezimmer),
-    
-    path('wartezimmer/<str:link>/', server_views.wartezimmer),
-
     path('psychologischer/',server_views.psychologischer),
-
-
-
+    path('logout/', server_views.logout),
+    # path('wartezimmer/<str:link>/', server_views.wartezimmer),
 
 
     # path('', restapi.vue()),

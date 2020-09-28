@@ -64,7 +64,8 @@ def auth(request):
         link = request.POST.get('link')
         request.session['link'] = link
 
-        if (not Player.objects.filter(name=username).first()):
+        # if (not Player.objects.filter(name=username).first()):
+        if not Game.objects.filter(name=gamename).first():
             # avatar = get_avatar_link(avatar)
 
             new_player = Player.objects.create(
@@ -101,12 +102,13 @@ def auth(request):
 
     return render(request,'./views/auth.html', ctx)
 
+
 def auth_link(request):
     ctx = {}
 
     if request.method == 'POST':
         username = request.POST.get('Nutzername')
-        avatar = request.POST.get('name-des-spiels')
+        avatar = request.POST.get('avatar')
         # gamename = request.POST.get('name-des-spiels')
         link = request.POST.get('link')
         print('username', username)
@@ -139,6 +141,13 @@ def auth_link(request):
 
     return render(request,'./views/auth-link.html', ctx)
 
+
+def link_enter(request, link):
+    ctx = {}
+    ctx['link'] = link
+    return render(request,'./views/auth-link.html', ctx)
+
+
 @user_required
 def preview(request, user):
     ctx = {}
@@ -149,7 +158,20 @@ def preview(request, user):
 @user_required
 def ubung_1(request, user):
     ctx = {}
-    ctx['game'] = Game.objects.filter(link=request.session['link']).first()
+    ctx['game'] = game = Game.objects.filter(link=request.session['link']).first()
+    player = user
+    temp = Ubung1.objects.filter(game=game).first()
+    if not temp:
+        from .utils import ubung_1_term_list
+        term_list = ubung_1_term_list
+        for i in term_list:
+            Ubung1.objects.create(
+                game = game,
+                player = None,
+                state = 'tag',
+                power = i['value'],
+            )
+    ctx['term_list'] = [i.api_json for i in list(Ubung1.objects.filter(game=game))]
     # if request.method == 'POST':
     #     link = request.session['link']
 
@@ -178,6 +200,8 @@ def ubung_1(request, user):
 @user_required
 def ubung_2(request, user):
     ctx = {}
+    ctx['game'] = game = Game.objects.filter(link=request.session['link']).first()
+    
     if request.method == 'POST':
         link = request.session['link']
         digit_value = request.POST.get('digit_value')
@@ -194,7 +218,24 @@ def ubung_2(request, user):
 @user_required
 def ubung_3(request, user):
     ctx = {}
-    ctx['game'] = Game.objects.filter(link=request.session['link']).first()
+    ctx['game'] = game = Game.objects.filter(link=request.session['link']).first()
+
+
+    player = user
+    temp = Ubung3.objects.filter(game=game).first()
+    if not temp:
+        from .utils import ubung_3_term_list
+        term_list = ubung_3_term_list
+        for i in term_list:
+            Ubung3.objects.create(
+                game = game,
+                player = None,
+                state = 'tag',
+                drainer = i['value'],
+            )
+    
+    ctx['term_list'] = [i.api_json for i in list(Ubung3.objects.filter(game=game))]
+
     # if request.method == 'POST':
     #     link = request.session['link']
     #     energiefresser = request.POST.get('energiefresser')
@@ -595,7 +636,7 @@ def arche(request, user):
 
 
 @user_required
-def wartezimmer(request, user, link):
+def wartezimmer(request, user):
     ctx = {}
     ctx['game'] = Game.objects.filter(link=request.session['link']).first()
     link = request.session['link']
@@ -638,17 +679,17 @@ def psychologischer(request, user):
         if game_.player == user:
             continue
         else:
-            if user in game_.row0:
+            if user in game_.row0.all():
                 row_0 += 1
-            if user in game_.row1:
+            if user in game_.row1.all():
                 row_1 += 1
-            if user in game_.row2:
+            if user in game_.row2.all():
                 row_2 += 1
-            if user in game_.row3:
+            if user in game_.row3.all():
                 row_3 += 1
-            if user in game_.row4:
+            if user in game_.row4.all():
                 row_4 += 1
-            if user in game_.row5:
+            if user in game_.row5.all():
                 row_5 += 1
 
     score = row_0 * 4 + row_1 * 1 + row_2 * 3 + row_3 * 5 + row_4 * 0 + row_5 * 2
@@ -662,7 +703,23 @@ def psychologischer(request, user):
     ctx['row3'] = row_3
     ctx['row4'] = row_4
     ctx['row5'] = row_5
+    # print(score)
+    # print(row_0)
+    # print(row_1)
+    # print(row_2)
+    # print(row_3)
+    # print(row_4)
+    # print(row_5)
     return render(request, './views/psychologischer.html', ctx)
+
+
+def logout(request):
+    if 'uid' in request.session:
+        del request.session['uid']
+    if 'link' in request.session:
+        del request.session['link']
+    return redirect('/')
+
 
 
 
@@ -720,25 +777,35 @@ def ubung_1_api(player_id, link, data):
     already_term_list = [i.power for i in already]
     for i in data:
         if i['value'] not in already_term_list:
-            Ubung1.objects.create(
-                game=game,
-                player=player,
-                power=i['value'],
-                state=i['state'],
-            )
-            continue
+            if i['player_id'] == -1:
+                Ubung1.objects.create(
+                    game=game,
+                    player=None,
+                    power=i['value'],
+                    state=i['state'],
+                )
+                continue
+            else:
+                Ubung1.objects.create(
+                    game=game,
+                    player=player,
+                    power=i['value'],
+                    state=i['state'],
+                )
+                continue                
         else:
             temp = Ubung1.objects.filter(game=game,power=i['value']).first()
             if temp.state == i['state']:
                 continue
             else:
-                if temp.state == 'tag':
-                    temp.state = 'line-through'
+                if i['state'] == 'tag':        
+                    temp.state = i['state']
+                    temp.player = None
                     temp.save()
-                elif temp.state == 'line-through':
-                    # continue
-                    temp.state = 'tag'
-                    temp.save()
+                elif i['state'] == 'line-through':
+                    temp.state = i['state']
+                    temp.player = player
+                    temp.save() 
 
     result_data = [i.api_json for i in list(Ubung1.objects.filter(game=game))]
     return result_data
@@ -775,28 +842,35 @@ def ubung_3_api(player_id, link, data):
     already_term_list = [i.drainer for i in already]
     for i in data:
         if i['value'] not in already_term_list:
-            Ubung3.objects.create(
-                game=game,
-                player=player,
-                drainer=i['value'],
-                state=i['state'],
-            )
-            continue
+            if i['player_id'] == -1:
+                Ubung3.objects.create(
+                    game=game,
+                    player=None,
+                    drainer=i['value'],
+                    state=i['state'],
+                )
+                continue
+            else:
+                Ubung3.objects.create(
+                    game=game,
+                    player=player,
+                    drainer=i['value'],
+                    state=i['state'],
+                )
+                continue    
         else:
             temp = Ubung3.objects.filter(game=game,drainer=i['value']).first()
             if temp.state == i['state']:
                 continue
             else:
-                if temp.state == 'tag':
-                    temp.state = 'line-through'
+                if i['state'] == 'tag':
+                    temp.state = i['state']
+                    temp.player = None
                     temp.save()
-                elif temp.state == 'line-through':
-                    # continue
-                    temp.state = 'tag'
+                elif i['state'] == 'line-through':
+                    temp.state = i['state']
+                    temp.player = player
                     temp.save()
+
     result_data = [i.api_json for i in list(Ubung3.objects.filter(game=game))]
     return result_data
-
-
-
-    
