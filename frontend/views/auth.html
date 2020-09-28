@@ -171,8 +171,9 @@
                             Einen Link teilen:
                         </button>
                         <input id="link" type="text" name="link" value="" readonly="readonly"/>
+                        <input id="link_url" type="text" name="link_url" value="" readonly="readonly"/>
                         <!-- <button type="button" class="icon-link" id="icon-link" data-clipboard-target="#link" alt="Copy to clipboard"></button> -->
-                        <span class="icon-link" data-clipboard-target="#link">
+                        <span class="icon-link" data-clipboard-target="#link_url">
                         </span>
                     </div>
                     <div class="form__field">
@@ -280,7 +281,12 @@
     }
     setInterval("check()", 100)
     var a = Date.now();
-    $('#link').val(btoa(a));
+    var temp_link = btoa(a);
+    var url_host = window.location.host;
+    var temp_link_ = url_host + '/link/' + temp_link + '/';
+    $('#link').val(temp_link);
+    $('#link_url').val(temp_link_);
+
     //console.log(mySwiper.realIndex);
     //$('.swiper-button-prev').click(function(){
     //    console.log(mySwiper.realIndex);
