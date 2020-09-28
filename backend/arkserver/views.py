@@ -105,6 +105,7 @@ def auth(request):
 
 def auth_link(request):
     ctx = {}
+    ctx['link'] = ''
 
     if request.method == 'POST':
         username = request.POST.get('Nutzername')
