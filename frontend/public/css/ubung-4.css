@@ -227,7 +227,13 @@ body > .user-connect .user-connect__name {
 }
 .ubung-4 .distry__user {
   pointer-events: none;
+  cursor: pointer;
 }
 .ubung-4 .distry__user img {
   pointer-events: all;
+}
+body > .distry__user {
+  transition: none;
+  cursor: pointer;
+  pointer-events: none;
 }

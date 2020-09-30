@@ -34,7 +34,9 @@
                     Die Arche ist ein soziales Spiel, um das psychologische Sicherheitsgefühl in <br/>Teams zu
                     entwickeln.
                     Die
-                    Spielzeit beträgt maximal eine Stunde.
+                    Spielzeit beträgt maximal eine Stunde. <br/>Das sind die
+                    <span class="terms" style="text-decoration:underline;">Nutzungsbedingungen</span>
+
                 </p>
                 <form action="#" method="POST" id="auth-form" class="form">
                 {% csrf_token %}
@@ -203,7 +205,15 @@
       trigger: 'click',
       content: 'Copied',
     });
-    
+    //Terms of use
+    tippy('.terms', {
+      content: `Terms of use: You are participating in a research project. Your contribution to our research project
+      will enable scientists to find out more about organizational dynamics, dimensions of psychological safety, fields of
+      tension, as well as self- and external perceptions within teams. We also use aggregated game data to improve our
+      software and to identify patterns in the context of our research questions. By using the software, you acknowledge
+      your acceptance of the terms of use. Your participation is voluntary. You can stop the experiment at any time
+      by closing your browser.`,
+    });
 
     var app = new Vue({
         delimiters: ['[[', ']]'],

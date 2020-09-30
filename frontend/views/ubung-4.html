@@ -98,12 +98,14 @@
         handlers() {
             const $self = this;
             let start = false;
+            let replace = false;
             const usersFrom = document.querySelectorAll('.user-connect--to');
             const body = document.body;
 
             const usersDistr = document.querySelectorAll('.distry__user');
             let name = '';
             let whichContainer = 0;
+            let player = {};
 
 
             if (window.innerWidth > 768) {
@@ -124,6 +126,27 @@
                         });
                     }
                 });
+                //Добавляем перемещение уже выбранного игрока
+                if (usersDistr) {
+                  usersDistr.forEach((item, i) => {
+                    item.addEventListener('mousedown', function (e) {
+                      name = event.target.parentNode.getAttribute('data-tippy-content');
+                      $self.saveDndItem = item;
+                      $self.cloned = item.cloneNode(true);
+                      body.appendChild($self.cloned);
+                      item.ondragstart = () => false;
+                      $self.cloned.style.position = 'fixed';
+                      $self.cloned.style.zIndex = 1000;
+                      $self.saveX = e.offsetX;
+                      $self.saveY = e.offsetY;
+                      $self.saveDndItemIndex = i;
+                      whichContainer = event.target.parentNode.parentNode.getAttribute('data-id');
+                      player = $self.containersTo[whichContainer].items.find(item => item.name == name);
+                      replace = true;
+                    });
+                  });
+
+                }
 
                 document.onmousemove = event => {
                     if (start) {
@@ -140,6 +163,21 @@
                         $self.cloned.style.top = event.clientY - $self.saveY + 'px';
                         $self.cloned.style.left = event.pageX - $self.saveX + 'px';
                     }
+                    if (replace) {
+                        const distry = event.target.closest('.distry');
+                        if (distry) {
+                            distry.classList.add('active')
+                        } else {
+                            document.querySelectorAll('.distry').forEach((item, i) => {
+                                item.classList.remove('active')
+                            });
+                        }
+
+                        $self.cloned.style.position = 'fixed';
+                        $self.cloned.style.top = event.clientY - $self.saveY + 'px';
+                        $self.cloned.style.left = event.pageX - $self.saveX + 'px';
+                    }
+
                 };
 
                 document.addEventListener('mouseup', function (e) {
@@ -162,7 +200,34 @@
                             $self.saveDndItem.classList.add('active')
                         }
                     }
+                    if (replace) {
+                      const toElemnet = e.target;
+                      const toElementId = toElemnet.getAttribute('data-id');
+                      $self.saveX = 0;
+                      $self.saveY = 0;
+                      $self.cloned.remove();
+                      replace = false;
+                      let incoming_container_index = $self.saveDndItem.parentNode.getAttribute('data-id');
+                      if (toElementId) {
+                        $self.containersTo[toElementId].items.push(player);
+                        let contItems = $self.containersTo[incoming_container_index].items.filter(item => item.name != name);
+                        $self.containersTo[incoming_container_index].items = contItems;
+                        $self.render();
+
+                      }
+                      else {
+                        let contItems = $self.containersTo[incoming_container_index].items.filter(item => item.name != name);
+                        $self.containersTo[incoming_container_index].items = contItems;
+                        $self.data.forEach((item, i) => {
+                          if (item.name == name) {item.hidden = false}
+                        });
+                        $self.render();
+                      }
+                    }
+
                 });
+
+                // Действие по клику на выбраном игроке, чтобы вернуть в пул.
                 if (usersDistr) {
                   usersDistr.forEach((item, i) => {
                     item.addEventListener('click', function (event) {
@@ -177,6 +242,7 @@
                     })
                   });
                 }
+
             }
 
             if (window.innerWidth <= 768) {
@@ -267,7 +333,7 @@
                 </div>`;
 
             this.container.innerHTML = renderHtml.split(`,`).join('');
-            console.log(renderHtml.__proto__);
+            // console.log(renderHtml.__proto__);
             this.handlers();
             // With the above scripts loaded, you can call `tippy()` with a CSS
             // selector and a `content` prop:
