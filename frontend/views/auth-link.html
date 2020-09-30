@@ -155,14 +155,16 @@
                     <div class="form__field">
                         <input id="name-des-spiels" type="text" name="name-des-spiels" value="" required/>
                         <span class="form__placeholder">Name des Spiels</span>
-                    </div> 
-                    --> 
+                    </div>
+                    -->
                     <div class="form__field">
                         <p>
                             Die Arche ist ein soziales Spiel, um das psychologische Sicherheitsgefühl in <br/>Teams zu
                             entwickeln.
                             Die
                             Spielzeit beträgt maximal eine Stunde.
+                            <br/>Das sind die
+                            <span class="terms" style="text-decoration:underline;">Nutzungsbedingungen</span>
                         </p>
                     </div>
                     <div class="form__field">
@@ -208,6 +210,14 @@
     tippy('.icon-link', {
       trigger: 'click',
       content: 'Copied',
+    });
+    tippy('.terms', {
+      content: `Terms of use: You are participating in a research project. Your contribution to our research project
+      will enable scientists to find out more about organizational dynamics, dimensions of psychological safety, fields of
+      tension, as well as self- and external perceptions within teams. We also use aggregated game data to improve our
+      software and to identify patterns in the context of our research questions. By using the software, you acknowledge
+      your acceptance of the terms of use. Your participation is voluntary. You can stop the experiment at any time
+      by closing your browser.`,
     });
 
     var a = Date.now();
@@ -260,7 +270,7 @@
             }
         },
         created(){
-            this.avatar_list.sort(function(){return Math.random()>0.5?-1:1;}); 
+            this.avatar_list.sort(function(){return Math.random()>0.5?-1:1;});
             var uu = 0;
             while (uu < this.avatar_list.length){
                 var temp = this.avatar_list[uu];
@@ -271,7 +281,7 @@
         }
     })
 
- 
+
 
     var mySwiper = new Swiper('.swiper-container', {
         slidesPerView: 4,

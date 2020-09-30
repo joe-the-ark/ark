@@ -1,3 +1,6 @@
+span .terms {
+  text-decoration: underline;
+}
 .slider {
   padding: 10px 20px;
   border: 1px solid var(--ls-between-color);
