@@ -1,3 +1,13 @@
+.terms_str{
+  font-size: var(--ls-font-large);
+  margin-bottom: 25px;
+  display: block;
+  color: var(--ls-alfa-color);
+  text-align: left;
+}
+.terms {
+  text-decoration: underline;
+}
 .slider {
   padding: 10px 20px;
   border: 1px solid var(--ls-between-color);
@@ -40,7 +50,7 @@
   position: relative;
 }
 .form__field:not(:last-child) {
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 .form input:focus + .form__placeholder,
 .form input:valid + .form__placeholder {
@@ -81,6 +91,11 @@
   text-align: center;
   max-width: 1300px;
   margin: 0 auto;
+}
+@media screen and (max-width: 1201px) and  (min-width: 1050px) {
+  .form span[class*="icon"] {
+    bottom: 50px;
+  }
 }
 @media screen and (max-width: 768px) {
   .auth-link h1 {
@@ -129,6 +144,7 @@
     text-align: center;
   }
 }
+
 @media screen and (max-width: 768px) {
   .auth-link .form__field:nth-last-child(3) {
     display: none;

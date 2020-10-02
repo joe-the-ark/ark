@@ -1,4 +1,9 @@
-span .terms {
+.terms_str{
+  font-size: var(--ls-font-large);
+  margin-bottom: 25px;
+  display: block;
+}
+.terms {
   text-decoration: underline;
 }
 .slider {
@@ -89,7 +94,7 @@ span .terms {
   }
 }
 .auth h1 + p {
-  margin: 20px 0 50px;
+  margin: 20px 0 30px;
 }
 @media screen and (max-width: 768px) {
   .auth p {
