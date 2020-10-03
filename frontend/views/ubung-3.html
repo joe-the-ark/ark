@@ -28,6 +28,7 @@
                     <div class="user__title">
                         {{user.name}}
                     </div>
+                    <span class="icon-link" data-clipboard-text="#link_url"></span>
                 </div>
             </div>
             <div class="header-main__progress">
@@ -110,8 +111,29 @@
 <script src="/static/jquery-3.5.1.min.js"></script>
   <script src="/static/axios.min.js"></script>
   <script src="/static/vue.js"></script>
+  <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+  <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+  <script src="https://unpkg.com/clipboard@2/dist/clipboard.min.js"></script>
 
 <script>
+    // Copy and tooltip
+    new ClipboardJS('.icon-link');
+    tippy('.icon-link', {
+      content: 'Copy to clipboard',
+    });
+    tippy('.icon-link', {
+      trigger: 'click',
+      content: 'Copied',
+    });
+
+    // Link creation
+    // TODO Code bellow Link must be from backend.
+    var a = Date.now();
+    var temp_link = btoa(a);
+    var url_host = window.location.host;
+    var temp_link_ = url_host + '/link/' + temp_link + '/';
+    document.querySelector('.icon-link').dataset.clipboardText = temp_link_;
+    
     var app = new Vue({
         delimiters: ['[[', ']]'],
         el: '#app-1',
@@ -121,7 +143,7 @@
         },
         mounted(){
             var that = this;
-    
+
             var flag = 0; // test whether the user have already select the term.
             var uu = 0;
             var player_id = {{user.id}};
@@ -135,8 +157,8 @@
             }
 
             var data_ = {
-                'player_id': '{{user.id}}', 
-                'link': '{{game.link}}', 
+                'player_id': '{{user.id}}',
+                'link': '{{game.link}}',
             }
             axios
                 .post(`/api/check_ubung_3/`, data_)
@@ -144,8 +166,8 @@
                     var result = response.data.result;
                     if (String(result) === "0"){
                         var data_ = {
-                            'player_id': '{{user.id}}', 
-                            'link': '{{game.link}}', 
+                            'player_id': '{{user.id}}',
+                            'link': '{{game.link}}',
                             'data': that.term_list,
                         };
                         //console.log(this.term_list);
@@ -172,7 +194,7 @@
                     'player_id': '{{user.id}}',
                     'link': '{{game.link}}',
                 }
-                
+
                 axios
                     .post(`/api/ubung_3_get_data/`, data_)
                     .then(function(response){
@@ -215,8 +237,8 @@
                     'player_id': {{user.id}},
                 });
                 var data_ = {
-                    'player_id': '{{user.id}}', 
-                    'link': '{{game.link}}', 
+                    'player_id': '{{user.id}}',
+                    'link': '{{game.link}}',
                     'data': that.term_list,
                 };
                 axios
@@ -259,8 +281,8 @@
                             if (flag == 1){
                                 return;
                             }
-                            that.term_list[uu].state = 'line-through'; 
-                            that.text_input = item;                 
+                            that.term_list[uu].state = 'line-through';
+                            that.text_input = item;
                             break;
                         }
                         if (that.term_list[uu].state === 'line-through'){
@@ -268,7 +290,7 @@
                                 return;
                             }
                             that.term_list[uu].state = 'tag';
-                            that.text_input = '';      
+                            that.text_input = '';
                             break;
                         }
                     }
@@ -314,7 +336,7 @@
     } {% endcomment %}
 
     //setInterval("check_tag()", 100);
-    
+
 
     {% comment %} $('#Abhängigkeit').on("click",function(){
         if ($('#Abhängigkeit').is('.line-through')){
@@ -540,7 +562,7 @@
             $("#Unzuverlässigkeit").addClass("line-through");
         }
     })
-    
+
     $('#Verbot').on("click",function(){
         if ($('#Verbot').is('.line-through')){
             $("#Verbot").removeClass("line-through");
@@ -576,8 +598,8 @@
             $("#Willkür").addClass("line-through");
         }
     }) {% endcomment %}
-    
-    
+
+
 </script>
 
 

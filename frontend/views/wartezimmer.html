@@ -35,6 +35,7 @@
                         <!-- Vasilisa Kochetkova  -->
                         {{user.name}}
                     </div>
+                    <span class="icon-link" data-clipboard-text="#link_url"></span>
                 </div>
             </div>
             <div class="header-main__progress">
@@ -234,8 +235,28 @@
     </div>
 </div>
 
-
+<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+<script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+<script src="https://unpkg.com/clipboard@2/dist/clipboard.min.js"></script>
 <script>
+    // Copy and tooltip
+    new ClipboardJS('.icon-link');
+    tippy('.icon-link', {
+      content: 'Copy to clipboard',
+    });
+    tippy('.icon-link', {
+      trigger: 'click',
+      content: 'Copied',
+    });
+
+    // Link creation
+    // TODO Code bellow Link must be from backend.
+    var a = Date.now();
+    var temp_link = btoa(a);
+    var url_host = window.location.host;
+    var temp_link_ = url_host + '/link/' + temp_link + '/';
+    document.querySelector('.icon-link').dataset.clipboardText = temp_link_;
+
     var app = new Vue({
         delimiters: ['[[', ']]'],
         el: '#app-1',
@@ -273,7 +294,7 @@
                 })
                 .catch(function(error) { // 请求失败处理
                     console.log(error);
-                }); 
+                });
             axios
                 .post(`/api/waiting_room_yet/`,waiting_post)
                 .then(function(response){
@@ -289,8 +310,8 @@
                 })
                 .catch(function(error) { // 请求失败处理
                     console.log(error);
-                }); 
-            
+                });
+
             setInterval(function (){
                 var waiting_post = {"player_id": "{{player_id}}","link":"{{link}}"};
                 axios
@@ -308,7 +329,7 @@
                     })
                     .catch(function(error) { // 请求失败处理
                         console.log(error);
-                    }); 
+                    });
                 axios
                     .post(`/api/waiting_room_yet/`,waiting_post)
                     .then(function(response){
@@ -324,7 +345,7 @@
                     })
                     .catch(function(error) { // 请求失败处理
                         console.log(error);
-                    }); 
+                    });
             },6000);
 
         },
