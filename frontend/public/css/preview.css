@@ -1,3 +1,8 @@
+.user span[class*="icon"] {
+  font-size: 20px;
+  padding-left: 20px;
+  position: relative;
+}
 .preview {
   padding-bottom: 203px;
 }
