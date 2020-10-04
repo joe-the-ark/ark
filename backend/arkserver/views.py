@@ -255,6 +255,7 @@ def ubung_2(request, user):
 
     return render(request, './views/ubung-2.html', ctx)
 
+
 @user_required
 def ubung_3(request, user):
     ctx = {}
@@ -301,6 +302,7 @@ def ubung_3(request, user):
     return render(request, './views/ubung-3.html', ctx)
 
 
+@after_waitingroom
 @user_required
 def ubung_4(request, user):
     ctx = {}
@@ -370,6 +372,7 @@ def ubung_4(request, user):
     return render(request, './views/ubung-4.html', ctx)
 
 
+@after_waitingroom
 @user_required
 def ubung_5(request, user):
     ctx = {}
@@ -948,9 +951,25 @@ def ubung_3_api(player_id, link, data):
     return result_data
 
 
+
 @api
-def ubung_5_check(link):
+def ubung_5_data(link, user_id, data):
+    import json
     game = Game.objects.filter(link=link).first()
+    user = Player.objects.filter(id=user_id).first()
+    data = json.loads(data)
+    print(data, data.__class__)
+    ubung5 = Ubung5.objects.filter(game=game,player=user).first()
+    if ubung5:
+        ubung5.delete()
+    for i in data:
+        Ubung5.objects.create(
+            game = game,
+            player = user,
+            goal = Player.objects.filter(id=int(i['id'])).first(),
+            score = int(i['status']),
+        )
+    # check whether others finish
     ubung_5 = [i.player for i in list(Ubung5.objects.filter(game=game))]
     waiting_room = [i.player for i in list(WaitingRoomMember.objects.filter(game=game))]
     for i in waiting_room:
@@ -960,3 +979,4 @@ def ubung_5_check(link):
     # all finished
     return 1
 
+    
