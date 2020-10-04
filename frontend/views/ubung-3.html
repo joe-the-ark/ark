@@ -23,12 +23,12 @@
                 <div class="user">
                     <div class="user__subtitle">
                         {{game.name}}
+                        <span class="icon-link" data-clipboard-text="#link_url"></span>
                     </div>
                     <img src="{{user.avatar}}" alt="">
                     <div class="user__title">
                         {{user.name}}
                     </div>
-                    <span class="icon-link" data-clipboard-text="#link_url"></span>
                 </div>
             </div>
             <div class="header-main__progress">
@@ -133,7 +133,7 @@
     var url_host = window.location.host;
     var temp_link_ = url_host + '/link/' + temp_link + '/';
     document.querySelector('.icon-link').dataset.clipboardText = temp_link_;
-    
+
     var app = new Vue({
         delimiters: ['[[', ']]'],
         el: '#app-1',

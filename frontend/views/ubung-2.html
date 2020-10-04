@@ -23,12 +23,13 @@
                 <div class="user">
                     <div class="user__subtitle">
                         {{game.name}}
+                        <span class="icon-link" data-clipboard-text="#link_url"></span>
                     </div>
                     <img src="{{user.avatar}}" alt="">
                     <div class="user__title">
                         {{user.name}}
                     </div>
-                    <span class="icon-link" data-clipboard-text="#link_url"></span>
+
                 </div>
             </div>
             <div class="header-main__progress">
@@ -57,10 +58,10 @@
                         <div class="ui-slider__marker">
                             <div class="ui-slider__marker-thumb">
                                 <span>0</span>
-                                <img src="/static/images/avatars/penguin-1.svg" alt=""/>
+                                <img src="{{user.avatar}}" alt=""/>
                             </div>
                             <div class="ui-slider__marker-name">
-                                Vasilisa<br/> Kochetkova
+                                {{user.name}}
                             </div>
                         </div>
                         <div class="ui-slider__range">
