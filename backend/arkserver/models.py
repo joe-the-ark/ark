@@ -15,6 +15,15 @@ class Player(models.Model):
     # inviter_name = models.CharField(max_length=200, verbose_name='creater')
 
     @property
+    def valid(self):
+        # the qualification that the user have already pass the waiting room
+        player_ = WaitingRoomMember.objects.filter(player=self).first()
+        if player_.state == 1:
+            return True
+        else:
+            return False
+
+    @property
     def player_json(self):
         return {
             'id': self.id,
