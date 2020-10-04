@@ -120,7 +120,13 @@ class Ubung1(models.Model):
         verbose_name = verbose_name_plural = 'Ubung-1'
     
     def __str__(self):
-        return f'{self.game.name} {self.player.name} {self.power}'
+        # return f'{self.game.name} {self.player.name} {self.power}'
+        if self.player:
+            return f'{self.game.name} {self.player.name} {self.power}'
+        else:
+            return f'{self.game.name} None {self.power}'
+
+
 
 class Ubung2(models.Model):
     game = models.ForeignKey(Game, on_delete=models.CASCADE, verbose_name='game')
@@ -177,7 +183,10 @@ class Ubung3(models.Model):
         verbose_name = verbose_name_plural = 'Ubung-3'
     
     def __str__(self):
-        return f'{self.game.name} {self.player.name} {self.drainer}'
+        if self.player:
+            return f'{self.game.name} {self.player.name} {self.drainer}'
+        else:
+            return f'{self.game.name} None {self.drainer}'
 
 class Ubung4(models.Model):
     game = models.ForeignKey(Game, on_delete=models.CASCADE, verbose_name='game')

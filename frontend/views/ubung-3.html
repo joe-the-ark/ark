@@ -262,11 +262,13 @@
                 var that = this;
                 var player_id = {{user.id}};
 
+                var already_ = 0;
                 var flag = 0; // test whether the user have already select the term.
                 var uu = 0;
                 while (uu < that.term_list.length){
                     if (that.term_list[uu].player_id === player_id){
                         flag = 1;
+                        already_ = uu;
                         break;
                     }
                     uu += 1;
@@ -279,7 +281,8 @@
                         //break;
                         if (that.term_list[uu].state === 'tag'){
                             if (flag == 1){
-                                return;
+                                that.term_list[already_].state = 'tag';
+                                //return;
                             }
                             that.term_list[uu].state = 'line-through';
                             that.text_input = item;
