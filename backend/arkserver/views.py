@@ -146,6 +146,11 @@ def auth_link(request):
 def link_enter(request, link):
     ctx = {}
     ctx['link'] = link
+    game = Game.objects.filter(link=link).first()
+
+    if not game:
+        # invalid game link
+        return redirect('/')
 
     if request.method == 'POST':
         username = request.POST.get('Nutzername')
@@ -941,3 +946,17 @@ def ubung_3_api(player_id, link, data):
 
     result_data = [i.api_json for i in list(Ubung3.objects.filter(game=game))]
     return result_data
+
+
+@api
+def ubung_5_check(link):
+    game = Game.objects.filter(link=link).first()
+    ubung_5 = [i.player for i in list(Ubung5.objects.filter(game=game))]
+    waiting_room = [i.player for i in list(WaitingRoomMember.objects.filter(game=game))]
+    for i in waiting_room:
+        if i not in ubung_5:
+            # someone not finished
+            return 0
+    # all finished
+    return 1
+
