@@ -15,6 +15,15 @@ class Player(models.Model):
     # inviter_name = models.CharField(max_length=200, verbose_name='creater')
 
     @property
+    def valid(self):
+        # the qualification that the user have already pass the waiting room
+        player_ = WaitingRoomMember.objects.filter(player=self).first()
+        if player_.state == 1:
+            return True
+        else:
+            return False
+
+    @property
     def player_json(self):
         return {
             'id': self.id,
@@ -120,7 +129,13 @@ class Ubung1(models.Model):
         verbose_name = verbose_name_plural = 'Ubung-1'
     
     def __str__(self):
-        return f'{self.game.name} {self.player.name} {self.power}'
+        # return f'{self.game.name} {self.player.name} {self.power}'
+        if self.player:
+            return f'{self.game.name} {self.player.name} {self.power}'
+        else:
+            return f'{self.game.name} None {self.power}'
+
+
 
 class Ubung2(models.Model):
     game = models.ForeignKey(Game, on_delete=models.CASCADE, verbose_name='game')
@@ -177,7 +192,10 @@ class Ubung3(models.Model):
         verbose_name = verbose_name_plural = 'Ubung-3'
     
     def __str__(self):
-        return f'{self.game.name} {self.player.name} {self.drainer}'
+        if self.player:
+            return f'{self.game.name} {self.player.name} {self.drainer}'
+        else:
+            return f'{self.game.name} None {self.drainer}'
 
 class Ubung4(models.Model):
     game = models.ForeignKey(Game, on_delete=models.CASCADE, verbose_name='game')

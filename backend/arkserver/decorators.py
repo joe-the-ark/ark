@@ -35,3 +35,14 @@ def user_required(func):
         return func(request, user=user, *args, **kwargs)
 
     return view
+
+
+def after_waitingroom(func):
+    from .models import Player, WaitingRoomMember
+    def view(request, *args, **kwargs):
+        user = _check_user(request)
+        print('user-valid', user.valid)
+        if not user.valid:
+            return redirect(f'/')
+        return func(request, *args, **kwargs)
+    return view

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .utils import *
-from .decorators import user_required
+from .decorators import user_required, after_waitingroom
 from meta.decorators import api, APIError
 import json
 
@@ -146,6 +146,11 @@ def auth_link(request):
 def link_enter(request, link):
     ctx = {}
     ctx['link'] = link
+    game = Game.objects.filter(link=link).first()
+
+    if not game:
+        # invalid game link
+        return redirect('/')
 
     if request.method == 'POST':
         username = request.POST.get('Nutzername')
@@ -394,6 +399,7 @@ def ubung_5(request, user):
     return render(request, './views/ubung-5.html', ctx)
 
 
+@after_waitingroom
 @user_required
 def team_potential(request, user):
     ctx = {}
@@ -430,6 +436,7 @@ def team_potential(request, user):
     return render(request, './views/team-potential.html', ctx)
 
 
+@after_waitingroom
 @user_required
 def spannungsfelder(request, user):
     ctx = {}
@@ -458,6 +465,7 @@ def spannungsfelder(request, user):
     return render(request, './views/spannungsfelder.html', ctx)
 
 
+@after_waitingroom
 @user_required
 def preview_2(request, user):
     ctx = {}
@@ -465,6 +473,7 @@ def preview_2(request, user):
     return render(request, './views/preview-2.html', ctx)
 
 
+@after_waitingroom
 @user_required
 def mission_2_ubung_1(request, user):
     ctx = {}
@@ -493,6 +502,7 @@ def mission_2_ubung_1(request, user):
     return render(request, './views/mission-2-ubung-1.html', ctx)
 
 
+@after_waitingroom
 @user_required
 def mission_2_ubung_2(request, user):
     ctx = {}
@@ -531,6 +541,7 @@ def mission_2_ubung_2(request, user):
     return render(request, './views/mission-2-ubung-2.html', ctx)
 
 
+@after_waitingroom
 @user_required
 def assessment(request, user):
     ctx = {}
@@ -677,6 +688,8 @@ def wartezimmer(request, user):
     link = request.session['link']
     # user = ctx['user'] = Player.objects.filter(id=request.session.get('uid')).first()
     game = Game.objects.filter(link=link).first()
+    if game.status != 0:
+        return redirect('/')
     room_member = WaitingRoomMember.objects.filter(game=game,player=user).first()
     room_member.state = 1
     room_member.save()
@@ -688,11 +701,35 @@ def wartezimmer(request, user):
 
     if request.method == 'POST':
         nums = WaitingRoomMember.objects.filter(game=game).count()
-        if nums < 3:
-            # pass
-            return redirect('/ubung-4/')
-        else:
-            return redirect('/ubung-4/')
+        if user != game.creator:
+            if nums < 3:
+                return
+            if game.status == 1:
+                player_ = WaitingRoomMember.objects.filter(game=game,user=user).first()
+                player_.state = 1
+                player_.save()
+                return redirect('/ubung-4/')
+            else:
+                return render(request, './views/wartezimmer.html', ctx)
+        elif user == game.creator:
+            if nums < 3:
+                return render(request, './views/wartezimmer.html', ctx)
+            else:
+                game.status = 1
+                game.saves()
+
+                player_ = WaitingRoomMember.objects.filter(game=game,user=user).first()
+                player_.state = 1
+                player_.save()
+                return redirect('/ubung-4/')
+        
+        # if nums < 3:
+        #     return
+        #     # pass
+        #     # return redirect('/ubung-4/')
+        # else:
+
+        #     return redirect('/ubung-4/')
 
     return render(request, './views/wartezimmer.html', ctx)
 
@@ -909,3 +946,17 @@ def ubung_3_api(player_id, link, data):
 
     result_data = [i.api_json for i in list(Ubung3.objects.filter(game=game))]
     return result_data
+
+
+@api
+def ubung_5_check(link):
+    game = Game.objects.filter(link=link).first()
+    ubung_5 = [i.player for i in list(Ubung5.objects.filter(game=game))]
+    waiting_room = [i.player for i in list(WaitingRoomMember.objects.filter(game=game))]
+    for i in waiting_room:
+        if i not in ubung_5:
+            # someone not finished
+            return 0
+    # all finished
+    return 1
+
