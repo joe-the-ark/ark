@@ -980,3 +980,12 @@ def ubung_5_data(link, user_id, data):
     return 1
 
     
+@api
+def check_game_name(game_name):
+    game = Game.objects.filter(name=game_name).first()
+    print(game)
+    if game:
+        # already taken
+        return 0
+    else:
+        return 1
