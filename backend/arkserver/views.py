@@ -983,9 +983,25 @@ def ubung_5_data(link, user_id, data):
 @api
 def check_game_name(game_name):
     game = Game.objects.filter(name=game_name).first()
-    print(game)
     if game:
         # already taken
         return 0
     else:
+        # name is valid
         return 1
+
+@api
+def check_player_name(player_name, link):
+    game = Game.objects.filter(link=link).first()
+    player = Player.objects.filter(name=player_name,game=game).first()
+    if player:
+        # already taken
+        return 0
+    else:
+        # name is valid
+        return 1
+    
+
+
+    
+
