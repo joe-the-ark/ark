@@ -138,7 +138,7 @@ def auth_link(request):
         else:
             # detect same name in this game
             ctx['error'] = 1
-            return render(request,'./views/auth_link.html', ctx)
+            return render(request,'./views/auth-link.html', ctx)
 
     return render(request,'./views/auth-link.html', ctx)
 
@@ -183,7 +183,7 @@ def link_enter(request, link):
         else:
             # detect same name in this game
             ctx['error'] = 1
-            return render(request,'./views/auth_link.html', ctx)
+            return render(request,'./views/auth-link.html', ctx)
 
     return render(request,'./views/auth-link.html', ctx)
 
