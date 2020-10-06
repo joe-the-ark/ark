@@ -719,7 +719,7 @@ def wartezimmer(request, user):
                 return render(request, './views/wartezimmer.html', ctx)
             else:
                 game.status = 1
-                game.saves()
+                game.save()
 
                 player_ = WaitingRoomMember.objects.filter(game=game,user=user).first()
                 player_.state = 1
