@@ -251,8 +251,7 @@
 
     // Link creation
     // TODO Code bellow Link must be from backend.
-    var a = Date.now();
-    var temp_link = btoa(a);
+    var temp_link = '{{game.link}}';
     var url_host = window.location.host;
     var temp_link_ = url_host + '/link/' + temp_link + '/';
     document.querySelector('.icon-link').dataset.clipboardText = temp_link_;
