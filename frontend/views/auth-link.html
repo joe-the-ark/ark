@@ -28,7 +28,7 @@
         <div class="container">
             <main class="screen auth-link">
                 <h1 id="title-game"></h1>
-                <form id="form_" action="#" method="POST" id="auth-form" class="form">
+                <form id="form_" action="#" method="POST" id="auth-form" class="form" onkeypress="javascript: if (event.keyCode==13){check_player_name();return false;}">
                 {% csrf_token %}
                     <div class="form__field">
                         <input id="nutzername" type="text" name="Nutzername" value="" required/>
@@ -194,7 +194,7 @@
                         </button> {% endcomment %}
                     </div>
                 </form>
-                    <button id="submit_button" type="submit">
+                    <button id="submit_button" type="button">
                         Weiterspielen
                     </button>
             </main>
@@ -316,9 +316,14 @@
         const el = document.getElementById('title-game');
         el.innerHTML = window.innerWidth < 768 ? 'Mitspielen' : 'Wie steht es um eure Psychologische Sicherheit?'
     }
+    
 
-    function check_player_name(player_name){
-        var link = $('.link').val();
+    function check_player_name(){
+        var player_name = $('#nutzername').val();
+        if (player_name === ''){
+            return 
+        }
+        var link = '{{link}}';
         var data_ = {
             'player_name': player_name,
             'link': link,
@@ -346,7 +351,7 @@
         var player_name = $('#nutzername').val();
         if (player_name !== ''){
             console.log('click');
-            check_player_name(player_name);
+            check_player_name();
         }
     })
 
