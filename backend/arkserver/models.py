@@ -45,7 +45,7 @@ class Game(models.Model):
     status = models.IntegerField(
         default=0,
         # "start" means the game is start and the waiting room is open for another players
-        # "running" means the game is running, waiting room is not open
+        # "running" means the game is starting
         # "end" means the game is closed
         choices=((0, 'start'), (1, 'running'), (2, 'end')),
         verbose_name='game_status'

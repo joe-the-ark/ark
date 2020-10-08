@@ -801,6 +801,15 @@ def logout(request):
 # apis
 
 @api
+def waiting_room_game_start(link):
+    game = Game.objects.filter(link=link).first()
+    if game.status == 1:
+        return 1
+    else:
+        return 0
+
+
+@api
 def waiting_room_active(player_id, link):
     from .models import Player, Game
 
