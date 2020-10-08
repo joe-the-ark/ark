@@ -310,7 +310,7 @@ def ubung_4(request, user):
     link = request.session['link']
     game = Game.objects.filter(link=link).first()
     # waiting_room = list(WaitingRoomMember.objects.filter(game=game).exclude(player=user))
-    waiting_room = list(WaitingRoomMember.objects.filter(game=game))
+    waiting_room = list(WaitingRoomMember.objects.filter(game=game,state=1))
     member_list = [i.player.player_json for i in waiting_room]
     ctx['member_list'] = member_list 
     if request.method == 'POST':
@@ -379,7 +379,7 @@ def ubung_5(request, user):
     ctx['game'] = Game.objects.filter(link=request.session['link']).first()
     link = request.session['link'] 
     game = Game.objects.filter(link=link).first()
-    waiting_room = list(WaitingRoomMember.objects.filter(game=game))
+    waiting_room = list(WaitingRoomMember.objects.filter(game=game,state=1))
     member_list = [i.player.player_json for i in waiting_room]
     ctx['member_list'] = member_list
 
@@ -483,7 +483,7 @@ def mission_2_ubung_1(request, user):
     ctx['game'] = Game.objects.filter(link=request.session['link']).first()
     link = request.session['link']  
     game = Game.objects.filter(link=link).first()
-    waiting_room = list(WaitingRoomMember.objects.filter(game=game))
+    waiting_room = list(WaitingRoomMember.objects.filter(game=game,state=1))
     member_list = [i.player.player_json for i in waiting_room]
     ctx['member_list'] = member_list
 
@@ -512,7 +512,7 @@ def mission_2_ubung_2(request, user):
     ctx['game'] = Game.objects.filter(link=request.session['link']).first()
     link = request.session['link']  
     game = Game.objects.filter(link=link).first()
-    waiting_room = list(WaitingRoomMember.objects.filter(game=game))
+    waiting_room = list(WaitingRoomMember.objects.filter(game=game,state=1))
     member_list = [i.player.player_json for i in waiting_room]
     ctx['member_list'] = member_list
 
