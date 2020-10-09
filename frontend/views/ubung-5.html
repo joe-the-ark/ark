@@ -64,6 +64,8 @@
 
                     <div class="center">
                         <input id="data" type="hidden" name="data" value=""/>
+                        <input type="hidden" name="ubung1_id" value="{{ubung1.id}}">
+                        <input type="hidden" name="ubung3_id" value="{{ubung3.id}}">
                         <button type="submit" id="button">
                             Weiterspielen
                         </button>
@@ -84,6 +86,8 @@
             'link': '{{game.link}}',
             'user_id': '{{user.id}}',
             'data': $('#data').val(),
+            'ubung1_id': '{{ubung1.id}}',
+            'ubung3_id': '{{ubung3.id}}',
         }
         console.log('data', data_);
         axios
@@ -91,7 +95,8 @@
             .then(function(response){
                 var result = response.data.result;
                 if (result === 1){
-                    window.location.href="/team-potential/";
+                    //window.location.href="/team-potential/";
+                    window.location.href="/ubung-5/";
                 }else{
                     return 
                 }
@@ -112,7 +117,9 @@
         container: ".custom-graph-wrapper",
         range: [1, 99],
         //labelRange: ['Low', 'High'],
-        labelRange: ['Kraftquelle', 'Energiefresser'],
+        //labelRange: ['Kraftquelle', 'Energiefresser'],
+        labelRange: ['{{ubung1.power}}', '{{ubung3.drainer}}'],
+
         mobile: 1200,
         data: {{ member_list|safe }},
 {% comment %}

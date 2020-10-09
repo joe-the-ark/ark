@@ -101,6 +101,7 @@ class Ubung1(models.Model):
     state = models.CharField(max_length=100, default='')
     create_time = models.DateTimeField(auto_now_add=True)
 
+
     @property
     def json(self):
         return {
@@ -231,6 +232,8 @@ class Ubung5(models.Model):
     goal = models.ForeignKey(Player, on_delete=models.CASCADE, verbose_name='goal',related_name='goal')
     score = models.IntegerField(default=0)
 
+    ubung1 = models.ForeignKey(Ubung1, related_name='ubung_1', on_delete=models.CASCADE, blank=True, null=True)
+    ubung3 = models.ForeignKey(Ubung3, related_name='ubung_3', on_delete=models.CASCADE, blank=True, null=True)
 
     @property
     def span_1(self):
@@ -253,6 +256,9 @@ class M2Ubung1(models.Model):
     player = models.ForeignKey(Player, on_delete=models.CASCADE, verbose_name='author')
     goal = models.ForeignKey(Player, on_delete=models.CASCADE, verbose_name='goal',related_name='m2_goal')
     score = models.IntegerField(default=0)
+
+    ubung1 = models.ForeignKey(Ubung1, related_name='ubung_1_for_m2', on_delete=models.CASCADE, blank=True, null=True)
+    ubung3 = models.ForeignKey(Ubung3, related_name='ubung_3_for_m2', on_delete=models.CASCADE, blank=True, null=True)
 
     class Meta(object):
         verbose_name = verbose_name_plural = 'M2Ubung1'

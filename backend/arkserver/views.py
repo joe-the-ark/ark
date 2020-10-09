@@ -375,6 +375,8 @@ def ubung_4(request, user):
 @after_waitingroom
 @user_required
 def ubung_5(request, user):
+    from .utils import span_choose
+
     ctx = {}
     ctx['game'] = Game.objects.filter(link=request.session['link']).first()
     link = request.session['link'] 
@@ -383,21 +385,38 @@ def ubung_5(request, user):
     member_list = [i.player.player_json for i in waiting_room]
     ctx['member_list'] = member_list
 
-    if request.method == 'POST':
-        data = request.POST.get('data')
-        data = json.loads(data)
-        ubung5 = Ubung5.objects.filter(game=game,player=user).first()
-        if ubung5:
-            ubung5.delete()
-        for i in data:
-            Ubung5.objects.create(
-                game = game,
-                player = user,
-                goal = Player.objects.filter(id=int(i['id'])).first(),
-                score = int(i['status']),
-            )
-    
+    ubung1, ubung3 = span_choose(user.id,link)
+    if not ubung1:
         return redirect('/team-potential/')
+    ctx['ubung1'] = ubung1
+    ctx['ubung3'] = ubung3
+
+    # if request.method == 'POST':
+    #     data = request.POST.get('data')
+    #     ubung1_id = request.POST.get('ubung1_id')
+    #     ubung3_id = request.POST.get('ubung3_id')
+    #     data = json.loads(data)
+    #     ubung5 = Ubung5.objects.filter(game=game,player=user,ubung3__id=ubung3_id).first()
+    #     if ubung5:
+    #         ubung5_list = list(Ubung5.objects.filter(game=game,player=user,ubung3__id=ubung3_id))
+    #         uu = 0
+    #         while uu < len(ubung5_list):
+    #             ubung5_list[uu].delete()
+    #             uu += 1
+    #     for i in data:
+    #         goal = Player.objects.filter(id=int(i['id'])).first()
+    #         score = int(i['status'])
+    #         ubung5 = span_add(user, goal, game, score, ubung1_id, ubung3_id)
+
+    #         # Ubung5.objects.create(
+    #         #     game = game,
+    #         #     player = user,
+    #         #     goal = Player.objects.filter(id=int(i['id'])).first(),
+    #         #     score = int(i['status']),
+    #         # )
+    #     return redirect('/ubung-5/')
+
+        # return redirect('/team-potential/')
 
     return render(request, './views/ubung-5.html', ctx)
 
@@ -802,7 +821,7 @@ def logout(request):
 
 @api
 def waiting_room_game_start(link):
-    game = Game.objects.filter(link=link).first()
+    game = Game.objects.filter(link=link).first() 
     if game.status == 1:
         return 1
     else:
@@ -962,31 +981,41 @@ def ubung_3_api(player_id, link, data):
 
 
 @api
-def ubung_5_data(link, user_id, data):
+def ubung_5_data(link, user_id, data, ubung1_id, ubung3_id):
+    ubung1_id = int(ubung1_id)
+    ubung3_id = int(ubung3_id)
     import json
     game = Game.objects.filter(link=link).first()
     user = Player.objects.filter(id=user_id).first()
     data = json.loads(data)
     print(data, data.__class__)
-    ubung5 = Ubung5.objects.filter(game=game,player=user).first()
+    ubung5 = Ubung5.objects.filter(game=game,player=user,ubung3__id=ubung3_id).first()
     if ubung5:
-        ubung5.delete()
+        ubung5_list = list(Ubung5.objects.filter(game=game,player=user,ubung3__id=ubung3_id))
+        uu = 0
+        while uu < len(ubung5_list):
+            ubung5_list[uu].delete()
+            uu += 1
     for i in data:
-        Ubung5.objects.create(
-            game = game,
-            player = user,
-            goal = Player.objects.filter(id=int(i['id'])).first(),
-            score = int(i['status']),
-        )
-    # check whether others finish
-    ubung_5 = [i.player for i in list(Ubung5.objects.filter(game=game))]
-    waiting_room = [i.player for i in list(WaitingRoomMember.objects.filter(game=game))]
-    for i in waiting_room:
-        if i not in ubung_5:
-            # someone not finished
-            return 0
-    # all finished
+        goal = Player.objects.filter(id=int(i['id'])).first()
+        score = int(i['status'])
+        ubung5 = span_add(user, goal, game, score, ubung1_id, ubung3_id)
     return 1
+        # Ubung5.objects.create(
+        #     game = game,
+        #     player = user,
+        #     goal = Player.objects.filter(id=int(i['id'])).first(),
+        #     score = int(i['status']),
+        # )
+    # check whether others finish
+    # ubung_5 = [i.player for i in list(Ubung5.objects.filter(game=game))]
+    # waiting_room = [i.player for i in list(WaitingRoomMember.objects.filter(game=game))]
+    # for i in waiting_room:
+    #     if i not in ubung_5:
+    #         # someone not finished
+    #         return 0
+    # # all finished
+    # return 1
 
     
 @api
@@ -1009,8 +1038,4 @@ def check_player_name(player_name, link):
     else:
         # name is valid
         return 1
-    
-
-
-    
 
