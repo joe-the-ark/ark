@@ -91,14 +91,14 @@
         }
         console.log('data', data_);
         axios
-            .post(`/api/ubung_5_data/`, data_)
+            .post(`/api/ubung5_data/`, data_)
             .then(function(response){
                 var result = response.data.result;
                 if (result === 1){
                     //window.location.href="/team-potential/";
                     window.location.href="/ubung-5/";
                 }else{
-                    return 
+                    return;
                 }
             })
             .catch(function(error){

@@ -51,8 +51,8 @@
                     Sensibilität ist die erste Vorausetzung für psychologischen Sicherheit.
                 </p>
                 <div class="custom-graph-wrapper"></div>
-                <form action="#" method="POST" class="form">
-                {% csrf_token %}
+                {% comment %} <form action="#" method="POST" class="form">
+                {% csrf_token %} {% endcomment %}
                     <div class="center">
                         <input id="data" type="hidden" name="data" value=""/>
                         <button type="submit" id="button">
@@ -65,14 +65,44 @@
 </div>
 <script src="/static/js/AppGraph.js"></script>
 <script src="/static/jquery-3.5.1.min.js"></script>
+<script src="/static/axios.min.js"></script>
 <script>
+
+    function data_submit(){
+        var data_ = {
+            'link': '{{game.link}}',
+            'user_id': '{{user.id}}',
+            'data': $('#data').val(),
+            'ubung1_id': '{{ubung1.id}}',
+            'ubung3_id': '{{ubung3.id}}',
+        };
+        axios
+            .post(`/api/m2_ubung5_data/`, data_)
+            .then(function(response){
+                var result = response.data.result;
+                if (result === 1){
+                    window.location.href = '/mission-2-ubung-1/';
+                }else{
+                    return;
+                }
+            })
+            .catch(function(error){
+                console.log(error);
+            })
+    }
+
+    $('#button').click(function(){
+        data_submit();
+    })
+
+
     const {log} = console;
 
     const app = new AppGraph({
         container: ".custom-graph-wrapper",
         range: [0, 100],
         //labelRange: [0, 99],
-        labelRange: ['aaaaaa', 'bbb'],
+        labelRange: ['{{ubung1.power}}', '{{ubung3.drainer}}'],
         mobile: 1200,
         dependency: true,
         data: {{ member_list|safe }}

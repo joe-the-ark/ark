@@ -385,7 +385,7 @@ def ubung_5(request, user):
     member_list = [i.player.player_json for i in waiting_room]
     ctx['member_list'] = member_list
 
-    ubung1, ubung3 = span_choose(user.id,link)
+    ubung1, ubung3 = span_choose(user.id, link)
     if not ubung1:
         return redirect('/team-potential/')
     ctx['ubung1'] = ubung1
@@ -498,6 +498,7 @@ def preview_2(request, user):
 @after_waitingroom
 @user_required
 def mission_2_ubung_1(request, user):
+    from .utils import m2_span_choose
     ctx = {}
     ctx['game'] = Game.objects.filter(link=request.session['link']).first()
     link = request.session['link']  
@@ -505,6 +506,12 @@ def mission_2_ubung_1(request, user):
     waiting_room = list(WaitingRoomMember.objects.filter(game=game,state=1))
     member_list = [i.player.player_json for i in waiting_room]
     ctx['member_list'] = member_list
+
+    ubung1, ubung3 = m2_span_choose(user.id, link)
+    if not ubung1:
+        return redirect('/mission-2-ubung-2/')
+    ctx['ubung1'] = ubung1
+    ctx['ubung3'] = ubung3
 
     if request.method == 'POST':
         data = request.POST.get('data')
@@ -981,7 +988,7 @@ def ubung_3_api(player_id, link, data):
 
 
 @api
-def ubung_5_data(link, user_id, data, ubung1_id, ubung3_id):
+def ubung5_data(link, user_id, data, ubung1_id, ubung3_id):
     ubung1_id = int(ubung1_id)
     ubung3_id = int(ubung3_id)
     import json
@@ -1016,6 +1023,29 @@ def ubung_5_data(link, user_id, data, ubung1_id, ubung3_id):
     #         return 0
     # # all finished
     # return 1
+
+@api
+def m2_ubung5_data(link, user_id, data, ubung1_id, ubung3_id):
+    from .models import M2Ubung1
+    ubung1_id = int(ubung1_id)
+    ubung3_id = int(ubung3_id)
+    import json
+    game = Game.objects.filter(link=link).first()
+    user = Player.objects.filter(id=user_id).first()
+    data = json.loads(data)
+    print(data, data.__class__)
+    m2 = M2Ubung1.objects.filter(game=game,player=user,ubung3__id=ubung3_id).first()
+    if m2:
+        m2_list = list(M2Ubung1.objects.filter(game=game,player=user,ubung3__id=ubung3_id))
+        uu = 0
+        while uu < len(m2_list):
+            m2_list[uu].delete()
+            uu += 1
+    for i in data:
+        goal = Player.objects.filter(id=int(i['id'])).first()
+        score = int(i['status'])
+        m2 = m2_span_add(user, goal, game, score, ubung1_id, ubung3_id)
+    return 1
 
     
 @api
