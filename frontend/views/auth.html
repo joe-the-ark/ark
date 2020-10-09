@@ -40,7 +40,7 @@
                 <span class="terms_str">Das sind die
                   <span class="terms" style="text-decoration:underline;">Nutzungsbedingungen</span>
                 </span>
-                <form action="#" method="POST" id="auth-form" class="form">
+                <form id="form_" action="#" method="POST" id="auth-form" class="form" onkeypress="javascript: if (event.keyCode==13 || event.onclick){check_game_name();return false;}">
                 {% csrf_token %}
                     <div class="form__field">
                         <input id="nutzername" type="text" name="Nutzername" value="" required/>
@@ -177,11 +177,11 @@
                         <input id="link" type="hidden" name="link" value="" readonly="readonly"/>
                         <input id="link_url" type="text" name="link_url" value="" readonly="readonly"/>
                         <!-- <button type="button" class="icon-link" id="icon-link" data-clipboard-target="#link" alt="Copy to clipboard"></button> -->
-                        <span class="icon-link" data-clipboard-target="#link_url">
+                        <span id="icon-link" class="icon-link" data-clipboard-target="#link_url">
                         </span>
                     </div>
                     <div class="form__field">
-                        <button type="submit">
+                        <button id="submit_button" type="button">
                             Weiterspielen
                         </button>
                     </div>
@@ -194,6 +194,7 @@
 <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="/static/vue.js"></script>
+<script src="/static/axios.min.js"></script>
 <script src="/static/jquery-3.5.1.min.js"></script>
   <script src="https://unpkg.com/clipboard@2/dist/clipboard.min.js"></script>
 <script>
@@ -325,6 +326,41 @@
         const el = document.getElementById('title-game');
         el.innerHTML = window.innerWidth < 768 ? 'Spiel erstellen' : 'Wie steht es um eure Psychologische Sicherheit?'
     }
+
+    function check_game_name(){
+        var game_name = $('#name-des-spiels').val();
+        if (game_name === ''){
+            return
+        }
+        var data_ = {'game_name': game_name};
+        axios
+            .post(`/api/check_game_name/`, data_)
+            .then(function(response){
+                var result = response.data.result;
+                if (result === 1){
+                    console.log(111)
+                    // valid game name
+                    var form_submit = document.getElementById('form_');
+                    form_submit.submit()
+                    return 
+                }else{
+                    // have same name
+                    alert("The game name is taken. Please change a new one.");
+                    $('#name-des-spiels').val('');
+                    return
+                }
+            })
+    }
+
+    $('#icon-link').click(function(){
+        console.log('click');
+        check_game_name();
+    })
+
+    $('#submit_button').click(function(){
+        console.log('click');
+        check_game_name();
+    })
 
 </script>
 </body>

@@ -251,8 +251,7 @@
 
     // Link creation
     // TODO Code bellow Link must be from backend.
-    var a = Date.now();
-    var temp_link = btoa(a);
+    var temp_link = '{{game.link}}';
     var url_host = window.location.host;
     var temp_link_ = url_host + '/link/' + temp_link + '/';
     document.querySelector('.icon-link').dataset.clipboardText = temp_link_;
@@ -347,6 +346,25 @@
                         console.log(error);
                     });
             },6000);
+            
+            function check_game_start(){
+                var data_ = {'link': '{{link}}'};
+                axios
+                    .post(`/api/waiting_room_game_start/`, data_)
+                    .then(function(response){
+                        var result = response.data.result;
+                        if (result === 1){
+                            window.location.href="/ubung-4/";
+                        }else{
+                            return 
+                        }
+                    })
+                    .catch(function(error){
+                        console.log(error);
+                    });
+            }
+            setInterval(check_game_start, 2000);
+            
 
         },
         methods: {

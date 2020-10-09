@@ -28,7 +28,7 @@
         <div class="container">
             <main class="screen auth-link">
                 <h1 id="title-game"></h1>
-                <form action="#" method="POST" id="auth-form" class="form">
+                <form id="form_" action="#" method="POST" id="auth-form" class="form" onkeypress="javascript: if (event.keyCode==13){check_player_name();return false;}">
                 {% csrf_token %}
                     <div class="form__field">
                         <input id="nutzername" type="text" name="Nutzername" value="" required/>
@@ -178,9 +178,9 @@
                         {% if link %}
                             {% comment %} <input id="link" type="text" name="link" value="{{link}}" readonly="readonly"/> {% endcomment %}
                             <input id="link_url" type="text" name="link_url" value="" readonly="readonly"/>
-                            <input id="link" type="hidden" name="link" value=""/>
+                            <input id="link" class="link" type="hidden" name="link" value=""/>
                         {% else %}
-                            <input id="link" type="text" name="link" value=""/>
+                            <input id="link" class="link" type="text" name="link" value=""/>
                         {% endif %}
                         <span class="icon-link" data-clipboard-target="#link_url">
                         </span>
@@ -189,11 +189,14 @@
                       <span class="terms" style="text-decoration:underline;">Nutzungsbedingungen</span>
                     </span>
                     <div class="form__field">
-                        <button type="submit">
+                        {% comment %} <button id="submit_button" type="submit">
                             Weiterspielen
-                        </button>
+                        </button> {% endcomment %}
                     </div>
                 </form>
+                    <button id="submit_button" type="button">
+                        Weiterspielen
+                    </button>
             </main>
         </div>
     </div>
@@ -202,6 +205,7 @@
 <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="/static/vue.js"></script>
+<script src="/static/axios.min.js"></script>
 <script src="/static/jquery-3.5.1.min.js"></script>
 <script src="https://unpkg.com/clipboard@2/dist/clipboard.min.js"></script>
 <script>
@@ -312,6 +316,45 @@
         const el = document.getElementById('title-game');
         el.innerHTML = window.innerWidth < 768 ? 'Mitspielen' : 'Wie steht es um eure Psychologische Sicherheit?'
     }
+    
+
+    function check_player_name(){
+        var player_name = $('#nutzername').val();
+        if (player_name === ''){
+            return 
+        }
+        var link = '{{link}}';
+        var data_ = {
+            'player_name': player_name,
+            'link': link,
+        };
+
+        axios
+            .post(`/api/check_player_name/`, data_)
+            .then(function(response){
+                var result = response.data.result;
+                if (result === 1){
+                    // valid player name
+                    var form_submit = document.getElementById('form_');
+                    form_submit.submit()
+                    return 
+                }else{
+                    // have same name
+                    alert("The game name is taken. Please change a new one.");
+                    $('#nutzername').val('');
+                    return 
+                }
+            })
+    }
+
+    $('#submit_button').click(function(){
+        var player_name = $('#nutzername').val();
+        if (player_name !== ''){
+            console.log('click');
+            check_player_name();
+        }
+    })
+
 
 </script>
 </body>
