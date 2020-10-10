@@ -10,9 +10,14 @@
     <title>Ubung 5</title>
     <link rel="stylesheet" href="/static/css/app.css">
     <link rel="stylesheet" href="/static/css/ubung-5.css">
+    <script src="/static/vue.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 </head>
 <body>
-<div class="app">
+<div class="app" id="app-1">
     <div class="app__head">
         <header class="header-main container">
             <div class="header-main__title">
@@ -40,7 +45,10 @@
             </div>
         </header>
     </div>
-    <div class="app__body">
+    <div class="app__body" 
+        v-loading="loading"
+        element-loading-text="Waiting for others to finish"
+        element-loading-background="rgba(0, 0, 0, 0.8)">
         <div class="container">
             <main class="screen ubung-5">
                 <h1>
@@ -78,8 +86,51 @@
 <script src="/static/js/AppGraph.js"></script>
 <script src="/static/jquery-3.5.1.min.js"></script>
 <script src="/static/axios.min.js"></script>
-<script src="/static/vue.js"></script>
+
 <script>
+
+    var app1 = new Vue({
+        delimiters: ['[[', ']]'],
+        el: '#app-1',
+        data(){
+            return{
+                loading: false,
+            } 
+        },
+        created(){
+            var loading_ = '{{ loading }}';
+            if (loading_ === '0'){
+                this.loading = false;
+            }else{
+                this.loading = true;
+            }
+        },
+        mounted(){
+            if (this.loading === true){
+                function check_finish(){
+                    var data_ = {'link': '{{game.link}}'};
+                    axios
+                        .post(`/api/check_ubung5_finish/`, data_)
+                        .then(function(response){
+                            var result = response.data.result;
+                            if (result === 1){
+                                // everybody finish the ubung-5
+                                window.location.href('/team-potential/');
+                            }else{
+                                return;
+                            }
+                        })
+                        .catch(function(error){
+                            console.log(error);
+                        })
+                }
+                setInterval(check_finish(),2000);
+            }
+        }
+    })
+    
+
+
 
     function data_submit(){
         var data_ = {

@@ -372,6 +372,7 @@ def ubung_4(request, user):
     return render(request, './views/ubung-4.html', ctx)
 
 
+
 @after_waitingroom
 @user_required
 def ubung_5(request, user):
@@ -386,10 +387,13 @@ def ubung_5(request, user):
     ctx['member_list'] = member_list
 
     ubung1, ubung3 = span_choose(user.id, link)
-    if not ubung1:
-        return redirect('/team-potential/')
     ctx['ubung1'] = ubung1
     ctx['ubung3'] = ubung3
+    ctx['loading'] = 0
+    if not ubung1:
+        ctx['loading'] = 1
+        return render(request, './views/ubung-5.html', ctx)
+        # return redirect('/team-potential/')
 
     # if request.method == 'POST':
     #     data = request.POST.get('data')
@@ -985,6 +989,17 @@ def ubung_3_api(player_id, link, data):
     result_data = [i.api_json for i in list(Ubung3.objects.filter(game=game))]
     return result_data
 
+
+
+@api
+def check_ubung5_finish(link):
+    game = Game.objects.filter(link=link).first()
+    mem_list = [i.player for i in list(WaitingRoomMember.objects.filter(game=game,state=1))]
+    ubung5_player_list = [i.player for i in list(Ubung5.objects.filter(game=game))]
+    for i in mem_list:
+        if i not in ubung5_player_list:
+            return 0
+    return 1
 
 
 @api
