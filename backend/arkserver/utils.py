@@ -357,8 +357,14 @@ def span_choose(user_id, link):
     game = Game.objects.filter(link=link).first()
     player = Player.objects.filter(id=user_id).first()
 
-    # ubung1_list = list(Ubung1.objects.filter(game=game,state='line-through',player__valid=True))
-    ubung1_list = [i for i in Ubung1.objects.filter(game=game,state='line-through') if i.player.valid == True]
+    # ubung1_list = [i for i in Ubung1.objects.filter(game=game,state='line-through') if i.player.valid == True]
+    ubung1_list = []
+    for i in list(Ubung1.objects.filter(game=game,state='line-through')):
+        if not i.player:
+            continue
+        if i.player.valid == True:
+            ubung1_list.append(i)
+
     print('list',ubung1_list)
     ubung1 = None
     for i in ubung1_list:
