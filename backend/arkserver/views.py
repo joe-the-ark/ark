@@ -736,7 +736,7 @@ def wartezimmer(request, user):
         nums = WaitingRoomMember.objects.filter(game=game).count()
         if user != game.creator:
             if nums < 3:
-                return
+                return render(request, './views/wartezimmer.html', ctx)
             if game.status == 1:
                 player_ = WaitingRoomMember.objects.filter(game=game,user=user).first()
                 player_.state = 1
