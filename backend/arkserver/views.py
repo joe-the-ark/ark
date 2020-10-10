@@ -389,11 +389,11 @@ def ubung_5(request, user):
     ubung1, ubung3 = span_choose(user.id, link)
     ctx['ubung1'] = ubung1
     ctx['ubung3'] = ubung3
-    ctx['loading'] = 0
+
     if not ubung1:
-        ctx['loading'] = 1
-        return render(request, './views/ubung-5.html', ctx)
-        # return redirect('/team-potential/')
+        return redirect('/team-potential/')
+        # ctx['loading'] = 1
+        # return render(request, './views/ubung-5.html', ctx)
 
     # if request.method == 'POST':
     #     data = request.POST.get('data')
@@ -459,6 +459,18 @@ def team_potential(request, user):
         else:
             all_result.append({"statusSide": i})
     ctx['all_result'] = all_result
+    ctx['loading'] = 0
+
+    if request.method == 'POST':
+        from .utils import span_choose
+        # ubung1, ubung3 = span_choose(user.id, link)
+        # if not ubung1:
+        #     print(111111111111111)
+        ctx['loading'] = 1
+        return render(request, './views/team-potential.html', ctx)
+
+        
+
     return render(request, './views/team-potential.html', ctx)
 
 
