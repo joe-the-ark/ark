@@ -993,12 +993,18 @@ def ubung_3_api(player_id, link, data):
 
 @api
 def check_ubung5_finish(link):
+    from .models import Ubung5
     game = Game.objects.filter(link=link).first()
     mem_list = [i.player for i in list(WaitingRoomMember.objects.filter(game=game,state=1))]
-    ubung5_player_list = [i.player for i in list(Ubung5.objects.filter(game=game))]
+    ubung5_list = Ubung5.objects.filter(game=game)
+    # ubung5_player_list = [i.player for i in list(Ubung5.objects.filter(game=game))]
+    mem_num = len(mem_list)
     for i in mem_list:
-        if i not in ubung5_player_list:
+        item_num = Ubung5.objects.filter(game=game,player=i).count()
+        if item_num != (mem_num ** 2):
             return 0
+        # if i not in ubung5_player_list:
+            # return 0
     return 1
 
 
