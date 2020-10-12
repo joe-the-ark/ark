@@ -372,9 +372,12 @@ def ubung_4(request, user):
     return render(request, './views/ubung-4.html', ctx)
 
 
+
 @after_waitingroom
 @user_required
 def ubung_5(request, user):
+    from .utils import span_choose
+
     ctx = {}
     ctx['game'] = Game.objects.filter(link=request.session['link']).first()
     link = request.session['link'] 
@@ -383,21 +386,41 @@ def ubung_5(request, user):
     member_list = [i.player.player_json for i in waiting_room]
     ctx['member_list'] = member_list
 
-    if request.method == 'POST':
-        data = request.POST.get('data')
-        data = json.loads(data)
-        ubung5 = Ubung5.objects.filter(game=game,player=user).first()
-        if ubung5:
-            ubung5.delete()
-        for i in data:
-            Ubung5.objects.create(
-                game = game,
-                player = user,
-                goal = Player.objects.filter(id=int(i['id'])).first(),
-                score = int(i['status']),
-            )
-    
+    ubung1, ubung3 = span_choose(user.id, link)
+    ctx['ubung1'] = ubung1
+    ctx['ubung3'] = ubung3
+
+    if not ubung1:
         return redirect('/team-potential/')
+        # ctx['loading'] = 1
+        # return render(request, './views/ubung-5.html', ctx)
+
+    # if request.method == 'POST':
+    #     data = request.POST.get('data')
+    #     ubung1_id = request.POST.get('ubung1_id')
+    #     ubung3_id = request.POST.get('ubung3_id')
+    #     data = json.loads(data)
+    #     ubung5 = Ubung5.objects.filter(game=game,player=user,ubung3__id=ubung3_id).first()
+    #     if ubung5:
+    #         ubung5_list = list(Ubung5.objects.filter(game=game,player=user,ubung3__id=ubung3_id))
+    #         uu = 0
+    #         while uu < len(ubung5_list):
+    #             ubung5_list[uu].delete()
+    #             uu += 1
+    #     for i in data:
+    #         goal = Player.objects.filter(id=int(i['id'])).first()
+    #         score = int(i['status'])
+    #         ubung5 = span_add(user, goal, game, score, ubung1_id, ubung3_id)
+
+    #         # Ubung5.objects.create(
+    #         #     game = game,
+    #         #     player = user,
+    #         #     goal = Player.objects.filter(id=int(i['id'])).first(),
+    #         #     score = int(i['status']),
+    #         # )
+    #     return redirect('/ubung-5/')
+
+        # return redirect('/team-potential/')
 
     return render(request, './views/ubung-5.html', ctx)
 
@@ -436,6 +459,18 @@ def team_potential(request, user):
         else:
             all_result.append({"statusSide": i})
     ctx['all_result'] = all_result
+    ctx['loading'] = 0
+
+    if request.method == 'POST':
+        from .utils import span_choose
+        # ubung1, ubung3 = span_choose(user.id, link)
+        # if not ubung1:
+        #     print(111111111111111)
+        ctx['loading'] = 1
+        return render(request, './views/team-potential.html', ctx)
+
+        
+
     return render(request, './views/team-potential.html', ctx)
 
 
@@ -479,6 +514,7 @@ def preview_2(request, user):
 @after_waitingroom
 @user_required
 def mission_2_ubung_1(request, user):
+    from .utils import m2_span_choose
     ctx = {}
     ctx['game'] = Game.objects.filter(link=request.session['link']).first()
     link = request.session['link']  
@@ -486,6 +522,12 @@ def mission_2_ubung_1(request, user):
     waiting_room = list(WaitingRoomMember.objects.filter(game=game,state=1))
     member_list = [i.player.player_json for i in waiting_room]
     ctx['member_list'] = member_list
+
+    ubung1, ubung3 = m2_span_choose(user.id, link)
+    if not ubung1:
+        return redirect('/mission-2-ubung-2/')
+    ctx['ubung1'] = ubung1
+    ctx['ubung3'] = ubung3
 
     if request.method == 'POST':
         data = request.POST.get('data')
@@ -706,7 +748,7 @@ def wartezimmer(request, user):
         nums = WaitingRoomMember.objects.filter(game=game).count()
         if user != game.creator:
             if nums < 3:
-                return
+                return render(request, './views/wartezimmer.html', ctx)
             if game.status == 1:
                 player_ = WaitingRoomMember.objects.filter(game=game,user=user).first()
                 player_.state = 1
@@ -802,7 +844,7 @@ def logout(request):
 
 @api
 def waiting_room_game_start(link):
-    game = Game.objects.filter(link=link).first()
+    game = Game.objects.filter(link=link).first() 
     if game.status == 1:
         return 1
     else:
@@ -962,30 +1004,80 @@ def ubung_3_api(player_id, link, data):
 
 
 @api
-def ubung_5_data(link, user_id, data):
+def check_ubung5_finish(link):
+    from .models import Ubung5
+    game = Game.objects.filter(link=link).first()
+    mem_list = [i.player for i in list(WaitingRoomMember.objects.filter(game=game,state=1))]
+    ubung5_list = Ubung5.objects.filter(game=game)
+    # ubung5_player_list = [i.player for i in list(Ubung5.objects.filter(game=game))]
+    mem_num = len(mem_list)
+    for i in mem_list:
+        item_num = Ubung5.objects.filter(game=game,player=i).count()
+        if item_num != (mem_num ** 2):
+            return 0
+        # if i not in ubung5_player_list:
+            # return 0
+    return 1
+
+
+@api
+def ubung5_data(link, user_id, data, ubung1_id, ubung3_id):
+    ubung1_id = int(ubung1_id)
+    ubung3_id = int(ubung3_id)
     import json
     game = Game.objects.filter(link=link).first()
     user = Player.objects.filter(id=user_id).first()
     data = json.loads(data)
     print(data, data.__class__)
-    ubung5 = Ubung5.objects.filter(game=game,player=user).first()
+    ubung5 = Ubung5.objects.filter(game=game,player=user,ubung3__id=ubung3_id).first()
     if ubung5:
-        ubung5.delete()
+        ubung5_list = list(Ubung5.objects.filter(game=game,player=user,ubung3__id=ubung3_id))
+        uu = 0
+        while uu < len(ubung5_list):
+            ubung5_list[uu].delete()
+            uu += 1
     for i in data:
-        Ubung5.objects.create(
-            game = game,
-            player = user,
-            goal = Player.objects.filter(id=int(i['id'])).first(),
-            score = int(i['status']),
-        )
+        goal = Player.objects.filter(id=int(i['id'])).first()
+        score = int(i['status'])
+        ubung5 = span_add(user, goal, game, score, ubung1_id, ubung3_id)
+    return 1
+        # Ubung5.objects.create(
+        #     game = game,
+        #     player = user,
+        #     goal = Player.objects.filter(id=int(i['id'])).first(),
+        #     score = int(i['status']),
+        # )
     # check whether others finish
-    ubung_5 = [i.player for i in list(Ubung5.objects.filter(game=game))]
-    waiting_room = [i.player for i in list(WaitingRoomMember.objects.filter(game=game))]
-    for i in waiting_room:
-        if i not in ubung_5:
-            # someone not finished
-            return 0
-    # all finished
+    # ubung_5 = [i.player for i in list(Ubung5.objects.filter(game=game))]
+    # waiting_room = [i.player for i in list(WaitingRoomMember.objects.filter(game=game))]
+    # for i in waiting_room:
+    #     if i not in ubung_5:
+    #         # someone not finished
+    #         return 0
+    # # all finished
+    # return 1
+
+@api
+def m2_ubung5_data(link, user_id, data, ubung1_id, ubung3_id):
+    from .models import M2Ubung1
+    ubung1_id = int(ubung1_id)
+    ubung3_id = int(ubung3_id)
+    import json
+    game = Game.objects.filter(link=link).first()
+    user = Player.objects.filter(id=user_id).first()
+    data = json.loads(data)
+    print(data, data.__class__)
+    m2 = M2Ubung1.objects.filter(game=game,player=user,ubung3__id=ubung3_id).first()
+    if m2:
+        m2_list = list(M2Ubung1.objects.filter(game=game,player=user,ubung3__id=ubung3_id))
+        uu = 0
+        while uu < len(m2_list):
+            m2_list[uu].delete()
+            uu += 1
+    for i in data:
+        goal = Player.objects.filter(id=int(i['id'])).first()
+        score = int(i['status'])
+        m2 = m2_span_add(user, goal, game, score, ubung1_id, ubung3_id)
     return 1
 
     
@@ -1009,8 +1101,4 @@ def check_player_name(player_name, link):
     else:
         # name is valid
         return 1
-    
-
-
-    
 

@@ -347,3 +347,93 @@ ubung_3_term_list = [
                 'value': 'Willkür',
                 'player_id': -1,
             }]
+
+
+
+# ubung5 area
+
+def span_choose(user_id, link):
+    from .models import Game, Player, Ubung1, Ubung3, Ubung5
+    game = Game.objects.filter(link=link).first()
+    player = Player.objects.filter(id=user_id).first()
+
+    # ubung1_list = [i for i in Ubung1.objects.filter(game=game,state='line-through') if i.player.valid == True]
+    ubung1_list = []
+    for i in list(Ubung1.objects.filter(game=game,state='line-through')):
+        if not i.player:
+            continue
+        if i.player.valid == True:
+            ubung1_list.append(i)
+
+    print('list',ubung1_list)
+    ubung1 = None
+    for i in ubung1_list:
+        if not Ubung5.objects.filter(ubung1=i,player=player).first():
+            ubung1 = i
+            break
+    if not ubung1:
+        return None, None
+    goal_player = ubung1.player    
+    ubung3 = Ubung3.objects.filter(player=goal_player,state='line-through').first()
+
+    return ubung1, ubung3
+
+
+def span_add(player, target_player, game, score, ubung1_id, ubung3_id):
+    from .models import Game, Player, Ubung1, Ubung3, Ubung5
+    # game = Game.objects.filter(link=link).first()
+    # player = Player.objects.filter(id=user_id).first()
+    # target_player = Player.objects.filter(id=target_user_id).first()
+
+    ubung1 = Ubung1.objects.filter(id=ubung1_id).first()
+    ubung3 = Ubung3.objects.filter(id=ubung3_id).first()
+
+    ubung5 = Ubung5.objects.create(
+        game = game,
+        player = player,
+        goal = target_player,
+        score = score,
+        ubung1 = ubung1,
+        ubung3 = ubung3,
+    )
+
+    return ubung5
+
+
+# mission 2 ubung 1 area
+
+def m2_span_choose(user_id, link):
+    from .models import Game, Player, Ubung1, Ubung3, M2Ubung1
+    game = Game.objects.filter(link=link).first()
+    player = Player.objects.filter(id=user_id).first()
+
+    ubung1_list = [i for i in Ubung1.objects.filter(game=game,state='line-through') if i.player.valid == True]
+    ubung1 = None
+    for i in ubung1_list:
+        if not M2Ubung1.objects.filter(ubung1=i,player=player).first():
+            ubung1 = i
+            break
+    if not ubung1:
+        return None, None
+    goal_player = ubung1.player    
+    ubung3 = Ubung3.objects.filter(player=goal_player,state='line-through').first()
+
+    return ubung1, ubung3
+
+
+def m2_span_add(player, target_player, game, score, ubung1_id, ubung3_id):
+    from .models import Game, Player, Ubung1, Ubung3, M2Ubung1
+
+    ubung1 = Ubung1.objects.filter(id=ubung1_id).first()
+    ubung3 = Ubung3.objects.filter(id=ubung3_id).first()
+
+    m2ubung1 = M2Ubung1.objects.create(
+        game = game,
+        player = player,
+        goal = target_player,
+        score = score,
+        ubung1 = ubung1,
+        ubung3 = ubung3,
+    )
+    
+    return m2ubung1

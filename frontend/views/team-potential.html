@@ -11,6 +11,11 @@
     <link rel="stylesheet" href="/static/css/app.css">
     <link rel="stylesheet" href="/static/css/app_graph.css">
     <link rel="stylesheet" href="/static/css/team-potential.css">
+    <script src="/static/vue.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 </head>
 <body>
 <div class="app">
@@ -41,8 +46,11 @@
             </div>
         </header>
     </div>
-    <div class="app__body">
-        <div class="container">
+    <div class="app__body" id="app-1">
+        <div class="container"
+        v-loading="loading"
+        element-loading-text="Waiting for others to finish"
+        element-loading-background="rgba(0, 0, 0, 0.8)">
             <main class="screen team-potential">
                 <h1>
                     Team Potential Einschätzung
@@ -64,17 +72,90 @@
                     </div>
                 </div>
                 <div class="custom-graph-wrapper"></div>
-                <div class="center">
-                    <a href="/psychologischer/" class="button" id="button">
-                        Weiterspielen
-                    </a>
-                </div>
+                <form id="form_" action="#" method="POST" id="auth-form" class="form">
+                {% csrf_token %}
+                    <div class="center">
+                        {% comment %} <a href="/psychologischer/" class="button" id="button">
+                            Weiterspielen
+                        </a>  {% endcomment %}
+                        <input type="hidden" name="flag" value="">
+                        <button type="submit" id="button">
+                            Weiterspielen
+                        </button> 
+                    </div>
+                </form>
             </main>
         </div>
     </div>
 </div>
 <script src="/static/js/AppGraph.js"></script>
+<script src="/static/axios.min.js"></script>
 <script>
+
+    var app1 = new Vue({
+        delimiters: ['[[', ']]'],
+        el: '#app-1',
+        data(){
+            return{
+                loading: false,
+            } 
+        },
+        created(){
+            var loading_ = '{{ loading }}';
+            console.log('loading', loading_)
+            if (loading_ === '0'){
+                this.loading = false;
+            }else{
+                this.loading = true;
+            }
+        },
+        mounted(){
+            {% comment %} function check_finish(){
+                if (this.loading === true){
+                    var data_ = {'link': '{{game.link}}'};
+                    axios
+                        .post(`/api/check_ubung5_finish/`, data_)
+                        .then(function(response){
+                            var result = response.data.result;
+                            if (result === 1){
+                                // everybody finish the ubung-5
+                                window.location.href('/psychologischer/');
+                            }else{
+                                return;
+                            }
+                        })
+                        .catch(function(error){
+                            console.log(error);
+                        })
+                }
+            }  {% endcomment %}
+            //setInterval(check_finish(),2000);
+        }
+    })
+
+    function check_finish(){
+        if (app1.loading === true){
+            var data_ = {'link': '{{game.link}}'};
+            axios
+                .post(`/api/check_ubung5_finish/`, data_)
+                .then(function(response){
+                    var result = response.data.result;
+                    if (result === 1){
+                        // everybody finish the ubung-5
+                        window.location.href('/psychologischer/');
+                    }else{
+                        return;
+                    }
+                })
+                .catch(function(error){
+                    console.log(error);
+                })
+        }
+    }
+    setInterval("check_finish()",2000);
+
+
+
     const {log} = console;
 
     const app = new AppGraph({
