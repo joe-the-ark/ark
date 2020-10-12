@@ -814,7 +814,7 @@ def psychologischer(request, user):
     num = (WaitingRoomMember.objects.filter(game=game,state=1).count()) ** 2
     score = score / num
 
-    ctx['score'] = score
+    ctx['score'] = round(score,1)
     ctx['row0'] = row_0
     ctx['row1'] = row_1
     ctx['row2'] = row_2
