@@ -796,7 +796,7 @@ def psychologischer(request, user):
         # if game_.player == user:
         #     continue
         # else:
-        print(game_)
+        # print(game_)
         if user in game_.row0.all():
             row_0 += 1
         if user in game_.row1.all():
@@ -821,13 +821,13 @@ def psychologischer(request, user):
     ctx['row3'] = row_3
     ctx['row4'] = row_4
     ctx['row5'] = row_5
-    print(score)
-    print(row_0)
-    print(row_1)
-    print(row_2)
-    print(row_3)
-    print(row_4)
-    print(row_5)
+    # print(score)
+    # print(row_0)
+    # print(row_1)
+    # print(row_2)
+    # print(row_3)
+    # print(row_4)
+    # print(row_5)
     return render(request, './views/psychologischer.html', ctx)
 
 
