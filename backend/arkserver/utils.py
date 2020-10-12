@@ -437,3 +437,4 @@ def m2_span_add(player, target_player, game, score, ubung1_id, ubung3_id):
     )
     
     return m2ubung1
+

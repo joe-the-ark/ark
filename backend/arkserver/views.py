@@ -434,7 +434,7 @@ def team_potential(request, user):
     game = Game.objects.filter(link=link).first()
     ubung2 = Ubung2.objects.filter(game=game)
     value_list = [int(i.value) for i in ubung2]
-    value_list = list(set(value_list))
+    value_list = value_list.sort()
     temp = len(value_list)/2
     if temp.__class__ == int:
         median = (value_list[temp-1] + value_list[temp])/2
@@ -793,27 +793,28 @@ def psychologischer(request, user):
     row_4 = 0
     row_5 = 0
     for game_ in game_place:
-        if game_.player == user:
-            continue
-        else:
-            if user in game_.row0.all():
-                row_0 += 1
-            if user in game_.row1.all():
-                row_1 += 1
-            if user in game_.row2.all():
-                row_2 += 1
-            if user in game_.row3.all():
-                row_3 += 1
-            if user in game_.row4.all():
-                row_4 += 1
-            if user in game_.row5.all():
-                row_5 += 1
+        # if game_.player == user:
+        #     continue
+        # else:
+        # print(game_)
+        if user in game_.row0.all():
+            row_0 += 1
+        if user in game_.row1.all():
+            row_1 += 1
+        if user in game_.row2.all():
+            row_2 += 1
+        if user in game_.row3.all():
+            row_3 += 1
+        if user in game_.row4.all():
+            row_4 += 1
+        if user in game_.row5.all():
+            row_5 += 1
 
     score = row_0 * 4 + row_1 * 1 + row_2 * 3 + row_3 * 5 + row_4 * 0 + row_5 * 2
     num = (WaitingRoomMember.objects.filter(game=game,state=1).count()) ** 2
     score = score / num
 
-    ctx['score'] = score
+    ctx['score'] = round(score,1)
     ctx['row0'] = row_0
     ctx['row1'] = row_1
     ctx['row2'] = row_2
@@ -1015,8 +1016,6 @@ def check_ubung5_finish(link):
         item_num = Ubung5.objects.filter(game=game,player=i).count()
         if item_num != (mem_num ** 2):
             return 0
-        # if i not in ubung5_player_list:
-            # return 0
     return 1
 
 
@@ -1102,3 +1101,13 @@ def check_player_name(player_name, link):
         # name is valid
         return 1
 
+
+
+@api
+def check_game_is_after_waiting_room(link):
+    game = Game.objects.filter(link=link).first()
+    if game.status == 1:
+        # game can't join anymore
+        return 0
+    else:
+        return 1
