@@ -277,7 +277,7 @@ class AppGraph {
         this.templates.forEach((item) => {
             this.searchInnerElNext(item);
         });
-        // this.safeArea();
+        this.safeArea();
     }
 
     showSliderValue(inputSlider, thumb, index) {

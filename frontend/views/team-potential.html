@@ -140,7 +140,7 @@
                 .post(`/api/check_ubung5_finish/`, data_)
                 .then(function(response){
                     var result = response.data.result;
-                    console.log('result',result);
+                    //console.log('result',result);
                     if (result === 1){
                         // everybody finish the ubung-5
                         window.location.href = '/psychologischer/';
