@@ -1015,8 +1015,6 @@ def check_ubung5_finish(link):
         item_num = Ubung5.objects.filter(game=game,player=i).count()
         if item_num != (mem_num ** 2):
             return 0
-        # if i not in ubung5_player_list:
-            # return 0
     return 1
 
 
