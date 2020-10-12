@@ -793,21 +793,22 @@ def psychologischer(request, user):
     row_4 = 0
     row_5 = 0
     for game_ in game_place:
-        if game_.player == user:
-            continue
-        else:
-            if user in game_.row0.all():
-                row_0 += 1
-            if user in game_.row1.all():
-                row_1 += 1
-            if user in game_.row2.all():
-                row_2 += 1
-            if user in game_.row3.all():
-                row_3 += 1
-            if user in game_.row4.all():
-                row_4 += 1
-            if user in game_.row5.all():
-                row_5 += 1
+        # if game_.player == user:
+        #     continue
+        # else:
+        print(game_)
+        if user in game_.row0.all():
+            row_0 += 1
+        if user in game_.row1.all():
+            row_1 += 1
+        if user in game_.row2.all():
+            row_2 += 1
+        if user in game_.row3.all():
+            row_3 += 1
+        if user in game_.row4.all():
+            row_4 += 1
+        if user in game_.row5.all():
+            row_5 += 1
 
     score = row_0 * 4 + row_1 * 1 + row_2 * 3 + row_3 * 5 + row_4 * 0 + row_5 * 2
     num = (WaitingRoomMember.objects.filter(game=game,state=1).count()) ** 2
@@ -820,13 +821,13 @@ def psychologischer(request, user):
     ctx['row3'] = row_3
     ctx['row4'] = row_4
     ctx['row5'] = row_5
-    # print(score)
-    # print(row_0)
-    # print(row_1)
-    # print(row_2)
-    # print(row_3)
-    # print(row_4)
-    # print(row_5)
+    print(score)
+    print(row_0)
+    print(row_1)
+    print(row_2)
+    print(row_3)
+    print(row_4)
+    print(row_5)
     return render(request, './views/psychologischer.html', ctx)
 
 
