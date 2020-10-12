@@ -434,7 +434,7 @@ def team_potential(request, user):
     game = Game.objects.filter(link=link).first()
     ubung2 = Ubung2.objects.filter(game=game)
     value_list = [int(i.value) for i in ubung2]
-    value_list = list(set(value_list))
+    value_list = value_list.sort()
     temp = len(value_list)/2
     if temp.__class__ == int:
         median = (value_list[temp-1] + value_list[temp])/2
