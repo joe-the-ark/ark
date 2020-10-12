@@ -1100,3 +1100,13 @@ def check_player_name(player_name, link):
         # name is valid
         return 1
 
+
+
+@api
+def check_game_is_after_waiting_room(link):
+    game = Game.objects.filter(link=link).first()
+    if game.status == 1:
+        # game can't join anymore
+        return 0
+    else:
+        return 1

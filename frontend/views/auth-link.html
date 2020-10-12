@@ -330,21 +330,32 @@
         };
 
         axios
-            .post(`/api/check_player_name/`, data_)
+            .post(`/api/check_game_is_after_waiting_room/`, {'link': link})
             .then(function(response){
                 var result = response.data.result;
                 if (result === 1){
-                    // valid player name
-                    var form_submit = document.getElementById('form_');
-                    form_submit.submit()
-                    return 
+                    axios
+                        .post(`/api/check_player_name/`, data_)
+                        .then(function(response){
+                            var result = response.data.result;
+                            if (result === 1){
+                                // valid player name
+                                var form_submit = document.getElementById('form_');
+                                form_submit.submit()
+                                return 
+                            }else{
+                                // have same name
+                                alert("The game name is taken. Please change a new one.");
+                                $('#nutzername').val('');
+                                return 
+                            }
+                        })
                 }else{
-                    // have same name
-                    alert("The game name is taken. Please change a new one.");
+                    alert("The game is starting. You can't join anymore.");
                     $('#nutzername').val('');
-                    return 
                 }
             })
+
     }
 
     $('#submit_button').click(function(){
