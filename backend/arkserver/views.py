@@ -797,18 +797,26 @@ def psychologischer(request, user):
         #     continue
         # else:
         # print(game_)
-        if user in game_.row0.all():
-            row_0 += 1
-        if user in game_.row1.all():
-            row_1 += 1
-        if user in game_.row2.all():
-            row_2 += 1
-        if user in game_.row3.all():
-            row_3 += 1
-        if user in game_.row4.all():
-            row_4 += 1
-        if user in game_.row5.all():
-            row_5 += 1
+
+        row_0 += game_.row0.all().count()
+        row_1 += game_.row1.all().count()
+        row_2 += game_.row2.all().count()
+        row_3 += game_.row3.all().count()
+        row_4 += game_.row4.all().count()
+        row_5 += game_.row5.all().count()
+
+        # if user in game_.row0.all():
+        #     row_0 += 1
+        # if user in game_.row1.all():
+        #     row_1 += 1
+        # if user in game_.row2.all():
+        #     row_2 += 1
+        # if user in game_.row3.all():
+        #     row_3 += 1
+        # if user in game_.row4.all():
+        #     row_4 += 1
+        # if user in game_.row5.all():
+        #     row_5 += 1
 
     score = row_0 * 4 + row_1 * 1 + row_2 * 3 + row_3 * 5 + row_4 * 0 + row_5 * 2
     num = (WaitingRoomMember.objects.filter(game=game,state=1).count()) ** 2
