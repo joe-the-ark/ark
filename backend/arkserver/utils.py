@@ -219,7 +219,7 @@ ubung_3_term_list = [
             },
             {
                 'state': 'tag',
-                'value': 'Angsẗ',
+                'value': 'Angst',
                 'player_id': -1,
             },
             {
