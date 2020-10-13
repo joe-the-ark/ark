@@ -44,7 +44,7 @@
     </div>
     <div class="app__body">
         <div class="container">
-            <form action="#" method="POST" id="ubung-1-form" class="form">
+            <form id="form_" action="#" method="POST" id="ubung-1-form" class="form" onkeypress="javascript: if (event.keyCode==13 || event.onclick){return false;}">
             {% csrf_token %}
                 <main class="screen ubung-2">
                     <h1>
@@ -74,7 +74,7 @@
                     </p>
                     <input id="digit_value" type="hidden" name="digit_value" value="0">
                     <div class="center">
-                        <button href="#" class="submit">
+                        <button class="button" type="button">
                             Weiterspielen
                         </button>
                     </div>
@@ -112,7 +112,7 @@
         thumbSlider: '.ui-slider__marker',
         rangeMaxWidthContainer: 973 - 110,
         range: {
-            min: 0,
+            min: 1,
             max: 99
         },
         callback(value) {
@@ -120,6 +120,21 @@
             $('#digit_value').val(value);
         }
     });
+
+    function check_zero(){
+        var value = $('#digit_value').val()
+        if (value === '0'){
+            alert("Please move the slider.")
+            return
+        }else{
+            var form_submit = document.getElementById('form_')            
+            form_submit.submit()
+        }
+    }
+
+    $('.button').click(function(){
+        check_zero()
+    })
 
 
 </script>
