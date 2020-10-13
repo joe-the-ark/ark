@@ -452,15 +452,20 @@ def team_potential(request, user):
     ctx['user'] = user
 
     all_result = []
+    flag =  0
     for i in value_list:
         if i == ubung2.filter(player=user).first().value:
-            all_result.append(
-                {
-                    'name': user.name,
-                    'avatar': user.avatar,
-                    'statusSide': i
-                }
-            )
+            if flag == 0:
+                all_result.append(
+                    {
+                        'name': user.name,
+                        'avatar': user.avatar,
+                        'statusSide': i
+                    }
+                )
+                flag = 1
+            else:
+                all_result.append({"statusSide": i})
         else:
             all_result.append({"statusSide": i})
     ctx['all_result'] = all_result
