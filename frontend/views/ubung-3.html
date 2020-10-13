@@ -96,11 +96,11 @@
                     </div>
                     <input id="tags" type="hidden" name="tags" value="输入你要传bai递的值">
                     <div class="center">
-                        <a href="/wartezimmer/">
-                            <button class="submit">
+                        {% comment %} <a href="/wartezimmer/"> {% endcomment %}
+                            <button class="submit" @click="continue_()">
                                 Weiterspielen
                             </button>
-                        </a>
+                        {% comment %} </a> {% endcomment %}
                     </div>
                 </main>
         </div>
@@ -212,6 +212,13 @@
             setInterval(get_api_data, 3000);
         },
         methods:{
+            continue_:function(){
+                var that = this;
+                if (that.text_input === ''){
+                    alert("Please choose a term");
+                    return;
+                }
+            },
             add_term: function(){
                 var that = this;
                 if (that.text_input ===  ''){
