@@ -993,12 +993,12 @@ def ubung_3_api(player_id, link, data):
     for i in data:
         if i['value'] not in already_term_list:
             if i['player_id'] == -1:
-                Ubung3.objects.create(
-                    game=game,
-                    player=None,
-                    drainer=i['value'],
-                    state=i['state'],
-                )
+                # Ubung3.objects.create(
+                #     game=game,
+                #     player=None,
+                #     drainer=i['value'],
+                #     state=i['state'],
+                # )
                 continue
             else:
                 Ubung3.objects.create(
