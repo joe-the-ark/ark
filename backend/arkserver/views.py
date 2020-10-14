@@ -246,11 +246,16 @@ def ubung_2(request, user):
         link = request.session['link']
         digit_value = request.POST.get('digit_value')
         game = Game.objects.filter(link=link).first()
-        Ubung2.objects.create(
-            game = game,
-            player = user,
-            value = digit_value, 
-        )
+        ubung2 = Ubung2.objects.filter(game=game,player=user).first()
+        if ubung2:
+            ubung2.value = digit_value
+            ubung2.save()
+        else:
+            Ubung2.objects.create(
+                game = game,
+                player = user,
+                value = digit_value, 
+            )
         return redirect(f'/ubung-3/')
 
     return render(request, './views/ubung-2.html', ctx)
@@ -434,7 +439,7 @@ def team_potential(request, user):
     game = Game.objects.filter(link=link).first()
     ubung2 = Ubung2.objects.filter(game=game)
     value_list = [int(i.value) for i in ubung2]
-    value_list = value_list.sort()
+    value_list.sort()
     temp = len(value_list)/2
     if temp.__class__ == int:
         median = (value_list[temp-1] + value_list[temp])/2
@@ -447,15 +452,20 @@ def team_potential(request, user):
     ctx['user'] = user
 
     all_result = []
+    flag =  0
     for i in value_list:
         if i == ubung2.filter(player=user).first().value:
-            all_result.append(
-                {
-                    'name': user.name,
-                    'avatar': user.avatar,
-                    'statusSide': i
-                }
-            )
+            if flag == 0:
+                all_result.append(
+                    {
+                        'name': user.name,
+                        'avatar': user.avatar,
+                        'statusSide': i
+                    }
+                )
+                flag = 1
+            else:
+                all_result.append({"statusSide": i})
         else:
             all_result.append({"statusSide": i})
     ctx['all_result'] = all_result
@@ -797,18 +807,26 @@ def psychologischer(request, user):
         #     continue
         # else:
         # print(game_)
-        if user in game_.row0.all():
-            row_0 += 1
-        if user in game_.row1.all():
-            row_1 += 1
-        if user in game_.row2.all():
-            row_2 += 1
-        if user in game_.row3.all():
-            row_3 += 1
-        if user in game_.row4.all():
-            row_4 += 1
-        if user in game_.row5.all():
-            row_5 += 1
+
+        row_0 += game_.row0.all().count()
+        row_1 += game_.row1.all().count()
+        row_2 += game_.row2.all().count()
+        row_3 += game_.row3.all().count()
+        row_4 += game_.row4.all().count()
+        row_5 += game_.row5.all().count()
+
+        # if user in game_.row0.all():
+        #     row_0 += 1
+        # if user in game_.row1.all():
+        #     row_1 += 1
+        # if user in game_.row2.all():
+        #     row_2 += 1
+        # if user in game_.row3.all():
+        #     row_3 += 1
+        # if user in game_.row4.all():
+        #     row_4 += 1
+        # if user in game_.row5.all():
+        #     row_5 += 1
 
     score = row_0 * 4 + row_1 * 1 + row_2 * 3 + row_3 * 5 + row_4 * 0 + row_5 * 2
     num = (WaitingRoomMember.objects.filter(game=game,state=1).count()) ** 2

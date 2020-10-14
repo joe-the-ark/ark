@@ -46,7 +46,7 @@
         <div class="container" id="app-1">
                 <main class="screen ubung-1">
                     <h1>
-                        Übung 1: Kraftquelle des Teams.
+                        Aufgabe 1: Kraftquelle des Teams.
                     </h1>
                     <p>
                         Die erste Aufgabe ist anspruchsvoll und bestimmt die Struktur des Spiels: welche Kraft hälst du
@@ -96,11 +96,11 @@
                     </div>
                     <input id="tags" type="hidden" name="tags" value="输入你要传bai递的值">
                     <div class="center">
-                        <a href="/ubung-2/">
-                            <button class="submit">
+                        {% comment %} <a href="/ubung-2/"> {% endcomment %}
+                            <button class="submit" @click="continue_()">
                                 Weiterspielen
                             </button>
-                        </a>
+                        {% comment %} </a> {% endcomment %}
                     </div>
                 </main>
         </div>
@@ -213,6 +213,15 @@
 
         },
         methods:{
+            continue_:function(){
+                var that = this;
+                if (that.text_input === ''){
+                    alert("Please choose a term.");
+                    return;
+                }else{
+                    window.location.href = "/ubung-2/";
+                }
+            },
             add_term: function(){
                 var that = this;
                 if (that.text_input ===  ''){

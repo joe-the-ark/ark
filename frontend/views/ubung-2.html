@@ -44,11 +44,11 @@
     </div>
     <div class="app__body">
         <div class="container">
-            <form action="#" method="POST" id="ubung-1-form" class="form">
+            <form id="form_" action="#" method="POST" id="ubung-1-form" class="form" onkeypress="javascript: if (event.keyCode==13 || event.onclick){return false;}">
             {% csrf_token %}
                 <main class="screen ubung-2">
                     <h1>
-                        Übung 2: Wie gut nutzt ihr das Team Potential?
+                        Aufgabe 2: Wie gut nutzt ihr das Team Potential?
                     </h1>
                     <p>
                         Schätze anonym die durchschnittliche Performance dieses Teams auf einer Skala von 1 (low performing)
@@ -72,9 +72,9 @@
                         Bewege bitte deine Spielfigur auf den Punkt der Skala, der am Besten passt. Später im Spiel siehst
                         du die anonymisierte Einschätzung aller Mitspieler.
                     </p>
-                    <input id="digit_value" type="hidden" name="digit_value" value="输入你要传bai递的值">
+                    <input id="digit_value" type="hidden" name="digit_value" value="0">
                     <div class="center">
-                        <button href="#" class="submit">
+                        <button class="button" type="button">
                             Weiterspielen
                         </button>
                     </div>
@@ -120,6 +120,21 @@
             $('#digit_value').val(value);
         }
     });
+
+    function check_zero(){
+        var value = $('#digit_value').val()
+        if (value === '0'){
+            alert("Please move the slider.")
+            return
+        }else{
+            var form_submit = document.getElementById('form_')            
+            form_submit.submit()
+        }
+    }
+
+    $('.button').click(function(){
+        check_zero()
+    })
 
 
 </script>
