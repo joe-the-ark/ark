@@ -43,7 +43,7 @@
                 <form id="form_" action="#" method="POST" id="auth-form" class="form" onkeypress="javascript: if (event.keyCode==13 || event.onclick){check_game_name();return false;}">
                 {% csrf_token %}
                     <div class="form__field">
-                        <input id="nutzername" type="text" name="Nutzername" value="" required/>
+                        <input id="nutzername" type="text" name="Nutzername" value="" required autofocus/>
                         <span class="form__placeholder">Nutzername</span>
                     </div>
                     <div class="form__field">
@@ -168,10 +168,10 @@
                         </div>
                     </div>
                     <div class="form__field">
-                        <p>
+                        <p style="display: block;">
                             Teile diesen Link, um dein Team mitzunehmen:
                         </p>
-                        <button>
+                        <button style="display: none;">
                             Einen Link teilen:
                         </button>
                         <input id="link" type="hidden" name="link" value="" readonly="readonly"/>
