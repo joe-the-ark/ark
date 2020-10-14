@@ -918,17 +918,20 @@ def ubung_1_api(player_id, link, data):
     game = Game.objects.filter(link=link).first()
     player = Player.objects.filter(id=player_id).first()
     
-    already = Ubung1.objects.filter(game=game)
+    already = list(Ubung1.objects.filter(game=game))
     already_term_list = [i.power for i in already]
+    print('already_term_list',already_term_list)
+    print('------------------------------------------')
+    print('data',data)
     for i in data:
         if i['value'] not in already_term_list:
             if i['player_id'] == -1:
-                Ubung1.objects.create(
-                    game=game,
-                    player=None,
-                    power=i['value'],
-                    state=i['state'],
-                )
+                # Ubung1.objects.create(
+                #     game=game,
+                #     player=None,
+                #     power=i['value'],
+                #     state=i['state'],
+                # )
                 continue
             else:
                 Ubung1.objects.create(
@@ -953,6 +956,8 @@ def ubung_1_api(player_id, link, data):
                     temp.save() 
 
     result_data = [i.api_json for i in list(Ubung1.objects.filter(game=game))]
+    print('------------------------------------------')
+    print('result_data', result_data)
     return result_data
 
 

@@ -143,6 +143,31 @@
             //var data = this.term_list;
             var that = this;
 
+            function get_api_data(){
+                var data_ = {
+                    'player_id': '{{user.id}}',
+                    'link': '{{game.link}}',
+                }
+
+                axios
+                    .post(`/api/ubung_1_get_data/`, data_)
+                    .then(function(response){
+                        var result = response.data.result;
+                        //console.log(result);
+                        that.term_list.splice(0);
+                        var uu = 0;
+                        while (uu < result.length){
+                            that.term_list.push(result[uu]);
+                            uu += 1;
+                        }
+                    })
+                    .catch(function(error){
+                        console.log(error);
+                    })
+            }
+
+            get_api_data();
+
             var flag = 0; // test whether the user have already select the term.
             var uu = 0;
             var player_id = {{user.id}};
@@ -186,30 +211,8 @@
                             })
                     }
                 })
-            function get_api_data(){
-                var data_ = {
-                    'player_id': '{{user.id}}',
-                    'link': '{{game.link}}',
-                }
 
-                axios
-                    .post(`/api/ubung_1_get_data/`, data_)
-                    .then(function(response){
-                        var result = response.data.result;
-                        //console.log(result);
-                        that.term_list.splice(0);
-                        var uu = 0;
-                        while (uu < result.length){
-                            that.term_list.push(result[uu]);
-                            uu += 1;
-                        }
-                    })
-                    .catch(function(error){
-                        console.log(error);
-                    })
-            }
-            get_api_data();
-            setInterval(get_api_data,3000);
+            setInterval(get_api_data,2000);
 
         },
         methods:{
