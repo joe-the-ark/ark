@@ -136,3 +136,6 @@
 .icon-link:hover {
   font-weight: bold;
 }
+#nutzername:focus {
+  border: 3px solid red;
+}

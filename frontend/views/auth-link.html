@@ -31,7 +31,7 @@
                 <form id="form_" action="#" method="POST" id="auth-form" class="form" onkeypress="javascript: if (event.keyCode==13){check_player_name();return false;}">
                 {% csrf_token %}
                     <div class="form__field">
-                        <input id="nutzername" type="text" name="Nutzername" value="" required/>
+                        <input id="nutzername" type="text" name="Nutzername" value="" required autofocus/>
                         <span class="form__placeholder">Nutzername</span>
                     </div>
                     <div class="form__field">

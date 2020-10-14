@@ -172,3 +172,6 @@
     padding-left: 243px;
   }
 }
+#nutzername:focus {
+  border: 3px solid red;
+}
