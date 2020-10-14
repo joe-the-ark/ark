@@ -753,6 +753,7 @@ def wartezimmer(request, user):
     ctx['player_name'] = user.name
     ctx['player_id'] = user.id
     ctx['link'] = link
+    ctx['host'] = game.creator
 
     if request.method == 'POST':
         nums = WaitingRoomMember.objects.filter(game=game).count()
