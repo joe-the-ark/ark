@@ -441,7 +441,7 @@ def team_potential(request, user):
     value_list = [int(i.value) for i in ubung2]
     value_list.sort()
     temp = len(value_list)/2
-    if temp.__class__ == int:
+    if type(temp) == int:
         median = (value_list[temp-1] + value_list[temp])/2
     else:
         temp = round(temp)
