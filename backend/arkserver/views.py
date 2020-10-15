@@ -441,11 +441,19 @@ def team_potential(request, user):
     value_list = [int(i.value) for i in ubung2]
     value_list.sort()
     temp = len(value_list)/2
-    if type(temp) == int:
-        median = (value_list[temp-1] + value_list[temp])/2
-    else:
+    try:
+        type(int(temp)) == int
+    except:
         temp = round(temp)
         median = value_list[temp]
+    else:
+        temp = int(temp)
+        median = (value_list[temp-1] + value_list[temp])/2
+    # if type(temp) == int:
+    #     median = (value_list[temp-1] + value_list[temp])/2
+    # else:
+    #     temp = round(temp)
+    #     median = value_list[temp]
     ctx['minimal'] = min(value_list)
     ctx['maximal'] = max(value_list)
     ctx['median'] = median
