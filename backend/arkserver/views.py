@@ -850,6 +850,12 @@ def psychologischer(request, user):
     return render(request, './views/psychologischer.html', ctx)
 
 
+@user_required
+def heatmap(request):
+    ctx = {}
+    return render(request, './views/heatmap.html', ctx)
+
+
 def logout(request):
     if 'uid' in request.session:
         del request.session['uid']

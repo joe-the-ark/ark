@@ -20,37 +20,60 @@ from django.conf.urls.static import static
 from django.conf import settings
 from arkserver import views as server_views
 
+from django.views.generic import RedirectView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('api/', meta.urls),
     path('', include(meta.urls)),
     path('', server_views.index),
-    path('auth/',server_views.auth),
-    path('auth-link/',server_views.auth_link),
+
+    path('auth/',RedirectView.as_view(url='/initiate')),
+    path('auth-link/',RedirectView.as_view(url='/onboard')),
     path('link/<str:link>/',server_views.link_enter),
 
-    path('preview/',server_views.preview),
-    path('ubung-1/',server_views.ubung_1),
-    path('ubung-2/',server_views.ubung_2),
-    path('ubung-3/',server_views.ubung_3),
-    path('ubung-4/',server_views.ubung_4),
-    path('ubung-5/',server_views.ubung_5),
-    path('team-potential/',server_views.team_potential),
-    path('spannungsfelder/',server_views.spannungsfelder),
-    path('preview-2/',server_views.preview_2),
-    path('mission-2-ubung-1/',server_views.mission_2_ubung_1),
-    path('mission-2-ubung-2/',server_views.mission_2_ubung_2),
-    path('assessment/',server_views.assessment),
+    path('preview/',RedirectView.as_view(url='/first-mission')),
+    path('ubung-1/',RedirectView.as_view(url='/energy-source')),
+    path('ubung-2/',RedirectView.as_view(url='/team-potential')),
+    path('ubung-3/',RedirectView.as_view(url='/energy-drainer')),
+    path('ubung-4/',RedirectView.as_view(url='/safety-score')),
+    path('ubung-5/',RedirectView.as_view(url='/team-tensions')),
+    path('team-potential/',RedirectView.as_view(url='/potential-result')),
+    path('spannungsfelder/',RedirectView.as_view(url='/tensions-result')),
+    path('preview-2/',RedirectView.as_view(url='/second-mission')),
+    path('mission-2-ubung-1/',RedirectView.as_view(url='/social-sensitivity')),
+    path('mission-2-ubung-2/',RedirectView.as_view(url='/development-feedbacks')),
+    path('assessment/',RedirectView.as_view(url='/assessment')),
     path('goodbye/',server_views.goodbye),
-    path('arche/',server_views.arche),
-    path('wartezimmer/',server_views.wartezimmer),
-    path('psychologischer/',server_views.psychologischer),
+    path('arche/',RedirectView.as_view(url='/farewell')),
+    path('wartezimmer/',RedirectView.as_view(url='/waiting-room')),
+    path('psychologischer/',RedirectView.as_view(url='/safety-result')),
     path('logout/', server_views.logout),
-    # path('wartezimmer/<str:link>/', server_views.wartezimmer),
+
+
+    path('initiate/',server_views.auth),
+    path('onboard/',server_views.auth_link),
+    path('first-mission/',server_views.preview),
+    path('energy-source/',server_views.ubung_1),
+    path('team-potential/',server_views.ubung_2),
+    path('energy-drainer/',server_views.ubung_3),
+    path('waiting-room/',server_views.wartezimmer),
+    path('safety-score/',server_views.ubung_4),
+    path('team-tensions/',server_views.ubung_5),
+    path('potential-result/',server_views.team_potential),
+    path('safety-result/',server_views.psychologischer),
+    path('tensions-result/',server_views.spannungsfelder),
+    path('second-mission/',server_views.preview_2),
+    path('social-sensitivity/',server_views.mission_2_ubung_1),
+    path('development-feedbacks/',server_views.mission_2_ubung_2),
+    path('game-insights/',server_views.assessment),
+    path('farewell/',server_views.arche),
+    path('team-heatmap/', server_views.heatmap),
 
 
     # path('', restapi.vue()),
     path('result/<str:name>/<str:player>/<str:game_secret>/<str:inviter>/', server_views.result),
+
 
 ] 
 # + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
