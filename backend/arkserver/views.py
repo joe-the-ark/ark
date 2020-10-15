@@ -396,7 +396,7 @@ def ubung_5(request, user):
     ctx['ubung3'] = ubung3
 
     if not ubung1:
-        return redirect('/team-potential/')
+        return redirect('/potential-result/')
         # ctx['loading'] = 1
         # return render(request, './views/ubung-5.html', ctx)
 
@@ -425,7 +425,7 @@ def ubung_5(request, user):
     #         # )
     #     return redirect('/ubung-5/')
 
-        # return redirect('/team-potential/')
+        # return redirect('/potential-result/')
 
     return render(request, './views/ubung-5.html', ctx)
 
