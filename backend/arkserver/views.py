@@ -439,16 +439,28 @@ def team_potential(request, user):
     game = Game.objects.filter(link=link).first()
     ubung2 = Ubung2.objects.filter(game=game)
     value_list = [int(i.value) for i in ubung2]
+    print('value list111111111111111111', value_list)
     value_list.sort()
     temp = len(value_list)/2
-    try:
-        type(int(temp)) == int
-    except:
-        temp = round(temp)
-        median = value_list[temp]
-    else:
+    # print('-------------------------')
+    temp_ = str(temp)
+    # try:
+    #     type(int(temp)) == int
+    # except:
+    #     # print('temp1',temp)
+    #     temp = round(temp)
+    #     median = value_list[temp]
+    # else:
+    #     # print('temp2',temp)
+    #     temp = int(temp)
+    #     median = (value_list[temp-1] + value_list[temp])/2
+    if temp_[-1] == '0':
         temp = int(temp)
         median = (value_list[temp-1] + value_list[temp])/2
+    else:
+        temp = int(temp)
+        median = value_list[temp]
+
     # if type(temp) == int:
     #     median = (value_list[temp-1] + value_list[temp])/2
     # else:
