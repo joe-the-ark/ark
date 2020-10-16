@@ -240,10 +240,10 @@ class Ubung5(models.Model):
         return {
             'id': self.player.id,
             'name': self.player.name,
+            'value': self.ubung1.power + ' '+ self.ubung3.drainer,
             'avatar': self.player.avatar,
             'statusSide': self.score,
         }
-
 
     class Meta(object):
         verbose_name = verbose_name_plural = 'Ubung-5'

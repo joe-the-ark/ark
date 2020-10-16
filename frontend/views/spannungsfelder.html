@@ -127,7 +127,10 @@
             if (uu == num){
                 new_json_list.push(json_list[uu]);
             }else{
-                var temp = {statusSide:json_list[uu]['statusSide'] };
+                var temp = {
+                    statusSide:json_list[uu]['statusSide'],
+                    value: json_list[uu]['value'],
+                };
                 new_json_list.push(temp);
             }
             uu += 1;
@@ -156,6 +159,7 @@
 
     const isMobile = () => window.innerWidth <= 1200;
     const data = format_data(json_list);
+    console.log(data)
     //console.log(data);
     {% comment %} [
         {
@@ -722,11 +726,12 @@
         innerWrapper: isMobile() ? 'rang swiper-wrapper' : 'rang',
         data: data.map(({data}) => {
             const dataSort = data.filter(el => el.name);
-            const {name, avatar, statusSide} = dataSort[0];
+            const {name, avatar, statusSide, value} = dataSort[0];
             return {
                 name,
                 avatar,
-                statusSide
+                statusSide,
+                value,
             }
         }),
         callback(item, i) {
