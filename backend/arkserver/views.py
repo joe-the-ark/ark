@@ -437,9 +437,13 @@ def team_potential(request, user):
     ctx['game'] = Game.objects.filter(link=request.session['link']).first()
     link = request.session['link']
     game = Game.objects.filter(link=link).first()
-    ubung2 = Ubung2.objects.filter(game=game)
+    # ubung2 = Ubung2.objects.filter(game=game)
+    ubung2 = []
+    for i in list(Ubung2.objects.filter(game=game)):
+        if i.player.valid:
+            ubung2.append(i)
     value_list = [int(i.value) for i in ubung2]
-    print('value list111111111111111111', value_list)
+    # print('value list111111111111111111', value_list)
     value_list.sort()
     temp = len(value_list)/2
     # print('-------------------------')
@@ -474,7 +478,7 @@ def team_potential(request, user):
     all_result = []
     flag =  0
     for i in value_list:
-        if i == ubung2.filter(player=user).first().value:
+        if i == Ubung2.objects.filter(player=user).first().value:
             if flag == 0:
                 all_result.append(
                     {
