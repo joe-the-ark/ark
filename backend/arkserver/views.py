@@ -396,7 +396,7 @@ def ubung_5(request, user):
     ctx['ubung3'] = ubung3
 
     if not ubung1:
-        return redirect('/team-potential/')
+        return redirect('/potential-result/')
         # ctx['loading'] = 1
         # return render(request, './views/ubung-5.html', ctx)
 
@@ -425,7 +425,7 @@ def ubung_5(request, user):
     #         # )
     #     return redirect('/ubung-5/')
 
-        # return redirect('/team-potential/')
+        # return redirect('/potential-result/')
 
     return render(request, './views/ubung-5.html', ctx)
 
@@ -439,13 +439,33 @@ def team_potential(request, user):
     game = Game.objects.filter(link=link).first()
     ubung2 = Ubung2.objects.filter(game=game)
     value_list = [int(i.value) for i in ubung2]
+    print('value list111111111111111111', value_list)
     value_list.sort()
     temp = len(value_list)/2
-    if type(temp) == int:
+    # print('-------------------------')
+    temp_ = str(temp)
+    # try:
+    #     type(int(temp)) == int
+    # except:
+    #     # print('temp1',temp)
+    #     temp = round(temp)
+    #     median = value_list[temp]
+    # else:
+    #     # print('temp2',temp)
+    #     temp = int(temp)
+    #     median = (value_list[temp-1] + value_list[temp])/2
+    if temp_[-1] == '0':
+        temp = int(temp)
         median = (value_list[temp-1] + value_list[temp])/2
     else:
-        temp = round(temp)
+        temp = int(temp)
         median = value_list[temp]
+
+    # if type(temp) == int:
+    #     median = (value_list[temp-1] + value_list[temp])/2
+    # else:
+    #     temp = round(temp)
+    #     median = value_list[temp]
     ctx['minimal'] = min(value_list)
     ctx['maximal'] = max(value_list)
     ctx['median'] = median
@@ -848,6 +868,12 @@ def psychologischer(request, user):
     # print(row_4)
     # print(row_5)
     return render(request, './views/psychologischer.html', ctx)
+
+
+@user_required
+def heatmap(request):
+    ctx = {}
+    return render(request, './views/heatmap.html', ctx)
 
 
 def logout(request):
