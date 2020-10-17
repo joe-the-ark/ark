@@ -166,8 +166,6 @@
                     })
             }
 
-            get_api_data();
-
             var flag = 0; // test whether the user have already select the term.
             var uu = 0;
             var player_id = {{user.id}};
@@ -211,7 +209,7 @@
                             })
                     }
                 })
-
+            get_api_data();
             setInterval(get_api_data,3000);
 
         },
