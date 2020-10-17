@@ -438,3 +438,10 @@ def m2_span_add(player, target_player, game, score, ubung1_id, ubung3_id):
     
     return m2ubung1
 
+
+def mean(num_list):
+    temp = 0
+    if len(num_list) == 0:
+        return temp
+    else:
+        return sum(num_list)/len(num_list)

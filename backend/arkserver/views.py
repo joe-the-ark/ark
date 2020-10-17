@@ -458,12 +458,16 @@ def team_potential(request, user):
     #     # print('temp2',temp)
     #     temp = int(temp)
     #     median = (value_list[temp-1] + value_list[temp])/2
-    if temp_[-1] == '0':
-        temp = int(temp)
-        median = (value_list[temp-1] + value_list[temp])/2
-    else:
-        temp = int(temp)
-        median = value_list[temp]
+
+    # median = mean(value_list)
+    from .utils import mean
+    median = mean(value_list)
+    # if temp_[-1] == '0':
+    #     temp = int(temp)
+    #     median = (value_list[temp-1] + value_list[temp])/2
+    # else:
+    #     temp = int(temp)
+    #     median = value_list[temp]
 
     # if type(temp) == int:
     #     median = (value_list[temp-1] + value_list[temp])/2
@@ -530,6 +534,7 @@ def spannungsfelder(request, user):
     ctx['tension'] = tension
 
     json_list = [ i.span_1 for i in list(Ubung5.objects.filter(goal=user)) ]
+    # print('json_list', json_list)
     json_list.sort(key = lambda x:x['statusSide'])
     ctx['json_list'] = json_list
     # print(json_list)
@@ -631,11 +636,13 @@ def assessment(request, user):
     value_list = [int(i.value) for i in ubung2]
     value_list = list(set(value_list))
     temp = len(value_list)/2
-    if temp.__class__ == int:
-        median = (value_list[temp-1] + value_list[temp])/2
-    else:
-        temp = round(temp)
-        median = value_list[temp]
+    from .utils import mean
+    median = mean(value_list)
+    # if temp.__class__ == int:
+    #     median = (value_list[temp-1] + value_list[temp])/2
+    # else:
+    #     temp = round(temp)
+    #     median = value_list[temp]
     ctx['team_potential_minimal'] = min(value_list)
     ctx['team_potential_maximal'] = max(value_list)
     ctx['team_potential_median'] = median
