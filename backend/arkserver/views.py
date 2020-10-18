@@ -437,9 +437,13 @@ def team_potential(request, user):
     ctx['game'] = Game.objects.filter(link=request.session['link']).first()
     link = request.session['link']
     game = Game.objects.filter(link=link).first()
-    ubung2 = Ubung2.objects.filter(game=game)
+    # ubung2 = Ubung2.objects.filter(game=game)
+    ubung2 = []
+    for i in list(Ubung2.objects.filter(game=game)):
+        if i.player.valid:
+            ubung2.append(i)
     value_list = [int(i.value) for i in ubung2]
-    print('value list111111111111111111', value_list)
+    # print('value list111111111111111111', value_list)
     value_list.sort()
     temp = len(value_list)/2
     # print('-------------------------')
@@ -454,12 +458,16 @@ def team_potential(request, user):
     #     # print('temp2',temp)
     #     temp = int(temp)
     #     median = (value_list[temp-1] + value_list[temp])/2
-    if temp_[-1] == '0':
-        temp = int(temp)
-        median = (value_list[temp-1] + value_list[temp])/2
-    else:
-        temp = int(temp)
-        median = value_list[temp]
+
+    # median = mean(value_list)
+    from .utils import mean
+    median = mean(value_list)
+    # if temp_[-1] == '0':
+    #     temp = int(temp)
+    #     median = (value_list[temp-1] + value_list[temp])/2
+    # else:
+    #     temp = int(temp)
+    #     median = value_list[temp]
 
     # if type(temp) == int:
     #     median = (value_list[temp-1] + value_list[temp])/2
@@ -474,7 +482,7 @@ def team_potential(request, user):
     all_result = []
     flag =  0
     for i in value_list:
-        if i == ubung2.filter(player=user).first().value:
+        if i == Ubung2.objects.filter(player=user).first().value:
             if flag == 0:
                 all_result.append(
                     {
@@ -526,6 +534,7 @@ def spannungsfelder(request, user):
     ctx['tension'] = tension
 
     json_list = [ i.span_1 for i in list(Ubung5.objects.filter(goal=user)) ]
+    # print('json_list', json_list)
     json_list.sort(key = lambda x:x['statusSide'])
     ctx['json_list'] = json_list
     # print(json_list)
@@ -627,11 +636,13 @@ def assessment(request, user):
     value_list = [int(i.value) for i in ubung2]
     value_list = list(set(value_list))
     temp = len(value_list)/2
-    if temp.__class__ == int:
-        median = (value_list[temp-1] + value_list[temp])/2
-    else:
-        temp = round(temp)
-        median = value_list[temp]
+    from .utils import mean
+    median = mean(value_list)
+    # if temp.__class__ == int:
+    #     median = (value_list[temp-1] + value_list[temp])/2
+    # else:
+    #     temp = round(temp)
+    #     median = value_list[temp]
     ctx['team_potential_minimal'] = min(value_list)
     ctx['team_potential_maximal'] = max(value_list)
     ctx['team_potential_median'] = median
