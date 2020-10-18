@@ -49,9 +49,8 @@
     </div>
     <div class="app__body" id="app-1">
         <div class="container"
-        class="container"
         v-loading="loading"
-        element-loading-text="Waiting for server"
+        element-loading-text="Waiting for the server"
         element-loading-background="rgba(0, 0, 0, 0.8)">
                 <main class="screen ubung-1">
                     <h1>
@@ -141,11 +140,10 @@
     var temp_link_ = url_host + '/link/' + temp_link + '/';
     document.querySelector('.icon-link').dataset.clipboardText = temp_link_;
 
-
-
     function sleep (time) {
         return new Promise((resolve) => setTimeout(resolve, time));
     }
+
     var app = new Vue({
         delimiters: ['[[', ']]'],
         el: '#app-1',
@@ -283,7 +281,7 @@
             mark: function(item){
                 clearInterval(refresh);
                 var that = this;
-                this.loading = true
+                this.loading = true;
                 var player_id = {{user.id}};
 
                 var already_ = 0;
