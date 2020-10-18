@@ -141,6 +141,11 @@
     var temp_link_ = url_host + '/link/' + temp_link + '/';
     document.querySelector('.icon-link').dataset.clipboardText = temp_link_;
 
+
+
+    function sleep (time) {
+        return new Promise((resolve) => setTimeout(resolve, time));
+    }
     var app = new Vue({
         delimiters: ['[[', ']]'],
         el: '#app-1',
@@ -233,7 +238,6 @@
             },
             add_term: function(){
                 var that = this;
-                that.loading = true;
                 if (that.text_input ===  ''){
                     return;
                 }
@@ -279,6 +283,7 @@
             mark: function(item){
                 clearInterval(refresh);
                 var that = this;
+                this.loading = true
                 var player_id = {{user.id}};
 
                 var already_ = 0;
@@ -341,6 +346,7 @@
                         console.log(error);
                     })
                 refresh = setInterval(this.get_api_data,6000);
+                
                 that.loading = false;
             }
         }
