@@ -4,6 +4,7 @@ from .decorators import user_required, after_waitingroom
 from meta.decorators import api, APIError
 import json
 
+from django.utils.translation import ugettext as _
 # Create your views here.
 from .models import *
 
@@ -190,6 +191,7 @@ def link_enter(request, link):
 
 @user_required
 def preview(request, user):
+    print(dir(request.session))
     ctx = {}
     ctx['game'] = Game.objects.filter(link=request.session['link']).first()
     return render(request, './views/preview.html', ctx)

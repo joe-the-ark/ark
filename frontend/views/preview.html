@@ -1,4 +1,6 @@
+{% load i18n %}
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,27 +47,24 @@
         <div class="container">
             <main class="screen preview">
                 <h1>
-                    Mission 1: Soziale Sensibilität
+                    {% trans "Mission 1: Soziale Sensibilität" %}               
                 </h1>
                 <div class="preview__main">
                     <div class="preview__data">
                         <p>
-                            Deine ersten Mission auf der ARCHE dient der Stärkung der sozialen Sensibilität im Team, dem
-                            ersten
-                            von zwei Schlüsseln zu psychologischer Sicherheit:
+                            {% blocktrans %}Deine ersten Mission auf der ARCHE dient der Stärkung der sozialen Sensibilität im Team, dem 
+                            erstenvon zwei Schlüsseln zu psychologischer Sicherheit:{% endblocktrans %}
                         </p>
                         <ul>
                             <li>
-                                Du Benennst und verstehst Spannungsfelder, die das Zusammenspiel im Team prägen und
-                                siehst
-                                ob
-                                dein Verhalten im Team eine ausgleichende oder spaltend Wirkung hat.
+                                {% blocktrans %}Du Benennst und verstehst Spannungsfelder, die das Zusammenspiel im Team prägen und
+                                siehst ob dein Verhalten im Team eine ausgleichende oder spaltend Wirkung hat.{% endblocktrans %}
                             </li>
                             <li>
-                                Und erkennst in welchem Verhältnis deine Selbst- zur Fremdwahrnehmung im Team steht.
+                                {% trans "Und erkennst in welchem Verhältnis deine Selbst- zur Fremdwahrnehmung im Team steht." %}
                             </li>
                             <li>
-                                Übrigens: alle Auswertungen kannst du zum Spielabschluss als PDF herunterladen.
+                                {% trans "Übrigens: alle Auswertungen kannst du zum Spielabschluss als PDF herunterladen." %}
                             </li>
                         </ul>
 
@@ -74,9 +73,7 @@
                         <span class="icon-player"></span>
                         <iframe src="https://player.vimeo.com/video/459639983" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 <p><a href="https://vimeo.com/459639983">How Google builds the perfect team</a> from <a href="https://vimeo.com/user123496204">Joachim Maier</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
-                    <a href="/ubung-1/" class="button">
-                    Weiterspielen
-                    </a>
+                    <a href="/ubung-1/" class="button"> {% trans "Weiterspielen" %} </a>
                     </div>
                 </div>
             </main>
