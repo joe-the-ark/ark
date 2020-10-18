@@ -143,29 +143,6 @@
             //var data = this.term_list;
             var that = this;
 
-            function get_api_data(){
-                var data_ = {
-                    'player_id': '{{user.id}}',
-                    'link': '{{game.link}}',
-                }
-
-                axios
-                    .post(`/api/ubung_1_get_data/`, data_)
-                    .then(function(response){
-                        var result = response.data.result;
-                        //console.log(result);
-                        that.term_list.splice(0);
-                        var uu = 0;
-                        while (uu < result.length){
-                            that.term_list.push(result[uu]);
-                            uu += 1;
-                        }
-                    })
-                    .catch(function(error){
-                        console.log(error);
-                    })
-            }
-
             var flag = 0; // test whether the user have already select the term.
             var uu = 0;
             var player_id = {{user.id}};
@@ -209,11 +186,32 @@
                             })
                     }
                 })
-            get_api_data();
-            setInterval(get_api_data,6000);
+            this.get_api_data();
 
         },
         methods:{
+            get_api_data(){
+                var that = this;
+                var data_ = {
+                    'player_id': '{{user.id}}',
+                    'link': '{{game.link}}',
+                }
+                axios
+                    .post(`/api/ubung_1_get_data/`, data_)
+                    .then(function(response){
+                        var result = response.data.result;
+                        //console.log(result);
+                        that.term_list.splice(0);
+                        var uu = 0;
+                        while (uu < result.length){
+                            that.term_list.push(result[uu]);
+                            uu += 1;
+                        }
+                    })
+                    .catch(function(error){
+                        console.log(error);
+                    })
+            },
             continue_:function(){
                 var that = this;
                 if (that.text_input === ''){
@@ -268,6 +266,7 @@
                     })
             },
             mark: function(item){
+                clearInterval(refresh);
                 var that = this;
                 var player_id = {{user.id}};
 
@@ -330,9 +329,12 @@
                     .catch(function(error){
                         console.log(error);
                     })
+                refresh = setInterval(this.get_api_data,6000);
             }
         }
     })
+
+    var refresh = setInterval(app.get_api_data,6000);
 
     {% comment %} function check_tag(){
         var tag_str_list = '';
