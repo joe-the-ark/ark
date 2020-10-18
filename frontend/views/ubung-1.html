@@ -346,8 +346,10 @@
                         console.log(error);
                     })
                 refresh = setInterval(this.get_api_data,6000);
-                
-                that.loading = false;
+
+                sleep(900).then(() => {
+                    that.loading = false;
+                })
             }
         }
     })
