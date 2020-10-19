@@ -115,7 +115,7 @@ LANGUAGES = [
 ]
 
 LOCALE_PATHS = [
-    '/home/soty/Документы/Pythonista/ark/locale',
+    '../locale',
 ]
 
 # TIME_ZONE = 'UTC'
