@@ -23,6 +23,7 @@ from arkserver import views as server_views
 from django.views.generic import RedirectView
 
 urlpatterns = [
+    path('i18n/', include('django.conf.urls.i18n')),
     path('admin/', admin.site.urls),
     # path('api/', meta.urls),
     path('', include(meta.urls)),
@@ -75,7 +76,7 @@ urlpatterns = [
     path('result/<str:name>/<str:player>/<str:game_secret>/<str:inviter>/', server_views.result),
 
 
-] 
+]
 # + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.LOCAL:

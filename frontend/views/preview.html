@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="/static/css/preview.css">
 </head>
 <body>
+  {% get_current_language as LANGUAGE_CODE %}
+  <!-- Current language: {{ LANGUAGE_CODE }} -->
 <div class="app">
     <div class="app__head">
         <header class="header-main container">
@@ -21,7 +23,23 @@
                 <span class="icon-logo"></span>
                 <span>ARK</span>
             </div>
+
             <div class="header-main__user">
+              <div class="language-selector" style="display:block;">
+                <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                    <input name="next" type="hidden" value="">
+                    <select onchange="this.form.submit()" name="language">
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% get_available_languages as LANGUAGES %}
+                        {% get_language_info_list for LANGUAGES as languages %}
+                        {% for language in languages %}
+                            <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                                {{ language.name_local }} ({{ language.code }})
+                            </option>
+                        {% endfor %}
+                    </select>
+                </form>
+              </div>
                 <div class="user">
                     <div class="user__subtitle">
                         {{game.name}}
@@ -47,13 +65,13 @@
         <div class="container">
             <main class="screen preview">
                 <h1>
-                    {% trans "Mission 1: Soziale Sensibilität" %}               
+                    {% trans "Mission 1: Soziale Sensibilität" %}
                 </h1>
                 <div class="preview__main">
                     <div class="preview__data">
                         <p>
-                            {% blocktrans %}Deine ersten Mission auf der ARCHE dient der Stärkung der sozialen Sensibilität im Team, dem 
-                            erstenvon zwei Schlüsseln zu psychologischer Sicherheit:{% endblocktrans %}
+                            {% blocktrans %}Deine ersten Mission auf der ARCHE dient der Stärkung der sozialen Sensibilität im Team, dem
+                            ersten von zwei Schlüsseln zu psychologischer Sicherheit:{% endblocktrans %}
                         </p>
                         <ul>
                             <li>

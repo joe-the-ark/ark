@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -107,9 +108,14 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en'
+LANGUAGE_CODE = 'de'
+LANGUAGES = [
+  ('de', 'German'),
+  ('en', 'English'),
+]
+
 LOCALE_PATHS = [
-    '/home/soty/Documents/work/ark_project/ark/locale',
+    '/home/soty/Документы/Pythonista/ark/locale',
 ]
 
 # TIME_ZONE = 'UTC'
