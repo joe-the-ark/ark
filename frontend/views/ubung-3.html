@@ -61,7 +61,7 @@
                         <br/>
                         <br/>
                     </p>
-                    <input type="text" placeholder="Energiefresser" name="energiefresser" v-model="text_input" @keyup.enter="add_term"/>
+                    <input type="text" placeholder="Energiefresser" name="energiefresser" v-model="text_input" @keyup.enter="add_term" @keyup = "keyboard_()"/>
                     <label>*Diese Qualität wurde bereits von einem anderen Spieler ausgewählt.</label>
                     <p>
                         <b>
@@ -151,6 +151,7 @@
             text_input: '',
             term_list: {{term_list|safe}},
             loading: false,
+            keyboard_input: false,
         },
         mounted(){
             var that = this;
@@ -204,6 +205,10 @@
 
         },
         methods:{
+            keyboard_(){
+                this.keyboard_input = true;
+                return
+            },
             get_api_data(){
                 var that = this;
                 var data_ = {
@@ -232,7 +237,11 @@
                     alert("Please choose a term");
                     return;
                 }else{
-                    window.location.href = '/wartezimmer/'
+                    if (that.keyboard_input === true){
+                        app.add_term();
+                    }else{
+                        window.location.href = '/wartezimmer/'
+                    }
                 }
             },
             add_term: function(){
@@ -246,15 +255,29 @@
                 while (uu < that.term_list.length){
                     if (that.term_list[uu].player_id === player_id){
                         flag = 1;
+                        that.term_list[uu].state = 'tag'
                         break;
                     }
                     uu += 1;
                 }
-                if (flag === 1){
-                    return;
+
+                // if have the same value, interrupt
+                var ii = 0
+                var flag_ = 0
+                while (ii < that.term_list.length){
+                    if (that.term_list[ii].value === that.text_input){
+                        flag_ = 1
+                        alert("You input the same term which is below.")
+                        return 
+                    }
+                    ii += 1
                 }
+
+                //if (flag === 1){
+                //    return;
+                //}
                 that.term_list.push({
-                    'state': 'tag',
+                    'state': 'line-through',
                     'value': that.text_input,
                     'player_id': {{user.id}},
                 });
@@ -278,10 +301,12 @@
                     .catch(function(error){
                         console.log(error);
                     })
+                window.location.href = "/wartezimmer/"
             },
             mark: function(item){
                 clearInterval(refresh);
                 var that = this;
+                this.keyboard_input = false
                 this.loading = true;
                 var player_id = {{user.id}};
 
