@@ -1,4 +1,6 @@
+{% load i18n %}
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +14,8 @@
     <link rel="stylesheet" href="/static/css/preview.css">
 </head>
 <body>
+  {% get_current_language as LANGUAGE_CODE %}
+  <!-- Current language: {{ LANGUAGE_CODE }} -->
 <div class="app">
     <div class="app__head">
         <header class="header-main container">
@@ -19,7 +23,23 @@
                 <span class="icon-logo"></span>
                 <span>ARK</span>
             </div>
+
             <div class="header-main__user">
+              <div class="language-selector" style="display:block;">
+                <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                    <input name="next" type="hidden" value="">
+                    <select onchange="this.form.submit()" name="language">
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% get_available_languages as LANGUAGES %}
+                        {% get_language_info_list for LANGUAGES as languages %}
+                        {% for language in languages %}
+                            <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                                {{ language.name_local }} ({{ language.code }})
+                            </option>
+                        {% endfor %}
+                    </select>
+                </form>
+              </div>
                 <div class="user">
                     <div class="user__subtitle">
                         {{game.name}}
@@ -45,27 +65,24 @@
         <div class="container">
             <main class="screen preview">
                 <h1>
-                    Mission 1: Soziale Sensibilität
+                    {% trans "Mission 1: Soziale Sensibilität" %}
                 </h1>
                 <div class="preview__main">
                     <div class="preview__data">
                         <p>
-                            Deine ersten Mission auf der ARCHE dient der Stärkung der sozialen Sensibilität im Team, dem
-                            ersten
-                            von zwei Schlüsseln zu psychologischer Sicherheit:
+                            {% blocktrans %}Deine ersten Mission auf der ARCHE dient der Stärkung der sozialen Sensibilität im Team, dem
+                            ersten von zwei Schlüsseln zu psychologischer Sicherheit:{% endblocktrans %}
                         </p>
                         <ul>
                             <li>
-                                Du Benennst und verstehst Spannungsfelder, die das Zusammenspiel im Team prägen und
-                                siehst
-                                ob
-                                dein Verhalten im Team eine ausgleichende oder spaltend Wirkung hat.
+                                {% blocktrans %}Du Benennst und verstehst Spannungsfelder, die das Zusammenspiel im Team prägen und
+                                siehst ob dein Verhalten im Team eine ausgleichende oder spaltend Wirkung hat.{% endblocktrans %}
                             </li>
                             <li>
-                                Und erkennst in welchem Verhältnis deine Selbst- zur Fremdwahrnehmung im Team steht.
+                                {% trans "Und erkennst in welchem Verhältnis deine Selbst- zur Fremdwahrnehmung im Team steht." %}
                             </li>
                             <li>
-                                Übrigens: alle Auswertungen kannst du zum Spielabschluss als PDF herunterladen.
+                                {% trans "Übrigens: alle Auswertungen kannst du zum Spielabschluss als PDF herunterladen." %}
                             </li>
                         </ul>
 
@@ -74,9 +91,7 @@
                         <span class="icon-player"></span>
                         <iframe src="https://player.vimeo.com/video/459639983" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 <p><a href="https://vimeo.com/459639983">How Google builds the perfect team</a> from <a href="https://vimeo.com/user123496204">Joachim Maier</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
-                    <a href="/ubung-1/" class="button">
-                    Weiterspielen
-                    </a>
+                    <a href="/ubung-1/" class="button"> {% trans "Weiterspielen" %} </a>
                     </div>
                 </div>
             </main>

@@ -1,0 +1,63 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Ark\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-10-16 18:41+0600\n"
+"PO-Revision-Date: 2020-10-19 17:18+0600\n"
+"Last-Translator: Joe Maier\n"
+"Language-Team: English\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz\n"
+"X-Loco-Source-Locale: de-CH\n"
+"X-Loco-Project-Id: 99591\n"
+"X-Loco-Api-Version: 1.0.25 20201015-1"
+
+#: frontend/views/preview.html:68 loco:5f8d75e0c7a63801ae109852
+msgid "Mission 1: Soziale Sensibilität"
+msgstr "Mission 1: Social sensitivity"
+
+#: frontend/views/preview.html:73 loco:5f8d75e0c7a63801ae109853
+msgid ""
+"Deine ersten Mission auf der ARCHE dient der Stärkung der sozialen "
+"Sensibilität im Team, dem\n"
+"                            ersten von zwei Schlüsseln zu psychologischer "
+"Sicherheit:"
+msgstr ""
+"Your first mission on the Ark is to strengthen social sensitivity\n"
+"in the team, the first of two keys to psychological security:"
+
+#: frontend/views/preview.html:78 loco:5f8d75e0c7a63801ae109854
+msgid ""
+"Du Benennst und verstehst Spannungsfelder, die das Zusammenspiel im Team "
+"prägen und\n"
+"                                siehst ob dein Verhalten im Team eine "
+"ausgleichende oder spaltend Wirkung hat."
+msgstr ""
+"You name and understand areas of tension that shape the\n"
+"teamwork and see whether your behaviour has a balancing or\n"
+"divisive effect."
+
+#: frontend/views/preview.html:82 loco:5f8d75e0c7a63801ae109855
+msgid ""
+"Und erkennst in welchem Verhältnis deine Selbst- zur Fremdwahrnehmung im "
+"Team steht."
+msgstr ""
+"And you recognize the relationship between your self-\n"
+"perception and the perception of others in the team."
+
+#: frontend/views/preview.html:85 loco:5f8d75e0c7a63801ae109856
+msgid ""
+"Übrigens: alle Auswertungen kannst du zum Spielabschluss als PDF "
+"herunterladen."
+msgstr ""
+"By the\n"
+"way: all evaluations can be downloaded as PDF at the end of\n"
+"the game."
+
+#: frontend/views/preview.html:94 loco:5f8d75e0c7a63801ae109857
+msgid "Weiterspielen"
+msgstr "Continue"
