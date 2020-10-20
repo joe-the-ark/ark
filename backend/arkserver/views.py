@@ -954,6 +954,7 @@ def ubung_1_get_data(player_id, link):
 
 @api
 def ubung_1_api(player_id, link, data):
+    print('data', data)
     from .models import Player, Game, Ubung1
     game = Game.objects.filter(link=link).first()
     player = Player.objects.filter(id=player_id).first()
