@@ -9,3 +9,4 @@ python3 manage.py migrate --settings=backend.settings_prod
 python3 manage.py collectstatic --no-input --settings=backend.settings_prod
 
 supervisorctl restart ark2020
+service nginx restart
