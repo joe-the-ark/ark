@@ -562,7 +562,22 @@ def mission_2_ubung_1(request, user):
     game = Game.objects.filter(link=link).first()
     waiting_room = list(WaitingRoomMember.objects.filter(game=game,state=1))
     member_list = [i.player.player_json for i in waiting_room]
+
+    temp = []
+    if member_list[0]['id'] == user.id:
+        pass
+    else:
+        uu = 0
+        while uu < len(member_list):
+            if member_list[uu]['id'] == user.id:
+                temp.append(member_list[uu])
+                del member_list[uu]
+                break
+            uu += 1
+    member_list = temp + member_list
+
     ctx['member_list'] = member_list
+    # print('member_list',member_list)
 
     ubung1, ubung3 = m2_span_choose(user.id, link)
     if not ubung1:
