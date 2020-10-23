@@ -83,5 +83,13 @@
         </div>
     </div>
 </div>
+<script>
+// Safari 3.0+ "[object HTMLElementConstructor]" 
+var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
+console.log(isSafari)
+if (isSafari){
+    alert('We detect that you are using Safari. We suggest you to choose Chrome so that you can have a better using experience.')
+}
+</script>
 </body>
 </html>
