@@ -579,11 +579,10 @@ def mission_2_ubung_1(request, user):
     ctx['member_list'] = member_list
     # print('member_list',member_list)
 
-    ubung1, ubung3 = m2_span_choose(user.id, link)
-    if not ubung1:
+    ubung5 = m2_span_choose(user.id, link)
+    if not ubung5:
         return redirect('/mission-2-ubung-2/')
-    ctx['ubung1'] = ubung1
-    ctx['ubung3'] = ubung3
+    ctx['ubung5'] = ubung5
 
     if request.method == 'POST':
         data = request.POST.get('data')

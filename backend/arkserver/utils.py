@@ -403,22 +403,32 @@ def span_add(player, target_player, game, score, ubung1_id, ubung3_id):
 # mission 2 ubung 1 area
 
 def m2_span_choose(user_id, link):
-    from .models import Game, Player, Ubung1, Ubung3, M2Ubung1
+    from .models import Game, Player, Ubung1, Ubung3, Ubung5, M2Ubung1
     game = Game.objects.filter(link=link).first()
     player = Player.objects.filter(id=user_id).first()
 
-    ubung1_list = [i for i in Ubung1.objects.filter(game=game,state='line-through') if i.player.valid == True]
-    ubung1 = None
-    for i in ubung1_list:
-        if not M2Ubung1.objects.filter(ubung1=i,player=player).first():
-            ubung1 = i
+    ubung5_list = list(Ubung5.objects.filter(game=game, goal=player))
+    ubung5 = None
+    for i in ubung5_list:
+        if not M2Ubung1.objects.filter(ubung1=i.ubung1,player=player).first():
+            ubung5 = i 
             break
-    if not ubung1:
-        return None, None
-    goal_player = ubung1.player    
-    ubung3 = Ubung3.objects.filter(player=goal_player,state='line-through').first()
+    return ubung5
 
-    return ubung1, ubung3
+
+    # ubung1_list = [i for i in Ubung1.objects.filter(game=game,state='line-through') if i.player.valid == True]
+    # ubung1 = None
+    # for i in ubung1_list:
+    #     if not M2Ubung1.objects.filter(ubung1=i,player=player).first():
+    #         ubung1 = i
+    #         break
+    # if not ubung1:
+    #     return None, None
+    # goal_player = ubung1.player    
+    # ubung3 = Ubung3.objects.filter(player=goal_player,state='line-through').first()
+
+    return 
+    # return ubung1, ubung3
 
 
 def m2_span_add(player, target_player, game, score, ubung1_id, ubung3_id):
