@@ -531,15 +531,14 @@ def spannungsfelder(request, user):
     himself = ubung5.score
     tension = others - himself
 
-    ctx['others'] = others
-    ctx['himself'] = himself
-    ctx['tension'] = tension
+    ctx['others'] = round(others, 2)
+    ctx['himself'] = round(himself ,2)
+    ctx['tension'] = round(tension, 2)
 
     json_list = [ i.span_1 for i in list(Ubung5.objects.filter(goal=user)) ]
     # print('json_list', json_list)
     json_list.sort(key = lambda x:x['statusSide'])
     ctx['json_list'] = json_list
-    # print(json_list)
     ctx['user'] = user
     return render(request, './views/spannungsfelder.html', ctx)
 

@@ -56,8 +56,8 @@ class AppRange {
 
     render() {
         let html = `
-            <div class="${this.innerWrapper}">${this.data.map(({value, statusSide}, i) => {
-            console.log(value)
+            <div class="${this.innerWrapper}">${this.data.map(({value, tension}, i) => {
+            // console.log(value)
             const [firstName, lastName] = value.split(' ');
             return `<div class="rang__item swiper-slide">
                         <div class="rang__item-wrapper">
@@ -65,7 +65,7 @@ class AppRange {
                                 ${firstName}
                             </div>
                             <div class="rang__item-count">
-                                ${statusSide}
+                                ${tension}
                             </div>
                             <div class="rang__item-name">
                                 ${lastName}
