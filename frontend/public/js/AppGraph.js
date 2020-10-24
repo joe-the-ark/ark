@@ -11,6 +11,8 @@ class AppGraph {
         this.effect = function() {};
 
         this.auto && this.buildGraph();
+        this.safeLow = 0;
+        this.safeHigh = 0;
     }
 
     safeArea() {
@@ -19,6 +21,7 @@ class AppGraph {
             s.innerText = t;
             document.body.appendChild(s);
         };
+
         var data_list = []
         var uu = 0;
         while (uu < this.data.length) {
@@ -44,12 +47,21 @@ class AppGraph {
         if (high > 100) {
             high = 100;
         }
+        this.safeLow = low;
+        this.safeHigh = high;
         var blue_range = high - low;
+        let halfAvatar = document.querySelector('div.custom-graph__item-avatar').clientHeight/2;
         //console.log(this.data);
         if (window.innerWidth <= this.mobile) {
-          css_change(`.statistic .custom-graph__items:before{left:${low}%;width:min(${blue_range}%);}`);
+          css_change(`.statistic .custom-graph__items:before{
+            left:calc((100% - ${halfAvatar}px) * ${low/100} + ${halfAvatar}px);
+            width:calc((100% - ${halfAvatar}px) * ${blue_range/100});
+            }`);
         } else {
-          css_change(`.statistic .custom-graph__items:before{bottom:${low}%;height:min(${blue_range}%);}`);
+            css_change(`.statistic .custom-graph__items:before{
+              bottom:calc((100% - ${halfAvatar}px) * ${low/100} + ${halfAvatar}px);
+              height:calc((100% - ${halfAvatar}px) * ${blue_range/100});
+              }`);
         }
     }
 
@@ -86,6 +98,7 @@ class AppGraph {
 
     buildGraph() {
         this.render();
+        this.safeArea();
 
         window.addEventListener('resize', () => {
             this.updateDots()
@@ -277,7 +290,20 @@ class AppGraph {
         this.templates.forEach((item) => {
             this.searchInnerElNext(item);
         });
-        this.safeArea();
+        let css_check = function() {
+          let result = false;
+          for(let item of document.body.children) {
+            if(item.innerText.startsWith('.statistic .custom-graph__items:before')) {
+              result = true;
+              break;
+            }
+          }
+          return(result)
+        }
+        if(!css_check) {
+          this.safeArea();
+        }
+
     }
 
     showSliderValue(inputSlider, thumb, index) {
