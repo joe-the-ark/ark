@@ -73,8 +73,8 @@
             'link': '{{game.link}}',
             'user_id': '{{user.id}}',
             'data': $('#data').val(),
-            'ubung1_id': '{{ubung1.id}}',
-            'ubung3_id': '{{ubung3.id}}',
+            'ubung1_id': '{{ubung5.ubung1.id}}',
+            'ubung3_id': '{{ubung5.ubung3.id}}',
         };
         axios
             .post(`/api/m2_ubung5_data/`, data_)
@@ -102,7 +102,7 @@
         container: ".custom-graph-wrapper",
         range: [0, 100],
         //labelRange: [0, 99],
-        labelRange: ['{{ubung1.power}}', '{{ubung3.drainer}}'],
+        labelRange: ['{{ubung5.ubung1.power}}', '{{ubung5.ubung3.drainer}}'],
         mobile: 1200,
         dependency: true,
         data: {{ member_list|safe }}
@@ -110,7 +110,7 @@
             {
                 name: 'Vasilisa Kochetkova',
                 avatar: '/static/images/avatars/boar.svg',
-                status: 50
+                statusSide: 50
             },
             {
                 name: 'Vasilisa Kochetkova',
