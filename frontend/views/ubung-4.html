@@ -140,7 +140,7 @@
                       $self.saveX = e.offsetX;
                       $self.saveY = e.offsetY;
                       $self.saveDndItemIndex = i;
-                      whichContainer = event.target.parentNode.parentNode.getAttribute('data-id');
+                      whichContainer = event.target.parentNode.parentNode.parentNode.getAttribute('data-id');
                       player = $self.containersTo[whichContainer].items.find(item => item.name == name);
                       replace = true;
                     });
@@ -183,12 +183,12 @@
                 document.addEventListener('mouseup', function (e) {
                     if (start) {
                         const toElemnet = e.target;
-                        const toElementId = toElemnet.getAttribute('data-id');
+                        const toElementId = toElemnet.parentNode.getAttribute('data-id');
                         $self.saveX = 0;
                         $self.saveY = 0;
                         $self.cloned.remove();
                         start = false;
-                        if (toElemnet.getAttribute('data-id')) {
+                        if (toElementId) {
                             const testItem = $self.data[$self.saveDndItemIndex]
                             $self.data[$self.saveDndItemIndex] = {
                                 ...testItem,
@@ -202,12 +202,12 @@
                     }
                     if (replace) {
                       const toElemnet = e.target;
-                      const toElementId = toElemnet.getAttribute('data-id');
+                      const toElementId = toElemnet.parentNode.getAttribute('data-id');
                       $self.saveX = 0;
                       $self.saveY = 0;
                       $self.cloned.remove();
                       replace = false;
-                      let incoming_container_index = $self.saveDndItem.parentNode.getAttribute('data-id');
+                      let incoming_container_index = $self.saveDndItem.parentNode.parentNode.getAttribute('data-id');
                       if (toElementId) {
                         $self.containersTo[toElementId].items.push(player);
                         let contItems = $self.containersTo[incoming_container_index].items.filter(item => item.name != name);
@@ -232,7 +232,7 @@
                   usersDistr.forEach((item, i) => {
                     item.addEventListener('click', function (event) {
                       name = event.target.parentNode.getAttribute('data-tippy-content');
-                      whichContainer = event.target.parentNode.parentNode.getAttribute('data-id');
+                      whichContainer = event.target.parentNode.parentNode.parentNode.getAttribute('data-id');
                       let contItems = $self.containersTo[whichContainer].items.filter(item => item.name != name);
                       $self.containersTo[whichContainer].items = contItems;
                       $self.data.forEach((item, i) => {
@@ -287,11 +287,11 @@
             const {name, items} = item;
 
             return `<div class="distribution__item">
-                        <div class="distry">
+                        <div class="distry" data-id="${i}">
                             <div class="distry__description">
                                 ${name}
                             </div>
-                            <div class="distry__thumbnails" data-id="${i}">
+                            <div class="distry__thumbnails" >
                             ${items.map(({name, avatar}) => {
                 return `<div class="distry__user" data-tippy-content="${name}"><img src="${avatar}" alt=""></div>`
             })}

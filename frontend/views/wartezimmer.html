@@ -226,7 +226,7 @@
             <form action="#" method="POST" class="form">
             {% csrf_token %}
                 <div class="center">
-                    <button type="submit" id="button">
+                    <button id='main_btn' type="button" onclick="choosePopup()">
                         Weiterspielen
                     </button>
                 </div>
@@ -239,6 +239,19 @@
 <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
 <script src="https://unpkg.com/clipboard@2/dist/clipboard.min.js"></script>
 <script>
+
+    //Button remover
+    function buttonRemover() {
+      let initiator = "{{host}}";
+      let user = "{{player_name}}";
+      console.log(initiator, user);
+      let btn = document.querySelector('#main_btn')
+      if (initiator != user) {
+        btn.style.display = 'none'
+      }
+    }
+    buttonRemover();
+
     // Copy and tooltip
     new ClipboardJS('.icon-link');
     tippy('.icon-link', {
@@ -346,7 +359,7 @@
                         console.log(error);
                     });
             },6000);
-            
+
             function check_game_start(){
                 var data_ = {'link': '{{link}}'};
                 axios
@@ -356,7 +369,7 @@
                         if (result === 1){
                             window.location.href="/ubung-4/";
                         }else{
-                            return 
+                            return
                         }
                     })
                     .catch(function(error){
@@ -364,7 +377,7 @@
                     });
             }
             setInterval(check_game_start, 2000);
-            
+
 
         },
         methods: {
@@ -374,22 +387,91 @@
         },
     })
 
+
+    function popupOpen(selector) {
+      console.log('opened', selector);
+      selector.classList.add('open');
+    }
+
+    function popupClose(selector, timeout) {
+      console.log('closed', selector);
+      setTimeout(() => {selector.classList.remove('open')}, timeout);
+
+    }
+
+    function choosePopup() {
+      let userList = document.querySelectorAll('.user-connect');
+      let readyCount = 0;
+      for (let item of userList) {
+        if(item.classList.contains('active')) {
+          readyCount++;
+        }
+      }
+      if (userList.length < 3) {
+        morePlayersNeeded();
+      }
+      else if (userList.length >= 3 && readyCount < 3) {
+        letsWaitMorePlayers();
+      }
+      else if (userList.length >= 3 && readyCount >=3 && userList.length > readyCount){
+        waitOrGo();
+        console.log('waitOrGo')
+      }
+      else if (userList.length == readyCount) {
+        start();
+      }
+    }
+
+    function morePlayersNeeded() {
+      let popup = document.querySelector('#popup_less_players');
+      popupOpen(popup);
+      popupClose(popup, 1500);
+    }
+
+    function letsWaitMorePlayers() {
+      let popup = document.querySelector('#popup_less_ready_players');
+      popupOpen(popup);
+      popupClose(popup, 1500);
+    }
+
+    function waitOrGo() {
+      let popup = document.querySelector('#popup_buttons');
+      popupOpen(popup);
+      let closeBtn = document.querySelector('.modal_button[type=button]')
+      console.log(closeBtn);
+      closeBtn.addEventListener('click', () => {popupClose(popup)})
+    }
+
+    function start() {
+      document.forms[0].submit();
+    }
+
+
 </script>
-<div id="popup_buttons">
+<div id='popup_buttons' class="popup">
     <div class="popup_body">
         <div class="popup_content">
-            <button class="modal_button">Weiterspielen mit </br> grünen Spielem</button>
-            <button class="modal_button">Auf weitere </br> Mitspieler warten</button>
+            <form class="popup_form" action="#" method="post">
+              {% csrf_token %}
+              <button class="modal_button" type="submit" id="button" >Weiterspielen mit </br> grünen Spielem</button>
+              <button class="modal_button" type="button" >Auf weitere </br> Mitspieler warten</button>
+            </form>
         </div>
     </div>
 </div>
-<script src="">
-    const body = document.body;
-    const lockPadding = document.querySelectorAll('.lock_padding');
-
-    let unlock = true;
-    const timeout = 800;
-    
-</script>
+<div id='popup_less_players' class="popup">
+    <div class="popup_body">
+        <div class="popup_content">
+            Not enough players. It takes at least 3 to play this game
+        </div>
+    </div>
+</div>
+<div id='popup_less_ready_players' class="popup">
+    <div class="popup_body">
+        <div class="popup_content">
+            Let's wait more players
+        </div>
+    </div>
+</div>
 </body>
 </html>
