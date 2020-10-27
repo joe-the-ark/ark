@@ -261,6 +261,7 @@ button {
     max-width: auto;
     width: auto;
     border-right: 0;
+    padding-bottom: 0;
   }
   .distry__thumbnails {
     margin: 0;
