@@ -243,6 +243,8 @@ class Ubung5(models.Model):
             'value': self.ubung1.power + ' '+ self.ubung3.drainer,
             'avatar': self.player.avatar,
             'statusSide': self.score,
+            'target_user': self.goal.name,
+            'target_user_avatar': self.goal.avatar,
         }
 
     class Meta(object):

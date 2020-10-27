@@ -535,7 +535,7 @@ def spannungsfelder(request, user):
     ctx['himself'] = round(himself ,2)
     ctx['tension'] = round(tension, 2)
 
-    json_list = [ i.span_1 for i in list(Ubung5.objects.filter(goal=user)) ]
+    json_list = [ i.span_1 for i in list(Ubung5.objects.filter(game=game)) ]
     # print('json_list', json_list)
     json_list.sort(key = lambda x:x['statusSide'])
     ctx['json_list'] = json_list
