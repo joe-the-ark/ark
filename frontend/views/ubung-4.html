@@ -207,17 +207,16 @@
                       $self.saveY = 0;
                       $self.cloned.remove();
                       replace = false;
-                      let incoming_container_index = $self.saveDndItem.parentNode.parentNode.getAttribute('data-id');
                       if (toElementId) {
                         $self.containersTo[toElementId].items.push(player);
-                        let contItems = $self.containersTo[incoming_container_index].items.filter(item => item.name != name);
-                        $self.containersTo[incoming_container_index].items = contItems;
+                        let contItems = $self.containersTo[whichContainer].items.filter(item => item.name != name);
+                        $self.containersTo[whichContainer].items = contItems;
                         $self.render();
 
                       }
                       else {
-                        let contItems = $self.containersTo[incoming_container_index].items.filter(item => item.name != name);
-                        $self.containersTo[incoming_container_index].items = contItems;
+                        let contItems = $self.containersTo[whichContainer].items.filter(item => item.name != name);
+                        $self.containersTo[whichContainer].items = contItems;
                         $self.data.forEach((item, i) => {
                           if (item.name == name) {item.hidden = false}
                         });
@@ -282,17 +281,16 @@
                             console.log(e.target)
                             const toElementId = toElemnet.parentNode.getAttribute('data-id');
                             replace = false;
-                            let incoming_container_index = $self.saveDndItem.parentNode.parentNode.getAttribute('data-id');
                             if (toElementId) {
                                 $self.containersTo[toElementId].items.push(player);
-                                let contItems = $self.containersTo[incoming_container_index].items.filter(item => item.name != name);
-                                $self.containersTo[incoming_container_index].items = contItems;
+                                let contItems = $self.containersTo[whichContainer].items.filter(item => item.name != name);
+                                $self.containersTo[whichContainer].items = contItems;
                                 $self.render();
 
                             }
                             else {
-                                let contItems = $self.containersTo[incoming_container_index].items.filter(item => item.name != name);
-                                $self.containersTo[incoming_container_index].items = contItems;
+                                let contItems = $self.containersTo[whichContainer].items.filter(item => item.name != name);
+                                $self.containersTo[whichContainer].items = contItems;
                                 $self.data.forEach((item, i) => {
                                     if (item.name == name) {item.hidden = false}
                                 });
