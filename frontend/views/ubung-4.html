@@ -63,7 +63,7 @@
                         <input id="row3" type="hidden" name="row-3" value=""/>
                         <input id="row4" type="hidden" name="row-4" value=""/>
                         <input id="row5" type="hidden" name="row-5" value=""/>
-                        <button type="submit" id="button" data-tippy-content="Another Tooltip">
+                        <button type="submit" id="button" >
                             Weiterspielen
                         </button>
                     </div>
@@ -108,7 +108,7 @@
             let player = {};
 
 
-            if (window.innerWidth > 768) {
+            if (window.innerWidth > 1200) {
                 usersFrom.forEach((item, i) => {
                     if (item.closest('.active')) {
                         item.addEventListener('mousedown', function (e) {
@@ -245,11 +245,13 @@
 
             }
 
-            if (window.innerWidth <= 768) {
+            if (window.innerWidth <= 1200) {
                 usersFrom.forEach((item, i) => {
                     if (item.closest('.active')) {
+                        // add event listener to every active user banner
                         item.addEventListener('click', function (e) {
                             item.classList.add('outline');
+                            // item = <div class="user-connect active user-connect--to">
                             $self.saveDndItem = item;
                             start = true;
                             $self.saveDndItemIndex = i;
@@ -257,7 +259,7 @@
                     }
                 });
 
-                document.querySelectorAll('.distry__thumbnails').forEach((item) => {
+                document.querySelectorAll('.distry').forEach((item) => {
                     item.addEventListener('click', function (e) {
                         if (start) {
                             const toElementId = this.getAttribute('data-id');
@@ -275,9 +277,47 @@
                                 $self.saveDndItem.classList.add('active')
                             }
                         }
+                        if (replace) {
+                            const toElemnet = e.target;
+                            console.log(e.target)
+                            const toElementId = toElemnet.parentNode.getAttribute('data-id');
+                            replace = false;
+                            let incoming_container_index = $self.saveDndItem.parentNode.parentNode.getAttribute('data-id');
+                            if (toElementId) {
+                                $self.containersTo[toElementId].items.push(player);
+                                let contItems = $self.containersTo[incoming_container_index].items.filter(item => item.name != name);
+                                $self.containersTo[incoming_container_index].items = contItems;
+                                $self.render();
+
+                            }
+                            else {
+                                let contItems = $self.containersTo[incoming_container_index].items.filter(item => item.name != name);
+                                $self.containersTo[incoming_container_index].items = contItems;
+                                $self.data.forEach((item, i) => {
+                                    if (item.name == name) {item.hidden = false}
+                                });
+                                $self.render();
+                            }
+                        }
                     });
                 })
-
+                //Replace player
+                if (usersDistr) {
+                  usersDistr.forEach((item, i) => {
+                    item.addEventListener('click', function (e) {
+                        item.classList.add('outline');
+                        console.log(event.target);
+                        name = event.target.parentNode.getAttribute('data-tippy-content');
+                        $self.saveDndItem = item;
+                        $self.saveDndItemIndex = i;
+                        whichContainer = event.target.parentNode.parentNode.parentNode.getAttribute('data-id');
+                        player = $self.containersTo[whichContainer].items.find(item => item.name == name);
+                        replace = true;
+                        console.log(name, $self.saveDndItem, $self.saveDndItemIndex, whichContainer, player)
+                    });
+                  });
+                }
+                
 
             }
 

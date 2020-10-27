@@ -22,12 +22,10 @@
   }
 }
 @media screen and (max-width: 1200px) {
-  .distribution {
-    grid-template-columns: 1fr;
-  }
+  
 }
 .distribution__item {
-  display: flex;
+  /*display: flex;*/
   align-items: center;
 }
 @media screen and (min-width: 1201px) {
@@ -39,16 +37,8 @@
     grid-row: span 2;
   }
 }
-@media screen and (max-width: 1200px) {
-  .distribution__item > div {
-    width: 100%;
-  }
-  .distribution__item:not(:nth-child(3)) {
-    order: 1;
-  }
-  .distribution__item:nth-child(3) {
-    order: 0;
-  }
+
+
 }
 .distribution__users {
   display: flex;
@@ -168,6 +158,10 @@
   outline: 1px solid var(--ls-accent-1-color);
   padding: 10px;
 }
+.distry__user.outline {
+  outline: 2px solid var(--ls-accent-1-color);
+/*  padding: 10px;
+*/}
 body > .user-connect {
   max-width: 210px;
   transition: none;
@@ -237,3 +231,63 @@ body > .distry__user {
   cursor: pointer;
   pointer-events: none;
 }
+button {
+  margin-top: 10px; 
+}
+@media screen and (max-width: 1200px) {
+  .distribution__item > div {
+    width: 100%;
+  }
+  .distribution__item:not(:nth-child(3)) {
+    order: 1;
+  }
+  .distribution__item:nth-child(3) {
+    order: 0;
+  }
+  
+  
+  .distribution {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 'problem1 problem2' 'users problem3' 'users problem4' 'problem5 problem6';
+    margin: 0 10px;
+  }
+  .distry {
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .distry__description {
+    max-width: auto;
+    width: auto;
+    border-right: 0;
+  }
+  .distry__thumbnails {
+    margin: 0;
+    width: auto;
+    justify-content: flex-start;
+
+  }
+  .distribution__item:nth-child(1) {
+    grid-area: problem1;
+  }
+  .distribution__item:nth-child(2) {
+    grid-area: problem2;
+  }
+  .distribution__item:nth-child(4) {
+    grid-area: problem6;
+  }
+  .distribution__item:nth-child(3) {
+    grid-area: users;
+  }
+  .distribution__item:nth-child(4) {
+    grid-area: problem3;
+  }
+  .distribution__item:nth-child(5) {
+    grid-area: problem4;
+  }
+  .distribution__item:nth-child(6) {
+    grid-area: problem5;
+  }
+
+
