@@ -12,6 +12,7 @@ admin.site.register(Ubung4)
 admin.site.register(Ubung5)
 admin.site.register(M2Ubung1)
 admin.site.register(M2Ubung2)
+admin.site.register(LastStop)
 
 
 

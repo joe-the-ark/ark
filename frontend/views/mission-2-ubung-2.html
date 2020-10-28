@@ -570,20 +570,22 @@
     })
 
     function check_finish(){
-        var data_ = {'link': '{{game.link}}'}
-        axios
-            .post(`/api/last_stop_check/`, data_)
-            .then(function(response){
-                var result = response.data.result
-                if (result === 1){
-                    window.location.href = '/goodbye/'
-                }else{
-                    return
-                }
-            })
-            .catch(function(error){
-                console.log(error)
-            })
+        if (app1.loading === true){
+            var data_ = {'link': '{{game.link}}'}
+            axios
+                .post(`/api/last_stop_check/`, data_)
+                .then(function(response){
+                    var result = response.data.result
+                    if (result === 1){
+                        window.location.href = '/mission-2-ubung-2/'
+                    }else{
+                        return
+                    }
+                })
+                .catch(function(error){
+                    console.log(error)
+                })
+        }
     }
     setInterval("check_finish()", 2000)
     
