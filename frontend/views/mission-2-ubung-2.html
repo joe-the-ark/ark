@@ -570,7 +570,7 @@
     })
 
     function check_finish(){
-        var data_ = {'link''{{game.link}}'}
+        var data_ = {'link': '{{game.link}}'}
         axios
             .post(`/api/last_stop_check/`, data_)
             .then(function(response){
