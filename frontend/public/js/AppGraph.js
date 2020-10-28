@@ -1,7 +1,9 @@
 class AppGraph {
-    constructor({ container, data, range, statistic, mobile, labelRange, auto = true, dependency = false }) {
+    constructor({ container, data, safezoneData, graphNumber=0, range, statistic, mobile, labelRange, auto = true, dependency = false }) {
         this.container = document.querySelector(container);
         this.data = data;
+        this.safezoneData = safezoneData;
+        this.graphNumber = graphNumber;
         this.range = range;
         this.labelRange = labelRange;
         this.statistic = statistic;
@@ -15,30 +17,30 @@ class AppGraph {
         this.safeHigh = 0;
     }
 
+    css_check() {
+      let result = false;
+      for(let item of document.body.children) {
+        if(item.innerText.startsWith('.statistic .custom-graph__items:before')) {
+          result = true;
+          break;
+        }
+      }
+      return(result)
+    }
+
     safeArea() {
+        let $self = this;
         var css_change = function(t, s) {
             s = document.createElement('style');
             s.innerText = t;
-            document.body.appendChild(s);
-        };
-
-        var data_list = []
-        var uu = 0;
-        while (uu < this.data.length) {
-            data_list.push((this.data)[uu].statusSide)
-            uu += 1;
-        }
-
-        let _median = arr => {
-            arr.sort();
-            //求中位数
-            if (arr.length % 2 == 0) {
-                return (arr[arr.length / 2 - 1] + arr[arr.length / 2]) / 2;
-            } else {
-                return arr[Math.floor(arr.length / 2)];
+            if(!$self.css_check()) {
+                document.body.appendChild(s);
             }
+            
         };
-        var median = _median(data_list);
+
+        let sum = this.safezoneData.reduce(function(a,b){return(a+b)});
+        let median = Math.round(sum/this.safezoneData.length);
         var low = median - 16;
         var high = median + 16;
         if (low < 0) {
@@ -47,21 +49,41 @@ class AppGraph {
         if (high > 100) {
             high = 100;
         }
+        let slide = ".slide-"+this.graphNumber.toString()
+        let spanung = document.querySelector(slide);
+        this.container.children[0].setAttribute('low',low)
+        this.container.children[0].setAttribute('high',high)
         this.safeLow = low;
         this.safeHigh = high;
         var blue_range = high - low;
         let halfAvatar = document.querySelector('div.custom-graph__item-avatar').clientHeight/2;
-        //console.log(this.data);
+        let height = document.querySelector('.custom-graph__item').clientHeight;
+        let width = document.querySelector('.custom-graph__item').clientWidth;
+        console.log("low",low,"high",high);
+        console.log('top', height*((100-high)/100));
+        console.log('height', height*(blue_range/100));
+        console.log(this.container);
+        let mobStyle = `.statistic .custom-graph__items:before{
+            right:${width*((100-high)/100)}px;
+            width:${width*(blue_range/100)}px;
+            }`
+        let screenStyle = `.statistic .custom-graph__items:before{
+              top:${height*((100-high)/100)}px;
+              height:${height*(blue_range/100)}px;
+              }`
+
+
         if (window.innerWidth <= this.mobile) {
-          css_change(`.statistic .custom-graph__items:before{
-            left:calc((100% - ${halfAvatar}px) * ${low/100} + ${halfAvatar}px);
-            width:calc((100% - ${halfAvatar}px) * ${blue_range/100});
-            }`);
+            if(slide) {
+                css_change(slide + " " + mobStyle);
+            }
+            else {css_change(mobStyle);}
         } else {
-            css_change(`.statistic .custom-graph__items:before{
-              bottom:calc((100% - ${halfAvatar}px) * ${low/100} + ${halfAvatar}px);
-              height:calc((100% - ${halfAvatar}px) * ${blue_range/100});
-              }`);
+            if(slide) {
+                css_change(slide + " " + screenStyle);
+            }
+            else {css_change(screenStyle)}
+            
         }
     }
 
@@ -101,7 +123,7 @@ class AppGraph {
         this.safeArea();
 
         window.addEventListener('resize', () => {
-            this.updateDots()
+            this.updateDots();
             this.prePermission();
         });
 
@@ -290,19 +312,7 @@ class AppGraph {
         this.templates.forEach((item) => {
             this.searchInnerElNext(item);
         });
-        let css_check = function() {
-          let result = false;
-          for(let item of document.body.children) {
-            if(item.innerText.startsWith('.statistic .custom-graph__items:before')) {
-              result = true;
-              break;
-            }
-          }
-          return(result)
-        }
-        if(!css_check) {
-          this.safeArea();
-        }
+        
 
     }
 

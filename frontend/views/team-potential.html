@@ -155,7 +155,14 @@
     }
     setInterval("check_finish()",2000);
 
-
+    let data = {{ all_result|safe }};
+    let safezoneData = () => {
+        let arr = [];
+        for(let item of data) {
+            arr.push(item.statusSide);
+        }
+        return arr
+    }
 
     const {log} = console;
 
@@ -165,7 +172,8 @@
         labelRange: ['Low', 'High'],
         statistic: true,
         mobile: 1200,
-        data: {{ all_result|safe }}
+        data: data,
+        safezoneData: safezoneData(),
         {% comment %} [
             {
                statusSide: 10
@@ -222,6 +230,7 @@
         high = 100;
     }
     var blue_range = high - low;
+    console.log('median',median,low,high);
     css_change(`.statistic .custom-graph__items:before{left:${low}%;width:min(${blue_range}%);}`); {% endcomment %}
 
 

@@ -463,7 +463,7 @@ def team_potential(request, user):
 
     # median = mean(value_list)
     from .utils import mean
-    median = mean(value_list)
+    median = round(mean(value_list))
     # if temp_[-1] == '0':
     #     temp = int(temp)
     #     median = (value_list[temp-1] + value_list[temp])/2
@@ -476,8 +476,8 @@ def team_potential(request, user):
     # else:
     #     temp = round(temp)
     #     median = value_list[temp]
-    ctx['minimal'] = min(value_list)
-    ctx['maximal'] = max(value_list)
+    ctx['minimal'] = round(min(value_list))
+    ctx['maximal'] = round(max(value_list))
     ctx['median'] = median
     ctx['user'] = user
 
@@ -537,7 +537,7 @@ def spannungsfelder(request, user):
 
     json_list = [ i.span_1 for i in list(Ubung5.objects.filter(game=game)) ]
     # print('json_list', json_list)
-    json_list.sort(key = lambda x:x['statusSide'])
+    json_list.sort(key = lambda x:x['value'])
     ctx['json_list'] = json_list
     ctx['user'] = user
     return render(request, './views/spannungsfelder.html', ctx)

@@ -120,7 +120,7 @@
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
     var json_list = {{ json_list|safe }};
-    console.log('json',json_list);
+    let curentUser = "{{ user }}";
     // function deal_json(json_list, num){
     //     var new_json_list = [];
     //     var uu = 0;
@@ -158,6 +158,7 @@
     //     return result;
     // }
 
+
     function traitArray(json_list) {
       let arr = new Set();
       json_list.forEach((item) => {
@@ -165,6 +166,22 @@
       })
       let result = Array.from(arr);
       return(result)
+    }
+
+    function arrayForGraph(json) {
+        let arr = [];
+        for (let item of json) {
+            tempObj = {};
+            if(item.name == curentUser) {
+                tempObj['name'] = item.target_user;
+                tempObj['avatar'] = item.target_user_avatar;
+                tempObj['statusSide'] = item.statusSide;
+                tempObj['value'] = item.value;
+                tempObj['status'] = item.statusSide.toString();
+                arr.push(tempObj);
+            }
+        }
+        return arr
     }
 
     function arrayGraphModifier(item) {
@@ -187,10 +204,21 @@
       }
     }
 
+    function safezoneData(value) {
+        let arr = [];
+        for (let item of json_list) {
+            if (item.value == value) {
+                arr.push(item.statusSide);
+            }
+        }
+        return arr
+
+    }
+
     let dataForGraph = () => {
       let result = [];
       for (let value of traitArray(json_list)) {
-        dataRaw = json_list.filter(jso => jso.value == value);
+        dataRaw = arrayForGraph(json_list).filter(jso => jso.value == value);
         datas = dataRaw.map(arrayGraphModifier);
         temp = {
       		'data':datas,
@@ -205,7 +233,7 @@
     let dataForRange = () => {
       let result = [];
       for (let value of traitArray(json_list)) {
-        datas = json_list.filter(jso => jso.value == value);
+        datas = arrayForGraph(json_list).filter(jso => jso.value == value);
         let others = 0;
         let self = 0;
         datas.forEach((item, i) => {
@@ -240,24 +268,6 @@
         htmlWrappers += `<div class="swiper-slide slide-${i}"></div>`;
     });
 
-    // function dataExpand(data) {
-    //   for (let graph of data) {
-    //     let user = graph.data.filter(item => item.name)[0];
-  	// 		let ave = 0;
-    //     for (let dot of graph.data) {
-    //       if (dot.value == user.value && !dot.name) {
-    //         ave += dot.statusSide
-    //       }
-    //     }
-  	// 		let others = Math.round(ave/3);
-  	// 		user['others'] = others;
-  	// 		user['tension'] = user.statusSide - others;
-    //
-    //   }
-    // }
-
-    // dataExpand(data);
-
     wrapper.innerHTML = htmlWrappers;
 
     let newapp = new AppRange({
@@ -279,7 +289,6 @@
                 const itemClickable = document.querySelectorAll('#graph-slider .swiper-pagination-bullet');
                 itemClickable[i].click();
                 item.classList.add('active');
-                console.log('callback',item,i,this.data)
                 bottomValues = document.querySelector('.custom-graph-info').children
                 bottomValues[0].innerText = this.data[i].others;
                 bottomValues[1].innerText = this.data[i].self;
@@ -336,9 +345,36 @@
             labelRange: item.labelRange,
             mobile: 1200,
             statistic: true,
-            data: item.data
+            data: item.data,
+            safezoneData: safezoneData(item.data[0].value),
+            graphNumber: i,
         });
-        appgraph.safeArea()
+        console.log(appgraph.safeLow, appgraph.safeHigh);
+        var blue_range = appgraph.high - appgraph.low;
+        let halfAvatar = document.querySelector('div.custom-graph__item-avatar').clientHeight/2;
+
+        //console.log(this.data);
+        // if (window.innerWidth <= appgraph.mobile) {
+        //   css_change(`.statistic .custom-graph__items:before{
+        //     left:calc((100% - ${halfAvatar}px) * ${low/100} + ${halfAvatar}px);
+        //     width:calc((100% - ${halfAvatar}px) * ${blue_range/100});
+        //     }`);
+        // } else {
+        //     css_change(`.statistic .custom-graph__items:before{
+        //       bottom:calc((100% - ${halfAvatar}px) * ${low/100} + ${halfAvatar}px);
+        //       height:calc((100% - ${halfAvatar}px) * ${blue_range/100});
+        //       }`);
+        // }
+
+        // function css_change(t, s) {
+        //     s = document.createElement('style');
+        //     s.innerText = `.slide-0 .statistic .custom-graph__items:before{
+        //         left:calc((100% - ${halfAvatar}px) * ${appgraph.low/100} + ${halfAvatar}px);
+        //         width:calc((100% - ${halfAvatar}px) * ${blue_range/100});
+        //         }`;
+        //     document.body.appendChild(s);
+        // };
+        
     });
 
     new Swiper('#graph-slider', {
@@ -366,19 +402,16 @@
     // unifiedData = graphUnifier(data);
 
     function cardsPainting(unifiedData) {
-      let low = appgraph.safeLow;
-      let high = appgraph.safeHigh;
-      console.log(low,high);
       let collection = document.querySelectorAll('.rang__item');
       collection.forEach((item, i) => {
+        let low = document.querySelector(`.slide-${i}`).children[0].getAttribute('low')
+        let high = document.querySelector(`.slide-${i}`).children[0].getAttribute('high')
         let selfInSafe = unifiedData[i].self>low && unifiedData[i].self<high;
         let othersInSafe = unifiedData[i].others>low && unifiedData[i].others<high;
-        console.log(selfInSafe, othersInSafe);
-        console.log(unifiedData[i].self, unifiedData[i].others)
-        if (selfInSafe && othersInSafe) {item.classList.add('white__card'); console.log('white')}
-        if (selfInSafe && !othersInSafe) { item.classList.add('yellow__card'); console.log('yellow')}
-        if (!selfInSafe && othersInSafe) { item.classList.add('red__card'); console.log('red')}
-        if (!selfInSafe && !othersInSafe) { item.classList.add('black__card'); console.log('black')}
+        if (selfInSafe && othersInSafe) {item.classList.add('white__card');}
+        if (selfInSafe && !othersInSafe) { item.classList.add('yellow__card');}
+        if (!selfInSafe && othersInSafe) { item.classList.add('red__card');}
+        if (!selfInSafe && !othersInSafe) { item.classList.add('black__card');}
       });
 
     }
@@ -392,5 +425,8 @@
 
 
 </script>
+<style>
+    
+</style>
 </body>
 </html>
