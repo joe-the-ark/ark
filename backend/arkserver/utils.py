@@ -459,6 +459,8 @@ def mean(num_list):
 
 def add_laststop(user, game):
     from .models import LastStop
+    if LastStop.objects.filter(game=game,player=user).first():
+        return 
     LastStop.objects.create(
         game = game,
         player = user,

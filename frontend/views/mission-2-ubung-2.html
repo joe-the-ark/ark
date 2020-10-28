@@ -47,11 +47,11 @@
             </div>
         </header>
     </div>
-    <div class="app__body" id='app-1' 
+    <div class="app__body" id='app-1'>
+        <div class="container"
         v-loading="loading"
-        element-loading-text="Waiting for others to finish"
+        element-loading-text="Waiting for your teammates"
         element-loading-background="rgba(0, 0, 0, 0.8)">
-        <div class="container">
             <main class="screen feedback">
                 <h1>
                     Letzte Aufgabe: Anonymes Feedback
@@ -556,12 +556,14 @@
     var app1 = new Vue({
         delimiters: ['[[', ']]'],
         el: '#app-1',
-        data:{
-            loading: false,
+        data(){
+            return{
+                loading: false,
+            }
         },
         created(){
             var loading_ = '{{ loading }}'
-            if (loading === '0'){
+            if (loading_ === '0'){
                 this.loading = false
             }else{
                 this.loading = true
@@ -577,7 +579,7 @@
                 .then(function(response){
                     var result = response.data.result
                     if (result === 1){
-                        window.location.href = '/mission-2-ubung-2/'
+                        window.location.href = '/goodbye/'
                     }else{
                         return
                     }
@@ -587,6 +589,7 @@
                 })
         }
     }
+    check_finish()
     setInterval("check_finish()", 2000)
     
 
