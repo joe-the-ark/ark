@@ -1,5 +1,5 @@
 class AppGraph {
-    constructor({ container, data, safezoneData, graphNumber=0, range, statistic, mobile, labelRange, auto = true, dependency = false }) {
+    constructor({ container, data, safezoneData = [], graphNumber=0, range, statistic, mobile, labelRange, auto = true, dependency = false }) {
         this.container = document.querySelector(container);
         this.data = data;
         this.safezoneData = safezoneData;
@@ -39,8 +39,15 @@ class AppGraph {
             
         };
 
-        let sum = this.safezoneData.reduce(function(a,b){return(a+b)});
-        let median = Math.round(sum/this.safezoneData.length);
+        // let sum = this.safezoneData.reduce(function(a,b){return(a+b)});
+        let sum = () => {
+            let itog = 0;
+            for (let item of this.safezoneData) {
+                itog+= item;
+            }
+            return itog
+        }
+        let median = Math.round(sum()/this.safezoneData.length);
         var low = median - 16;
         var high = median + 16;
         if (low < 0) {
@@ -85,7 +92,8 @@ class AppGraph {
             else {css_change(screenStyle)}
             
         }
-    }
+
+    }   
 
     isPermission({ dynamic, statics }) {
         this.prePermission();
