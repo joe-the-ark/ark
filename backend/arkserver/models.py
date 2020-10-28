@@ -51,14 +51,15 @@ class Game(models.Model):
         verbose_name='game_status'
     )
     create_time = models.DateTimeField(auto_now_add=True)
-    
-    # game_secret = models.CharField(max_length=200, verbose_name='game_password', null=True, blank=True)
-    # inviter = models.ForeignKey(Player, on_delete=models.CASCADE, verbose_name='creater', related_name='inviter_game')
-    # status = models.IntegerField(
-    #     default=0,
-    #     choices=((0, 'start'), (1, 'running'), (2, 'end')),
-    #     verbose_name='game_status'
-    # )
+
+    @property
+    def valid_players(self):
+        temp = self.members.all()
+        result = []
+        for i in list(temp):
+            if i.valid:
+                result.append(i)
+        return result
 
     class Meta(object):
             verbose_name = verbose_name_plural = 'games'
@@ -281,7 +282,14 @@ class M2Ubung2(models.Model):
     def __str__(self):
         return f'{self.game} -- {self.player} -- {self.goal}'
 
+class LastStop(models.Model):
+    game = models.ForeignKey(Game, on_delete=models.CASCADE, verbose_name='game')
+    player = models.ForeignKey(Player, on_delete=models.CASCADE, verbose_name='author')
 
+    class Meta(object):
+        verbose_name = verbose_name_plural = 'LastStop'
+    def __str__(self):
+        return f'{self.game}--{self.player}'
 
 
 # class Character(models.Model):

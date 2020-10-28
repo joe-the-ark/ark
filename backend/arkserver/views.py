@@ -612,6 +612,9 @@ def mission_2_ubung_2(request, user):
     member_list = [i.player.player_json for i in waiting_room]
     ctx['member_list'] = member_list
 
+    ctx['loading'] = 0
+
+
     if request.method == 'POST':
         data = request.POST.get('data')
         print(data)
@@ -629,8 +632,11 @@ def mission_2_ubung_2(request, user):
                 row3 = i['feedback'][2]['text'],
             )
 
-        return redirect('/goodbye/')
-
+        from .utils import add_laststop
+        add_laststop(user, game)
+        ctx['loading'] = 1
+        return render(request, './views/mission-2-ubung-2.html', ctx)
+        # return redirect('/goodbye/')
 
     json_list = [ i.span_1 for i in list(Ubung5.objects.filter(goal=user,game=game)) ]
     json_list.sort(key = lambda x:x['statusSide'])
@@ -1188,3 +1194,14 @@ def check_game_is_after_waiting_room(link):
         return 0
     else:
         return 1
+
+
+@api
+def last_stop_check(link):  
+    game = Game.objects.filter(link=link).first()
+    stop_list = list(LastStop.objects.filter(game=game))
+    player_list = game.valid_players
+    for i in stop_list:
+        if i not in player_list:
+            return 0
+    return 1

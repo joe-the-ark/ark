@@ -455,3 +455,11 @@ def mean(num_list):
         return temp
     else:
         return sum(num_list)/len(num_list)
+
+
+def add_laststop(user, game):
+    from .models import LastStop
+    LastStop.objects.create(
+        game = game,
+        player = user,
+    )
