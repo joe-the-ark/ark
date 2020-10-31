@@ -17,27 +17,28 @@ class AppGraph {
         this.safeHigh = 0;
     }
 
-    css_check() {
-      let result = false;
-      for(let item of document.body.children) {
-        if(item.innerText.startsWith('.statistic .custom-graph__items:before')) {
-          result = true;
-          break;
-        }
-      }
-      return(result)
-    }
+    // css_check() {
+    //   let result = false;
+    //   for(let item of document.body.children) {
+    //     if(item.innerText.includes('.statistic .custom-graph__items:before')) {
+    //       result = true;
+    //       break;
+    //     }
+    //   }
+    //   return(result)
+    // }
 
     safeArea() {
-        let $self = this;
-        var css_change = function(t, s) {
-            s = document.createElement('style');
-            s.innerText = t;
-            if(!$self.css_check()) {
-                document.body.appendChild(s);
-            }
+        // let $self = this;
+        // var css_change = function(t, s) {
+        //     s = document.createElement('style');
+        //     s.innerText = t;
+        //     document.body.appendChild(s);
+        //     // if(!$self.css_check()) {
+        //     //     document.body.appendChild(s);
+        //     // }
             
-        };
+        // };
 
         // let sum = this.safezoneData.reduce(function(a,b){return(a+b)});
         let sum = () => {
@@ -66,36 +67,51 @@ class AppGraph {
         let halfAvatar = document.querySelector('div.custom-graph__item-avatar').clientHeight/2;
         let height = document.querySelector('.custom-graph__item').clientHeight;
         let width = document.querySelector('.custom-graph__item').clientWidth;
-        console.log("low",low,"high",high);
-        console.log('top', height*((100-high)/100));
-        console.log('height', height*(blue_range/100));
-        console.log(this.container);
-        let mobStyle = `.statistic .custom-graph__items:before{
-            right:${width*((100-high)/100)}px;
-            width:${width*(blue_range/100)}px;
-            }`
-        let screenStyle = `.statistic .custom-graph__items:before{
-              top:${height*((100-high)/100)}px;
-              height:${height*(blue_range/100)}px;
-              }`
+        // console.log("low",low,"high",high);
+        // console.log('top', height*((100-high)/100));
+        // console.log('height', height*(blue_range/100));
+        // console.log(this.container);
+        // let mobStyle = `.statistic .custom-graph__items:before{
+        //     right:${width*((100-high)/100)}px;
+        //     width:${width*(blue_range/100)}px;
+        //     }`
+        // let screenStyle = `.statistic .custom-graph__items:before{
+        //       top:${height*((100-high)/100)}px;
+        //       height:${height*(blue_range/100)}px;
+        //       }`
+        let mobRight = Math.round(width*((100-high)/100));
+        let mobWidth = Math.round(width*(blue_range/100));
+        let screenTop = Math.round(height*((100-high)/100));
+        let screenHeight = Math.round(height*(blue_range/100));
+
+        let qall = document.querySelectorAll('.custom-graph__safezone');
 
 
         if (window.innerWidth <= this.mobile) {
-            if(slide) {
-                css_change(slide + " " + mobStyle);
-            }
-            else {css_change(mobStyle);}
+            qall[this.graphNumber].style['right'] = mobRight.toString() + "px";
+            qall[this.graphNumber].style['width'] = mobWidth.toString() + "px";
+            qall[this.graphNumber].style['top'] = "0";
+            qall[this.graphNumber].style['height'] = '100%-2px';
+            // if(slide) {
+            //     css_change(slide + " " + mobStyle);
+            // }
+            // else {css_change(mobStyle);}
         } else {
-            if(slide) {
-                css_change(slide + " " + screenStyle);
-            }
-            else {css_change(screenStyle)}
+            qall[this.graphNumber].style['top'] = screenTop.toString() + "px";
+            qall[this.graphNumber].style['height'] = screenHeight.toString() + "px";
+            qall[this.graphNumber].style['right'] = "0";
+            qall[this.graphNumber].style['width'] = '100%-2px';
+            // if(slide) {
+            //     css_change(slide + " " + screenStyle);
+            // }
+            // else {css_change(screenStyle)}
             
         }
 
-    }   
+    }
 
     isPermission({ dynamic, statics }) {
+        // Is graph static or dynamic
         this.prePermission();
         if (!this.statistic) {
             return dynamic;
@@ -105,6 +121,7 @@ class AppGraph {
     }
 
     getMaxOfArray(numArray) {
+        //Return the max number in the numbers array
         return Math.max.apply(null, numArray);
     }
 
@@ -115,13 +132,17 @@ class AppGraph {
             if (window.innerWidth > this.mobile) {
 
                 const statusChildren = status.children;
+                // Get html collection with two elements <div class="custom-graph__status-down">  and same up
                 const searchInnerWidth = [...statusChildren].map((child) => child.clientWidth);
+                // Get width of upper elements
                 const offsetStatus = this.getMaxOfArray(searchInnerWidth);
                 item.style.paddingLeft = `${offsetStatus + 20}px`;
                 status.style.left = `${offsetStatus + 16}px`;
+                // Add left padding to all graph and for status bar
             } else {
                 item.style.paddingLeft = `inherit`;
                 status.style.left = `inherit`;
+                // Padding from parent
             }
         });
     }
@@ -131,6 +152,8 @@ class AppGraph {
         this.safeArea();
 
         window.addEventListener('resize', () => {
+            this.render();
+            this.safeArea();
             this.updateDots();
             this.prePermission();
         });
@@ -380,7 +403,8 @@ class AppGraph {
             `;
 
         let htmlUp = `
-            <div class="custom-graph__items">
+            <div class="custom-graph__items">  
+            <div class="custom-graph__safezone"></div>
             ${this.data.map(({status, statusSide, avatar, name}, i) => {
             return `<div class="custom-graph__item"><input class="custom-graph__range" type="range" value="${this.statistic && statusSide !== undefined ? statusSide : status}" min="${down}" max="${up}"><div class="custom-graph__item-head">
                         ${status !== undefined || (statusSide !== undefined && this.statistic) ? `<div class="custom-graph__item-circle">

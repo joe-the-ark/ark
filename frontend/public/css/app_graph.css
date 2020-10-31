@@ -25,12 +25,10 @@
     pointer-events: none;
 }
 
-.statistic .custom-graph__items:before {
+.statistic .custom-graph__safezone {
     content: " ";
     position: absolute;
-    bottom: 34%;
-    left: 0;
-    height: min(190px, 32%);
+
     width: calc(100% - 2px);
     background-color: #f5fcfe;
     border: 1px solid #51ceec;
@@ -356,9 +354,8 @@
         border-left: 4px solid var(--ls-alfa-color);
         padding-bottom: 0;
     }
-    .statistic .custom-graph__items:before {
-        left: 32%;
-        top: 0;
+    .statistic .custom-graph__safezone {
+        right: : 32%;
         width: min(32%);
         height: 100%;
     }
