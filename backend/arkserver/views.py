@@ -560,7 +560,18 @@ def mission_2_ubung_1(request, user):
     link = request.session['link']
     game = Game.objects.filter(link=link).first()
     waiting_room = list(WaitingRoomMember.objects.filter(game=game,state=1))
-    member_list = [i.player.player_json for i in waiting_room]
+    # member_list = [i.player.player_json for i in waiting_room]
+    
+
+    ctx['member_list'] = []
+    # print('member_list',member_list)
+
+    ubung5 = m2_span_choose(user.id, link)
+    if not ubung5:
+        return redirect('/mission-2-ubung-2/')
+    ctx['ubung5'] = ubung5
+
+    member_list = [ i.span_1 for i in Ubung5.objects.filter(game=game,goal=user,ubung1=ubung5.ubung1) ]
 
     temp = []
     if member_list[0]['id'] == user.id:
@@ -574,14 +585,7 @@ def mission_2_ubung_1(request, user):
                 break
             uu += 1
     member_list = temp + member_list
-
     ctx['member_list'] = member_list
-    # print('member_list',member_list)
-
-    ubung5 = m2_span_choose(user.id, link)
-    if not ubung5:
-        return redirect('/mission-2-ubung-2/')
-    ctx['ubung5'] = ubung5
 
     if request.method == 'POST':
         data = request.POST.get('data')
