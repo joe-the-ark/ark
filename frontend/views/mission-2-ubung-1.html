@@ -67,7 +67,7 @@
 <script src="/static/jquery-3.5.1.min.js"></script>
 <script src="/static/axios.min.js"></script>
 <script>
-
+    let rightChoice = {{ member_list|safe }};
     function data_submit(){
         var data_ = {
             'link': '{{game.link}}',

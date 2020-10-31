@@ -222,7 +222,7 @@
         datas = dataRaw.map(arrayGraphModifier);
         temp = {
       		'data':datas,
-      		'labelRange':['low','high'],
+      		'labelRange':value.split(' '),
       		'range':[1,99],
       	}
         result.push(temp);
@@ -289,7 +289,7 @@
                 const itemClickable = document.querySelectorAll('#graph-slider .swiper-pagination-bullet');
                 itemClickable[i].click();
                 item.classList.add('active');
-                bottomValues = document.querySelector('.custom-graph-info').children
+                bottomValues = document.querySelector('.custom-graph-info').children;
                 bottomValues[0].innerText = this.data[i].others;
                 bottomValues[1].innerText = this.data[i].self;
                 bottomValues[2].innerText = this.data[i].tension;
@@ -301,13 +301,15 @@
             }
         },
         loadEnd() {
+            $self = this;
+            // let contNum = i;
             if (isMobile()) {
-                new Swiper(this.container, {
+                let swipeMob = new Swiper(this.container, {
                     slidesPerView: 6,
                     spaceBetween: 0,
                     centeredSlides: true,
                     grabCursor: true,
-                    loop: true,
+                    loop: false,
                     breakpoints: {
                         768: {
                             slidesPerView: 3,
@@ -326,11 +328,21 @@
                         nextEl: '.rang-button-next',
                         prevEl: '.rang-button-prev',
                     },
+                    pagination: {
+                        el: '.swiper-pagination',
+                        type:"bullets",
+                        clickable: true,
+                    },
                     on: {
                         slideChange(a, b, c) {
                             const index = a.realIndex;
                             const itemClickable = document.querySelectorAll('#graph-slider .swiper-pagination-bullet');
                             itemClickable[index].click();
+                            bottomValues = document.querySelector('.custom-graph-info').children;
+                            // console.log($self.data);
+                            bottomValues[0].innerText = $self.data[index].others;
+                            bottomValues[1].innerText = $self.data[index].self;
+                            bottomValues[2].innerText = $self.data[index].tension;
                         }
                     }
                 });
@@ -349,9 +361,6 @@
             safezoneData: safezoneData(item.data[0].value),
             graphNumber: i,
         });
-        console.log(appgraph.safeLow, appgraph.safeHigh);
-        var blue_range = appgraph.high - appgraph.low;
-        let halfAvatar = document.querySelector('div.custom-graph__item-avatar').clientHeight/2;
 
         //console.log(this.data);
         // if (window.innerWidth <= appgraph.mobile) {
@@ -377,7 +386,7 @@
         
     });
 
-    new Swiper('#graph-slider', {
+    let swipeGraph = new Swiper('#graph-slider', {
         grabCursor: true,
         navigation: {
             nextEl: '.swiper-button-next',
@@ -386,6 +395,28 @@
         pagination: {
             el: '.swiper-pagination',
             clickable: true
+        },
+        on: {
+            slideChange(a, b, c) {
+                console.log(isMobile());
+                let index = a.realIndex;
+                let prevIndex = a.previousIndex;
+                if (isMobile()) {
+                    let btnNext = document.querySelector('#rang-slider .rang-button-next');
+                    let btnPrev = document.querySelector('#rang-slider .rang-button-prev');
+                    if (index > prevIndex) { 
+                        btnNext.click() 
+                    }
+                    if (index < prevIndex) { 
+                        btnPrev.click() 
+                    }
+
+                }
+                if(!isMobile()) {
+                    let cont = document.querySelector('#rang-slider .rang');
+                    cont.children[index].click();
+                }
+            }
         }
     });
 
