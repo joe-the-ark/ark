@@ -69,7 +69,7 @@ urlpatterns = [
     path('development-feedbacks/',server_views.mission_2_ubung_2),
     path('game-insights/',server_views.assessment),
     path('farewell/',server_views.arche),
-    path('team-heatmap/', server_views.heatmap),
+    path('heatmap/', server_views.heatmap),
 
 
     # path('', restapi.vue()),

@@ -41,7 +41,7 @@
               </div>
           </header>
       </div>
-    <div class="app__body">
+    <div class="app__body" id="app-1">
         <div class="container">
           <h1>Heatmap</h1>
           <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -51,30 +51,31 @@
           <div class="main-column left">
             <div class="corner"></div>
             <div class="corner"></div>
-            <div class="heat_value average_by_players">73</div>
-            <div class="heat_value average_by_players">76</div>
+            <div class="heat_value average_by_players" v-for="value in row0">[[ value ]]</div>
+            {% comment %} <div class="heat_value average_by_players">76</div>
             <div class="heat_value average_by_players">81</div>
             <div class="heat_value average_by_players">93</div>
-            <div class="heat_value average_by_players">126</div>
+            <div class="heat_value average_by_players">126</div> {% endcomment %}
             <div class="corner"></div>
           </div>
 
 
 
-          <div class="main-column player">
-            <div class="heat_value over_player">400</div>
+          <div class="main-column player" v-for="user in main_map">
+            <div class="heat_value over_player">[[ user[0] ]]</div>
             <div class="heat_player">
-              <div class="name">Paula Fernandes</div>
-              <img src="/static/images/avatars/bear.svg" alt="">
+              <div class="name">[[ user[1] ]]</div>
+              <img :src="user[2]" alt="">
             </div>
-            <div class="heat_value four">114</div>
-            <div class="heat_value one">80</div>
-            <div class="heat_value two">72</div>
-            <div class="heat_value one">70</div>
-            <div class="heat_value three">30</div>
-            <div class="heat_value average-by-player">121</div>
+            <div class="heat_value four" v-for="value in user[3]">[[ value ]]</div>
+            {% comment %} <div class="heat_value one">[[ user[4] ]]</div>
+            <div class="heat_value two">[[ user[5] ]]</div>
+            <div class="heat_value one">[[ user[6] ]]</div>
+            <div class="heat_value three"></div> {% endcomment %}
+            <div class="heat_value average-by-player">[[ user[4] ]]</div>
           </div>
 
+{% comment %} 
           <div class="main-column player">
             <div class="heat_value over_player">300</div>
             <div class="heat_player">
@@ -129,18 +130,18 @@
             <div class="heat_value four">68</div>
             <div class="heat_value three">101</div>
             <div class="heat_value average-by-player">65</div>
-          </div>
+          </div> {% endcomment %}
 
 
 
           <div class="main-column prop">
             <div class="corner"></div>
             <div class="corner"></div>
-            <div class="property">
-              <p class="property_one">Generosity</p>
-              <p class="property_two">Evil</p>
+            <div class="property" v-for="scale in scale_list">
+              <p class="property_one">[[ scale[0] ]]</p>
+              <p class="property_two">[[ scale[1] ]]</p>
             </div>
-            <div class="property">
+            {% comment %} <div class="property">
               <p class="property_one">Curative</p>
               <p class="property_two">Narcissism</p>
             </div>
@@ -155,24 +156,42 @@
             <div class="property">
               <p class="property_one">Pain</p>
               <p class="property_two">Invisibility</p>
-            </div>
+            </div> {% endcomment %}
             <div class="corner"></div>
           </div>
 
           <div class="main-column right">
             <div class="corner"></div>
             <div class="corner"></div>
-            <div class="heat_value property_value">100</div>
-            <div class="heat_value property_value">200</div>
-            <div class="heat_value property_value">250</div>
-            <div class="heat_value property_value">300</div>
-            <div class="heat_value property_value">350</div>
+            
+              <div class="heat_value property_value" v-for="value in scale_value_list">[[ value ]]</div>
+              {% comment %} <div class="heat_value property_value">200</div>
+              <div class="heat_value property_value">250</div>
+              <div class="heat_value property_value">300</div>
+              <div class="heat_value property_value">350</div> {% endcomment %}
+            
             <div class="corner"></div>
           </div>
 
         </div>
     </div>
   </div>
+
+  <script src="/static/vue.js"></script>
+  <script src="/static/axios.min.js"></script>
+  <script>
+  var app_ = new Vue({
+    delimiters: ['[[', ']]'],
+    el: '#app-1',
+    data:{
+      row0: {{ row0|safe }},
+      main_map: {{ main_map|safe }},
+      scale_list: {{ scale_list|safe }},
+      scale_value_list: {{ scale_value_list|safe }}
+    },
+  })
+
+  </script>
 
 
 </body>

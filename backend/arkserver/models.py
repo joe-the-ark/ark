@@ -31,6 +31,12 @@ class Player(models.Model):
             'avatar': self.avatar,
         }
 
+    @property
+    def ubung5_sum(self):
+        from .models import Ubung5
+        temp = [i.score for i in list(Ubung5.objects.filter(goal=self))]
+        return sum(temp)
+
     class Meta(object):
             verbose_name = verbose_name_plural = 'players'
 
@@ -60,6 +66,27 @@ class Game(models.Model):
             if i.valid:
                 result.append(i)
         return result
+        
+    @property
+    def ubung5_player_order(self):
+        from .models import Player
+        player_list = []
+        for i in Player.objects.filter(game=self):
+            if i.valid:
+                player_list.append(i)
+        player_list.sort(key=lambda x: x.ubung5_sum, reverse=True)
+        return player_list
+    
+    @property
+    def ubung5_scale_order(self):
+        from .models import Ubung5
+        ubung5 = Ubung5.objects.filter(game=self)
+        temp = []
+        for i in ubung5:
+            temp.append(i.ubung1)
+        ubung1_list = list(set(temp))
+        ubung1_list.sort(key=lambda x: x.ubung5_sum, reverse=True)
+        return ubung1_list
 
     class Meta(object):
             verbose_name = verbose_name_plural = 'games'
@@ -102,6 +129,27 @@ class Ubung1(models.Model):
     state = models.CharField(max_length=100, default='')
     create_time = models.DateTimeField(auto_now_add=True)
 
+    @property
+    def connect_ubung3(self):
+        from .models import Ubung5
+        ubung3 = Ubung5.objects.filter(game=self.game, ubung1=self).first().ubung3
+        if ubung3:
+            return ubung3
+        else:
+            return None
+
+    @property
+    def ubung5_sum(self):
+        from .models import Ubung5
+        temp = [i.score for i in list(Ubung5.objects.filter(ubung1=self,game=self.game))]
+        return sum(temp)
+
+    @property
+    def ubung5_avg(self):
+        from .models import Ubung5
+        temp = [i.score for i in list(Ubung5.objects.filter(ubung1=self))]
+        from .utils import mean
+        return mean(temp)
 
     @property
     def json(self):

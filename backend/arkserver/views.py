@@ -908,8 +908,52 @@ def psychologischer(request, user):
 
 
 @user_required
-def heatmap(request):
+def heatmap(request, user):
+    from .utils import heatmap_cell
+    from .utils import mean
     ctx = {}
+    game = Game.objects.filter(link=request.session['link']).first()
+
+    user_list = game.ubung5_player_order
+    avg_list = [i.ubung5_avg for i in game.ubung5_scale_order]
+
+    main_map = []
+    for i in user_list:
+        temp = []
+        temp.append(i.ubung5_sum)
+        temp.append(i.name)
+        temp.append(i.avatar)
+        iknow = []
+        for u in game.ubung5_scale_order:
+            iknow.append(heatmap_cell(i, game, u))
+        temp.append(iknow)
+        temp.append(round(mean(iknow)))
+        main_map.append(temp)
+    # print('main_map',main_map)
+
+
+    row0 = []
+    uu = 0
+    while uu < len(main_map[0][3]):
+        temp = []
+        for i in main_map:
+            temp.append(i[3][uu])
+        row0.append(round(mean(temp)))
+        uu += 1
+
+    # print('row0',row0)
+
+    ctx['row0'] = row0
+    ctx['main_map'] = main_map
+    ctx['scale_list'] = scale_list = [ [i.power, i.connect_ubung3.drainer] for i in game.ubung5_scale_order]
+    ctx['scale_value_list'] = scale_value_list = [i.ubung5_sum for i in game.ubung5_scale_order]
+    # ubung5 = Ubung5.objects.filter(game=game)
+    # player_list = []
+    # for player in Player.objects.filter(game=game):
+    #     if player.valid:
+    #         player_list.append(player)
+    
+
     return render(request, './views/heatmap.html', ctx)
 
 
