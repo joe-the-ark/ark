@@ -173,7 +173,7 @@ def link_enter(request, link):
             )
             request.session['uid'] = new_player.id
             game = Game.objects.filter(link=link).first()
-            game.members.set([new_player])
+            game.members.add(new_player)
             WaitingRoomMember.objects.create(
                 game = game,
                 player = new_player,
