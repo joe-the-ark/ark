@@ -71,10 +71,13 @@ class Game(models.Model):
     def ubung5_player_order(self):
         from .models import Player
         player_list = []
-        for i in Player.objects.filter(game=self):
+        # print(self.members.all())
+        for i in self.members.all():
             if i.valid:
                 player_list.append(i)
+
         player_list.sort(key=lambda x: x.ubung5_sum, reverse=True)
+        
         return player_list
     
     @property

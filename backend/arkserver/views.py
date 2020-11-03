@@ -128,7 +128,7 @@ def auth_link(request):
             )
             request.session['uid'] = new_player.id
             game = Game.objects.filter(link=link).first()
-            game.members.set([new_player])
+            game.members.add([new_player])
             WaitingRoomMember.objects.create(
                 game = game,
                 player = new_player,
@@ -915,6 +915,7 @@ def heatmap(request, user):
     game = Game.objects.filter(link=request.session['link']).first()
 
     user_list = game.ubung5_player_order
+    print('user_list', user_list)
     avg_list = [i.ubung5_avg for i in game.ubung5_scale_order]
 
     main_map = []
@@ -929,7 +930,7 @@ def heatmap(request, user):
         temp.append(iknow)
         temp.append(round(mean(iknow)))
         main_map.append(temp)
-    # print('main_map',main_map)
+    print('main_map',main_map)
 
 
     row0 = []
@@ -1153,8 +1154,11 @@ def check_ubung5_finish(link):
 
 @api
 def ubung5_data(link, user_id, data, ubung1_id, ubung3_id):
+    
     ubung1_id = int(ubung1_id)
     ubung3_id = int(ubung3_id)
+    print(ubung1_id)
+    print(ubung3_id)
     import json
     game = Game.objects.filter(link=link).first()
     user = Player.objects.filter(id=user_id).first()
