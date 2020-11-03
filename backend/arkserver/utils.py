@@ -475,3 +475,25 @@ def heatmap_cell(user, game, ubung1):
     for i in ubung5_list:
         temp.append(abs(i.score - avg))
     return round(sum(temp))
+
+
+def heatmap_color(user, game, ubung1):
+    from .models import Ubung5
+    from .utils import mean
+    low_bond = ubung1.ubung5_avg - 16
+    high_bond = ubung1.ubung5_avg + 16
+
+    user_self = Ubung5.objects.filter(game=game, goal=user, player=user,ubung1=ubung1).first().score
+    others = [i.score for i in Ubung5.objects.filter(game=game, goal=user, ubung1=ubung1).exclude(player=user)]
+    others_avg = mean(others)
+
+    if (user_self < low_bond) or (user_self > high_bond):
+        if (others_avg < low_bond) or (others_avg > high_bond):
+            return 'black'
+        else:
+            return 'red'
+    else:
+        if (others_avg < low_bond) or (others_avg > high_bond):
+            return 'yellow'
+        else:
+            return 'None'

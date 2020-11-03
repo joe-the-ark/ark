@@ -909,7 +909,7 @@ def psychologischer(request, user):
 
 @user_required
 def heatmap(request, user):
-    from .utils import heatmap_cell
+    from .utils import heatmap_cell, heatmap_color
     from .utils import mean
     ctx = {}
     game = Game.objects.filter(link=request.session['link']).first()
@@ -926,9 +926,12 @@ def heatmap(request, user):
         temp.append(i.avatar)
         iknow = []
         for u in game.ubung5_scale_order:
-            iknow.append(heatmap_cell(i, game, u))
+            iknow.append(
+                [heatmap_cell(i, game, u), heatmap_color(i, game, u)]
+            )
         temp.append(iknow)
-        temp.append(round(mean(iknow)))
+        temp_ = [i[0] for i in iknow]
+        temp.append(round(mean(temp_)))
         main_map.append(temp)
     print('main_map',main_map)
 
@@ -939,7 +942,8 @@ def heatmap(request, user):
         temp = []
         for i in main_map:
             temp.append(i[3][uu])
-        row0.append(round(mean(temp)))
+        temp_ = [i[0] for i in temp]
+        row0.append(round(mean(temp_)))
         uu += 1
 
     # print('row0',row0)

@@ -67,7 +67,7 @@
               <div class="name">[[ user[1] ]]</div>
               <img :src="user[2]" alt="">
             </div>
-            <div class="heat_value four" v-for="value in user[3]">[[ value ]]</div>
+            <div v-for="value in user[3]" v-bind:class="{ 'heat_value one': value[1]==='yellow', 'heat_value two': value[1]==='black', 'heat_value three': value[1]==='None', 'heat_value four': value[1]==='red' }">[[ value[0] ]]</div>
             {% comment %} <div class="heat_value one">[[ user[4] ]]</div>
             <div class="heat_value two">[[ user[5] ]]</div>
             <div class="heat_value one">[[ user[6] ]]</div>
@@ -172,6 +172,7 @@
             
             <div class="corner"></div>
           </div>
+
 
         </div>
     </div>
