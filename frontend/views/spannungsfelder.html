@@ -172,9 +172,9 @@
         let arr = [];
         for (let item of json) {
             tempObj = {};
-            if(item.name == curentUser) {
-                tempObj['name'] = item.target_user;
-                tempObj['avatar'] = item.target_user_avatar;
+            if(item.target_user == curentUser) {
+                tempObj['name'] = item.name;
+                tempObj['avatar'] = item.avatar;
                 tempObj['statusSide'] = item.statusSide;
                 tempObj['value'] = item.value;
                 tempObj['status'] = item.statusSide.toString();
