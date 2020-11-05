@@ -1,5 +1,5 @@
 class AppGraph {
-    constructor({ container, data, safezoneData = [], graphNumber=0, range, statistic, mobile, labelRange, auto = true, dependency = false }) {
+    constructor({ container, data, safezoneData = [], graphNumber=0, range, statistic, mobile, labelRange, auto = true, dependency = false, guess = [] }) {
         this.container = document.querySelector(container);
         this.data = data;
         this.safezoneData = safezoneData;
@@ -9,6 +9,7 @@ class AppGraph {
         this.statistic = statistic;
         this.mobile = mobile;
         this.auto = auto;
+        this.guess = guess;
         this.dependency = dependency;
         this.effect = function() {};
 
@@ -17,30 +18,7 @@ class AppGraph {
         this.safeHigh = 0;
     }
 
-    // css_check() {
-    //   let result = false;
-    //   for(let item of document.body.children) {
-    //     if(item.innerText.includes('.statistic .custom-graph__items:before')) {
-    //       result = true;
-    //       break;
-    //     }
-    //   }
-    //   return(result)
-    // }
-
     safeArea() {
-        // let $self = this;
-        // var css_change = function(t, s) {
-        //     s = document.createElement('style');
-        //     s.innerText = t;
-        //     document.body.appendChild(s);
-        //     // if(!$self.css_check()) {
-        //     //     document.body.appendChild(s);
-        //     // }
-            
-        // };
-
-        // let sum = this.safezoneData.reduce(function(a,b){return(a+b)});
         let sum = () => {
             let itog = 0;
             for (let item of this.safezoneData) {
@@ -67,18 +45,6 @@ class AppGraph {
         let halfAvatar = document.querySelector('div.custom-graph__item-avatar').clientHeight/2;
         let height = document.querySelector('.custom-graph__item').clientHeight;
         let width = document.querySelector('.custom-graph__item').clientWidth;
-        // console.log("low",low,"high",high);
-        // console.log('top', height*((100-high)/100));
-        // console.log('height', height*(blue_range/100));
-        // console.log(this.container);
-        // let mobStyle = `.statistic .custom-graph__items:before{
-        //     right:${width*((100-high)/100)}px;
-        //     width:${width*(blue_range/100)}px;
-        //     }`
-        // let screenStyle = `.statistic .custom-graph__items:before{
-        //       top:${height*((100-high)/100)}px;
-        //       height:${height*(blue_range/100)}px;
-        //       }`
         let mobRight = Math.round(width*((100-high)/100));
         let mobWidth = Math.round(width*(blue_range/100));
         let screenTop = Math.round(height*((100-high)/100));
@@ -86,26 +52,16 @@ class AppGraph {
 
         let qall = document.querySelectorAll('.custom-graph__safezone');
 
-
         if (window.innerWidth <= this.mobile) {
             qall[this.graphNumber].style['right'] = mobRight.toString() + "px";
             qall[this.graphNumber].style['width'] = mobWidth.toString() + "px";
             qall[this.graphNumber].style['top'] = "0";
             qall[this.graphNumber].style['height'] = '100%-2px';
-            // if(slide) {
-            //     css_change(slide + " " + mobStyle);
-            // }
-            // else {css_change(mobStyle);}
         } else {
             qall[this.graphNumber].style['top'] = screenTop.toString() + "px";
             qall[this.graphNumber].style['height'] = screenHeight.toString() + "px";
             qall[this.graphNumber].style['right'] = "0";
             qall[this.graphNumber].style['width'] = '100%-2px';
-            // if(slide) {
-            //     css_change(slide + " " + screenStyle);
-            // }
-            // else {css_change(screenStyle)}
-            
         }
 
     }
@@ -352,6 +308,7 @@ class AppGraph {
         const innerWidthSlider = inputSlider.clientWidth - 40;
         const bulletPosition = (value / max);
         const count = bulletPosition * innerWidthSlider;
+        let filter = 0;
         if (window.innerWidth <= this.mobile) {
             thumb.style.left = `${count}px`;
             thumb.style.bottom = 'auto';
@@ -360,10 +317,32 @@ class AppGraph {
             thumb.style.bottom = `${count}px`;
             thumb.style.left = '50%';
         }
+
         const countDot = this.find(thumb, `.custom-graph__item-count`);
         if (countDot) {
+            let hueRotate = 0;
+            if (this.guess.length) {
+                let right = this.guess[index].statusSide;
+                console.log('worked');
+                if (value < right) {
+                    filter = 180 - +value*(100/right);
+                }
+                if (value >= right) {
+                    filter = 80 + (+value-right)*(100/(100-right));
+                }
+            }
+            else {
+                filter = 180 - +value;
+                console.log('doesnt work');
+            }
+            // console.log('inputslider', inputSlider);
+            // console.log('thumb', thumb);
+            // console.log('index', index);
+            // console.log(this.data);
+            // console.log(this.guess);
             countDot.innerHTML = value;
-            countDot.style.filter = `hue-rotate(-${180 - +value}deg)  saturate(200%)`;
+            // console.log(filter);
+            countDot.style.filter = `hue-rotate(-${filter}deg)  saturate(200%)`;
             index !== undefined && this.setDataStatus(index, value);
         }
         if (this.statistic) {

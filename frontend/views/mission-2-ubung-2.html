@@ -73,7 +73,7 @@
                             Constantin Constantinopol
                         </span>
                     </p>
-                    <div class="rang-wrapper">
+<!--                     <div class="rang-wrapper">
                         <div class="rang min">
                             <div class="rang__item">
                                 <div class="rang__item-name">
@@ -209,7 +209,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <form action="#" method="POST" class="form">
                 {% csrf_token %}
                     <div class="center">
@@ -217,20 +217,30 @@
                         <button type="submit" id="button">
                             Weiterspielen
                         </button>
+                        <button id="test"  type="button" style="position: absolute; visibility: hidden;">test</button>
                     </div>
                 </form>
             </main>
         </div>
     </div>
 </div>
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<!-- <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script> -->
 <script src="/static/js/AppRange.js"></script>
 <script src="/static/js/AppFeedback.js"></script>
 <script src="/static/jquery-3.5.1.min.js"></script>
 <script src="/static/axios.min.js"></script>
+<script src="/static/js/utils.js"></script>
+<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+<script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
 <script>
+
+
     const {log} = console;
-    var member_list = {{ json_list|safe }};
+    let userCurrent = "{{ user }}";
+    let jsonAll = {{ json_list_all|safe }};
+    // let dataCur = "{{ json_list }}";
+    var member_list = {{ json_list|safe }}.filter(item => item.name);
 
     function format_list(member_list){
         var num = member_list.length;
@@ -263,283 +273,177 @@
         return result;
     }
 
+
+
+    // function arrayForFeedback(json, nameArray) {
+    //     let arr = []
+    //     for (let name of nameArray) {
+    //         for (let item of json) {
+    //             if(item.name == name) {
+    //                 arr.push({
+    //                     'name':item.name,
+    //                     'id':item.id,
+    //                     'avatar': item.avatar,
+    //                     'feedback': [
+    //                         {
+    //                             title: 'MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team…',
+    //                             text: 'On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying'
+    //                         },
+    //                         {
+    //                             title: 'ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem...',
+    //                             text: ''
+    //                         },
+    //                         {
+    //                             title: 'FRAGEZEICHEN: ich wollte dich schon immer mal fragen…',
+    //                             text: ''
+    //                         }
+    //                     ],
+    //                 });
+    //                 break
+    //             }
+    //         }
+    //     }
+    //     return arr
+    // }
+
+    let dataFeedback = arrayForFeedback(jsonAll, nameArray(jsonAll));
+    let curentUser = dataFeedback[0].name;
+
+
+    // function traitArray(json_list) {
+    //   let arr = new Set();
+    //   json_list.forEach((item) => {
+    //     arr.add(item.value)
+    //   })
+    //   let result = Array.from(arr);
+    //   return(result)
+    // }
+
+    // function arrayForGraph(json) {
+    //     let arr = [];
+    //     for (let item of json) {
+    //         tempObj = {};
+    //         if(item.name == curentUser) {
+    //             tempObj['name'] = item.target_user;
+    //             tempObj['avatar'] = item.target_user_avatar;
+    //             tempObj['statusSide'] = item.statusSide;
+    //             tempObj['value'] = item.value;
+    //             tempObj['status'] = item.statusSide.toString();
+    //             arr.push(tempObj);
+    //         }
+    //     }
+    //     return arr
+    // }
+
+    // let dataForRange = () => {
+    //   let result = [];
+    //   for (let value of traitArray(jsonAll)) {
+    //     datas = arrayForGraph(jsonAll).filter(jso => jso.value == value);
+    //     let others = 0;
+    //     let self = 0;
+    //     datas.forEach((item, i) => {
+    //       if(item.name != '{{user}}') {
+    //         others += item.statusSide;
+    //       }
+    //       else {
+    //         self = item.statusSide;
+    //       }
+    //     });
+    //     others = Math.round(others/(datas.length-1));
+    //     temp = {
+    //       'value':value,
+    //       'self':self,
+    //       'others':others,
+    //       'tension':self - others,
+    //     };
+    //     result.push(temp);
+    //   }
+    //   return(result)
+    // }
+
     var data = format_list(member_list);
 
-    {% comment %} [
-        {
-            name: "Vasilisa Kochetkova",
-            avatar: "/static/images/avatars/boar.svg",
-            statusSide: 49,
-            feedback: [
-                {
-                    title: 'MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team…',
-                    text: 'On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying'
-                },
-                {
-                    title: 'ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem...',
-                    text: ''
-                },
-                {
-                    title: 'FRAGEZEICHEN: ich wollte dich schon immer mal fragen…',
-                    text: ''
-                }
-            ]
-        },
-        {
-            name: "Vasilisa Kochetkova",
-            avatar: "/static/images/avatars/boar.svg",
-            statusSide: 49,
-            feedback: [
-                {
-                    title: 'MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team…',
-                    text: 'On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying'
-                },
-                {
-                    title: 'ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem...',
-                    text: ''
-                },
-                {
-                    title: 'FRAGEZEICHEN: ich wollte dich schon immer mal fragen…',
-                    text: ''
-                }
-            ]
-        },
-        {
-            name: "Vasilisa Kochetkova",
-            avatar: "/static/images/avatars/boar.svg",
-            statusSide: 49,
-            feedback: [
-                {
-                    title: 'MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team…',
-                    text: 'On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying'
-                },
-                {
-                    title: 'ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem...',
-                    text: ''
-                },
-                {
-                    title: 'FRAGEZEICHEN: ich wollte dich schon immer mal fragen…',
-                    text: ''
-                }
-            ]
-        },
-        {
-            name: "Vasilisa Kochetkova",
-            avatar: "/static/images/avatars/boar.svg",
-            statusSide: 49,
-            feedback: [
-                {
-                    title: 'MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team…',
-                    text: 'On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying'
-                },
-                {
-                    title: 'ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem...',
-                    text: ''
-                },
-                {
-                    title: 'FRAGEZEICHEN: ich wollte dich schon immer mal fragen…',
-                    text: ''
-                }
-            ]
-        },
-        {
-            name: "Vasilisa Kochetkova",
-            avatar: "/static/images/avatars/boar.svg",
-            statusSide: 49,
-            feedback: [
-                {
-                    title: 'MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team…',
-                    text: 'On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying'
-                },
-                {
-                    title: 'ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem...',
-                    text: ''
-                },
-                {
-                    title: 'FRAGEZEICHEN: ich wollte dich schon immer mal fragen…',
-                    text: ''
-                }
-            ]
-        },
-        {
-            name: "Vasilisa Kochetkova",
-            avatar: "/static/images/avatars/boar.svg",
-            statusSide: 49,
-            feedback: [
-                {
-                    title: 'MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team…',
-                    text: 'On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying'
-                },
-                {
-                    title: 'ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem...',
-                    text: ''
-                },
-                {
-                    title: 'FRAGEZEICHEN: ich wollte dich schon immer mal fragen…',
-                    text: ''
-                }
-            ]
-        },
-        {
-            name: "Vasilisa Kochetkova",
-            avatar: "/static/images/avatars/boar.svg",
-            statusSide: 49,
-            feedback: [
-                {
-                    title: 'MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team…',
-                    text: 'On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying'
-                },
-                {
-                    title: 'ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem...',
-                    text: ''
-                },
-                {
-                    title: 'FRAGEZEICHEN: ich wollte dich schon immer mal fragen…',
-                    text: ''
-                }
-            ]
-        },
-        {
-            name: "Vasilisa Kochetkova",
-            avatar: "/static/images/avatars/boar.svg",
-            statusSide: 49,
-            feedback: [
-                {
-                    title: 'MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team…',
-                    text: 'On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying'
-                },
-                {
-                    title: 'ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem...',
-                    text: ''
-                },
-                {
-                    title: 'FRAGEZEICHEN: ich wollte dich schon immer mal fragen…',
-                    text: ''
-                }
-            ]
-        },
-        {
-            name: "Vasilisa Kochetkova",
-            avatar: "/static/images/avatars/boar.svg",
-            statusSide: 49,
-            feedback: [
-                {
-                    title: 'MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team…',
-                    text: 'On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying'
-                },
-                {
-                    title: 'ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem...',
-                    text: ''
-                },
-                {
-                    title: 'FRAGEZEICHEN: ich wollte dich schon immer mal fragen…',
-                    text: ''
-                }
-            ]
-        },
-        {
-            name: "Vasilisa Kochetkova",
-            avatar: "/static/images/avatars/boar.svg",
-            statusSide: 49,
-            feedback: [
-                {
-                    title: 'MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team…',
-                    text: 'On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying'
-                },
-                {
-                    title: 'ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem...',
-                    text: ''
-                },
-                {
-                    title: 'FRAGEZEICHEN: ich wollte dich schon immer mal fragen…',
-                    text: ''
-                }
-            ]
-        },
-        {
-            name: "Vasilisa Kochetkova",
-            avatar: "/static/images/avatars/boar.svg",
-            statusSide: 49,
-            feedback: [
-                {
-                    title: 'MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team…',
-                    text: 'On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying'
-                },
-                {
-                    title: 'ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem...',
-                    text: ''
-                },
-                {
-                    title: 'FRAGEZEICHEN: ich wollte dich schon immer mal fragen…',
-                    text: ''
-                }
-            ]
-        },
-        {
-            name: "Vasilisa Kochetkova",
-            avatar: "/static/images/avatars/boar.svg",
-            statusSide: 49,
-            feedback: [
-                {
-                    title: 'MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team…',
-                    text: 'On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying'
-                },
-                {
-                    title: 'ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem...',
-                    text: ''
-                },
-                {
-                    title: 'FRAGEZEICHEN: ich wollte dich schon immer mal fragen…',
-                    text: ''
-                }
-            ]
-        },
-    ]; {% endcomment %}
 
-    new AppRange({
-        container: '.rang-wrapper',
-        data: data,
-        load(wrapper) {
-            wrapper[0].classList.add('min')
-        }
-    });
+    // let range = new AppRange({
+    //     container: '.rang-wrapper',
+    //     data: dataForRange(jsonAll, 'init'),
+    //     innerWrapper: 'rang min',
+    //     load(wrapper) {
+    //         wrapper[0].classList.add('min')
+    //     }
+    // });
 
-    appfeed = new AppFeedback({
+    for(let name of nameArray(jsonAll)) {
+        let div = document.createElement('div');
+        div.classList.add('rang-wrapper');
+        div.classList.add(`${name}`);
+        document.querySelector('.feedback__users .bold').after(div);
+        let data = dataForRange(jsonAll, name);
+        let range = new AppRange({
+            container: `.rang-wrapper.${name}`,
+            data: data,
+            innerWrapper: 'rang min',
+            load(wrapper) {
+                wrapper[0].classList.add('min')
+            }
+        });
+        let selectors = document.querySelectorAll(`.rang-wrapper.${name} .rang__item`);
+        cardsPainting(data, selectors);
+
+    }
+
+
+    let appfeed = new AppFeedback({
         container: '.fields-fill__wrapper',
-        data,
+        data: dataFeedback,
         loadEnd(bodyItems) {
-            new Swiper('.fields-fill', {
-                centeredSlides: true,
-                grabCursor: true,
-                loop: true,
-                breakpoints: {
-                    1300: {
-                        slidesPerView: 3,
-                        spaceBetween: 30,
-                    },
-                    320: {
-                        slidesPerView: 1,
-                        spaceBetween: 30,
-                    },
-                },
-                navigation: {
-                    nextEl: '.slider-button-next',
-                    prevEl: '.slider-button-prev',
-                },
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true
-                },
-                on: {
-                    slideChange(a, b, c) {
-                        const index = a.realIndex;
-                        bodyItems.forEach((item, i) => {
-                            item.classList.remove('active');
-                        });
-                        bodyItems[index].classList.add('active');
-                    }
-                }
-            });
+            // new Swiper('.fields-fill', {
+            //     centeredSlides: true,
+            //     grabCursor: true,
+            //     loop: false,
+            //     breakpoints: {
+            //         1300: {
+            //             slidesPerView: 3,
+            //             spaceBetween: 30,
+            //         },
+            //         320: {
+            //             slidesPerView: 1,
+            //             spaceBetween: 30,
+            //         },
+            //     },
+            //     navigation: {
+            //         nextEl: '.slider-button-next',
+            //         prevEl: '.slider-button-prev',
+            //     },
+            //     pagination: {
+            //         el: '.swiper-pagination',
+            //         clickable: true
+            //     },
+            //     on: {
+            //         slideChange(a, b, c) {
+            //             const index = a.realIndex;
+            //             let rang = document.querySelectorAll('.rang-wrapper');
+            //             document.querySelector('.feedback__users .bold span').innerText = dataFeedback[index].name;
+            //             bodyItems.forEach((item, i) => {
+            //                 item.classList.remove('active');
+            //             });
+            //             bodyItems[index].classList.add('active');
+            //             rang.forEach((item,i) => {
+            //                 item.classList.remove('active');
+            //             })
+            //             rang[index].classList.add('active');
+            //             let textBox = document.querySelector('.fields-fill__field-wrapper.active').children[1].querySelector('textarea');
+            //             console.log(textBox);
+            //             textBox.focus();
+            //         }
+            //     }
+            // });
+            document.querySelector('.fields-fill__body').children[0].classList.add('active');
+            document.querySelector('.feedback__users .bold span').innerText = dataFeedback[0].name;
+            document.querySelector('.rang-wrapper').classList.add('active');
+            setTimeout(() => {document.querySelector('textarea').focus();}, 500)
+            // document.querySelector('.fields-fill__field-wrapper.active').children[0].focus();
+
         }
     });
 
@@ -591,7 +495,107 @@
     }
     check_finish()
     setInterval("check_finish()", 2000)
-    
+
+    // function cardsPainting(unifiedData) {
+    //   let collection = document.querySelectorAll('.rang__item');
+    //   collection.forEach((item, i) => {
+    //     let low = document.querySelector(`.slide-${i}`).children[0].getAttribute('low')
+    //     let high = document.querySelector(`.slide-${i}`).children[0].getAttribute('high')
+    //     let selfInSafe = unifiedData[i].self>low && unifiedData[i].self<high;
+    //     let othersInSafe = unifiedData[i].others>low && unifiedData[i].others<high;
+    //     if (selfInSafe && othersInSafe) {item.classList.add('white__card');}
+    //     if (selfInSafe && !othersInSafe) { item.classList.add('yellow__card');}
+    //     if (!selfInSafe && othersInSafe) { item.classList.add('red__card');}
+    //     if (!selfInSafe && !othersInSafe) { item.classList.add('black__card');}
+    //   });
+
+    // }
+    // cardsPainting(dataForRange());
+
+        //dropdown
+    $('.fields-fill__connect').click(function () {
+        $(this).attr('tabindex', 1).focus();
+        $(this).toggleClass('active');
+        $(this).find('.dropdown-menu').slideToggle(300);
+    });
+    $('.fields-fill__connect').focusout(function () {
+        $(this).removeClass('active');
+        $(this).find('.dropdown-menu').slideUp(300);
+    });
+    $('.fields-fill__connect .dropdown-menu li').click(function () {
+        let choosenUser = $(this).text();
+        let index = $(this).index();
+        let bodyItems = document.querySelectorAll('.fields-fill__field-wrapper');
+        let rang = document.querySelectorAll('.rang-wrapper');
+        let selected = document.querySelector('.fields-fill__connect');
+        //Change user
+        selected.querySelector('img').src = appfeed.data[index].avatar;
+        selected.querySelector('.fields-fill__connect-name').innerText = choosenUser;
+        //Change feedback forms.
+        bodyItems.forEach((item, i) => {
+            item.classList.remove('active');
+        });
+        bodyItems[index].classList.add('active');
+        //Change cards.
+        rang.forEach((item,i) => {
+            item.classList.remove('active');
+        })
+        rang[index].classList.add('active');
+        //Change name above cards.
+        document.querySelector('.feedback__users .bold span').innerText = dataFeedback[index].name;
+        
+        setTimeout(() => {bodyItems[index].querySelector('textarea').focus();}, 500);
+    });
+
+    let containers = document.querySelectorAll('.fields-fill__field-wrapper');
+
+    function formValidator(containers) {
+        let menu = document.querySelector('#menu');
+        let result = true; 
+        outer: for(let [c, cont] of containers.entries()){
+            let textarea = cont.querySelectorAll('textarea');
+            for(let [i, item] of textarea.entries()) {
+                // console.log(i, item);
+                if(item.textLength < 25) {
+                    console.log('hello');
+                    menu.children[c].click();
+                    menu.children[c].click();
+                    setTimeout(() => {item.focus();}, 1000);
+                    let tooltip = tippy(item);
+                    tooltip.setProps({trigger: 'manual'});
+                    tooltip.setContent('Must be more than 25 characters');
+                    tooltip.show(); 
+                    console.log(c, i, "bad form");
+                    result = false;
+                    break outer;
+                    
+                }
+
+
+                
+            };
+        };
+        return result;
+    }
+    // document.querySelector('#test').addEventListener('click', () => {
+    //     formValidator(containers);
+    // })
+
+    $('.form').submit(function() {
+        if(formValidator(containers)) {
+            return true
+        }
+        else {
+            return false
+        }
+    })
+
+
+    // document.querySelectorAll('.fields-fill__field-wrapper').forEach((cont, c) => {
+    //     cont.querySelectorAll('textarea').forEach((item, i) => {
+    //         console.log(c, i, item);
+    //     })
+    // })
 
 </script>
 <script src="/static/js/update_fix.js"></script>
