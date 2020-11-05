@@ -67,8 +67,7 @@ class AppFeedback {
 
         this.container.innerHTML = `<div class="fields-fill swiper-container">
                                         ${htmlHead}${htmlBody}
-                                        <div class="slider-button-prev"></div>
-                                        <div class="slider-button-next"></div>
+
                                     </div>`;
         //this.order = this.order + 1;
         return this;
