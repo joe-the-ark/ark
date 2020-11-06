@@ -67,7 +67,7 @@
               <div class="name">[[ user[1] ]]</div>
               <img :src="user[2]" alt="">
             </div>
-            <div v-for="value in user[3]" v-bind:class="{ 'heat_value one': value[1]==='yellow', 'heat_value two': value[1]==='black', 'heat_value three': value[1]==='None', 'heat_value four': value[1]==='red' }">[[ value[0] ]]</div>
+            <div v-for="value in user[3]" v-bind:class="{ 'heat_value one': value[1]==='yellow', 'heat_value two': value[1]==='black', 'heat_value three': value[1]==='None', 'heat_value four': value[1]==='red' }">[[ keepTwoDecimal(value[0]) ]]</div>
             {% comment %} <div class="heat_value one">[[ user[4] ]]</div>
             <div class="heat_value two">[[ user[5] ]]</div>
             <div class="heat_value one">[[ user[6] ]]</div>
@@ -190,6 +190,17 @@
       scale_list: {{ scale_list|safe }},
       scale_value_list: {{ scale_value_list|safe }}
     },
+    methods:{
+      keepTwoDecimal(num) {  
+        var result = parseFloat(num);  
+        if (isNaN(result)) {  
+          alert('error, please check！');  
+            return false;  
+          }  
+          result = Math.round(num * 100) / 100;  
+          return result;  
+       },
+    }
   })
 
   </script>
