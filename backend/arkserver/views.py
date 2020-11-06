@@ -801,6 +801,26 @@ def wartezimmer(request, user):
     link = request.session['link']
     # user = ctx['user'] = Player.objects.filter(id=request.session.get('uid')).first()
     game = Game.objects.filter(link=link).first()
+
+    # check whehter the ubung1 and ubung3 have 2 or more records by the player
+    player_list = list(game.members.all())
+    for player in player_list:
+        ubung1_list = list(Ubung1.objects.filter(player=player).order_by('-create_time'))
+        if len(ubung1_list) >= 2:
+            uu = 1
+            while uu < len(ubung1_list):
+                ubung1_list[uu].player = None
+                ubung1_list[uu].state = 'tag'
+                uu += 1
+        ubung3_list = list(Ubung3.objects.filter(player=player).order_by('-create_time'))
+        if len(ubung3_list) >= 2:
+            uu = 1
+            while uu < len(ubung3_list):
+                ubung1_list[uu].player = None
+                ubung1_list[uu].state = 'tag'
+                uu += 1
+
+
     if game.status != 0:
         return redirect('/')
     room_member = WaitingRoomMember.objects.filter(game=game,player=user).first()
@@ -1151,6 +1171,27 @@ def check_ubung5_finish(link):
     game = Game.objects.filter(link=link).first()
     mem_list = [i.player for i in list(WaitingRoomMember.objects.filter(game=game,state=1))]
     ubung5_list = Ubung5.objects.filter(game=game)
+
+    # delete ubung-5 if someone change the ubung-1 or ubung-3
+    ubung5_ubung1_user_list = [i.ubung1.player for i in ubung5_list]
+    if None in ubung5_ubung1_user_list:
+        delete_list = []
+        for i in ubung5_list:
+            if i.ubung1.player == None:
+                delete_list.append(i)
+        for i in delete_list:
+            i.delete()
+        return 2
+    ubung5_ubung3_user_list = [i.ubung3.player for i in ubung5_list]
+    if None in ubung5_ubung3_user_list:
+        delete_list = []
+        for i in ubung5_list:
+            if i.ubung3.player == None:
+                delete_list.append(i)
+        for i in delete_list:
+            i.delete()
+        return 2
+
     # ubung5_player_list = [i.player for i in list(Ubung5.objects.filter(game=game))]
     mem_num = len(mem_list)
     for i in mem_list:

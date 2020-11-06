@@ -144,8 +144,10 @@
                     if (result === 1){
                         // everybody finish the ubung-5
                         window.location.href = '/psychologischer/';
+                    }else if (result === 2){
+                        window.location.href = '/ubung-5/'
                     }else{
-                        return;
+                        return 
                     }
                 })
                 .catch(function(error){
