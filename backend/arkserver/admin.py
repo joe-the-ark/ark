@@ -9,7 +9,15 @@ admin.site.register(Ubung1)
 admin.site.register(Ubung2)
 admin.site.register(Ubung3)
 admin.site.register(Ubung4)
-admin.site.register(Ubung5)
+# admin.site.register(Ubung5)
+
+class Ubung5Admin(admin.ModelAdmin):
+    list_display = ['game', 'player', 'goal', 'score', 'ubung1', 'ubung3']
+    # ordering = ['-time']
+
+admin.site.register(Ubung5, Ubung5Admin)
+
+
 admin.site.register(M2Ubung1)
 admin.site.register(M2Ubung2)
 admin.site.register(LastStop)
