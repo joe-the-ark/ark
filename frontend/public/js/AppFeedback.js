@@ -25,13 +25,34 @@ class AppFeedback {
 
     render() {
 
-        const htmlHead = `<div class="fields-fill__head swiper-wrapper">${this.data.map(({name, avatar}, i) =>
-            `<div class="swiper-slide">
-<div class="fields-fill__connect">
-                                <img src="${avatar}" alt="avatar ${name}"/>
-                                <div class="fields-fill__connect-name">${name}</div>
-</div>
-                            </div>`).join('')}</div>`;
+        // const htmlHead = `<div class="fields-fill__head swiper-wrapper">${this.data.map(({name, avatar}, i) =>
+        //                     `<div class="swiper-slide">
+        //                         <div class="fields-fill__connect">
+        //                                         <img src="${avatar}" alt="avatar ${name}"/>
+                                                
+        //                         </div>
+        //                     </div>`).join('')}
+        //                 </div>`;
+
+        const htmlHead = `<div class="fields-fill__head swiper-wrapper">
+                        <div class="fields-fill__connect"> 
+                        <img src="${this.data[0].avatar}" alt="">
+                        <div class="fields-fill__connect-name">${this.data[0].name}</div>
+                                                <ul id="menu" class="dropdown-menu">
+                    ${this.data.map(({name, avatar}, i) =>
+                            `<li class="player">${name}</li>`).join('')}
+                        </ul>
+                        </div>
+                        </div>`;
+
+
+//         const htmlHead = `<div class="fields-fill__head swiper-wrapper">${this.data.map(({name, avatar}, i) =>
+//             `<div class="swiper-slide">
+// <div class="fields-fill__connect">
+//                                 <img src="${avatar}" alt="avatar ${name}"/>
+//                                 <div class="fields-fill__connect-name">${name}</div>
+// </div>
+//                             </div>`).join('')}</div>`;
 
 
         const htmlBody = `<div class="fields-fill__body">${this.data.map(({feedback}) =>
@@ -40,14 +61,13 @@ class AppFeedback {
                                 <p class="bold">
                                    ${title}
                                 </p>
-                                a<textarea placeholder="Schreib hier dein Feedback…">${text}</textarea>
+                                a<textarea minlength="25" placeholder="Schreib hier dein Feedback…">${text}</textarea>
                             </div>
         `).join('')}</div>`).join('')}</div>`;
 
         this.container.innerHTML = `<div class="fields-fill swiper-container">
                                         ${htmlHead}${htmlBody}
-                                        <div class="slider-button-prev"></div>
-                                        <div class="slider-button-next"></div>
+
                                     </div>`;
         //this.order = this.order + 1;
         return this;

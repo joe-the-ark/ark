@@ -616,12 +616,13 @@ def mission_2_ubung_2(request, user):
     member_list = [i.player.player_json for i in waiting_room]
     ctx['member_list'] = member_list
 
-
+    json_list_all = [ i.span_1 for i in list(Ubung5.objects.filter(game=game)) ]
     json_list = [ i.span_1 for i in list(Ubung5.objects.filter(goal=user,game=game)) ]
     json_list.sort(key = lambda x:x['statusSide'])
     ctx['json_list'] = json_list
-
+    ctx['json_list_all'] = json_list_all
     ctx['loading'] = 0
+    ctx['user'] = user
 
 
     if request.method == 'POST':
