@@ -44,7 +44,7 @@ urlpatterns = [
     path('preview-2/',RedirectView.as_view(url='/second-mission')),
     path('mission-2-ubung-1/',RedirectView.as_view(url='/social-sensitivity')),
     path('mission-2-ubung-2/',RedirectView.as_view(url='/development-feedbacks')),
-    path('assessment/',RedirectView.as_view(url='/assessment')),
+    path('assessment/',RedirectView.as_view(url='/game-insights')),
     path('goodbye/',server_views.goodbye),
     path('arche/',RedirectView.as_view(url='/farewell')),
     path('wartezimmer/',RedirectView.as_view(url='/waiting-room')),
