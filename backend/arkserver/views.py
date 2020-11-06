@@ -916,6 +916,8 @@ def heatmap(request, user):
 
     user_list = game.ubung5_player_order
     print('user_list', user_list)
+    user_number = len(user_list)
+    ctx['user_number'] = user_number
     avg_list = [i.ubung5_avg for i in game.ubung5_scale_order]
 
     main_map = []
@@ -927,7 +929,8 @@ def heatmap(request, user):
         iknow = []
         for u in game.ubung5_scale_order:
             iknow.append(
-                [heatmap_cell(i, game, u), heatmap_color(i, game, u)]
+                # [round(heatmap_cell(i, game, u)/(user_number ** 2), 2), heatmap_color(i, game, u)]
+                [heatmap_cell(i, game, u)/(user_number ** 2), heatmap_color(i, game, u)]
             )
         temp.append(iknow)
         temp_ = [i[0] for i in iknow]
