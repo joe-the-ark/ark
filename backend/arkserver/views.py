@@ -700,18 +700,18 @@ def assessment(request, user):
         if game_.player == user:
             continue
         else:
-            if user in game_.row0:
+            if user in game_.row0.all():
 
                 row_0 += 1
-            if user in game_.row1:
+            if user in game_.row1.all():
                 row_1 += 1
-            if user in game_.row2:
+            if user in game_.row2.all():
                 row_2 += 1
-            if user in game_.row3:
+            if user in game_.row3.all():
                 row_3 += 1
-            if user in game_.row4:
+            if user in game_.row4.all():
                 row_4 += 1
-            if user in game_.row5:
+            if user in game_.row5.all():
                 row_5 += 1
 
     score = row_0 * 4 + row_1 * 1 + row_2 * 3 + row_3 * 5 + row_4 * 0 + row_5 * 2
