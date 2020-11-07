@@ -129,53 +129,7 @@
 
         mobile: 1200,
         data: {{ member_list|safe }},
-{% comment %}
-        [
-            {
-                name: 'Vasilisa Kochetkova',
-                avatar: '/static/images/avatars/boar.svg',
-            },
-            {
-                name: 'Vasilisa Kochetkova',
-                avatar: '/static/images/avatars/boar.svg',
-            },
-            {
-                name: 'Vasilisa Kochetkova',
-                avatar: '/static/images/avatars/boar.svg',
-            },
-            {
-                name: 'Vasilisa Kochetkova',
-                avatar: '/static/images/avatars/boar.svg',
-            },
-            {
-                name: 'Vasilisa Kochetkova',
-                avatar: '/static/images/avatars/boar.svg',
-            },
-            {
-                name: 'Vasilisa Kochetkova',
-                avatar: '/static/images/avatars/boar.svg',
-            },
-            {
-                name: 'Vasilisa Kochetkova',
-                avatar: '/static/images/avatars/boar.svg',
-            },
-            {
-                name: 'Vasilisa Kochetkova',
-                avatar: '/static/images/avatars/boar.svg',
-            },
-            {
-                name: 'Vasilisa Kochetkova',
-                avatar: '/static/images/avatars/boar.svg',
-            },
-            {
-                name: 'Vasilisa Kochetkova',
-                avatar: '/static/images/avatars/boar.svg',
-            },
-            {
-                name: 'Vasilisa Kochetkova',
-                avatar: '/static/images/avatars/boar.svg',
-            },
-        ] {% endcomment %}
+
     });
 
     document.getElementById('button').addEventListener('click', function (e) {
@@ -190,6 +144,12 @@
         //console.log(st);
     }
     setInterval("refresh()", 100);
+    // window.addEventListener('resize', () => {
+    //         console.log("resize");
+            
+            
+
+    //     });
 
 </script>
 </body>

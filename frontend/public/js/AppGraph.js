@@ -106,12 +106,18 @@ class AppGraph {
     buildGraph() {
         this.render();
         this.safeArea();
+        console.log('builded');
 
         window.addEventListener('resize', () => {
-            this.render();
-            this.safeArea();
-            this.updateDots();
-            this.prePermission();
+            console.log("resize");
+            setTimeout( () => {
+                this.render();
+                this.safeArea();
+                this.updateDots();
+                this.isAuto();
+            }, 500)
+            
+            // setTimeout( ()=> {window.location.reload();}, 500)
         });
 
         this.auto ? window.addEventListener('load', () => this.isAuto()) : this.isAuto();
@@ -333,7 +339,6 @@ class AppGraph {
             }
             else {
                 filter = 180 - +value;
-                console.log('doesnt work');
             }
             // console.log('inputslider', inputSlider);
             // console.log('thumb', thumb);
