@@ -68,7 +68,7 @@
                 </div>
                 <div class="feedback__users">
                     <p class="bold">
-                        Ergebnisse von
+                        Spannungsfelder von
                         <span>
                             Constantin Constantinopol
                         </span>
@@ -212,6 +212,12 @@
                 </div> -->
                 <form action="#" method="POST" class="form">
                 {% csrf_token %}
+                    <p>
+                        Weiss = Spannungsfreiheit
+                        Rot = Selbstwahrnehmung außerhalb Safe Zone
+                        Gelb = Wahrnehmung der Anderen außerhalb Safe Zone
+                        Schwarz = Selbst- & Fremdwahrnehmung ausserhalb Safe Zone
+                    </p>
                     <div class="center">
                         <input id="data" type="hidden" name="data" value=""/>
                         <button type="submit" id="button">
