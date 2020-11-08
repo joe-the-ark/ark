@@ -434,6 +434,9 @@
   .psychologischer__container {
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   }
+  .custom-graph-wrapper {
+  margin: 0 15%;
+  }
 }
 @media screen and (max-width: 540px) {
   .psychologischer__container {
@@ -495,6 +498,7 @@
   width: 100%;
 }
 .assessment .custom-graph-info {
+  margin: auto;
   max-width: 432px;
 }
 .assessment .fields-fill textarea {
@@ -535,4 +539,45 @@
   .slider-button-next:before {
     transform: translateX(-2px) rotate(135deg);
   }
+
 }
+/* Cards painting */
+.black__card {
+  background-color: #3b4252;
+}
+.black__card .rang__item-name {
+  background-color: white;
+}
+.black__card .rang__item-count {
+  background-color: white;
+}
+.yellow__card {
+  background-color: #FAE03C;
+}
+.yellow__card .rang__item-name {
+  background-color: white;
+}
+.yellow__card .rang__item-count {
+  background-color: white;
+}
+.red__card {
+  background-color: #fa5252;
+}
+.red__card .rang__item-name {
+  background-color: white;
+}
+.red__card .rang__item-count {
+  background-color: white;
+}
+.white__card {
+  background-color: #eceff4;
+}
+.white__card .rang__item-name {
+  background-color: white;
+}
+.white__card .rang__item-count {
+  background-color: white;
+}
+
+
+

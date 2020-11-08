@@ -1,11 +1,11 @@
 function traitArray(json_list) {
   let arr = new Set();
-  console.log('traitArray start');
+  // console.log('traitArray start');
   json_list.forEach((item) => {
     arr.add(item.value)
   })
   let result = Array.from(arr);
-  console.log('traitArray result:', result);
+  // console.log('traitArray result:', result);
   return(result)
 }
 
@@ -20,9 +20,9 @@ function nameArray(json) {
 
 function arrayForGraph(json, user) {
     let arr = [];
-    console.log('arrayForGraph start');
-    console.log('json', json);
-    console.log('user', user);
+    // console.log('arrayForGraph start');
+    // console.log('json', json);
+    // console.log('user', user);
     for (let item of json) {
         tempObj = {};
 
@@ -39,9 +39,9 @@ function arrayForGraph(json, user) {
 }
 
 function arrayGraphModifier(item, user) {
-  console.log('arrayGraphModifier start');
-  console.log('item', item);
-  console.log('user', user);
+  // console.log('arrayGraphModifier start');
+  // console.log('item', item);
+  // console.log('user', user);
   const {name, avatar, status, statusSide, value} = item;
   if(item.name == user) {
     return(
@@ -62,14 +62,14 @@ function arrayGraphModifier(item, user) {
 }
 
 function safezoneData(json_list, value) {
-  console.log('safezoneData start');
+  // console.log('safezoneData start');
   let arr = [];
   for (let item of json_list) {
       if (item.value == value) {
           arr.push(item.statusSide);
       }
   }
-  console.log('safezoneData result', arr);
+  // console.log('safezoneData result', arr);
   return arr
 
 }
@@ -83,10 +83,10 @@ function arraySum(array) {
 }
 
 function safezone(safezoneData) {
-  console.log('safezone start');
-  console.log('data', safezoneData);
+  // console.log('safezone start');
+  // console.log('data', safezoneData);
   let sum = arraySum(safezoneData);
-  console.log('sum', sum);
+  // console.log('sum', sum);
   let median = Math.round(sum/safezoneData.length);
   var low = median - 16;
   var high = median + 16;
@@ -96,7 +96,7 @@ function safezone(safezoneData) {
   if (high > 100) {
       high = 100;
   }
-  console.log('safezone result:', {'low':low,'high':high, 'median': median})
+  // console.log('safezone result:', {'low':low,'high':high, 'median': median})
   return({'low':low,'high':high, 'median': median})
 }
 
@@ -146,7 +146,7 @@ function dataForRange(json_list, user)  {
     };
     result.push(temp);
   }
-  console.log('dataForRange result:');
+  // console.log('dataForRange result:');
   return(result)
 }
 
@@ -162,7 +162,7 @@ function arrayForFeedback(json, nameArray) {
                     'feedback': [
                         {
                             title: 'MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team…',
-                            text: 'On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying'
+                            text: ''
                         },
                         {
                             title: 'ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem...',
@@ -193,8 +193,8 @@ function nameArray(json) {
 }
 
 function cardsPainting(dataForRange, selectors) {
-  console.log('cardsPainting start');
-  console.log('cards data:', dataForRange, selectors);
+  // console.log('cardsPainting start');
+  // console.log('cards data:', dataForRange, selectors);
   selectors.forEach((item, i) => {
     let low = dataForRange[i].low
     let high = dataForRange[i].high

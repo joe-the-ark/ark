@@ -220,10 +220,10 @@
                     </p>
                     <div class="center">
                         <input id="data" type="hidden" name="data" value=""/>
-                        <button type="submit" id="button">
+                        <button type="submit" id="button" >
                             Weiterspielen
                         </button>
-                        <button id="test"  type="button" style="position: absolute; visibility: hidden;">test</button>
+                        <button id="test"  type="button" style="position: absolute; visibility: hidden;">Weiterspielen</button>
                     </div>
                 </form>
             </main>
@@ -245,6 +245,7 @@
     const {log} = console;
     let userCurrent = "{{ user }}";
     let jsonAll = {{ json_list_all|safe }};
+    let containers = document.querySelectorAll('.fields-fill__field-wrapper');
     // let dataCur = "{{ json_list }}";
     var member_list = {{ json_list|safe }}.filter(item => item.name);
 
@@ -482,7 +483,7 @@
     })
 
     function check_finish(){
-        if (app1.loading === true){
+        if (app1.loading === true && formValidator(containers)){
             var data_ = {'link': '{{game.link}}'}
             axios
                 .post(`/api/last_stop_check/`, data_)
@@ -553,7 +554,7 @@
         setTimeout(() => {bodyItems[index].querySelector('textarea').focus();}, 500);
     });
 
-    let containers = document.querySelectorAll('.fields-fill__field-wrapper');
+    
 
     function formValidator(containers) {
         let menu = document.querySelector('#menu');
@@ -563,7 +564,6 @@
             for(let [i, item] of textarea.entries()) {
                 // console.log(i, item);
                 if(item.textLength < 25) {
-                    console.log('hello');
                     menu.children[c].click();
                     menu.children[c].click();
                     setTimeout(() => {item.focus();}, 1000);
@@ -587,15 +587,25 @@
     //     formValidator(containers);
     // })
 
-    $('.form').submit(function() {
-        if(formValidator(containers)) {
-            return true
-        }
-        else {
-            return false
-        }
-    })
+    // $('.form').submit(function() {
+    //     if(formValidator(containers)) {
+    //         return true
+    //     }
+    //     else {
+    //         return false
+    //     }
+    // })
 
+    // $('#test').click(function() {
+    //     if(formValidator(containers)) {
+    //         console.log('true')
+    //         $('#button').click();
+    //     }
+    //     else {
+    //         console.log('false')
+    //         return 
+    //     }
+    // })
 
     // document.querySelectorAll('.fields-fill__field-wrapper').forEach((cont, c) => {
     //     cont.querySelectorAll('textarea').forEach((item, i) => {
