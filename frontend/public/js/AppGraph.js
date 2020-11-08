@@ -348,6 +348,7 @@ class AppGraph {
             console.log('value', value)
             console.log('index', index)
 
+            // For guess part, showing the difference of the guess and the value
             countDot.innerHTML = value;
             if (this.guess[index].statusSide){
                 countDot.innerHTML = '±' + Math.abs(value - this.guess[index].statusSide).toString()
@@ -355,6 +356,7 @@ class AppGraph {
                     countDot.innerHTML = 'Perfect'
                 }
             }
+            
             // console.log(filter);
             countDot.style.filter = `hue-rotate(-${filter}deg)  saturate(200%)`;
             index !== undefined && this.setDataStatus(index, value);
