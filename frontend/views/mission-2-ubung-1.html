@@ -10,6 +10,14 @@
     <title>Social-Sensitivity-FEEDBACK</title>
     <link rel="stylesheet" href="/static/css/app.css">
     <link rel="stylesheet" href="/static/css/ubung-5.css">
+
+    <!-- vue -->
+    <script src="/static/vue.js"></script>
+    <!-- element ui -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- element ui -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
 </head>
 <body>
 <div class="app">
@@ -53,9 +61,9 @@
                 <div class="custom-graph-wrapper"></div>
                 {% comment %} <form action="#" method="POST" class="form">
                 {% csrf_token %} {% endcomment %}
-                    <div class="center">
+                    <div class="center" id="app-1">
                         <input id="data" type="hidden" name="data" value=""/>
-                        <button type="submit" id="button">
+                        <button type="submit" id="button" @click="popup()">
                             Weiterspielen
                         </button>
                     </div>
@@ -91,9 +99,9 @@
             })
     }
 
-    $('#button').click(function(){
-        data_submit();
-    })
+    //$('#button').click(function(){
+    //    data_submit();
+    //})
     let rightChoice = {{ member_list|safe }};
     let graphData = {{ member_list|safe }}.map(function (item, i) {
         delete item.statusSide;
@@ -187,6 +195,42 @@
         $('#data').val(st);
     }
     setInterval("refresh()", 100);
+
+    var app_ = new Vue({
+        delimiters: ['[[', ']]'],
+        el: '#app-1',
+        data:{
+            
+        },
+        methods:{
+            popup() {
+                var guess_list = app.getDifference()
+                console.log(guess_list)
+                var flag = false
+
+                var uu = 0
+                while (uu < guess_list.length){
+                    if ((guess_list[uu] > 4) || (isNaN(guess_list[uu]))){
+                        flag = true
+                    }
+                    uu += 1
+                }
+
+                if (flag === false){
+                    data_submit();
+                }else{
+                    this.$message({
+                        showClose: true,
+                        message: 'Please continue guessing, until you are close to the true value',
+                        type: 'error',
+                        center: true
+                    })
+                    return 
+                }
+
+            },
+        }
+    })
 
 
 </script>

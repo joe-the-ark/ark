@@ -431,4 +431,21 @@ class AppGraph {
     getData() {
         return this.data
     }
+
+    getDifference(){
+        var guess_result = []
+        var uu = 0
+        while (uu < this.guess.length){
+            var ii = 0
+            while (ii < this.data.length){
+                if (this.guess[uu].id === this.data[ii].id){
+                    guess_result.push(Math.abs(this.guess[uu].statusSide - this.data[ii].status))
+                }
+                ii += 1
+            }
+            uu += 1
+        }
+        return guess_result
+    }
+        
 }
