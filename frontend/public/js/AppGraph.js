@@ -344,8 +344,17 @@ class AppGraph {
             // console.log('thumb', thumb);
             // console.log('index', index);
             // console.log(this.data);
-            // console.log(this.guess);
+            console.log('guess', this.guess[index].statusSide);
+            console.log('value', value)
+            console.log('index', index)
+
             countDot.innerHTML = value;
+            if (this.guess[index].statusSide){
+                countDot.innerHTML = '±' + Math.abs(value - this.guess[index].statusSide).toString()
+                if (Math.abs(value - this.guess[index].statusSide) === 0){
+                    countDot.innerHTML = 'Perfect'
+                }
+            }
             // console.log(filter);
             countDot.style.filter = `hue-rotate(-${filter}deg)  saturate(200%)`;
             index !== undefined && this.setDataStatus(index, value);
