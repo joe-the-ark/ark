@@ -825,8 +825,8 @@ def wartezimmer(request, user):
         if len(ubung3_list) >= 2:
             uu = 1
             while uu < len(ubung3_list):
-                ubung1_list[uu].player = None
-                ubung1_list[uu].state = 'tag'
+                ubung3_list[uu].player = None
+                ubung3_list[uu].state = 'tag'
                 uu += 1
 
 
