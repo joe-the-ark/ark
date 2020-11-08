@@ -329,17 +329,25 @@ class AppGraph {
             let hueRotate = 0;
             if (this.guess.length) {
                 let right = this.guess[index].statusSide;
+                //console.log('right', right)
                 console.log('worked');
-                if (value < right) {
-                    filter = 180 - +value*(100/right);
+                var diff = Math.abs(+value - right)
+                if (diff <= 4){
+                    filter = 90
+                }else{
+                    filter = 180
                 }
-                if (value >= right) {
-                    filter = 80 + (+value-right)*(100/(100-right));
-                }
+                //if (value < right) {
+                //    filter = 180 - +value*(100/right);
+                //}
+                //if (value >= right) {
+                //    filter = 80 + (+value-right)*(100/(100-right));
+                //}
             }
             else {
                 filter = 180 - +value;
             }
+    
             // console.log('inputslider', inputSlider);
             // console.log('thumb', thumb);
             // console.log('index', index);
