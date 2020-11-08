@@ -670,9 +670,9 @@ def assessment(request, user):
     # else:
     #     temp = round(temp)
     #     median = value_list[temp]
-    ctx['team_potential_minimal'] = min(value_list)
-    ctx['team_potential_maximal'] = max(value_list)
-    ctx['team_potential_median'] = median
+    ctx['team_potential_minimal'] = round(min(value_list))
+    ctx['team_potential_maximal'] = round(max(value_list))
+    ctx['team_potential_median'] = round(median)
     ctx['user'] = user
 
     all_result = []
@@ -726,7 +726,7 @@ def assessment(request, user):
     num = (WaitingRoomMember.objects.filter(game=game,state=1).count()) ** 2
     score = score / num
 
-    ctx['psy_score'] = score
+    ctx['psy_score'] = round(score,2)
     ctx['psy_row0'] = row_0
     ctx['psy_row1'] = row_1
     ctx['psy_row2'] = row_2
@@ -747,10 +747,11 @@ def assessment(request, user):
     ctx['others'] = others
     ctx['himself'] = himself
     ctx['tension'] = tension
-
+    json_list_all = [ i.span_1 for i in list(Ubung5.objects.filter(game=game)) ]
     json_list = [ i.span_1 for i in list(Ubung5.objects.filter(goal=user,game=game)) ]
     json_list.sort(key = lambda x:x['statusSide'])
     ctx['span_json_list'] = json_list
+    ctx['json_all'] = json_list_all
 
 
     feedback1 = []

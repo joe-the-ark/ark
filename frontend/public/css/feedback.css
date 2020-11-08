@@ -211,9 +211,9 @@
 }
 .fields-fill__field p {
   margin-bottom: 10px;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
+/*  text-overflow: ellipsis;*/
+  overflow: visible;
+  white-space: normal;
 }
 .fields-fill__field textarea {
   color: var(--ls-alfa-color);

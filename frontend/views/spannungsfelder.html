@@ -351,6 +351,7 @@
     });
 
     dataForGraph().forEach((item, i) => {
+        console.log('item.data', item.data);
         appgraph = new AppGraph({
             container: `.swiper-slide.slide-${i}`,
             range: item.range,

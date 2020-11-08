@@ -45,12 +45,13 @@ class AppGraph {
         let halfAvatar = document.querySelector('div.custom-graph__item-avatar').clientHeight/2;
         let height = document.querySelector('.custom-graph__item').clientHeight;
         let width = document.querySelector('.custom-graph__item').clientWidth;
+        console.log(width);
         let mobRight = Math.round(width*((100-high)/100));
         let mobWidth = Math.round(width*(blue_range/100));
         let screenTop = Math.round(height*((100-high)/100));
         let screenHeight = Math.round(height*(blue_range/100));
 
-        let qall = document.querySelectorAll('.custom-graph__safezone');
+        let qall = this.container.parentNode.querySelectorAll('.custom-graph__safezone');
 
         if (window.innerWidth <= this.mobile) {
             qall[this.graphNumber].style['right'] = mobRight.toString() + "px";
@@ -87,9 +88,9 @@ class AppGraph {
             const status = item.querySelector('.custom-graph__status');
             if (window.innerWidth > this.mobile) {
 
-                const statusChildren = status.children;
+                let statusChildren = status.children;
                 // Get html collection with two elements <div class="custom-graph__status-down">  and same up
-                const searchInnerWidth = [...statusChildren].map((child) => child.clientWidth);
+                let searchInnerWidth = [...statusChildren].map((child) => child.clientWidth);
                 // Get width of upper elements
                 const offsetStatus = this.getMaxOfArray(searchInnerWidth);
                 item.style.paddingLeft = `${offsetStatus + 20}px`;
@@ -106,15 +107,14 @@ class AppGraph {
     buildGraph() {
         this.render();
         this.safeArea();
-        console.log('builded');
 
         window.addEventListener('resize', () => {
-            console.log("resize");
             setTimeout( () => {
-                this.render();
-                this.safeArea();
-                this.updateDots();
-                this.isAuto();
+                // this.render();
+                // this.safeArea();
+                // this.updateDots();
+                // this.isAuto();
+                window.location.reload()
             }, 500)
             
             // setTimeout( ()=> {window.location.reload();}, 500)

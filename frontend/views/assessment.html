@@ -11,7 +11,10 @@
     <link rel="stylesheet" href="/static/css/app.css">
     <link rel="stylesheet" href="/static/css/app_graph.css">
     <link rel="stylesheet" href="/static/css/assessment.css">
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <!-- <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"> -->
+    <script src="/static/jspdf.umd.min.js"></script>
+    <script src="/static/html2canvas.js"></script>
+    <script src="/static/dom-to-image.min.js"></script>
 
 </head>
 <body>
@@ -25,11 +28,11 @@
             <div class="header-main__user">
                 <div class="user">
                     <div class="user__subtitle">
-                        Fische im Aquarium
+                        {{game.name}}
                     </div>
-                    <img src="/static/images/avatars/boar.svg" alt="boar">
+                    <img src="{{user.avatar}}" alt="boar">
                     <div class="user__title">
-                        Vasilisa Kochetkova
+                        {{user.name}}
                     </div>
                 </div>
             </div>
@@ -68,6 +71,29 @@
                     </div>
                 </div>
                 <div class="custom-graph-wrapper user"></div>
+                                <h3>
+                    Anonymes Feedback
+                </h3>
+                <div class="fields-fill__wrapper"></div>
+
+                <p class="bold">
+                    MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team…
+                </p>
+                {% for feedback in feedback1 %}
+                    <p style="font-size: 20px;color: blue;">{{feedback}}</p>
+                {% endfor %}
+                <p class="bold">
+                    ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem…
+                </p>
+                {% for feedback in feedback2 %}
+                    <p style="font-size: 20px;color: blue;">{{feedback}}</p>
+                {% endfor %}
+                <p class="bold">
+                    FRAGEZEICHEN: ich wollte dich schon immer mal fragen…
+                </p>
+                {% for feedback in feedback3 %}
+                    <p style="font-size: 20px;color: blue;">{{feedback}}</p>
+                {% endfor %}
                 <h3>
                     Psychologischer Sicherheitswert
                 </h3>
@@ -173,17 +199,7 @@
                     <div class="swiper-wrapper">
                     </div>
                 </div>
-                <div class="custom-graph-info">
-                    <div class="custom-graph-info__item small" data-text="Others">
-                        {{others}}
-                    </div>
-                    <div class="custom-graph-info__item base" data-text="Self">
-                        {{himself}}
-                    </div>
-                    <div class="custom-graph-info__item large" data-text="Tension">
-                        {{tension}}
-                    </div>
-                </div>
+
                 <div id="graph-slider" class="swiper-container">
                     <div class="swiper-wrapper">
                     </div>
@@ -191,29 +207,7 @@
                     <div class="swiper-button-next"></div>
                     <div class="swiper-pagination"></div>
                 </div>
-                <h3>
-                    Anonymes Feedback
-                </h3>
-                <div class="fields-fill__wrapper"></div>
 
-                <p class="bold">
-                    MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team…
-                </p>
-                {% for feedback in feedback1 %}
-                    <p style="font-size: 20px;color: blue;">{{feedback}}</p>
-                {% endfor %}
-                <p class="bold">
-                    ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem…
-                </p>
-                {% for feedback in feedback2 %}
-                    <p style="font-size: 20px;color: blue;">{{feedback}}</p>
-                {% endfor %}
-                <p class="bold">
-                    FRAGEZEICHEN: ich wollte dich schon immer mal fragen…
-                </p>
-                {% for feedback in feedback3 %}
-                    <p style="font-size: 20px;color: blue;">{{feedback}}</p>
-                {% endfor %}
 
                 <div class="center">
                     <a href="/logout/" class="button" id="button">
@@ -224,13 +218,15 @@
         </div>
     </div>
 </div>
+<!-- <button class="btn"> Save pdf</button> -->
 <script src="/static/js/AppGraph.js"></script>
 <script src="/static/js/AppRange.js"></script>
 <script src="/static/js/AppFeedback.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="/static/js/utils.js"></script>
 <script>
     const isMobile = () => window.innerWidth <= 1200;
-
+    let jsonAll = {{ json_all|safe }};
     var json_list = {{ span_json_list|safe }};
     function deal_json(json_list, num){
         var new_json_list = [];
@@ -267,583 +263,51 @@
     }
     const data = format_data(json_list);
     console.log(data);
-{% comment %}
-    const data = [
-        {
-            range: [1, 99],
-            labelRange: ['Low', 'High'],
-            data: [
-              {
-                  name: 'Bob Stampton',
-                  avatar: '/static/images/avatars/hen.svg',
-                  statusSide: 10
-              },
-              {
-                  name: 'Garry Garrison',
-                  avatar: '/static/images/avatars/horse.svg',
-                  statusSide: 20
-              },
-              {
-                  name: 'Johny Depp',
-                  avatar: '/static/images/avatars/crow.svg',
-                  statusSide: 45
-              },
-              {
-                  name: 'Vasilisa Kochetkova',
-                  avatar: '/static/images/avatars/boar.svg',
-                  statusSide: 49
-              },
-              {
-                  name: 'Bruce Vilis',
-                  avatar: '/static/images/avatars/bear.svg',
-                  statusSide: 49
-              },
-              {
-                  name: 'Donkey kong',
-                  avatar: '/static/images/avatars/dog.svg',
-                  statusSide: 49
-              },
-              {
-                  name: 'Mister V',
-                  avatar: '/static/images/avatars/beaver.svg',
-                  statusSide: 49
-              },
-              {
-                  name: 'Graf Dracula',
-                  avatar: '/static/images/avatars/buffalo.svg',
-                  statusSide: 49
-              },
-              {
-                  name: 'Anthony Hopkins',
-                  avatar: '/static/images/avatars/kangaroo.svg',
-                  statusSide: 49
-              },
-              {
-                  name: 'Vladimir',
-                  avatar: '/static/images/avatars/donkey.svg',
-                  statusSide: 60
-              },
-              {
-                  name: 'Irina Shake',
-                  avatar: '/static/images/avatars/giraffe.svg',
-                  statusSide: 70
-              },
-              {
-                  name: 'Conan Barbarian',
-                  avatar: '/static/images/avatars/fox.svg',
-                  statusSide: 99
-              },
-            ]
-        },
-        {
-            range: [1, 99],
-            labelRange: ['Low', 'High'],
-            data: [
-                {
-                    statusSide: 10
-                },
-                {
-                    name: 'Vasilisa Kochetkova',
-                    avatar: '/static/images/avatars/boar.svg',
-                    statusSide: 20
-                },
-                {
-                    statusSide: 45
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 60
-                },
-                {
-                    statusSide: 70
-                },
-                {
-                    statusSide: 99
-                },
-            ]
-        },
-        {
-            range: [1, 99],
-            labelRange: ['Low', 'High'],
-            data: [
-                {
-                    statusSide: 10
-                },
-                {
-                    name: 'Vasilisa Kochetkova',
-                    avatar: '/static/images/avatars/boar.svg',
-                    statusSide: 20
-                },
-                {
-                    statusSide: 45
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 60
-                },
-                {
-                    statusSide: 70
-                },
-                {
-                    statusSide: 99
-                },
-            ]
-        },
-        {
-            range: [1, 99],
-            labelRange: ['Low', 'High'],
-            data: [
-                {
-                    statusSide: 10
-                },
-                {
-                    statusSide: 45
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    name: 'Vasilisa Kochetkova',
-                    avatar: '/static/images/avatars/boar.svg',
-                    statusSide: 70
-                },
-                {
-                    statusSide: 70
-                },
-                {
-                    statusSide: 99
-                },
-            ]
-        },
-        {
-            range: [1, 99],
-            labelRange: ['Low', 'High'],
-            data: [
-                {
-                    statusSide: 10
-                },
-                {
-                    name: 'Vasilisa Kochetkova',
-                    avatar: '/static/images/avatars/boar.svg',
-                    statusSide: 20
-                },
-                {
-                    statusSide: 45
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 60
-                },
-                {
-                    statusSide: 70
-                },
-                {
-                    statusSide: 99
-                },
-            ]
-        },
-        {
-            range: [1, 99],
-            labelRange: ['Low', 'High'],
-            data: [
-                {
-                    statusSide: 10
-                },
-                {
-                    name: 'Vasilisa Kochetkova',
-                    avatar: '/static/images/avatars/boar.svg',
-                    statusSide: 20
-                },
-                {
-                    statusSide: 45
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 60
-                },
-                {
-                    statusSide: 70
-                },
-                {
-                    statusSide: 99
-                },
-            ]
-        },
-        {
-            range: [1, 99],
-            labelRange: ['Low', 'High'],
-            data: [
-                {
-                    statusSide: 10
-                },
-                {
-                    name: 'Vasilisa Kochetkova',
-                    avatar: '/static/images/avatars/boar.svg',
-                    statusSide: 20
-                },
-                {
-                    statusSide: 45
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 60
-                },
-                {
-                    statusSide: 70
-                },
-                {
-                    statusSide: 99
-                },
-            ]
-        },
-        {
-            range: [1, 99],
-            labelRange: ['Low', 'High'],
-            data: [
-                {
-                    statusSide: 10
-                },
-                {
-                    name: 'Vasilisa Kochetkova',
-                    avatar: '/static/images/avatars/boar.svg',
-                    statusSide: 20
-                },
-                {
-                    statusSide: 45
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 60
-                },
-                {
-                    statusSide: 70
-                },
-                {
-                    statusSide: 99
-                },
-            ]
-        },
-        {
-            range: [1, 99],
-            labelRange: ['Low', 'High'],
-            data: [
-                {
-                    statusSide: 10
-                },
-                {
-                    name: 'Vasilisa Kochetkova',
-                    avatar: '/static/images/avatars/boar.svg',
-                    statusSide: 20
-                },
-                {
-                    statusSide: 45
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 60
-                },
-                {
-                    statusSide: 70
-                },
-                {
-                    statusSide: 99
-                },
-            ]
-        },
-        {
-            range: [1, 99],
-            labelRange: ['Low', 'High'],
-            data: [
-                {
-                    statusSide: 10
-                },
-                {
-                    name: 'Vasilisa Kochetkova',
-                    avatar: '/static/images/avatars/boar.svg',
-                    statusSide: 20
-                },
-                {
-                    statusSide: 45
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 60
-                },
-                {
-                    statusSide: 70
-                },
-                {
-                    statusSide: 99
-                },
-            ]
-        },
-        {
-            range: [1, 99],
-            labelRange: ['Low', 'High'],
-            data: [
-                {
-                    statusSide: 10
-                },
-                {
-                    name: 'Vasilisa Kochetkova',
-                    avatar: '/static/images/avatars/boar.svg',
-                    statusSide: 20
-                },
-                {
-                    statusSide: 45
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 60
-                },
-                {
-                    statusSide: 70
-                },
-                {
-                    statusSide: 99
-                },
-            ]
-        },
-        {
-            range: [1, 99],
-            labelRange: ['Low', 'High'],
-            data: [
-                {
-                    statusSide: 10
-                },
-                {
-                    statusSide: 45
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 49
-                },
-                {
-                    statusSide: 60
-                },
-                {
-                    statusSide: 70
-                },
-                {
-                    statusSide: 83
-                },
-                {
-                    name: 'Vasilisa Kochetkova',
-                    avatar: '/static/images/avatars/boar.svg',
-                    statusSide: 99
-                },
-            ]
-        }
-    ]; {% endcomment %}
 
+    let user = "{{ user.name }}";
     const wrapper = document.querySelector('#graph-slider .swiper-wrapper');
     let htmlWrappers = ``;
 
-    data.forEach((item, i) => {
-        htmlWrappers += `<div class="swiper-slide slide-${i}"></div>`;
+    dataForGraph(jsonAll, user).forEach((item, i) => {
+        htmlWrappers += `<div class="swiper-slide slide-${i}"></div>
+                        <div class="custom-graph-info">
+                    <div class="custom-graph-info__item small" data-text="Others">
+                        
+                    </div>
+                    <div class="custom-graph-info__item base" data-text="Self">
+                        
+                    </div>
+                    <div class="custom-graph-info__item large" data-text="Tension">
+                        
+                    </div>
+                </div>`;
     });
 
     wrapper.innerHTML = htmlWrappers;
 
-    new AppRange({
+    let newapp = new AppRange({
         container: '#rang-slider',
         innerWrapper: isMobile() ? 'rang swiper-wrapper' : 'rang',
-        data: data.map(({data}) => {
-            const dataSort = data.filter(el => el.name);
-            const {name, avatar, statusSide} = dataSort[0];
-            return {
-                name,
-                avatar,
-                statusSide
-            }
-        }),
+        // data: data.map(({data}) => {
+        //     const dataSort = data.filter(el => el.name);
+        //     const {name, avatar, statusSide, value} = dataSort[0];
+        //     return {
+        //         name,
+        //         avatar,
+        //         statusSide,
+        //         value,
+        //     }
+        // }),
+        data:dataForRange(jsonAll, user),
         callback(item, i) {
             if (!isMobile()) {
                 const itemClickable = document.querySelectorAll('#graph-slider .swiper-pagination-bullet');
-                itemClickable[i].click();
-                item.classList.add('active');
+                // itemClickable[i].click();
+                // item.classList.add('active');
+                // bottomValues = document.querySelector('.custom-graph-info').children;
+                // bottomValues[0].innerText = this.data[i].others;
+                // bottomValues[1].innerText = this.data[i].self;
+                // bottomValues[2].innerText = this.data[i].tension;
             }
         },
         update(item) {
@@ -852,13 +316,18 @@
             }
         },
         loadEnd() {
+            document.querySelectorAll('.rang__item').forEach((item) => {
+                item.classList.remove('active');
+            })
+            $self = this;
+            // let contNum = i;
             if (isMobile()) {
-                new Swiper(this.container, {
+                let swipeMob = new Swiper(this.container, {
                     slidesPerView: 6,
                     spaceBetween: 0,
                     centeredSlides: true,
                     grabCursor: true,
-                    loop: true,
+                    loop: false,
                     breakpoints: {
                         768: {
                             slidesPerView: 3,
@@ -877,11 +346,21 @@
                         nextEl: '.rang-button-next',
                         prevEl: '.rang-button-prev',
                     },
+                    pagination: {
+                        el: '.swiper-pagination',
+                        type:"bullets",
+                        clickable: true,
+                    },
                     on: {
                         slideChange(a, b, c) {
-                            const index = a.realIndex;
-                            const itemClickable = document.querySelectorAll('#graph-slider .swiper-pagination-bullet');
-                            itemClickable[index].click();
+                            // const index = a.realIndex;
+                            // const itemClickable = document.querySelectorAll('#graph-slider .swiper-pagination-bullet');
+                            // itemClickable[index].click();
+                            // bottomValues = document.querySelector('.custom-graph-info').children;
+                            // // console.log($self.data);
+                            // bottomValues[0].innerText = $self.data[index].others;
+                            // bottomValues[1].innerText = $self.data[index].self;
+                            // bottomValues[2].innerText = $self.data[index].tension;
                         }
                     }
                 });
@@ -889,353 +368,128 @@
         }
     });
 
-    data.forEach((item, i) => {
+    // new AppRange({
+    //     container: '#rang-slider',
+    //     innerWrapper: isMobile() ? 'rang swiper-wrapper' : 'rang',
+    //     data: data.map(({data}) => {
+    //         const dataSort = data.filter(el => el.name);
+    //         const {name, avatar, statusSide} = dataSort[0];
+    //         return {
+    //             name,
+    //             avatar,
+    //             statusSide
+    //         }
+    //     }),
+    //     callback(item, i) {
+    //         if (!isMobile()) {
+    //             const itemClickable = document.querySelectorAll('#graph-slider .swiper-pagination-bullet');
+    //             itemClickable[i].click();
+    //             item.classList.add('active');
+    //         }
+    //     },
+    //     update(item) {
+    //         if (!isMobile()) {
+    //             item.classList.remove('active');
+    //         }
+    //     },
+    //     loadEnd() {
+    //         if (isMobile()) {
+    //             new Swiper(this.container, {
+    //                 slidesPerView: 6,
+    //                 spaceBetween: 0,
+    //                 centeredSlides: true,
+    //                 grabCursor: true,
+    //                 loop: true,
+    //                 breakpoints: {
+    //                     768: {
+    //                         slidesPerView: 3,
+    //                         spaceBetween: 0,
+    //                     },
+    //                     480: {
+    //                         slidesPerView: 2,
+    //                         spaceBetween: 0,
+    //                     },
+    //                     320: {
+    //                         slidesPerView: 1,
+    //                         spaceBetween: 0,
+    //                     },
+    //                 },
+    //                 navigation: {
+    //                     nextEl: '.rang-button-next',
+    //                     prevEl: '.rang-button-prev',
+    //                 },
+    //                 on: {
+    //                     slideChange(a, b, c) {
+    //                         const index = a.realIndex;
+    //                         const itemClickable = document.querySelectorAll('#graph-slider .swiper-pagination-bullet');
+    //                         itemClickable[index].click();
+    //                     }
+    //                 }
+    //             });
+    //         }
+    //     }
+    // });
+
+    // Team potential graph
+
+
+    //Spanung graph
+    dataForGraph(jsonAll, user).forEach((item, i) => {
         new AppGraph({
             container: `.swiper-slide.slide-${i}`,
             range: item.range,
             labelRange: item.labelRange,
             mobile: 1200,
             statistic: true,
-            data: item.data
+            data: item.data,
+            safezoneData: safezoneData(jsonAll,item.data[0].value),
+            graphNumber: i,
         });
     });
 
-    new Swiper('#graph-slider', {
-        grabCursor: true,
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true
-        }
-    });
+    // new Swiper('#graph-slider', {
+    //     grabCursor: true,
+    //     navigation: {
+    //         nextEl: '.swiper-button-next',
+    //         prevEl: '.swiper-button-prev',
+    //     },
+    //     pagination: {
+    //         el: '.swiper-pagination',
+    //         clickable: true
+    //     }
+    // });
 
+    let dataTeam = {{ team_potential_all_result|safe }};
+    let safezoneDataTeam = () => {
+        let arr = [];
+        for(let item of dataTeam) {
+            arr.push(item.statusSide);
+        }
+        return arr
+    }
     new AppGraph({
         container: '.custom-graph-wrapper.user',
         range: [1, 99],
         labelRange: ['Low', 'High'],
         mobile: 1200,
         statistic: true,
-        data: {{ team_potential_all_result|safe }}
-        {% comment %} [
-            {
-                statusSide: 10
-            },
-            {
-                statusSide: 20
-            },
-            {
-                statusSide: 45
-            },
-            {
-                statusSide: 49
-            },
-            {
-                name: 'Vasilisa Kochetkova',
-                avatar: '/static/images/avatars/boar.svg',
-                statusSide: 49
-            },
-            {
-                statusSide: 49
-            },
-            {
-                statusSide: 49
-            },
-            {
-                statusSide: 49
-            },
-            {
-                statusSide: 49
-            },
-            {
-                statusSide: 60
-            },
-            {
-                statusSide: 70
-            },
-            {
-                statusSide: 99
-            },
-        ]{% endcomment %}
-    });//user
+        data: dataTeam,
+        safezoneData: safezoneDataTeam(),
+
+    });
 
 
-{% comment %}
-    const dataFeedback = [
-        {
-            name: 'Bob Stampton',
-            avatar: '/static/images/avatars/hen.svg',
-            statusSide: 49,
-            feedback: [
-                {
-                    title: 'MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team…',
-                    text: 'On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying'
-                },
-                {
-                    title: 'ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem...',
-                    text: ''
-                },
-                {
-                    title: 'FRAGEZEICHEN: ich wollte dich schon immer mal fragen…',
-                    text: ''
-                }
-            ]
-        },
-        {
-            name: 'Garry Garrison',
-            avatar: '/static/images/avatars/horse.svg',
-            statusSide: 49,
-            feedback: [
-                {
-                    title: 'MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team…',
-                    text: 'On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying'
-                },
-                {
-                    title: 'ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem...',
-                    text: ''
-                },
-                {
-                    title: 'FRAGEZEICHEN: ich wollte dich schon immer mal fragen…',
-                    text: ''
-                }
-            ]
-        },
-        {
-            name: 'Johny Depp',
-            avatar: '/static/images/avatars/crow.svg',
-            statusSide: 49,
-            feedback: [
-                {
-                    title: 'MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team…',
-                    text: 'On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying'
-                },
-                {
-                    title: 'ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem...',
-                    text: ''
-                },
-                {
-                    title: 'FRAGEZEICHEN: ich wollte dich schon immer mal fragen…',
-                    text: ''
-                }
-            ]
-        },
-        {
-            name: "Vasilisa Kochetkova",
-            avatar: "/static/images/avatars/boar.svg",
-            statusSide: 49,
-            feedback: [
-                {
-                    title: 'MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team…',
-                    text: 'On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying'
-                },
-                {
-                    title: 'ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem...',
-                    text: ''
-                },
-                {
-                    title: 'FRAGEZEICHEN: ich wollte dich schon immer mal fragen…',
-                    text: ''
-                }
-            ]
-        },
-        {
-            name: 'Bruce Vilis',
-            avatar: '/static/images/avatars/bear.svg',
-            statusSide: 49,
-            feedback: [
-                {
-                    title: 'MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team…',
-                    text: 'On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying'
-                },
-                {
-                    title: 'ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem...',
-                    text: ''
-                },
-                {
-                    title: 'FRAGEZEICHEN: ich wollte dich schon immer mal fragen…',
-                    text: ''
-                }
-            ]
-        },
-        {
-            name: 'Donkey kong',
-            avatar: '/static/images/avatars/dog.svg',
-            statusSide: 49,
-            feedback: [
-                {
-                    title: 'MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team…',
-                    text: 'On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying'
-                },
-                {
-                    title: 'ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem...',
-                    text: ''
-                },
-                {
-                    title: 'FRAGEZEICHEN: ich wollte dich schon immer mal fragen…',
-                    text: ''
-                }
-            ]
-        },
-        {
-            name: 'Mister V',
-            avatar: '/static/images/avatars/beaver.svg',
-            statusSide: 49,
-            feedback: [
-                {
-                    title: 'MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team…',
-                    text: 'On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying'
-                },
-                {
-                    title: 'ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem...',
-                    text: ''
-                },
-                {
-                    title: 'FRAGEZEICHEN: ich wollte dich schon immer mal fragen…',
-                    text: ''
-                }
-            ]
-        },
-        {
-            name: 'Graf Dracula',
-            avatar: '/static/images/avatars/buffalo.svg',
-            statusSide: 49,
-            feedback: [
-                {
-                    title: 'MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team…',
-                    text: 'On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying'
-                },
-                {
-                    title: 'ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem...',
-                    text: ''
-                },
-                {
-                    title: 'FRAGEZEICHEN: ich wollte dich schon immer mal fragen…',
-                    text: ''
-                }
-            ]
-        },
-        {
-            name: 'Anthony Hopkins',
-            avatar: '/static/images/avatars/kangaroo.svg',
-            statusSide: 49,
-            feedback: [
-                {
-                    title: 'MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team…',
-                    text: 'On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying'
-                },
-                {
-                    title: 'ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem...',
-                    text: ''
-                },
-                {
-                    title: 'FRAGEZEICHEN: ich wollte dich schon immer mal fragen…',
-                    text: ''
-                }
-            ]
-        },
-        {
-            name: 'Vladimir',
-            avatar: '/static/images/avatars/donkey.svg',
-            statusSide: 49,
-            feedback: [
-                {
-                    title: 'MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team…',
-                    text: 'On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying'
-                },
-                {
-                    title: 'ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem...',
-                    text: ''
-                },
-                {
-                    title: 'FRAGEZEICHEN: ich wollte dich schon immer mal fragen…',
-                    text: ''
-                }
-            ]
-        },
-        {
-            name: 'Irina Shake',
-            avatar: '/static/images/avatars/giraffe.svg',
-            statusSide: 49,
-            feedback: [
-                {
-                    title: 'MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team…',
-                    text: 'On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying'
-                },
-                {
-                    title: 'ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem...',
-                    text: ''
-                },
-                {
-                    title: 'FRAGEZEICHEN: ich wollte dich schon immer mal fragen…',
-                    text: ''
-                }
-            ]
-        },
-        {
-            name: 'Conan Barbarian',
-            avatar: '/static/images/avatars/fox.svg',
-            statusSide: 49,
-            feedback: [
-                {
-                    title: 'MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team…',
-                    text: 'On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying'
-                },
-                {
-                    title: 'ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem...',
-                    text: ''
-                },
-                {
-                    title: 'FRAGEZEICHEN: ich wollte dich schon immer mal fragen…',
-                    text: ''
-                }
-            ]
-        },
-    ];
+    cardsPainting(dataForRange(jsonAll, user), document.querySelectorAll(".rang__item"))
+    function circlesValue(dataForRange, selectors) {
+        selectors.forEach((item,i) => {
+            item.children[0].innerText = dataForRange[i].others;
+            item.children[1].innerText = dataForRange[i].self;
+            item.children[2].innerText = dataForRange[i].tension;
+        })
+    }
+    circlesValue(dataForRange(jsonAll, user), document.querySelectorAll('.swiper-wrapper .custom-graph-info'))
 
-    appfeed = new AppFeedback({
-        container: '.fields-fill__wrapper',
-        data: dataFeedback,
-        loadEnd(bodyItems) {
-            new Swiper('.fields-fill', {
-                centeredSlides: true,
-                grabCursor: true,
-                loop: true,
-                breakpoints: {
-                    1400: {
-                        slidesPerView: 5,
-                        spaceBetween: 30,
-                    },
-                    1300: {
-                        slidesPerView: 3,
-                        spaceBetween: 30,
-                    },
-                    320: {
-                        slidesPerView: 1,
-                        spaceBetween: 30,
-                    },
-                },
-                navigation: {
-                    nextEl: '.slider-button-next',
-                    prevEl: '.slider-button-prev',
-                },
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true
-                },
-                on: {
-                    slideChange(a, b, c) {
-                        const index = a.realIndex;
-                        bodyItems.forEach((item, i) => {
-                            item.classList.remove('active');
-                        });
-                        bodyItems[index].classList.add('active');
-                    }
-                }
-            });
-        }
-    });{% endcomment %}
+
 
 
 </script>
@@ -1262,6 +516,158 @@
             },
         },
     })
+
+    let doc = new jspdf.jsPDF({
+        orientation: 'p',
+        unit: 'px',
+        format: 'a4',
+        putOnlyUsedFonts:true,
+    });
+
+    let userBar = document.querySelector('.user');
+    let mainH1 = document.querySelector('main').querySelector('h1').innerText;
+    let mainH3 = document.querySelector('main').querySelector('h3').innerText;
+    let mainP = document.querySelector('main').querySelector('p').innerText;
+    let teamThree = {};
+    let teamGraph = {};
+    let psychoH3 = document.querySelectorAll('h3')[1].innerText;
+    let psychoP = document.querySelectorAll('p')[1].innerText;
+    let psychoCont = {};
+    let spanunH3 = document.querySelectorAll('h3')[2].innerText;
+    let spanunP = document.querySelectorAll('p')[2].innerText;
+    let spanunUl = document.querySelector('ul');
+    let spanunThree = document.querySelectorAll('.custom-graph-info')[1];
+    let avatar = {};
+    let titleIcon = {};
+    let gameName = document.querySelector('.user__subtitle').innerText;
+    let playerName = document.querySelector('.user__title').innerText;
+    // let distry0 = imageToVar(document.querySelectorAll('.distry')[0]);
+
+    function imageToVar(selector) {
+        domtoimage.toPng(selector)
+            .then(async function (dataUrl) {
+                var img = await new Image();
+                img.src = dataUrl;
+                return img
+            })
+            .catch(function (error) {
+                console.error('oops, something went wrong!', error);
+            });
+    }
+
+    function collectImages() {
+        domtoimage.toPng(document.querySelector('.user').querySelector('img'))
+            .then(function (dataUrl) {
+                var img = new Image();
+                img.src = dataUrl;
+                avatar = img;
+
+            })
+            .catch(function (error) {
+                console.error('oops, something went wrong!', error);
+            });
+
+
+
+        domtoimage.toPng(document.querySelector('.header-main__title'))
+            .then(function (dataUrl) {
+                var img = new Image();
+                img.src = dataUrl;
+                titleIcon = img;
+            })
+            .catch(function (error) {
+                console.error('oops, something went wrong!', error);
+            });
+        domtoimage.toPng(document.querySelector('.custom-graph-info'))
+            .then(function (dataUrl) {
+                var img = new Image();
+                img.src = dataUrl;
+                teamThree = img;
+            })
+            .catch(function (error) {
+                console.error('oops, something went wrong!', error);
+            });
+        domtoimage.toPng(document.querySelector('.custom-graph.statistic'))
+            .then(function (dataUrl) {
+                var img = new Image();
+                img.src = dataUrl;
+                teamGraph = img;
+            })
+            .catch(function (error) {
+                console.error('oops, something went wrong!', error);
+            });
+        domtoimage.toPng(document.querySelector('.psychologischer__container'))
+            .then(function (dataUrl) {
+                var img = new Image();
+                img.src = dataUrl;
+                psychoCont = img;
+            })
+            .catch(function (error) {
+                console.error('oops, something went wrong!', error);
+            });
+    }
+
+    function zoomLvl(img) {
+        return img.height/img.width;
+    }
+
+    function getPdf() {
+        doc.setFont('Helvetica', "bold");
+        doc.setDrawColor(81,206,236);
+        doc.setFillColor(81,206,236);
+        doc.rect(0,0,446,100,"F");
+        doc.addImage(titleIcon, 'png', 50, 40);
+        doc.addImage(avatar, 'png', 230, 40);
+        doc.setFontSize(18);
+        doc.text(playerName, 270, 60);
+        doc.text(gameName, 270, 40);
+        doc.text(mainH1, 30, 120);
+        doc.setFontSize(16);
+        doc.text(mainH3, 30, 140);
+        doc.setFont('Helvetica', "normal");
+        doc.setFontSize(12);
+        doc.text(mainP, 30, 155, {maxWidth:380.});
+        doc.addImage(teamThree, 'png', 30, 175, 150, 150*zoomLvl(teamThree));
+        doc.addImage(teamGraph, 'png', 30, 210, 400, 400*zoomLvl(teamGraph));
+
+        doc.addPage('a4', 'portrait');
+        doc.setFontSize(18);
+        doc.setFont('Helvetica', "bold");
+        doc.setDrawColor(81,206,236);
+        doc.setFillColor(81,206,236);
+        doc.rect(0,0,446,100,"F");
+        doc.addImage(titleIcon, 'png', 50, 40);
+        doc.addImage(avatar, 'png', 230, 40);
+        doc.text(playerName, 270, 60);
+        doc.text(gameName, 270, 40);
+        doc.setFont('Helvetica', "bold");
+        doc.setFontSize(16);
+        doc.text(psychoH3, 30, 120);
+        doc.setFont('Helvetica', "normal");
+        doc.setFontSize(12);
+        doc.text(psychoP, 30, 140, {maxWidth:380.});
+        doc.addImage(psychoCont, 'png', 30, 160, 400, 400*zoomLvl(psychoCont));
+        
+        doc.save();
+
+
+
+
+
+        // 
+        // doc.setFontSize(24);
+        // doc.text(mainH1, 20, 50);
+        // doc.setFontSize(20);
+        // doc.text(mainH3, 20, 70);
+        // doc.setFontSize(14);
+        // doc.text(mainP, 20, 90, {maxWidth:400.});
+    }
+
+
+    // document.querySelector('.btn').addEventListener('click', () => { 
+    //     getPdf();
+    // })
+
 
 </script>
 </body>
