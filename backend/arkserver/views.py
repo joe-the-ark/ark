@@ -945,7 +945,7 @@ def heatmap(request, user):
     game = Game.objects.filter(link=request.session['link']).first()
 
     user_list = game.ubung5_player_order
-    print('user_list', user_list)
+    # print('user_list', user_list)
     user_number = len(user_list)
     ctx['user_number'] = user_number
     avg_list = [i.ubung5_avg for i in game.ubung5_scale_order]
@@ -953,7 +953,7 @@ def heatmap(request, user):
     main_map = []
     for i in user_list:
         temp = []
-        temp.append(i.ubung5_sum)
+        temp.append(i.ubung5_sum/(user_number ** 2))
         temp.append(i.name)
         temp.append(i.avatar)
         iknow = []
@@ -984,7 +984,7 @@ def heatmap(request, user):
     ctx['row0'] = row0
     ctx['main_map'] = main_map
     ctx['scale_list'] = scale_list = [ [i.power, i.connect_ubung3.drainer] for i in game.ubung5_scale_order]
-    ctx['scale_value_list'] = scale_value_list = [i.ubung5_sum for i in game.ubung5_scale_order]
+    ctx['scale_value_list'] = scale_value_list = [i.ubung5_sum/(user_number ** 2) for i in game.ubung5_scale_order]
     # ubung5 = Ubung5.objects.filter(game=game)
     # player_list = []
     # for player in Player.objects.filter(game=game):
