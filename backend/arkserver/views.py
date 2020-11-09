@@ -627,7 +627,7 @@ def mission_2_ubung_2(request, user):
 
     if request.method == 'POST':
         data = request.POST.get('data')
-        print(data)
+        # print(data)
         data = json.loads(data)
         m2ubung2 = M2Ubung2.objects.filter(game=game,player=user).first()
         if m2ubung2:

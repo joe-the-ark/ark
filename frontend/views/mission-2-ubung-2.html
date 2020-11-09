@@ -499,7 +499,7 @@
     })
 
     function check_finish(){
-        if (app1.loading === true && formValidator(containers)){
+        if (app1.loading === true){
             var data_ = {'link': '{{game.link}}'}
             axios
                 .post(`/api/last_stop_check/`, data_)
@@ -517,7 +517,7 @@
         }
     }
     check_finish()
-    setInterval("check_finish()", 2000)
+    setInterval("check_finish()", 5000)
 
     // function cardsPainting(unifiedData) {
     //   let collection = document.querySelectorAll('.rang__item');
