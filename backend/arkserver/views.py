@@ -734,6 +734,15 @@ def assessment(request, user):
     ctx['psy_row4'] = row_4
     ctx['psy_row5'] = row_5
 
+    # print(game.ubung4_target)
+    ubung4_target = game.ubung4_target
+    ctx['row0'] = ubung4_target['row0']
+    ctx['row1'] = ubung4_target['row1']
+    ctx['row2'] = ubung4_target['row2']
+    ctx['row3'] = ubung4_target['row3']
+    ctx['row4'] = ubung4_target['row4']
+    ctx['row5'] = ubung4_target['row5']
+
     # ubung4_list = Ubung4.objects.filter(game=game, player=user)
 
 

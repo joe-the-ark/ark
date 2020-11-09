@@ -91,6 +91,40 @@ class Game(models.Model):
         ubung1_list.sort(key=lambda x: x.ubung5_sum, reverse=True)
         return ubung1_list
 
+    @property
+    def ubung4_target(self):
+        from .models import Ubung4
+        ubung4_list = list(Ubung4.objects.filter(game=self))
+        row0 = []
+        row1 = []
+        row2 = []
+        row3 = []
+        row4 = []
+        row5 = []
+        for i in ubung4_list:
+            for u in i.row0.all():
+                row0.append(u.player_json)
+            for u in i.row1.all():
+                row1.append(u.player_json)
+            for u in i.row2.all():
+                row2.append(u.player_json)
+            for u in i.row3.all():
+                row3.append(u.player_json)
+            for u in i.row4.all():
+                row4.append(u.player_json)
+            for u in i.row5.all():
+                row5.append(u.player_json)
+        result = {
+            'row0': row0,
+            'row1': row1,
+            'row2': row2,
+            'row3': row3,
+            'row4': row4,
+            'row5': row5,
+        }
+
+        return result
+
     class Meta(object):
             verbose_name = verbose_name_plural = 'games'
 

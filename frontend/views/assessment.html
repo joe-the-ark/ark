@@ -108,7 +108,8 @@
                             Probleme und schwierige Themen kann ich bei dir ansprechen.
                         </div>
                         <div class="distry__thumbnails">
-                            <div class="distry__user" v-for="count in row0">
+                            <div class="distry__user" v-for="person in row0">
+                                <img :src="[[ person.avatar ]]" alt="">
                             </div>
                         </div>
                     </div>
@@ -126,7 +127,8 @@
                             Probleme und schwierige Themen kann ich bei dir ansprechen.
                         </div>
                         <div class="distry__thumbnails">
-                            <div class="distry__user" v-for="count in row1">
+                            <div class="distry__user" v-for="person in row1">
+                                <img :src="[[ person.avatar ]]" alt="">
                             </div>
                         </div>
                     </div>
@@ -135,8 +137,8 @@
                             Probleme und schwierige Themen kann ich bei dir ansprechen.
                         </div>
                         <div class="distry__thumbnails">
-                            <div class="distry__user" v-for="count in row2">
-
+                            <div class="distry__user" v-for="person in row2">
+                                <img :src="[[ person.avatar ]]" alt="">
                             </div>
                         </div>
                     </div>
@@ -145,7 +147,8 @@
                             Probleme und schwierige Themen kann ich bei dir ansprechen.
                         </div>
                         <div class="distry__thumbnails">
-                            <div class="distry__user" v-for="count in row3">
+                            <div class="distry__user" v-for="person in row3">
+                                <img :src="[[ person.avatar ]]" alt="">
                             </div>
                         </div>
                     </div>
@@ -154,7 +157,8 @@
                             Probleme und schwierige Themen kann ich bei dir ansprechen.
                         </div>
                         <div class="distry__thumbnails">
-                            <div class="distry__user" v-for="count in row4">
+                            <div class="distry__user" v-for="person in row4">
+                                <img :src="[[ person.avatar ]]" alt="">
                             </div>
                         </div>
                     </div>
@@ -163,7 +167,8 @@
                             Probleme und schwierige Themen kann ich bei dir ansprechen.
                         </div>
                         <div class="distry__thumbnails">
-                            <div class="distry__user" v-for="count in row5">
+                            <div class="distry__user" v-for="person in row5">
+                                <img :src="[[ person.avatar ]]" alt="">
                             </div>
                         </div>
                     </div>
@@ -502,12 +507,12 @@
         data() {
             return {
                 message: 'Hello Vue!',
-                row0: {{psy_row0}},
-                row1: {{psy_row1}},
-                row2: {{psy_row2}},
-                row3: {{psy_row3}},
-                row4: {{psy_row4}},
-                row5: {{psy_row5}},
+                row0: {{ row0|safe }},
+                row1: {{ row1|safe }},
+                row2: {{ row2|safe }},
+                row3: {{ row3|safe }},
+                row4: {{ row4|safe }},
+                row5: {{ row5|safe }},
             }
         },
         methods: {
