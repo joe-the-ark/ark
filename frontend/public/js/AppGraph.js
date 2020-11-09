@@ -159,7 +159,7 @@ class AppGraph {
             const { statusSide, avatar } = this.data[index];
             const html = `<div class="custom-graph__item-circle">
                             <div class="custom-graph__item-count"></div>
-                            ${statusSide !== undefined ? `<div class="custom-graph__item-side">${statusSide}</div>` : `<img src="${avatar}" alt=""/>`}
+                            ${statusSide !== undefined ? `<div class="custom-graph__item-side">${statusSide}</div>` : `<img src="${avatar}" alt=""/> <div class="value__missed"></div>`}
                          </div>
                              <div class="custom-graph__item-line"></div>
                              <div class="custom-graph__item-polygon"></div>
@@ -309,6 +309,7 @@ class AppGraph {
     }
 
     showSliderValue(inputSlider, thumb, index) {
+        
         const {value, max} = inputSlider;
         const innerWidthSlider = inputSlider.clientWidth - 40;
         const bulletPosition = (value / max);
@@ -327,13 +328,18 @@ class AppGraph {
         if (countDot) {
             let hueRotate = 0;
             if (this.guess.length) {
+                let circle = thumb.querySelector('.custom-graph__item-circle');
+                console.log('circle', circle);
                 let right = this.guess[index].statusSide;
                 //console.log('right', right)
                 console.log('worked');
                 var diff = Math.abs(+value - right)
                 if (diff <= 4){
+                    circle.classList.remove('missed');
                     filter = 90
                 }else{
+                    circle.querySelector('.value__missed').innerText = value;
+                    circle.classList.add('missed');
                     filter = 180
                 }
                 //if (value < right) {
@@ -412,6 +418,7 @@ class AppGraph {
                         ${status !== undefined || (statusSide !== undefined && this.statistic) ? `<div class="custom-graph__item-circle">
                             ${this.statistic && statusSide !== undefined ? `` : `<div class="custom-graph__item-count">${status}</div>`}
                          ${statusSide !== undefined ? `<div class="custom-graph__item-side">${statusSide}</div>` : `<img src="${avatar}" alt=""/>`}
+                         
                          </div>
                              <div class="custom-graph__item-line"></div>
                              <div class="custom-graph__item-polygon"></div>` : ''}

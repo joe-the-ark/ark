@@ -409,3 +409,19 @@
     height: calc(100% - 148px);
   }
 }
+
+.custom-graph__item-circle.missed {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+}
+
+.custom-graph__item-circle.missed img {
+  display: none;
+}
+
+.custom-graph__item-circle:not(.missed) {
+  width: 60px;
+  height: 60px;
+}
