@@ -210,7 +210,7 @@
                         </div>
                     </div>
                 </div> -->
-                <form action="#" method="POST" class="form">
+                <form id="form_" action="#" method="POST" class="form">
                 {% csrf_token %}
                     <p>
                         <b>Weiss</b> = Spannungsfreiheit<br>
@@ -220,7 +220,7 @@
                     </p>
                     <div class="center">
                         <input id="data" type="hidden" name="data" value=""/>
-                        <button type="submit" id="button" >
+                        <button type="button" id="button" @click="check_submit()">
                             Weiterspielen
                         </button>
                         <button id="test"  type="button" style="position: absolute; visibility: hidden;">Weiterspielen</button>
@@ -479,6 +479,22 @@
             }else{
                 this.loading = true
             }
+        },
+        methods:{
+            check_submit(){
+                if (formValidator(containers) === true){
+                    var form_submit = document.getElementById('form_')
+                    form_submit.submit()
+                    return
+                }else{
+                    this.$message({
+                        showClose: true,
+                        message: 'Every textarea must be more than 25 characters',
+                        type: 'error',
+                        center: true
+                    })
+                }
+            }
         }
     })
 
@@ -556,10 +572,12 @@
 
     
 
-    function formValidator(containers) {
+    {% comment %} function formValidator(containers) {
+        console.log(containers)
         let menu = document.querySelector('#menu');
         let result = true; 
         outer: for(let [c, cont] of containers.entries()){
+         
             let textarea = cont.querySelectorAll('textarea');
             for(let [i, item] of textarea.entries()) {
                 // console.log(i, item);
@@ -582,7 +600,7 @@
             };
         };
         return result;
-    }
+    } {% endcomment %}
     // document.querySelector('#test').addEventListener('click', () => {
     //     formValidator(containers);
     // })
@@ -612,6 +630,30 @@
     //         console.log(c, i, item);
     //     })
     // })
+
+    function formValidator(containers) {
+        console.log(containers)
+        let menu = document.querySelector('#menu');
+        let result = true; 
+        
+            let textarea = document.querySelectorAll('textarea');
+            for(let [i, item] of textarea.entries()) {
+                // console.log(i, item);
+                if(item.textLength < 25) {
+                    //setTimeout(() => {item.focus();}, 1000);
+                    let tooltip = tippy(item);
+                    tooltip.setProps({trigger: 'manual'});
+                    tooltip.setContent('Must be more than 25 characters');
+                    tooltip.show(); 
+                    result = false;
+                
+                }
+
+        };
+        return result;
+    }
+
+ 
 
 </script>
 <script src="/static/js/update_fix.js"></script>

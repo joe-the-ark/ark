@@ -61,7 +61,7 @@ class AppFeedback {
                                 <p class="bold">
                                    ${title}
                                 </p>
-                                a<textarea minlength="25" placeholder="Schreib hier dein Feedback…">${text}</textarea>
+                                a<textarea class="textarea_" minlength="25" placeholder="Schreib hier dein Feedback…">${text}</textarea>
                             </div>
         `).join('')}</div>`).join('')}</div>`;
 
