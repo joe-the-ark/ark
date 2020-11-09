@@ -302,6 +302,11 @@
         },
         loadEnd() {
             $self = this;
+            bottomValues = document.querySelector('.custom-graph-info').children;
+            bottomValues[0].innerText = $self.data[0].others;
+            bottomValues[1].innerText = $self.data[0].self;
+            bottomValues[2].innerText = $self.data[0].tension;
+            
             // let contNum = i;
             if (isMobile()) {
                 let swipeMob = new Swiper(this.container, {
