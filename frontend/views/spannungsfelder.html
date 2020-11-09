@@ -403,8 +403,14 @@
         on: {
             slideChange(a, b, c) {
                 let index = a.realIndex;
-                let pages = document.querySelector('#rang-slider .swiper-pagination').children
-                pages[index].click();
+                if (window.innerWidth < 1200) {
+                    let pages = document.querySelector('#rang-slider .swiper-pagination').children
+                    pages[index].click();
+                }
+                if (window.innerWidth > 1200) {
+                    let items = document.body.querySelector('.rang').children;
+                    items[index].click()
+                }
 
                 // console.log(isMobile());
                 // let index = a.realIndex;
