@@ -1324,9 +1324,9 @@ def last_stop_check(link):
     game = Game.objects.filter(link=link).first()
     stop_list = [i.player for i in list(LastStop.objects.filter(game=game))]
     player_list = game.valid_players
-    print(stop_list)
-    print(player_list)
-    for i in stop_list:
-        if i not in player_list:
+    # print(stop_list)
+    # print(player_list)
+    for i in player_list:
+        if i not in stop_list:
             return 0
     return 1
