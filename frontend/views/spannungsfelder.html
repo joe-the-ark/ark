@@ -74,8 +74,7 @@
                 </ul>
 
                 <div id="graph-slider" class="swiper-container">
-                    <div class="swiper-wrapper">
-                    </div>
+                    <div class="swiper-wrapper"></div>
                     <div class="swiper-button-prev"></div>
                     <div class="swiper-button-next"></div>
                     <div class="swiper-pagination"></div>
@@ -84,6 +83,7 @@
                 <div class="custom-graph2"></div>
                 <div id="rang-slider" class="swiper-container">
                     <div class="swiper-wrapper">
+                    
                     </div>
                 </div>
                 <div class="custom-graph-info">
@@ -335,7 +335,6 @@
                     },
                     pagination: {
                         el: '.swiper-pagination',
-                        type:"bullets",
                         clickable: true,
                     },
                     on: {
@@ -356,7 +355,6 @@
     });
 
     dataForGraph().forEach((item, i) => {
-        console.log('item.data', item.data);
         appgraph = new AppGraph({
             container: `.swiper-slide.slide-${i}`,
             range: item.range,
@@ -404,24 +402,28 @@
         },
         on: {
             slideChange(a, b, c) {
-                console.log(isMobile());
                 let index = a.realIndex;
-                let prevIndex = a.previousIndex;
-                if (isMobile()) {
-                    let btnNext = document.querySelector('#rang-slider .rang-button-next');
-                    let btnPrev = document.querySelector('#rang-slider .rang-button-prev');
-                    if (index > prevIndex) { 
-                        btnNext.click() 
-                    }
-                    if (index < prevIndex) { 
-                        btnPrev.click() 
-                    }
+                let pages = document.querySelector('#rang-slider .swiper-pagination').children
+                pages[index].click();
 
-                }
-                if(!isMobile()) {
-                    let cont = document.querySelector('#rang-slider .rang');
-                    cont.children[index].click();
-                }
+                // console.log(isMobile());
+                // let index = a.realIndex;
+                // let prevIndex = a.previousIndex;
+                // if (isMobile()) {
+                //     let btnNext = document.querySelector('#rang-slider .rang-button-next');
+                //     let btnPrev = document.querySelector('#rang-slider .rang-button-prev');
+                //     if (index > prevIndex) { 
+                //         btnNext.click() 
+                //     }
+                //     if (index < prevIndex) { 
+                //         btnPrev.click() 
+                //     }
+
+                // }
+                // if(!isMobile()) {
+                //     let cont = document.querySelector('#rang-slider .rang');
+                //     cont.children[index].click();
+                // }
             }
         }
     });

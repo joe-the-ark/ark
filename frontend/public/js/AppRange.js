@@ -73,7 +73,8 @@ class AppRange {
                         </div>
                     </div>`
         })}</div><div class="rang-button-prev"></div>
-                    <div class="rang-button-next"></div>`;
+                    <div class="rang-button-next"></div>
+                    <div class="swiper-pagination"></div>`;
 
         this.container.innerHTML = html.split(`,`).join('');
 

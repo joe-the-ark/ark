@@ -45,7 +45,6 @@ class AppGraph {
         let halfAvatar = document.querySelector('div.custom-graph__item-avatar').clientHeight/2;
         let height = document.querySelector('.custom-graph__item').clientHeight;
         let width = document.querySelector('.custom-graph__item').clientWidth;
-        console.log(width);
         let mobRight = Math.round(width*((100-high)/100));
         let mobWidth = Math.round(width*(blue_range/100));
         let screenTop = Math.round(height*((100-high)/100));
