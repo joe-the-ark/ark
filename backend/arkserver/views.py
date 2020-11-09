@@ -734,6 +734,9 @@ def assessment(request, user):
     ctx['psy_row4'] = row_4
     ctx['psy_row5'] = row_5
 
+    # ubung4_list = Ubung4.objects.filter(game=game, player=user)
+
+
     ubung5 = list(Ubung5.objects.filter(goal=user,game=game).exclude(player=user))
     other_list = [i.score for i in ubung5]
     if len(other_list) != 0:

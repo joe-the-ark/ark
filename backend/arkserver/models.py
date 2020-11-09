@@ -272,6 +272,50 @@ class Ubung4(models.Model):
     # for 'Es fällt mir schwer, dich um Hilfe zu bitten.'
     row5 = models.ManyToManyField(Player, blank=True, null=True, related_name='row5')
 
+    @property
+    def row0_json(self):
+        result = []
+        for i in self.row0.all():
+            result.append(i.player_json)
+        return result
+
+    @property
+    def row1_json(self):
+        result = []
+        for i in self.row1.all():
+            result.append(i.player_json)
+        return result
+
+    @property
+    def row2_json(self):
+        result = []
+        for i in self.row2.all():
+            result.append(i.player_json)
+        return result
+
+    @property
+    def row3_json(self):
+        result = []
+        for i in self.row3.all():
+            result.append(i.player_json)
+        return result
+
+    @property
+    def row4_json(self):
+        result = []
+        for i in self.row4.all():
+            result.append(i.player_json)
+        return result
+
+
+    @property
+    def row5_json(self):
+        result = []
+        for i in self.row5.all():
+            result.append(i.player_json)
+        return result
+    
+
     class Meta(object):
         verbose_name = verbose_name_plural = 'Ubung-4'
     def __str__(self):
