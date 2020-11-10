@@ -380,24 +380,7 @@
     //     }
     // });
 
-    for(let name of nameArray(jsonAll)) {
-        let div = document.createElement('div');
-        div.classList.add('rang-wrapper');
-        div.classList.add(`${name}`);
-        document.querySelector('.feedback__users .bold').after(div);
-        let data = dataForRange(jsonAll, name);
-        let range = new AppRange({
-            container: `.rang-wrapper.${name}`,
-            data: data,
-            innerWrapper: 'rang min',
-            load(wrapper) {
-                wrapper[0].classList.add('min')
-            }
-        });
-        let selectors = document.querySelectorAll(`.rang-wrapper.${name} .rang__item`);
-        cardsPainting(data, selectors);
 
-    }
 
 
     let appfeed = new AppFeedback({
@@ -602,6 +585,36 @@
         };
         return result;
     } 
+
+    function cardsPlacing(jsonAll) {
+        divCollection = document.createDocumentFragment()
+        for(let name of nameArray(jsonAll)) {
+            let div = document.createElement('div');
+            div.classList.add('rang-wrapper');
+            div.classList.add(`${name}`);
+            divCollection.append(div);
+
+
+
+        }
+        document.querySelector('.feedback__users form').before(divCollection);
+        for(let name of nameArray(jsonAll)){
+            let data = dataForRange(jsonAll, name);
+            let range = new AppRange({
+                container: `.rang-wrapper.${name}`,
+                data: data,
+                innerWrapper: 'rang min',
+                load(wrapper) {
+                    wrapper[0].classList.add('min')
+                }
+            });
+
+            
+            let selectors = document.querySelectorAll(`.rang-wrapper.${name} .rang__item`);
+            cardsPainting(data, selectors);
+        }
+    }
+    cardsPlacing(jsonAll);
 
     // function formValidator(containers) {
     //     console.log(containers)

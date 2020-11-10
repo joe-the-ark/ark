@@ -118,8 +118,9 @@
 <script src="/static/js/AppRange.js"></script>
 <script src="/static/js/AppGraph.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="/static/js/utils.js"></script>
 <script>
-    var json_list = {{ json_list|safe }};
+    var jsonAll = {{ json_list|safe }};
     let curentUser = "{{ user }}";
     // function deal_json(json_list, num){
     //     var new_json_list = [];
@@ -159,102 +160,102 @@
     // }
 
 
-    function traitArray(json_list) {
-      let arr = new Set();
-      json_list.forEach((item) => {
-        arr.add(item.value)
-      })
-      let result = Array.from(arr);
-      return(result)
-    }
+    // function traitArray(json_list) {
+    //   let arr = new Set();
+    //   json_list.forEach((item) => {
+    //     arr.add(item.value)
+    //   })
+    //   let result = Array.from(arr);
+    //   return(result)
+    // }
 
-    function arrayForGraph(json) {
-        let arr = [];
-        for (let item of json) {
-            tempObj = {};
-            if(item.target_user == curentUser) {
-                tempObj['name'] = item.name;
-                tempObj['avatar'] = item.avatar;
-                tempObj['statusSide'] = item.statusSide;
-                tempObj['value'] = item.value;
-                tempObj['status'] = item.statusSide.toString();
-                arr.push(tempObj);
-            }
-        }
-        return arr
-    }
+    // function arrayForGraph(json) {
+    //     let arr = [];
+    //     for (let item of json) {
+    //         tempObj = {};
+    //         if(item.target_user == curentUser) {
+    //             tempObj['name'] = item.name;
+    //             tempObj['avatar'] = item.avatar;
+    //             tempObj['statusSide'] = item.statusSide;
+    //             tempObj['value'] = item.value;
+    //             tempObj['status'] = item.statusSide.toString();
+    //             arr.push(tempObj);
+    //         }
+    //     }
+    //     return arr
+    // }
 
-    function arrayGraphModifier(item) {
-      const {name, avatar, status, statusSide, value} = item;
-      if(item.name == "{{user}}") {
-        return(
-          {'name':name,
-          'avatar':avatar,
-          'status':status,
-          'statusSide':statusSide,
-          'value':value}
-        )
-      }
-      else {
-        return(
-          {'status':status,
-          'statusSide':statusSide,
-          'value':value}
-        )
-      }
-    }
+    // function arrayGraphModifier(item) {
+    //   const {name, avatar, status, statusSide, value} = item;
+    //   if(item.name == "{{user}}") {
+    //     return(
+    //       {'name':name,
+    //       'avatar':avatar,
+    //       'status':status,
+    //       'statusSide':statusSide,
+    //       'value':value}
+    //     )
+    //   }
+    //   else {
+    //     return(
+    //       {'status':status,
+    //       'statusSide':statusSide,
+    //       'value':value}
+    //     )
+    //   }
+    // }
 
-    function safezoneData(value) {
-        let arr = [];
-        for (let item of json_list) {
-            if (item.value == value) {
-                arr.push(item.statusSide);
-            }
-        }
-        return arr
+    // function safezoneData(value) {
+    //     let arr = [];
+    //     for (let item of json_list) {
+    //         if (item.value == value) {
+    //             arr.push(item.statusSide);
+    //         }
+    //     }
+    //     return arr
 
-    }
+    // }
 
-    let dataForGraph = () => {
-      let result = [];
-      for (let value of traitArray(json_list)) {
-        dataRaw = arrayForGraph(json_list).filter(jso => jso.value == value);
-        datas = dataRaw.map(arrayGraphModifier);
-        temp = {
-      		'data':datas,
-      		'labelRange':value.split(' '),
-      		'range':[1,99],
-      	}
-        result.push(temp);
-      }
-      return(result)
-    }
+    // let dataForGraph = () => {
+    //   let result = [];
+    //   for (let value of traitArray(json_list)) {
+    //     dataRaw = arrayForGraph(json_list).filter(jso => jso.value == value);
+    //     datas = dataRaw.map(arrayGraphModifier);
+    //     temp = {
+    //   		'data':datas,
+    //   		'labelRange':value.split(' '),
+    //   		'range':[1,99],
+    //   	}
+    //     result.push(temp);
+    //   }
+    //   return(result)
+    // }
 
-    let dataForRange = () => {
-      let result = [];
-      for (let value of traitArray(json_list)) {
-        datas = arrayForGraph(json_list).filter(jso => jso.value == value);
-        let others = 0;
-        let self = 0;
-        datas.forEach((item, i) => {
-          if(item.name != '{{user}}') {
-            others += item.statusSide;
-          }
-          else {
-            self = item.statusSide;
-          }
-        });
-        others = Math.round(others/(datas.length-1));
-        temp = {
-          'value':value,
-          'self':self,
-          'others':others,
-          'tension':self - others,
-        };
-        result.push(temp);
-      }
-      return(result)
-    }
+    // let dataForRange = () => {
+    //   let result = [];
+    //   for (let value of traitArray(json_list)) {
+    //     datas = arrayForGraph(json_list).filter(jso => jso.value == value);
+    //     let others = 0;
+    //     let self = 0;
+    //     datas.forEach((item, i) => {
+    //       if(item.name != '{{user}}') {
+    //         others += item.statusSide;
+    //       }
+    //       else {
+    //         self = item.statusSide;
+    //       }
+    //     });
+    //     others = Math.round(others/(datas.length-1));
+    //     temp = {
+    //       'value':value,
+    //       'self':self,
+    //       'others':others,
+    //       'tension':self - others,
+    //     };
+    //     result.push(temp);
+    //   }
+    //   return(result)
+    // }
 
 
     const isMobile = () => window.innerWidth <= 1200;
@@ -264,7 +265,7 @@
     const wrapper = document.querySelector('#graph-slider .swiper-wrapper');
     let htmlWrappers = ``;
 
-    dataForGraph().forEach((item, i) => {
+    dataForGraph(jsonAll, curentUser).forEach((item, i) => {
         htmlWrappers += `<div class="swiper-slide slide-${i}"></div>`;
     });
 
@@ -283,7 +284,7 @@
         //         value,
         //     }
         // }),
-        data:dataForRange(),
+        data:dataForRange(jsonAll, curentUser),
         callback(item, i) {
             if (!isMobile()) {
                 const itemClickable = document.querySelectorAll('#graph-slider .swiper-pagination-bullet');
@@ -354,7 +355,7 @@
         }
     });
 
-    dataForGraph().forEach((item, i) => {
+    dataForGraph(jsonAll, curentUser).forEach((item, i) => {
         appgraph = new AppGraph({
             container: `.swiper-slide.slide-${i}`,
             range: item.range,
@@ -362,7 +363,7 @@
             mobile: 1200,
             statistic: true,
             data: item.data,
-            safezoneData: safezoneData(item.data[0].value),
+            safezoneData: safezoneData(jsonAll, item.data[0].value),
             graphNumber: i,
         });
 
@@ -446,21 +447,21 @@
     //
     // unifiedData = graphUnifier(data);
 
-    function cardsPainting(unifiedData) {
-      let collection = document.querySelectorAll('.rang__item');
-      collection.forEach((item, i) => {
-        let low = document.querySelector(`.slide-${i}`).children[0].getAttribute('low')
-        let high = document.querySelector(`.slide-${i}`).children[0].getAttribute('high')
-        let selfInSafe = unifiedData[i].self>low && unifiedData[i].self<high;
-        let othersInSafe = unifiedData[i].others>low && unifiedData[i].others<high;
-        if (selfInSafe && othersInSafe) {item.classList.add('white__card');}
-        if (selfInSafe && !othersInSafe) { item.classList.add('yellow__card');}
-        if (!selfInSafe && othersInSafe) { item.classList.add('red__card');}
-        if (!selfInSafe && !othersInSafe) { item.classList.add('black__card');}
-      });
+    // function cardsPainting(unifiedData) {
+    //   let collection = document.querySelectorAll('.rang__item');
+    //   collection.forEach((item, i) => {
+    //     let low = document.querySelector(`.slide-${i}`).children[0].getAttribute('low')
+    //     let high = document.querySelector(`.slide-${i}`).children[0].getAttribute('high')
+    //     let selfInSafe = unifiedData[i].self>low && unifiedData[i].self<high;
+    //     let othersInSafe = unifiedData[i].others>low && unifiedData[i].others<high;
+    //     if (selfInSafe && othersInSafe) {item.classList.add('white__card');}
+    //     if (selfInSafe && !othersInSafe) { item.classList.add('yellow__card');}
+    //     if (!selfInSafe && othersInSafe) { item.classList.add('red__card');}
+    //     if (!selfInSafe && !othersInSafe) { item.classList.add('black__card');}
+    //   });
 
-    }
-    cardsPainting(dataForRange());
+    // }
+    cardsPainting(dataForRange(jsonAll, curentUser), document.querySelectorAll(".rang__item"));
 
     // var css_change = function(t,s){
     //     s = document.createElement('style');

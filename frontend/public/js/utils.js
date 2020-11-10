@@ -26,15 +26,16 @@ function arrayForGraph(json, user) {
     for (let item of json) {
         tempObj = {};
 
-        if(item.name == user) {
-            tempObj['name'] = item.target_user;
-            tempObj['avatar'] = item.target_user_avatar;
+        if(item.target_user == user) {
+            tempObj['name'] = item.name;
+            tempObj['avatar'] = item.avatar;
             tempObj['statusSide'] = item.statusSide;
             tempObj['value'] = item.value;
             tempObj['status'] = item.statusSide.toString();
             arr.push(tempObj);
         }
     }
+    // console.log('arrayForGraph - result:', arr)
     return arr
 }
 
@@ -134,6 +135,7 @@ function dataForRange(json_list, user)  {
       else {
         self = item.statusSide;
       }
+
     });
     others = Math.round(others/(datas.length-1));
     temp = {
@@ -146,7 +148,7 @@ function dataForRange(json_list, user)  {
     };
     result.push(temp);
   }
-  // console.log('dataForRange result:');
+  console.log('dataForRange result:', result);
   return(result)
 }
 
@@ -198,7 +200,7 @@ function cardsPainting(dataForRange, selectors) {
   selectors.forEach((item, i) => {
     let low = dataForRange[i].low
     let high = dataForRange[i].high
-    console.log('low-high', low, high);
+    // console.log('low-high', low, high);
     let selfInSafe = dataForRange[i].self>low && dataForRange[i].self<high;
     let othersInSafe = dataForRange[i].others>low && dataForRange[i].others<high;
     if (selfInSafe && othersInSafe) {item.classList.add('white__card');}
