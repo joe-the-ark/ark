@@ -824,22 +824,24 @@ def wartezimmer(request, user):
     game = Game.objects.filter(link=link).first()
 
     # check whehter the ubung1 and ubung3 have 2 or more records by the player
-    player_list = list(game.members.all())
-    for player in player_list:
-        ubung1_list = list(Ubung1.objects.filter(player=player).order_by('-create_time'))
-        if len(ubung1_list) >= 2:
-            uu = 1
-            while uu < len(ubung1_list):
-                ubung1_list[uu].player = None
-                ubung1_list[uu].state = 'tag'
-                uu += 1
-        ubung3_list = list(Ubung3.objects.filter(player=player).order_by('-create_time'))
-        if len(ubung3_list) >= 2:
-            uu = 1
-            while uu < len(ubung3_list):
-                ubung3_list[uu].player = None
-                ubung3_list[uu].state = 'tag'
-                uu += 1
+    # player_list = list(game.members.all())
+    # for player in player_list:
+    ubung1_list = list(Ubung1.objects.filter(player=user).order_by('-create_time'))
+    if len(ubung1_list) >= 2:
+        uu = 1
+        while uu < len(ubung1_list):
+            ubung1_list[uu].player = None
+            ubung1_list[uu].state = 'tag'
+            ubung1_list[uu].save()
+            uu += 1
+    ubung3_list = list(Ubung3.objects.filter(player=user).order_by('-create_time'))
+    if len(ubung3_list) >= 2:
+        uu = 1
+        while uu < len(ubung3_list):
+            ubung3_list[uu].player = None
+            ubung3_list[uu].state = 'tag'
+            ubung3_list[uu].save()
+            uu += 1
 
 
     if game.status != 0:
@@ -1212,7 +1214,7 @@ def check_ubung5_finish(link):
     #     for i in delete_list:
     #         i.delete()
     #     return 2
-    
+
 
     # ubung5_player_list = [i.player for i in list(Ubung5.objects.filter(game=game))]
     mem_num = len(mem_list)
