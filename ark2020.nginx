@@ -1,8 +1,4 @@
-http {
-  include /etc/nginx/mime.types;
-  default_type application/octet-stream;
-  
-  server {
+server {
     listen 80;
     server_name test.arks.ch;
 
@@ -19,5 +15,4 @@ http {
       proxy_pass http://127.0.0.1:8888;
 
     }
-  }
 }
