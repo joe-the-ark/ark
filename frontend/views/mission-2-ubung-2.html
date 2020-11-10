@@ -245,7 +245,7 @@
     const {log} = console;
     let userCurrent = "{{ user }}";
     let jsonAll = {{ json_list_all|safe }};
-    let containers = document.querySelectorAll('.fields-fill__field-wrapper');
+    
     // let dataCur = "{{ json_list }}";
     var member_list = {{ json_list|safe }}.filter(item => item.name);
 
@@ -570,9 +570,9 @@
         setTimeout(() => {bodyItems[index].querySelector('textarea').focus();}, 500);
     });
 
-    
+    let containers = document.querySelectorAll('.fields-fill__field-wrapper');
 
-    {% comment %} function formValidator(containers) {
+    function formValidator(containers) {
         console.log(containers)
         let menu = document.querySelector('#menu');
         let result = true; 
@@ -582,6 +582,7 @@
             for(let [i, item] of textarea.entries()) {
                 // console.log(i, item);
                 if(item.textLength < 25) {
+                    console.log(c, i, "bad form");
                     menu.children[c].click();
                     menu.children[c].click();
                     setTimeout(() => {item.focus();}, 1000);
@@ -589,8 +590,8 @@
                     tooltip.setProps({trigger: 'manual'});
                     tooltip.setContent('Must be more than 25 characters');
                     tooltip.show(); 
-                    console.log(c, i, "bad form");
                     result = false;
+                    return result
                     break outer;
                     
                 }
@@ -600,7 +601,30 @@
             };
         };
         return result;
-    } {% endcomment %}
+    } 
+
+    // function formValidator(containers) {
+    //     console.log(containers)
+    //     let menu = document.querySelector('#menu');
+    //     let result = true; 
+        
+    //         let textarea = document.querySelectorAll('textarea');
+    //         for(let [i, item] of textarea.entries()) {
+    //             // console.log(i, item);
+    //             if(item.textLength < 25) {
+    //                 //setTimeout(() => {item.focus();}, 1000);
+    //                 let tooltip = tippy(item);
+    //                 tooltip.setProps({trigger: 'manual'});
+    //                 tooltip.setContent('Must be more than 25 characters');
+    //                 tooltip.show(); 
+    //                 result = false;
+                
+    //             }
+
+    //     };
+    //     return result;
+    // }
+
     // document.querySelector('#test').addEventListener('click', () => {
     //     formValidator(containers);
     // })
@@ -631,27 +655,7 @@
     //     })
     // })
 
-    function formValidator(containers) {
-        console.log(containers)
-        let menu = document.querySelector('#menu');
-        let result = true; 
-        
-            let textarea = document.querySelectorAll('textarea');
-            for(let [i, item] of textarea.entries()) {
-                // console.log(i, item);
-                if(item.textLength < 25) {
-                    //setTimeout(() => {item.focus();}, 1000);
-                    let tooltip = tippy(item);
-                    tooltip.setProps({trigger: 'manual'});
-                    tooltip.setContent('Must be more than 25 characters');
-                    tooltip.show(); 
-                    result = false;
-                
-                }
 
-        };
-        return result;
-    }
 
  
 
