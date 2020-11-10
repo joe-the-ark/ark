@@ -1194,24 +1194,25 @@ def check_ubung5_finish(link):
     ubung5_list = Ubung5.objects.filter(game=game)
 
     # delete ubung-5 if someone change the ubung-1 or ubung-3
-    ubung5_ubung1_user_list = [i.ubung1.player for i in ubung5_list]
-    if None in ubung5_ubung1_user_list:
-        delete_list = []
-        for i in ubung5_list:
-            if i.ubung1.player == None:
-                delete_list.append(i)
-        for i in delete_list:
-            i.delete()
-        return 2
-    ubung5_ubung3_user_list = [i.ubung3.player for i in ubung5_list]
-    if None in ubung5_ubung3_user_list:
-        delete_list = []
-        for i in ubung5_list:
-            if i.ubung3.player == None:
-                delete_list.append(i)
-        for i in delete_list:
-            i.delete()
-        return 2
+    # ubung5_ubung1_user_list = [i.ubung1.player for i in ubung5_list]
+    # if None in ubung5_ubung1_user_list:
+    #     delete_list = []
+    #     for i in ubung5_list:
+    #         if i.ubung1.player == None:
+    #             delete_list.append(i)
+    #     for i in delete_list:
+    #         i.delete()
+    #     return 2
+    # ubung5_ubung3_user_list = [i.ubung3.player for i in ubung5_list]
+    # if None in ubung5_ubung3_user_list:
+    #     delete_list = []
+    #     for i in ubung5_list:
+    #         if i.ubung3.player == None:
+    #             delete_list.append(i)
+    #     for i in delete_list:
+    #         i.delete()
+    #     return 2
+    
 
     # ubung5_player_list = [i.player for i in list(Ubung5.objects.filter(game=game))]
     mem_num = len(mem_list)
