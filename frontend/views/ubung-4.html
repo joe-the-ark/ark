@@ -10,6 +10,12 @@
     <title>Safety-Score-VOTE-4</title>
     <link rel="stylesheet" href="/static/css/app.css">
     <link rel="stylesheet" href="/static/css/ubung-4.css">
+    
+    <script src="/static/vue.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 </head>
 <body>
 <div class="app">
@@ -40,7 +46,7 @@
             </div>
         </header>
     </div>
-    <div class="app__body">
+    <div class="app__body"  id="app-1">
         <div class="container">
             <main class="screen ubung-4">
                 <h1>
@@ -54,7 +60,7 @@
                 </p>
                 <div class="distribution__wrapper"></div>
 
-                <form action="#" method="POST" class="form">
+                <form id="form_" action="#" method="POST" class="form">
                 {% csrf_token %}
                     <div class="center">
                         <input id="row0" type="hidden" name="row-0" value=""/>
@@ -63,7 +69,7 @@
                         <input id="row3" type="hidden" name="row-3" value=""/>
                         <input id="row4" type="hidden" name="row-4" value=""/>
                         <input id="row5" type="hidden" name="row-5" value=""/>
-                        <button type="submit" id="button" >
+                        <button type="button" id="button" @click="check_submit()" >
                             Weiterspielen
                         </button>
                     </div>
@@ -474,6 +480,35 @@
         //console.log(app.containersTo[0].items);
     }
     setInterval("refresh()", 1000);
+
+    var app1 = new Vue({
+        delimiters: ['[[', ']]'],
+        el: '#app-1',
+        methods:{
+            check_submit(){
+                var member_num = {{member_list|safe}}.length
+                var done_list = app.getData()
+                var done_num = 0
+                var uu = 0
+                while (uu < done_list.length){
+                    done_num = done_num + done_list[uu].items.length
+                    uu += 1
+                }
+                if (member_num === done_num){
+                    var form_submit = document.getElementById('form_');
+                    form_submit.submit()
+                }else{
+                    this.$message({
+                        showClose: true,
+                        message: 'Please move all avatars',
+                        type: 'error',
+                        center: true
+                    })
+                    
+                }
+            }
+        }
+    })
 
 </script>
 
