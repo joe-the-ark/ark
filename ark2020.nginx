@@ -1,18 +1,31 @@
-server {
-  listen 80;
-  server_name test.arks.ch;
+events {
+    use epoll; #支持大量连接和非活动连接
+    worker_connections 65535; 
+    multi_accept on; #nginx在已经得到一个新连接的通知时，接收尽可能多的连接
+    accept_mutex on; #防止惊群现象发生，默认为on
+}
 
 
-  location /static {
-    root /var/ark2020;
-  }
+http {
+  include /etc/nginx/mime.types;
+  default_type application/octet-stream;
+  
+  server {
+    listen 80;
+    server_name test.arks.ch;
 
-  location /media {
-    root /var/ark2020;
-  }
 
-  location / {
-    proxy_pass http://127.0.0.1:8888;
+    location /static {
+      root /var/ark2020;
+    }
 
+    location /media {
+      root /var/ark2020;
+    }
+
+    location / {
+      proxy_pass http://127.0.0.1:8888;
+
+    }
   }
 }
