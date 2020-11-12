@@ -340,9 +340,17 @@
                             var result = response.data.result;
                             if (result === 1){
                                 // valid player name
-                                var form_submit = document.getElementById('form_');
-                                form_submit.submit()
-                                return 
+                                var input1 = $('#nutzername').val()
+                                if (input1.length > 2){
+                                    var form_submit = document.getElementById('form_');
+                                    form_submit.submit()
+                                    return
+                                }else{
+                                    alert("The user name should be more than 2 characters");
+                                    $('#nutzername').val('')
+                                    return 
+                                }
+ 
                             }else{
                                 // have same name
                                 alert("The game name is taken. Please change a new one.");

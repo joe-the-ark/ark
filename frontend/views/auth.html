@@ -43,11 +43,11 @@
                 <form id="form_" action="#" method="POST" id="auth-form" class="form" onkeypress="javascript: if (event.keyCode==13 || event.onclick){check_game_name();return false;}">
                 {% csrf_token %}
                     <div class="form__field">
-                        <input id="nutzername" type="text" name="Nutzername" value="" required autofocus/>
+                        <input maxlength="20" minlength="2" id="nutzername" type="text" name="Nutzername" value="" required autofocus/>
                         <span class="form__placeholder">Nutzername</span>
                     </div>
                     <div class="form__field">
-                        <input id="name-des-spiels" type="text" name="name-des-spiels" value="" required/>
+                        <input maxlength="20" minlength="2" id="name-des-spiels" type="text" name="name-des-spiels" value="" required/>
                         <span class="form__placeholder">Name des Spiels</span>
                     </div>
                     <div class="form__field">
@@ -340,9 +340,20 @@
                 if (result === 1){
                     console.log(111)
                     // valid game name
-                    var form_submit = document.getElementById('form_');
-                    form_submit.submit()
-                    return 
+                    var input1 = $('#nutzername').val()
+                    var input2 = $('#name-des-spiels').val()
+                    if ((input1.length > 2)&&(input2.length > 2)){
+                        var form_submit = document.getElementById('form_');
+                        form_submit.submit()
+                        return 
+                    }else{
+                        alert("The game name and the user name should be more than 2 characters");
+                        $('#nutzername').val('')
+                        $('#name-des-spiels').val('')
+                        return 
+                    }
+
+
                 }else{
                     // have same name
                     alert("The game name is taken. Please change a new one.");
