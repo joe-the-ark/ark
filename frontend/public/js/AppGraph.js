@@ -46,9 +46,9 @@ class AppGraph {
         let height = document.querySelector('.custom-graph__item').clientHeight;
         let width = document.querySelector('.custom-graph__item').clientWidth;
         let mobRight = Math.round(width*((100-high)/100));
-        let mobWidth = Math.round(width*(blue_range/100));
+        let mobWidth = Math.round(width*(blue_range/100))-10;
         let screenTop = Math.round(height*((100-high)/100));
-        let screenHeight = Math.round(height*(blue_range/100));
+        let screenHeight = Math.round(height*(blue_range/100))-10;
 
         let qall = this.container.parentNode.querySelectorAll('.custom-graph__safezone');
 
