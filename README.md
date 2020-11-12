@@ -16,7 +16,7 @@ If you work on your local branches, make sure to do a `git pull origin master` b
     - Check ```localhost:8000``` in your browser
 - p.s.: you should run django 2.2
     - if you're on a higher version type anywhere in your console ```pip3 uninstall django```
-    - then ```pip3 install django==2.2.```
+    - then ```pip3 install django==2.2.13```
 ## The Gameflow in a Nutshell
 https://www.dropbox.com/s/cc6c58ix6zp8mtl/ARK_2_Gameflow.pdf?dl=0
 ## Creator of the Game
