@@ -332,6 +332,7 @@
         if (game_name === ''){
             return
         }
+        
         var data_ = {'game_name': game_name};
         axios
             .post(`/api/check_game_name/`, data_)
@@ -342,6 +343,10 @@
                     // valid game name
                     var input1 = $('#nutzername').val()
                     var input2 = $('#name-des-spiels').val()
+                    input1 = input1.replace(/\s*/g,"")
+                    input2 = input2.replace(/\s*/g,"")
+                    $('#nutzername').val(input1)
+                    $('#name-des-spiels').val(input2)
                     if ((input1.length > 2)&&(input2.length > 2)){
                         var form_submit = document.getElementById('form_');
                         form_submit.submit()
