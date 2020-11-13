@@ -1,6 +1,33 @@
 .custom-graph-wrapper .custom-graph__items:before {
   /* display: none; */
 }
+
+.app__head #pdf { 
+  font-size: 32px;
+  color: var(--ls-alfa-color);
+  float: left;
+  display: flex;
+  align-items: flex-end;
+  margin: 5px;
+  transition-duration: 0.5s;
+  }
+.app__head #pdf [class*="icon"]:hover {
+  cursor: pointer;
+  transition-duration: 0.5s;
+  transform: scale(1.1, 1.1);
+}
+
+
+#pdf p {
+  margin: 0 10px;
+  font-size: 24px;
+}
+
+.windows8 {
+  display: none;
+}
+
+
 @media screen and (max-width: 1200px) {
   .custom-graph-wrapper .custom-graph__items:before {
     /* display: none; */
@@ -485,9 +512,10 @@
   display: none;
 }
 @media screen and (min-width: 769px) {
-  .assessment .swiper-container .custom-graph {
+  .custom-graph {
     margin: 0 70px;
   }
+
 }
 @media screen and (max-width: 768px) {
   .assessment [class*="swiper-button"] {
@@ -504,6 +532,8 @@
 .assessment .fields-fill textarea {
   min-height: 316px;
 }
+
+
 @media screen and (max-width: 1300px) {
   .slider-button-prev,
   .slider-button-next {
@@ -541,6 +571,8 @@
   }
 
 }
+
+
 /* Cards painting */
 .black__card {
   background-color: #3b4252;
