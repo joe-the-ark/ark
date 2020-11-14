@@ -3,8 +3,8 @@ server {
     server_name arks.ch;
 
     ssl on;
-    ssl_certificate /etc/letsencrypt/live/test.arks.ch/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/test.arks.ch/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/arks.ch/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/arks.ch/privkey.pem;
 
     location /static {
       root /var/ark2020;
