@@ -1,6 +1,6 @@
 server {
     listen 443;
-    server_name test.arks.ch;
+    server_name arks.ch;
 
     ssl on;
     ssl_certificate /etc/letsencrypt/live/test.arks.ch/fullchain.pem;
@@ -26,7 +26,7 @@ server {
 
 server {
     listen 80;
-    server_name test.arks.ch;
+    server_name arks.ch;
     
-    return 302 https://test.arks.ch$request_uri;
+    return 302 https://arks.ch$request_uri;
 }
