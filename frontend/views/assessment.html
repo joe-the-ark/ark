@@ -470,7 +470,7 @@
     // });
 
 
-    dataForGraph(jsonAll, user).forEach((item, i) => {
+    dataForGraph(jsonAll, user, modify=false).forEach((item, i) => {
         new AppGraph({
             container: `.swiper-slide.slide-${i}`,
             range: item.range,
@@ -681,7 +681,7 @@
         document.querySelector('.windows8').style['display'] = 'block';
         collectImages()
         .then(()=> {
-            lorem();
+            // lorem();
             addTeamPotential();
             addFeedback();
             addPsycho();

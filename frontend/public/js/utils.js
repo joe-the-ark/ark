@@ -39,27 +39,39 @@ function arrayForGraph(json, user) {
     return arr
 }
 
-function arrayGraphModifier(item, user) {
+function arrayGraphModifier(item, user, modify) {
   // console.log('arrayGraphModifier start');
   // console.log('item', item);
   // console.log('user', user);
   const {name, avatar, status, statusSide, value} = item;
-  if(item.name == user) {
-    return(
-      {'name':name,
-      'avatar':avatar,
-      'status':status,
-      'statusSide':statusSide,
-      'value':value}
-    )
-  }
-  else {
-    return(
-      {'status':status,
-      'statusSide':statusSide,
-      'value':value}
-    )
-  }
+  
+    if(modify) {
+      if(item.name == user) {
+          return(
+            {'name':name,
+            'avatar':avatar,
+            'status':status,
+            'statusSide':statusSide,
+            'value':value}
+          )
+        }
+        else {
+          return(
+            {'status':status,
+            'statusSide':statusSide,
+            'value':value}
+          )
+        }
+    }
+    else {
+        return(
+            {'name':name,
+            'avatar':avatar,
+            'status':status,
+            'statusSide':statusSide,
+            'value':value}
+          )
+    }
 }
 
 function safezoneData(json_list, value) {
@@ -101,13 +113,13 @@ function safezone(safezoneData) {
   return({'low':low,'high':high, 'median': median})
 }
 
-function dataForGraph(json_list, user) {
+function dataForGraph(json_list, user, modify=true) {
   let result = [];
   for (let value of traitArray(json_list)) {
     dataRaw = arrayForGraph(json_list, user).filter(jso => jso.value == value);
     datas = [];
     for(let item of dataRaw) {
-      datas.push(arrayGraphModifier(item, user));
+      datas.push(arrayGraphModifier(item, user, modify));
     }
     // datas = dataRaw.map(arrayGraphModifier, user);
     temp = {
