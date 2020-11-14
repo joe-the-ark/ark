@@ -16,7 +16,15 @@
   font-size: 60px;
   color: var(--ls-alfa-color);
   float: left;
+  transition-duration: 0.5s;
+  cursor: pointer;
 }
+.options__item [class*="icon"]:hover {
+  transition-duration: 0.5s;
+  transform: scale(1.1, 1.1);
+
+}
+
 .options__item p {
   margin-left: 80px;
 }

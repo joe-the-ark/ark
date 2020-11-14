@@ -11,10 +11,13 @@
     <link rel="stylesheet" href="/static/css/app.css">
     <link rel="stylesheet" href="/static/css/app_graph.css">
     <link rel="stylesheet" href="/static/css/assessment.css">
+    <link rel="stylesheet" href="/static/css/load.css">
     <!-- <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"> -->
     <script src="/static/jspdf.umd.min.js"></script>
-    <script src="/static/html2canvas.js"></script>
     <script src="/static/dom-to-image.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+    <!-- <script src="/static/html2canvas.min.js"></script> -->
 
 </head>
 <body>
@@ -34,6 +37,7 @@
                     <div class="user__title">
                         {{user.name}}
                     </div>
+
                 </div>
             </div>
             <div class="header-main__progress">
@@ -41,6 +45,28 @@
                     <label>Mission 2</label>
                     <div class="progress__bar">
                         <div style="width: 95%">95%</div>
+                    </div>
+                </div>
+            </div>
+             <div id="pdf" class="save">
+
+                <div class="icon-download"></div>
+                <p>Save as PDF</p>
+                <div class="windows8">
+                    <div class="wBall" id="wBall_1">
+                        <div class="wInnerBall"></div>
+                    </div>
+                    <div class="wBall" id="wBall_2">
+                        <div class="wInnerBall"></div>
+                    </div>
+                    <div class="wBall" id="wBall_3">
+                        <div class="wInnerBall"></div>
+                    </div>
+                    <div class="wBall" id="wBall_4">
+                        <div class="wInnerBall"></div>
+                    </div>
+                    <div class="wBall" id="wBall_5">
+                        <div class="wInnerBall"></div>
                     </div>
                 </div>
             </div>
@@ -71,33 +97,33 @@
                     </div>
                 </div>
                 <div class="custom-graph-wrapper user"></div>
-                                <h3>
+                <h3 class="feed-h3">
                     Anonymes Feedback
                 </h3>
                 <div class="fields-fill__wrapper"></div>
 
-                <p class="bold">
-                    MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team…
+                <p class="bold feed-p-1">
+                    MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team...
                 </p>
                 {% for feedback in feedback1 %}
-                    <p style="font-size: 20px;color: blue;">{{feedback}}</p>
+                    <p class="feedback-1"style="font-size: 20px;color: blue;">{{feedback}}</p>
                 {% endfor %}
-                <p class="bold">
-                    ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem…
+                <p class="bold feed-p-2">
+                    ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem...
                 </p>
                 {% for feedback in feedback2 %}
-                    <p style="font-size: 20px;color: blue;">{{feedback}}</p>
+                    <p class="feedback-2" style="font-size: 20px;color: blue;">{{feedback}}</p>
                 {% endfor %}
-                <p class="bold">
-                    FRAGEZEICHEN: ich wollte dich schon immer mal fragen…
+                <p class="bold feed-p-3">
+                    FRAGEZEICHEN: ich wollte dich schon immer mal fragen...
                 </p>
                 {% for feedback in feedback3 %}
-                    <p style="font-size: 20px;color: blue;">{{feedback}}</p>
+                    <p class="feedback-3" style="font-size: 20px;color: blue;">{{feedback}}</p>
                 {% endfor %}
-                <h3>
+                <h3 class="psycho-h3">
                     Psychologischer Sicherheitswert
                 </h3>
-                <p>
+                <p class='psycho-p'>
                     Hier siehst du den psychologische Sicherheitswert für dein Team auf einer Skala zwischen 0 (sehr
                     unsicher) und 5 (aussergewöhnlich sicher). Wie verhält sich dieser Wert zu deiner Einschätzung der
                     gefühlten Sicherheit im Team?
@@ -115,7 +141,7 @@
                     </div>
                     <div class="team-average">
                         <div class="team-average__wrapper">
-                            <div class="team-average__range" style="width: 27%">
+                            <div class="team-average__range" style="width: 45%">
                                 <div class="team-average__circle">{{ psy_score }}</div>
                             </div>
                             <div class="team-average__down">5</div>
@@ -174,13 +200,13 @@
                     </div>
                 </div>
 
-                <h3>
+                <h3 class="spanun-h3">
                     Spannungsfelder
                 </h3>
-                <p>
+                <p class="spanun-p">
                     Diese Kräfte beschreiben deinen Einfluss auf eure Teamdynamik:
                 </p>
-                <ul>
+                <ul class="spanun-ul">
                     <li>
                         Weiss deutet auf Spannungsfreiheit hin.
                     </li>
@@ -223,13 +249,16 @@
         </div>
     </div>
 </div>
-<!-- <button class="btn"> Save pdf</button> -->
 <script src="/static/js/AppGraph.js"></script>
 <script src="/static/js/AppRange.js"></script>
 <script src="/static/js/AppFeedback.js"></script>
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<!-- <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script> -->
 <script src="/static/js/utils.js"></script>
 <script>
+    const instance = tippy(document.querySelector('.app__head #pdf [class*="icon"]'));
+    instance.setContent('Click here to save results in PDF');
+    instance.setProps({trigger: 'manual',})
+
     const isMobile = () => window.innerWidth <= 1200;
     let jsonAll = {{ json_all|safe }};
     var json_list = {{ span_json_list|safe }};
@@ -324,52 +353,57 @@
             document.querySelectorAll('.rang__item').forEach((item) => {
                 item.classList.remove('active');
             })
+            document.querySelector('#rang-slider .rang').classList.remove('swiper-wrapper');
+            document.querySelector('#rang-slider .rang-button-prev').style['visibility'] = 'hidden';
+            document.querySelector('#rang-slider .rang-button-next').style['visibility'] = 'hidden';
+            instance.show();
+            setTimeout(()=>{instance.hide()}, 5000);
             $self = this;
             // let contNum = i;
-            if (isMobile()) {
-                let swipeMob = new Swiper(this.container, {
-                    slidesPerView: 6,
-                    spaceBetween: 0,
-                    centeredSlides: true,
-                    grabCursor: true,
-                    loop: false,
-                    breakpoints: {
-                        768: {
-                            slidesPerView: 3,
-                            spaceBetween: 0,
-                        },
-                        480: {
-                            slidesPerView: 2,
-                            spaceBetween: 0,
-                        },
-                        320: {
-                            slidesPerView: 1,
-                            spaceBetween: 0,
-                        },
-                    },
-                    navigation: {
-                        nextEl: '.rang-button-next',
-                        prevEl: '.rang-button-prev',
-                    },
-                    pagination: {
-                        el: '.swiper-pagination',
-                        type:"bullets",
-                        clickable: true,
-                    },
-                    on: {
-                        slideChange(a, b, c) {
-                            // const index = a.realIndex;
-                            // const itemClickable = document.querySelectorAll('#graph-slider .swiper-pagination-bullet');
-                            // itemClickable[index].click();
-                            // bottomValues = document.querySelector('.custom-graph-info').children;
-                            // // console.log($self.data);
-                            // bottomValues[0].innerText = $self.data[index].others;
-                            // bottomValues[1].innerText = $self.data[index].self;
-                            // bottomValues[2].innerText = $self.data[index].tension;
-                        }
-                    }
-                });
-            }
+            // if (isMobile()) {
+            //     let swipeMob = new Swiper(this.container, {
+            //         slidesPerView: 6,
+            //         spaceBetween: 0,
+            //         centeredSlides: true,
+            //         grabCursor: true,
+            //         loop: false,
+            //         breakpoints: {
+            //             768: {
+            //                 slidesPerView: 3,
+            //                 spaceBetween: 0,
+            //             },
+            //             480: {
+            //                 slidesPerView: 2,
+            //                 spaceBetween: 0,
+            //             },
+            //             320: {
+            //                 slidesPerView: 1,
+            //                 spaceBetween: 0,
+            //             },
+            //         },
+            //         navigation: {
+            //             nextEl: '.rang-button-next',
+            //             prevEl: '.rang-button-prev',
+            //         },
+            //         pagination: {
+            //             el: '.swiper-pagination',
+            //             type:"bullets",
+            //             clickable: true,
+            //         },
+            //         on: {
+            //             slideChange(a, b, c) {
+            //                 // const index = a.realIndex;
+            //                 // const itemClickable = document.querySelectorAll('#graph-slider .swiper-pagination-bullet');
+            //                 // itemClickable[index].click();
+            //                 // bottomValues = document.querySelector('.custom-graph-info').children;
+            //                 // // console.log($self.data);
+            //                 // bottomValues[0].innerText = $self.data[index].others;
+            //                 // bottomValues[1].innerText = $self.data[index].self;
+            //                 // bottomValues[2].innerText = $self.data[index].tension;
+            //             }
+            //         }
+            //     });
+            // }
         }
     });
 
@@ -435,11 +469,8 @@
     //     }
     // });
 
-    // Team potential graph
 
-
-    //Spanung graph
-    dataForGraph(jsonAll, user).forEach((item, i) => {
+    dataForGraph(jsonAll, user, modify=false).forEach((item, i) => {
         new AppGraph({
             container: `.swiper-slide.slide-${i}`,
             range: item.range,
@@ -482,6 +513,7 @@
         safezoneData: safezoneDataTeam(),
 
     });
+    document.querySelector(".custom-graph.statistic").style['margin'] = '0 70px';
 
 
     cardsPainting(dataForRange(jsonAll, user), document.querySelectorAll(".rang__item"))
@@ -501,6 +533,7 @@
 {% comment %} <script src="/static/js/update_fix.js"></script> {% endcomment %}
 <script src="/static/vue.js"></script>
 <script>
+
     var app = new Vue({
         delimiters: ['[[', ']]'],
         el: '#app-1',
@@ -529,83 +562,447 @@
         putOnlyUsedFonts:true,
     });
 
+    // window.getComputedStyle(c)['font-size']  Get font size of the element
+
     let userBar = document.querySelector('.user');
     let mainH1 = document.querySelector('main').querySelector('h1').innerText;
     let mainH3 = document.querySelector('main').querySelector('h3').innerText;
     let mainP = document.querySelector('main').querySelector('p').innerText;
     let teamThree = {};
     let teamGraph = {};
-    let psychoH3 = document.querySelectorAll('h3')[1].innerText;
-    let psychoP = document.querySelectorAll('p')[1].innerText;
+    let feedH3 = document.querySelector('.feed-h3').innerText;
+    let feedP1 = document.querySelector('.feed-p-1').innerText;
+    let feedP2 = document.querySelector('.feed-p-2').innerText;
+    let feedP3 = document.querySelector('.feed-p-3').innerText;
+    let psychoH3 = document.querySelector('.psycho-h3').innerText;
+    let psychoP = document.querySelector('.psycho-p').innerText;
     let psychoCont = {};
-    let spanunH3 = document.querySelectorAll('h3')[2].innerText;
-    let spanunP = document.querySelectorAll('p')[2].innerText;
-    let spanunUl = document.querySelector('ul');
-    let spanunThree = document.querySelectorAll('.custom-graph-info')[1];
+    let spanunH3 = document.querySelector('.spanun-h3').innerText;
+    let spanunP = document.querySelector('.spanun-p').innerText;
+    let spanunUl = document.querySelector('.spanun-ul').innerText;
     let avatar = {};
     let titleIcon = {};
     let gameName = document.querySelector('.user__subtitle').innerText;
     let playerName = document.querySelector('.user__title').innerText;
-    // let distry0 = imageToVar(document.querySelectorAll('.distry')[0]);
+    let distry0 = {};
+    let distry1 = {};
+    let distry2 = {};
+    let distry3 = {};
+    let distry4 = {};
+    let distry5 = {};
+    let teamAverage = {};
+    let spanungItems = [];
+
+    function spanun() {
+        let rangs = document.querySelectorAll('.rang__item');
+        let graphs = document.querySelectorAll('#graph-slider .swiper-slide .custom-graph.statistic');
+        let customs = document.querySelectorAll('#graph-slider .custom-graph-info');
+        if(spanungItems.length == 0) {
+            rangs.forEach(() => {spanungItems.push({})});
+        };
+        let promAll = Promise.all(Array.from(rangs).map((item, i) => {
+            let prom = domtoimage.toPng(item)
+            .then(function (dataUrl) {
+                var img = new Image();
+                img.src = dataUrl;
+                spanungItems[i]['rang'] = img;
+
+            })
+            .catch(function (error) {
+                console.error('oops, something went wrong!', error);
+            });
+            return prom
+        }))
+        .then(()=>{
+            return Promise.all(Array.from(graphs).map((item, i) => {
+                let prom = domtoimage.toPng(item)
+                .then(function (dataUrl) {
+                    var img = new Image();
+                    img.src = dataUrl;
+                    spanungItems[i]['graph'] = img;
+
+                })
+                .catch(function (error) {
+                    console.error('oops, something went wrong!', error);
+                });
+                return prom
+        }))
+        })
+        .then(()=> {
+            return Promise.all(Array.from(customs).map((item, i) => {
+                let margin = window.getComputedStyle(item)['margin-left'];
+                item.style['margin'] = '0';
+                let prom = domtoimage.toPng(item)
+                .then(function (dataUrl) {
+                    var img = new Image();
+                    img.src = dataUrl;
+                    spanungItems[i]['custom'] = img;
+                    return item
+
+                })
+                .then(function(item) {
+
+                    item.style['margin'] = '0' + ' ' + margin;
+                })
+                .catch(function (error) {
+                    console.error('oops, something went wrong!', error);
+                });
+                return prom
+        }))
+        })
+        return promAll
+    }
+
+
+    function lorem() {
+        let lorem = `"On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains."`
+        let feed1 = document.querySelectorAll('.feedback-1');
+        let feed2 = document.querySelectorAll('.feedback-2');
+        let feed3 = document.querySelectorAll('.feedback-3');
+        feed1.forEach((item)=> {item.innerText = lorem})
+        feed2.forEach((item)=> {item.innerText = lorem})
+        feed3.forEach((item)=> {item.innerText = lorem})
+    }
+
+    function addPageWithHead(jsPDFinstance ,pageType) {
+        jsPDFinstance.addPage('a4', pageType);
+        jsPDFinstance.setFont('Helvetica', "bold");
+        jsPDFinstance.setDrawColor(81,206,236);
+        jsPDFinstance.setFillColor(81,206,236);
+        jsPDFinstance.rect(0,0,650,100,"F");
+        jsPDFinstance.addImage(titleIcon, 'png', 50, 40);
+        jsPDFinstance.addImage(avatar, 'png', 230, 40);
+        jsPDFinstance.setFontSize(18);
+        jsPDFinstance.text(playerName, 270, 60);
+        jsPDFinstance.text(gameName, 270, 40);
+    }
+
+    function getPdf() {
+        document.querySelector('.windows8').style['display'] = 'block';
+        collectImages()
+        .then(()=> {
+            // lorem();
+            addTeamPotential();
+            addFeedback();
+            addPsycho();
+            addSpanung();
+            doc.save();
+            document.querySelector('.windows8').style['display'] = 'none';
+        })
+
+    }
+
+    function addTeamPotential() {
+        let pageData = {
+            currentCord:120,
+        };
+        let pageType = '';
+        let textMaxWidth = 0;
+        let ballsStart = 0;
+        let graphWidth = 0;
+        if (window.innerWidth < 1200) {
+            pageType = 'portrait';
+            textMaxWidth = 380;
+            ballsStart = 160;
+            graphWidth = 350;
+        }
+        if (window.innerWidth > 1200) {
+            pageType = 'landscape';
+            textMaxWidth = 580;
+            ballsStart = 230;
+            graphWidth = 580;
+        }
+
+
+        addPageWithHead(doc, pageType);
+        doc.setFont('Helvetica', "bold");
+        doc.setFontSize(18);
+        addText(doc, pageData, textArrayer(doc, mainH1, textMaxWidth));
+        doc.setFontSize(16);
+        addText(doc, pageData, textArrayer(doc, mainH3, textMaxWidth));
+        doc.setFont('Helvetica', "normal");
+        doc.setFontSize(12);
+        addText(doc, pageData, textArrayer(doc, mainP, textMaxWidth));
+        console.log(pageData.currentCord);
+        doc.addImage(teamThree, 'png', ballsStart, pageData.currentCord, 200, 200*zoomLvl(teamThree));
+        pageData.currentCord += 200*zoomLvl(teamThree);
+        console.log(pageData.currentCord);
+        doc.addImage(teamGraph, 'png', 30, pageData.currentCord, graphWidth, graphWidth*zoomLvl(teamGraph));
+        doc.deletePage(1);
+
+
+
+    }
+
+    function addPsycho() {
+        let pageData = {
+            currentCord:120,
+        };
+        addPageWithHead(doc, 'portrait');
+        doc.setFont('Helvetica', "bold");
+        doc.setFontSize(16);
+        addText(doc, pageData, textArrayer(doc, psychoH3, 380));
+        doc.setFont('Helvetica', "normal");
+        doc.setFontSize(12);
+        addText(doc, pageData, textArrayer(doc, psychoP, 380));
+        console.log(pageData.currentCord);
+        if (window.innerWidth < 1050) {
+            doc.addImage(teamAverage, 'png', 30, pageData.currentCord, 350, 350*zoomLvl(teamAverage));
+            pageData.currentCord += 350*zoomLvl(teamAverage)+5;
+            doc.addImage(distry0, 'png', 30, pageData.currentCord, 350, 350*zoomLvl(distry0));
+            pageData.currentCord += 350*zoomLvl(distry0) + 10;
+            doc.addImage(distry1, 'png', 30, pageData.currentCord, 350, 350*zoomLvl(distry1));
+            pageData.currentCord += 350*zoomLvl(distry1) + 10;
+            doc.addImage(distry2, 'png', 30, pageData.currentCord, 350, 350*zoomLvl(distry2));
+            pageData.currentCord += 350*zoomLvl(distry2) + 10;
+            doc.addImage(distry3, 'png', 30, pageData.currentCord, 350, 350*zoomLvl(distry3));
+            pageData.currentCord += 350*zoomLvl(distry3) + 10;
+            doc.addImage(distry4, 'png', 30, pageData.currentCord, 350, 350*zoomLvl(distry4));
+            pageData.currentCord += 350*zoomLvl(distry4) + 10;
+            doc.addImage(distry5, 'png', 30, pageData.currentCord, 350, 350*zoomLvl(distry5));
+            pageData.currentCord += 350*zoomLvl(distry5) + 10;
+        }
+        if (window.innerWidth > 1050) {
+            doc.addImage(distry0, 'png', 30, pageData.currentCord, 180, 200*zoomLvl(distry0));
+            doc.addImage(teamAverage, 'png', 230, pageData.currentCord+20, 180, 200*zoomLvl(teamAverage));
+            pageData.currentCord += 200*zoomLvl(distry0) + 30;
+            doc.addImage(distry1, 'png', 30, pageData.currentCord, 180, 200*zoomLvl(distry1));
+            pageData.currentCord += 200*zoomLvl(distry1) + 10;
+            doc.addImage(distry2, 'png', 30, pageData.currentCord, 180, 200*zoomLvl(distry2));
+            doc.addImage(distry3, 'png', 230, pageData.currentCord, 180, 200*zoomLvl(distry3));
+            pageData.currentCord += 200*zoomLvl(distry2) + 10;
+            doc.addImage(distry4, 'png', 30, pageData.currentCord, 180, 200*zoomLvl(distry4));
+            doc.addImage(distry5, 'png', 230, pageData.currentCord, 180, 200*zoomLvl(distry5));
+        }
+
+
+
+    }
+
+    function addSpanung() {
+        let pageData = {
+            currentCord:120,
+        };
+        if (window.innerWidth < 1200) {
+            addPageWithHead(doc, 'portrait');
+            doc.setFont('Helvetica', "bold");
+            doc.setFontSize(16);
+            addText(doc, pageData, textArrayer(doc, spanunH3, 380));
+            doc.setFont('Helvetica', "normal");
+            doc.setFontSize(12);
+            addText(doc, pageData, textArrayer(doc, spanunP, 380));
+            addText(doc, pageData, textArrayer(doc, spanunUl, 380));
+            spanungItems.forEach((item, i) => {
+                addPageWithHead(doc, 'portrait');
+                pageData.currentCord = 120;
+                doc.addImage(item['rang'], 'png', 30, pageData.currentCord, 100, 100*zoomLvl(item['rang']));
+                doc.addImage(item['custom'], 'png', 150, pageData.currentCord, 200, 200*zoomLvl(item['custom']));
+                pageData.currentCord += 100*zoomLvl(item['rang']) + 10;
+                doc.addImage(item['graph'], 'png', 30, pageData.currentCord, 350, 350*zoomLvl(item['graph']));
+            })
+        }
+        if (window.innerWidth > 1200) {
+            addPageWithHead(doc, 'landscape');
+            doc.setFont('Helvetica', "bold");
+            doc.setFontSize(16);
+            addText(doc, pageData, textArrayer(doc, spanunH3, 500));
+            doc.setFont('Helvetica', "normal");
+            doc.setFontSize(12);
+            addText(doc, pageData, textArrayer(doc, spanunP, 500));
+            addText(doc, pageData, textArrayer(doc, spanunUl, 500));
+            spanungItems.forEach((item, i) => {
+                addPageWithHead(doc, 'landscape');
+                pageData.currentCord = 120;
+                doc.addImage(item['rang'], 'png', 30, pageData.currentCord, 100, 100*zoomLvl(item['rang']));
+                doc.addImage(item['custom'], 'png', 150, pageData.currentCord, 200, 200*zoomLvl(item['custom']));
+                pageData.currentCord += 100*zoomLvl(item['rang']) + 10;
+                doc.addImage(item['graph'], 'png', 30, pageData.currentCord, 580, 580*zoomLvl(item['graph']));
+            })
+        }
+
+
+    }
+
+    function addFeedback() {
+        let pageData = {
+            currentCord:120,
+        };
+        addPageWithHead(doc, 'portrait')
+        doc.setFontSize(16);
+        doc.setFont('Helvetica', 'bold')
+        addText(doc, pageData, textArrayer(doc, feedH3, 380));
+        doc.setFont('Helvetica', 'normal')
+        doc.setFontSize(14);
+        addText(doc, pageData, textArrayer(doc, feedP1, 380));
+
+        for (let item of document.querySelectorAll('.feedback-1')) {
+            doc.setFont('Helvetica', 'normal');
+            doc.setFontSize(10);
+            let textArray = textArrayer(doc, item.innerText, 380);
+            let spaceLeft = 600 - pageData.currentCord - textArray.length * doc.getFontSize();
+            console.log(spaceLeft);
+            if (spaceLeft > 0) {
+                addText(doc, pageData, textArray);
+                console.log(pageData.currentCord);
+            }
+            else {
+                addPageWithHead(doc, 'portrait')
+                pageData.currentCord = 120;
+                doc.setFont('Helvetica', 'normal')
+                doc.setFontSize(10);
+                addText(doc, pageData, textArray);
+                console.log(pageData.currentCord);
+
+            }
+            pageData.currentCord += 10;
+        }
+        pageData.currentCord += 10;
+
+
+        if((600 - pageData.currentCord) > 50 ) {}
+        else {
+            addPageWithHead(doc, 'portrait')
+            pageData.currentCord = 120;
+        }
+
+        doc.setFontSize(14);
+        addText(doc, pageData, textArrayer(doc, feedP2, 380));
+        doc.setFontSize(10);
+
+        for (let item of document.querySelectorAll('.feedback-2')) {
+            doc.setFont('Helvetica', 'normal');
+            doc.setFontSize(10);
+            let textArray = textArrayer(doc, item.innerText, 380);
+            let spaceLeft = 600 - pageData.currentCord - textArray.length * doc.getFontSize();
+            console.log(spaceLeft);
+            if (spaceLeft > 0) {
+                addText(doc, pageData, textArray);
+                console.log(pageData.currentCord);
+            }
+            else {
+                addPageWithHead(doc, 'portrait');
+                pageData.currentCord = 120;
+                doc.setFont('Helvetica', 'normal');
+                doc.setFontSize(10);
+                addText(doc, pageData, textArray);
+                console.log(pageData.currentCord);
+
+            }
+            pageData.currentCord += 10;
+        }
+        pageData.currentCord += 10;
+
+
+        if((600 - pageData.currentCord) > 50 ) {}
+        else {
+            addPageWithHead(doc, 'portrait')
+            pageData.currentCord = 120;
+        }
+
+        doc.setFontSize(14);
+        addText(doc, pageData, textArrayer(doc, feedP3, 380));
+        doc.setFontSize(10);
+
+        for (let item of document.querySelectorAll('.feedback-3')) {
+            doc.setFont('Helvetica', 'normal');
+            doc.setFontSize(10);
+            let textArray = textArrayer(doc, item.innerText, 380);
+            let spaceLeft = 600 - pageData.currentCord - textArray.length * doc.getFontSize();
+            console.log(spaceLeft);
+            if (spaceLeft > 0) {
+                addText(doc, pageData, textArray);
+                console.log(pageData.currentCord);
+            }
+            else {
+                addPageWithHead(doc, 'portrait')
+                pageData.currentCord = 120;
+                doc.setFont('Helvetica', 'normal')
+                doc.setFontSize(10);
+                addText(doc, pageData, textArray);
+                console.log(pageData.currentCord);
+
+            }
+            pageData.currentCord += 10;
+        }
+
+
+    }
+
+    function getClass(obj) {
+      return {}.toString.call(obj).slice(8, -1);
+    }
+
+    function textArrayer(jsPDFinstance ,string, width) {
+        return jsPDFinstance.splitTextToSize(string, width);
+    }
+
+
+    function addText(jsPDFinstance, pageData, text) {
+        console.log(text);
+        jsPDFinstance.text(text, 30, pageData.currentCord);
+        pageData.currentCord += text.length*jsPDFinstance.getFontSize();
+        console.log(pageData.currentCord);
+    }
+
+    function collectImages() {
+        let titleIc = document.querySelector('.header-main__title');
+        if(window.innerWidth < 1200) {
+            titleIc.style['width'] = 'auto';
+        }
+        let teamCust = document.querySelector('.custom-graph-info');
+        let margin = window.getComputedStyle(teamCust)['margin-left'];
+        teamCust.style['margin'] = '0';
+        let teamScore = document.querySelector('.team-average');
+        teamScore.style['margin'] = '0';
+        let prom = Promise.all([
+            imageToVar(document.querySelector('.user').querySelector('img')).then((img)=>{avatar = img;}),
+            imageToVar(titleIc).then((img)=>{
+                titleIcon = img;
+            }),
+            imageToVar(teamCust)
+            .then((img)=>{
+                teamThree = img;
+                teamCust.style['margin'] = '0' + ' ' + margin;
+            }),
+            imageToVar(document.querySelector('.custom-graph.statistic')).then((img)=>{teamGraph = img;}),
+            imageToVar(document.querySelectorAll('.distry')[0]).then((img)=>{distry0 = img}),
+            imageToVar(document.querySelectorAll('.distry')[1]).then((img)=>{distry1 = img}),
+            imageToVar(document.querySelectorAll('.distry')[2]).then((img)=>{distry2 = img}),
+            imageToVar(document.querySelectorAll('.distry')[3]).then((img)=>{distry3 = img}),
+            imageToVar(document.querySelectorAll('.distry')[4]).then((img)=>{distry4 = img}),
+            imageToVar(document.querySelectorAll('.distry')[5]).then((img)=>{distry5 = img}),
+            imageToVar(teamScore).then((img)=>{
+                teamAverage = img;
+                teamScore.style['margin'] = 'auto';
+            })
+            ])
+        .then(()=> {
+            return spanun()
+        })
+        .then(()=>{console.log('done')})
+        return prom
+    }
 
     function imageToVar(selector) {
-        domtoimage.toPng(selector)
-            .then(async function (dataUrl) {
-                var img = await new Image();
+        let prom = domtoimage.toPng(selector)
+            .then(function (dataUrl) {
+                var img = new Image();
                 img.src = dataUrl;
                 return img
             })
             .catch(function (error) {
                 console.error('oops, something went wrong!', error);
             });
+        return prom
     }
 
-    function collectImages() {
-        domtoimage.toPng(document.querySelector('.user').querySelector('img'))
-            .then(function (dataUrl) {
-                var img = new Image();
-                img.src = dataUrl;
-                avatar = img;
 
-            })
-            .catch(function (error) {
-                console.error('oops, something went wrong!', error);
-            });
-
-
-
-        domtoimage.toPng(document.querySelector('.header-main__title'))
+    function temp() {
+        domtoimage.toPng(selector)
             .then(function (dataUrl) {
                 var img = new Image();
                 img.src = dataUrl;
-                titleIcon = img;
-            })
-            .catch(function (error) {
-                console.error('oops, something went wrong!', error);
-            });
-        domtoimage.toPng(document.querySelector('.custom-graph-info'))
-            .then(function (dataUrl) {
-                var img = new Image();
-                img.src = dataUrl;
-                teamThree = img;
-            })
-            .catch(function (error) {
-                console.error('oops, something went wrong!', error);
-            });
-        domtoimage.toPng(document.querySelector('.custom-graph.statistic'))
-            .then(function (dataUrl) {
-                var img = new Image();
-                img.src = dataUrl;
-                teamGraph = img;
-            })
-            .catch(function (error) {
-                console.error('oops, something went wrong!', error);
-            });
-        domtoimage.toPng(document.querySelector('.psychologischer__container'))
-            .then(function (dataUrl) {
-                var img = new Image();
-                img.src = dataUrl;
-                psychoCont = img;
+                document.body.appendChild(img);
             })
             .catch(function (error) {
                 console.error('oops, something went wrong!', error);
@@ -616,62 +1013,12 @@
         return img.height/img.width;
     }
 
-    function getPdf() {
-        doc.setFont('Helvetica', "bold");
-        doc.setDrawColor(81,206,236);
-        doc.setFillColor(81,206,236);
-        doc.rect(0,0,446,100,"F");
-        doc.addImage(titleIcon, 'png', 50, 40);
-        doc.addImage(avatar, 'png', 230, 40);
-        doc.setFontSize(18);
-        doc.text(playerName, 270, 60);
-        doc.text(gameName, 270, 40);
-        doc.text(mainH1, 30, 120);
-        doc.setFontSize(16);
-        doc.text(mainH3, 30, 140);
-        doc.setFont('Helvetica', "normal");
-        doc.setFontSize(12);
-        doc.text(mainP, 30, 155, {maxWidth:380.});
-        doc.addImage(teamThree, 'png', 30, 175, 150, 150*zoomLvl(teamThree));
-        doc.addImage(teamGraph, 'png', 30, 210, 400, 400*zoomLvl(teamGraph));
-
-        doc.addPage('a4', 'portrait');
-        doc.setFontSize(18);
-        doc.setFont('Helvetica', "bold");
-        doc.setDrawColor(81,206,236);
-        doc.setFillColor(81,206,236);
-        doc.rect(0,0,446,100,"F");
-        doc.addImage(titleIcon, 'png', 50, 40);
-        doc.addImage(avatar, 'png', 230, 40);
-        doc.text(playerName, 270, 60);
-        doc.text(gameName, 270, 40);
-        doc.setFont('Helvetica', "bold");
-        doc.setFontSize(16);
-        doc.text(psychoH3, 30, 120);
-        doc.setFont('Helvetica', "normal");
-        doc.setFontSize(12);
-        doc.text(psychoP, 30, 140, {maxWidth:380.});
-        doc.addImage(psychoCont, 'png', 30, 160, 400, 400*zoomLvl(psychoCont));
-        
-        doc.save();
 
 
 
-
-
-        // 
-        // doc.setFontSize(24);
-        // doc.text(mainH1, 20, 50);
-        // doc.setFontSize(20);
-        // doc.text(mainH3, 20, 70);
-        // doc.setFontSize(14);
-        // doc.text(mainP, 20, 90, {maxWidth:400.});
-    }
-
-
-    // document.querySelector('.btn').addEventListener('click', () => { 
-    //     getPdf();
-    // })
+    document.querySelector('#pdf').addEventListener('click', () => { 
+        getPdf();
+    })
 
 
 </script>
