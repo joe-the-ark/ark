@@ -65,5 +65,5 @@ server {
     listen 80;
     server_name www.arks.ch;
     
-    return 302 https://www.arks.ch$request_uri;
+    return 302 https://arks.ch$request_uri;
 }
