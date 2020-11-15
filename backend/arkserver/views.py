@@ -845,7 +845,7 @@ def wartezimmer(request, user):
 
 
     if game.status != 0:
-        return redirect('/')
+        return redirect('/ubung-4/')
     room_member = WaitingRoomMember.objects.filter(game=game,player=user).first()
     room_member.state = 1
     room_member.save()
