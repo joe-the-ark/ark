@@ -843,6 +843,14 @@ def wartezimmer(request, user):
             ubung3_list[uu].save()
             uu += 1
 
+    ubung1_temp = Ubung1.objects.filter(player=user).first()
+    if not ubung1_temp:
+        return redirect(f'/ubung-1/')
+    ubung3_temp = Ubung3.objects.filter(player=user).first()
+    if not ubung3_temp:
+        return redirect(f'/ubung-3/')
+
+
 
     if game.status != 0:
         return redirect('/ubung-4/')
