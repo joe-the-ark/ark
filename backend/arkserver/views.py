@@ -1227,7 +1227,7 @@ def check_ubung5_finish(link):
     # ubung5_player_list = [i.player for i in list(Ubung5.objects.filter(game=game))]
     mem_num = len(mem_list)
     # for i in mem_list:
-    item_num = Ubung5.objects.filter(game=game).count()
+    item_num = len(list(ubung5_list))
     if item_num != (mem_num ** 3):
         return 0
     return 1
