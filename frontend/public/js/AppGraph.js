@@ -109,11 +109,11 @@ class AppGraph {
 
         window.addEventListener('resize', () => {
             setTimeout( () => {
-                // this.render();
-                // this.safeArea();
-                // this.updateDots();
-                // this.isAuto();
-                window.location.reload()
+                this.render();
+                this.safeArea();
+                this.updateDots();
+                this.isAuto();
+                // window.location.reload()
             }, 500)
             
             // setTimeout( ()=> {window.location.reload();}, 500)
