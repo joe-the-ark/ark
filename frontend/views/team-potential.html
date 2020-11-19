@@ -133,31 +133,6 @@
         }
     })
 
-    function check_finish(){
-        if (app1.loading === true){
-            var data_ = {'link': '{{game.link}}'};
-            axios
-                .post(`/api/check_ubung5_finish/`, data_)
-                .then(function(response){
-                    var result = response.data.result;
-                    //console.log('result',result);
-                    if (result === 1){
-                        // everybody finish the ubung-5
-                        window.location.href = '/psychologischer/';
-                    }else if (result === 2){
-                        window.location.href = '/ubung-5/'
-                    }else{
-                        return 
-                    }
-                })
-                .catch(function(error){
-                    console.log(error);
-                })
-        }
-    }
-    check_finish()
-    setInterval("check_finish()",4000);
-
     let data = {{ all_result|safe }};
     let safezoneData = () => {
         let arr = [];
@@ -241,6 +216,39 @@
     //    e.preventDefault();
     //    log(app.getData())
     //});
+
+
+    function sleep (time) {
+        return new Promise((resolve) => setTimeout(resolve, time));
+    }
+
+    function check_finish(){
+        while (1){
+            await sleep(5000).then(() =>{
+                if (app1.loading === true){
+                    var data_ = {'link': '{{game.link}}'};
+                    axios
+                        .post(`/api/check_ubung5_finish/`, data_)
+                        .then(function(response){
+                            var result = response.data.result;
+                            //console.log('result',result);
+                            if (result === 1){
+                                // everybody finish the ubung-5
+                                window.location.href = '/psychologischer/';
+                            }else if (result === 2){
+                                window.location.href = '/ubung-5/'
+                            }else{
+
+                            }
+                        })
+                        .catch(function(error){
+                            console.log(error);
+                        })
+                }
+            })
+        }
+    }
+    check_finish()
 
 </script>
 </body>

@@ -289,97 +289,6 @@
                 }],
             }
         },
-        mounted(){
-            var waiting_post = {"player_id": "{{player_id}}","link":"{{link}}"};
-            axios
-                .post(`/api/waiting_room_active/`,waiting_post)
-                .then(function(response){
-                    var result = response.data.result;
-                    //console.log('result', result);
-                    app.waiting_list_active.splice(0);
-                    var uu = 0;
-                    while (uu < result.length){
-                        app.waiting_list_active.push((result)[uu]);
-                        uu += 1;
-                    }
-                    this.waiting_list_active = result;
-                })
-                .catch(function(error) { // 请求失败处理
-                    console.log(error);
-                });
-            axios
-                .post(`/api/waiting_room_yet/`,waiting_post)
-                .then(function(response){
-                    var result = response.data.result;
-                    //console.log('result', result);
-                    app.waiting_list_yet.splice(0);
-                    var uu = 0;
-                    while (uu < result.length){
-                        app.waiting_list_yet.push((result)[uu]);
-                        uu += 1;
-                    }
-                    this.waiting_list_yet = result;
-                })
-                .catch(function(error) { // 请求失败处理
-                    console.log(error);
-                });
-
-            setInterval(function (){
-                var waiting_post = {"player_id": "{{player_id}}","link":"{{link}}"};
-                axios
-                    .post(`/api/waiting_room_active/`,waiting_post)
-                    .then(function(response){
-                        var result = response.data.result;
-                        //console.log('result', result);
-                        app.waiting_list_active.splice(0);
-                        var uu = 0;
-                        while (uu < result.length){
-                            app.waiting_list_active.push((result)[uu]);
-                            uu += 1;
-                        }
-                        this.waiting_list_active = result;
-                    })
-                    .catch(function(error) { // 请求失败处理
-                        console.log(error);
-                    });
-                axios
-                    .post(`/api/waiting_room_yet/`,waiting_post)
-                    .then(function(response){
-                        var result = response.data.result;
-                        //console.log('result', result);
-                        app.waiting_list_yet.splice(0);
-                        var uu = 0;
-                        while (uu < result.length){
-                            app.waiting_list_yet.push((result)[uu]);
-                            uu += 1;
-                        }
-                        this.waiting_list_yet = result;
-                    })
-                    .catch(function(error) { // 请求失败处理
-                        console.log(error);
-                    });
-            },6000);
-
-            function check_game_start(){
-                var data_ = {'link': '{{link}}'};
-                axios
-                    .post(`/api/waiting_room_game_start/`, data_)
-                    .then(function(response){
-                        var result = response.data.result;
-                        if (result === 1){
-                            window.location.href="/ubung-4/";
-                        }else{
-                            return
-                        }
-                    })
-                    .catch(function(error){
-                        console.log(error);
-                    });
-            }
-            setInterval(check_game_start, 2000);
-
-
-        },
         methods: {
             handleSelect(key, keyPath) {
                 console.log(key, keyPath);
@@ -445,6 +354,82 @@
     function start() {
       document.forms[0].submit();
     }
+
+    function sleep (time) {
+        return new Promise((resolve) => setTimeout(resolve, time));
+    }
+
+    async function get_mem_list(){
+        while (1){
+            var waiting_post = {"player_id": "{{player_id}}","link":"{{link}}"};
+            await sleep(3000).then(() => {
+                axios
+                    .post(`/api/waiting_room_active/`,waiting_post)
+                    .then(function(response){
+                        var result = response.data.result;
+                        //console.log('result', result);
+                        app.waiting_list_active.splice(0);
+                        var uu = 0;
+                        while (uu < result.length){
+                            app.waiting_list_active.push((result)[uu]);
+                            uu += 1;
+                        }
+                        app.waiting_list_active = result;
+
+                        axios
+                            .post(`/api/waiting_room_yet/`,waiting_post)
+                            .then(function(response){
+                                var result = response.data.result;
+                                //console.log('result', result);
+                                app.waiting_list_yet.splice(0);
+                                var uu = 0;
+                                while (uu < result.length){
+                                    app.waiting_list_yet.push((result)[uu]);
+                                    uu += 1;
+                                }
+                                app.waiting_list_yet = result;
+
+                            })
+                            .catch(function(error) { // 请求失败处理
+                                console.log(error);
+                            });
+
+                    })
+                    .catch(function(error) { // 请求失败处理
+                        console.log(error);
+                    });
+            })
+            
+        }
+    }
+
+    async function check_game_start(){
+        while (1){
+            var data_ = {'link': '{{link}}'};
+            await sleep(5000).then(() => {
+                axios
+                    .post(`/api/waiting_room_game_start/`, data_)
+                    .then(function(response){
+                        var result = response.data.result;
+                            if (result === 1){
+                                window.location.href="/ubung-4/";
+                            }else{
+                            }
+                        })
+                    .catch(function(error){
+                        console.log(error);
+                    });
+            })
+        }
+    }  
+
+    get_mem_list()
+    check_game_start()
+
+
+
+
+
 
 
 </script>

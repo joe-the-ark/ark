@@ -481,27 +481,6 @@
         }
     })
 
-    function check_finish(){
-        if (app1.loading === true){
-            var data_ = {'link': '{{game.link}}'}
-            axios
-                .post(`/api/last_stop_check/`, data_)
-                .then(function(response){
-                    var result = response.data.result
-                    if (result === 1){
-                        window.location.href = '/assessment/'
-                    }else{
-                        return
-                    }
-                })
-                .catch(function(error){
-                    console.log(error)
-                })
-        }
-    }
-    check_finish()
-    setInterval("check_finish()", 5000)
-
     // function cardsPainting(unifiedData) {
     //   let collection = document.querySelectorAll('.rang__item');
     //   collection.forEach((item, i) => {
@@ -668,6 +647,33 @@
     //     })
     // })
 
+    function sleep (time) {
+        return new Promise((resolve) => setTimeout(resolve, time));
+    }
+
+    function check_finish(){
+        while (1){
+            await sleep(5000).then(() => {
+                if (app1.loading === true){
+                    var data_ = {'link': '{{game.link}}'}
+                    axios
+                        .post(`/api/last_stop_check/`, data_)
+                        .then(function(response){
+                            var result = response.data.result
+                            if (result === 1){
+                                window.location.href = '/assessment/'
+                            }else{
+                                continue
+                            }
+                        })
+                        .catch(function(error){
+                            console.log(error)
+                        })
+                }
+            })
+        }
+    }
+    check_finish()
 
 
  

@@ -367,7 +367,7 @@
                     .catch(function(error){
                         console.log(error);
                     })
-                refresh = setInterval(this.get_api_data,6000);
+                refresh = setTimeout(this.get_api_data,6000);
 
                 sleep(900).then(() => {
                     that.loading = false;
@@ -376,7 +376,7 @@
         }
     })
 
-    var refresh = setInterval(app.get_api_data,6000);
+    var refresh = setTimeout(app.get_api_data,6000);
 
     {% comment %} function check_tag(){
         var tag_str_list = '';
