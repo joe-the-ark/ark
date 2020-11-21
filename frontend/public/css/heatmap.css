@@ -5,8 +5,8 @@
 .heatmap {
   display: grid;
 
-  grid-template-columns: [lft] minmax(50px, 100px) repeat(3, minmax(50px, 100px)) [prop] 150px [rght] minmax(50px, 100px) ;
-
+/*  grid-template-columns: [lft] minmax(50px, 100px) repeat(3, minmax(50px, 100px)) [prop] 150px [rght] minmax(50px, 100px) ;
+*/
   font-size: 20px;
   color: black;
   padding: 0 calc(50% - (1640px/2 + (15px)));
