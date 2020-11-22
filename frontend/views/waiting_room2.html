@@ -1,0 +1,338 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="icon" href="/static/images/favicon.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
+    <meta name="theme-color" content="#51ceec"/>
+    <meta name="description" content="ARK"/>
+    <title>Waiting-Room-SQUAD</title>
+    <link rel="stylesheet" href="/static/css/app.css">
+    <link rel="stylesheet" href="/static/css/wartezimmer.css">
+
+    <!-- vue cdn  -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- axios cdn -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</head>
+<body>
+<div class="app">
+    <div class="app__head">
+        <header class="header-main container">
+            <div class="header-main__title">
+                <span class="icon-logo"></span>
+                <span>ARK</span>
+            </div>
+            <div class="header-main__user">
+                <div class="user">
+                    <div class="user__subtitle">
+                        {{game.name}}
+                        <span class="icon-link" data-clipboard-text="#link_url"></span>
+                    </div>
+                    <img src="{{avatar}}" alt="boar">
+                    <div class="user__title">
+                        <!-- Vasilisa Kochetkova  -->
+                        {{user.name}}
+                    </div>
+                </div>
+            </div>
+            <div class="header-main__progress">
+                <div class="progress">
+                    <label>Mission 1</label>
+                    <div class="progress__bar">
+                        <div style="width: 20%">20%</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+    <div class="app__body">
+        <div class="container">
+            <main class="screen wartezimmer">
+                <div class="wartezimmer__data">
+                    <h1>
+                        Wartezimmer
+                    </h1>
+                    <p>
+                        Was ermöglicht ein erfolgreiches Zusammenspiel im Team? Die kurze Antwort: Psychologische
+                        Sicherheit! Schau dir für eine Einführung in Psychologische Sicherheit den Clip von Charles
+                        Duhigg an.
+                        <br/>
+                        <br/>
+                        Lade dein Team ein, um spielerisch herauszufinden, wie es um eure Psychologische Sicherheit
+                        steht. Starte richtig im Spiel durch, sobald alle Mitspieler hier im Warteraum sichtbar sind.
+                        Nur wer jetzt mit an Bord ist, kann am Spiel teilnehmen!
+                    </p>
+                </div> 
+                <div class="wartezimmer__thumbnail">
+                    <span class="icon-player"></span>
+                    <iframe src="https://player.vimeo.com/video/459637793" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+<p><a href="https://vimeo.com/459637793">Charles Duhigg Asks What Makes a Great Team</a> from <a href="https://vimeo.com/user123496204">Joachim Maier</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+                </div>
+                <div class="wartezimmer__addition" id="app-1">
+                    <div class="user-connect active" v-for='(value, index) in waiting_list_active'>
+                        <img :src="value.avatar" alt=""/>
+                        <div class="user-connect__name">
+                            [[ value.name ]]
+                        </div>
+                        <div class="user-connect__now">
+                            bereit
+                        </div>
+                    </div>
+
+                    <div class="user-connect" v-for='(value, index) in waiting_list_yet'>
+                        <img :src="value.avatar" alt=""/>
+                        <div class="user-connect__name">
+                            [[ value.name ]]
+                        </div>
+                        <div class="user-connect__now">
+                            bereit
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <form action="#" method="POST" class="form">
+            {% csrf_token %}
+                <div class="center">
+                    <button id='main_btn' type="button" onclick="choosePopup()">
+                        Weiterspielen
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+<script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+<script src="https://unpkg.com/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+
+    //Button remover
+    function buttonRemover() {
+      let initiator = "{{host}}";
+      let user = "{{player_name}}";
+      console.log(initiator, user);
+      let btn = document.querySelector('#main_btn')
+      if (initiator != user) {
+        btn.style.display = 'none'
+      }
+    }
+    buttonRemover();
+
+    // Copy and tooltip
+    new ClipboardJS('.icon-link');
+    tippy('.icon-link', {
+      content: 'Copy to clipboard',
+    });
+    tippy('.icon-link', {
+      trigger: 'click',
+      content: 'Copied',
+    });
+
+    // Link creation
+    // TODO Code bellow Link must be from backend.
+    var temp_link = '{{game.link}}';
+    var url_host = window.location.host;
+    var temp_link_ = url_host + '/link/' + temp_link + '/';
+    document.querySelector('.icon-link').dataset.clipboardText = temp_link_;
+
+    var app = new Vue({
+        delimiters: ['[[', ']]'],
+        el: '#app-1',
+        data() {
+            return {
+                activeIndex: '1',
+                message: 'Hello Vue!',
+                waiting_list_active: [
+                {
+                    'id': -1,
+                    'name': '',
+                    'avatar': '',
+                }],
+                waiting_list_yet:[{
+                    'id': -1,
+                    'name': '',
+                    'avatar': '',
+                }],
+            }
+        },
+        methods: {
+            handleSelect(key, keyPath) {
+                console.log(key, keyPath);
+            },
+        },
+    })
+
+
+    function popupOpen(selector) {
+      console.log('opened', selector);
+      selector.classList.add('open');
+    }
+
+    function popupClose(selector, timeout) {
+      console.log('closed', selector);
+      setTimeout(() => {selector.classList.remove('open')}, timeout);
+
+    }
+
+    function choosePopup() {
+      let userList = document.querySelectorAll('.user-connect');
+      let readyCount = 0;
+      for (let item of userList) {
+        if(item.classList.contains('active')) {
+          readyCount++;
+        }
+      }
+      if (userList.length < 3) {
+        morePlayersNeeded();
+      }
+      else if (userList.length >= 3 && readyCount < 3) {
+        letsWaitMorePlayers();
+      }
+      else if (userList.length >= 3 && readyCount >=3 && userList.length > readyCount){
+        waitOrGo();
+        console.log('waitOrGo')
+      }
+      else if (userList.length == readyCount) {
+        start();
+      }
+    }
+
+    function morePlayersNeeded() {
+      let popup = document.querySelector('#popup_less_players');
+      popupOpen(popup);
+      popupClose(popup, 1500);
+    }
+
+    function letsWaitMorePlayers() {
+      let popup = document.querySelector('#popup_less_ready_players');
+      popupOpen(popup);
+      popupClose(popup, 1500);
+    }
+
+    function waitOrGo() {
+      let popup = document.querySelector('#popup_buttons');
+      popupOpen(popup);
+      let closeBtn = document.querySelector('.modal_button[type=button]')
+      console.log(closeBtn);
+      closeBtn.addEventListener('click', () => {popupClose(popup)})
+    }
+
+    function start() {
+      document.forms[0].submit();
+    }
+
+    function sleep (time) {
+        return new Promise((resolve) => setTimeout(resolve, time));
+    }
+
+    async function get_mem_list(){
+        while (1){
+            var waiting_post = {"player_id": "{{player_id}}","link":"{{link}}"};
+            await sleep(3000).then(() => {
+                axios
+                    .post(`/api/waiting_room2_active/`,waiting_post)
+                    .then(function(response){
+                        var result = response.data.result;
+                        //console.log('result', result);
+                        app.waiting_list_active.splice(0);
+                        var uu = 0;
+                        while (uu < result.length){
+                            app.waiting_list_active.push((result)[uu]);
+                            uu += 1;
+                        }
+                        app.waiting_list_active = result;
+
+                        axios
+                            .post(`/api/waiting_room2_yet/`,waiting_post)
+                            .then(function(response){
+                                var result = response.data.result;
+                                //console.log('result', result);
+                                app.waiting_list_yet.splice(0);
+                                var uu = 0;
+                                while (uu < result.length){
+                                    app.waiting_list_yet.push((result)[uu]);
+                                    uu += 1;
+                                }
+                                app.waiting_list_yet = result;
+
+                            })
+                            .catch(function(error) { // 请求失败处理
+                                console.log(error);
+                            });
+
+                    })
+                    .catch(function(error) { // 请求失败处理
+                        console.log(error);
+                    });
+            })
+            
+        }
+    }
+
+    async function check_game_start(){
+        var uu = 0
+        while (1){
+            if (uu%10 === 9){
+                alert("Connection time out. If you want to continue waiting, please click the button.")
+            }
+            var data_ = {'link': '{{link}}'};
+            await sleep(5000).then(() => {
+                axios
+                    .post(`/api/waiting_room2_game_start/`, data_)
+                    .then(function(response){
+                        var result = response.data.result;
+                            if (result === 1){
+                                window.location.href="/psychologischer/";
+                            }else{
+                                uu += 1
+                                console.log(uu)
+                            }
+                        })
+                    .catch(function(error){
+                        console.log(error);
+                    });
+            })
+        }
+    }  
+
+    get_mem_list()
+    check_game_start()
+
+
+
+
+
+
+
+</script>
+<div id='popup_buttons' class="popup">
+    <div class="popup_body">
+        <div class="popup_content">
+            <form class="popup_form" action="#" method="post">
+              {% csrf_token %}
+              <button class="modal_button" type="submit" id="button" >Weiterspielen mit </br> grünen Spielern</button>
+              <button class="modal_button" type="button" >Auf weitere </br> Mitspieler warten</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div id='popup_less_players' class="popup">
+    <div class="popup_body">
+        <div class="popup_content">
+            Lade Mitspieler ein. Es braucht mindestens 3 um dieses Spiel zu spielen.
+        </div>
+    </div>
+</div>
+<div id='popup_less_ready_players' class="popup">
+    <div class="popup_body">
+        <div class="popup_content">
+            Warte bis mehr Spieler hier im Wartezimmer und damit bereit zum Spiel sind.
+        </div>
+    </div>
+</div>
+</body>
+</html>

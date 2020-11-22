@@ -71,6 +71,9 @@ urlpatterns = [
     path('farewell/',server_views.arche),
     path('heatmap/', server_views.heatmap),
 
+    path('waiting-room2/', server_views.waiting_room2),
+    path('waiting-room3/', server_views.waiting_room3),
+
 
     # path('', restapi.vue()),
     path('result/<str:name>/<str:player>/<str:game_secret>/<str:inviter>/', server_views.result),

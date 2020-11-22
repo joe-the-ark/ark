@@ -506,9 +506,10 @@ def team_potential(request, user):
         # ubung1, ubung3 = span_choose(user.id, link)
         # if not ubung1:
         #     print(111111111111111)
-        ctx['loading'] = 1
-        return render(request, './views/team-potential.html', ctx)
 
+        # ctx['loading'] = 1
+        # return render(request, './views/team-potential.html', ctx)
+        return redirect('/waiting-room2/')
 
 
     return render(request, './views/team-potential.html', ctx)
@@ -642,11 +643,11 @@ def mission_2_ubung_2(request, user):
                 row3 = i['feedback'][2]['text'],
             )
 
-        from .utils import add_laststop
-        add_laststop(user, game)
-        ctx['loading'] = 1
-        return render(request, './views/mission-2-ubung-2.html', ctx)
-        # return redirect('/goodbye/')
+        # from .utils import add_laststop
+        # add_laststop(user, game)
+        # ctx['loading'] = 1
+        # return render(request, './views/mission-2-ubung-2.html', ctx)
+        return redirect('/waiting_room3/')
 
 
     return render(request, './views/mission-2-ubung-2.html', ctx)
@@ -897,6 +898,168 @@ def wartezimmer(request, user):
         #     return redirect('/ubung-4/')
 
     return render(request, './views/wartezimmer.html', ctx)
+
+@user_required
+def waiting_room2(request, user):
+    ctx = {}
+    ctx['game'] = game = Game.objects.filter(link=request.session['link']).first()
+
+    ctx['avatar'] = user.avatar
+    ctx['player_name'] = user.name
+    ctx['player_id'] = user.id
+    ctx['link'] = game.link
+    ctx['host'] = game.creator
+    user_waiting = Waitingroom2.objects.filter(game=game, player=user).first()
+    if user_waiting:
+        pass
+    else:
+        user_waiting = Waitingroom2.objects.create(
+            game = game,
+            player = user,
+        )
+
+    # ubung5 check finish
+    mem_list = [i.player for i in list(WaitingRoomMember.objects.filter(game=game,state=1))]
+    ubung5_list = Ubung5.objects.filter(game=game)
+    mem_num = len(mem_list)
+    item_num = len(list(ubung5_list))
+    if item_num != (mem_num ** 3):
+        return redirect('/ubung-5/')
+
+    # Waitingroom2Start
+    if request.method == 'POST':
+        if user == game.creator:
+            waiting2 = Waitingroom2Start.objects.filter(
+                game = game
+            ).first()
+            if waiting2:
+                waiting2.status = 1
+                waiting2.save()
+            else:
+                Waitingroom2Start.objects.create(
+                    game = game, 
+                    status = 1,
+                )
+            return redirect('/psychologischer/')
+
+    return render(request, './views/waiting_room2.html', ctx)
+
+@api
+def waiting_room2_active(player_id, link):
+    from .models import Player, Game, Waitingroom2
+    game = Game.objects.filter(link=link).first()
+    waiting_room = Waitingroom2.objects.filter(game=game)
+    members_list = [i.player.player_json for i in waiting_room]
+    return members_list
+
+
+@api
+def waiting_room2_yet(player_id, link):
+    game = Game.objects.filter(link=link).first()
+    all_members = game.valid_players
+    waiting_room2 = [i.player for i in Waitingroom2.objects.filter(game=game)]
+    result = []
+    for i in all_members:
+        if i not in waiting_room2:
+            result.append(i)
+    results = [i.player_json for i in result]
+    return results
+
+@api
+def waiting_room2_game_start(link):
+    game = Game.objects.filter(link=link).first()
+    waiting2 = Waitingroom2Start.objects.filter(game=game).first()
+    if waiting2:
+        if waiting2.status == 1:
+            return 1    
+        else:
+            return 0
+    else:
+        return 0
+
+
+@user_required
+def waiting_room3(request, user):
+    ctx = {}
+    ctx['game'] = game = Game.objects.filter(link=request.session['link']).first()
+    ctx['avatar'] = user.avatar
+    ctx['player_name'] = user.name
+    ctx['player_id'] = user.id
+    ctx['link'] = game.link
+    ctx['host'] = game.creator
+
+    user_waiting = Waitingroom3.objects.filter(game=game, player=user).first()
+    if user_waiting:
+        pass
+    else:
+        user_waiting = Waitingroom3.objects.create(
+            game = game,
+            player = user,
+        )
+    
+    # Waitingroom3Start
+    if request.method == 'POST':
+        if user ==  game.creator:
+            waiting3 = Waitingroom3Start.objects.filter(
+                game = game,
+            ).first()
+            if waiting3:
+                waiting3.status = 1
+                waiting3.save()
+            else:
+                Waitingroom3Start.objects.create(
+                    game = game,
+                    status = 1,
+                )
+            return redirect('/assessment/')
+
+    return render(request, './views/waiting_room3.html', ctx)
+
+
+@api
+def waiting_room3_active(player_id, link):
+    from .models import Player, Game, Waitingroom2
+    game = Game.objects.filter(link=link).first()
+    waiting_room = Waitingroom3.objects.filter(game=game)
+    members_list = [i.player.player_json for i in waiting_room]
+    return members_list
+
+
+@api
+def waiting_room3_yet(player_id, link):
+    game = Game.objects.filter(link=link).first()
+    all_members = game.valid_players
+    waiting_room3 = [i.player for i in Waitingroom3.objects.filter(game=game)]
+    result = []
+    for i in all_members:
+        if i not in waiting_room3:
+            result.append(i)
+    results = [i.player_json for i in result]
+    return results
+
+@api
+def waiting_room3_game_start(link):
+    game = Game.objects.filter(link=link).first()
+    waiting3 = Waitingroom3Start.objects.filter(game=game).first()
+    if waiting3:
+        if waiting3.status == 1:
+            return 1    
+        else:
+            return 0
+    else:
+        return 0
+
+@api
+def waiting_room3_active(player_id, link):
+    return 
+
+@api
+def waiting_room3_yet(player_id, link):
+    return 
+
+@api
+def waiting_room3_game_start(link):
+    return 
 
 
 @user_required

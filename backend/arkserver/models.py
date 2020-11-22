@@ -420,6 +420,55 @@ class LastStop(models.Model):
     def __str__(self):
         return f'{self.game}--{self.player}'
 
+class Waitingroom2(models.Model):
+    game = models.ForeignKey(Game, on_delete=models.CASCADE, verbose_name='game')
+    player = models.ForeignKey(Player, on_delete=models.CASCADE, verbose_name='author')
+
+    create_time = models.DateTimeField(auto_now_add=True)
+
+    class Meta(object):
+        verbose_name = verbose_name_plural = 'Waitingroom2'
+
+    def __str__(self):
+        return f"{self.game} --- {self.player}"
+
+
+class Waitingroom2Start(models.Model):
+    game = models.ForeignKey(Game, on_delete=models.CASCADE, verbose_name='game')
+    # 0 is not open, 1 is open
+    status = models.IntegerField(default=0)
+    create_time = models.DateTimeField(auto_now_add=True)
+    
+    class Meta(object):
+        verbose_name = verbose_name_plural = 'Waitingroom2Start'
+    def __str__(self):
+        return f"{self.game} -- {self.status}"
+
+class Waitingroom3(models.Model):
+    game = models.ForeignKey(Game, on_delete=models.CASCADE, verbose_name='game')
+    player = models.ForeignKey(Player, on_delete=models.CASCADE, verbose_name='author')
+
+    create_time = models.DateTimeField(auto_now_add=True)
+
+    class Meta(object):
+        verbose_name = verbose_name_plural = 'Waitingroom2'
+
+    def __str__(self):
+        return f"{self.game} --- {self.player}"
+
+
+class Waitingroom3Start(models.Model):
+    game = models.ForeignKey(Game, on_delete=models.CASCADE, verbose_name='game')
+    # 0 is not open, 1 is open
+    status = models.IntegerField(default=0)
+    create_time = models.DateTimeField(auto_now_add=True)
+
+    class Meta(object):
+        verbose_name = verbose_name_plural = 'Waitingroom2Start'
+    def __str__(self):
+        return f"{self.game} -- {self.status}"
+
+
 
 # class Character(models.Model):
 #     name = models.CharField(max_length=100, verbose_name='scale')

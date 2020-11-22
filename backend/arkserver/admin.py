@@ -21,6 +21,7 @@ admin.site.register(Ubung5, Ubung5Admin)
 admin.site.register(M2Ubung1)
 admin.site.register(M2Ubung2)
 admin.site.register(LastStop)
+admin.site.register(Waitingroom2)
 
 
 
