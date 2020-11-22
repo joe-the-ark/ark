@@ -647,7 +647,7 @@ def mission_2_ubung_2(request, user):
         # add_laststop(user, game)
         # ctx['loading'] = 1
         # return render(request, './views/mission-2-ubung-2.html', ctx)
-        return redirect('/waiting_room3/')
+        return redirect('/waiting-room3/')
 
 
     return render(request, './views/mission-2-ubung-2.html', ctx)
