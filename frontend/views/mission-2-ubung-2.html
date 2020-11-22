@@ -652,7 +652,11 @@
     }
 
     async function check_finish(){
+        var uu = 0
         while (1){
+            if (uu%10 === 9){
+                alert("Connection time out. If you want to continue waiting, please click the button.")
+            }
             await sleep(5000).then(() => {
                 if (app1.loading === true){
                     var data_ = {'link': '{{game.link}}'}
@@ -663,7 +667,8 @@
                             if (result === 1){
                                 window.location.href = '/assessment/'
                             }else{
-
+                                uu += 1
+                                console.log(uu)
                             }
                         })
                         .catch(function(error){
@@ -673,8 +678,8 @@
             })
         }
     }
-    check_finish()
 
+    check_finish()
 
  
 
