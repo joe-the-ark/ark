@@ -23,6 +23,8 @@ https://www.dropbox.com/s/cc6c58ix6zp8mtl/ARK_2_Gameflow.pdf?dl=0
 * [Dr. Joachim Maier, creator of the game](https://www.linkedin.com/in/dr-joachim-maier/)
 * [Some pictures how the Game was developed](https://photos.app.goo.gl/4fHKgDkx9ChjeiuV8)
 ## Videos on Psychological Safety
+* https://vimeo.com/482714127 (Amy Edmondson Creating Psychological Safety at Work)
+* https://vimeo.com/482713162 (Psychological Safety talk with Steven Baert - Novartis - and Amy C. Edmondson - Harvard Business School)
 * https://vimeo.com/459637793 (Charles Duhigg Asks What Makes a Great Team)
 * https://vimeo.com/459639983 (How Google builds the perfect team)
 * https://vimeo.com/459637808 (The Secret To Making Business Teams Successful)
