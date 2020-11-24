@@ -72,18 +72,18 @@
                     </div>
                 </div>
                 <div class="custom-graph-wrapper"></div>
-                <form id="form_" action="#" method="POST" id="auth-form" class="form">
-                {% csrf_token %}
+                {% comment %} <form id="form_" action="#" method="POST" id="auth-form" class="form"> {% endcomment %}
+                
                     <div class="center">
                         {% comment %} <a href="/psychologischer/" class="button" id="button">
                             Weiterspielen
                         </a>  {% endcomment %}
                         <input type="hidden" name="flag" value="">
-                        <button type="submit" id="button">
+                        <button type="submit" id="button" onclick="location.href='/waiting-room2/'">
                             Weiterspielen
                         </button> 
                     </div>
-                </form>
+                {% comment %} </form> {% endcomment %}
             </main>
         </div>
     </div>

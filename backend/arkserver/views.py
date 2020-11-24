@@ -501,15 +501,15 @@ def team_potential(request, user):
     ctx['all_result'] = all_result
     ctx['loading'] = 0
 
-    if request.method == 'POST':
-        from .utils import span_choose
+    # if request.method == 'POST':
+        # from .utils import span_choose
         # ubung1, ubung3 = span_choose(user.id, link)
         # if not ubung1:
         #     print(111111111111111)
 
         # ctx['loading'] = 1
         # return render(request, './views/team-potential.html', ctx)
-        return redirect('/waiting-room2/')
+        # return redirect('/waiting-room2/')
 
 
     return render(request, './views/team-potential.html', ctx)
