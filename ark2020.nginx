@@ -6,6 +6,16 @@ server {
     ssl_certificate /etc/letsencrypt/live/arks.ch/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/arks.ch/privkey.pem;
 
+    gzip on;
+    gzip_buffers 32 4K;
+    gzip_comp_level 6;
+    gzip_min_length 100;
+    gzip_types application/javascript text/css text/xml image/jpeg image/gif image/png;
+    gzip_disable "MSIE [1-6]\.";
+    gzip_vary on;
+
+    client_max_body_size 20m;
+
     location /static {
       root /var/ark2020;
     }
