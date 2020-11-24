@@ -79,7 +79,7 @@
                             Weiterspielen
                         </a>  {% endcomment %}
                         <input type="hidden" name="flag" value="">
-                        <button id="button" onclick="location.href='/waiting-room2/'">
+                        <button id="button" @click="waiting_room">
                             Weiterspielen
                         </button> 
                     </div>
@@ -109,6 +109,11 @@
                 this.loading = true;
             }
         },
+        methods:{
+            waiting_room(){
+                location.href='/waiting-room2/'
+            }
+        }
     })
 
     let data = {{ all_result|safe }};
