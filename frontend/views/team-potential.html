@@ -200,44 +200,6 @@
     //    log(app.getData())
     //});
 
-
-    function sleep (time) {
-        return new Promise((resolve) => setTimeout(resolve, time));
-    }
-
-    async function check_finish(){
-        var uu = 0
-        while (1){
-            if (uu%10 === 9){
-                alert("Connection time out. If you want to continue waiting, please click the button.")
-            }
-            await sleep(5000).then(() =>{
-                if (app1.loading === true){
-                    var data_ = {'link': '{{game.link}}'};
-                    axios
-                        .post(`/api/check_ubung5_finish/`, data_)
-                        .then(function(response){
-                            var result = response.data.result;
-                            //console.log('result',result);
-                            if (result === 1){
-                                // everybody finish the ubung-5
-                                window.location.href = '/psychologischer/';
-                            }else if (result === 2){
-                                window.location.href = '/ubung-5/'
-                            }else{
-                                uu += 1
-                                console.log(uu)
-                            }
-                        })
-                        .catch(function(error){
-                            console.log(error);
-                        })
-                }
-            })
-        }
-    }
-    check_finish()
-
 </script>
 </body>
 </html>
