@@ -1138,7 +1138,7 @@ def heatmap(request, user):
     main_map = []
     for i in user_list:
         temp = []
-        temp.append(i.ubung5_sum/(user_number ** 2))
+        temp.append(round(i.ubung5_sum/(user_number ** 2), 2))
         temp.append(i.name)
         temp.append(i.avatar)
         iknow = []
@@ -1151,7 +1151,7 @@ def heatmap(request, user):
         temp_ = [i[0] for i in iknow]
         temp.append(round(mean(temp_)))
         main_map.append(temp)
-    print('main_map',main_map)
+    # print('main_map',main_map)
 
 
     row0 = []
