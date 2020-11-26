@@ -72,15 +72,18 @@
                     </div>
                 </div>
                 <div class="custom-graph-wrapper"></div>
-                
+                {% comment %} <form id="form_" action="#" method="POST" id="auth-form" class="form"> {% endcomment %}
+
                     <div class="center">
-                        {% comment %} <a href="/wartezimmer_2/"> {% endcomment %}
-                            <button class="submit" @click="continue_()">
-                                Weiterspielen
-                            </button>
-                        {% comment %} </a> {% endcomment %}
+                        {% comment %} <a href="/psychologischer/" class="button" id="button">
+                            Weiterspielen
+                        </a>  {% endcomment %}
+                        <input type="hidden" name="flag" value="">
+                        <button id="button" @click="waiting_room">
+                            Weiterspielen
+                        </button> 
                     </div>
-                
+                {% comment %} </form> {% endcomment %}                
             </main>
         </div>
     </div>
