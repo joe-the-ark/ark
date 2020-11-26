@@ -37,20 +37,22 @@ urlpatterns = [
     path('ubung-1/',RedirectView.as_view(url='/energy-source')),
     path('ubung-2/',RedirectView.as_view(url='/team-potential')),
     path('ubung-3/',RedirectView.as_view(url='/energy-drainer')),
+    path('wartezimmer/',RedirectView.as_view(url='/waiting-room')),
     path('ubung-4/',RedirectView.as_view(url='/safety-score')),
     path('ubung-5/',RedirectView.as_view(url='/team-tensions')),
     path('team-potential-/',RedirectView.as_view(url='/potential-result')),
+    path('waiting_room2/',RedirectView.as_view(url='/waiting-room2')),
     path('spannungsfelder/',RedirectView.as_view(url='/tensions-result')),
     path('preview-2/',RedirectView.as_view(url='/second-mission')),
     path('mission-2-ubung-1/',RedirectView.as_view(url='/social-sensitivity')),
     path('mission-2-ubung-2/',RedirectView.as_view(url='/development-feedbacks')),
+    path('waiting_room3/',RedirectView.as_view(url='/waiting-room3')),
     path('assessment/',RedirectView.as_view(url='/game-insights')),
     path('goodbye/',server_views.goodbye),
     path('arche/',RedirectView.as_view(url='/farewell')),
-    path('wartezimmer/',RedirectView.as_view(url='/waiting-room')),
     path('psychologischer/',RedirectView.as_view(url='/safety-result')),
     path('logout/', server_views.logout),
-
+      
 
     path('initiate/',server_views.auth),
     path('onboard/',server_views.auth_link),
@@ -62,19 +64,19 @@ urlpatterns = [
     path('safety-score/',server_views.ubung_4),
     path('team-tensions/',server_views.ubung_5),
     path('potential-result/',server_views.team_potential),
+    path('waiting-room2/', server_views.waiting_room2),
     path('safety-result/',server_views.psychologischer),
     path('tensions-result/',server_views.spannungsfelder),
     path('second-mission/',server_views.preview_2),
     path('social-sensitivity/',server_views.mission_2_ubung_1),
     path('development-feedbacks/',server_views.mission_2_ubung_2),
+    path('waiting-room3/', server_views.waiting_room3),
     path('game-insights/',server_views.assessment),
     path('farewell/',server_views.arche),
     path('heatmap/', server_views.heatmap),
 
-    path('waiting-room2/', server_views.waiting_room2),
-    path('waiting-room3/', server_views.waiting_room3),
-
-
+    
+    
     # path('', restapi.vue()),
     path('result/<str:name>/<str:player>/<str:game_secret>/<str:inviter>/', server_views.result),
 
