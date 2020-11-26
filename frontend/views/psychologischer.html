@@ -67,7 +67,7 @@
                     </div>
                     <div class="team-average">
                         <div class="team-average__wrapper">
-                            <div class="team-average__range" style="width: 27%">
+                        <div class="team-average__range" v-bind:style="{ width: widthCalc }">
                                 <div class="team-average__circle">[[ score ]]</div>
                             </div>
                             <div class="team-average__down">5</div>
@@ -138,6 +138,7 @@
 <!-- vue  -->
 <script src="/static/vue.js"></script>
 <script>
+
     var app = new Vue({
         delimiters: ['[[', ']]'],
         el: '#app-1',
@@ -158,6 +159,16 @@
                 console.log(key, keyPath);
             },
         },
+        computed: {
+            widthCalc: function () {
+                if(this.score.length > 1) {
+                    return (100 - Number(this.score.replace(',', ".")) / 5 * 100)+"%"
+                }
+                else {
+                    return (100 - Number(this.score) / 5 * 100)+'%'
+                }
+            }
+        }
     })
     let row = {{row0}};
 </script>

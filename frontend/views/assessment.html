@@ -141,8 +141,8 @@
                     </div>
                     <div class="team-average">
                         <div class="team-average__wrapper">
-                            <div class="team-average__range" style="width: 45%">
-                                <div class="team-average__circle">{{ psy_score }}</div>
+                            <div class="team-average__range" v-bind:style="{width: widthCalc}">
+                                <div class="team-average__circle">[[ score ]]</div>
                             </div>
                             <div class="team-average__down">5</div>
                             <div class="team-average__up">0</div>
@@ -545,6 +545,7 @@
                 row3: {{ row3|safe }},
                 row4: {{ row4|safe }},
                 row5: {{ row5|safe }},
+                score: '{{ psy_score }}',
             }
         },
         methods: {
@@ -552,6 +553,16 @@
                 console.log(key, keyPath);
             },
         },
+        computed: {
+            widthCalc: function () {
+                if (this.score.length > 1) {
+                    return (100 - Number(this.score.replace(',', ".")) / 5 * 100) + "%"
+                }
+                else {
+                    return (100 - Number(this.score) / 5 * 100) + '%'
+                }
+            }
+        }
     })
 
     let doc = new jspdf.jsPDF({

@@ -316,7 +316,7 @@
   left: 0;
   height: 8px;
   width: 100%;
-  background: linear-gradient(89.69deg, #3dff39 50%, #e1f131 50%, #f53131 80%);
+  background: linear-gradient(89.69deg, #3dff39 30%, #e1f131 50%, #f53131 80%);
 }
 .team-average__range {
   position: absolute;
