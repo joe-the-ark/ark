@@ -102,6 +102,7 @@
         },
         created(){
             var loading_ = '{{ loading }}';
+            console.log('loading', loading_)
             if (loading_ === '0'){
                 this.loading = false;
             }else{
