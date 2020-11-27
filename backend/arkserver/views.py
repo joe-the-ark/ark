@@ -899,6 +899,7 @@ def wartezimmer(request, user):
 
     return render(request, './views/wartezimmer.html', ctx)
 
+
 @user_required
 def waiting_room2(request, user):
     ctx = {}
@@ -1048,18 +1049,6 @@ def waiting_room3_game_start(link):
             return 0
     else:
         return 0
-
-@api
-def waiting_room3_active(player_id, link):
-    return 
-
-@api
-def waiting_room3_yet(player_id, link):
-    return 
-
-@api
-def waiting_room3_game_start(link):
-    return 
 
 
 @user_required
