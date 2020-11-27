@@ -1,64 +1,62 @@
-http{
 
-  if ($http_user_agent ~* (Scrapy|Curl|HttpClient)) {
-    return 403;
-  }
-  if ($http_user_agent ~* (python requests)) {
-    return 403;
-  }
-  #forbidden UA
-  if ($http_user_agent ~ "Bytespider|FeedDemon|JikeSpider|Indy Library|Alexa Toolbar|AskTbFXTV|AhrefsBot|CrawlDaddy|CoolpadWebkit|Java|Feedly|UniversalFeedParser|ApacheBench|Microsoft URL Control|Swiftbot|ZmEu|oBot|jaunty|Python-urllib|python-requests|lightDeckReports Bot|YYSpider|DigExt|YisouSpider|HttpClient|MJ12bot|heritrix|EasouSpider|Ezooms|^$" ) {
-    return 403;
-  }
+if ($http_user_agent ~* (Scrapy|Curl|HttpClient)) {
+  return 403;
+}
+if ($http_user_agent ~* (python requests)) {
+  return 403;
+}
+#forbidden UA
+if ($http_user_agent ~ "Bytespider|FeedDemon|JikeSpider|Indy Library|Alexa Toolbar|AskTbFXTV|AhrefsBot|CrawlDaddy|CoolpadWebkit|Java|Feedly|UniversalFeedParser|ApacheBench|Microsoft URL Control|Swiftbot|ZmEu|oBot|jaunty|Python-urllib|python-requests|lightDeckReports Bot|YYSpider|DigExt|YisouSpider|HttpClient|MJ12bot|heritrix|EasouSpider|Ezooms|^$" ) {
+  return 403;
+}
 
-  server {
-      listen 443;
-      server_name arks.ch www.arks.ch;
+server {
+    listen 443;
+    server_name arks.ch www.arks.ch;
 
-      ssl on;
-      ssl_certificate /etc/letsencrypt/live/arks.ch/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/arks.ch/privkey.pem;
+    ssl on;
+    ssl_certificate /etc/letsencrypt/live/arks.ch/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/arks.ch/privkey.pem;
 
-      gzip on;
-      gzip_buffers 32 4K;
-      gzip_comp_level 6;
-      gzip_min_length 100;
-      gzip_types application/javascript text/css text/xml image/jpeg image/gif image/png;
-      gzip_disable "MSIE [1-6]\.";
-      gzip_vary on;
+    gzip on;
+    gzip_buffers 32 4K;
+    gzip_comp_level 6;
+    gzip_min_length 100;
+    gzip_types application/javascript text/css text/xml image/jpeg image/gif image/png;
+    gzip_disable "MSIE [1-6]\.";
+    gzip_vary on;
 
+    client_max_body_size 20m;
+
+    location /static {
+      root /var/ark2020;
+    }
+
+    location /media {
+      root /var/ark2020;
+    }
+
+    location / {
       client_max_body_size 20m;
+      proxy_pass http://127.0.0.1:8888;
+      proxy_http_version 1.1;
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection "upgrade";
 
-      location /static {
-        root /var/ark2020;
-      }
-
-      location /media {
-        root /var/ark2020;
-      }
-
-      location / {
-        client_max_body_size 20m;
-        proxy_pass http://127.0.0.1:8888;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "upgrade";
-
-      }
-  }
+    }
+}
 
 
-  server {
-      listen 80;
-      server_name arks.ch;
-      
-      return 302 https://arks.ch$request_uri;
-  }
+server {
+    listen 80;
+    server_name arks.ch;
+    
+    return 302 https://arks.ch$request_uri;
+}
 
-  server {
-      listen 80;
-      server_name www.arks.ch;
-      
-      return 302 https://arks.ch$request_uri;
-  }
+server {
+    listen 80;
+    server_name www.arks.ch;
+    
+    return 302 https://arks.ch$request_uri;
 }
