@@ -27,7 +27,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # path('api/', meta.urls),
     path('', include(meta.urls)),
-    path('', server_views.index),
+    # path('', server_views.index),
+    path('', server_views.auth),
+
 
     path('auth/',RedirectView.as_view(url='/initiate')),
     path('auth-link/',RedirectView.as_view(url='/onboard')),
