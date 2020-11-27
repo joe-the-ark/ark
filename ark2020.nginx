@@ -2,6 +2,17 @@ server {
     listen 443;
     server_name arks.ch www.arks.ch;
 
+    if ($http_user_agent ~* (Scrapy|Curl|HttpClient)) {
+      return 403;
+    }
+    if ($http_user_agent ~* (python requests)) {
+      return 403;
+    }
+    #forbidden UA
+    if ($http_user_agent ~ "Bytespider|FeedDemon|JikeSpider|Indy Library|Alexa Toolbar|AskTbFXTV|AhrefsBot|CrawlDaddy|CoolpadWebkit|Java|Feedly|UniversalFeedParser|ApacheBench|Microsoft URL Control|Swiftbot|ZmEu|oBot|jaunty|Python-urllib|python-requests|lightDeckReports Bot|YYSpider|DigExt|YisouSpider|HttpClient|MJ12bot|heritrix|EasouSpider|Ezooms|^$" ) {
+      return 403;
+    }
+
     ssl on;
     ssl_certificate /etc/letsencrypt/live/arks.ch/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/arks.ch/privkey.pem;
