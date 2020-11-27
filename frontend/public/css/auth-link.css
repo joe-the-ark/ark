@@ -41,9 +41,11 @@
   font-weight: bold;
 }
 .slider .swiper-button-prev {
+  display: none;
   left: -8px;
 }
 .slider .swiper-button-next {
+  display: none;
   right: -8px;
 }
 .form__field {

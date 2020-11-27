@@ -289,19 +289,33 @@
         }
     })
 
-
-
     var mySwiper = new Swiper('.swiper-container', {
-        slidesPerView: 4,
-        spaceBetween: 40,
+        slidesPerView: 1,
+        spaceBetween: 20,
         grabCursor: true,
         loop: true,
         navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
         },
-    });
+        slideToClickedSlide: true,
+        centeredSlides: true,
+        breakpoints: {
+            320: {
+                slidesPerView: 1,
+            },
+            398: {
+                slidesPerView: 3,
+                spaceBetween: 20,
+            },
+            500: {
+                slidesPerView: 4,
+                spaceBetween: 40,
+            }
 
+        }
+    });
+    
     function check(){
         var temp = app.avatar_list[mySwiper.realIndex];
         $('#avatar').val(temp);
