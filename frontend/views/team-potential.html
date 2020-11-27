@@ -79,9 +79,12 @@
                             Weiterspielen
                         </a>  {% endcomment %}
                         <input type="hidden" name="flag" value="">
-                        <button id="button" @click="waiting_room">
+                        {% comment %} <button id="button" @click="waiting_room">
                             Weiterspielen
-                        </button> 
+                        </button>  {% endcomment %}
+                        <a href="/waiting-room2/" class="button">
+                            Weiterspielen
+                        </a>
                     </div>
                 {% comment %} </form> {% endcomment %}                
             </main>
@@ -111,7 +114,7 @@
         },
         methods:{
             waiting_room(){
-                window.location.href='/waiting_room2/'
+                window.location.href='/waiting-room2/'
             }
         }
     })
