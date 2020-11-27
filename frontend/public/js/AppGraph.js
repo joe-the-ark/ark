@@ -109,7 +109,7 @@ class AppGraph {
 
         window.addEventListener('resize', () => {
             setTimeout( () => {
-                this.render();
+                // this.render();
                 this.safeArea();
                 this.updateDots();
                 this.isAuto();
@@ -338,6 +338,7 @@ class AppGraph {
                     circle.classList.remove('missed');
                     filter = 90
                 }else{
+                    console.log('circle', circle)
                     circle.querySelector('.value__missed').innerText = value;
                     circle.classList.add('missed');
                     filter = 180
