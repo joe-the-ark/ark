@@ -919,16 +919,17 @@ def waiting_room2(request, user):
             player = user,
         )
 
-    # ubung5 check finish
-    mem_list = [i.player for i in list(WaitingRoomMember.objects.filter(game=game,state=1))]
-    ubung5_list = Ubung5.objects.filter(game=game)
-    mem_num = len(mem_list)
-    item_num = len(list(ubung5_list))
-    if item_num != (mem_num ** 3):
-        return redirect('/ubung-5/')
-
     # Waitingroom2Start
     if request.method == 'POST':
+        
+        # ubung5 check finish
+        mem_list = [i.player for i in list(WaitingRoomMember.objects.filter(game=game,state=1))]
+        ubung5_list = Ubung5.objects.filter(game=game)
+        mem_num = len(mem_list)
+        item_num = len(list(ubung5_list))
+        if item_num != (mem_num ** 3):
+            return redirect('/ubung-5/')
+
         if user == game.creator:
             waiting2 = Waitingroom2Start.objects.filter(
                 game = game
