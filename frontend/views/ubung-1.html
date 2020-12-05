@@ -246,7 +246,12 @@
             },
             add_term: function(){
                 var that = this;
+                var temp = that.text_input
+                temp = temp.replace(/\s*/g,"")
                 if (that.text_input ===  ''){
+                    return;
+                }
+                if (temp === ''){
                     return;
                 }
                 var flag = 0; // test whether the user have already select the term.
