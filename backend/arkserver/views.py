@@ -900,6 +900,18 @@ def wartezimmer(request, user):
     return render(request, './views/wartezimmer.html', ctx)
 
 
+@api
+def check_ubung1_ubung3_blank(user_id):
+    user = Player.objects.filter(id=int(user_id)).first()
+    ubung1 = Ubung1.objects.filter(player=user).first()
+    ubung3 = Ubung3.objects.filter(player=user).first()
+    if not ubung1:
+        return '1'
+    if not ubung3:
+        return '3'
+    return 0
+
+
 @user_required
 def waiting_room2(request, user):
     ctx = {}

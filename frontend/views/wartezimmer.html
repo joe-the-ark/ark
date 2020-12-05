@@ -410,6 +410,7 @@
                 alert("Connection time out. If you want to continue waiting, please click the button.")
             }
             var data_ = {'link': '{{link}}'};
+            var user_ = {'user_id': '{{user.id}}'}
             await sleep(5000).then(() => {
                 axios
                     .post(`/api/waiting_room_game_start/`, data_)
@@ -425,6 +426,21 @@
                     .catch(function(error){
                         console.log(error);
                     });
+
+                axios
+                    .post(`/api/check_ubung1_ubung3_blank/`, user_)
+                    .then(function(response){
+                        var result = response.data.result;
+                        if (result === '1'){
+                            window.location.href = '/ubung-1/'
+                        }
+                        if (result === '3'){
+                            window.location.href = '/ubung-3/'
+                        }
+                    })
+                    .catch(function(error){
+                        console.log(error)
+                    })
             })
         }
     }  
