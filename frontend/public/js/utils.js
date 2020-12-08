@@ -1,11 +1,9 @@
 function traitArray(json_list) {
   let arr = new Set();
-  // console.log('traitArray start');
   json_list.forEach((item) => {
     arr.add(item.value)
   })
   let result = Array.from(arr);
-  // console.log('traitArray result:', result);
   return(result)
 }
 
@@ -20,9 +18,6 @@ function nameArray(json) {
 
 function arrayForGraph(json, user) {
     let arr = [];
-    // console.log('arrayForGraph start');
-    // console.log('json', json);
-    // console.log('user', user);
     for (let item of json) {
         tempObj = {};
 
@@ -35,14 +30,10 @@ function arrayForGraph(json, user) {
             arr.push(tempObj);
         }
     }
-    // console.log('arrayForGraph - result:', arr)
     return arr
 }
 
 function arrayGraphModifier(item, user, modify) {
-  // console.log('arrayGraphModifier start');
-  // console.log('item', item);
-  // console.log('user', user);
   const {name, avatar, status, statusSide, value} = item;
   
     if(modify) {
@@ -75,14 +66,12 @@ function arrayGraphModifier(item, user, modify) {
 }
 
 function safezoneData(json_list, value) {
-  // console.log('safezoneData start');
   let arr = [];
   for (let item of json_list) {
       if (item.value == value) {
           arr.push(item.statusSide);
       }
   }
-  // console.log('safezoneData result', arr);
   return arr
 
 }
@@ -96,10 +85,7 @@ function arraySum(array) {
 }
 
 function safezone(safezoneData) {
-  // console.log('safezone start');
-  // console.log('data', safezoneData);
   let sum = arraySum(safezoneData);
-  // console.log('sum', sum);
   let median = Math.round(sum/safezoneData.length);
   var low = median - 16;
   var high = median + 16;
@@ -109,7 +95,6 @@ function safezone(safezoneData) {
   if (high > 100) {
       high = 100;
   }
-  // console.log('safezone result:', {'low':low,'high':high, 'median': median})
   return({'low':low,'high':high, 'median': median})
 }
 
@@ -121,7 +106,6 @@ function dataForGraph(json_list, user, modify=true) {
     for(let item of dataRaw) {
       datas.push(arrayGraphModifier(item, user, modify));
     }
-    // datas = dataRaw.map(arrayGraphModifier, user);
     temp = {
   		'data':datas,
   		'labelRange':value.split(' '),
@@ -207,12 +191,9 @@ function nameArray(json) {
 }
 
 function cardsPainting(dataForRange, selectors) {
-  // console.log('cardsPainting start');
-  // console.log('cards data:', dataForRange, selectors);
   selectors.forEach((item, i) => {
     let low = dataForRange[i].low
     let high = dataForRange[i].high
-    // console.log('low-high', low, high);
     let selfInSafe = dataForRange[i].self>low && dataForRange[i].self<high;
     let othersInSafe = dataForRange[i].others>low && dataForRange[i].others<high;
     if (selfInSafe && othersInSafe) {item.classList.add('white__card');}

@@ -109,14 +109,11 @@ class AppGraph {
 
         window.addEventListener('resize', () => {
             setTimeout( () => {
-                // this.render();
                 this.safeArea();
                 this.updateDots();
                 this.isAuto();
-                // window.location.reload()
             }, 500)
             
-            // setTimeout( ()=> {window.location.reload();}, 500)
         });
 
         this.auto ? window.addEventListener('load', () => this.isAuto()) : this.isAuto();
@@ -169,8 +166,6 @@ class AppGraph {
         this.updateDots();
         this.update();
         this.effectDot(item);
-        // console.log(item)
-        // this.dependency(item, index)
     }
 
     removeDot(item, index) {
@@ -329,10 +324,7 @@ class AppGraph {
             let hueRotate = 0;
             if (this.guess.length) {
                 let circle = thumb.querySelector('.custom-graph__item-circle');
-                console.log('circle', circle);
                 let right = this.guess[index].statusSide;
-                //console.log('right', right)
-                console.log('worked');
                 var diff = Math.abs(+value - right)
                 if (diff <= 4){
                     circle.classList.remove('missed');
@@ -343,25 +335,11 @@ class AppGraph {
                     circle.classList.add('missed');
                     filter = 180
                 }
-                //if (value < right) {
-                //    filter = 180 - +value*(100/right);
-                //}
-                //if (value >= right) {
-                //    filter = 80 + (+value-right)*(100/(100-right));
-                //}
             }
             else {
                 filter = 180 - +value;
             }
     
-            // console.log('inputslider', inputSlider);
-            // console.log('thumb', thumb);
-            // console.log('index', index);
-            // console.log(this.data);
-            //console.log('guess', this.guess[index].statusSide);
-            //console.log('value', value)
-            //console.log('index', index)
-
             // For guess part, showing the difference of the guess and the value
             countDot.innerHTML = value;
             if (this.guess.length){
@@ -371,7 +349,6 @@ class AppGraph {
                 }
             }
 
-            // console.log(filter);
             countDot.style.filter = `hue-rotate(-${filter}deg)  saturate(200%)`;
             index !== undefined && this.setDataStatus(index, value);
         }
@@ -395,7 +372,6 @@ class AppGraph {
                 const amountMax = amount < 0 ? amount * -1 : amount;
                 countSide.setAttribute('data-dependency', amountMax);
                 countSide.style.filter = `hue-rotate(-${amount < 0 ? 180 : 80}deg)  saturate(200%)`;
-                // index !== undefined && this.setDataStatus(index, value);
             }
         }
     }

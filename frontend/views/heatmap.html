@@ -52,15 +52,9 @@
             <div class="corner"></div>
             <div class="corner"></div>
             <div class="heat_value average_by_players" v-for="value in row0">[[ value ]]</div>
-            {% comment %} <div class="heat_value average_by_players">76</div>
-            <div class="heat_value average_by_players">81</div>
-            <div class="heat_value average_by_players">93</div>
-            <div class="heat_value average_by_players">126</div> {% endcomment %}
+
             <div class="corner"></div>
           </div>
-
-
-
           <div class="main-column player" v-for="user in main_map">
             <div class="heat_value over_player">[[ user[0] ]]</div>
             <div class="heat_player">
@@ -68,72 +62,9 @@
               <img :src="user[2]" alt="">
             </div>
             <div v-for="value in user[3]" v-bind:class="{ 'heat_value one': value[1]==='yellow', 'heat_value two': value[1]==='black', 'heat_value three': value[1]==='None', 'heat_value four': value[1]==='red' }">[[ keepTwoDecimal(value[0]) ]]</div>
-            {% comment %} <div class="heat_value one">[[ user[4] ]]</div>
-            <div class="heat_value two">[[ user[5] ]]</div>
-            <div class="heat_value one">[[ user[6] ]]</div>
-            <div class="heat_value three"></div> {% endcomment %}
+
             <div class="heat_value average-by-player">[[ user[4] ]]</div>
           </div>
-
-{% comment %} 
-          <div class="main-column player">
-            <div class="heat_value over_player">300</div>
-            <div class="heat_player">
-              <div class="name">Paula Fernandes</div>
-              <img src="/static/images/avatars/bear.svg" alt="">
-            </div>
-            <div class="heat_value four">103</div>
-            <div class="heat_value two">58</div>
-            <div class="heat_value one">95</div>
-            <div class="heat_value three">73</div>
-            <div class="heat_value one">50</div>
-            <div class="heat_value average-by-player">100</div>
-          </div>
-
-          <div class="main-column player">
-            <div class="heat_value over_player">250</div>
-            <div class="heat_player">
-              <div class="name">Paula Fernandes</div>
-              <img src="/static/images/avatars/bear.svg" alt="">
-            </div>
-            <div class="heat_value one">114</div>
-            <div class="heat_value three">113</div>
-            <div class="heat_value one">125</div>
-            <div class="heat_value four">37</div>
-            <div class="heat_value two">76</div>
-            <div class="heat_value average-by-player">99</div>
-          </div>
-
-          <div class="main-column player">
-            <div class="heat_value over_player">150</div>
-            <div class="heat_player">
-              <div class="name">Paula Fernandes</div>
-              <img src="/static/images/avatars/bear.svg" alt="">
-            </div>
-            <div class="heat_value four">90</div>
-            <div class="heat_value one">99</div>
-            <div class="heat_value three">78</div>
-            <div class="heat_value two">70</div>
-            <div class="heat_value one">67</div>
-            <div class="heat_value average-by-player">64</div>
-          </div>
-
-          <div class="main-column player">
-            <div class="heat_value over_player">100</div>
-            <div class="heat_player">
-              <div class="name">Paula Fernandes</div>
-              <img src="/static/images/avatars/bear.svg" alt="">
-            </div>
-            <div class="heat_value one">183</div>
-            <div class="heat_value two">149</div>
-            <div class="heat_value one">127</div>
-            <div class="heat_value four">68</div>
-            <div class="heat_value three">101</div>
-            <div class="heat_value average-by-player">65</div>
-          </div> {% endcomment %}
-
-
-
           <div class="main-column prop">
             <div class="corner"></div>
             <div class="corner"></div>
@@ -141,35 +72,12 @@
               <p class="property_one">[[ scale[0] ]]</p>
               <p class="property_two">[[ scale[1] ]]</p>
             </div>
-            {% comment %} <div class="property">
-              <p class="property_one">Curative</p>
-              <p class="property_two">Narcissism</p>
-            </div>
-            <div class="property">
-              <p class="property_one">Ambition</p>
-              <p class="property_two">Enforcement</p>
-            </div>
-            <div class="property">
-              <p class="property_one">Victory</p>
-              <p class="property_two">Dominance</p>
-            </div>
-            <div class="property">
-              <p class="property_one">Pain</p>
-              <p class="property_two">Invisibility</p>
-            </div> {% endcomment %}
             <div class="corner"></div>
           </div>
-
           <div class="main-column right">
             <div class="corner"></div>
-            <div class="corner"></div>
-            
-              <div class="heat_value property_value" v-for="value in scale_value_list">[[ value ]]</div>
-              {% comment %} <div class="heat_value property_value">200</div>
-              <div class="heat_value property_value">250</div>
-              <div class="heat_value property_value">300</div>
-              <div class="heat_value property_value">350</div> {% endcomment %}
-            
+            <div class="corner"></div>           
+              <div class="heat_value property_value" v-for="value in scale_value_list">[[ value ]]</div>          
             <div class="corner"></div>
           </div>
 

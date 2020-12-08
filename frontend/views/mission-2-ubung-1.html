@@ -14,9 +14,9 @@
     <!-- vue -->
     <script src="/static/vue.js"></script>
     <!-- element ui -->
-    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="/static/css/element-ui/index.css">
     <!-- element ui -->
-    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script src="/static/libs/element-ui/index.js"></script>
 
 </head>
 <body>
@@ -99,9 +99,6 @@
             })
     }
 
-    //$('#button').click(function(){
-    //    data_submit();
-    //})
     let rightChoice = {{ member_list|safe }};
     let graphData = {{ member_list|safe }}.map(function (item, i) {
         delete item.statusSide;
@@ -114,74 +111,11 @@
     const app = new AppGraph({
         container: ".custom-graph-wrapper",
         range: [0, 100],
-        //labelRange: [0, 99],
         labelRange: ['{{ubung5.ubung1.power}}', '{{ubung5.ubung3.drainer}}'],
         mobile: 1200,
         dependency: true,
         data: graphData,
         guess: rightChoice,
-        {% comment %} [
-            {
-                name: 'Vasilisa Kochetkova',
-                avatar: '/static/images/avatars/boar.svg',
-                statusSide: 50
-            },
-            {
-                name: 'Vasilisa Kochetkova',
-                avatar: '/static/images/avatars/boar.svg',
-                statusSide: 70
-            },
-            {
-                name: 'Vasilisa Kochetkova',
-                avatar: '/static/images/avatars/boar.svg',
-                statusSide: 15
-            },
-            {
-                name: 'Vasilisa Kochetkova',
-                avatar: '/static/images/avatars/boar.svg',
-                statusSide: 33
-            },
-            {
-                name: 'Vasilisa Kochetkova',
-                avatar: '/static/images/avatars/boar.svg',
-                statusSide: 60
-            },
-            {
-                name: 'Vasilisa Kochetkova',
-                avatar: '/static/images/avatars/boar.svg',
-                statusSide: 90
-            },
-            {
-                name: 'Vasilisa Kochetkova',
-                avatar: '/static/images/avatars/boar.svg',
-                statusSide: 40
-            },
-            {
-                name: 'Vasilisa Kochetkova',
-                avatar: '/static/images/avatars/boar.svg',
-                statusSide: 33
-            },
-            {
-                name: 'Vasilisa Kochetkova',
-                avatar: '/static/images/avatars/boar.svg',
-                statusSide: 20
-            },
-            {
-                name: 'Vasilisa Kochetkova',
-                avatar: '/static/images/avatars/boar.svg',
-                statusSide: 10
-            },
-            {
-                name: 'Vasilisa Kochetkova',
-                avatar: '/static/images/avatars/boar.svg',
-                statusSide: 11
-            },
-            {
-                name: 'Vasilisa Kochetkova',
-                avatar: '/static/images/avatars/boar.svg',
-                statusSide: 12
-            },
-        ]{% endcomment %}
     });
 
     document.getElementById('button').addEventListener('click', function (e) {

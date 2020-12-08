@@ -321,26 +321,10 @@
     let newapp = new AppRange({
         container: '#rang-slider',
         innerWrapper: isMobile() ? 'rang swiper-wrapper' : 'rang',
-        // data: data.map(({data}) => {
-        //     const dataSort = data.filter(el => el.name);
-        //     const {name, avatar, statusSide, value} = dataSort[0];
-        //     return {
-        //         name,
-        //         avatar,
-        //         statusSide,
-        //         value,
-        //     }
-        // }),
         data:dataForRange(jsonAll, user),
         callback(item, i) {
             if (!isMobile()) {
                 const itemClickable = document.querySelectorAll('#graph-slider .swiper-pagination-bullet');
-                // itemClickable[i].click();
-                // item.classList.add('active');
-                // bottomValues = document.querySelector('.custom-graph-info').children;
-                // bottomValues[0].innerText = this.data[i].others;
-                // bottomValues[1].innerText = this.data[i].self;
-                // bottomValues[2].innerText = this.data[i].tension;
             }
         },
         update(item) {
@@ -358,115 +342,9 @@
             instance.show();
             setTimeout(()=>{instance.hide()}, 5000);
             $self = this;
-            // let contNum = i;
-            // if (isMobile()) {
-            //     let swipeMob = new Swiper(this.container, {
-            //         slidesPerView: 6,
-            //         spaceBetween: 0,
-            //         centeredSlides: true,
-            //         grabCursor: true,
-            //         loop: false,
-            //         breakpoints: {
-            //             768: {
-            //                 slidesPerView: 3,
-            //                 spaceBetween: 0,
-            //             },
-            //             480: {
-            //                 slidesPerView: 2,
-            //                 spaceBetween: 0,
-            //             },
-            //             320: {
-            //                 slidesPerView: 1,
-            //                 spaceBetween: 0,
-            //             },
-            //         },
-            //         navigation: {
-            //             nextEl: '.rang-button-next',
-            //             prevEl: '.rang-button-prev',
-            //         },
-            //         pagination: {
-            //             el: '.swiper-pagination',
-            //             type:"bullets",
-            //             clickable: true,
-            //         },
-            //         on: {
-            //             slideChange(a, b, c) {
-            //                 // const index = a.realIndex;
-            //                 // const itemClickable = document.querySelectorAll('#graph-slider .swiper-pagination-bullet');
-            //                 // itemClickable[index].click();
-            //                 // bottomValues = document.querySelector('.custom-graph-info').children;
-            //                 // // console.log($self.data);
-            //                 // bottomValues[0].innerText = $self.data[index].others;
-            //                 // bottomValues[1].innerText = $self.data[index].self;
-            //                 // bottomValues[2].innerText = $self.data[index].tension;
-            //             }
-            //         }
-            //     });
-            // }
         }
     });
 
-    // new AppRange({
-    //     container: '#rang-slider',
-    //     innerWrapper: isMobile() ? 'rang swiper-wrapper' : 'rang',
-    //     data: data.map(({data}) => {
-    //         const dataSort = data.filter(el => el.name);
-    //         const {name, avatar, statusSide} = dataSort[0];
-    //         return {
-    //             name,
-    //             avatar,
-    //             statusSide
-    //         }
-    //     }),
-    //     callback(item, i) {
-    //         if (!isMobile()) {
-    //             const itemClickable = document.querySelectorAll('#graph-slider .swiper-pagination-bullet');
-    //             itemClickable[i].click();
-    //             item.classList.add('active');
-    //         }
-    //     },
-    //     update(item) {
-    //         if (!isMobile()) {
-    //             item.classList.remove('active');
-    //         }
-    //     },
-    //     loadEnd() {
-    //         if (isMobile()) {
-    //             new Swiper(this.container, {
-    //                 slidesPerView: 6,
-    //                 spaceBetween: 0,
-    //                 centeredSlides: true,
-    //                 grabCursor: true,
-    //                 loop: true,
-    //                 breakpoints: {
-    //                     768: {
-    //                         slidesPerView: 3,
-    //                         spaceBetween: 0,
-    //                     },
-    //                     480: {
-    //                         slidesPerView: 2,
-    //                         spaceBetween: 0,
-    //                     },
-    //                     320: {
-    //                         slidesPerView: 1,
-    //                         spaceBetween: 0,
-    //                     },
-    //                 },
-    //                 navigation: {
-    //                     nextEl: '.rang-button-next',
-    //                     prevEl: '.rang-button-prev',
-    //                 },
-    //                 on: {
-    //                     slideChange(a, b, c) {
-    //                         const index = a.realIndex;
-    //                         const itemClickable = document.querySelectorAll('#graph-slider .swiper-pagination-bullet');
-    //                         itemClickable[index].click();
-    //                     }
-    //                 }
-    //             });
-    //         }
-    //     }
-    // });
 
 
     dataForGraph(jsonAll, user, modify=false).forEach((item, i) => {
@@ -482,17 +360,6 @@
         });
     });
 
-    // new Swiper('#graph-slider', {
-    //     grabCursor: true,
-    //     navigation: {
-    //         nextEl: '.swiper-button-next',
-    //         prevEl: '.swiper-button-prev',
-    //     },
-    //     pagination: {
-    //         el: '.swiper-pagination',
-    //         clickable: true
-    //     }
-    // });
 
     let dataTeam = {{ team_potential_all_result|safe }};
     let safezoneDataTeam = () => {
@@ -572,7 +439,6 @@
         putOnlyUsedFonts:true,
     });
 
-    // window.getComputedStyle(c)['font-size']  Get font size of the element
 
     let userBar = document.querySelector('.user');
     let mainH1 = document.querySelector('main').querySelector('h1').innerText;

@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/static/css/app.css">
     <link rel="stylesheet" href="/static/css/auth.css">
     <!--  plugins  -->
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/static/css/swiper-bundle.min.css">
 </head>
 <body>
 <div class="app started">
@@ -60,106 +60,7 @@
                                     <div class="swiper-slide" v-for="item in avatar_list" v-bind:key="item.id">
                                         <img :src="item" alt=""/>
                                     </div>
-                                    {% comment %}
-                                    <div class="swiper-slide">
-                                        <img src="/static/images/avatars/bear.svg" alt=""/>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="/static/images/avatars/boar.svg" alt=""/>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="/static/images/avatars/beaver.svg" alt=""/>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="/static/images/avatars/buffalo-1.svg" alt=""/>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="/static/images/avatars/buffalo.svg" alt=""/>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="/static/images/avatars/cat.svg" alt=""/>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="/static/images/avatars/chicken.svg" alt=""/>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="/static/images/avatars/cow.svg" alt=""/>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="/static/images/avatars/crow.svg" alt=""/>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="/static/images/avatars/dog-1.svg" alt=""/>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="/static/images/avatars/dog.svg" alt=""/>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="/static/images/avatars/donkey.svg" alt=""/>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="/static/images/avatars/elephant.svg" alt=""/>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="/static/images/avatars/fox.svg" alt=""/>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="/static/images/avatars/giraffe.svg" alt=""/>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="/static/images/avatars/hedgehog.svg" alt=""/>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="/static/images/avatars/hen.svg" alt=""/>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="/static/images/avatars/hippopotamus.svg" alt=""/>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="/static/images/avatars/horse.svg" alt=""/>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="/static/images/avatars/kangaroo.svg" alt=""/>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="/static/images/avatars/koala.svg" alt=""/>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="/static/images/avatars/leopard.svg" alt=""/>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="/static/images/avatars/lion.svg" alt=""/>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="/static/images/avatars/marten.svg" alt=""/>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="/static/images/avatars/monkey-1.svg" alt=""/>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="/static/images/avatars/monkey.svg" alt=""/>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="/static/images/avatars/mouse.svg" alt=""/>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="/static/images/avatars/octopus.svg" alt=""/>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="/static/images/avatars/ostrich.svg" alt=""/>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="/static/images/avatars/owl.svg" alt=""/>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="/static/images/avatars/panda.svg" alt=""/>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="/static/images/avatars/parrot.svg" alt=""/>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="/static/images/avatars/penguin-1.svg" alt=""/>
-                                    </div> {% endcomment %}
+                                    
                                 </div>
                                 <input id="avatar" type="hidden" name="avatar" value="输入你要传bai递的值">
                                 <div class="swiper-button-prev"></div>
@@ -176,7 +77,6 @@
                         </button>
                         <input id="link" type="hidden" name="link" value="" readonly="readonly"/>
                         <input id="link_url" type="text" name="link_url" value="" readonly="readonly"/>
-                        <!-- <button type="button" class="icon-link" id="icon-link" data-clipboard-target="#link" alt="Copy to clipboard"></button> -->
                         <span id="icon-link" class="icon-link" data-clipboard-target="#link_url">
                         </span>
                     </div>
@@ -190,13 +90,13 @@
         </div>
     </div>
 </div>
-<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
-<script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="/static/popper.min.js"></script>
+<script src="/static/tippy-bundle.umd.min.js"></script>
+<script src="/static/swiper-bundle.min.js"></script>
 <script src="/static/vue.js"></script>
 <script src="/static/axios.min.js"></script>
 <script src="/static/jquery-3.5.1.min.js"></script>
-  <script src="https://unpkg.com/clipboard@2/dist/clipboard.min.js"></script>
+<script src="/static/clipboard.min.js"></script>
 <script>
     // Copy and tooltip
     new ClipboardJS('.icon-link');
@@ -302,11 +202,7 @@
 
     function check(){
         var temp = app.avatar_list[mySwiper.realIndex];
-        //console.log(temp);
         $('#avatar').val(temp);
-        //console.log(mySwiper.realIndex);
-
-        //var game_name = $('#name-des-spiels').val();
     }
     setInterval("check()", 100)
     var a = Date.now();
@@ -315,25 +211,6 @@
     var temp_link_ = url_host + '/link/' + temp_link + '/';
     $('#link').val(temp_link);
     $('#link_url').val(temp_link_);
-
-    //console.log(mySwiper.realIndex);
-    //$('.swiper-button-prev').click(function(){
-    //    console.log(mySwiper.realIndex);
-    //})
-    //$('.swiper-button-next').click(function(){
-    //    console.log(mySwiper.realIndex);
-    //})
-
-    //function check(){
-    //    if(mySwiper.isTouched){
-    //        console.log(mySwiper.realIndex);
-    //
-    //    }else{
-    //        console.log(mySwiper.realIndex);
-    //    }
-    //}
-    //setInterval("check()", 100)
-
 
     window.addEventListener('load', defaultLoad);
     window.addEventListener('resize', defaultLoad);

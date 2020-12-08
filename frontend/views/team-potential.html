@@ -13,9 +13,9 @@
     <link rel="stylesheet" href="/static/css/team-potential.css">
     <script src="/static/vue.js"></script>
     <!-- 引入样式 -->
-    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="/static/css/element-ui/index.css">
     <!-- 引入组件库 -->
-    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script src="/static/libs/element-ui/index.js"></script>
 </head>
 <body>
 <div class="app">
@@ -72,16 +72,11 @@
                     </div>
                 </div>
                 <div class="custom-graph-wrapper"></div>
-                {% comment %} <form id="form_" action="#" method="POST" id="auth-form" class="form"> {% endcomment %}
 
                     <div class="center">
-                        {% comment %} <a href="/psychologischer/" class="button" id="button">
-                            Weiterspielen
-                        </a>  {% endcomment %}
+
                         <input type="hidden" name="flag" value="">
-                        {% comment %} <button id="button" @click="waiting_room">
-                            Weiterspielen
-                        </button>  {% endcomment %}
+
                         <a href="/waiting-room2/" class="button">
                             Weiterspielen
                         </a>
@@ -138,70 +133,12 @@
         mobile: 1200,
         data: data,
         safezoneData: safezoneData(),
-        {% comment %} [
-            {
-               statusSide: 10
-            },
-            {
-               statusSide: 20
-            },
-            {
-               statusSide: 45
-            },
-            {
-               statusSide: 49
-            },
-            {
-                name: 'Vasilisa Kochetkova',
-                avatar: '/static/images/avatars/boar.svg',
-               statusSide: 49
-            },
-            {
-               statusSide: 49
-            },
-            {
-               statusSide: 49
-            },
-            {
-               statusSide: 49
-            },
-            {
-               statusSide: 60
-            },
-            {
-               statusSide: 70
-            },
-            {
-               statusSide: 99
-            },
-        ] {% endcomment %}
     });
 
-    console.log({{ all_result|safe }});
-    {% comment %} var css_change = function(t,s){
-        s = document.createElement('style');
-        s.innerText = t;
-        document.body.appendChild(s);
-    };
-
-    var median = {{ median }};
-    var low = median - 16;
-    var high = median + 16;
-    if (low < 0){
-        low = 0;
-    }
-    if (high > 100){
-        high = 100;
-    }
-    var blue_range = high - low;
-    console.log('median',median,low,high);
-    css_change(`.statistic .custom-graph__items:before{left:${low}%;width:min(${blue_range}%);}`); {% endcomment %}
 
 
-    //document.getElementById('button').addEventListener('click', function (e) {
-    //    e.preventDefault();
-    //    log(app.getData())
-    //});
+
+
 
 </script>
 </body>

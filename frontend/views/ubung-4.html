@@ -13,9 +13,9 @@
 
     <script src="/static/vue.js"></script>
     <!-- 引入样式 -->
-    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="/static/css/element-ui/index.css">
     <!-- 引入组件库 -->
-    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script src="/static/libs/element-ui/index.js"></script>
 </head>
 <body>
 <div class="app">
@@ -78,8 +78,8 @@
         </div>
     </div>
 </div>
-<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
-<script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+<script src="/static/popper.min.js"></script>
+<script src="/static/tippy-bundle.umd.min.js"></script>
 <script src="/static/jquery-3.5.1.min.js"></script>
 <script>
 
@@ -256,7 +256,6 @@
                         // add event listener to every active user banner
                         item.addEventListener('click', function (e) {
                             item.classList.add('outline');
-                            // item = <div class="user-connect active user-connect--to">
                             $self.saveDndItem = item;
                             start = true;
                             $self.saveDndItemIndex = i;
@@ -284,7 +283,6 @@
                         }
                         if (replace) {
                             const toElemnet = e.target;
-                            console.log(e.target)
                             const toElementId = toElemnet.parentNode.getAttribute('data-id');
                             replace = false;
                             if (toElementId) {
@@ -310,14 +308,12 @@
                   usersDistr.forEach((item, i) => {
                     item.addEventListener('click', function (e) {
                         item.classList.add('outline');
-                        console.log(event.target);
                         name = event.target.parentNode.getAttribute('data-tippy-content');
                         $self.saveDndItem = item;
                         $self.saveDndItemIndex = i;
                         whichContainer = event.target.parentNode.parentNode.parentNode.getAttribute('data-id');
                         player = $self.containersTo[whichContainer].items.find(item => item.name == name);
                         replace = true;
-                        console.log(name, $self.saveDndItem, $self.saveDndItemIndex, whichContainer, player)
                     });
                   });
                 }
@@ -377,10 +373,7 @@
                 </div>`;
 
             this.container.innerHTML = renderHtml.split(`,`).join('');
-            // console.log(renderHtml.__proto__);
             this.handlers();
-            // With the above scripts loaded, you can call `tippy()` with a CSS
-            // selector and a `content` prop:
             tippy('[data-tippy-content]');
             tippy(document.querySelectorAll('div[data-tippy-content]'));
         }
@@ -422,43 +415,9 @@
         ],
         data:{{ member_list|safe }},
 
-        {% comment %} data: [
-            {
-                name: 'Constantin Constantinopol',
-                avatar: '/static/images/avatars/boar.svg'
-            },
-            {
-                name: 'Some test',
-                avatar: '/static/images/avatars/boar.svg'
-            },
-            {
-                name: 'Some test123',
-                avatar: '/static/images/avatars/boar.svg'
-            },
-            {
-                name: 'Some test222',
-                avatar: '/static/images/avatars/boar.svg'
-            },
-            {
-                name: 'Some test333',
-                avatar: '/static/images/avatars/boar.svg'
-            },
-            {
-                name: 'Some test444',
-                avatar: '/static/images/avatars/boar.svg'
-            },
-            {
-                name: 'Some test1',
-                avatar: '/static/images/avatars/boar.svg'
-            }
-        ], {% endcomment %}
+
         after: 2
     });
-
-    //document.getElementById('button').addEventListener('click', function (e) {
-    //   e.preventDefault();
-    //   console.log(app.getData())
-    //});
 
     function get_id(in_value){
         var uu = 0;
@@ -477,7 +436,6 @@
         $('#row3').val(get_id(app.containersTo[3].items));
         $('#row4').val(get_id(app.containersTo[4].items));
         $('#row5').val(get_id(app.containersTo[5].items));
-        //console.log(app.containersTo[0].items);
     }
     setInterval("refresh()", 1000);
 

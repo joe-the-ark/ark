@@ -12,9 +12,9 @@
     <link rel="stylesheet" href="/static/css/ubung-5.css">
     <script src="/static/vue.js"></script>
     <!-- 引入样式 -->
-    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="/static/css/element-ui/index.css">
     <!-- 引入组件库 -->
-    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script src="/static/libs/element-ui/index.js"></script>
 </head>
 <body>
 <div class="app">
@@ -57,15 +57,6 @@
                 </p>
                 <div class="custom-graph-wrapper"></div>
 
-                {% comment %} <form action="#" method="POST" class="form">
-                {% csrf_token %}
-                    <div class="center">
-                        <input id="data" type="hidden" name="data" value=""/>
-                        <button type="submit" id="button">
-                            Weiterspielen
-                        </button>
-                    </div>
-                </form> {% endcomment %}
 
                     <div class="center">
                         <input id="data" type="hidden" name="data" value=""/>
@@ -102,7 +93,6 @@
             .then(function(response){
                 var result = response.data.result;
                 if (result === 1){
-                    //window.location.href="/team-potential/";
                     window.location.href="/ubung-5/";
                 }else{
                     return;
@@ -123,8 +113,6 @@
     const app = new AppGraph({
         container: ".custom-graph-wrapper",
         range: [1, 99],
-        //labelRange: ['Low', 'High'],
-        //labelRange: ['Kraftquelle', 'Energiefresser'],
         labelRange: ['{{ubung1.power}}', '{{ubung3.drainer}}'],
 
         mobile: 1200,
@@ -133,7 +121,6 @@
     });
 
     document.getElementById('button').addEventListener('click', function (e) {
-        //e.preventDefault();
         log(app.getData());
     });
 
@@ -141,16 +128,8 @@
         var result = app.getData();
         var st = JSON.stringify(result);
         $('#data').val(st);
-        //console.log(st);
     }
     setInterval("refresh()", 100);
-    // window.addEventListener('resize', () => {
-    //         console.log("resize");
-            
-            
-
-    //     });
-
 </script>
 </body>
 </html>

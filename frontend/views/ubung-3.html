@@ -12,9 +12,9 @@
     <link rel="stylesheet" href="/static/css/ubung-1.css">
     <script src="/static/vue.js"></script>
     <!-- 引入样式 -->
-    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="/static/css/element-ui/index.css">
     <!-- 引入组件库 -->
-    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script src="/static/libs/element-ui/index.js"></script>
 </head>
 <body>
 <div class="app">
@@ -72,43 +72,12 @@
                     <div class="tags">
                         <span :id="item.value" v-bind:class="{ tag: item.state==='tag', 'line-through': item.state !== 'tag'}" v-for="item in term_list" @click="mark( item.value )">[[ item.value ]]</span>
 
-                        {% comment %} <span id="Abhängigkeit" class="tag">Abhängigkeit</span>
-                        <span id="Achtlosigkeit" class="tag" class="line-through">Achtlosigkeit</span>
-                        <span id="Angepasstheit" class="tag">Angepasstheit</span>
-                        <span id="Angst" class="tag">Angst</span>
-                        <span id="Aufgeregtheit" class="tag">Aufgeregtheit</span>
-                        <span id="Desinteresse" class="tag">Desinteresse</span>
-                        <span id="Distanz" class="tag">Distanz</span>
-                        <span id="Egoismus" class="tag">Egoismus</span>
-                        <span id="Ehrlosigkeit" class="tag" class="line-through">Ehrlosigkeit</span>
-                        <span id="Einfallslosigkeit" class="tag">Einfallslosigkeit</span>
-                        <span id="Feindseligkeit" class="tag">Feindseligkeit</span>
-                        <span id="Gehorsam" class="tag">Gehorsam</span>
-                        <span id="Gleichgültigkeit" class="tag">Gleichgültigkeit</span>
-                        <span id="Leistungsschwäche" class="tag" class="line-through">Leistungsschwäche</span>
-                        <span id="Müßiggang" class="tag">Müßiggang</span>
-                        <span id="Neid" class="tag">Neid</span>
-                        <span id="Rangordnung" class="tag">Rangordnung</span>
-                        <span id="Rechthaberei" class="tag">Rechthaberei</span>
-                        <span id="Risiko" class="tag">Risiko</span>
-                        <span id="Sinnlosigkeit" class="tag">Sinnlosigkeit</span>
-                        <span id="Starrheit" class="tag" class="line-through">Starrheit</span>
-                        <span id="Treulosigkeit" class="tag">Treulosigkeit</span>
-                        <span id="Unachtsamkeit" class="tag">Unachtsamkeit</span>
-                        <span id="Unterordnung" class="tag">Unterordnung</span>
-                        <span id="Unzuverlässigkeit" class="tag">Unzuverlässigkeit</span>
-                        <span id="Verbot" class="tag">Verbot</span>
-                        <span id="Verkrampftheit" class="tag">Verkrampftheit</span>
-                        <span id="Versagen" class="tag">Versagen</span>
-                        <span id="Willkür" class="tag">Willkür</span> {% endcomment %}
                     </div>
                     <input id="tags" type="hidden" name="tags" value="输入你要传bai递的值">
                     <div class="center">
-                        {% comment %} <a href="/wartezimmer/"> {% endcomment %}
                             <button class="submit" @click="continue_()">
                                 Weiterspielen
                             </button>
-                        {% comment %} </a> {% endcomment %}
                     </div>
                 </main>
         </div>
@@ -117,10 +86,10 @@
 
 
 <script src="/static/jquery-3.5.1.min.js"></script>
-  <script src="/static/axios.min.js"></script>
-  <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
-  <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
-  <script src="https://unpkg.com/clipboard@2/dist/clipboard.min.js"></script>
+<script src="/static/axios.min.js"></script>
+<script src="/static/popper.min.js"></script>
+<script src="/static/tippy-bundle.umd.min.js"></script>
+<script src="/static/clipboard.min.js"></script>
 
 <script>
     // Copy and tooltip
@@ -278,9 +247,6 @@
                     ii += 1
                 }
 
-                //if (flag === 1){
-                //    return;
-                //}
                 that.term_list.push({
                     'state': 'line-through',
                     'value': that.text_input,
@@ -295,7 +261,6 @@
                     .post(`/api/ubung_3_api/`, data_)
                     .then(function(response){
                         var result = response.data.result;
-                        //console.log(result);
                         that.term_list.splice(0);
                         var uu = 0;
                         while (uu < result.length){
@@ -330,12 +295,9 @@
                 var uu = 0;
                 while (uu < that.term_list.length){
                     if (that.term_list[uu].value == item){
-                        //this.term_list[uu].state = 'line-through';
-                        //break;
                         if (that.term_list[uu].state === 'tag'){
                             if (flag === 1){
                                 that.term_list[already_].state = 'tag';
-                                //return;
                             }
                             that.term_list[uu].state = 'line-through';
                             that.text_input = item;
@@ -361,7 +323,6 @@
                     .post(`/api/ubung_3_api/`, data_)
                     .then(function(response){
                         var result = response.data.result;
-                        //console.log(result);
                         that.term_list.splice(0);
                         var uu = 0;
                         while (uu < result.length){
@@ -382,283 +343,6 @@
     })
 
     var refresh = setTimeout(app.get_api_data,6000);
-
-    {% comment %} function check_tag(){
-        var tag_str_list = '';
-        $('.tag').each(function(i,e){
-            if ($(this).is('.line-through')){
-            }
-            else{
-                tag_str_list = tag_str_list + $(this).text() + ',';
-            }
-        })
-        $('#tags').val(tag_str_list);
-        //console.log(tag_str_list)
-    } {% endcomment %}
-
-    //setInterval("check_tag()", 100);
-
-
-    {% comment %} $('#Abhängigkeit').on("click",function(){
-        if ($('#Abhängigkeit').is('.line-through')){
-            $("#Abhängigkeit").removeClass("line-through");
-        }
-        else{
-            $("#Abhängigkeit").addClass("line-through");
-        }
-    })
-
-    $('#Achtlosigkeit').on("click",function(){
-        if ($('#Achtlosigkeit').is('.line-through')){
-            $("#Achtlosigkeit").removeClass("line-through");
-        }
-        else{
-            $("#Achtlosigkeit").addClass("line-through");
-        }
-    })
-
-    $('#Angepasstheit').on("click",function(){
-        if ($('#Angepasstheit').is('.line-through')){
-            $("#Angepasstheit").removeClass("line-through");
-        }
-        else{
-            $("#Angepasstheit").addClass("line-through");
-        }
-    })
-
-    $('#Angst').on("click",function(){
-        if ($('#Angst').is('.line-through')){
-            $("#Angst").removeClass("line-through");
-        }
-        else{
-            $("#Angst").addClass("line-through");
-        }
-    })
-
-    $('#Aufgeregtheit').on("click",function(){
-        if ($('#Aufgeregtheit').is('.line-through')){
-            $("#Aufgeregtheit").removeClass("line-through");
-        }
-        else{
-            $("#Aufgeregtheit").addClass("line-through");
-        }
-    })
-
-    $('#Desinteresse').on("click",function(){
-        if ($('#Desinteresse').is('.line-through')){
-            $("#Desinteresse").removeClass("line-through");
-        }
-        else{
-            $("#Desinteresse").addClass("line-through");
-        }
-    })
-
-    $('#Distanz').on("click",function(){
-        if ($('#Distanz').is('.line-through')){
-            $("#Distanz").removeClass("line-through");
-        }
-        else{
-            $("#Distanz").addClass("line-through");
-        }
-    })
-
-    $('#Egoismus').on("click",function(){
-        if ($('#Egoismus').is('.line-through')){
-            $("#Egoismus").removeClass("line-through");
-        }
-        else{
-            $("#Egoismus").addClass("line-through");
-        }
-    })
-
-    $('#Ehrlosigkeit').on("click",function(){
-        if ($('#Ehrlosigkeit').is('.line-through')){
-            $("#Ehrlosigkeit").removeClass("line-through");
-        }
-        else{
-            $("#Ehrlosigkeit").addClass("line-through");
-        }
-    })
-
-    $('#Einfallslosigkeit').on("click",function(){
-        if ($('#Einfallslosigkeit').is('.line-through')){
-            $("#Einfallslosigkeit").removeClass("line-through");
-        }
-        else{
-            $("#Einfallslosigkeit").addClass("line-through");
-        }
-    })
-
-    $('#Feindseligkeit').on("click",function(){
-        if ($('#Feindseligkeit').is('.line-through')){
-            $("#Feindseligkeit").removeClass("line-through");
-        }
-        else{
-            $("#Feindseligkeit").addClass("line-through");
-        }
-    })
-
-    $('#Gehorsam').on("click",function(){
-        if ($('#Gehorsam').is('.line-through')){
-            $("#Gehorsam").removeClass("line-through");
-        }
-        else{
-            $("#Gehorsam").addClass("line-through");
-        }
-    })
-
-    $('#Gleichgültigkeit').on("click",function(){
-        if ($('#Gleichgültigkeit').is('.line-through')){
-            $("#Gleichgültigkeit").removeClass("line-through");
-        }
-        else{
-            $("#Gleichgültigkeit").addClass("line-through");
-        }
-    })
-
-    $('#Leistungsschwäche').on("click",function(){
-        if ($('#Leistungsschwäche').is('.line-through')){
-            $("#Leistungsschwäche").removeClass("line-through");
-        }
-        else{
-            $("#Leistungsschwäche").addClass("line-through");
-        }
-    })
-
-    $('#Müßiggang').on("click",function(){
-        if ($('#Müßiggang').is('.line-through')){
-            $("#Müßiggang").removeClass("line-through");
-        }
-        else{
-            $("#Müßiggang").addClass("line-through");
-        }
-    })
-
-    $('#Neid').on("click",function(){
-        if ($('#Neid').is('.line-through')){
-            $("#Neid").removeClass("line-through");
-        }
-        else{
-            $("#Neid").addClass("line-through");
-        }
-    })
-
-    $('#Rangordnung').on("click",function(){
-        if ($('#Rangordnung').is('.line-through')){
-            $("#Rangordnung").removeClass("line-through");
-        }
-        else{
-            $("#Rangordnung").addClass("line-through");
-        }
-    })
-
-    $('#Rechthaberei').on("click",function(){
-        if ($('#Rechthaberei').is('.line-through')){
-            $("#Rechthaberei").removeClass("line-through");
-        }
-        else{
-            $("#Rechthaberei").addClass("line-through");
-        }
-    })
-
-    $('#Risiko').on("click",function(){
-        if ($('#Risiko').is('.line-through')){
-            $("#Risiko").removeClass("line-through");
-        }
-        else{
-            $("#Risiko").addClass("line-through");
-        }
-    })
-
-    $('#Sinnlosigkeit').on("click",function(){
-        if ($('#Sinnlosigkeit').is('.line-through')){
-            $("#Sinnlosigkeit").removeClass("line-through");
-        }
-        else{
-            $("#Sinnlosigkeit").addClass("line-through");
-        }
-    })
-
-    $('#Starrheit').on("click",function(){
-        if ($('#Starrheit').is('.line-through')){
-            $("#Starrheit").removeClass("line-through");
-        }
-        else{
-            $("#Starrheit").addClass("line-through");
-        }
-    })
-
-    $('#Treulosigkeit').on("click",function(){
-        if ($('#Treulosigkeit').is('.line-through')){
-            $("#Treulosigkeit").removeClass("line-through");
-        }
-        else{
-            $("#Treulosigkeit").addClass("line-through");
-        }
-    })
-
-    $('#Unachtsamkeit').on("click",function(){
-        if ($('#Unachtsamkeit').is('.line-through')){
-            $("#Unachtsamkeit").removeClass("line-through");
-        }
-        else{
-            $("#Unachtsamkeit").addClass("line-through");
-        }
-    })
-
-    $('#Unterordnung').on("click",function(){
-        if ($('#Unterordnung').is('.line-through')){
-            $("#Unterordnung").removeClass("line-through");
-        }
-        else{
-            $("#Unterordnung").addClass("line-through");
-        }
-    })
-
-    $('#Unzuverlässigkeit').on("click",function(){
-        if ($('#Unzuverlässigkeit').is('.line-through')){
-            $("#Unzuverlässigkeit").removeClass("line-through");
-        }
-        else{
-            $("#Unzuverlässigkeit").addClass("line-through");
-        }
-    })
-
-    $('#Verbot').on("click",function(){
-        if ($('#Verbot').is('.line-through')){
-            $("#Verbot").removeClass("line-through");
-        }
-        else{
-            $("#Verbot").addClass("line-through");
-        }
-    })
-
-    $('#Verkrampftheit').on("click",function(){
-        if ($('#Verkrampftheit').is('.line-through')){
-            $("#Verkrampftheit").removeClass("line-through");
-        }
-        else{
-            $("#Verkrampftheit").addClass("line-through");
-        }
-    })
-
-    $('#Versagen').on("click",function(){
-        if ($('#Versagen').is('.line-through')){
-            $("#Versagen").removeClass("line-through");
-        }
-        else{
-            $("#Versagen").addClass("line-through");
-        }
-    })
-
-    $('#Willkür').on("click",function(){
-        if ($('#Willkür').is('.line-through')){
-            $("#Willkür").removeClass("line-through");
-        }
-        else{
-            $("#Willkür").addClass("line-through");
-        }
-    }) {% endcomment %}
 
 
 </script>

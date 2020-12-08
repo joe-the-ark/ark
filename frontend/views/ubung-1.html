@@ -13,9 +13,9 @@
     <link rel="stylesheet" href="/static/css/ubung-1.css">
     <script src="/static/vue.js"></script>
     <!-- 引入样式 -->
-    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="/static/css/element-ui/index.css">
     <!-- 引入组件库 -->
-    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script src="/static/libs/element-ui/index.js"></script>
 </head>
 <body>
 <div class="app">
@@ -72,43 +72,12 @@
                     <div class="tags">
                         <span :id="item.value" v-bind:class="{ tag: item.state==='tag', 'line-through': item.state !== 'tag'}" v-for="item in term_list" @click="mark( item.value )">[[ item.value ]]</span>
 
-                        {% comment %} <span id="Aufmüpfigkeit" class="tag">Aufmüpfigkeit</span>
-                        <span id="Autonomie" class="line-through" class="tag">Autonomie</span>
-                        <span id="Dominanz" class="tag">Dominanz</span>
-                        <span id="Effizienz" class="tag">Effizienz</span>
-                        <span id="Ehrgeiz" class="tag">Ehrgeiz</span>
-                        <span id="Einzigartigkeit" class="line-through" class="tag">Einzigartigkeit</span>
-                        <span id="Erfolg" class="tag">Erfolg</span>
-                        <span id="Flexibilität" class="tag">Flexibilität</span>
-                        <span id="Freundschaft" class="tag">Freundschaft</span>
-                        <span id="Gelassenheit" class="line-through" class="tag">Gelassenheit</span>
-                        <span id="Gerechtigkeit" class="tag">Gerechtigkeit</span>
-                        <span id="Geselligkeit" class="tag">Geselligkeit</span>
-                        <span id="Gleichberechtigung" class="tag">Gleichberechtigung</span>
-                        <span id="Großzügigkeit" class="tag">Großzügigkeit</span>
-                        <span id="Imagination" class="tag">Imagination</span>
-                        <span id="Leidenschaft" class="line-through" class="tag">Leidenschaft</span>
-                        <span id="Loyalität" class="tag">Loyalität</span>
-                        <span id="Mut" class="tag">Mut</span>
-                        <span id="Nachhaltigkeit" class="tag">Nachhaltigkeit</span>
-                        <span id="Neugier" class="line-through" class="tag">Neugier</span>
-                        <span id="Offenheit" class="tag">Offenheit</span>
-                        <span id="Sicherheit" class="tag">Sicherheit</span>
-                        <span id="Sinnhaftigkeit" class="tag">Sinnhaftigkeit</span>
-                        <span id="Solidarität" class="line-through" class="tag">Solidarität</span>
-                        <span id="Sorgfalt" class="tag">Sorgfalt</span>
-                        <span id="Vergnügen" class="tag">Vergnügen</span>
-                        <span id="Vertrautheit" class="tag">Vertrautheit</span>
-                        <span id="Würde" class="tag">Würde</span>
-                        <span id="Zuverlässigkeit" class="tag">Zuverlässigkeit</span> {% endcomment %}
                     </div>
                     <input id="tags" type="hidden" name="tags" value="输入你要传bai递的值">
                     <div class="center">
-                        {% comment %} <a href="/ubung-2/"> {% endcomment %}
                             <button class="submit" @click="continue_()">
                                 Weiterspielen
                             </button>
-                        {% comment %} </a> {% endcomment %}
                     </div>
                 </main>
         </div>
@@ -116,11 +85,10 @@
 </div>
 
 <script src="/static/jquery-3.5.1.min.js"></script>
-  <script src="/static/axios.min.js"></script>
-  {% comment %} <script src="/static/vue.js"></script> {% endcomment %}
-  <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
-  <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
-  <script src="https://unpkg.com/clipboard@2/dist/clipboard.min.js"></script>
+<script src="/static/axios.min.js"></script>
+<script src="/static/popper.min.js"></script>
+<script src="/static/tippy-bundle.umd.min.js"></script>
+<script src="/static/clipboard.min.js"></script>
 <script>
 
     // Copy and tooltip
@@ -154,7 +122,6 @@
             keyboard_input: false,
         },
         mounted(){
-            //var data = this.term_list;
             var that = this;
 
             var flag = 0; // test whether the user have already select the term.
@@ -219,7 +186,6 @@
                     .post(`/api/ubung_1_get_data/`, data_)
                     .then(function(response){
                         var result = response.data.result;
-                        //console.log(result);
                         that.term_list.splice(0);
                         var uu = 0;
                         while (uu < result.length){
@@ -278,9 +244,6 @@
                     ii += 1;
                 }
 
-                //if (flag === 1){
-                //    return;
-                //}
                 that.term_list.push({
                     'state': 'line-through',
                     'value': that.text_input,
@@ -295,7 +258,6 @@
                     .post(`/api/ubung_1_api/`, data_)
                     .then(function(response){
                         var result = response.data.result;
-                        //console.log(result);
                         that.term_list.splice(0);
                         var uu = 0;
                         while (uu < result.length){
@@ -330,12 +292,9 @@
                 var uu = 0;
                 while (uu < that.term_list.length){
                     if (that.term_list[uu].value == item){
-                        //this.term_list[uu].state = 'line-through';
-                        //break;
                         if (that.term_list[uu].state === 'tag'){
                             if (flag === 1){
                                 that.term_list[already_].state = 'tag';
-                                //return;
                             }
                             that.term_list[uu].state = 'line-through';
                             that.text_input = item;
@@ -357,13 +316,10 @@
                     'link': '{{game.link}}',
                     'data': that.term_list,
                 };
-                //console.log(that.term_list);
-                //console.log(data_)
                 axios
                     .post(`/api/ubung_1_api/`, data_)
                     .then(function(response){
                         var result = response.data.result;
-                        //console.log(result);
                         that.term_list.splice(0);
                         var uu = 0;
                         while (uu < result.length){
@@ -384,292 +340,6 @@
     })
 
     var refresh = setTimeout(app.get_api_data,6000);
-
-    {% comment %} function check_tag(){
-        var tag_str_list = '';
-        $('.tag').each(function(i,e){
-            if ($(this).is('.line-through')){
-            }
-            else{
-                tag_str_list = tag_str_list + $(this).text() + ',';
-            }
-        })
-        $('#tags').val(tag_str_list);
-        //console.log(tag_str_list)
-    }
-
-    setTimeout("check_tag()", 100); {% endcomment %}
-
-{% comment %}
-    $('#Aufmüpfigkeit').on("click",function(){
-        if ($('#Aufmüpfigkeit').is('.line-through')){
-            $("#Aufmüpfigkeit").removeClass("line-through");
-        }
-        else{
-            $("#Aufmüpfigkeit").addClass("line-through");
-        }
-    })
-
-    $('#Autonomie').on("click",function(){
-        if ($('#Autonomie').is('.line-through')){
-            $("#Autonomie").removeClass("line-through");
-        }
-        else{
-            $("#Autonomie").addClass("line-through");
-        }
-    })
-
-    $('#Dominanz').on("click",function(){
-        if ($('#Dominanz').is('.line-through')){
-            $("#Dominanz").removeClass("line-through");
-        }
-        else{
-            $("#Dominanz").addClass("line-through");
-        }
-    })
-
-    $('#Effizienz').on("click",function(){
-        if ($('#Effizienz').is('.line-through')){
-            $("#Effizienz").removeClass("line-through");
-        }
-        else{
-            $("#Effizienz").addClass("line-through");
-        }
-    })
-
-    $('#Ehrgeiz').on("click",function(){
-        if ($('#Ehrgeiz').is('.line-through')){
-            $("#Ehrgeiz").removeClass("line-through");
-        }
-        else{
-            $("#Ehrgeiz").addClass("line-through");
-        }
-    })
-
-    $('#Einzigartigkeit').on("click",function(){
-        if ($('#Einzigartigkeit').is('.line-through')){
-            $("#Einzigartigkeit").removeClass("line-through");
-        }
-        else{
-            $("#Einzigartigkeit").addClass("line-through");
-        }
-    })
-
-    $('#Erfolg').on("click",function(){
-        if ($('#Erfolg').is('.line-through')){
-            $("#Erfolg").removeClass("line-through");
-        }
-        else{
-            $("#Erfolg").addClass("line-through");
-        }
-    })
-
-    $('#Flexibilität').on("click",function(){
-        if ($('#Flexibilität').is('.line-through')){
-            $("#Flexibilität").removeClass("line-through");
-        }
-        else{
-            $("#Flexibilität").addClass("line-through");
-        }
-    })
-
-    $('#Freundschaft').on("click",function(){
-        if ($('#Freundschaft').is('.line-through')){
-            $("#Freundschaft").removeClass("line-through");
-        }
-        else{
-            $("#Freundschaft").addClass("line-through");
-        }
-    })
-
-    $('#Gelassenheit').on("click",function(){
-        if ($('#Gelassenheit').is('.line-through')){
-            $("#Gelassenheit").removeClass("line-through");
-        }
-        else{
-            $("#Gelassenheit").addClass("line-through");
-        }
-    })
-
-    $('#Gerechtigkeit').on("click",function(){
-        if ($('#Gerechtigkeit').is('.line-through')){
-            $("#Gerechtigkeit").removeClass("line-through");
-        }
-        else{
-            $("#Gerechtigkeit").addClass("line-through");
-        }
-    })
-
-    $('#Geselligkeit').on("click",function(){
-        if ($('#Geselligkeit').is('.line-through')){
-            $("#Geselligkeit").removeClass("line-through");
-        }
-        else{
-            $("#Geselligkeit").addClass("line-through");
-        }
-    })
-
-    $('#Gleichberechtigung').on("click",function(){
-        if ($('#Gleichberechtigung').is('.line-through')){
-            $("#Gleichberechtigung").removeClass("line-through");
-        }
-        else{
-            $("#Gleichberechtigung").addClass("line-through");
-        }
-    })
-
-    $('#Großzügigkeit').on("click",function(){
-        if ($('#Großzügigkeit').is('.line-through')){
-            $("#Großzügigkeit").removeClass("line-through");
-        }
-        else{
-            $("#Großzügigkeit").addClass("line-through");
-        }
-    })
-
-    $('#Imagination').on("click",function(){
-        if ($('#Imagination').is('.line-through')){
-            $("#Imagination").removeClass("line-through");
-        }
-        else{
-            $("#Imagination").addClass("line-through");
-        }
-    })
-
-    $('#Leidenschaft').on("click",function(){
-        if ($('#Leidenschaft').is('.line-through')){
-            $("#Leidenschaft").removeClass("line-through");
-        }
-        else{
-            $("#Leidenschaft").addClass("line-through");
-        }
-    })
-
-    $('#Loyalität').on("click",function(){
-        if ($('#Loyalität').is('.line-through')){
-            $("#Loyalität").removeClass("line-through");
-        }
-        else{
-            $("#Loyalität").addClass("line-through");
-        }
-    })
-
-    $('#Mut').on("click",function(){
-        if ($('#Mut').is('.line-through')){
-            $("#Mut").removeClass("line-through");
-        }
-        else{
-            $("#Mut").addClass("line-through");
-        }
-    })
-
-    $('#Aufrichtigkeit').on("click",function(){
-        if ($('#Aufrichtigkeit').is('.line-through')){
-            $("#Aufrichtigkeit").removeClass("line-through");
-        }
-        else{
-            $("#Aufrichtigkeit").addClass("line-through");
-        }
-    })
-
-    $('#Nachhaltigkeit').on("click",function(){
-        if ($('#Nachhaltigkeit').is('.line-through')){
-            $("#Nachhaltigkeit").removeClass("line-through");
-        }
-        else{
-            $("#Nachhaltigkeit").addClass("line-through");
-        }
-    })
-
-    $('#Neugier').on("click",function(){
-        if ($('#Neugier').is('.line-through')){
-            $("#Neugier").removeClass("line-through");
-        }
-        else{
-            $("#Neugier").addClass("line-through");
-        }
-    })
-
-    $('#Offenheit').on("click",function(){
-        if ($('#Offenheit').is('.line-through')){
-            $("#Offenheit").removeClass("line-through");
-        }
-        else{
-            $("#Offenheit").addClass("line-through");
-        }
-    })
-
-    $('#Sicherheit').on("click",function(){
-        if ($('#Sicherheit').is('.line-through')){
-            $("#Sicherheit").removeClass("line-through");
-        }
-        else{
-            $("#Sicherheit").addClass("line-through");
-        }
-    })
-
-    $('#Sinnhaftigkeit').on("click",function(){
-        if ($('#Sinnhaftigkeit').is('.line-through')){
-            $("#Sinnhaftigkeit").removeClass("line-through");
-        }
-        else{
-            $("#Sinnhaftigkeit").addClass("line-through");
-        }
-    })
-
-    $('#Solidarität').on("click",function(){
-        if ($('#Solidarität').is('.line-through')){
-            $("#Solidarität").removeClass("line-through");
-        }
-        else{
-            $("#Solidarität").addClass("line-through");
-        }
-    })
-
-    $('#Sorgfalt').on("click",function(){
-        if ($('#Sorgfalt').is('.line-through')){
-            $("#Sorgfalt").removeClass("line-through");
-        }
-        else{
-            $("#Sorgfalt").addClass("line-through");
-        }
-    })
-
-    $('#Vergnügen').on("click",function(){
-        if ($('#Vergnügen').is('.line-through')){
-            $("#Vergnügen").removeClass("line-through");
-        }
-        else{
-            $("#Vergnügen").addClass("line-through");
-        }
-    })
-
-    $('#Vertrautheit').on("click",function(){
-        if ($('#Vertrautheit').is('.line-through')){
-            $("#Vertrautheit").removeClass("line-through");
-        }
-        else{
-            $("#Vertrautheit").addClass("line-through");
-        }
-    })
-
-    $('#Würde').on("click",function(){
-        if ($('#Würde').is('.line-through')){
-            $("#Würde").removeClass("line-through");
-        }
-        else{
-            $("#Würde").addClass("line-through");
-        }
-    })
-
-    $('#Zuverlässigkeit').on("click",function(){
-        if ($('#Zuverlässigkeit').is('.line-through')){
-            $("#Zuverlässigkeit").removeClass("line-through");
-        }
-        else{
-            $("#Zuverlässigkeit").addClass("line-through");
-        }
-    }) {% endcomment %}
 
 </script>
 
