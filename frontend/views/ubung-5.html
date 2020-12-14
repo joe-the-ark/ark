@@ -1,135 +1,132 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8"/>
-    <link rel="icon" href="/static/images/favicon.ico"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
-    <meta name="theme-color" content="#51ceec"/>
-    <meta name="description" content="ARK"/>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/static/images/favicon.ico" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
+    />
+    <meta name="theme-color" content="#51ceec" />
+    <meta name="description" content="ARK" />
     <title>Team-Tensions-VOTE-5</title>
-    <link rel="stylesheet" href="/static/css/app.css">
-    <link rel="stylesheet" href="/static/css/ubung-5.css">
+    <link rel="stylesheet" href="/static/css/app.css" />
+    <link rel="stylesheet" href="/static/css/ubung-5.css" />
     <script src="/static/vue.js"></script>
     <!-- 引入样式 -->
-    <link rel="stylesheet" href="/static/css/element-ui/index.css">
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"
+    />
     <!-- 引入组件库 -->
-    <script src="/static/libs/element-ui/index.js"></script>
-</head>
-<body>
-<div class="app">
-    <div class="app__head">
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+  </head>
+  <body>
+    <div class="app">
+      <div class="app__head">
         <header class="header-main container">
-            <div class="header-main__title">
-                <span class="icon-logo"></span>
-                <span>ARK</span>
+          <div class="header-main__title">
+            <span class="icon-logo"></span>
+            <span>ARK</span>
+          </div>
+          <div class="header-main__user">
+            <div class="user">
+              <div class="user__subtitle">{{game.name}}</div>
+              <img src="{{user.avatar}}" alt="" />
+              <div class="user__title">{{user.name}}</div>
             </div>
-            <div class="header-main__user">
-                <div class="user">
-                    <div class="user__subtitle">
-                        {{game.name}}
-                    </div>
-                    <img src="{{user.avatar}}" alt="">
-                    <div class="user__title">
-                        {{user.name}}
-                    </div>
-                </div>
+          </div>
+          <div class="header-main__progress">
+            <div class="progress">
+              <label>Mission 1</label>
+              <div class="progress__bar">
+                <div style="width: 30%">30%</div>
+              </div>
             </div>
-            <div class="header-main__progress">
-                <div class="progress">
-                    <label>Mission 1</label>
-                    <div class="progress__bar">
-                        <div style="width: 30%">30%</div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </header>
-    </div>
-    <div class="app__body">
+      </div>
+      <div class="app__body">
         <div class="container">
-            <main class="screen ubung-5">
-                <h1>
-                    Aufgabe 5: Spannungsfelder einschätzen
-                </h1>
-                <p>
-                    <b>Klicke</b> bitte jede Spielfigur an den Punkt der Skala, der aus deiner Sicht am Besten zum
-                    Verhalten jedes Spielers in für dich wichtigen Alltagssituationen passt.
-                </p>
-                <div class="custom-graph-wrapper"></div>
+          <main class="screen ubung-5">
+            <h1>Aufgabe 5: Spannungsfelder einschätzen</h1>
+            <p>
+              <b>Klicke</b> bitte jede Spielfigur an den Punkt der Skala, der
+              aus deiner Sicht am Besten zum Verhalten jedes Spielers in für
+              dich wichtigen Alltagssituationen passt.
+            </p>
+            <div class="custom-graph-wrapper"></div>
 
-
-                    <div class="center">
-                        <input id="data" type="hidden" name="data" value=""/>
-                        <input type="hidden" name="ubung1_id" value="{{ubung1.id}}">
-                        <input type="hidden" name="ubung3_id" value="{{ubung3.id}}">
-                        <button type="submit" id="button">
-                            Weiterspielen
-                        </button>
-                    </div>
-
-            </main>
+            <div class="center">
+              <input id="data" type="hidden" name="data" value="" />
+              <input type="hidden" name="ubung1_id" value="{{ubung1.id}}" />
+              <input type="hidden" name="ubung3_id" value="{{ubung3.id}}" />
+              <button type="submit" id="button">Weiterspielen</button>
+            </div>
+          </main>
         </div>
+      </div>
     </div>
-</div>
-<script src="/static/js/AppGraph.js"></script>
-<script src="/static/jquery-3.5.1.min.js"></script>
-<script src="/static/axios.min.js"></script>
+    <script src="/static/js/AppGraph.js"></script>
+    <script src="/static/jquery-3.5.1.min.js"></script>
+    <script src="/static/axios.min.js"></script>
 
-<script>
+    <script>
 
 
-    function data_submit(){
-        var data_ = {
-            'link': '{{game.link}}',
-            'user_id': '{{user.id}}',
-            'data': $('#data').val(),
-            'ubung1_id': '{{ubung1.id}}',
-            'ubung3_id': '{{ubung3.id}}',
-        }
-        
-        console.log('data', data_);
-        axios
-            .post(`/api/ubung5_data/`, data_)
-            .then(function(response){
-                var result = response.data.result;
-                if (result === 1){
-                    window.location.href="/ubung-5/";
-                }else{
-                    return;
-                }
-            })
-            .catch(function(error){
-                console.log(error);
-            })
-    }
+      function data_submit(){
+          var data_ = {
+              'link': '{{game.link}}',
+              'user_id': '{{user.id}}',
+              'data': $('#data').val(),
+              'ubung1_id': '{{ubung1.id}}',
+              'ubung3_id': '{{ubung3.id}}',
+          }
 
-    $('#button').click(function(){
-        data_submit();
-        console.log('click');
-    })
+          console.log('data', data_);
+          axios
+              .post(`/api/ubung5_data/`, data_)
+              .then(function(response){
+                  var result = response.data.result;
+                  if (result === 1){
+                      window.location.href="/ubung-5/";
+                  }else{
+                      return;
+                  }
+              })
+              .catch(function(error){
+                  console.log(error);
+              })
+      }
 
-    const {log} = console;
+      $('#button').click(function(){
+          data_submit();
+          console.log('click');
+      })
 
-    const app = new AppGraph({
-        container: ".custom-graph-wrapper",
-        range: [1, 99],
-        labelRange: ['{{ubung1.power}}', '{{ubung3.drainer}}'],
+      const {log} = console;
 
-        mobile: 1200,
-        data: {{ member_list|safe }},
+      const app = new AppGraph({
+          container: ".custom-graph-wrapper",
+          range: [1, 99],
+          labelRange: ['{{ubung1.power}}', '{{ubung3.drainer}}'],
 
-    });
+          mobile: 1200,
+          data: {{ member_list|safe }},
 
-    document.getElementById('button').addEventListener('click', function (e) {
-        log(app.getData());
-    });
+      });
 
-    function refresh(){
-        var result = app.getData();
-        var st = JSON.stringify(result);
-        $('#data').val(st);
-    }
-    setInterval("refresh()", 100);
-</script>
-</body>
+      document.getElementById('button').addEventListener('click', function (e) {
+          log(app.getData());
+      });
+
+      function refresh(){
+          var result = app.getData();
+          var st = JSON.stringify(result);
+          $('#data').val(st);
+      }
+      setInterval("refresh()", 100);
+    </script>
+  </body>
 </html>

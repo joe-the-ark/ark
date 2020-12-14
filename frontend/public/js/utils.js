@@ -144,7 +144,6 @@ function dataForRange(json_list, user)  {
     };
     result.push(temp);
   }
-  console.log('dataForRange result:', result);
   return(result)
 }
 
