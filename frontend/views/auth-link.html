@@ -362,20 +362,20 @@
                                     form_submit.submit()
                                     return
                                 }else{
-                                    alert("The user name should be more than 2 characters");
+                                    alert("The user-name should contain more than 2 characters");
                                     $('#nutzername').val('')
                                     return 
                                 }
  
                             }else{
                                 // have same name
-                                alert("The game name is taken. Please change a new one.");
+                                alert("The game-name is already taken. Please chose another name.");
                                 $('#nutzername').val('');
                                 return 
                             }
                         })
                 }else{
-                    alert("The game is starting. You can't join anymore.");
+                    alert("The game has already started. You can't join anymore.");
                     $('#nutzername').val('');
                 }
             })
