@@ -368,7 +368,7 @@
                         form_submit.submit()
                         return 
                     }else{
-                        alert("The game name and the user name should be more than 2 characters");
+                        alert("The user-name and the game-name should have more than 2 characters");
                         $('#nutzername').val('')
                         $('#name-des-spiels').val('')
                         return 
@@ -377,7 +377,7 @@
 
                 }else{
                     // have same name
-                    alert("The game name is taken. Please change a new one.");
+                    alert("The game-name is already taken. Please chose another name.");
                     $('#name-des-spiels').val('');
                     return
                 }
