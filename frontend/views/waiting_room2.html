@@ -276,7 +276,7 @@
         var uu = 0
         while (1){
             if (uu%10 === 9){
-                alert("Connection time out. If you want to continue waiting, please click the button.")
+                alert("Time-out. Please click, if you are ready to continue.")
             }
             var data_ = {'link': '{{link}}'};
             await sleep(5000).then(() => {
@@ -313,8 +313,8 @@
         <div class="popup_content">
             <form class="popup_form" action="#" method="post">
               {% csrf_token %}
-              <button class="modal_button" type="submit" id="button" >Weiterspielen mit </br> grünen Spielern</button>
-              <button class="modal_button" type="button" >Auf weitere </br> Mitspieler warten</button>
+              <button class="modal_button" type="submit" id="button" >Continue playing with </br> Green players</button>
+              <button class="modal_button" type="button" >Wait for </br> More players</button>
             </form>
         </div>
     </div>
@@ -322,14 +322,14 @@
 <div id='popup_less_players' class="popup">
     <div class="popup_body">
         <div class="popup_content">
-            Lade Mitspieler ein. Es braucht mindestens 3 um dieses Spiel zu spielen.
+            Invite more players! It takes at least 3 to play this game.
         </div>
     </div>
 </div>
 <div id='popup_less_ready_players' class="popup">
     <div class="popup_body">
         <div class="popup_content">
-            Warte bis mehr Spieler hier im Wartezimmer und damit bereit zum Spiel sind.
+            Wait until more players have been arriving here in the waiting room.
         </div>
     </div>
 </div>
