@@ -22,7 +22,7 @@
   pointer-events: none;
 }
 .statistic .custom-graph__items:before {
-  content: " ";
+  content: ' ';
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -135,7 +135,7 @@
   animation-timing-function: ease;
 }
 .custom-graph:not(.statistic) .custom-graph__item:after {
-  content: " ";
+  content: ' ';
   position: absolute;
   top: 0;
   left: 50%;
@@ -146,7 +146,7 @@
   opacity: 0.7;
 }
 .custom-graph__item:before {
-  content: " ";
+  content: ' ';
   background: linear-gradient(to top, #51ceec, transparent);
   position: absolute;
   top: -15px;
@@ -177,7 +177,9 @@
   position: relative;
   z-index: 2;
 }
-.custom-graph:not(.statistic) .custom-graph__item:not(.inactive) .custom-graph__item-foot {
+.custom-graph:not(.statistic)
+  .custom-graph__item:not(.inactive)
+  .custom-graph__item-foot {
   filter: grayscale(100%);
   cursor: pointer;
 }
@@ -258,7 +260,12 @@
 .custom-graph__status {
   width: 4px;
   position: absolute;
-  background: linear-gradient(to top, #F53131 0%, #E1F131 52.91%, #3DFF39 101.58%);
+  background: linear-gradient(
+    to top,
+    #3dff39 0%,
+    #e1f131 52.91%,
+    #f53131 101.58%
+  );
   left: 45px;
   bottom: 0;
   top: 70px;
@@ -289,7 +296,12 @@
     position: relative;
     width: 100%;
     height: 4px;
-    background: linear-gradient(to right, #F53131 0%, #E1F131 52.91%, #3DFF39 101.58%);
+    background: linear-gradient(
+      to right,
+      #f53131 0%,
+      #e1f131 52.91%,
+      #3dff39 101.58%
+    );
     top: 0;
     left: 0;
   }
