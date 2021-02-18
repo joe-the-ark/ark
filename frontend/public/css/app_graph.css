@@ -467,7 +467,7 @@
 }
 
 .custom-graph-info__item.small {
-    color: #ee6331;
+    color: #45fe39;
 }
 
 .custom-graph-info__item.base {
@@ -476,7 +476,7 @@
 }
 
 .custom-graph-info__item.large {
-    color: #45fe39;
+    color: #ee6331;
 }
 
 .custom-graph-info__item:before {
