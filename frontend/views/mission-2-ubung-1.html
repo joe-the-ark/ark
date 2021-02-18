@@ -56,13 +56,16 @@
                 </h1>
                 <p>
                     Bewege alle Spielfiguren um zu erraten, wie deine Mitspieler dich wahrnehmen. Grün gewinnt. Soziale
-                    Sensibilität ist die erste Voraussetzung für psychologische Sicherheit. Bitte erinnere doch auch noch einmal an deine eigene Einschätzung und bewege den Avatar dorthin.
+                    Sensibilität ist die erste Voraussetzung für psychologische Sicherheit.
                 </p>
                 <div class="custom-graph-wrapper"></div>
                 {% comment %} <form action="#" method="POST" class="form">
                 {% csrf_token %} {% endcomment %}
                     <div class="center" id="app-1">
                         <input id="data" type="hidden" name="data" value=""/>
+                 <p>
+                     Bitte erinnere doch auch noch einmal an deine eigene Einschätzung und bewege den Avatar dorthin.
+                 </p>
                         <button type="submit" id="button" @click="popup()">
                             Weiterspielen
                         </button>
