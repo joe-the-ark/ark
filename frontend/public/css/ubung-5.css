@@ -325,7 +325,7 @@
     border-bottom: 0;
     height: auto;
     box-sizing: border-box;
-    border-left: 4px solid var(--ls-alfa-color);
+    border-left: 8px solid var(--ls-alfa-color);
     padding-bottom: 0;
   }
   .statistic .custom-graph__items:before {
