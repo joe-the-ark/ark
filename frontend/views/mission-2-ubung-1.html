@@ -52,10 +52,10 @@
         <div class="container">
             <main class="screen ubung-5">
                 <h1>
-                    Aufgabe 6: Wie steht es um deine soziale Sensibilität
+                    Aufgabe 6: Wie steht es um deine soziale Sensibilität?
                 </h1>
                 <p>
-                    Bewege alle Spielfiguren um zu erraten, wie deine Mitspieler dich wahrnehmen. Grün gewinnt. Soziale
+                    Bewege zuerst deine eigene und dann alle anderen Spielfiguren, um zu erraten, wie deine Mitspieler dich wahrnehmen. Grün gewinnt. Soziale
                     Sensibilität ist die erste Voraussetzung für psychologische Sicherheit.
                 </p>
                 <div class="custom-graph-wrapper"></div>
@@ -63,10 +63,6 @@
                 {% csrf_token %} {% endcomment %}
                     <div class="center" id="app-1">
                         <input id="data" type="hidden" name="data" value=""/>
-                <p>
-                    Bitte erinnere nochmal deine eigene Einschätzung und bewege den Avatar dorthin.
-                </p>
-                <br>
                         <button type="submit" id="button" @click="popup()">
                             Weiterspielen
                         </button>
