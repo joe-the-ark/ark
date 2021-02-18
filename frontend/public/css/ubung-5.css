@@ -11,7 +11,7 @@
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-evenly;
-  border-bottom: 4px solid var(--ls-alfa-color);
+  border-bottom: 8px solid var(--ls-alfa-color);
   align-items: stretch;
   height: min(382px, 30vh);
   padding-bottom: 60px;
