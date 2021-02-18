@@ -214,9 +214,12 @@
                 {% csrf_token %}
                     <p>
                         <b>Weiss</b> = Spannungsfreiheit<br>
-                            <b>Rot</b> = Selbstwahrnehmung außerhalb Safe Zone<br>
-                            <b>Gelb</b> = Wahrnehmung der Anderen außerhalb Safe Zone<br>
-                            <b>Schwarz</b> = Selbst- & Fremdwahrnehmung ausserhalb Safe Zone
+                        <b>Werte über 16</b> = Spannungen im Team<br>
+                        <b>Negatives Vorzeichen</b> = schätzt sich zu positiv ein<br>
+                        <b>Positives Vorzeichen</b> = schätzt sich zu kritisch eine<br>
+                        <b>Rot</b> = Selbstwahrnehmung außerhalb Safe Zone<br>
+                        <b>Gelb</b> = Wahrnehmung durch die anderen außerhalb Safe Zone<br>
+                        <b>Schwarz</b> = Selbst- & Fremdwahrnehmung ausserhalb Safe Zone
                     </p>
                     <div class="center">
                         <input id="data" type="hidden" name="data" value=""/>
