@@ -164,7 +164,7 @@
 
 .custom-graph__item:before {
     content: " ";
-    background: linear-gradient(to top, #51ceec, transparent);
+    background: linear-gradient(to bottom, #51ceec, transparent);
     position: absolute;
     top: -15px;
     left: 0;
@@ -379,7 +379,7 @@
         transform: translateY(-50%);
         height: 100%;
         left: -15px;
-        background: linear-gradient(to right, #51ceec, transparent);
+        background: linear-gradient(to left, #51ceec, transparent);
     }
     .custom-graph:not(.statistic) .custom-graph__item:after {
         top: 50%;
