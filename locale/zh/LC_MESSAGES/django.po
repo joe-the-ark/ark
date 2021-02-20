@@ -27,7 +27,7 @@ msgid ""
 "In deine ersten Mission auf der ARCHE benennst und verstehst du spielerisch "
 "Spannungsfelder, die das Zusammenspiel im Team prägen."
 msgstr ""
-"你在ARCHE的第一个任务是加强团队的社会敏感性"
+"你在ARK的第一个任务是加强团队的社会敏感性"
 "，这是心理安全的两个关键中的第一个。"
 
 #: frontend/views/preview.html:77
