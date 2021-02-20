@@ -1,0 +1,57 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-02-17 19:15+0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: frontend/views/preview.html:68
+msgid "Mission 1: Spannende Spannungen"
+msgstr "任务 1: 社会敏感性"
+
+#: frontend/views/preview.html:74
+msgid ""
+"In deine ersten Mission auf der ARCHE benennst und verstehst du spielerisch "
+"Spannungsfelder, die das Zusammenspiel im Team prägen."
+msgstr ""
+"你在ARCHE的第一个任务是加强团队的社会敏感性"
+"，这是心理安全的两个关键中的第一个。"
+
+#: frontend/views/preview.html:77
+msgid ""
+"Dabei erkennst du, in welchem Verhältnis deine Selbst- zur Fremdwahrnehmung "
+"im Team steht."
+msgstr ""
+"你说出并理解形成团队合作的紧张领域，"
+"看看你的行为是否有平衡或分裂的作用。"
+
+#: frontend/views/preview.html:80
+msgid ""
+"Und siehst dabei, ob dein wahrgenommenes Verhalten im Team eine "
+"ausgleichende oder spaltend Wirkung hat."
+msgstr ""
+"而且你要认识到你的自我认知和团队中"
+"其他人的认知之间的关系。"
+
+#: frontend/views/preview.html:84
+msgid ""
+"Übrigens: alle Ergebnisse kannst du zum Spielabschluss als PDF herunterladen."
+msgstr ""
+"便说一下:所有的评价都可以在游戏结束后下载成PDF格式。"
+
+#: frontend/views/preview.html:91
+msgid "Weiterspielen"
+msgstr "继续"
