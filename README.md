@@ -18,7 +18,7 @@ If you work on your local branches, make sure to do a `git pull origin master` b
     - if you're on a higher version type anywhere in your console ```pip3 uninstall django```
     - then ```pip3 install django==2.2.13```
 ## The Gameflow in a Nutshell
-https://www.dropbox.com/s/cc6c58ix6zp8mtl/ARK_2_Gameflow.pdf?dl=0
+https://www.dropbox.com/s/hpss180nj2dpeem/ARK_3_Gameflow.pdf?dl=0
 ## Creator of the Game
 * [Dr. Joachim Maier, creator of the game](https://www.linkedin.com/in/dr-joachim-maier/)
 * [Some pictures how the Game was developed](https://photos.app.goo.gl/4fHKgDkx9ChjeiuV8)
