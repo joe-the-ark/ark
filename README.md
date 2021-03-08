@@ -3,9 +3,9 @@ The Ark is a social game to develop your teams sense of psychological safety. It
 ## Git Notes for backend and frontend developers
 If you work on your local branches, make sure to do a `git pull origin master` before you merge your changes into the master branch or before you do a Pull-Request. This is very important to avoid merge conflicts.
 ## How to run the project 
-- If you didn't installed meta library yet
-    - Please under the ```meta/backend/src/``` directory, run ```python3 setup.py install``` to install meta library.
-    - If you have already installed it, please continue to the next step.
+- If you have not installed the meta library yet...
+    - Please, under the ```meta/backend/src/``` directory, run ```python3 setup.py install``` to install the meta library.
+    - If you have already installed the meta library, please continue to the next step.
 - Please goto the ```backend/``` directory ( !!! not ```meta/backend/```!!! )
 - If you are launching the backend for the first time type
     - ```python3 manage.py migrate``` to create the database file
@@ -18,13 +18,15 @@ If you work on your local branches, make sure to do a `git pull origin master` b
     - if you're on a higher version type anywhere in your console ```pip3 uninstall django```
     - then ```pip3 install django==2.2.13```
 ## The Gameflow in a Nutshell
-Overview of the 18 steps of the gameflow
+Overview of the 18 steps in the gameflow
 https://www.dropbox.com/s/hpss180nj2dpeem/ARK_3_Gameflow.pdf?dl=0
-Detailed & in multiple languages (German, English, French, Chinese, Russian)
+Detailed overview in multiple languages (German, English, French, Chinese, Russian)
 https://www.dropbox.com/s/u3zk2dun9pw8ug9/ARK_2_Gameflow_Overview.pdf?dl=0
+60 seconds game_preview video
+https://vimeo.com/488263813
 ## Creator of the Game
 * [Dr. Joachim Maier, creator of the game](https://www.linkedin.com/in/dr-joachim-maier/)
-* [Some pictures how the Game was developed](https://photos.app.goo.gl/4fHKgDkx9ChjeiuV8)
+* [Some pictures The ARKS backstory](https://photos.app.goo.gl/4fHKgDkx9ChjeiuV8)
 ## Videos on Psychological Safety
 * https://vimeo.com/482714127 (Amy Edmondson Creating Psychological Safety at Work)
 * https://vimeo.com/482713162 (Psychological Safety talk with Steven Baert - Novartis - and Amy C. Edmondson - Harvard Business School)
@@ -37,4 +39,3 @@ https://www.dropbox.com/s/u3zk2dun9pw8ug9/ARK_2_Gameflow_Overview.pdf?dl=0
 * [Interview bei Digitec Galaxus](https://www.personal-schweiz.ch/experten-interviews/article/innovation-bei-digitec-galaxus-gibt-es-keine-heiligen-kuehe/)
 * [Short flyer about the game](https://www.ywesee.com/uploads/Arks/Arks_The_Game.pdf)
 * [Youtube Channel of Joachim about the game](https://www.youtube.com/playlist?list=PLrbFdfg38GXmg3jyMz_OYNilscbO_FDiH)
-* [Simple youtube Video about the Game](https://www.youtube.com/watch?v=zeckcko3a8w&feature=youtu.be)
