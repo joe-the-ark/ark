@@ -35,7 +35,8 @@ https://vimeo.com/488263813
 * https://vimeo.com/459637808 (The Secret To Making Business Teams Successful)
 * From Charles Duhigg – author of the newnowed 2016 New Yorker article on psychological safety https://www.nytimes.com/2016/02/28/magazine/what-google-learned-from-its-quest-to-build-the-perfect-team.html
 ## Links
-* https://www.artop.de/psychologische-sicherheit-das-fundament-gelingender-arbeit-im-team/
-* [Interview bei Digitec Galaxus](https://www.personal-schweiz.ch/experten-interviews/article/innovation-bei-digitec-galaxus-gibt-es-keine-heiligen-kuehe/)
-* [Short flyer about the game](https://www.ywesee.com/uploads/Arks/Arks_The_Game.pdf)
-* [Youtube Channel of Joachim about the game](https://www.youtube.com/playlist?list=PLrbFdfg38GXmg3jyMz_OYNilscbO_FDiH)
+* Mein Foliensatz zu Psychologischer Sicherheit...
+https://www.dropbox.com/s/dme4jm2q556mbwt/2021_Psychologische_Sicherheit.pdf?dl=0
+* Guter halbwissenschaftlicher Einführungsartikel zu Psychologischer Sicherheit https://www.artop.de/psychologische-sicherheit-das-fundament-gelingender-arbeit-im-team/
+* Digitec Galaxus Intervew zu heiligen Kühen [Interview bei Digitec Galaxus](https://www.personal-schweiz.ch/experten-interviews/article/innovation-bei-digitec-galaxus-gibt-es-keine-heiligen-kuehe/)
+* Angebotsskizze für den Einsatz der Arche in Unternehmen [Short flyer about the game](https://www.ywesee.com/uploads/Arks/Arks_The_Game.pdf)
