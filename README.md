@@ -34,7 +34,7 @@ https://vimeo.com/488263813
 * https://vimeo.com/459639983 (How Google builds the perfect team)
 * https://vimeo.com/459637808 (The Secret To Making Business Teams Successful)
 * From Charles Duhigg – author of the newnowed 2016 New Yorker article on psychological safety https://www.nytimes.com/2016/02/28/magazine/what-google-learned-from-its-quest-to-build-the-perfect-team.html
-## Links
+## Links (Texts in German)
 * Mein Foliensatz zu Psychologischer Sicherheit...
 https://www.dropbox.com/s/dme4jm2q556mbwt/2021_Psychologische_Sicherheit.pdf?dl=0
 * Guter halbwissenschaftlicher Einführungsartikel zu Psychologischer Sicherheit https://www.artop.de/psychologische-sicherheit-das-fundament-gelingender-arbeit-im-team/
