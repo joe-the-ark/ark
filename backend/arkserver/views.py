@@ -533,7 +533,7 @@ def spannungsfelder(request, user):
     tension = others - himself
 
     ctx['others'] = round(others, 2)
-    ctx['himself'] = round(himself ,2)
+    ctx['himself'] = round(himself, 2)
     ctx['tension'] = round(tension, 2)
 
     json_list = [ i.span_1 for i in list(Ubung5.objects.filter(game=game)) ]
@@ -727,7 +727,7 @@ def assessment(request, user):
     num = (WaitingRoomMember.objects.filter(game=game,state=1).count()) ** 2
     score = score / num
 
-    ctx['psy_score'] = round(score,2)
+    ctx['psy_score'] = round(score,1)
     ctx['psy_row0'] = row_0
     ctx['psy_row1'] = row_1
     ctx['psy_row2'] = row_2
@@ -1140,14 +1140,14 @@ def heatmap(request, user):
     main_map = []
     for i in user_list:
         temp = []
-        temp.append(round(i.ubung5_sum/(user_number ** 2), 2))
+        temp.append(round(i.ubung5_sum/(user_number ** 2), ))
         temp.append(i.name)
         temp.append(i.avatar)
         iknow = []
         for u in game.ubung5_scale_order:
             iknow.append(
                 # [round(heatmap_cell(i, game, u)/(user_number ** 2), 2), heatmap_color(i, game, u)]
-                [round(heatmap_cell(i, game, u)/(user_number ** 2),2), heatmap_color(i, game, u)]
+                [round(heatmap_cell(i, game, u)/(user_number ** 2), 1), heatmap_color(i, game, u)]
             )
         temp.append(iknow)
         temp_ = [i[0] for i in iknow]
@@ -1171,7 +1171,7 @@ def heatmap(request, user):
     ctx['row0'] = row0
     ctx['main_map'] = main_map
     ctx['scale_list'] = scale_list = [ [i.power, i.connect_ubung3.drainer] for i in game.ubung5_scale_order]
-    ctx['scale_value_list'] = scale_value_list = [round(i.ubung5_sum/(user_number ** 2),2) for i in game.ubung5_scale_order]
+    ctx['scale_value_list'] = scale_value_list = [round(i.ubung5_sum/(user_number ** 2) ) for i in game.ubung5_scale_order]
     # ubung5 = Ubung5.objects.filter(game=game)
     # player_list = []
     # for player in Player.objects.filter(game=game):

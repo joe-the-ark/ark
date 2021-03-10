@@ -52,15 +52,15 @@
           <div class="main-column left">
             <div class="corner"></div>
             <div class="corner"></div>
-            <div class="heat_value average_by_players" v-for="value in row0">[[ value ]]</div>
-            {% comment %} <div class="heat_value average_by_players">76</div>
-            <div class="heat_value average_by_players">81</div>
-            <div class="heat_value average_by_players">93</div>
-            <div class="heat_value average_by_players">126</div> {% endcomment %}
+            
+              <div class="heat_value property_value" v-for="value in scale_value_list">[[ value -16]]-[[ value +16]]</div>
+              {% comment %} <div class="heat_value property_value">200</div>
+              <div class="heat_value property_value">250</div>
+              <div class="heat_value property_value">300</div>
+              <div class="heat_value property_value">350</div> {% endcomment %}
+            
             <div class="corner"></div>
           </div>
-
-
 
           <div class="main-column player" v-for="user in main_map">
             <div class="heat_value over_player">[[ user[0] ]]</div>
