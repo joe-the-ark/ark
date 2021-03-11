@@ -55,3 +55,77 @@ msgstr ""
 #: frontend/views/preview.html:91
 msgid "Weiterspielen"
 msgstr "继续"
+
+#: frontend/views/ubung-1.html:58
+msgid "Aufgabe 1: Kraftquelle des Teams."
+msgstr "任务1：团队动力源"
+
+#: frontend/views/ubung-1.html:61
+msgid "Die erste Aufgabe ist anspruchsvoll und bestimmt die Struktur des Spiels: Welche Team-Kraftquelle gibt DIR ganz persönlich in diesem Team am meisten Energie?"
+msgstr "第一个任务具有挑战性，决定了游戏的结构：你认为什么力量是良好的团队合作所必需的？"
+
+#: frontend/views/ubung-1.html:69
+msgid "Schreib in das leere Feld oder klicke auf den passenden Begriff."
+msgstr "在空字段中写上或移动适当的术语。"
+
+#: frontend/views/ubung-2.html
+msgid "Aufgabe 2: Wie gut nutzt ihr das Team Potential?"
+msgstr "任务2：你对团队潜力的利用程度如何？"
+msgid "Schätze <b>anonym</b> die durchschnittliche Performance dieses Teams auf einer Skala von 1 (low performing)"
+msgstr "<b>匿名</b>估计该团队的平均业绩，评分标准为1（低业绩）至99（高业绩）。"
+msgid "bis 99 (high performing) ein."
+msgstr " "
+msgid "Bewege bitte deine Spielfigur auf den Punkt der Skala, der am Besten passt. Später im Spiel siehst"
+msgstr "请将您的角色移动到比例尺上最适合的点。在游戏后期，你会看到所有玩家的匿名评价。"
+msgid "du die anonymisierte Einschätzung aller Mitspieler."
+msgstr " "
+
+#: frontend/views/ubung-3.html
+msgid "Aufgabe 3: Energiefresser im Team?"
+msgstr "任务3：能量消耗者？"
+msgid "Was kostet DICH ganz persönlich in diesem Team am meisten Energie?"
+msgstr "现在请说出假定的对手，即反对球队潜力充分开发的力量。"
+
+#: frontend/views/wartezimmer.html
+msgid "Wartezimmer"
+msgstr "等候室"
+msgid "Was ermöglicht ein erfolgreiches Zusammenspiel im Team? Die kurze Antwort: Psychologische"
+msgstr "什么才是一个优秀的团队？简短的答案是：心理安全!"
+msgid "Sicherheit! Schau dir für eine Einführung in Psychologische Sicherheit den Clip von Charles"
+msgstr "关于心理安全的介绍，请看Charles Duhigg的片段。"
+msgid "Duhigg an."
+msgstr " "
+msgid "Lade dein Team ein, um spielerisch herauszufinden, wie es um eure Psychologische Sicherheit"
+msgstr "请你的团队以游戏的方式来了解你的心理安全状况。"
+msgid "steht. Starte richtig im Spiel durch, sobald alle Mitspieler hier im Warteraum sichtbar sind."
+msgstr "在候场室这里所有队员都能看到后，就适当开始游戏。"
+msgid "Nur wer jetzt mit an Bord ist, kann am Spiel teilnehmen!"
+msgstr "只有现在在船上的人才能参加游戏!"
+
+#: frontend/views/ubung-4.html
+msgid "Aufgabe 4: Teste eure Psychologische Sicherheit!"
+msgstr "任务4：测试你的心理安全!"
+msgid "Bewege jeden Spieler zu der Aussage, die am ehesten passt! Beziehe deine Einschätzung auf"
+msgstr "让每个选手移动到最适合的语句!"
+msgid "alltägliche Situationen im Team, die sich bei dir eingeprägt haben."
+msgstr "将你的评估与日常难忘的情况联系起来。"
+
+#: frontend/views/ubung-5.html
+msgid "Aufgabe 5: Spannungsfelder einschätzen"
+msgstr "任务5：评估张力表"
+msgid "<b>Klicke bitte</b> jede Spielfigur an den Punkt der Skala, der aus deiner Sicht am Besten zum"
+msgstr "请将所有的游戏棋子移动到你认为最适合每个玩家在日常情况下"
+msgid "Verhalten jedes Spielers in für dich wichtigen Alltagssituationen passt."
+msgstr "的行为的点上，这对你很重要。"
+
+#: frontend/views/team-potential.html
+msgid "Team Potential Einschätzung"
+msgstr "团队潜力评估"
+msgid "Ist dein Team High oder Low Performing? Unsere Hypothese lautet: bessere Performance entsteht dank höherer Psychologischer Sicherheit."
+msgstr "你的团队是否发挥了它的潜力？我们的假设是：更好的表现来自于更高的心理安全。"
+msgid "Minimal"
+msgstr "最小"
+msgid "Average"
+msgstr "中位数"
+msgid "Maximal"
+msgstr "最大"

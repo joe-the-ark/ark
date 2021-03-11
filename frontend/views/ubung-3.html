@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -53,10 +54,10 @@
         element-loading-background="rgba(0, 0, 0, 0.8)">
                 <main class="screen ubung-1">
                     <h1>
-                        Aufgabe 3: Energiefresser im Team?
+                        {% trans "Aufgabe 3: Energiefresser im Team?" %}
                     </h1>
                     <p>
-                        Was kostet DICH ganz persönlich in diesem Team am meisten Energie?
+                        {% trans "Was kostet DICH ganz persönlich in diesem Team am meisten Energie?" %}
                         <br/>
                         <br/>
                     </p>
@@ -64,7 +65,7 @@
                     <label>*Dieser Begriff wurde bereits von einem anderen Spieler ausgewählt.</label>
                     <p>
                         <b>
-                            Schreib in das leere Feld oder klicke auf den passenden Begriff.
+                            {% trans "Schreib in das leere Feld oder klicke auf den passenden Begriff." %}
                         </b>
                     </p>
                     <div class="tags">
@@ -104,7 +105,7 @@
                     <div class="center">
                         {% comment %} <a href="/wartezimmer/"> {% endcomment %}
                             <button class="submit" @click="continue_()">
-                                Weiterspielen
+                                {% trans "Weiterspielen" %}
                             </button>
                         {% comment %} </a> {% endcomment %}
                     </div>

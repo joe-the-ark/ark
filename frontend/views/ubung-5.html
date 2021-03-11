@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -49,11 +50,11 @@
         <div class="container">
             <main class="screen ubung-5">
                 <h1>
-                    Aufgabe 5: Spannungsfelder einschätzen
+                    {% trans "Aufgabe 5: Spannungsfelder einschätzen" %}
                 </h1>
                 <p>
-                    <b>Klicke bitte</b> jede Spielfigur an den Punkt der Skala, der aus deiner Sicht am Besten zum
-                    Verhalten jedes Spielers in für dich wichtigen Alltagssituationen passt.
+                    {% trans "<b>Klicke bitte</b> jede Spielfigur an den Punkt der Skala, der aus deiner Sicht am Besten zum" %}
+                    {% trans "Verhalten jedes Spielers in für dich wichtigen Alltagssituationen passt." %}
                 </p>
                 <div class="custom-graph-wrapper"></div>
 
@@ -72,7 +73,7 @@
                         <input type="hidden" name="ubung1_id" value="{{ubung1.id}}">
                         <input type="hidden" name="ubung3_id" value="{{ubung3.id}}">
                         <button type="submit" id="button">
-                            Weiterspielen
+                            {% trans "Weiterspielen" %}
                         </button>
                     </div>
 

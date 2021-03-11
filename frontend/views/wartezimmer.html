@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -53,17 +54,17 @@
             <main class="screen wartezimmer">
                 <div class="wartezimmer__data">
                     <h1>
-                        Wartezimmer
+                        {% trans "Wartezimmer" %}
                     </h1>
                     <p>
-                        Was ermöglicht ein erfolgreiches Zusammenspiel im Team? Die kurze Antwort: Psychologische
-                        Sicherheit! Schau dir für eine Einführung in Psychologische Sicherheit den Clip von Charles
-                        Duhigg an.
+                        {% trans "Was ermöglicht ein erfolgreiches Zusammenspiel im Team? Die kurze Antwort: Psychologische" %}
+                        {% trans "Sicherheit! Schau dir für eine Einführung in Psychologische Sicherheit den Clip von Charles" %}
+                        {% trans "Duhigg an." %}
                         <br/>
                         <br/>
-                        Lade dein Team ein, um spielerisch herauszufinden, wie es um eure Psychologische Sicherheit
-                        steht. Starte richtig im Spiel durch, sobald alle Mitspieler hier im Warteraum sichtbar sind.
-                        <b>Nur wer jetzt mit an Bord ist, kann am Spiel teilnehmen!</b>
+                        {% trans "Lade dein Team ein, um spielerisch herauszufinden, wie es um eure Psychologische Sicherheit" %}
+                        {% trans "steht. Starte richtig im Spiel durch, sobald alle Mitspieler hier im Warteraum sichtbar sind." %}"
+                        <b>{% trans "Nur wer jetzt mit an Bord ist, kann am Spiel teilnehmen!" %}</b>
                     </p>
                 </div>
                 <div class="wartezimmer__thumbnail">
@@ -226,7 +227,7 @@
             {% csrf_token %}
                 <div class="center">
                     <button id='main_btn' type="button" onclick="choosePopup()">
-                        Weiterspielen
+                        {% trans "Weiterspielen" %}
                     </button>
                 </div>
             </form>
