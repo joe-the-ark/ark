@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -46,10 +47,10 @@
         <div class="container">
             <main class="screen spannungsfelder">
                 <h1>
-                    Spannungsfelder
+                    {% trans "Spannungsfelder" %}
                 </h1>
                 <p>
-                    Der farbige Bereich ist die Safe Zone deines Teams. Wird dein Beitrag zur Teamdynamik eher als ausgleichend oder polarisierend wahrgenommen? Wie erklärst du die Unterschiede zwischen deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team?
+                    {% trans "Der farbige Bereich ist die Safe Zone deines Teams. Wird dein Beitrag zur Teamdynamik eher als ausgleichend oder polarisierend wahrgenommen? Wie erklärst du die Unterschiede zwischen deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team?" %}
                 </p>
 
                 <div id="graph-slider" class="swiper-container">
@@ -77,40 +78,38 @@
                     </div>
                 </div>
                 <p>
-                    Diese Kräfte beschreiben deinen Einfluss auf eure
-                    Teamdynamik:
+                    {% trans "Diese Kräfte beschreiben deinen Einfluss auf eure" %}
+                    {% trans "Teamdynamik:" %}
                 </p>
                 <ul>
                     <li>
-                        <b>Weiss</b> = Spannungsfreiheit
+                        {% trans "<b>Weiss</b> = Spannungsfreiheit" %}
                     </li>
                     <li>
-                        <b>Werte über 16</b> = Spannungen im Team
+                        {% trans "<b>Werte über 16</b> = Spannungen im Team" %}
                     </li>
                     <li>
-                        <b>Negatives Vorzeichen</b> = du schätzt den Beitrag zur Teamdynamik eher zu positiv ein
+                        {% trans "<b>Negatives Vorzeichen</b> = du schätzt den Beitrag zur Teamdynamik eher zu positiv ein" %}
                     </li>
                     <li>
                         <b>Positives Vorzeichen</b> = du schätzt den Beitrag zur Teamdynamik eher zu kritisch ein
                     </li>                    
                     <li>
-                        <b>Rot</b> = deine Selbstwahrnehmung liegt ausserhalb der
-                        Safe Zone
+                        {% trans "<b>Rot</b> = deine Selbstwahrnehmung liegt ausserhalb der Safe Zone" %}
                     </li>
                     <li>
-                        <b>Gelb</b> = deine Wahrnehmung durch die anderen liegt außerhalb der Safe Zone
+                        {% trans "<b>Gelb</b> = deine Wahrnehmung durch die anderen liegt außerhalb der Safe Zone" %}
                     </li>
                     <li>
-                        <b>Schwarz</b> = deine Selbst- und die Fremdwahrnehmung liegen ausserhalb der
-                        Safe Zone deines Teams
+                        {% trans "<b>Schwarz</b> = deine Selbst- und die Fremdwahrnehmung liegen ausserhalb der Safe Zone deines Teams" %}
                     </li>
                 </ul>
                 <p>
-                    Möchtest du erraten, wie du von jedem einzelnen Teammitglied eingeschätzt wirst? Dann spiel weiter!
+                    {% trans "Möchtest du erraten, wie du von jedem einzelnen Teammitglied eingeschätzt wirst? Dann spiel weiter!" %}
                 </p>
                 <div class="center">
                     <a href="/preview-2/" class="button" id="button">
-                        Weiterspielen
+                        {% trans "Weiterspielen" %}
                     </a>
                 </div>
 

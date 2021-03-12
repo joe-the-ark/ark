@@ -18,11 +18,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: frontend/views/preview.html:68
+#: frontend/views/preview.html
 msgid "Mission 1: Spannende Spannungen"
 msgstr "任务 1: 社会敏感性"
 
-#: frontend/views/preview.html:74
 msgid ""
 "In deine ersten Mission auf der ARCHE benennst und verstehst du spielerisch "
 "Spannungsfelder, die das Zusammenspiel im Team prägen."
@@ -30,7 +29,6 @@ msgstr ""
 "你在ARK的第一个任务是加强团队的社会敏感性"
 "，这是心理安全的两个关键中的第一个。"
 
-#: frontend/views/preview.html:77
 msgid ""
 "Dabei erkennst du, in welchem Verhältnis deine Selbst- zur Fremdwahrnehmung "
 "im Team steht."
@@ -38,7 +36,6 @@ msgstr ""
 "你说出并理解形成团队合作的紧张领域，"
 "看看你的行为是否有平衡或分裂的作用。"
 
-#: frontend/views/preview.html:80
 msgid ""
 "Und siehst dabei, ob dein wahrgenommenes Verhalten im Team eine "
 "ausgleichende oder spaltend Wirkung hat."
@@ -46,25 +43,21 @@ msgstr ""
 "而且你要认识到你的自我认知和团队中"
 "其他人的认知之间的关系。"
 
-#: frontend/views/preview.html:84
 msgid ""
 "Übrigens: alle Ergebnisse kannst du zum Spielabschluss als PDF herunterladen."
 msgstr ""
 "便说一下:所有的评价都可以在游戏结束后下载成PDF格式。"
 
-#: frontend/views/preview.html:91
 msgid "Weiterspielen"
 msgstr "继续"
 
-#: frontend/views/ubung-1.html:58
+#: frontend/views/ubung-1.html
 msgid "Aufgabe 1: Kraftquelle des Teams."
 msgstr "任务1：团队动力源"
 
-#: frontend/views/ubung-1.html:61
 msgid "Die erste Aufgabe ist anspruchsvoll und bestimmt die Struktur des Spiels: Welche Team-Kraftquelle gibt DIR ganz persönlich in diesem Team am meisten Energie?"
 msgstr "第一个任务具有挑战性，决定了游戏的结构：你认为什么力量是良好的团队合作所必需的？"
 
-#: frontend/views/ubung-1.html:69
 msgid "Schreib in das leere Feld oder klicke auf den passenden Begriff."
 msgstr "在空字段中写上或移动适当的术语。"
 
@@ -129,3 +122,94 @@ msgid "Average"
 msgstr "中位数"
 msgid "Maximal"
 msgstr "最大"
+
+#: frontend/views/psychologischer.html
+msgid "Psychologischer Sicherheitswert"
+msgstr "心理安全评分"
+msgid "Hier siehst du den psychologische Sicherheitswert für dein Team auf einer Skala zwischen 0 (sehr"
+msgstr "在这里，你可以看到你的团队的心理安全得分，从0(非常不安全"
+msgid "unsicher) und 5 (aussergewöhnlich sicher). Wie verhält sich dieser Wert zu deiner Einschätzung der"
+msgstr ")到5(特别安全)。请注意每个队员是如何评价你对团队合作的"
+msgid "gefühlten psychologischen Sicherheit im Team?"
+msgstr "贡献的。这个值与你对团队安全感的评估有什么关系?"
+
+#: frontend/views/preview-2.html
+msgid "Mission 2: Jede Stimme zählt"
+msgstr "任务2:每个人的声音都很重要"
+msgid "Hilf mit an der psychologischen Sicherheit im Team zu arbeiten:"
+msgstr "为培养团队的心理安全感做贡献。"
+msgid "Trainiere dazu deine soziale Sensibilität. Lerne einzuschätzen, wie du von deinen Teammitgliedern wahrgenommen wirst."
+msgstr "为培养团队的心理安全感做贡献。"
+msgid "Gib dann anonymes 1 zu 1 Feedback, um alle in einen psychologisch sichereren Raum mitzunehmen."
+msgstr "给予所有团队成员1对1的匿名反馈，帮助他们找到回到心理安全空间的方法。"
+msgid "Am Ende von Mission Zwei erwartet dich anonymes, wertschätzendes und entwicklungsorientiertes Feedback, bei dem alle Stimmen gleichberechtigt gehört werden."
+msgstr "在任务二结束时，你可以期待一个匿名的、赞赏的、以发展为导 向的反馈，在这里，每个人的声音都会被听到。"
+msgid "Der zweite Schlüssel zu mehr psychologischer Sicherheit ist eine gleichmäßig verteilte Redezeit. Im Fachjargon: equivalent turn-taking. Denn jede Stimme zählt!"
+msgstr "更多心理安全的第二个关键是平等分享的发言时间。用技术术语说:equivalent turn-taking。"
+
+#: frontend/views/spannungsfelder.html
+msgid "Spannungsfelder"
+msgstr "紧张局势"
+msgid "Der farbige Bereich ist die Safe Zone deines Teams. Wird dein Beitrag zur Teamdynamik eher als ausgleichend oder polarisierend wahrgenommen? Wie erklärst du die Unterschiede zwischen deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team?"
+msgstr "绿色区域就是你的团队心理安全区! 你能判断你对团队动态的贡献是被认为是平衡性的还是分裂性的 ?你如何解释你的自我认知和团队对他人认知的差异?"
+msgid "Diese Kräfte beschreiben deinen Einfluss auf eure"
+msgstr "这些力量描述了你对团队动态的影响。"
+msgid "Teamdynamik:"
+msgstr " "
+msgid "<b>Weiss</b> = Spannungsfreiheit"
+msgstr "白色表示没有紧张关系- 数值高于16表示团队中存在紧张关系。"
+msgid "<b>Werte über 16</b> = Spannungen im Team"
+msgstr "数值高于16表示团队中存在紧张关系。"
+msgid "<b>Negatives Vorzeichen</b> = du schätzt den Beitrag zur Teamdynamik eher zu positiv ein"
+msgstr "负号=玩家认为自己太积极"
+msgid "<b>Rot</b> = deine Selbstwahrnehmung liegt ausserhalb der Safe Zone"
+msgstr "红色值表示你的自我认知在心理安全区之外。"
+msgid "<b>Gelb</b> = deine Wahrnehmung durch die anderen liegt außerhalb der Safe Zone"
+msgstr "黄色值表示他人的认知在心理安全区之外。"
+msgid "<b>Schwarz</b> = deine Selbst- und die Fremdwahrnehmung liegen ausserhalb der Safe Zone deines Teams"
+msgstr "黑色值表示你的自我认知和他人的认知都在你团队的心理安全区之外。"
+msgid "Möchtest du erraten, wie du von jedem einzelnen Teammitglied eingeschätzt wirst? Dann spiel weiter!"
+msgstr "你想猜测 每个团队成员对你的看法吗?那就继续玩吧!"
+
+#: frontend/views/mission-2-ubung-1.html
+msgid "Aufgabe 6: Wie steht es um deine soziale Sensibilität?"
+msgstr "任务6: 你的社交敏感度如何?"
+msgid "Bewege zuerst deine eigene und dann alle anderen Spielfiguren, um zu erraten, wie deine Mitspieler dich wahrnehmen. Grün gewinnt. Eine durchschnittlich ausgeprägte soziale. Sensibilität ist eine wesentliche Voraussetzung für psychologische Sicherheit."
+msgstr "移动所有的棋子来猜测你的队友如何看待你。绿棋赢。平均水平的社会敏感度是心理安全蓬勃发展的必要条件。"
+msgid "Please continue guessing, until you are close to the true value"
+msgstr "请继续移动，直到你靠近正确的值。"
+
+#: frontend/views/mission-2-ubung-2.html
+msgid "Letzte Aufgabe: Anonymes Feedback"
+msgstr "匿名反馈"
+msgid "Was ist der Beitrag vom Mitspieler zur Psychologischen"
+msgstr "球员在团队中对心理安全的贡献是什么?"
+msgid "Sicherheit im Team? Schau dir zuerst das Spannungsprofil deines"
+msgstr "首先看一下右边你的反馈对象的紧张状况。"
+msgid "Feedbacknehmers rechts an. Und Beantworte dann die drei Fragen für ein"
+msgstr "然后回答三个问题，进行开放性的、以解决 问题为导向的、匿名的反馈。冒着⻛风险，敞开心扉写..."
+msgid "offenes, lösungsorientiertes und anonymes Feedback. Geh ein Risiko ein und"
+msgstr "更多的是这样的。"
+msgid "schreib mit offenem Herzen..."
+msgstr "我很感激你对成功的团队合作的贡献......"
+
+msgid "MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team…"
+msgstr "变化:你可以通过帮助确保团队的心理安全..."
+msgid "ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem..."
+msgstr "问题-马克。 我一直想问你..."
+msgid "FRAGEZEICHEN: ich wollte dich schon immer mal fragen…"
+msgstr "在这里写下你的反馈..."
+
+#: frontend/views/arche.html
+msgid "Danke für deine Reise mit der ARCHE"
+msgstr "感谢你对团队心理安全感的检查。"
+msgid "Spieldaten? Klicke auf das Icon um ein PDF mit der Auswertung deiner Reise mit der Arche herunterzuladen"
+msgstr "点击这里下载您与方舟的旅程报告PDF文件"
+#msgid "Spielauswertung? Nimm'für eine professionelle Interpretation eurer Spieldaten Kontakt Dr. Joe Maier"
+#msgstr ""
+msgid "Interessiert dich eure TEAM-HEATMAP? Klicke auf das Icon um eine Karte der Spannungen im Team zu sehen."
+msgstr "你对你的TEAM-HEA TMAP感兴趣吗?聚合的游戏数据-- 准备好团队动态课题的工作了吗?通过LinkedIn联系开发者Joe Maier"
+msgid "Paypal? Gib dem Entwickler einen Kaffee aus – Joe Maier dankt es dir!"
+msgstr "Paypal?请开发商喝杯咖啡--Joe Maier谢谢你!"
+msgid "Zurück"
+msgstr "返回"

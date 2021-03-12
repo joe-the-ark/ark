@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -54,15 +55,15 @@
         element-loading-background="rgba(0, 0, 0, 0.8)">
             <main class="screen feedback">
                 <h1>
-                    Letzte Aufgabe: Anonymes Feedback
+                    {% trans "Letzte Aufgabe: Anonymes Feedback" %}
                 </h1>
                 <div class="feedback__data">
                     <p>
-                        Was ist der Beitrag vom Mitspieler zur Psychologischen
-                        Sicherheit im Team? Schau dir zuerst das Spannungsprofil deines
-                        Feedbacknehmers rechts an. Und Beantworte dann die drei Fragen für ein
-                        offenes, lösungsorientiertes und anonymes Feedback. Geh ein Risiko ein und
-                        schreib mit offenem Herzen...
+                        {% trans "Was ist der Beitrag vom Mitspieler zur Psychologischen" %}
+                        {% trans "Sicherheit im Team? Schau dir zuerst das Spannungsprofil deines" %}
+                        {% trans "Feedbacknehmers rechts an. Und Beantworte dann die drei Fragen für ein" %}
+                        {% trans "offenes, lösungsorientiertes und anonymes Feedback. Geh ein Risiko ein und" %}
+                        {% trans "schreib mit offenem Herzen..." %}
                     </p>
                     <div class="fields-fill__wrapper"></div>
                 </div>
@@ -224,7 +225,7 @@
                     <div class="center">
                         <input id="data" type="hidden" name="data" value=""/>
                         <button type="button" id="button" @click="check_submit()">
-                            Weiterspielen
+                            {% trans "Weiterspielen" %}
                         </button>
                         <button id="test"  type="button" style="position: absolute; visibility: hidden;">Weiterspielen</button>
                     </div>
@@ -264,15 +265,15 @@
                 statusSide: member_list[uu]['statusSide'],
                 feedback: [
                     {
-                        title: 'MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team…',
+                        title: '{% trans "MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team…"%}',
                         text: ''
                     },
                     {
-                        title: 'ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem...',
+                        title: "{% trans 'ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem...'%}",
                         text: ''
                     },
                     {
-                        title: 'FRAGEZEICHEN: ich wollte dich schon immer mal fragen…',
+                        title: "{% trans 'FRAGEZEICHEN: ich wollte dich schon immer mal fragen…' %}",
                         text: ''
                     }
                 ],
