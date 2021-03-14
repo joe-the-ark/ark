@@ -1360,7 +1360,7 @@ def ubung_3_api_pro(player_id, link, item):
         ubung3 = Ubung3.objects.create(game=game,player=player,drainer=item,state='line-through')
 
     if Ubung3.objects.filter(game=game,drainer=item).exclude(player=player).first():
-        if Ubung1.objects.filter(game=game,player=Ubung3.objects.filter(game=game,drainer=item).exclude(player=player).first().player).power == ubung3.connect_ubung1:
+        if Ubung1.objects.filter(game=game,player=Ubung3.objects.filter(game=game,drainer=item).exclude(player=player).first().player).first().power == ubung3.connect_ubung1.power:
             ubung3.delete()
             return 0
     result_data = [i.api_json for i in list(Ubung3.objects.filter(game=game,player=player))]
