@@ -469,11 +469,15 @@ def add_laststop(user, game):
 
 def heatmap_cell(user, game, ubung1):
     from .models import Ubung5
+    from .utils import mean
+    user_self = Ubung5.objects.filter(game=game, goal=user, player=user,ubung1=ubung1).first().score
+    others = [i.score for i in Ubung5.objects.filter(game=game, goal=user, ubung1=ubung1).exclude(player=user)]
+    others_avg = round(mean(others), )
     avg = ubung1.ubung5_avg
     ubung5_list = list(Ubung5.objects.filter(game=game,goal=user))
     temp = []
     for i in ubung5_list:
-        temp.append(abs(i.score - avg))
+        temp.append(user_self - others_avg)
     return round(sum(temp))
 
 
