@@ -1,4 +1,5 @@
 <!-- {% load static %} -->
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,11 +51,11 @@
         <div class="container">
             <main class="screen ubung-4">
                 <h1>
-                    Aufgabe 4: Teste eure Psychologische Sicherheit!
+                    {% trans "Aufgabe 4: Teste eure Psychologische Sicherheit!" %}
                 </h1>
                 <p>
-                    Bewege jeden Spieler zu der Aussage, die am ehesten passt! Beziehe deine Einschätzung auf
-                    alltägliche Situationen im Team, die sich bei dir eingeprägt haben.
+                    {% trans "Bewege jeden Spieler zu der Aussage, die am ehesten passt! Beziehe deine Einschätzung auf" %}
+                    {% trans "alltägliche Situationen im Team, die sich bei dir eingeprägt haben." %}
                     <br/>
                     <br/>
                 </p>
@@ -70,7 +71,7 @@
                         <input id="row4" type="hidden" name="row-4" value=""/>
                         <input id="row5" type="hidden" name="row-5" value=""/>
                         <button type="button" id="button" @click="check_submit()" >
-                            Weiterspielen
+                            {% trans "Weiterspielen" %}
                         </button>
                     </div>
                 </form>

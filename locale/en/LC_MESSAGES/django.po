@@ -55,3 +55,23 @@ msgstr ""
 #: frontend/views/preview.html:91
 msgid "Weiterspielen"
 msgstr "Continue"
+
+#: frontend/views/ubung-1.html:58
+msgid "Aufgabe 1: Kraftquelle des Teams."
+msgstr "Mission 1: Power source of the team"
+
+#: frontend/views/ubung-1.html:61
+msgid "Die erste Aufgabe ist anspruchsvoll und bestimmt die Struktur des Spiels: welche Kraft hälst du"
+msgstr "The first task is challenging and determines the structure of the game: "
+
+#: frontend/views/ubung-1.html:61
+msgid "für's gute Zusammenspiel im Team für wesentlich?"
+msgstr "what strength do you consider essential for good teamwork?"
+
+#: frontend/views/ubung-1.html:67
+msgid "*Diese Qualität wurde bereits von einem anderen Spieler ausgewählt."
+msgstr "*This quality has already been selected by another player."
+
+#: frontend/views/ubung-1.html:70
+msgid "Schreib in das leere Feld oder klicke auf den passenden Begriff."
+msgstr "Write in the empty field or move the appropriate term."

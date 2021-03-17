@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -52,11 +53,10 @@
         <div class="container">
             <main class="screen ubung-5">
                 <h1>
-                    Aufgabe 6: Wie steht es um deine soziale Sensibilität?
+                    {% trans "Aufgabe 6: Wie steht es um deine soziale Sensibilität?" %}
                 </h1>
                 <p>
-                    Bewege zuerst deine eigene und dann alle anderen Spielfiguren, um zu erraten, wie deine Mitspieler dich wahrnehmen. Grün gewinnt. Eine durchschnittlich ausgeprägte soziale
-                    Sensibilität ist eine wesentliche Voraussetzung für psychologische Sicherheit.
+                    {% trans "Bewege zuerst deine eigene und dann alle anderen Spielfiguren, um zu erraten, wie deine Mitspieler dich wahrnehmen. Grün gewinnt. Eine durchschnittlich ausgeprägte soziale. Sensibilität ist eine wesentliche Voraussetzung für psychologische Sicherheit." %}
                 </p>
                 <div class="custom-graph-wrapper"></div>
                 {% comment %} <form action="#" method="POST" class="form">
@@ -64,7 +64,7 @@
                     <div class="center" id="app-1">
                         <input id="data" type="hidden" name="data" value=""/>
                         <button type="submit" id="button" @click="popup()">
-                            Weiterspielen
+                            {% trans "Weiterspielen" %}
                         </button>
                     </div>
             </main>
@@ -221,7 +221,7 @@
                 }else{
                     this.$message({
                         showClose: true,
-                        message: 'Please continue guessing, until you are close to the true value',
+                        message: "{% trans 'Please continue guessing, until you are close to the true value'%}",
                         type: 'error',
                         center: true
                     })

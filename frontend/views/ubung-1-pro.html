@@ -154,7 +154,6 @@
             keyboard_input: false,
         },
         mounted(){
-            //var data = this.term_list;
             var that = this;
 
             var flag = 0; // test whether the user have already select the term.
@@ -173,7 +172,7 @@
                 'player_id': '{{user.id}}',
                 'link': '{{game.link}}',
             }
-            axios
+            {% comment %} axios
                 .post(`/api/check_ubung_1/`, data_)
                 .then(function(response){
                     var result = response.data.result;
@@ -199,8 +198,8 @@
                                 console.log(error);
                             })
                     }
-                })
-            this.get_api_data();
+                }) {% endcomment %}
+            //this.get_api_data();
 
         },
         methods:{
@@ -237,11 +236,11 @@
                     alert("Please choose a term.");
                     return;
                 }else{
-                    if (this.keyboard_input === true){
+                    //if (this.keyboard_input === true){
                         app.add_term();
-                    }else{
+                    //}else{
                         window.location.href = "/ubung-2/";
-                    }
+                    //}
                 }
             },
             add_term: function(){
@@ -267,41 +266,59 @@
                 }
 
                 // if have the same value, interrupt
-                var ii = 0;
-                var flag_ = 0;
-                while (ii < that.term_list.length){
-                    if (that.term_list[ii].value === that.text_input){
-                        flag_ = 1;
-                        alert("You input the same term which is below.")
-                        return;
-                    }
-                    ii += 1;
-                }
+                //var ii = 0;
+                //var flag_ = 0;
+                //while (ii < that.term_list.length){
+                //    if (that.term_list[ii].value === that.text_input){
+                //        flag_ = 1;
+                //        alert("You input the same term which is below.")
+                //        return;
+                //    }
+                //    ii += 1;
+                //}
 
                 //if (flag === 1){
                 //    return;
                 //}
-                that.term_list.push({
-                    'state': 'line-through',
-                    'value': that.text_input,
-                    'player_id': {{user.id}},
-                });
+                //that.term_list.push({
+                //    'state': 'line-through',
+                //    'value': that.text_input,
+                //    'player_id': {{user.id}},
+                //});
                 var data_ = {
                     'player_id': '{{user.id}}',
                     'link': '{{game.link}}',
-                    'data': that.term_list,
+                    'item': temp,
                 };
                 axios
-                    .post(`/api/ubung_1_api/`, data_)
+                    .post(`/api/ubung_1_api_pro/`, data_)
                     .then(function(response){
                         var result = response.data.result;
                         //console.log(result);
-                        that.term_list.splice(0);
-                        var uu = 0;
-                        while (uu < result.length){
-                            that.term_list.push(result[uu]);
-                            uu += 1;
+
+                        let new_term_list = that.term_list
+                        let uu = 0
+                        let flag = 0
+                        while (uu < new_term_list.length){
+                            if (new_term_list[uu].value == temp){
+                                new_term_list[uu].state = 'line-through'
+                                flag = 1
+                            }else{
+                                new_term_list[uu].state = 'tag'
+                            }
+                            uu += 1
                         }
+                        if (flag == 0){
+                            new_term_list.push({value: temp, state: 'line-through', player_id: '{{user.id}}'})
+                        }
+                        that.term_list = new_term_list
+
+                        //that.term_list.splice(0);
+                        //var uu = 0;
+                        //while (uu < result.length){
+                        //    that.term_list.push(result[uu]);
+                        //    uu += 1;
+                        //}
                     })
                     .catch(function(error){
                         console.log(error);
@@ -309,7 +326,7 @@
                 window.location.href = "/ubung-2/";
             },
             mark: function(item){
-                clearInterval(refresh);
+                //clearInterval(refresh);
                 var that = this;
                 this.keyboard_input = false;
                 this.loading = true;
@@ -355,26 +372,49 @@
                 var data_ = {
                     'player_id': '{{user.id}}',
                     'link': '{{game.link}}',
-                    'data': that.term_list,
+                    'item': item,
                 };
+                console.log('item', item)
                 //console.log(that.term_list);
                 //console.log(data_)
                 axios
-                    .post(`/api/ubung_1_api/`, data_)
+                    .post(`/api/ubung_1_api_pro/`, data_)
                     .then(function(response){
                         var result = response.data.result;
-                        //console.log(result);
-                        that.term_list.splice(0);
-                        var uu = 0;
-                        while (uu < result.length){
-                            that.term_list.push(result[uu]);
-                            uu += 1;
+                        //console.log('result',result[0].value);
+                        
+                        //console.log(that.term_list)
+                        let new_term_list = that.term_list
+                        let uu = 0 
+                        let flag = 0
+                        while (uu < new_term_list.length){
+                            if (new_term_list[uu].value == item){
+                                new_term_list[uu].state = 'line-through'
+                                flag = 1
+                            } else {
+                                new_term_list[uu].state = 'tag'
+                            }
+                            uu += 1
                         }
+                        if (flag == 0){
+                            new_term_list.push({value: item, state: 'line-through', player_id: '{{user.id}}'})
+                        }
+                        console.log('new_term_list', new_term_list)
+                        //that.term_list.splice(0)
+                        that.term_list = new_term_list
+
+                        //that.term_list.splice(0);
+                        //let ii = 0;
+                        //while (ii < new_term_list.length){
+                        //    that.term_list.push(new_term_list[ii]);
+                        //    ii += 1;
+                        //}
+                
                     })
                     .catch(function(error){
                         console.log(error);
                     })
-                refresh = setTimeout(this.get_api_data,6000);
+                //refresh = setTimeout(this.get_api_data,6000);
 
                 sleep(900).then(() => {
                     that.loading = false;
@@ -383,7 +423,7 @@
         }
     })
 
-    var refresh = setTimeout(app.get_api_data,6000);
+    //var refresh = setTimeout(app.get_api_data,6000);
 
     {% comment %} function check_tag(){
         var tag_str_list = '';

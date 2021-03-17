@@ -171,7 +171,7 @@
                 'player_id': '{{user.id}}',
                 'link': '{{game.link}}',
             }
-            axios
+            {% comment %} axios
                 .post(`/api/check_ubung_3/`, data_)
                 .then(function(response){
                     var result = response.data.result;
@@ -199,8 +199,8 @@
                                 console.log(error);
                             })
                     }
-                })
-            this.get_api_data();
+                }) {% endcomment %}
+            //this.get_api_data();
 
         },
         methods:{
@@ -236,11 +236,11 @@
                     alert("Please chose again");
                     return;
                 }else{
-                    if (that.keyboard_input === true){
+                    //if (that.keyboard_input === true){
                         app.add_term();
-                    }else{
+                    //}else{
                         window.location.href = '/wartezimmer/'
-                    }
+                    //}
                 }
             },
             add_term: function(){
@@ -266,49 +266,70 @@
                 }
 
                 // if have the same value, interrupt
-                var ii = 0
-                var flag_ = 0
-                while (ii < that.term_list.length){
-                    if (that.term_list[ii].value === that.text_input){
-                        flag_ = 1
-                        alert("Please re-chose. Another player has already made the same choices.")
-                        return 
-                    }
-                    ii += 1
-                }
+                //var ii = 0
+                //var flag_ = 0
+                //while (ii < that.term_list.length){
+                //    if (that.term_list[ii].value === that.text_input){
+                //        flag_ = 1
+                //        alert("Another player has already made the same choice.")
+                //        return 
+                //    }
+                //    ii += 1
+                //}
 
                 //if (flag === 1){
                 //    return;
                 //}
-                that.term_list.push({
-                    'state': 'line-through',
-                    'value': that.text_input,
-                    'player_id': {{user.id}},
-                });
+                //that.term_list.push({
+                //    'state': 'line-through',
+                //    'value': that.text_input,
+                //    'player_id': '{{user.id}}',
+                //});
                 var data_ = {
                     'player_id': '{{user.id}}',
                     'link': '{{game.link}}',
-                    'data': that.term_list,
+                    'item': temp,
                 };
                 axios
-                    .post(`/api/ubung_3_api/`, data_)
+                    .post(`/api/ubung_3_api_pro/`, data_)
                     .then(function(response){
                         var result = response.data.result;
-                        //console.log(result);
-                        that.term_list.splice(0);
-                        var uu = 0;
-                        while (uu < result.length){
-                            that.term_list.push(result[uu]);
-                            uu += 1;
+                        if (result == '0'){
+                            alert('You have same ubung1 and ubung3 with others, please choose again.')
+                            window.location.href = '/ubung-3/'
                         }
+                        //console.log(result);
+                        let new_term_list = that.term_list
+                        let uu = 0
+                        let flag = 0
+                        while (uu < new_term_list.length){
+                            if (new_term_list[uu].value == temp){
+                                new_term_list[uu].state = 'line-through'
+                                flag = 1
+                            }else{
+                                new_term_list[uu].state = 'tag'
+                            }
+                            uu += 1
+                        }
+                        if (flag == 0){
+                            new_term_list.push({value: temp, state: 'line-through', player_id: '{{user.id}}'})
+                        }
+                        that.term_list = new_term_list
+
+                        //that.term_list.splice(0);
+                        //var uu = 0;
+                        //while (uu < result.length){
+                        //    that.term_list.push(result[uu]);
+                        //    uu += 1;
+                        //}
                     })
                     .catch(function(error){
                         console.log(error);
                     })
-                window.location.href = "/wartezimmer/"
+                //window.location.href = "/wartezimmer/"
             },
             mark: function(item){
-                clearInterval(refresh);
+                //clearInterval(refresh);
                 var that = this;
                 this.keyboard_input = false
                 this.loading = true;
@@ -354,24 +375,45 @@
                 var data_ = {
                     'player_id': '{{user.id}}',
                     'link': '{{game.link}}',
-                    'data': that.term_list,
+                    'item': item,
                 };
                 axios
-                    .post(`/api/ubung_3_api/`, data_)
+                    .post(`/api/ubung_3_api_pro/`, data_)
                     .then(function(response){
                         var result = response.data.result;
-                        //console.log(result);
-                        that.term_list.splice(0);
-                        var uu = 0;
-                        while (uu < result.length){
-                            that.term_list.push(result[uu]);
-                            uu += 1;
+                        if (result == '0'){
+                            alert('You have same ubung1 and ubung3 with others, please choose again.')
+                            window.location.href = '/ubung-3/'
                         }
+                        //console.log(result);
+                        let new_term_list = that.term_list
+                        let uu = 0
+                        let flag = 0
+                        while (uu < new_term_list.length){
+                            if (new_term_list[uu].value == item){
+                                new_term_list[uu].state = 'line-through'
+                                flag = 1
+                            }else{
+                                new_term_list[uu].state = 'tag'
+                            }
+                            uu += 1
+                        }
+                        if (flag == 0){
+                            new_term_list.push({value: item, state: 'line-through', player_id: '{{user.id}}'})
+                        }
+                        that.term_list = new_term_list
+
+                        //that.term_list.splice(0);
+                        //var uu = 0;
+                        //while (uu < result.length){
+                        //    that.term_list.push(result[uu]);
+                        //    uu += 1;
+                        //}
                     })
                     .catch(function(error){
                         console.log(error);
                     })
-                refresh = setTimeout(this.get_api_data,6000);
+                //refresh = setTimeout(this.get_api_data,6000);
 
                 sleep(900).then(() => {
                     that.loading = false;
@@ -380,7 +422,7 @@
         }
     })
 
-    var refresh = setTimeout(app.get_api_data,6000);
+    //var refresh = setTimeout(app.get_api_data,6000);
 
     {% comment %} function check_tag(){
         var tag_str_list = '';

@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -53,7 +54,7 @@
             <main class="screen wartezimmer">
                 <div class="wartezimmer__data">
                     <h1>
-                        Wartezimmer
+                        {% trans "Wartezimmer" %}
                     </h1>
                     <p>
                         When Google embarked on an extensive study to understand what makes for a high-performing team, it was Amy Edmondson’s research on "psychological safety" that became the foundation of the company’s findings.
@@ -92,7 +93,7 @@
             {% csrf_token %}
                 <div class="center">
                     <button id='main_btn' type="button" onclick="choosePopup()">
-                        Weiterspielen
+                        {% trans "Weiterspielen" %}
                     </button>
                 </div>
             </form>

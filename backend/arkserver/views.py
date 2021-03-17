@@ -202,42 +202,26 @@ def ubung_1(request, user):
     ctx = {}
     ctx['game'] = game = Game.objects.filter(link=request.session['link']).first()
     player = user
-    temp = Ubung1.objects.filter(game=game).first()
-    if not temp:
-        from .utils import ubung_1_term_list
-        term_list = ubung_1_term_list
-        for i in term_list:
-            Ubung1.objects.create(
-                game = game,
-                player = None,
-                state = 'tag',
-                power = i['value'],
-            )
-    ctx['term_list'] = [i.api_json for i in list(Ubung1.objects.filter(game=game))]
-    # if request.method == 'POST':
-    #     link = request.session['link']
-
-    #     kraftquelle = request.POST.get('kraftquelle')
-    #     tags = request.POST.get('tags')
-    #     tags = tags + kraftquelle
-    #     tag_list = tags.split(',')
-    #     uu = 0
-    #     while uu < len(tag_list):
-    #         if tag_list[uu] == '':
-    #             del tag_list[uu]
-    #         uu += 1
-    #     print("tag_list", tag_list)
-
-    #     game = Game.objects.filter(link=link).first()
-    #     for i in tag_list:
+    # temp = Ubung1.objects.filter(game=game).first()
+    # if not temp:
+    #     from .utils import ubung_1_term_list
+    #     term_list = ubung_1_term_list
+    #     for i in term_list:
     #         Ubung1.objects.create(
     #             game = game,
-    #             player = user,
-    #             power = i,
+    #             player = None,
+    #             state = 'tag',
+    #             power = i['value'],
     #         )
-    #     return redirect(f'/ubung-2/')
+    
+    # ctx['term_list'] = [i.api_json for i in list(Ubung1.objects.filter(game=game))]
 
-    return render(request, './views/ubung-1.html', ctx)
+    from .utils import ubung_1_term_list
+    term_list = ubung_1_term_list
+    ctx['term_list'] = term_list
+    print('term_list', term_list)
+
+    return render(request, './views/ubung-1-pro.html', ctx)
 
 @user_required
 def ubung_2(request, user):
@@ -270,43 +254,26 @@ def ubung_3(request, user):
 
 
     player = user
-    temp = Ubung3.objects.filter(game=game).first()
-    if not temp:
-        from .utils import ubung_3_term_list
-        term_list = ubung_3_term_list
-        for i in term_list:
-            Ubung3.objects.create(
-                game = game,
-                player = None,
-                state = 'tag',
-                drainer = i['value'],
-            )
-
-    ctx['term_list'] = [i.api_json for i in list(Ubung3.objects.filter(game=game))]
-
-    # if request.method == 'POST':
-    #     link = request.session['link']
-    #     energiefresser = request.POST.get('energiefresser')
-    #     tags = request.POST.get('tags')
-    #     tags = tags + energiefresser
-    #     tag_list = tags.split(',')
-    #     uu = 0
-    #     while uu < len(tag_list):
-    #         if tag_list[uu] == '':
-    #             del tag_list[uu]
-    #         uu += 1
-    #     print("tag_list", tag_list)
-
-    #     game = Game.objects.filter(link=link).first()
-    #     for i in tag_list:
+    # temp = Ubung3.objects.filter(game=game).first()
+    # if not temp:
+    #     from .utils import ubung_3_term_list
+    #     term_list = ubung_3_term_list
+    #     for i in term_list:
     #         Ubung3.objects.create(
     #             game = game,
-    #             player = user,
-    #             drainer = i,
+    #             player = None,
+    #             state = 'tag',
+    #             drainer = i['value'],
     #         )
-    #     return redirect(f'/wartezimmer/{link}/')
 
-    return render(request, './views/ubung-3.html', ctx)
+    # ctx['term_list'] = [i.api_json for i in list(Ubung3.objects.filter(game=game))]
+
+    from .utils import ubung_3_term_list
+    term_list = ubung_3_term_list
+    ctx['term_list'] = term_list
+    print('term_list', term_list)
+
+    return render(request, './views/ubung-3-pro.html', ctx)
 
 
 @after_waitingroom
@@ -1247,7 +1214,7 @@ def ubung_1_get_data(player_id, link):
 
 @api
 def ubung_1_api(player_id, link, data):
-    print('data', data)
+    # print('data', data)
     from .models import Player, Game, Ubung1
     game = Game.objects.filter(link=link).first()
     player = Player.objects.filter(id=player_id).first()
@@ -1292,6 +1259,25 @@ def ubung_1_api(player_id, link, data):
     result_data = [i.api_json for i in list(Ubung1.objects.filter(game=game))]
     # print('------------------------------------------')
     # print('result_data', result_data)
+    print('result_data', result_data)
+    return result_data
+
+
+@api
+def ubung_1_api_pro(player_id, link, item):
+    from .models import Player, Game, Ubung1
+    game = Game.objects.filter(link=link).first()
+    player = Player.objects.filter(id=player_id).first()
+
+    ubung1 = Ubung1.objects.filter(game=game,player=player).first()
+    if ubung1:
+        ubung1.power = item
+        ubung1.save()
+    else:   
+        Ubung1.objects.create(game=game,player=player,power=item,state='line-through')
+
+    result_data = [i.api_json for i in list(Ubung1.objects.filter(game=game,player=player))]
+    print('result_data', result_data)
     return result_data
 
 
@@ -1359,6 +1345,27 @@ def ubung_3_api(player_id, link, data):
     result_data = [i.api_json for i in list(Ubung3.objects.filter(game=game))]
     return result_data
 
+
+@api
+def ubung_3_api_pro(player_id, link, item):
+    from .models import Player, Game, Ubung3, Ubung1
+    game = Game.objects.filter(link=link).first()
+    player = Player.objects.filter(id=player_id).first()
+
+    ubung3 = Ubung3.objects.filter(game=game,player=player).first()
+    if ubung3:
+        ubung3.drainer = item
+        ubung3.save()
+    else:
+        ubung3 = Ubung3.objects.create(game=game,player=player,drainer=item,state='line-through')
+
+    if Ubung3.objects.filter(game=game,drainer=item).exclude(player=player).first():
+        if Ubung1.objects.filter(game=game,player=Ubung3.objects.filter(game=game,drainer=item).exclude(player=player).first().player).first().power == ubung3.connect_ubung1.power:
+            ubung3.delete()
+            return 0
+    result_data = [i.api_json for i in list(Ubung3.objects.filter(game=game,player=player))]
+    print('result_data', result_data)
+    return result_data
 
 
 @api

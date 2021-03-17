@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -44,12 +45,12 @@
         <div class="container">
             <main class="screen psychologischer">
                 <h1>
-                    Psychologischer Sicherheitswert
+                    {% trans "Psychologischer Sicherheitswert" %}
                 </h1>
                 <p>
-                    Hier siehst du den psychologische Sicherheitswert für dein Team auf einer Skala zwischen 0 (sehr
-                    unsicher) und 5 (aussergewöhnlich sicher). Wie verhält sich dieser Wert zu deiner Einschätzung der
-                    gefühlten psychologischen Sicherheit im Team?
+                    {% trans "Hier siehst du den psychologische Sicherheitswert für dein Team auf einer Skala zwischen 0 (sehr" %}
+                    {% trans "unsicher) und 5 (aussergewöhnlich sicher). Wie verhält sich dieser Wert zu deiner Einschätzung der" %}
+                    {% trans "gefühlten psychologischen Sicherheit im Team?" %}
                     <br/>
                     <br/>
                 </p>
@@ -127,7 +128,7 @@
                 </div>
                 <div class="center">
                     <a href="/spannungsfelder/" class="button" id="button">
-                        Weiterspielen
+                        {% trans "Weiterspielen" %}
                     </a>
                 </div>
             </main>

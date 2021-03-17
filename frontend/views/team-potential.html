@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -53,21 +54,21 @@
         element-loading-background="rgba(0, 0, 0, 0.8)">
             <main class="screen team-potential">
                 <h1>
-                    Team Potential Einschätzung
+                    {% trans "Team Potential Einschätzung" %}
                 </h1>
                 <p>
-                    Ist dein Team High oder Low Performing? Unsere Hypothese lautet: bessere Performance entsteht dank höherer Psychologischer Sicherheit.
+                    {% trans "Ist dein Team High oder Low Performing? Unsere Hypothese lautet: bessere Performance entsteht dank höherer Psychologischer Sicherheit." %}
                     <br/>
                     <br/>
                 </p>
                 <div class="custom-graph-info">
-                    <div class="custom-graph-info__item small" data-text="Minimal">
+                    <div class="custom-graph-info__item small" data-text="{% trans 'Minimal' %}">
                         {{ minimal }}
                     </div>
-                    <div class="custom-graph-info__item base" data-text="Average">
+                    <div class="custom-graph-info__item base" data-text="{% trans 'Average' %}">
                         {{ median }}
                     </div>
-                    <div class="custom-graph-info__item large" data-text="Maximal">
+                    <div class="custom-graph-info__item large" data-text="{% trans 'Maximal' %}">
                         {{ maximal }}
                     </div>
                 </div>
@@ -83,7 +84,7 @@
                             Weiterspielen
                         </button>  {% endcomment %}
                         <a href="/waiting-room2/" class="button">
-                            Weiterspielen
+                            {% trans 'Weiterspielen' %}
                         </a>
                     </div>
                 {% comment %} </form> {% endcomment %}                

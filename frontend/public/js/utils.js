@@ -213,8 +213,8 @@ function cardsPainting(dataForRange, selectors) {
     let low = dataForRange[i].low
     let high = dataForRange[i].high
     // console.log('low-high', low, high);
-    let selfInSafe = dataForRange[i].self>low && dataForRange[i].self<high;
-    let othersInSafe = dataForRange[i].others>low && dataForRange[i].others<high;
+    let selfInSafe = dataForRange[i].self >= low && dataForRange[i].self <= high;
+    let othersInSafe = dataForRange[i].others >= low && dataForRange[i].others <= high;
     if (selfInSafe && othersInSafe) {item.classList.add('white__card');}
     if (selfInSafe && !othersInSafe) { item.classList.add('yellow__card');}
     if (!selfInSafe && othersInSafe) { item.classList.add('red__card');}

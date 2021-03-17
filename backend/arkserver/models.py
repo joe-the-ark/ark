@@ -253,6 +253,15 @@ class Ubung3(models.Model):
     create_time = models.DateTimeField(auto_now_add=True)
 
     @property
+    def connect_ubung1(self):
+        from .models import Ubung1
+        ubung1 = Ubung1.objects.filter(player=self.player).first()
+        if ubung1:
+            return ubung1
+        else:
+            return None
+
+    @property
     def json(self):
         return {
             'game': self.game.link,

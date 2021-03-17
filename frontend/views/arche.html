@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +27,7 @@
         <div class="container">
             <main class="screen arche">
                 <h1>
-                    Danke für deine Reise mit der ARCHE
+                    {% trans "Danke für deine Reise mit der ARCHE" %}
                 </h1>
                 <div class="user">
                     <img src="{{user.avatar}}" alt=""/>
@@ -43,7 +44,7 @@
                     <div class="options__item">
                         <div class="icon-download" onclick="location='/game-insights/'"></div>
                         <p>
-                            Spieldaten? Klicke auf das Icon um ein PDF mit der Auswertung deiner Reise mit der Arche herunterzuladen
+                            {% trans "Spieldaten? Klicke auf das Icon um ein PDF mit der Auswertung deiner Reise mit der Arche herunterzuladen" %}
                         </p>
                     </div>
                     <div class="options__item">
@@ -52,13 +53,13 @@
                         </a>
                         
                         <p>
-                            Spielauswertung? Nimm'für eine professionelle Interpretation eurer Spieldaten Kontakt Dr. Joe Maier
+                            {% trans "Spielauswertung? Nimm'für eine professionelle Interpretation eurer Spieldaten Kontakt Dr. Joe Maier" %}
                         </p>
                     </div>
                     <div class="options__item">
                         <div class="icon-download" onclick="location='/heatmap/'"></div>
                         <p>
-                            Interessiert dich eure TEAM-HEATMAP? Klicke auf das Icon um eine Karte der Spannungen im Team zu sehen.
+                            {% trans "Interessiert dich eure TEAM-HEATMAP? Klicke auf das Icon um eine Karte der Spannungen im Team zu sehen." %}
                         </p>
                     </div>
                     <div class="options__item">
@@ -66,7 +67,7 @@
                         <div class="icon-money"></div>
                         </a>
                          <p>
-                            Paypal? Gib dem Entwickler einen Kaffee aus – Joe Maier dankt es dir!
+                            {% trans "Paypal? Gib dem Entwickler einen Kaffee aus – Joe Maier dankt es dir!" %}
                         </p>
                     </div>
                     <div class="options__item">
@@ -81,7 +82,7 @@
 
                 </div>
                 <button onclick="location='/game-insights/'">
-                    Zurück
+                    {% trans "Zurück" %}
                 </button>
             </main>
         </div>
