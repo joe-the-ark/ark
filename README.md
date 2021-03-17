@@ -21,7 +21,7 @@ If you work on your local branches, make sure to do a `git pull origin master` b
 - Overview of the 18 steps in the gameflow
 https://www.dropbox.com/s/hpss180nj2dpeem/ARK_3_Gameflow.pdf?dl=0
 - Detailed overview in multiple languages (German, English, French, Chinese, Russian)
-https://www.dropbox.com/s/u3zk2dun9pw8ug9/ARK_2_Gameflow_Overview.pdf?dl=0
+https://www.dropbox.com/s/cc6c58ix6zp8mtl/ARK_2_Gameflow.pdf?dl=0
 - 60 seconds game_preview video
 https://vimeo.com/488263813
 ## Creator of the Game
