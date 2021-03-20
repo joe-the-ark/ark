@@ -45,7 +45,7 @@
     <div class="app__body" id="app-1">
         <div class="container">
           <h1>Team Heatmap</h1>
-          <p class="text">Diese Übersicht eignet sich für Trainer und professionelle Prozessbegleiter. Die Heatmap bietet eine aggregierte Auswertung aller Spannungen im Team. In der <b>Horizontalen sieht man links die Safe Zone</b> und rechts die Skalen – je höher der Wert, desto mehr Spannung liegt auf der Skala. <b>Vertikal sieht man die Spannung der jeder Spieler</b> im Durchschnitt pro Skala ausgesetzt ist.</p>
+          <p class="text">Die Heatmap bietet eine aggregierte Auswertung aller Spannungen im Team:<br> In der <b>Horizontalen sieht man links die Lage der Safe Zones</b> und rechts die Skalen mit den Kraftquellen und Energiefressern des Teams – je höher der Wert, desto grösser ist der Beitrag dieser Skala zu den Energiefressern im Team.<br> <b>Vertikal sieht man den Beitrag, den jeder Spieler zu den Energiefressern leistet</b>. Im Innern der Heatmap sieht man, wie gross die Abweichung jedes Spielers zwischen Selbst- und Fremdwahrnehmung ist. Bei negativen Vorzeichen schätzt der Spieler den Beitrag zur Teamdynamik eher zu positiv ein. Werte über 16 deuten auf Spannungen hin.</p>
         </div>
         <div class="heatmap">
 
@@ -208,7 +208,7 @@
   heatmapEl.style.gridTemplateColumns = `[lft] minmax(50px, 100px) repeat(${playersCount}, minmax(50px, 100px)) [prop] 150px [rght] minmax(50px, 100px) `
 
   </script>
-  
+
   <div class="center">
       <a href="/farewell/" class="button" id="button">
                         Auf Wiedersehen sagen
