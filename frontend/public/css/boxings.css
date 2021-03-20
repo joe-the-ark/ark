@@ -182,7 +182,7 @@
   }
 }
 .psychologischer__container .team-average {
-  grid-row: span 3;
+  grid-row: span 2;
   margin: auto;
 }
 @media screen and (max-width: 1200px) {

@@ -125,7 +125,7 @@
                 </h3>
                 <p class='psycho-p'>
                     Hier siehst du den psychologische Sicherheitswert für dein Team auf einer Skala zwischen 0 (sehr
-                    unsicher) und 5 (aussergewöhnlich sicher). Wie verhält sich dieser Wert zu deiner Einschätzung der
+                    unsicher) und 100 (aussergewöhnlich sicher). Wie verhält sich dieser Wert zu deiner Einschätzung der
                     gefühlten Sicherheit im Team?
                 </p>
                 <div class="psychologischer__container" id="app-1">
@@ -144,7 +144,7 @@
                             <div class="team-average__range" v-bind:style="{width: widthCalc}">
                                 <div class="team-average__circle">[[ score ]]</div>
                             </div>
-                            <div class="team-average__down">5</div>
+                            <div class="team-average__down">100</div>
                             <div class="team-average__up">0</div>
                         </div>
                     </div>
@@ -565,10 +565,10 @@
         computed: {
             widthCalc: function () {
                 if (this.score.length > 1) {
-                    return (100 - Number(this.score.replace(',', ".")) / 5 * 100) + "%"
+                    return (100 - Number(this.score.replace(',', ".")) / 5 * 5) + "%"
                 }
                 else {
-                    return (100 - Number(this.score) / 5 * 100) + '%'
+                    return (100 - Number(this.score) / 5 * 5) + '%'
                 }
             }
         }
