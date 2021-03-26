@@ -273,10 +273,10 @@
         var uu = 0
         while (1){
             if (uu%10 === 9){
-                alert("Connection time out. If you want to continue waiting, please click the button.")
+                alert("Connection time-out. If you want to continue waiting, please click the button.")
             }
             var data_ = {'link': '{{link}}'};
-            await sleep(5000).then(() => {
+            await sleep(50000).then(() => {
                 axios
                     .post(`/api/waiting_room3_game_start/`, data_)
                     .then(function(response){
