@@ -1,7 +1,7 @@
 # git fetch origin new
 # git merge origin/master new
 git pull
-
+sh i18n.sh
 # pip3 install -r requirements.txt
 
 cd backend

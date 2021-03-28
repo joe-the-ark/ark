@@ -18,11 +18,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: frontend/views/preview.html:68
+#: frontend/views/preview.html
 msgid "Mission 1: Spannende Spannungen"
 msgstr "Mission 1: Social Sensitivity"
 
-#: frontend/views/preview.html:74
 msgid ""
 "In deine ersten Mission auf der ARCHE benennst und verstehst du spielerisch "
 "Spannungsfelder, die das Zusammenspiel im Team prägen."
@@ -30,7 +29,6 @@ msgstr ""
 "Your first mission on the Ark is to strengthen social sensitivity"
 "in the team, the first of two keys to psychological security:"
 
-#: frontend/views/preview.html:77
 msgid ""
 "Dabei erkennst du, in welchem Verhältnis deine Selbst- zur Fremdwahrnehmung "
 "im Team steht."
@@ -38,7 +36,6 @@ msgstr ""
 "You name and understand areas of tension that shape the"
 "teamwork and see whether your behaviour has a balancing or divisive effect."
 
-#: frontend/views/preview.html:80
 msgid ""
 "Und siehst dabei, ob dein wahrgenommenes Verhalten im Team eine "
 "ausgleichende oder spaltend Wirkung hat."
@@ -46,32 +43,177 @@ msgstr ""
 "And you recognize the relationship between your self-"
 "perception and the perception of others in the team."
 
-#: frontend/views/preview.html:84
 msgid ""
 "Übrigens: alle Ergebnisse kannst du zum Spielabschluss als PDF herunterladen."
 msgstr ""
 "By the way: all evaluations can be downloaded as PDF at the end of the game."
 
-#: frontend/views/preview.html:91
 msgid "Weiterspielen"
 msgstr "Continue"
 
-#: frontend/views/ubung-1.html:58
+#: frontend/views/ubung-1.html
 msgid "Aufgabe 1: Kraftquelle des Teams."
 msgstr "Mission 1: Power source of the team"
 
-#: frontend/views/ubung-1.html:61
 msgid "Die erste Aufgabe ist anspruchsvoll und bestimmt die Struktur des Spiels: welche Kraft hälst du"
 msgstr "The first task is challenging and determines the structure of the game: "
 
-#: frontend/views/ubung-1.html:61
 msgid "für's gute Zusammenspiel im Team für wesentlich?"
 msgstr "what strength do you consider essential for good teamwork?"
 
-#: frontend/views/ubung-1.html:67
 msgid "*Diese Qualität wurde bereits von einem anderen Spieler ausgewählt."
 msgstr "*This quality has already been selected by another player."
 
-#: frontend/views/ubung-1.html:70
 msgid "Schreib in das leere Feld oder klicke auf den passenden Begriff."
 msgstr "Write in the empty field or move the appropriate term."
+
+#: frontend/views/ubung-2.html
+msgid "Aufgabe 2: Wie gut nutzt ihr das Team Potential?"
+msgstr "Mission 2: How well do you use the team potential?"
+msgid "Schätze <b>anonym</b> die durchschnittliche Performance dieses Teams auf einer Skala von 1 (low performing)"
+msgstr "nonymously estimate the average performance of this team on a scale of 1 (low performing) to 99 (high performing)."
+msgid "bis 99 (high performing) ein."
+msgstr ""
+msgid "Bewege bitte deine Spielfigur auf den Punkt der Skala, der am Besten passt. Später im Spiel siehst"
+msgstr "Please move your character to the point on the scale that fits best. Later in the game you will see the anonymous assessment of all players."
+
+#: frontend/views/ubung-3.html
+msgid "Aufgabe 3: Energiefresser im Team?"
+msgstr "Mission 3: Energy drainer?"
+msgid "Was kostet DICH ganz persönlich in diesem Team am meisten Energie?"
+msgstr "Write in the empty field or click on the appropriate term."
+
+#: frontend/views/wartezimmer.html
+msgid "Wartezimmer"
+msgstr "Waiting room"
+msgid "Was ermöglicht ein erfolgreiches Zusammenspiel im Team? Die kurze Antwort: Psychologische"
+msgstr "What makes a great team? The short answer: psychological safety!"
+msgid "Sicherheit! Schau dir für eine Einführung in Psychologische Sicherheit den Clip von Charles"
+msgstr " For an introduction to psychological safety, watch the clip by Charles Duhigg."
+msgid "Duhigg an."
+msgstr " "
+msgid "Lade dein Team ein, um spielerisch herauszufinden, wie es um eure Psychologische Sicherheit"
+msgstr "Invite your team to playfully find out how your psychological safety is doing."
+msgid "steht. Starte richtig im Spiel durch, sobald alle Mitspieler hier im Warteraum sichtbar sind."
+msgstr "Start the game properly as soon as all players I are visible here in the waiting room."
+msgid "Nur wer jetzt mit an Bord ist, kann am Spiel teilnehmen!"
+msgstr "Only those who are on board now can take part in the game!"
+
+#: frontend/views/ubung-4.html
+msgid "Aufgabe 4: Teste eure Psychologische Sicherheit!"
+msgstr "Mission 4: Test your psychological safety!"
+msgid "Bewege jeden Spieler zu der Aussage, die am ehesten passt! Beziehe deine Einschätzung auf"
+msgstr "Move each player to the statement that fits best! Relate your assessment to memorable everyday situations."
+msgid "alltägliche Situationen im Team, die sich bei dir eingeprägt haben."
+msgstr " "
+
+#: frontend/views/ubung-5.html
+msgid "Aufgabe 5: Spannungsfelder einschätzen"
+msgstr "Mission 5: Assessing tension scales"
+msgid "<b>Klicke bitte</b> jede Spielfigur an den Punkt der Skala, der aus deiner Sicht am Besten zum"
+msgstr "What is the contribution to the team power sources and energy drainers?"
+msgid "Verhalten jedes Spielers in für dich wichtigen Alltagssituationen passt."
+msgstr "Please click each character on the point that you think best fits the player's behaviour in everyday situations that are important to you."
+
+#: frontend/views/team-potential.html
+msgid "Team Potential Einschätzung"
+msgstr "Team Potential Assessment"
+msgid "Ist dein Team High oder Low Performing? Unsere Hypothese lautet: bessere Performance entsteht dank höherer Psychologischer Sicherheit."
+msgstr "Is your team living up to its potential? Our hypothesis is: better performance comes from higher psychological safety."
+msgid "Minimal"
+msgstr "Minimal"
+msgid "Average"
+msgstr "Average"
+msgid "Maximal"
+msgstr "Maximal"
+
+#: frontend/views/psychologischer.html
+msgid "Psychologischer Sicherheitswert"
+msgstr "Psychological safety score"
+msgid "Hier siehst du den psychologische Sicherheitswert für dein Team auf einer Skala zwischen 0 (sehr"
+msgstr "Here you can see the psychological safety score for your team on a scale from 0 (very unsafe) to 100 (exceptionally safe)."
+msgid "unsicher) und 5 (aussergewöhnlich sicher). Wie verhält sich dieser Wert zu deiner Einschätzung der"
+msgstr "Notice how each player has rated your contribution to teamwork."
+msgid "gefühlten psychologischen Sicherheit im Team?"
+msgstr "How does this value relate to your assessment of the perceived safety in the team?"
+
+#: frontend/views/preview-2.html
+msgid "Mission 2: Jede Stimme zählt"
+msgstr "Mission 2: Every voice counts"
+msgid "Hilf mit an der psychologischen Sicherheit im Team zu arbeiten:"
+msgstr "Contribute to develop your teams sense of Psychological Safety:"
+msgid "Trainiere dazu deine soziale Sensibilität. Lerne einzuschätzen, wie du von deinen Teammitgliedern wahrgenommen wirst."
+msgstr "Give all team members an anonymous 1 to 1 feedback to help them find their way back to a psychologically safe space."
+msgid "Gib dann anonymes 1 zu 1 Feedback, um alle in einen psychologisch sichereren Raum mitzunehmen."
+msgstr "At the end of Mission Two you can expect anonymous, appreciative and development-oriented feedback where every - voice is heard."
+msgid "Am Ende von Mission Zwei erwartet dich anonymes, wertschätzendes und entwicklungsorientiertes Feedback, bei dem alle Stimmen gleichberechtigt gehört werden."
+msgstr "The second key to more psychological safety is r an equally shared speaking time."
+msgid "Der zweite Schlüssel zu mehr psychologischer Sicherheit ist eine gleichmäßig verteilte Redezeit. Im Fachjargon: equivalent turn-taking. Denn jede Stimme zählt!"
+msgstr "In technical jargon: equivalent turn-taking."
+
+#: frontend/views/spannungsfelder.html
+msgid "Spannungsfelder"
+msgstr "Tensions"
+msgid "Der farbige Bereich ist die Safe Zone deines Teams. Wird dein Beitrag zur Teamdynamik eher als ausgleichend oder polarisierend wahrgenommen? Wie erklärst du die Unterschiede zwischen deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team?"
+msgstr "Can you tell whether your contribution to team dynamics is perceived as balancing or divisive? How do you explain the differences in your self-perception and the team's perception of others?"
+msgid "Diese Kräfte beschreiben deinen Einfluss auf eure"
+msgstr "These forces describe your influence on your team dynamics:"
+msgid "Teamdynamik:"
+msgstr " "
+msgid "<b>Weiss</b> = Spannungsfreiheit"
+msgstr "White indicates an absence of tension."
+msgid "<b>Werte über 16</b> = Spannungen im Team"
+msgstr "Values above 16 - indicate tension in the team."
+msgid "<b>Negatives Vorzeichen</b> = du schätzt den Beitrag zur Teamdynamik eher zu positiv ein"
+msgstr "Negative sign = player considers himself too positive"
+msgid "<b>Rot</b> = deine Selbstwahrnehmung liegt ausserhalb der Safe Zone"
+msgstr "Red values indicate that your self-perception is outside the - psychological safety zone."
+msgid "<b>Gelb</b> = deine Wahrnehmung durch die anderen liegt außerhalb der Safe Zone"
+msgstr "Yellow values indicate that the perception of others is outside the psychological safety zone."
+msgid "<b>Schwarz</b> = deine Selbst- und die Fremdwahrnehmung liegen ausserhalb der Safe Zone deines Teams"
+msgstr "Black values indicate that your self-perception and the perception of others is outside the psychological safety zone - of your team."
+msgid "Möchtest du erraten, wie du von jedem einzelnen Teammitglied eingeschätzt wirst? Dann spiel weiter!"
+msgstr "Would you like to guess how you are perceived by each team member? Then play on!"
+
+#: frontend/views/mission-2-ubung-1.html
+msgid "Aufgabe 6: Wie steht es um deine soziale Sensibilität?"
+msgstr "Mission 6: How's your social sensitivity?"
+msgid "Bewege zuerst deine eigene und dann alle anderen Spielfiguren, um zu erraten, wie deine Mitspieler dich wahrnehmen. Grün gewinnt. Eine durchschnittlich ausgeprägte soziale. Sensibilität ist eine wesentliche Voraussetzung für psychologische Sicherheit."
+msgstr "Move all the pieces to guess how your teammates perceive you.Green wins. An average level of social sensitivity is necessary for psychological safety to flourish."
+msgid "Please continue guessing, until you are close to the true value"
+msgstr "Please continue guessing, until you are close to the true value"
+
+#: frontend/views/mission-2-ubung-2.html
+msgid "Letzte Aufgabe: Anonymes Feedback"
+msgstr "Anonymous feedback"
+msgid "Was ist der Beitrag vom Mitspieler zur Psychologischen"
+msgstr "What is the player's contribution to psychological safety "
+msgid "Sicherheit im Team? Schau dir zuerst das Spannungsprofil deines"
+msgstr "in the team? First take a look at the tension profile of your feedback recipient on the right."
+msgid "Feedbacknehmers rechts an. Und Beantworte dann die drei Fragen für ein"
+msgstr "Then answer the three questions for an open, solution-oriented and anonymous feedback. Take a risk and write with an open heart..."
+msgid "offenes, lösungsorientiertes und anonymes Feedback. Geh ein Risiko ein und"
+msgstr "MORE of this:"
+msgid "schreib mit offenem Herzen..."
+msgstr "I appreciate your contribution to a successful teamwork..."
+
+msgid "MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team…"
+msgstr "CHANGE: you could help ensure the psychological safety of the team by..."
+msgid "ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem..."
+msgstr "QUESTION-MARK: I've always wanted to ask you..."
+msgid "FRAGEZEICHEN: ich wollte dich schon immer mal fragen…"
+msgstr "Write your feedback here..."
+
+#: frontend/views/arche.html
+msgid "Danke für deine Reise mit der ARCHE"
+msgstr "Thank you for checking-in with your team’s sense of psychological safety"
+msgid "Spieldaten? Klicke auf das Icon um ein PDF mit der Auswertung deiner Reise mit der Arche herunterzuladen"
+msgstr "Click here to download the PDF with the reports of your journey with the Ark"
+#msgid "Spielauswertung? Nimm'für eine professionelle Interpretation eurer Spieldaten Kontakt Dr. Joe Maier"
+#msgstr ""
+msgid "Interessiert dich eure TEAM-HEATMAP? Klicke auf das Icon um eine Karte der Spannungen im Team zu sehen."
+msgstr "Are you interested in your TEAM-HEATMAP? The aggregated game data - prepared to work on group dynamic topics of the team? Contact the developer Joe Maier via LinkedIn (please set LinkedIn-link here: https://www.linkedin.com/in/dr-joachim- maier/) "
+msgid "Paypal? Gib dem Entwickler einen Kaffee aus – Joe Maier dankt es dir!"
+msgstr "Paypal? Buy the developer a coffee - Joe Maier thanks you!"
+msgid "Zurück"
+msgstr "Back"

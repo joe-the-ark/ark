@@ -169,7 +169,7 @@ msgstr "黄色值表示他人的认知在心理安全区之外。"
 msgid "<b>Schwarz</b> = deine Selbst- und die Fremdwahrnehmung liegen ausserhalb der Safe Zone deines Teams"
 msgstr "黑色值表示你的自我认知和他人的认知都在你团队的心理安全区之外。"
 msgid "Möchtest du erraten, wie du von jedem einzelnen Teammitglied eingeschätzt wirst? Dann spiel weiter!"
-msgstr "你想猜测 每个团队成员对你的看法吗?那就继续玩吧!"
+msgstr "你想猜测每个团队成员对你的看法吗?那就继续玩吧!"
 
 #: frontend/views/mission-2-ubung-1.html
 msgid "Aufgabe 6: Wie steht es um deine soziale Sensibilität?"
