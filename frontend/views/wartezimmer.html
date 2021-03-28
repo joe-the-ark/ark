@@ -411,7 +411,7 @@
             }
             var data_ = {'link': '{{link}}'};
             var user_ = {'user_id': '{{user.id}}'}
-            await sleep(5000).then(() => {
+            await sleep(50000).then(() => {
                 axios
                     .post(`/api/check_ubung1_ubung3_blank/`, user_)
                     .then(function(response){

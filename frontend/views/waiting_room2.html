@@ -279,7 +279,7 @@
                 alert("Time-out. Please click, if you are ready to continue.")
             }
             var data_ = {'link': '{{link}}'};
-            await sleep(5000).then(() => {
+            await sleep(50000).then(() => {
                 axios
                     .post(`/api/waiting_room2_game_start/`, data_)
                     .then(function(response){

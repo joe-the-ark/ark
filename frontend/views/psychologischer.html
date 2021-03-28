@@ -49,7 +49,7 @@
                 </h1>
                 <p>
                     {% trans "Hier siehst du den psychologische Sicherheitswert für dein Team auf einer Skala zwischen 0 (sehr" %}
-                    {% trans "unsicher) und 5 (aussergewöhnlich sicher). Wie verhält sich dieser Wert zu deiner Einschätzung der" %}
+                    {% trans "unsicher) und 100 (aussergewöhnlich sicher). Wie verhält sich dieser Wert zu deiner Einschätzung der" %}
                     {% trans "gefühlten psychologischen Sicherheit im Team?" %}
                     <br/>
                     <br/>
@@ -71,7 +71,7 @@
                         <div class="team-average__range" v-bind:style="{ width: widthCalc }">
                                 <div class="team-average__circle">[[ score ]]</div>
                             </div>
-                            <div class="team-average__down">5</div>
+                            <div class="team-average__down">100</div>
                             <div class="team-average__up">0</div>
                         </div>
                     </div>
@@ -87,7 +87,7 @@
                     </div>
                     <div class="distry">
                         <div class="distry__description">
-                            Du arbeitest manchmal im Team auch gegen mich.
+                            Du arbeitest im Team nicht absichtlich gegen mich.
                         </div>
                         <div class="distry__thumbnails">
                             <div class="distry__user" v-for="count in row2">
@@ -107,7 +107,7 @@
                     </div>
                     <div class="distry">
                         <div class="distry__description">
-                            Wenn im Team Fehler passieren, verwendest du das gegen die Betroffenen.
+                            Wenn im Team Fehler passieren, verwendest du das häufig gegen die Betroffenen.
                         </div>
                         <div class="distry__thumbnails">
                             <div class="distry__user" v-for="count in row4">
@@ -163,10 +163,10 @@
         computed: {
             widthCalc: function () {
                 if(this.score.length > 1) {
-                    return (100 - Number(this.score.replace(',', ".")) / 5 * 100)+"%"
+                    return (100 - Number(this.score.replace(',', ".")) / 5 * 5)+"%"
                 }
                 else {
-                    return (100 - Number(this.score) / 5 * 100)+'%'
+                    return (100 - Number(this.score) / 5 * 5)+'%'
                 }
             }
         }

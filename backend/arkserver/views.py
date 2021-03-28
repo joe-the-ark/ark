@@ -694,11 +694,11 @@ def assessment(request, user):
         #     if user in game_.row5.all():
         #         row_5 += 1
 
-    score = row_0 * 4 + row_1 * 1 + row_2 * 3 + row_3 * 5 + row_4 * 0 + row_5 * 2
+    score = (row_0 * 4 + row_1 * 1 + row_2 * 3 + row_3 * 5 + row_4 * 0 + row_5 * 2) * 20
     num = (WaitingRoomMember.objects.filter(game=game,state=1).count()) ** 2
     score = score / num
 
-    ctx['psy_score'] = round(score,1)
+    ctx['psy_score'] = round(score)
     ctx['psy_row0'] = row_0
     ctx['psy_row1'] = row_1
     ctx['psy_row2'] = row_2
@@ -1074,11 +1074,11 @@ def psychologischer(request, user):
         # if user in game_.row5.all():
         #     row_5 += 1
 
-    score = row_0 * 4 + row_1 * 1 + row_2 * 3 + row_3 * 5 + row_4 * 0 + row_5 * 2
+    score = (row_0 * 4 + row_1 * 1 + row_2 * 3 + row_3 * 5 + row_4 * 0 + row_5 * 2) * 20
     num = (WaitingRoomMember.objects.filter(game=game,state=1).count()) ** 2
     score = score / num
 
-    ctx['score'] = round(score,1)
+    ctx['score'] = round(score)
     ctx['row0'] = row_0
     ctx['row1'] = row_1
     ctx['row2'] = row_2
