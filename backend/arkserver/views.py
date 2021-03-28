@@ -216,10 +216,12 @@ def ubung_1(request, user):
     
     # ctx['term_list'] = [i.api_json for i in list(Ubung1.objects.filter(game=game))]
 
-    from .utils import ubung_1_term_list
-    term_list = ubung_1_term_list
+    # from .utils import ubung_1_term_list
+    # term_list = ubung_1_term_list
+    from .utils import ubung_1_term_list_i18n
+    term_list = ubung_1_term_list_i18n
     ctx['term_list'] = term_list
-    print('term_list', term_list)
+    # print('term_list', term_list)
 
     return render(request, './views/ubung-1-pro.html', ctx)
 
@@ -268,10 +270,12 @@ def ubung_3(request, user):
 
     # ctx['term_list'] = [i.api_json for i in list(Ubung3.objects.filter(game=game))]
 
-    from .utils import ubung_3_term_list
-    term_list = ubung_3_term_list
+    # from .utils import ubung_3_term_list
+    # term_list = ubung_3_term_list
+    from .utils import ubung_3_term_list_i18n
+    term_list = ubung_3_term_list_i18n
     ctx['term_list'] = term_list
-    print('term_list', term_list)
+    # print('term_list', term_list)
 
     return render(request, './views/ubung-3-pro.html', ctx)
 

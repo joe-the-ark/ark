@@ -18,6 +18,7 @@
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 </head>
 <body>
+    {% get_current_language as LANGUAGE_CODE %}
 <div class="app">
     <div class="app__head">
         <header class="header-main container">
@@ -143,12 +144,24 @@
         return new Promise((resolve) => setTimeout(resolve, time));
     }
 
+    console.log('{{ LANGUAGE_CODE }}')
+    if ('{{LANGUAGE_CODE}}' == 'zh-hans' ){
+        var term_list_i18n = eval({{term_list|safe}})['Chinese']
+    }
+    if ('{{LANGUAGE_CODE}}' == 'de'){
+        var term_list_i18n = eval({{term_list|safe}})['Deutsch']
+    }
+    if ('{{LANGUAGE_CODE}}' == 'en'){
+        var term_list_i18n = eval({{term_list|safe}})['English']
+    }
+
     var app = new Vue({
         delimiters: ['[[', ']]'],
         el: '#app-1',
         data:{
             text_input: '',
-            term_list: {{term_list|safe}},
+            //term_list: {{term_list|safe}},
+            term_list: term_list_i18n,
             loading: false,
             keyboard_input: false,
         },
