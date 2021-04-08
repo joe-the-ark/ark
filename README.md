@@ -1,5 +1,5 @@
 # ark
-The Ark is a social game to develop your teams sense of psychological safety. It is developed by Dr. Joachim Maier, Sempach, Switzerland and made available under GPLv3. Frontend made in Omsk with a backend from China.
+The Ark is an Online Group Challenge to develop your teams sense of psychological safety. It is developed by Dr. Joachim Maier, Sempach, Switzerland and made available under GPLv3. Frontend made in Omsk with a backend from China. German version is playable via https://wwww.arks.ch
 ## Git Notes for backend and frontend developers
 If you work on your local branches, make sure to do a `git pull origin master` before you merge your changes into the master branch or before you do a Pull-Request. This is very important to avoid merge conflicts.
 ## How to run the project 
