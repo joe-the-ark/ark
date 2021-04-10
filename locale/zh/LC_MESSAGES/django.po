@@ -411,7 +411,6 @@ msgstr "平均的社会敏感度是心理安全的重要前提。"
 #. feedback
 #: loco:606da1a105edc05dd34391e2
 msgid "Letzte Aufgabe: Anonymes Feedback"
-<<<<<<< HEAD
 msgstr "最后一项任务：匿名反馈"
 
 #. feedback
@@ -457,14 +456,14 @@ msgstr "黑色=自我感觉和对安全区以外的其他人的感觉。"
 #. feedback
 #: loco:606dcbb5801da7547d3d60b3
 msgid ""
-"MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team."
+"MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team..."
 ".."
 msgstr "更多的是这样。感谢你对团队成功互动的贡献..."
 
 #. feedback
 #: loco:606dccafadb79a19d52e6333
 msgid ""
-"ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem."
+"ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem..."
 ".."
 msgstr "你可以为团队的心理安全做出贡献，..."
 
@@ -552,28 +551,6 @@ msgstr "告别"
 
 #. farewell
 #: loco:606efe32790d3070b02aa142
-=======
-msgstr "匿名反馈"
-msgid "Was ist der Beitrag vom Mitspieler zur Psychologischen"
-msgstr "球员在团队中对心理安全的贡献是什么?"
-msgid "Sicherheit im Team? Schau dir zuerst das Spannungsprofil deines"
-msgstr "首先看一下右边你的反馈对象的紧张状况。"
-msgid "Feedbacknehmers rechts an. Und Beantworte dann die drei Fragen für ein"
-msgstr "然后回答三个问题，进行开放性的、以解决 问题为导向的、匿名的反馈。冒着⻛风险，敞开心扉写..."
-msgid "offenes, lösungsorientiertes und anonymes Feedback. Geh ein Risiko ein und"
-msgstr "更多的是这样的。"
-msgid "schreib mit offenem Herzen..."
-msgstr "我很感激你对成功的团队合作的贡献......"
-
-msgid "MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team..."
-msgstr "变化:你可以通过帮助确保团队的心理安全..."
-msgid "ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem..."
-msgstr "问题-马克。 我一直想问你..."
-msgid "FRAGEZEICHEN: ich wollte dich schon immer mal fragen..."
-msgstr "在这里写下你的反馈..."
-
-#: frontend/views/arche.html
->>>>>>> df8f227ee45a253e438040970f96b88744816996
 msgid "Danke für deine Reise mit der ARCHE"
 msgstr "感谢你与方舟的旅程"
 

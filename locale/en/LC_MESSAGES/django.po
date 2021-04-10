@@ -527,7 +527,7 @@ msgstr "Black = self-perception & perception of others outside the safe zone"
 #. feedback
 #: loco:606dcbb5801da7547d3d60b3
 msgid ""
-"MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team."
+"MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team..."
 ".."
 msgstr ""
 "MORE of this: I appreciate your contribution to our successful teamwork..."
@@ -535,7 +535,7 @@ msgstr ""
 #. feedback
 #: loco:606dccafadb79a19d52e6333
 msgid ""
-"ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem."
+"ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem..."
 ".."
 msgstr ""
 "CHANGE: you could contribute to the psychological safety of the team by..."
