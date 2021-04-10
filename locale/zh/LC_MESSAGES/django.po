@@ -193,11 +193,11 @@ msgstr "更多的是这样的。"
 msgid "schreib mit offenem Herzen..."
 msgstr "我很感激你对成功的团队合作的贡献......"
 
-msgid "MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team…"
+msgid "MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team..."
 msgstr "变化:你可以通过帮助确保团队的心理安全..."
 msgid "ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem..."
 msgstr "问题-马克。 我一直想问你..."
-msgid "FRAGEZEICHEN: ich wollte dich schon immer mal fragen…"
+msgid "FRAGEZEICHEN: ich wollte dich schon immer mal fragen..."
 msgstr "在这里写下你的反馈..."
 
 #: frontend/views/arche.html
