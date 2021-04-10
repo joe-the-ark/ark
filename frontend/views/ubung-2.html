@@ -49,11 +49,10 @@
             {% csrf_token %}
                 <main class="screen ubung-2">
                     <h1>
-                        {% trans "Aufgabe 2: Wie gut nutzt ihr das Team Potential?" %}
+                        {% trans "Wie gut nutzt ihr das Team Potential?" %}
                     </h1>
                     <p>
-                        {% trans "Schätze <b>anonym</b> die durchschnittliche Performance dieses Teams auf einer Skala von 1 (low performing)" %}
-                        {% trans "bis 99 (high performing) ein." %}
+                        {% trans "Schätze anonym die durchschnittliche Performance dieses Teams auf einer Skala von 1 (low performing) bis 99 (high performing) ein." %}
                     </p>
                     <div class="ui-slider">
                         <div class="ui-slider__marker">
@@ -62,7 +61,7 @@
                                 <img src="{{user.avatar}}" alt=""/>
                             </div>
                             <div class="ui-slider__marker-name">
-                                {{user.name}} schätzt
+                                {{user.name}} {% trans "schätzt" %}
                             </div>
                         </div>
                         <div class="ui-slider__range">
@@ -70,8 +69,7 @@
                         </div>
                     </div>
                     <p>
-                        <b>{% trans "Bewege bitte deine Spielfigur auf den Punkt der Skala, der am Besten passt. Später im Spiel siehst" %}
-                        {%trans "du die anonymisierte Einschätzung aller Mitspieler." %}</b>
+                        {% trans "Bewege bitte deine Spielfigur auf den Punkt der Skala, der am Besten passt. Später im Spiel siehst du die anonymisierte Einschätzung aller Mitspieler." %}
                     </p>
                     <input id="digit_value" type="hidden" name="digit_value" value="0">
                     <div class="center">

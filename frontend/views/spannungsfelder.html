@@ -47,10 +47,10 @@
         <div class="container">
             <main class="screen spannungsfelder">
                 <h1>
-                    {% trans "Spannungsfelder" %}
+                    {% trans "Spannungsfelder:" %}
                 </h1>
                 <p>
-                    {% trans "Der farbige Bereich ist die Safe Zone deines Teams. Wird dein Beitrag zur Teamdynamik eher als ausgleichend oder polarisierend wahrgenommen? Wie erklärst du die Unterschiede zwischen deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team?" %}
+                    {% trans "Der farbige Bereich ist die Safe Zone deines Teams. Was ist dein Beitrag zu den Kraftquellen und Energiefressern im Team? Wie erklärst du die Unterschiede zwischen deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team?" %}
                 </p>
 
                 <div id="graph-slider" class="swiper-container">
@@ -67,45 +67,44 @@
                     </div>
                 </div>
                 <div class="custom-graph-info">
-                    <div class="custom-graph-info__item small" data-text="Others">
+                    <div class="custom-graph-info__item small" data-text={% trans "Others" %}>
                         {{ others }}
                     </div>
-                    <div class="custom-graph-info__item base" data-text="Self">
+                    <div class="custom-graph-info__item base" data-text={% trans "Self" %}>
                         {{ himself }}
                     </div>
-                    <div class="custom-graph-info__item large" data-text="Tension">
+                    <div class="custom-graph-info__item large" data-text={% trans "Tension" %}>
                         {{ tension }}
                     </div>
                 </div>
                 <p>
-                    {% trans "Diese Kräfte beschreiben deinen Einfluss auf eure" %}
-                    {% trans "Teamdynamik:" %}
+                    {% trans "Der farbige Bereich ist die Safe Zone deines Teams. Was ist dein Beitrag zu den Kraftquellen und Energiefressern im Team? Wie erklärst du die Unterschiede zwischen deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team?" %}
                 </p>
                 <ul>
                     <li>
-                        {% trans "<b>Weiss</b> = Spannungsfreiheit" %}
+                        {% trans "Weiss = Spannungsfreiheit" %}
                     </li>
                     <li>
-                        {% trans "<b>Werte über 16</b> = Spannungen mit dem Team" %}
+                        {% trans "Werte über 16 = Spannung mit dem Team" %}
                     </li>
                     <li>
-                        {% trans "<b>Negatives Vorzeichen</b> = du schätzt den Beitrag zur Teamdynamik eher zu positiv ein" %}
+                        {% trans "Negatives Vorzeichen = du schätzt deinen Beitrag zur Teamdynamik eher zu positiv ein" %}
                     </li>
                     <li>
-                        <b>Positives Vorzeichen</b> = du schätzt den Beitrag zur Teamdynamik eher zu kritisch ein
+                        {% trans "Positives Vorzeichen = schätzt den Beitrag zur Teamdynamik eher zu kritisch ein" %}
                     </li>                    
                     <li>
-                        {% trans "<b>Rot</b> = deine Selbstwahrnehmung liegt ausserhalb der Safe Zone" %}
+                        {% trans "Rot = deine Selbstwahrnehmung liegt ausserhalb der Safe Zone" %}
                     </li>
                     <li>
-                        {% trans "<b>Gelb</b> = deine Wahrnehmung durch die anderen liegt außerhalb der Safe Zone" %}
+                        {% trans "Gelb = die Wahrnehmung deines Beitrags durch die anderen liegt außerhalb der Safe Zone" %}
                     </li>
                     <li>
-                        {% trans "<b>Schwarz</b> = deine Selbst- und die Fremdwahrnehmung liegen ausserhalb der Safe Zone deines Teams" %}
+                        {% trans "Schwarz = die Selbst- und die Fremdwahrnehmung deines Beitrags zur Gruppendynamik liegen ausserhalb der Safe Zone" %}
                     </li>
                 </ul>
                 <p>
-                    {% trans "Möchtest du erraten, wie du von jedem einzelnen Teammitglied eingeschätzt wirst? Dann spiel weiter!" %}
+                    {% trans "Möchtest du erraten, wie dein Beitrag zur Gruppendynamik von jedem einzelnen Teammitglied eingeschätzt wird? Dann spiel weiter!" %}
                 </p>
                 <div class="center">
                     <a href="/preview-2/" class="button" id="button">

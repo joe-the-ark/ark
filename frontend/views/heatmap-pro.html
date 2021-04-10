@@ -45,16 +45,20 @@
     </div>
     <div class="app__body" id="app-1">
         <div class="container">
-          <h1>{% trans "Team Heatmap" %}</h1>
-          <p>{% trans "Die Heatmap bietet eine aggregierte Auswertung aller Spannungen im Team:</p>
+          <h1>Team Heatmap</h1>
+
+          <p>Die Heatmap bietet eine aggregierte Auswertung aller Spannungen im Team:</p>
             <ul>
+             
               <li>
-                In der <b>Horizontalen sieht man den Beitrag jedes Spielers zu den Energiequellen</b>. Je niedriger der Wert, desto grösser ist der Beitrag zu den Energiequellen im Team.<br> 
+                In der <b>Horizontalen sieht man links die Lage der Safe Zones</b> und rechts die Skalen mit den Kraftquellen und Energiefressern des Teams – je höher der Wert, desto grösser ist der Beitrag dieser Skala zu den Energiefressern im Team.<br> 
               </li>
               <li>
-                Vertikal sieht man links die Lage der Safe Zones und <b>rechts die Skalen mit den Kraftquellen und Energiefressern des Teams</b> – je höher der Wert, desto grösser ist der Beitrag dieser Skala zu den Energiefressern im Team." %}
-              </li>
+              <b>Vertikal sieht man den Beitrag, den jeder Spieler zu den Energiefressern leistet</b>. Im Innern der Heatmap sieht man, wie gross die Abweichung jedes Spielers zwischen Selbst- und Fremdwahrnehmung ist. Bei negativen Vorzeichen schätzt der Spieler den Beitrag zur Teamdynamik eher zu positiv ein. Werte über 16 deuten auf Spannungen hin.
+              </li>>
             </ul>
+
+        </div>
         <div class="heatmap">
 
           <div class="main-column left">
@@ -217,24 +221,9 @@
 
   </script>
 
-         <div class="container">
-          <ul>
-            <li>
-              {% trans "Im Innern der Heatmap sieht man, wie gross die Abweichung zwischen Selbst- und Fremdwahrnehmung hinsichtlich des Beitrags zu den Kraftquellen und Energiefressern im Team ist. 
-            </li>
-            <li>
-              Bei <b>negativen Vorzeichen schätzt der Spieler den Beitrag zur Teamdynamik eher zu positiv</b> ein. 
-            </li>
-            <li>
-              Werte über 16 deuten auf Spannungen mit dem Team hin." %}<br><br><br>
-            </li>
-          </ul>
-        </div>
-  
-
   <div class="center">
       <a href="/farewell/" class="button" id="button">
-                        {% trans "Auf Wiedersehen sagen" %}
+                        Auf Wiedersehen sagen
       </a>  
   </div>  
 

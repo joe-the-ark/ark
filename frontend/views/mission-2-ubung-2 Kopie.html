@@ -65,7 +65,7 @@
                 </div>
                 <div class="feedback__users">
                     <p class="bold">
-                        Spannungsfelder von
+                        {% trans "Spannungsfelder von" %}
                         <span>
                             Constantin Constantinopol
                         </span>
@@ -210,13 +210,13 @@
                 <form id="form_" action="#" method="POST" class="form">
                 {% csrf_token %}
                     <p>
-                        <b>Weiss</b> = Spannungsfreiheit<br>
-                        <b>Werte über 16</b> = Spannungen im Team<br>
-                        <b>Negatives Vorzeichen</b> = schätzt sich zu positiv ein<br>
-                        <b>Positives Vorzeichen</b> = schätzt sich zu kritisch eine<br>
-                        <b>Rot</b> = Selbstwahrnehmung außerhalb Safe Zone<br>
-                        <b>Gelb</b> = Wahrnehmung durch die anderen außerhalb Safe Zone<br>
-                        <b>Schwarz</b> = Selbst- & Fremdwahrnehmung ausserhalb Safe Zone
+                        {% trans "Weiss = Spannungsfreiheit" %}<br>
+                        {% trans "Werte über 16 = Spannung mit dem Team" %}<br>
+                        {% trans "Negatives Vorzeichen = zu positive Selbstwahrnehmung" %}<br>
+                        {% trans "Positives Vorzeichen = zu kritische Selbstwahrnehmung" %}<br>
+                        {% trans "Rot = Selbstwahrnehmung ausserhalb Safe Zone" %}<br>
+                        {% trans "Gelb = Wahrnehmung durch die anderen ausserhalb Safe Zone" %}<br>
+                        {% trans "Schwarz = Selbst- & Fremdwahrnehmung ausserhalb Safe Zone" %}
                     </p>
                     <div class="center">
                         <input id="data" type="hidden" name="data" value=""/>
@@ -261,16 +261,16 @@
                 statusSide: member_list[uu]['statusSide'],
                 feedback: [
                     {
-                        title: "{% trans 'MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team...' %}",
-                        text: ' '
+                        title: '{% trans "MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team..." %}',
+                        text: ''
                     },
                     {
-                        title: "{% trans 'ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem...' %}",
-                        text: ' '
+                        title: '{% trans "ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem..." %}',
+                        text: ''
                     },
                     {
-                        title: "{% trans 'FRAGEZEICHEN: ich wollte dich schon immer mal fragen...' %}",
-                        text: ' '
+                        title: '{% trans "FRAGEZEICHEN: ich wollte dich schon immer mal fragen..." %}',
+                        text: ''
                     }
                 ],
             };

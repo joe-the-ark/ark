@@ -45,12 +45,10 @@
         <div class="container">
             <main class="screen psychologischer">
                 <h1>
-                    {% trans "Psychologischer Sicherheitswert" %}
+                    {% trans "Euer Psychologischer Sicherheitswert:" %}
                 </h1>
                 <p>
-                    {% trans "Hier siehst du den psychologische Sicherheitswert für dein Team auf einer Skala zwischen 0 (sehr" %}
-                    {% trans "unsicher) und 100 (aussergewöhnlich sicher). Wie verhält sich dieser Wert zu deiner Einschätzung der" %}
-                    {% trans "gefühlten psychologischen Sicherheit im Team?" %}
+                    {% trans "Hier siehst du den psychologische Sicherheitswert für dein Team auf einer Skala zwischen 0 (sehr unsicher) und 100 (aussergewöhnlich sicher). Wie verhält sich dieser Wert zu deiner Einschätzung der gefühlten psychologischen Sicherheit im Team?" %}
                     <br/>
                     <br/>
                 </p>
@@ -58,7 +56,7 @@
                 <div class="psychologischer__container">
                     <div class="distry">
                         <div class="distry__description">
-                            Probleme und schwierige Themen kann ich bei dir ansprechen.
+                            {% trans "Probleme und schwierige Themen kann ich bei dir ansprechen." %}
                         </div>
                         <div class="distry__thumbnails">
                             <div class="distry__user" v-for="count in row0">
@@ -77,7 +75,7 @@
                     </div>
                     <div class="distry">
                         <div class="distry__description">
-                            Du schliesst manchmal Menschen aus dem Team aus, weil sie anders sind.
+                            {% trans "Du schliesst manchmal Menschen aus dem Team aus, weil sie anders sind." %}
                         </div>
                         <div class="distry__thumbnails">
                             <div class="distry__user" v-for="count in row1">
@@ -87,7 +85,7 @@
                     </div>
                     <div class="distry">
                         <div class="distry__description">
-                            Du arbeitest im Team nicht absichtlich gegen mich.
+                            {% trans "Du arbeitest im Team nicht absichtlich gegen mich." %}
                         </div>
                         <div class="distry__thumbnails">
                             <div class="distry__user" v-for="count in row2">
@@ -97,7 +95,7 @@
                     </div>
                     <div class="distry">
                         <div class="distry__description">
-                            Meine Talente werden von dir gesehen, geschätzt und ausgeschöpft.
+                            {% trans "Meine Talente werden von dir gesehen, geschätzt und ausgeschöpft." %}
                         </div>
                         <div class="distry__thumbnails">
                             <div class="distry__user" v-for="count in row3">
@@ -107,7 +105,7 @@
                     </div>
                     <div class="distry">
                         <div class="distry__description">
-                            Wenn im Team Fehler passieren, verwendest du das häufig gegen die Betroffenen.
+                            {% trans "Wenn im Team Fehler passieren, verwendest du das häufig gegen die Betroffenen." %}
                         </div>
                         <div class="distry__thumbnails">
                             <div class="distry__user" v-for="count in row4">
@@ -117,7 +115,7 @@
                     </div>
                     <div class="distry">
                         <div class="distry__description">
-                            Es fällt mir schwer, dich um Hilfe zu bitten.
+                            {% trans "Es fällt mir schwer, dich um Hilfe zu bitten." %}
                         </div>
                         <div class="distry__thumbnails">
                             <div class="distry__user" v-for="count in row5">

@@ -53,14 +53,19 @@
         <div class="container">
             <main class="screen ubung-5">
                 <h1>
-                    {% trans "Aufgabe 6: Wie steht es um deine soziale Sensibilität?" %}
+                    {% trans "Wie steht es um deine soziale Sensibilität?" %}
                 </h1>
                 <p>
-                    {% trans "Bewege zuerst deine eigene und dann alle anderen Spielfiguren, um zu erraten, wie deine Mitspieler dich wahrnehmen. Grün gewinnt. Eine durchschnittlich ausgeprägte soziale. Sensibilität ist eine wesentliche Voraussetzung für psychologische Sicherheit." %}
+                    {% trans "Bewege zuerst deine eigene und dann alle anderen Spielfiguren, um zu erraten, wie deine Mitspieler deinen Beitrag zur Gruppendynamik wahrnehmen. Sind alle Werte GRÜN kannst du weiterspielen." %}
                 </p>
                 <div class="custom-graph-wrapper"></div>
                 {% comment %} <form action="#" method="POST" class="form">
                 {% csrf_token %} {% endcomment %}
+                <p>
+                    {% trans "Eine durchschnittlich ausgeprägte soziale Sensibilität ist eine wesentliche Voraussetzung für psychologische Sicherheit." %}
+                    <br>
+                    <br>
+                </p>
                     <div class="center" id="app-1">
                         <input id="data" type="hidden" name="data" value=""/>
                         <button type="submit" id="button" @click="popup()">

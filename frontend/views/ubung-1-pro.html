@@ -56,7 +56,7 @@
         element-loading-background="rgba(0, 0, 0, 0.8)">
                 <main class="screen ubung-1">
                     <h1>
-                        {% trans "Aufgabe 1: Kraftquelle des Teams." %}
+                        {% trans "Kraftquelle des Teams?" %}
                     </h1>
                     <p>
                         {% trans "Die erste Aufgabe ist anspruchsvoll und bestimmt die Struktur des Spiels: Welche Team-Kraftquelle gibt DIR ganz persönlich in diesem Team am meisten Energie?" %}
@@ -151,6 +151,9 @@
     }
     if ('{{LANGUAGE_CODE}}' == 'de'){
         var term_list_i18n = eval({{term_list|safe}})['Deutsch']
+    }
+    if ('{{LANGUAGE_CODE}}' == 'fr'){
+        var term_list_i18n = eval({{term_list|safe}})['French']
     }
     if ('{{LANGUAGE_CODE}}' == 'en'){
         var term_list_i18n = eval({{term_list|safe}})['English']

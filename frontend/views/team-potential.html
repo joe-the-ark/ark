@@ -54,10 +54,10 @@
         element-loading-background="rgba(0, 0, 0, 0.8)">
             <main class="screen team-potential">
                 <h1>
-                    {% trans "Team Potential Einschätzung" %}
+                    {% trans "Team Potential Einschätzung:" %}
                 </h1>
                 <p>
-                    {% trans "Ist dein Team High oder Low Performing? Unsere Hypothese lautet: bessere Performance entsteht dank höherer Psychologischer Sicherheit." %}
+                    {% trans "Ist dein Team High oder Low Performing? Unsere und Googles Hypothese lautet: bessere Performance entsteht dank höherer Psychologischer Sicherheit." %}
                     <br/>
                     <br/>
                 </p>
@@ -65,7 +65,7 @@
                     <div class="custom-graph-info__item small" data-text="{% trans 'Minimal' %}">
                         {{ minimal }}
                     </div>
-                    <div class="custom-graph-info__item base" data-text="{% trans 'Average' %}">
+                    <div class="custom-graph-info__item base" data-text="{% trans 'Durchschnitt' %}">
                         {{ median }}
                     </div>
                     <div class="custom-graph-info__item large" data-text="{% trans 'Maximal' %}">
@@ -74,7 +74,11 @@
                 </div>
                 <div class="custom-graph-wrapper"></div>
                 {% comment %} <form id="form_" action="#" method="POST" id="auth-form" class="form"> {% endcomment %}
-
+                <p>
+                    {% trans "Euren Psychologischen Sicherheit Score siehst du im nächsten Schritt." %}
+                    <br/>
+                    <br/>
+                </p>
                     <div class="center">
                         {% comment %} <a href="/psychologischer/" class="button" id="button">
                             Weiterspielen
