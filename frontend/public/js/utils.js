@@ -164,36 +164,36 @@ function dataForRange(json_list, user)  {
   return(result)
 }
 
-function arrayForFeedback(json, nameArray) {
-    let arr = []
-    for (let name of nameArray) {
-        for (let item of json) {
-            if(item.name == name) {
-                arr.push({
-                    'name':item.name,
-                    'id':item.id,
-                    'avatar': item.avatar,
-                    'feedback': [
-                        {
-                            title: 'MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team…',
-                            text: ''
-                        },
-                        {
-                            title: 'ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem...',
-                            text: ''
-                        },
-                        {
-                            title: 'FRAGEZEICHEN: ich wollte dich schon immer mal fragen…',
-                            text: ''
-                        }
-                    ],
-                });
-                break
-            }
-        }
-    }
-    return arr
-}
+// function arrayForFeedback(json, nameArray) {
+//     let arr = []
+//     for (let name of nameArray) {
+//         for (let item of json) {
+//             if(item.name == name) {
+//                 arr.push({
+//                     'name':item.name,
+//                     'id':item.id,
+//                     'avatar': item.avatar,
+//                     'feedback': [
+//                         {
+//                             title: 'MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team…',
+//                             text: ''
+//                         },
+//                         {
+//                             title: 'ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem...',
+//                             text: ''
+//                         },
+//                         {
+//                             title: 'FRAGEZEICHEN: ich wollte dich schon immer mal fragen…',
+//                             text: ''
+//                         }
+//                     ],
+//                 });
+//                 break
+//             }
+//         }
+//     }
+//     return arr
+// }
 
 
 
