@@ -455,16 +455,12 @@ msgstr "黑色=自我感觉和对安全区以外的其他人的感觉。"
 
 #. feedback
 #: loco:606dcbb5801da7547d3d60b3
-msgid ""
-"MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team..."
-".."
+msgid "MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team..."
 msgstr "更多的是这样。感谢你对团队成功互动的贡献..."
 
 #. feedback
 #: loco:606dccafadb79a19d52e6333
-msgid ""
-"ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem..."
-".."
+msgid "ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem..."
 msgstr "你可以为团队的心理安全做出贡献，..."
 
 #. feedback
@@ -477,19 +473,23 @@ msgstr "我一直想问你..."
 msgid ""
 "Als Google eine umfangreiche Studie in Angriff nahm, um zu verstehen, was "
 "ein leistungsstarkes Team ausmacht, war es Amy Edmondsons Forschung über "
-"\"psychologische Sicherheit\", die zur Grundlage der Erkenntnisse des "
-"Unternehmens wurde.\n"
-"Die Professorin an der Harvard Business School sagt, dass \"psychologische "
+"psychologische Sicherheit, die zur Grundlage der Erkenntnisse des "
+"Unternehmens wurde."
+msgstr "当谷歌开始进行一项广泛的研究，以了解是什么造就了一个高绩效的团队时，正是艾米-埃德蒙森对 心理安全 的研究成为了该公司研究结果的基础。"
+
+#. waiting-3
+#: loco:6071702a89175041c2234a92
+msgid ""
+"Die Professorin an der Harvard Business School sagt, dass psychologische "
 "Sicherheit ein Klima am Arbeitsplatz beschreibt, in dem man glaubt, dass man "
-"jede Idee, jedes Anliegen, jede Frage und sogar Fehler frei ansprechen kann."
-"\" Es sei \"ein Gefühl der Erlaubnis zur Offenheit\". In diesem Video "
-"erklärt Edmondson die Vorteile der Schaffung von psychologischer Sicherheit "
-"am Arbeitsplatz und warum sie für das Lernen, die Innovation und das "
-"Wachstum in der Wissensökonomie unerlässlich ist."
+"jede Idee, jedes Anliegen, jede Frage und sogar Fehler frei ansprechen kann. "
+"Es sei ein Gefühl der Erlaubnis zur Offenheit. In diesem Video erklärt "
+"Edmondson die Vorteile der Schaffung von psychologischer Sicherheit am "
+"Arbeitsplatz und warum sie für das Lernen, die Innovation und das Wachstum "
+"in der Wissensökonomie unerlässlich ist."
 msgstr ""
-"当谷歌开始进行一项广泛的研究，以了解是什么造就了一个高绩效的团队时，正是艾米-埃德蒙森对 \"心理安全 \"的研究成为了该公司研究结果的基础。\n"
-"这位哈佛商学院教授说，\"心理安全描述了一种工作氛围，在这种氛围中，人们相信你可以自由地说出任何想法、担忧、问题，甚至是错误\"。这是 "
-"\"一种对坦率的允许感\"。在这个视频中，埃德蒙森解释了在工作场所创造心理安全的好处，以及为什么它对知识经济中的学习、创新和增长至关重要。"
+"这位哈佛商学院教授说，心理安全描述了一种工作氛围，在这种氛围中，人们相信你可以自由地说出任何想法、担忧、问题，甚至是错误。这是 "
+"一种对坦率的允许感。在这个视频中，埃德蒙森解释了在工作场所创造心理安全的好处，以及为什么它对知识经济中的学习、创新和增长至关重要。"
 
 #. waiting-3
 #: loco:606dd8f0de6e512dcf1bddc2
@@ -518,31 +518,40 @@ msgstr "团队热图"
 
 #. heatmap
 #: loco:606ef181b72c7c09a00e9952
-msgid ""
-"Die Heatmap bietet eine aggregierte Auswertung aller Spannungen im Team: In "
-"der Horizontalen sieht man den Beitrag jedes Spielers zu den Energiequellen. "
-"Je niedriger der Wert, desto grösser ist der Beitrag zu den Energiequellen "
-"im Team.\n"
-"Vertikal sieht man links die Lage der Safe Zones und rechts die Skalen mit "
-"den Kraftquellen und Energiefressern des Teams – je höher der Wert, desto "
-"grösser ist der Beitrag dieser Skala zu den Energiefressern im Team."
-msgstr ""
-"热图提供了团队中所有紧张关系的综合评估：在横线上你可以看到每个球员对能源的贡献。数值越低，对团队中的能量来源贡献越大。\n"
-"纵向上可以看到左边是安全区的位置，右边是与团队中的动力源和能量消耗者的比例尺，数值越高，这个比例尺对团队中能量消耗者的贡献越大。"
+msgid "Die Heatmap bietet eine aggregierte Auswertung aller Spannungen im Team:"
+msgstr "热图提供了团队中所有紧张关系的综合评估："
 
 #. heatmap
 #: loco:606ef2252896c96569615292
-msgid ""
-"Im Innern der Heatmap sieht man, wie gross die Abweichung zwischen Selbst- "
+msgid "Im Innern der Heatmap sieht man, wie gross die Abweichung zwischen Selbst- "
 "und Fremdwahrnehmung hinsichtlich des Beitrags zu den Kraftquellen und "
-"Energiefressern im Team ist.\n"
-"Bei negativen Vorzeichen schätzt der Spieler den Beitrag zur Teamdynamik "
-"eher zu positivein.\n"
-"Werte über 16 deuten auf Spannungen mit dem Team hin."
-msgstr ""
-"在热力图里面，你可以看到自我认知和外部认知之间的偏差有多大，对团队中的力量来源和能量消耗者的贡献。\n"
-"如果标志是负数，则说明该球员对团队动力的贡献往往过于积极。\n"
-"数值高于16表示与团队关系紧张。"
+"Energiefressern im Team ist."
+msgstr "在热力图里面，你可以看到自我认知和外部认知之间的偏差有多大，对团队中的力量来源和能量消耗者的贡献。"
+
+#. heatmap
+#: loco:60718b2a66822624027984e2
+msgid "In der Horizontalen sieht man den Beitrag jedes Spielers zu den "
+"Energiequellen. Je niedriger der Wert, desto grösser ist der Beitrag zu den "
+"Energiequellen im Team."
+msgstr "在横线上你可以看到每个球员对能源的贡献。数值越低，对团队中的能量来源贡献越大。"
+
+#. heatmap
+#: loco:60718bb71d59b64092772912
+msgid "Vertikal sieht man links die Lage der Safe Zones und rechts die Skalen mit "
+"den Kraftquellen und Energiefressern des Teams – je höher der Wert, desto "
+"grösser ist der Beitrag dieser Skala zu den Energiefressern im Team."
+msgstr "纵向上可以看到左边是安全区的位置，右边是与团队中的动力源和能量消耗者的比例尺，数值越高，这个比例尺对团队中能量消耗者的贡献越大。"
+
+#. heatmap
+#: loco:60718cdf2808fc1f855fd132
+msgid "Bei negativen Vorzeichen schätzt der Spieler den Beitrag zur Teamdynamik "
+"eher zu positiv ein."
+msgstr "如果标志是负数，则说明该球员对团队动力的贡献往往过于积极。"
+
+#. heatmap
+#: loco:60718d2ed775586b0968a473
+msgid "Werte über 16 deuten auf Spannungen mit dem Team hin."
+msgstr "数值高于16表示与团队关系紧张。"
 
 #. heatmap
 #: loco:606ef28b897dc9441a675aa3

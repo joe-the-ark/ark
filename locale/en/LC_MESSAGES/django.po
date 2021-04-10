@@ -526,19 +526,13 @@ msgstr "Black = self-perception & perception of others outside the safe zone"
 
 #. feedback
 #: loco:606dcbb5801da7547d3d60b3
-msgid ""
-"MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team..."
-".."
-msgstr ""
-"MORE of this: I appreciate your contribution to our successful teamwork..."
+msgid "MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team..."
+msgstr "MORE of this: I appreciate your contribution to our successful teamwork..."
 
 #. feedback
 #: loco:606dccafadb79a19d52e6333
-msgid ""
-"ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem..."
-".."
-msgstr ""
-"CHANGE: you could contribute to the psychological safety of the team by..."
+msgid "ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem..."
+msgstr "CHANGE: you could contribute to the psychological safety of the team by..."
 
 #. feedback
 #: loco:606dcdc32edb02114d39aea2
@@ -550,25 +544,30 @@ msgstr "QUESTION: I've always wanted to ask you..."
 msgid ""
 "Als Google eine umfangreiche Studie in Angriff nahm, um zu verstehen, was "
 "ein leistungsstarkes Team ausmacht, war es Amy Edmondsons Forschung über "
-"\"psychologische Sicherheit\", die zur Grundlage der Erkenntnisse des "
-"Unternehmens wurde.\n"
-"Die Professorin an der Harvard Business School sagt, dass \"psychologische "
-"Sicherheit ein Klima am Arbeitsplatz beschreibt, in dem man glaubt, dass man "
-"jede Idee, jedes Anliegen, jede Frage und sogar Fehler frei ansprechen kann."
-"\" Es sei \"ein Gefühl der Erlaubnis zur Offenheit\". In diesem Video "
-"erklärt Edmondson die Vorteile der Schaffung von psychologischer Sicherheit "
-"am Arbeitsplatz und warum sie für das Lernen, die Innovation und das "
-"Wachstum in der Wissensökonomie unerlässlich ist."
+"psychologische Sicherheit, die zur Grundlage der Erkenntnisse des "
+"Unternehmens wurde."
 msgstr ""
 "When Google embarked on an extensive study to understand what makes for a "
-"high-performing team, it was Amy Edmondson’s research on \"psychological "
-"safety\" that became the foundation of the company’s findings.\n"
-"The Harvard Business School Professor says that \"psychological safety "
+"high-performing team, it was Amy Edmondson’s research on psychological "
+"safety that became the foundation of the company’s findings."
+
+#. waiting-3
+#: loco:6071702a89175041c2234a92
+msgid ""
+"Die Professorin an der Harvard Business School sagt, dass psychologische "
+"Sicherheit ein Klima am Arbeitsplatz beschreibt, in dem man glaubt, dass man "
+"jede Idee, jedes Anliegen, jede Frage und sogar Fehler frei ansprechen kann. "
+"Es sei ein Gefühl der Erlaubnis zur Offenheit. In diesem Video erklärt "
+"Edmondson die Vorteile der Schaffung von psychologischer Sicherheit am "
+"Arbeitsplatz und warum sie für das Lernen, die Innovation und das Wachstum "
+"in der Wissensökonomie unerlässlich ist."
+msgstr ""
+"The Harvard Business School Professor says that psychological safety "
 "describes a climate at work where one believes that you can freely speak up "
-"with any idea, concern, question, even mistakes.\" It’s \"a sense of "
-"permission for candor.\" In this video Edmondson explains the benefits of "
-"creating psychological safety in the workplace and why it’s essential for "
-"learning, innovation, and growth in the knowledge economy."
+"with any idea, concern, question, even mistakes. It’s a sense of permission "
+"for candor. In this video Edmondson explains the benefits of creating "
+"psychological safety in the workplace and why it’s essential for learning, "
+"innovation, and growth in the knowledge economy."
 
 #. waiting-3
 #: loco:606dd8f0de6e512dcf1bddc2
@@ -597,40 +596,48 @@ msgstr "Team Heatmap"
 
 #. heatmap
 #: loco:606ef181b72c7c09a00e9952
-msgid ""
-"Die Heatmap bietet eine aggregierte Auswertung aller Spannungen im Team: In "
-"der Horizontalen sieht man den Beitrag jedes Spielers zu den Energiequellen. "
-"Je niedriger der Wert, desto grösser ist der Beitrag zu den Energiequellen "
-"im Team.\n"
-"Vertikal sieht man links die Lage der Safe Zones und rechts die Skalen mit "
+msgid "Die Heatmap bietet eine aggregierte Auswertung aller Spannungen im Team:"
+msgstr "The heatmap provides an aggregated evaluation of all tensions in the team:"
+
+#. heatmap
+#: loco:60718b2a66822624027984e2
+msgid "In der Horizontalen sieht man den Beitrag jedes Spielers zu den "
+"Energiequellen. Je niedriger der Wert, desto grösser ist der Beitrag zu den "
+"Energiequellen im Team."
+msgstr "In the horizontal line you can see the contribution of each player to the "
+"energy sources. The lower the value, the greater the contribution to the "
+"energy sources in the team."
+
+#. heatmap
+#: loco:60718bb71d59b64092772912
+msgid "Vertikal sieht man links die Lage der Safe Zones und rechts die Skalen mit "
 "den Kraftquellen und Energiefressern des Teams – je höher der Wert, desto "
 "grösser ist der Beitrag dieser Skala zu den Energiefressern im Team."
-msgstr ""
-"The heatmap provides an aggregated evaluation of all tensions in the team: "
-"in the horizontal line you can see the contribution of each player to the "
-"energy sources. The lower the value, the greater the contribution to the "
-"energy sources in the team.\n"
-"Vertically, you can see the location of the Safe Zones on the left and the "
+msgstr "Vertically, you can see the location of the Safe Zones on the left and the "
 "scales with the power sources and energy guzzlers of the team on the right - "
 "the higher the value, the greater the contribution of this scale to the "
 "energy guzzlers in the team."
 
 #. heatmap
+#: loco:60718cdf2808fc1f855fd132
+msgid "Bei negativen Vorzeichen schätzt der Spieler den Beitrag zur Teamdynamik "
+"eher zu positiv ein."
+msgstr "If the sign is negative, the player tends to be too positive about the "
+"contribution to the team dynamics."
+
+#. heatmap
+#: loco:60718d2ed775586b0968a473
+msgid "Werte über 16 deuten auf Spannungen mit dem Team hin."
+msgstr "Values above 16 indicate tensions with the team."
+
+#. heatmap
 #: loco:606ef2252896c96569615292
-msgid ""
-"Im Innern der Heatmap sieht man, wie gross die Abweichung zwischen Selbst- "
+msgid "Im Innern der Heatmap sieht man, wie gross die Abweichung zwischen Selbst- "
 "und Fremdwahrnehmung hinsichtlich des Beitrags zu den Kraftquellen und "
-"Energiefressern im Team ist.\n"
-"Bei negativen Vorzeichen schätzt der Spieler den Beitrag zur Teamdynamik "
-"eher zu positivein.\n"
-"Werte über 16 deuten auf Spannungen mit dem Team hin."
-msgstr ""
-"Inside the heat map you can see how big the deviation is between self-"
+"Energiefressern im Team ist."
+msgstr "Inside the heat map you can see how big the deviation is between self-"
 "perception and external perception regarding the contribution to the sources "
-"of strength and energy guzzlers in the team.\n"
-"If the sign is negative, the player tends to be too positive about the "
-"contribution to the team dynamics.\n"
-"Values above 16 indicate tensions with the team."
+"of strength and energy guzzlers in the team."
 
 #. heatmap
 #: loco:606ef28b897dc9441a675aa3
