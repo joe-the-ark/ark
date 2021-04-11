@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load static %}
 
 <!DOCTYPE html>
@@ -17,41 +18,68 @@
 <body>
 <div class="app started">
     <div class="app__head">
-        <header class="header-main">
+        <header class="header-main container">
+                <div class="user">
+                    <div class="user__subtitle">
+                        {{game.name}}
+                    </div>
+                    <img src="{{user.avatar}}" alt="">
+                    <div class="user__title">
+                        {{user.name}}
+                    </div>
+                </div>
             <div class="header-main__title">
                 <span class="icon-logo"></span>
                 <span>ARK</span>
             </div>
+
+              <div class="language-selector" style="display:block;">
+                <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                    <input name="next" type="hidden" value="">
+                    <select onchange="this.form.submit()" name="language">
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% get_available_languages as LANGUAGES %}
+                        {% get_language_info_list for LANGUAGES as languages %}
+                        {% for language in languages %}
+                            <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                                {{ language.name_local }} ({{ language.code }})
+                            </option>
+                        {% endfor %}
+                    </select>
+                </form>
+              </div>
+
         </header>
     </div>
     <div class="app__body">
         <div class="container">
             <main class="screen auth">
                 <h1 id="title-game">
-                    Wie steht es um eure Psychologische Sicherheit?
+                    {% trans "Wie steht es um eure Psychologische Sicherheit?" %}
                 </h1>
                 <p>
-                    Die Arche ist eine <b>Online-Gruppen-Challenge<b>, um das psychologische Sicherheitsgefühl in Teams zu entwickeln. Die Spielzeit beträgt je nach Gruppengrösse 45-90 Minuten. <br/>Spiel bitte mit einem <b>Firefox, Chrome oder Opera</b> Browser.
+                    {% trans "Die Arche ist eine Online-Gruppen-Challenge, um das psychologische Sicherheitsgefühl in Teams zu entwickeln. Die Spielzeit beträgt je nach Gruppengrösse 45-90 Minuten." %}<br>
+                    {% trans "Spiel bitte mit einem Firefox, Chrome oder Opera Browser." %}
 
                 </p>
-                <span class="terms_str">Das sind die
-                  <span class="terms" style="text-decoration:underline;">Nutzungsbedingungen</span>
+                <span class="terms_str">{% trans "Das sind die" %}
+                  <span class="terms" style="text-decoration:underline;">{% trans "Nutzungsbedingungen" %}</span>
 
                 </span>
                 <form id="form_" action="#" method="POST" id="auth-form" class="form" onkeypress="javascript: if (event.keyCode==13 || event.onclick){check_game_name();return false;}">
                 {% csrf_token %}
                     <div class="form__field">
                         <input maxlength="20" minlength="2" id="nutzername" type="text" name="Nutzername" value="" required autofocus/>
-                        <span class="form__placeholder">Nutzername</span>
+                        <span class="form__placeholder">{% trans "Nutzername" %}</span>
                     </div>
                     <div class="form__field">
                         <input maxlength="20" minlength="2" id="name-des-spiels" type="text" name="name-des-spiels" value="" required/>
-                        <span class="form__placeholder">Name des Spiels</span>
+                        <span class="form__placeholder">{% trans "Name des Spiels" %}</span>
                     </div>
                     <div class="form__field">
                         <div class="slider">
                             <label>
-                                Benutzerbild
+                                {% trans "Benutzerbild" %}
                             </label>
                             <div class="swiper-container" id="app-1">
                                 <div class="swiper-wrapper">
@@ -167,10 +195,10 @@
                     </div>
                     <div class="form__field">
                         <p style="display: block;">
-                            Teile diesen Link, um dein Team mitzunehmen:
+                            {% trans "Teile diesen Link, um dein Team mitzunehmen:" %}
                         </p>
                         <button style="display: none;">
-                            Einen Link teilen:
+                            {% trans "Diesen Link teilen:" %}
                         </button>
                         <input id="link" type="hidden" name="link" value="" readonly="readonly"/>
                         <input id="link_url" type="text" name="link_url" value="" readonly="readonly"/>
@@ -180,7 +208,7 @@
                     </div>
                     <div class="form__field">
                         <button id="submit_button" type="button">
-                            Weiterspielen
+                            {% trans "Weiterspielen" %}
                         </button>
                     </div>
                 </form>
@@ -338,7 +366,7 @@
 
     function defaultLoad() {
         const el = document.getElementById('title-game');
-        el.innerHTML = window.innerWidth < 768 ? 'Spiel erstellen' : 'Wie steht es um eure Psychologische Sicherheit?'
+        el.innerHTML = window.innerWidth < 768 ? 'Spiel erstellen' : "{% trans 'Wie steht es um eure Psychologische Sicherheit?' %}"
     }
 
     function check_game_name(){

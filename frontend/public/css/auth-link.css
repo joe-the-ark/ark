@@ -94,7 +94,7 @@
   max-width: 1300px;
   margin: 0 auto;
 }
-@media screen and (max-width: 1201px) and  (min-width: 1050px) {
+@media screen and (max-width: 1201px) and (min-width: 1050px) {
   .form span[class*="icon"] {
     bottom: 50px;
   }

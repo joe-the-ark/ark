@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load static %}
 
 <!DOCTYPE html>
@@ -17,11 +18,36 @@
 <body>
 <div class="app started">
     <div class="app__head">
-        <header class="header-main">
+        <header class="header-main container">
             <div class="header-main__title">
                 <span class="icon-logo"></span>
                 <span>ARK</span>
             </div>
+
+              <div class="language-selector" style="display:block;">
+                <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                    <input name="next" type="hidden" value="">
+                    <select onchange="this.form.submit()" name="language">
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% get_available_languages as LANGUAGES %}
+                        {% get_language_info_list for LANGUAGES as languages %}
+                        {% for language in languages %}
+                            <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                                {{ language.name_local }} ({{ language.code }})
+                            </option>
+                        {% endfor %}
+                    </select>
+                </form>
+              </div>
+                <div class="user">
+                    <div class="user__subtitle">
+                        {{game.name}}
+                    </div>
+                    <img src="{{user.avatar}}" alt="">
+                    <div class="user__title">
+                        {{user.name}}
+                    </div>
+                </div>
         </header>
     </div>
     <div class="app__body">
@@ -32,12 +58,12 @@
                 {% csrf_token %}
                     <div class="form__field">
                         <input id="nutzername" type="text" name="Nutzername" value="" required autofocus/>
-                        <span class="form__placeholder">Nutzername</span>
+                        <span class="form__placeholder">{% trans "Nutzername" %}</span>
                     </div>
                     <div class="form__field">
                         <div class="slider">
                             <label>
-                                Benutzerbild
+                                {% trans "Benutzerbild" %}
                             </label>
                             <div class="swiper-container" id="app-1">
                                 <div class="swiper-wrapper">
@@ -159,7 +185,8 @@
                     -->
                     <div class="form__field">
                         <p>
-                            Die Arche ist eine <b>Online-Gruppen-Challenge<b>, um das psychologische Sicherheitsgefühl in Teams zu entwickeln. Die Spielzeit beträgt je nach Gruppengrösse 45-90 Minuten. <br/>Spiel bitte mit einem <b>Firefox, Chrome oder Opera</b> Browser. 
+                            {% trans "Die Arche ist eine Online-Gruppen-Challenge, um das psychologische Sicherheitsgefühl in Teams zu entwickeln. Die Spielzeit beträgt je nach Gruppengrösse 45-90 Minuten." %}<br/>
+                            {% trans "Spiel bitte mit einem Firefox, Chrome oder Opera Browser." %} 
                             
                         </p>
 
@@ -167,10 +194,10 @@
 
                     <div class="form__field">
                         <p>
-                            Teile diesen Link, um dein Team mitzunehmen:
+                            {% trans "Teile diesen Link, um dein Team mitzunehmen:" %}
                         </p>
                         <button>
-                            Spiellink teilen:
+                            {% trans "Spiellink teilen:" %}
                         </button>
                         {% if link %}
                             {% comment %} <input id="link" type="text" name="link" value="{{link}}" readonly="readonly"/> {% endcomment %}
@@ -182,17 +209,17 @@
                         <span class="icon-link" data-clipboard-target="#link_url">
                         </span>
                     </div>
-                    <span class="terms_str">Das sind die
-                      <span class="terms" style="text-decoration:underline;">Nutzungsbedingungen</span>
+                    <span class="terms_str">{% trans "Das sind die" %}
+                      <span class="terms" style="text-decoration:underline;">{% trans "Nutzungsbedingungen" %}</span>
                     </span>
                     <div class="form__field">
                         {% comment %} <button id="submit_button" type="submit">
-                            Weiterspielen
+                            {% trans "Weiterspielen" %}
                         </button> {% endcomment %}
                     </div>
                 </form>
                     <button id="submit_button" type="button">
-                        Weiterspielen
+                        {% trans "Weiterspielen" %}
                     </button>
             </main>
         </div>
@@ -325,7 +352,7 @@
 
     function defaultLoad() {
         const el = document.getElementById('title-game');
-        el.innerHTML = window.innerWidth < 768 ? 'Mitspielen' : 'Wie steht es um eure Psychologische Sicherheit?'
+        el.innerHTML = window.innerWidth < 768 ? 'Mitspielen' : "{% trans 'Wie steht es um eure Psychologische Sicherheit?' %}"
     }
     
 

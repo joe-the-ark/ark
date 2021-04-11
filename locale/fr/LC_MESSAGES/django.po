@@ -18,6 +18,60 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#. onboarding
+#: loco:6071a6458d4f51635821d922
+msgid "Die Arche ist eine Online-Gruppen-Challenge, um das psychologische "
+"Sicherheitsgefühl in Teams zu entwickeln. Die Spielzeit beträgt je nach "
+"Gruppengrösse 45-90 Minuten."
+msgstr "The Ark est un défi de groupe en ligne visant à développer un sentiment de "
+"sécurité psychologique au sein des équipes. La durée du jeu est de 45 à 90 "
+"minutes, en fonction de la taille du groupe."
+
+#. onboarding
+#: loco:6073033f7b216d70613ab4d2
+msgid "Wie steht es um eure Psychologische Sicherheit?"
+msgstr "Comment est votre sécurité psychologique ?"
+
+#. onboarding
+#: loco:6071a6e2c120e22f85749162
+msgid "Spiel bitte mit einem Firefox, Chrome oder Opera Browser."
+msgstr "Veuillez jouer avec un navigateur Firefox, Chrome ou Opera."
+
+#. onboarding
+#: loco:6072acd67bb40161e53bf0d2
+msgid "Das sind die"
+msgstr "Voici les"
+
+#. onboarding
+#: loco:6071d33b69d2863dd7653d02
+msgid "Nutzungsbedingungen"
+msgstr "Conditions d'utilisation"
+
+#. onboarding
+#: loco:6071d38d23f502265231ca88
+msgid "Nutzername"
+msgstr "Nom d'utilisateur"
+
+#. onboarding
+#: loco:6071d3e6677d4d6c5d2aef32
+msgid "Name des Spiels"
+msgstr "Nom du jeu"
+
+#. onboarding
+#: loco:6071d44394b3db0e176834b2
+msgid "Benutzerbild"
+msgstr "Image de l'utilisateur"
+
+#. onboarding
+#: loco:6071d4a234bb601a0c01d4a2
+msgid "Teile diesen Link, um dein Team mitzunehmen:"
+msgstr "Partagez ce lien pour amener votre équipe :"
+
+#. onboarding
+#: loco:6071d4f434bb601a0c01d4a4
+msgid "Diesen Link teilen:"
+msgstr "Partagez ce lien :"
+
 #. preview.html
 #: loco:606885b920934b401305cbb2
 msgid "Mission 1: Kraftquellen & Energiefresser"
