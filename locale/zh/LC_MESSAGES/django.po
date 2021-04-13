@@ -239,8 +239,8 @@ msgstr "评估张力表!"
 
 #. ubung-5
 #: loco:606c3588f87f8e7dd763d4e2
-msgid "Was ist der Beitrag zur Kraftquelle und dem Energiefresser im Team?"
-msgstr "对团队动力源和能量消耗者的贡献是什么？请在每个角色上点击你认为最符合玩家在日常情况下的行为的点，这对你很重要。"
+msgid "Positioniere bitte den Beitrag der Spieler im Spannungsfeld von Kraftquelle und Energiefresser im Team."
+msgstr "请定位队员在团队中动力源和能量消耗者之间的张力的贡献。"
 
 #. ubung-5
 #: loco:606c46c40774bf65c217de22

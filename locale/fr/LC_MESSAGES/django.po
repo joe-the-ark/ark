@@ -274,10 +274,9 @@ msgstr "Evaluer les échelles de tension!"
 
 #. ubung-5
 #: loco:606c3588f87f8e7dd763d4e2
-msgid "Was ist der Beitrag zur Kraftquelle und dem Energiefresser im Team?"
+msgid "Positioniere bitte den Beitrag der Spieler im Spannungsfeld von Kraftquelle und Energiefresser im Team."
 msgstr ""
-"Quelle est la contribution de la source d'énergie et du consommateur "
-"d'énergie dans l'équipe ?"
+"Veuillez positionner la contribution des joueurs dans la tension entre la source d'énergie et le consommateur d'énergie dans l'équipe."
 
 #. ubung-5
 #: loco:606c46c40774bf65c217de22
