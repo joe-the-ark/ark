@@ -27,7 +27,7 @@
               <div class="language-selector" style="display:inline-block;">
                 <form action="{% url 'set_language' %}" method="post" style="vertical-align:middle;">{% csrf_token %}
                     <input name="next" type="hidden" value="">
-                    <select onchange="this.form.submit()" name="language" id="select_">
+                    <select onchange="this.form.submit()" name="language" id="select_" style="width: 20px;">
                         {% get_current_language as LANGUAGE_CODE %}
                         {% get_available_languages as LANGUAGES %}
                         {% get_language_info_list for LANGUAGES as languages %}
@@ -37,7 +37,7 @@
                             </option>
                         {% endfor %}
                     </select>
-                    <img id="flag" src="" style="width:15%;vertical-align:middle;padding-left:10px">
+                    <img id="flag" src="" style="width:45%;vertical-align:middle;padding-left:1px">
                 </form>
               </div>
 
