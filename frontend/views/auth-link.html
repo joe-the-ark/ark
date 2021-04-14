@@ -24,10 +24,10 @@
                 <span>ARK</span>
             </div>
 
-              <div class="language-selector" style="display:block;">
-                <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+              <div class="language-selector" style="display:inline-block;">
+                <form action="{% url 'set_language' %}" method="post" style="vertical-align:middle;">{% csrf_token %}
                     <input name="next" type="hidden" value="">
-                    <select onchange="this.form.submit()" name="language">
+                    <select onchange="this.form.submit()" name="language" id="select_">
                         {% get_current_language as LANGUAGE_CODE %}
                         {% get_available_languages as LANGUAGES %}
                         {% get_language_info_list for LANGUAGES as languages %}
@@ -37,8 +37,10 @@
                             </option>
                         {% endfor %}
                     </select>
+                    <img id="flag" src="" style="width:15%;vertical-align:middle;padding-left:10px">
                 </form>
               </div>
+
                 <div class="user">
                     <div class="user__subtitle">
                         {{game.name}}
@@ -421,6 +423,18 @@
     if (isSafari){
         alert('We detect that you are using Safari. We suggest you to choose Firefox, Chrome or Opera so that you can have a better user experience.')
     }
+
+    var lang_code = $('#select_').val()
+    if (lang_code == 'zh-hans'){
+        $("#flag").attr("src", "{% static 'images/flags/4_zh-hans_transparent.png'%}");
+    } else if (lang_code == 'de'){
+        $("#flag").attr("src", "{% static 'images/flags/1_de_transparent.png.png'%}");
+    } else if (lang_code == 'en'){
+        $("#flag").attr("src", "{% static 'images/flags/2_en_transparent.png'%}");
+    } else if (lang_code == 'fr'){
+        $("#flag").attr("src", "{% static 'images/flags/3_fr_transparent.png'%}");
+    }
+    
 </script>
 </body>
 </html>
