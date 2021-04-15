@@ -20,6 +20,7 @@
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 </head>
 <body>
+  {% get_current_language as LANGUAGE_CODE %}
 <div class="app">
     <div class="app__head">
         <header class="header-main container">
@@ -245,6 +246,11 @@
     const {log} = console;
     let userCurrent = "{{ user }}";
     let jsonAll = {{ json_list_all|safe }};
+    var lang_code = '{{LANGUAGE_CODE}}'
+    //console.log('jsonAll', jsonAll)    
+    jsonAll.forEach((item)=>{
+        item['value'] = item['ubung1_power_i18n'][lang_code] + ' ' + item['ubung3_drainer_i18n'][lang_code]
+    })
     
     // let dataCur = "{{ json_list }}";
     var member_list = {{ json_list|safe }}.filter(item => item.name);
