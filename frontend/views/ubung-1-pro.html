@@ -304,6 +304,7 @@
                     'player_id': '{{user.id}}',
                     'link': '{{game.link}}',
                     'item': temp,
+                    'lang_code': '{{LANGUAGE_CODE}}'
                 };
                 axios
                     .post(`/api/ubung_1_api_pro/`, data_)
@@ -388,6 +389,7 @@
                     'player_id': '{{user.id}}',
                     'link': '{{game.link}}',
                     'item': item,
+                    'lang_code': '{{LANGUAGE_CODE}}'
                 };
                 console.log('item', item)
                 //console.log(that.term_list);

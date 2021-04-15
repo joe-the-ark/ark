@@ -21,6 +21,7 @@
 
 </head>
 <body>
+  {% get_current_language as LANGUAGE_CODE %}
 <div class="app">
     <div class="app__head">
         <header class="header-main container">
@@ -116,11 +117,13 @@
     })
     const {log} = console;
 
+    var lang_code = '{{LANGUAGE_CODE}}'
+
     const app = new AppGraph({
         container: ".custom-graph-wrapper",
         range: [0, 100],
         //labelRange: [0, 99],
-        labelRange: ['{{ubung5.ubung1.power}}', '{{ubung5.ubung3.drainer}}'],
+        labelRange: [{{ubung5.ubung1.power_i18n|safe}}[lang_code], {{ubung5.ubung3.drainer_i18n|safe}}[lang_code]],
         mobile: 1200,
         dependency: true,
         data: graphData,

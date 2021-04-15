@@ -18,6 +18,7 @@
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 </head>
 <body>
+  {% get_current_language as LANGUAGE_CODE %}
 <div class="app">
     <div class="app__head">
         <header class="header-main container">
@@ -126,12 +127,14 @@
 
     const {log} = console;
 
+    var lang_code = '{{LANGUAGE_CODE}}'
+
     const app = new AppGraph({
         container: ".custom-graph-wrapper",
         range: [1, 99],
         //labelRange: ['Low', 'High'],
         //labelRange: ['Kraftquelle', 'Energiefresser'],
-        labelRange: ['{{ubung1.power}}', '{{ubung3.drainer}}'],
+        labelRange: [{{ubung1.power_i18n|safe}}[lang_code], {{ubung3.drainer_i18n|safe}}[lang_code]],
 
         mobile: 1200,
         data: {{ member_list|safe }},

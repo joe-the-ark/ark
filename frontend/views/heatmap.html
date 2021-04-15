@@ -14,6 +14,7 @@
 
 </head>
 <body>
+  {% get_current_language as LANGUAGE_CODE %}
   <div class="app">
     <div class="app__head">
         <header class="header-main container">
@@ -146,7 +147,7 @@
           <div class="main-column prop">
             <div class="corner"></div>
             <div class="corner"></div>
-            <div class="property" v-for="scale in scale_list">
+            <div class="property" v-for="scale in scale_list_pro">
               <p class="property_one">[[ scale[0] ]]</p>
               <p class="property_two">[[ scale[1] ]]</p>
             </div>
@@ -197,7 +198,19 @@
       row0: {{ row0|safe }},
       main_map: {{ main_map|safe }},
       scale_list: {{ scale_list|safe }},
-      scale_value_list: {{ scale_value_list|safe }}
+      scale_value_list: {{ scale_value_list|safe }},
+      lang_code: '{{LANGUAGE_CODE}}',
+    },
+    computed:{
+      scale_list_pro:function(){
+        var result = []
+        this.scale_list.forEach((item)=>{
+          result.push(
+            [item[0][this.lang_code], item[1][this.lang_code]]
+          )
+        })
+        return result
+      },
     },
     methods:{
       keepTwoDecimal(num) {  

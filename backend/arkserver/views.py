@@ -1141,7 +1141,8 @@ def heatmap(request, user):
 
     ctx['row0'] = row0
     ctx['main_map'] = main_map
-    ctx['scale_list'] = scale_list = [ [i.power, i.connect_ubung3.drainer] for i in game.ubung5_scale_order]
+    # ctx['scale_list'] = scale_list = [ [i.power, i.connect_ubung3.drainer] for i in game.ubung5_scale_order]
+    ctx['scale_list'] = scale_list = [ [i.power_i18n, i.connect_ubung3.drainer_i18n] for i in game.ubung5_scale_order]
     ctx['scale_value_list'] = scale_value_list = [round(i.ubung5_sum/(user_number ** 2) ) for i in game.ubung5_scale_order]
     # ubung5 = Ubung5.objects.filter(game=game)
     # player_list = []
@@ -1268,10 +1269,29 @@ def ubung_1_api(player_id, link, data):
 
 
 @api
-def ubung_1_api_pro(player_id, link, item):
+def ubung_1_api_pro(player_id, link, item, lang_code):
     from .models import Player, Game, Ubung1
+    from .utils import ubung_1_term_list_i18n
     game = Game.objects.filter(link=link).first()
     player = Player.objects.filter(id=player_id).first()
+
+    if lang_code == 'en':
+        lang_name = 'English'
+    elif lang_code == 'de':
+        lang_name = 'Deutsch'
+    elif lang_code == 'zh-hans':
+        lang_name = 'Chinese'
+    elif lang_code == 'fr':
+        lang_name = 'French'
+    
+    item_id = -1
+    for i in ubung_1_term_list_i18n[lang_name]:
+        if i['value'] == item:
+            item_id = i['id']
+    if item_id != -1:
+        for i in ubung_1_term_list_i18n['English']:
+            if item_id == i['id']:
+                item = i['value']
 
     ubung1 = Ubung1.objects.filter(game=game,player=player).first()
     if ubung1:
@@ -1351,10 +1371,29 @@ def ubung_3_api(player_id, link, data):
 
 
 @api
-def ubung_3_api_pro(player_id, link, item):
+def ubung_3_api_pro(player_id, link, item, lang_code):
     from .models import Player, Game, Ubung3, Ubung1
+    from .utils import ubung_3_term_list_i18n
     game = Game.objects.filter(link=link).first()
     player = Player.objects.filter(id=player_id).first()
+
+    if lang_code == 'en':
+        lang_name = 'English'
+    elif lang_code == 'de':
+        lang_name = 'Deutsch'
+    elif lang_code == 'zh-hans':
+        lang_name = 'Chinese'
+    elif lang_code == 'fr':
+        lang_name = 'French'
+    
+    item_id = -1
+    for i in ubung_3_term_list_i18n[lang_name]:
+        if i['value'] == item:
+            item_id = i['id']
+    if item_id != -1:
+        for i in ubung_3_term_list_i18n['English']:
+            if item_id == i['id']:
+                item = i['value']
 
     ubung3 = Ubung3.objects.filter(game=game,player=player).first()
     if ubung3:

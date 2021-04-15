@@ -22,6 +22,7 @@
 
 </head>
 <body>
+  {% get_current_language as LANGUAGE_CODE %}
 <div class="app">
     <div class="app__head">
         <header class="header-main container">
@@ -265,6 +266,19 @@
     const isMobile = () => window.innerWidth <= 1200;
     let jsonAll = {{ json_all|safe }};
     var json_list = {{ span_json_list|safe }};
+
+    var lang_code = '{{LANGUAGE_CODE}}'
+
+    jsonAll.forEach((item)=>{
+        item['value'] = item['ubung1_power_i18n'][lang_code] + ' ' + item['ubung3_drainer_i18n'][lang_code]
+    })
+    json_list.forEach((item)=>{
+        item['value'] = item['ubung1_power_i18n'][lang_code] + ' ' + item['ubung3_drainer_i18n'][lang_code]
+    })
+
+    console.log('jsonAll', jsonAll)
+    console.log('json_list', json_list)
+
     function deal_json(json_list, num){
         var new_json_list = [];
         var uu = 0;

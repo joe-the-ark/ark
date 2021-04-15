@@ -1,4 +1,5 @@
 from django.db import models
+from .utils import ubung_1_term_list_i18n, ubung_3_term_list_i18n
 
 # Create your models here.
 
@@ -167,6 +168,34 @@ class Ubung1(models.Model):
     create_time = models.DateTimeField(auto_now_add=True)
 
     @property
+    def power_i18n(self):
+        result = {}
+        result['en'] = self.power
+
+        item_id = -1
+        for i in ubung_1_term_list_i18n['English']:
+            if i['value'] == self.power:
+                item_id = i['id']
+                break
+        if item_id == -1:
+            return result
+        
+        for i in ubung_1_term_list_i18n['Deutsch']:
+            if i['id'] == item_id:
+                result['de'] = i['value']
+                break
+        for i in ubung_1_term_list_i18n['French']:
+            if i['id'] == item_id:
+                result['fr'] = i['value']
+                break
+        for i in ubung_1_term_list_i18n['Chinese']:
+            if i['id'] == item_id:
+                result['zh-hans'] = i['value']
+                break
+
+        return result
+
+    @property
     def connect_ubung3(self):
         from .models import Ubung5
         ubung3 = Ubung5.objects.filter(game=self.game, ubung1=self).first().ubung3
@@ -251,6 +280,34 @@ class Ubung3(models.Model):
     # 2 state: 'tag', 'line-through'
     state = models.CharField(max_length=100, default='')
     create_time = models.DateTimeField(auto_now_add=True)
+
+    @property
+    def drainer_i18n(self):
+        result = {}
+        result['en'] = self.drainer
+
+        item_id = -1
+        for i in ubung_3_term_list_i18n['English']:
+            if i['value'] == self.drainer:
+                item_id = i['id']
+                break
+        if item_id == -1:
+            return result
+        
+        for i in ubung_3_term_list_i18n['Deutsch']:
+            if i['id'] == item_id:
+                result['de'] = i['value']
+                break
+        for i in ubung_3_term_list_i18n['French']:
+            if i['id'] == item_id:
+                result['fr'] = i['value']
+                break
+        for i in ubung_3_term_list_i18n['Chinese']:
+            if i['id'] == item_id:
+                result['zh-hans'] = i['value']
+                break
+
+        return result
 
     @property
     def connect_ubung1(self):
@@ -380,6 +437,8 @@ class Ubung5(models.Model):
             'id': self.player.id,
             'name': self.player.name,
             'value': self.ubung1.power + ' '+ self.ubung3.drainer,
+            'ubung1_power_i18n': self.ubung1.power_i18n,
+            'ubung3_drainer_i18n': self.ubung3.drainer_i18n,
             'avatar': self.player.avatar,
             'statusSide': self.score,
             'target_user': self.goal.name,
