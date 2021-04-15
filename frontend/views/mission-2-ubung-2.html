@@ -607,7 +607,7 @@
         for(let name of nameArray(jsonAll)) {
             let div = document.createElement('div');
             div.classList.add('rang-wrapper');
-            div.classList.add(`${name}`);
+            div.classList.add(`s${name}`);
             divCollection.append(div);
 
 
@@ -617,7 +617,7 @@
         for(let name of nameArray(jsonAll)){
             let data = dataForRange(jsonAll, name);
             let range = new AppRange({
-                container: `.rang-wrapper.${name}`,
+                container: `.rang-wrapper.s${name}`,
                 data: data,
                 innerWrapper: 'rang min',
                 load(wrapper) {
@@ -626,7 +626,7 @@
             });
 
             
-            let selectors = document.querySelectorAll(`.rang-wrapper.${name} .rang__item`);
+            let selectors = document.querySelectorAll(`.rang-wrapper.s${name} .rang__item`);
             cardsPainting(data, selectors);
         }
     }
