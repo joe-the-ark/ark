@@ -270,9 +270,21 @@
     var lang_code = '{{LANGUAGE_CODE}}'
 
     jsonAll.forEach((item)=>{
+        //if (!item['ubung1_power_i18n'][lang_code]){
+        //    item['ubung1_power_i18n'][lang_code] = item['ubung1_power_i18n']['en']
+        //}
+        //if (!item['ubung3_drainer_i18n'][lang_code]){
+        //    item['ubung3_drainer_i18n'][lang_code] = item['ubung3_drainer_i18n']['en']
+        //}
         item['value'] = item['ubung1_power_i18n'][lang_code] + ' ' + item['ubung3_drainer_i18n'][lang_code]
     })
     json_list.forEach((item)=>{
+        //if (!item['ubung1_power_i18n'][lang_code]){
+        //    item['ubung1_power_i18n'][lang_code] = item['ubung1_power_i18n']['en']
+        //}
+        //if (!item['ubung3_drainer_i18n'][lang_code]){
+        //    item['ubung3_drainer_i18n'][lang_code] = item['ubung3_drainer_i18n']['en']
+        //}
         item['value'] = item['ubung1_power_i18n'][lang_code] + ' ' + item['ubung3_drainer_i18n'][lang_code]
     })
 
