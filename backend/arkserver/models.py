@@ -178,6 +178,9 @@ class Ubung1(models.Model):
                 item_id = i['id']
                 break
         if item_id == -1:
+            result['de'] = self.power
+            result['fr'] = self.power
+            result['zh-hans'] = self.power
             return result
         
         for i in ubung_1_term_list_i18n['Deutsch']:
@@ -192,7 +195,7 @@ class Ubung1(models.Model):
             if i['id'] == item_id:
                 result['zh-hans'] = i['value']
                 break
-
+    
         return result
 
     @property
@@ -292,6 +295,9 @@ class Ubung3(models.Model):
                 item_id = i['id']
                 break
         if item_id == -1:
+            result['de'] = self.drainer
+            result['fr'] = self.drainer
+            result['zh-hans'] = self.drainer
             return result
         
         for i in ubung_3_term_list_i18n['Deutsch']:
