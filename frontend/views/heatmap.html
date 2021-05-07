@@ -74,7 +74,6 @@
           <div class="main-column player" v-for="user in main_map">
             <div class="heat_value over_player">[[ user[0] ]]</div>
             <div class="heat_player">
-              <div class="name">[[ user[1] ]]</div>
               <img :src="user[2]" alt="">
             </div>
             <div v-for="value in user[3]" v-bind:class="{ 'heat_value one': value[1]==='yellow', 'heat_value two': value[1]==='black', 'heat_value three': value[1]==='None', 'heat_value four': value[1]==='red' }">[[ keepTwoDecimal(value[0]) ]]</div>
@@ -83,6 +82,9 @@
             <div class="heat_value one">[[ user[6] ]]</div>
             <div class="heat_value three"></div> {% endcomment %}
             <div class="heat_value average-by-player">[[ user[4] ]]</div>
+            <div class="heat_player">
+              <div class="name">[[ user[1] ]]</div>
+            </div>
           </div>
 
 {% comment %} 
