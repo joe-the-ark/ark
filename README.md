@@ -6,6 +6,7 @@ If you work on your local branches, make sure to do a `git pull origin master` b
 - If you have not installed the meta library yet...
     - Please, under the ```meta/backend/src/``` directory, run ```python3 setup.py install``` to install the meta library.
     - If you have already installed the meta library, please continue to the next step.
+- To update & compile the multi-language files (django.mo for french, english, chinese) under the ark directory, type “django-admin compilemessages” in the terminal.
 - Please goto the ```backend/``` directory ( !!! not ```meta/backend/```!!! )
 - If you are launching the backend for the first time type
     - ```python3 manage.py migrate``` to create the database file
