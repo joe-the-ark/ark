@@ -560,7 +560,10 @@
 
 </script>
 {% comment %} <script src="/static/js/update_fix.js"></script> {% endcomment %}
-<script src="/static/vue.js"></script>
+<script src="/static/jspdf_font/vue.js"></script>
+<script src="/static/jspdf_font/jspdf.min.js" charset="utf-8"></script>
+<script src="/static/jspdf_font/jspdf.customfonts.min.js"></script>
+<script src="/static/jspdf_font/default_vfs.js"></script>
 <script>
 
     var app = new Vue({
@@ -601,6 +604,9 @@
         format: 'a4',
         putOnlyUsedFonts:true,
     });
+
+    doc.addFont('NotoSansCJKtc-Regular.ttf', 'NotoSansCJKtc', 'normal');
+    doc.setFont('NotoSansCJKtc');
 
     // window.getComputedStyle(c)['font-size']  Get font size of the element
 
