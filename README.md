@@ -39,5 +39,15 @@ https://vimeo.com/488263813
 * Mein Foliensatz zu Psychologischer Sicherheit...
 https://www.dropbox.com/s/dme4jm2q556mbwt/2021_Psychologische_Sicherheit.pdf?dl=0
 * Guter halbwissenschaftlicher Einführungsartikel zu Psychologischer Sicherheit https://www.artop.de/psychologische-sicherheit-das-fundament-gelingender-arbeit-im-team/
+* Clip1: Wie kam ich zur psychologischen Sicherheit? (3:16 Min.)
+https://youtu.be/jiWCvz_nJm0
+* Clip 2: Warum ist psychologische Sicherheit in aller Munde? (5:54 Min.)
+https://youtu.be/vr-wa_FWgFE
+* Clip 3: Was sind die Google Dimensionen psychologischer Sicherheit? (9:19 Min.)
+https://youtu.be/fRMJbU9CiD4
+* Clip 4: Für wen ist die Online Challenge die Arche geeignet? Wie kann ich die Arche nutzen? Wie spielen innere Zensur, psychologische Sicherheit und die Arche zusammen? (10:04 Min.)
+https://youtu.be/H0WkHyPhdps
+* Clip 5: Über das Bedürfnis gemeinsam unterwegs zu sein und einem angemessenen Umgang mit der Vielgestaltigkeit gruppendynamischer Prozesse. (7:33 Min.)
+https://youtu.be/O--N9XMrRcw
 * Digitec Galaxus Intervew zu heiligen Kühen [Interview bei Digitec Galaxus](https://www.personal-schweiz.ch/experten-interviews/article/innovation-bei-digitec-galaxus-gibt-es-keine-heiligen-kuehe/)
 * Angebotsskizze für den Einsatz der Arche in Unternehmen [Short flyer about the game](https://www.ywesee.com/uploads/Arks/Arks_The_Game.pdf)
