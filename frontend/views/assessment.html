@@ -16,6 +16,7 @@
     <!-- <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"> -->
     <script src="/static/jspdf.umd.min.js"></script>
     <script src="/static/dom-to-image.min.js"></script>
+    <script src="/static/vue.js"></script>
     <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
     <!-- <script src="/static/html2canvas.min.js"></script> -->
@@ -50,10 +51,13 @@
                     </div>
                 </div>
             </div>
+             
              <div id="pdf" class="save">
 
                 <div class="icon-download"></div>
+                {% comment %}
                 <p>Save as PDF</p>
+                {% endcomment %}
                 <div class="windows8">
                     <div class="wBall" id="wBall_1">
                         <div class="wInnerBall"></div>
@@ -72,6 +76,7 @@
                     </div>
                 </div>
             </div>
+
         </header>
     </div>
     <div class="app__body">
@@ -256,7 +261,7 @@
 <script src="/static/js/utils.js"></script>
 <script>
     const instance = tippy(document.querySelector('.app__head #pdf [class*="icon"]'));
-    instance.setContent('Click here to save results in PDF');
+    instance.setContent('Bookmark your result page');
     instance.setProps({trigger: 'manual',})
 
     const isMobile = () => window.innerWidth <= 1200;

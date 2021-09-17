@@ -72,35 +72,26 @@ msgstr "分享这个链接。"
 
 #. preview.html
 #: loco:606885b920934b401305cbb2
-msgid "Mission 1: Kraftquellen & Energiefresser"
-msgstr "任务1：电源和能源消耗器"
+msgid "Mission 1: Was beflügelt dich im Team?"
+msgstr "任务1：在团队中，是什么激励了你"
 
 #. preview.html
 #: loco:60688694be899e32216f1b02
 msgid ""
-"Jeder Spieler benennt eine Kraftquelle und einen Energiefresser, die das "
-"Zusammenspiel im Team prägen."
-msgstr "每个球员都说出了一个力量的来源和一个能量的消耗者，塑造了团队的互动。"
+"Die Beantwortung dieser Frage mag anspruchsvoll sein."
+msgstr "回答这个问题可能具有挑战性"
 
 #. preview.html
 #: loco:60688727a1837301bb1df633
 msgid ""
-"Dann beschreibst du den Beitrag jedes Spielers zu diesen Kraftquellen und "
-"Energiefressern im Team."
-msgstr "然后你描述一下每个球员对团队中这些力量和能量来源的贡献。"
+"Bitte finde eine für dich stimmige Antwort, denn sie bestimmt die Struktur der Challenge."
+msgstr "请找到一个适合你的答案，因为这将决定挑战的结构。"
 
 #. preview.html
 #: loco:606887e6fe06e11fb175e962
 msgid ""
-"Du erkennst als Belohnung deinen Beitrag zum Team-Energiehaushalt, sowie "
-"mögliche Spannungen zwischen deiner Selbst- und Fremdwahrnehmung im Team."
-msgstr "你把自己对能量平衡的贡献，以及你的自我认知和团队中其他人的认知之间可能存在的紧张关系作为奖励予以认可。"
-
-#. preview.html
-#: loco:6068887b8c3f8c233267cc12
-msgid ""
-"Übrigens: alle Insights kannst du zum Spielabschluss als PDF herunterladen."
-msgstr "顺便说一下：你可以在游戏结束后以PDF的形式下载所有心得。"
+"Übrigens: deine Auswertung der Challenge siehst du zum Spielabschluss."
+msgstr "顺便说一下，你会在游戏结束时看到你对挑战的评价。"
 
 #. preview.html
 #: loco:606888e4b1ed7b49ac1acb02

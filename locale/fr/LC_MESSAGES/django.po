@@ -74,43 +74,29 @@ msgstr "Partagez ce lien :"
 
 #. preview.html
 #: loco:606885b920934b401305cbb2
-msgid "Mission 1: Kraftquellen & Energiefresser"
-msgstr "Mission 1 : Sources d'énergie et draineurs d'énergie"
+msgid "Mission 1: Was beflügelt dich im Team?"
+msgstr "Mission 1 : Qu'est-ce qui vous inspire dans l'équipe ?"
 
 #. preview.html
 #: loco:60688694be899e32216f1b02
 msgid ""
-"Jeder Spieler benennt eine Kraftquelle und einen Energiefresser, die das "
-"Zusammenspiel im Team prägen."
+"Die Beantwortung dieser Frage mag anspruchsvoll sein."
 msgstr ""
-"Chaque joueur nomme une source de force et un draineur d'énergie qui "
-"façonnent l'interaction de l'équipe."
+"Il peut être difficile de répondre à cette question."
 
 #. preview.html
 #: loco:60688727a1837301bb1df633
 msgid ""
-"Dann beschreibst du den Beitrag jedes Spielers zu diesen Kraftquellen und "
-"Energiefressern im Team."
+"Bitte finde eine für dich stimmige Antwort, denn sie bestimmt die Struktur der Challenge."
 msgstr ""
-"Vous décrivez ensuite la contribution de chaque joueur à ces sources de "
-"force et d'énergie dans l'équipe."
+"Veuillez trouver une réponse qui vous convient, car elle déterminera la structure du défi."
 
 #. preview.html
 #: loco:606887e6fe06e11fb175e962
 msgid ""
-"Du erkennst als Belohnung deinen Beitrag zum Team-Energiehaushalt, sowie "
-"mögliche Spannungen zwischen deiner Selbst- und Fremdwahrnehmung im Team."
+"Übrigens: deine Auswertung der Challenge siehst du zum Spielabschluss."
 msgstr ""
-"Vous reconnaissez comme une récompense votre contribution à l'équilibre "
-"énergétique, ainsi qu'une éventuelle tension entre votre perception de vous-"
-"même et celle des autres membres de l'équipe."
-
-#. preview.html
-#: loco:6068887b8c3f8c233267cc12
-msgid ""
-"Übrigens: alle Insights kannst du zum Spielabschluss als PDF herunterladen."
-msgstr ""
-"Au fait : vous pouvez télécharger tous les résultats en PDF à la fin du jeu."
+"D'ailleurs, vous verrez votre évaluation du défi à la fin du jeu."
 
 #. preview.html
 #: loco:606888e4b1ed7b49ac1acb02
