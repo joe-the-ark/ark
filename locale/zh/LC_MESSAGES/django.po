@@ -100,23 +100,20 @@ msgstr "继续"
 
 #. ubung-1
 #: loco:606b759198a94a6cf8339672
-msgid "Kraftquelle des Teams?"
-msgstr "团队动力源?"
+msgid "Was beflügelt dich?"
+msgstr "是什么激励了你？"
 
 #. ubung-1
 #: loco:606b768f6e464e1c4c0fcb40
 msgid ""
-"Die erste Aufgabe ist anspruchsvoll und bestimmt die Struktur des Spiels: "
-"Welche Team-Kraftquelle gibt DIR ganz persönlich in diesem Team am meisten "
-"Energie?"
-msgstr "第一个任务具有挑战性，决定了游戏的结构：在这个团队中，什么团队动力源给你个人的能量最大？"
+"Was gibt dir in unserem Team am meisten Energie?"
+msgstr "在我们的团队中，什么给了你最大的能量？"
 
 #. ubung-1
 #: loco:606b779c3639f72c8f45d892
 msgid ""
-"Jeder Spieler wählt eine Kraftquelle – schreib in das leere Feld oder klicke "
-"auf den passenden Begriff."
-msgstr "每位选手选择一种电源--在空白处写上或点击相应的术语。"
+"Jeder Spieler schreibe ein Wort in das leere Feld oder klicke auf den passenden Begriff."
+msgstr "每个玩家在空栏里写下一个词，或者点击相应的术语。"
 
 #. ubung-2
 #: loco:606b783b01bcd4016a5c7782
@@ -143,13 +140,13 @@ msgstr "时间"
 
 #. ubung-3
 #: loco:606b7d13d2174c4ebc3e3762
-msgid "Energiefresser im Team?"
-msgstr "能量消耗者？"
+msgid "Was steht deiner Potentialentfaltung im Weg?"
+msgstr "是什么阻碍了你的潜在发展？"
 
 #. ubung-3
 #: loco:606b7d7dfafd1642eb21fa72
-msgid "Was kostet DICH ganz persönlich in diesem Team am meisten Energie?"
-msgstr "在这个团队中，你个人最耗费精力的是什么？"
+msgid "Beschreibe bitte den Gegenpol dessen, was dich im Team beflügelt."
+msgstr "描述一下我们团队中激励你的反面因素。"
 
 #. ubung-3
 #: loco:606b7e554fe187702f150c72
@@ -158,16 +155,14 @@ msgstr "在空白处写出或点击相应的术语。"
 
 #. waitingroom-1
 #: loco:606b7eca211f3464ed134c33
-msgid "Wartezimmer"
-msgstr "等候室"
+msgid "Bitte tauscht euch aus."
+msgstr "请分享您的观点。"
 
 #. wartezimmer-1
 #: loco:606b7f57401c1412f312f6a3
 msgid ""
-"Was ermöglicht ein erfolgreiches Zusammenspiel im Team? Die kurze Antwort: "
-"Psychologische Sicherheit! Schau dir für eine Einführung in Psychologische "
-"Sicherheit den Clip von Charles Duhigg an."
-msgstr "什么才是一个优秀的团队？简短的答案是：心理安全! 关于心理安全的介绍，请看Charles Duhigg的片段。"
+"Was beflügelt dich im Team? Und was steht deiner Potentialentfaltung noch im Weg? Erzählt euch bitte kurz gegenseitig, welches Gegensatzpaar du ausgewählt hast, damit alle verstehen können, wovon die Rede ist."
+msgstr "是什么激励着你们团队中的每个人？那么，什么东西仍然阻碍着你的潜在发展？请简要地告诉对方你选择了哪一对对立面，以便大家都能理解你在说什么。"
 
 #. wartezimmer-1
 #: loco:606b7fef2743002d316f0e93
@@ -193,35 +188,34 @@ msgstr "让每个选手移动到最适合的语句! 将你的评估与日常难�
 
 #. ubung-4
 #: loco:606b8297a6a4e81e9d115c72
-msgid "Probleme und schwierige Themen kann ich bei dir ansprechen."
-msgstr "问题和难点我可以和你一起解决。"
+msgid "Schwierige Themen können wir meist gut zusammen anschauen."
+msgstr "我们通常可以一起看待困难的问题。"
 
 #. ubung-4
 #: loco:606b8311a237a7415b52ae83
-msgid "Du schliesst manchmal Menschen aus dem Team aus, weil sie anders sind."
-msgstr "你有时会把人排除在团队之外，因为他们是不同的"
+msgid "Ich beobachte wie du gelegentlich Menschen im Team ausschliesst."
+msgstr "我观察到你偶尔会排斥团队中的人。"
 
 #. ubung-4
 #: loco:606b838816beb113812f8092
-msgid "Es fällt mir schwer, dich um Hilfe zu bitten."
-msgstr "我很难向你求助。"
+msgid "Mir fällt es mitunter schwer dich um Hilfe zu bitten."
+msgstr "我有时发现很难向你求助。"
 
 #. ubung-4
 #: loco:606b8496da6eb5419c414472
-msgid "Du arbeitest im Team nicht absichtlich gegen mich."
-msgstr "你不要故意和团队中作对我在。"
+msgid "Für mich bist du im Team nicht immer sichtbar."
+msgstr "在团队中，我并不总是能看到你。"
 
 #. ubung-4
 #: loco:606b8521ebad575f53053562
-msgid "Meine Talente werden von dir gesehen, geschätzt und ausgeschöpft."
-msgstr "我的才华被你看到、欣赏和利用。"
+msgid "Ich fühle wie meine Talente von dir gesehen und einbezogen werden."
+msgstr "我觉得我的才能被你们看到并纳入其中。"
 
 #. ubung-4
 #: loco:606b858b879aef6ea16b8435
 msgid ""
-"Wenn im Team Fehler passieren, verwendest du das häufig gegen die "
-"Betroffenen."
-msgstr "当团队中发生错误时，你往往会以此来对付相关人员。"
+"Ich habe das Gefühl du reagierst auf Fehler mit Schuldzuweisungen an Einzelne im Team."
+msgstr "我感觉，你对错误的反应是指责团队中的个人。"
 
 #. ubung-5
 #: loco:606c350d53fac01eda5589b2
@@ -561,29 +555,23 @@ msgstr "团队热图"
 
 #. heatmap
 #: loco:606ef181b72c7c09a00e9952
-msgid "Die Heatmap bietet eine aggregierte Auswertung aller Spannungen im Team:"
-msgstr "热图提供了团队中所有紧张关系的综合评估："
+msgid "Die Heatmap zeigt eine aggregierte Auswertung der Quellen aller Spannungen im Team:"
+msgstr "热图显示了对团队中所有紧张关系来源的汇总评估。"
 
 #. heatmap
 #: loco:606ef2252896c96569615292
-msgid "Im Innern der Heatmap sieht man, wie gross die Abweichung zwischen Selbst- "
-"und Fremdwahrnehmung hinsichtlich des Beitrags zu den Kraftquellen und "
-"Energiefressern im Team ist."
-msgstr "在热力图里面，你可以看到自我认知和外部认知之间的偏差有多大，对团队中的力量来源和能量消耗者的贡献。"
+msgid "Im Innern der Heatmap steht, wie gross die Abweichung zwischen Selbst- und Fremdwahrnehmung hinsichtlich des Beitrags zu den Kraftquellen und Energiefressern im Team ist."
+msgstr "热力图的内部显示了在对团队中的能源和能源消耗者的贡献方面，自我认知和外部认知之间的偏差有多大。"
 
 #. heatmap
 #: loco:60718b2a66822624027984e2
-msgid "In der Horizontalen sieht man den Beitrag jedes Spielers zu den "
-"Energiequellen. Je niedriger der Wert, desto grösser ist der Beitrag zu den "
-"Energiequellen im Team."
-msgstr "在横线上你可以看到每个球员对能源的贡献。数值越低，对团队中的能量来源贡献越大。"
+msgid "Auf der Vertikalen den Beitrag jedes Spielers zu den Energiequellen. Je niedriger der Wert, desto grösser ist der Beitrag zu den Energiequellen im Team."
+msgstr "在垂直方向上，每个玩家对能源来源的贡献。数值越低，对团队中的能源贡献越大。"
 
 #. heatmap
 #: loco:60718bb71d59b64092772912
-msgid "Vertikal sieht man links die Lage der Safe Zones und rechts die Skalen mit "
-"den Kraftquellen und Energiefressern des Teams – je höher der Wert, desto "
-"grösser ist der Beitrag dieser Skala zu den Energiefressern im Team."
-msgstr "纵向上可以看到左边是安全区的位置，右边是与团队中的动力源和能量消耗者的比例尺，数值越高，这个比例尺对团队中能量消耗者的贡献越大。"
+msgid "Auf der Horizontalen links die Lage der Safe Zones und rechts die Skalen mit den Kraftquellen und Energiefressern des Teams – je höher der Wert, desto grösser ist der Beitrag dieser Skala zu den Energiefressern im Team."
+msgstr "在水平面上，左边是安全区的位置，右边是带有团队动力源和能源消耗者的刻度--数值越大，这个刻度对团队中能源消耗者的贡献越大。"
 
 #. heatmap
 #: loco:60718cdf2808fc1f855fd132
@@ -609,9 +597,8 @@ msgstr "感谢你与方舟的旅程"
 #. farewell
 #: loco:606f028e88f4536b9b769575
 msgid ""
-"Spieldaten? Klicke auf das Icon um ein PDF mit der Auswertung deiner Reise "
-"mit der Arche herunterzuladen."
-msgstr "游戏数据？点击图标下载PDF格式的方舟之旅评价。"
+"Spieldaten? Klicke auf diesen Link für die Auswertung deiner Reise mit der Arche. Speichere den Link, um die Auswertung später noch einmal anzuschauen."
+msgstr "游戏数据？点击这个链接，了解对你的方舟之旅的评估。保存链接，以便以后查看评价。"
 
 #. farewell
 #: loco:606f03001e2d603c87126612
