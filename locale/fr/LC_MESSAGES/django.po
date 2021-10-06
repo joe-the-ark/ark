@@ -386,8 +386,7 @@ msgstr ""
 #. spannungsfelder
 #: loco:606c9436f97c426ad140e022
 msgid ""
-"Positives Vorzeichen = du schätzt deinen Beitrag zur Teamdynamik eher zu "
-"kritisch ein"
+"Positives Vorzeichen = schätzt den Beitrag zur Teamdynamik eher zu kritisch ein"
 msgstr ""
 "Signe positif = vous êtes plutôt trop critique quant à votre contribution à "
 "la dynamique de l'équipe"

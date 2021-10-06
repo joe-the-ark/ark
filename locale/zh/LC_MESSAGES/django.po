@@ -340,8 +340,7 @@ msgstr "负号=你倾向于过于积极地评估你对团队动态的贡献"
 #. spannungsfelder
 #: loco:606c9436f97c426ad140e022
 msgid ""
-"Positives Vorzeichen = du schätzt deinen Beitrag zur Teamdynamik eher zu "
-"kritisch ein"
+"Positives Vorzeichen = schätzt den Beitrag zur Teamdynamik eher zu kritisch ein"
 msgstr "正面的迹象=你对你对团队活力的贡献过于苛刻"
 
 #. spannungsfelder
