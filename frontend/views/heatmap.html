@@ -60,7 +60,6 @@
 
           <div class="main-column left">
             <div class="corner"></div>
-            <div class="corner"></div>
             
               <div class="heat_value property_value" v-for="value in scale_value_list">[[ value -16]]-[[ value +16]]</div>
               {% comment %} <div class="heat_value property_value">200</div>
@@ -73,9 +72,6 @@
 
           <div class="main-column player" v-for="user in main_map">
             <div class="heat_value over_player">[[ user[0] ]]</div>
-            <div class="heat_player">
-              <img :src="user[2]" alt="">
-            </div>
             <div v-for="value in user[3]" v-bind:class="{ 'heat_value one': value[1]==='yellow', 'heat_value two': value[1]==='black', 'heat_value three': value[1]==='None', 'heat_value four': value[1]==='red' }">[[ keepTwoDecimal(value[0]) ]]</div>
             {% comment %} <div class="heat_value one">[[ user[4] ]]</div>
             <div class="heat_value two">[[ user[5] ]]</div>
@@ -83,71 +79,73 @@
             <div class="heat_value three"></div> {% endcomment %}
             <div class="heat_value average-by-player">[[ user[4] ]]</div>
             <div class="heat_player">
-              <div class="name">[[ user[1] ]]</div>
+            <div class="name">[[ user[1] ]]</div>
+            <div class="heat_player">
+            <img :src="user[2]" alt="">
+            </div>
             </div>
           </div>
 
 {% comment %} 
           <div class="main-column player">
             <div class="heat_value over_player">300</div>
-            <div class="heat_player">
-              <div class="name">Paula Fernandes</div>
-              <img src="/static/images/avatars/bear.svg" alt="">
-            </div>
             <div class="heat_value four">103</div>
             <div class="heat_value two">58</div>
             <div class="heat_value one">95</div>
             <div class="heat_value three">73</div>
             <div class="heat_value one">50</div>
             <div class="heat_value average-by-player">100</div>
+            <div class="heat_player">
+            <div class="name">Paula Fernandes</div>
+            <img src="/static/images/avatars/bear.svg" alt="">
+            </div>
           </div>
 
           <div class="main-column player">
             <div class="heat_value over_player">250</div>
-            <div class="heat_player">
-              <div class="name">Paula Fernandes</div>
-              <img src="/static/images/avatars/bear.svg" alt="">
-            </div>
             <div class="heat_value one">114</div>
             <div class="heat_value three">113</div>
             <div class="heat_value one">125</div>
             <div class="heat_value four">37</div>
             <div class="heat_value two">76</div>
             <div class="heat_value average-by-player">99</div>
+            <div class="heat_player">
+            <div class="name">Paula Fernandes</div>
+            <img src="/static/images/avatars/bear.svg" alt="">
+            </div>
           </div>
 
           <div class="main-column player">
             <div class="heat_value over_player">150</div>
-            <div class="heat_player">
-              <div class="name">Paula Fernandes</div>
-              <img src="/static/images/avatars/bear.svg" alt="">
-            </div>
             <div class="heat_value four">90</div>
             <div class="heat_value one">99</div>
             <div class="heat_value three">78</div>
             <div class="heat_value two">70</div>
             <div class="heat_value one">67</div>
             <div class="heat_value average-by-player">64</div>
+            <div class="heat_player">
+            <div class="name">Paula Fernandes</div>
+            <img src="/static/images/avatars/bear.svg" alt="">
+            </div>
           </div>
 
           <div class="main-column player">
             <div class="heat_value over_player">100</div>
-            <div class="heat_player">
-              <div class="name">Paula Fernandes</div>
-              <img src="/static/images/avatars/bear.svg" alt="">
-            </div>
             <div class="heat_value one">183</div>
             <div class="heat_value two">149</div>
             <div class="heat_value one">127</div>
             <div class="heat_value four">68</div>
             <div class="heat_value three">101</div>
             <div class="heat_value average-by-player">65</div>
+            <div class="heat_player">
+            <div class="name">Paula Fernandes</div>
+            <img src="/static/images/avatars/bear.svg" alt="">
+            </div>
           </div> {% endcomment %}
 
 
 
           <div class="main-column prop">
-            <div class="corner"></div>
             <div class="corner"></div>
             <div class="property" v-for="scale in scale_list_pro">
               <p class="property_one">[[ scale[0] ]]</p>
@@ -173,7 +171,6 @@
           </div>
 
           <div class="main-column right">
-            <div class="corner"></div>
             <div class="corner"></div>
             
               <div class="heat_value property_value" v-for="value in scale_value_list">[[ value ]]</div>

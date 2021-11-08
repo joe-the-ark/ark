@@ -1122,7 +1122,7 @@ def heatmap(request, user):
             )
         temp.append(iknow)
         temp_ = [i[0] for i in iknow]
-        temp.append(round(mean(temp_)))
+        temp.append(round(sum(temp_)))
         main_map.append(temp)
     # print('main_map',main_map)
 

@@ -37,8 +37,8 @@
   align-items: end;
 }
 .heat_player>.name {
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
+  writing-mode: horizontal-tb;
+  transform: rotate(0deg);
   max-height: 150px;
 }
 .heat_player>img {
