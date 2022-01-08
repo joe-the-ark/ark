@@ -867,6 +867,9 @@ def wartezimmer(request, user):
         # else:
 
         #     return redirect('/ubung-4/')
+    ubung1 = Ubung1.objects.filter(player=user).first()
+    ubung3 = Ubung3.objects.filter(player=user).first()
+    ctx['scale'] = [ubung1.power_i18n, ubung3.drainer_i18n]
 
     return render(request, './views/wartezimmer.html', ctx)
 
@@ -1304,6 +1307,61 @@ def ubung_1_api_pro(player_id, link, item, lang_code):
     print('result_data', result_data)
     return result_data
 
+@api
+def warteimmer_api_pro(player_id, link, item_power, item_drainer, lang_code):
+    from .models import Player, Game, Ubung1, Ubung3
+    from .utils import ubung_1_term_list_i18n
+    from .utils import ubung_3_term_list_i18n
+    game = Game.objects.filter(link=link).first()
+    player = Player.objects.filter(id=player_id).first()
+
+    if lang_code == 'en':
+        lang_name = 'English'
+    elif lang_code == 'de':
+        lang_name = 'Deutsch'
+    elif lang_code == 'zh-hans':
+        lang_name = 'Chinese'
+    elif lang_code == 'fr':
+        lang_name = 'French'
+    
+    item_id = -1
+    for i in ubung_1_term_list_i18n[lang_name]:
+        if i['value'] == item_power:
+            item_id = i['id']
+    if item_id != -1:
+        for i in ubung_1_term_list_i18n['English']:
+            if item_id == i['id']:
+                item_power= i['value']
+
+    ubung1 = Ubung1.objects.filter(game=game,player=player).first()
+    if ubung1:
+        ubung1.power = item_power
+        ubung1.save()
+    else:   
+        Ubung1.objects.create(game=game,player=player,power=item_power,state='line-through')
+
+
+    item_id = -1
+    for i in ubung_3_term_list_i18n[lang_name]:
+        if i['value'] == item_drainer:
+            item_id = i['id']
+    if item_id != -1:
+        for i in ubung_3_term_list_i18n['English']:
+            if item_id == i['id']:
+                item_drainer = i['value']
+
+    ubung3 = Ubung3.objects.filter(game=game,player=player).first()
+    if ubung3:
+        ubung3.drainer = item_drainer
+        ubung3.save()
+    else:   
+        Ubung3.objects.create(game=game,player=player,drainer=item_drainer,state='line-through')
+
+
+    # result_data = [i.api_json for i in list(Ubung1.objects.filter(game=game,player=player))]
+    result_data = ''
+    print('result_data', result_data)
+    return result_data
 
 @api
 def check_ubung_3(player_id, link):

@@ -11,6 +11,7 @@
     <title>Waiting-Room-SQUAD</title>
     <link rel="stylesheet" href="/static/css/app.css">
     <link rel="stylesheet" href="/static/css/wartezimmer.css">
+    <link rel="stylesheet" href="/static/css/heatmap.css">
 
     <!-- vue cdn  -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -19,7 +20,8 @@
 
 </head>
 <body>
-<div class="app">
+ {% get_current_language as LANGUAGE_CODE %}
+ <div class="app">
     <div class="app__head">
         <header class="header-main container">
             <div class="header-main__title">
@@ -51,23 +53,72 @@
     </div>
     <div class="app__body">
         <div class="container">
+
+
+
             <main class="screen wartezimmer">
-                <div class="wartezimmer__data">
+                <div class="wartezimmer__data" id="app-2">
                     <h1>
                         {% trans "Bitte tauscht euch aus." %}
                     </h1>
                     <p>
                         {% trans "Was beflügelt dich im Team? Und was steht deiner Potentialentfaltung noch im Weg? Erzählt euch bitte kurz gegenseitig, welches Gegensatzpaar du ausgewählt hast, damit alle verstehen können, wovon die Rede ist." %}
                         <br/>
+                    </p>
+                    <p>
+                        {% trans "Überprüfe bitte noch einmal das von dir gewählte Spannungsfeld und überarbeite deine Begriffe bei Bedarf..." %}
                         <br/>
+                        <br/>
+                    <input type="text" placeholder="Kraftquelle fehlt!" name="Kraftquelle" v-model="text_input_power" />
+                    <input type="text" placeholder="Energiefresser fehlt!" name="Energiefresser" v-model="text_input_drainer" />
+                    <button class="submit" @click="continue_()">
+                                {% trans "Update" %}
+                            </button>
+                    </p>
+                        <p v-for='(value, index) in 10' :key="index">
+                            {{ x }}
+                        </p>
+                    <p>
                         {% trans "Lade dein Team ein, um spielerisch herauszufinden, wie es um eure Psychologische Sicherheit steht. Starte richtig im Spiel durch, sobald alle Mitspieler hier im Warteraum sichtbar sind. Nur wer jetzt mit an Bord ist, kann am Spiel teilnehmen!" %}
                     </p>
+
                 </div>
-                <div class="wartezimmer__thumbnail">
-                    <span class="icon-player"></span>
-                    <iframe src="https://player.vimeo.com/video/459637793" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+
+<!--
+                <div class="heatmap">
+
+
+          <div class="main-column prop">
+            <div class="corner"></div>
+            <div class="corner"></div>
+            <div class="property" v-for="scale in scale_list_pro">
+              <p class="property_one">[[ scale[0] ]]</p>
+              <p class="property_two">[[ scale[1] ]]</p>
+            </div>
+            {% comment %} <div class="property">
+              <p class="property_one">Curative</p>
+              <p class="property_two">Narcissism</p>
+            </div>
+            <div class="property">
+              <p class="property_one">Ambition</p>
+              <p class="property_two">Enforcement</p>
+            </div>
+            <div class="property">
+              <p class="property_one">Victory</p>
+              <p class="property_two">Dominance</p>
+            </div>
+            <div class="property">
+              <p class="property_one">Pain</p>
+              <p class="property_two">Invisibility</p>
+            </div> {% endcomment %}
+
+          </div>
+
+
                 </div>
+-->
                 <div class="wartezimmer__addition" id="app-1">
+
                     <div class="user-connect active" v-for='(value, index) in waiting_list_active'>
                         <img :src="value.avatar" alt=""/>
                         <div class="user-connect__name">
@@ -219,6 +270,7 @@
                     </div>  {% endcomment %}
                 </div>
             </main>
+
             <form action="#" method="POST" class="form">
             {% csrf_token %}
                 <div class="center">
@@ -235,6 +287,14 @@
 <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
 <script src="https://unpkg.com/clipboard@2/dist/clipboard.min.js"></script>
 <script>
+
+    var scaleI18n = {{scale|safe}} ;
+    var scale = [];
+    var lang_code = '{{LANGUAGE_CODE}}';
+    scaleI18n.forEach( (item) => {
+        scale.push(item[lang_code]);
+    });
+
 
     //Button remover
     function buttonRemover() {
@@ -264,6 +324,75 @@
     var url_host = window.location.host;
     var temp_link_ = url_host + '/link/' + temp_link + '/';
     document.querySelector('.icon-link').dataset.clipboardText = temp_link_;
+
+   var app2 = new Vue({
+        delimiters: ['[[', ']]'],
+        el: '#app-2',
+        data() {
+            return {
+                scale: scale,
+                text_input_power : scale[0],
+                text_input_drainer : scale[1]
+            }
+        },
+        methods: {
+            handleSelect(key, keyPath) {
+                console.log(key, keyPath);
+            },
+            continue_(){
+                var that = this;
+                if (that.text_input_power === ''){
+                    alert("Please choose a power term.");
+                    return;
+                } else if (that.text_input_drainer === '') {
+                    alert("Please choose a drainer term.");
+                    return;
+                } else {
+                    //if (this.keyboard_input === true){
+                    app2.add_terms();
+                }
+            },
+            add_terms(){
+                var that = this;
+                var tempPower = that.text_input_power;
+                tempPower = tempPower.replace(/\s*/g,"")
+                if (that.text_input_power ===  ''){
+                    return;
+                }
+                if (tempPower === ''){
+                    return;
+                }
+
+                var tempDrainer = that.text_input_drainer;
+                tempDrainer = tempDrainer.replace(/\s*/g,"")
+                if (that.text_input_drainer ===  ''){
+                    return;
+                }
+                if (tempDrainer === ''){
+                    return;
+                }
+
+                var data_ = {
+                    'player_id': '{{user.id}}',
+                    'link': '{{game.link}}',
+                    'item_power': tempPower,
+                    'item_drainer': tempDrainer,
+                    'lang_code': '{{LANGUAGE_CODE}}'
+                };
+                axios
+                    .post(`/api/warteimmer_api_pro/`, data_)
+                    .then(function(response){
+                        var result = response.data.result;
+                        console.log(result);
+                    })
+                    .catch(function(error){
+                        console.log(error);
+                    })
+
+            }
+        }
+    });
+
 
     var app = new Vue({
         delimiters: ['[[', ']]'],
