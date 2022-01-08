@@ -51,3 +51,22 @@ https://youtu.be/H0WkHyPhdps
 https://youtu.be/O--N9XMrRcw
 * Digitec Galaxus Intervew zu heiligen Kühen [Interview bei Digitec Galaxus](https://www.personal-schweiz.ch/experten-interviews/article/innovation-bei-digitec-galaxus-gibt-es-keine-heiligen-kuehe/)
 * Angebotsskizze für den Einsatz der Arche in Unternehmen [Short flyer about the game](https://www.ywesee.com/uploads/Arks/Arks_The_Game.pdf)
+
+## Troubleshooting for the installation:
+Installing Meta Framework:
+* If you see the message "No module named ’setuptools": # sudo apt-get install python3-setuptools
+* If you see the message that „no suitable gcc“ available: # apt-get install build-essential
+* If you see the message that headerfiles .h are missing: # apt-get apt-get install python3-dev
+
+Installing Django:
+* If there is no PIP: # apt-get install python3-pip
+
+Possible further requirements:
+* If gettext is missing: # apt-get install gettext 
+
+If you run the server on a different IP adress and port than localhost, you want to edit ark/backend/backend/settings.py and settings_prod.py: 
+DEBUG = TRUE 
+ALLOWED_HOSTS = [‚XXX.XXX.XXX.XXX‘]   	with XXX… being your IP address.
+
+If you want the server to listen to a different IP address, start it like this:
+  python3 manage.py runserver XXX.XXX.XXX.XXX:PORT
