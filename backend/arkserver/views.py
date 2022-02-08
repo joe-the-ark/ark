@@ -1142,6 +1142,50 @@ def heatmap(request, user):
 
     # print('row0',row0)
 
+    pair_table = []
+    for i in range(0, len(user_list)):
+        for j in range(i+1, len(user_list)):
+            temp = [ user_list[i], user_list[j] ]
+            pair_table.append(temp)
+	
+    all_items = [ {"score": i.score, "player": i.player.id, "goal": i.goal.id, "axis": (str(i.ubung1.id) + "." + str(i.ubung3.id)) } 
+                  for i in list(Ubung5.objects.filter())]
+
+    def find_item(user_playing, user_goal, axis, list):
+        for item in list:
+            if item["player"] == user_playing and item["goal"] == user_goal and item["axis"] == axis:
+                return item
+	
+    beef_table = []
+    debug = []
+    
+    axis_table = []
+    for item in all_items:
+        axis_table.append(item["axis"])
+
+    axis_table = list(set(axis_table))
+        
+    for pair in pair_table:
+
+        u1 = pair[0].id
+        u2 = pair[1].id
+        tension = 0
+
+        for axis in axis_table:
+        
+            u1Self = find_item(u1, u1, axis, all_items)["score"]
+            u1Foreign = find_item(u2, u1, axis, all_items)["score"] 
+            u2Self = find_item(u2, u2, axis, all_items)["score"]
+            u2Foreign = find_item(u1, u2, axis, all_items)["score"]
+             
+            t = abs(u1Self - u1Foreign) + abs(u2Self - u2Foreign)
+
+            tension += t
+            debug.append([ u1Self, u1Foreign, u2Self, u2Foreign, t, tension ])
+
+        beef_table.append({ "user1" : { "name" : pair[0].name}, "user2" : {"name" : pair[1].name}, "tension" : tension })
+ 
+
     ctx['row0'] = row0
     ctx['main_map'] = main_map
     # ctx['scale_list'] = scale_list = [ [i.power, i.connect_ubung3.drainer] for i in game.ubung5_scale_order]
@@ -1152,8 +1196,12 @@ def heatmap(request, user):
     # for player in Player.objects.filter(game=game):
     #     if player.valid:
     #         player_list.append(player)
-    
-
+     
+    ctx['beef_table'] = beef_table
+#    ctx['debug'] = [i.ubung5_avg for i in game.ubung5_scale_order]
+#    ctx['debug'] = all_items
+#    ctx['debug2'] = debug
+#    ctx['debug3'] = axis_table
     return render(request, './views/heatmap.html', ctx)
 
 

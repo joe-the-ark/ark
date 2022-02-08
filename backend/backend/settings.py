@@ -27,7 +27,7 @@ DEBUG = True
 
 LOCAL = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.3.103','10.192.12.148']
 
 
 # Application definition

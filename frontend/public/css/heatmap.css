@@ -104,3 +104,105 @@
   background-color: #fa5252;
   color: white;
 }
+
+
+/* Beef Table */
+
+p.font-size-small {
+	font-size: var(--ls-font-small);
+}
+
+.dashboard {
+	width: 100%;
+	margin-top: 40px;
+	margin-bottom: 80px;
+}
+
+.beef-table td, 
+.beef-table th {
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-bottom: 3px solid white;
+}
+
+table.beef-table td,
+table.beef-table th {
+	color: var(--ls-alfa-color);
+    font-size: var(--ls-font-base);
+    line-height: 29px;
+}
+			
+table.beef-table {
+	background: rgb(212,255,191);
+	background: linear-gradient(180deg, rgba(212,255,191,1) 0%, rgba(212,255,191,1) 54%, rgba(255,210,210,1) 100%);
+
+	table-layout: fixed;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+table.beef-table th {
+	background: #e6e6e6;
+}
+
+table.beef-table td:nth-child(1) {
+	width: 40%;
+}
+table.beef-table th:nth-child(2),
+table.beef-table td:nth-child(2) {
+	width: 40%;
+	text-align: center;
+}
+
+table.beef-table th {
+	font-weight: bold;
+}
+
+table.beef-table th > span:after {
+	position: absolute;
+	content: '\2304';
+	display: none;
+	font-size: 28px;
+	margin-left: 0.5em;
+} 
+
+table.beef-table a {
+	color: var(--ls-alfa-color);
+}
+
+table.beef-table a:hover {
+	text-decoration: underline;
+}
+
+table.beef-table td.active a { 
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+table.beef-table th.active > span:after {
+	display: inline-block;
+}
+
+
+.beef-table-tools {
+	float: right;
+	font-size: 0.5em;
+}
+
+.beef-table-tools.hide {
+	visibility: hidden;
+}
+
+.beef-table-tools p {
+	font-size: var(--ls-font-less);
+}
+
+.beef-table-tools a {
+	color: var(--ls-alfa-color);
+}
+
+.beef-table-tools a:hover {
+	text-decoration: underline;
+}
+
