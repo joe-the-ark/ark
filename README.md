@@ -3,6 +3,7 @@ The Ark is an Online Group Challenge to develop your teams sense of psychologica
 ## Git Notes for backend and frontend developers
 If you work on your local branches, make sure to do a `git pull origin master` before you merge your changes into the master branch or before you do a Pull-Request. This is very important to avoid merge conflicts.
 ## How to run the project 
+- If you are developing on a Mac goto your terminal and run ```xcode-select --install``` to install xcode
 - If you have not installed the meta library yet...
     - Please, under the ```meta/backend/src/``` directory, run ```python3 setup.py install``` to install the meta library.
     - If you have already installed the meta library, please continue to the next step.
