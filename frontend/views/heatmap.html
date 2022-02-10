@@ -46,13 +46,13 @@
     
     
     <div class="container">
-    	<h1>{% trans "Team Dashboard" %}</h1>
+    	<h1>{% trans "Team-Beef-Dashboard" %}</h1>
 		<p>
-			{% trans "Das Team Dashboard zeigt, wer sich wahrscheinlich mit wem gut verträgt, und wer wahrscheinlich mit wem Spannungen erlebt." %}
+			{% trans "Das Team-Beef-Dashboard zeigt, in welchen Paarkonstellationen die Abweichung zwischen den Selbst- und Fremdeinschätzungen gering ausfällt. Sprich, welche Paare ihre Wirkung aufeinander gut einschätzen können und untereinander wahrscheinlich wenig Spannungen erleben." %}
 			<br><br>
 		</p>
 		<p>
-			{% trans "In dieser Liste sind alle Paare von Teammitgliedern mit Spannungswert aufgeführt. Je weiter oben ein Paar steht, desto integrierender wird die Zusammenarbeit vermutlich sein. Paare weiter unten zeigen Bedarf, sich über ihre Sichtweisen auszutauschen." %}
+			{% trans "In dieser Liste sind alle Paarkonstellationen mit Spannungswert aufgeführt. Je weiter oben ein Paar steht, desto integrierender für das Teamzusammenspiel wird die Konstellation vermutlich sein. Paare weiter unten auf der Liste produzieren höhere Spannungswerte, mehr Reibung in den gegenseitigen Wahrnehmungen und haben vermutlich Beef miteinandern – sie täten zum Wohle der Gruppe gut daran, sich in den unterschiedlichen Sichtweisen abzugleichen und ihre soziale Sensibilität zu entwickeln." %}
 		</p>
 			
 		<div class="dashboard">
@@ -68,13 +68,13 @@
 				<thead>
 					<tr>
 						<th v-bind:class="current_sort_column == 'user1' ? 'active' : ''">
-							<span>Person 1</span>
+							<span>Spieler</span>
 						</th>
 						<th v-bind:class="current_sort_column == 'tension' ? 'active' : ''">
 							<span>Spannungswert</span>
 						</th>
 						<th v-bind:class="current_sort_column == 'user2' ? 'active' : ''">
-							<span>Person 2</span>
+							<span>Mitspieler</span>
 						</th>
 					</tr>
 				</thead>
