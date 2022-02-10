@@ -213,7 +213,7 @@ def ubung_1(request, user):
     #             state = 'tag',
     #             power = i['value'],
     #         )
-    
+
     # ctx['term_list'] = [i.api_json for i in list(Ubung1.objects.filter(game=game))]
 
     # from .utils import ubung_1_term_list
@@ -533,7 +533,7 @@ def mission_2_ubung_1(request, user):
     game = Game.objects.filter(link=link).first()
     waiting_room = list(WaitingRoomMember.objects.filter(game=game,state=1))
     # member_list = [i.player.player_json for i in waiting_room]
-    
+
 
     ctx['member_list'] = []
     # print('member_list',member_list)
@@ -907,7 +907,7 @@ def waiting_room2(request, user):
 
     # Waitingroom2Start
     if request.method == 'POST':
-        
+
         # ubung5 check finish
         mem_list = [i.player for i in list(WaitingRoomMember.objects.filter(game=game,state=1))]
         ubung5_list = Ubung5.objects.filter(game=game)
@@ -925,7 +925,7 @@ def waiting_room2(request, user):
                 waiting2.save()
             else:
                 Waitingroom2Start.objects.create(
-                    game = game, 
+                    game = game,
                     status = 1,
                 )
             return redirect('/psychologischer/')
@@ -959,7 +959,7 @@ def waiting_room2_game_start(link):
     waiting2 = Waitingroom2Start.objects.filter(game=game).first()
     if waiting2:
         if waiting2.status == 1:
-            return 1    
+            return 1
         else:
             return 0
     else:
@@ -984,7 +984,7 @@ def waiting_room3(request, user):
             game = game,
             player = user,
         )
-    
+
     # Waitingroom3Start
     if request.method == 'POST':
         if user ==  game.creator:
@@ -1031,7 +1031,7 @@ def waiting_room3_game_start(link):
     waiting3 = Waitingroom3Start.objects.filter(game=game).first()
     if waiting3:
         if waiting3.status == 1:
-            return 1    
+            return 1
         else:
             return 0
     else:
@@ -1147,24 +1147,24 @@ def heatmap(request, user):
         for j in range(i+1, len(user_list)):
             temp = [ user_list[i], user_list[j] ]
             pair_table.append(temp)
-	
-    all_items = [ {"score": i.score, "player": i.player.id, "goal": i.goal.id, "axis": (str(i.ubung1.id) + "." + str(i.ubung3.id)) } 
-                  for i in list(Ubung5.objects.filter())]
+
+    all_items = [ {"score": i.score, "player": i.player.id, "goal": i.goal.id, "axis": (str(i.ubung1.id) + "." + str(i.ubung3.id)) }
+                  for i in list(Ubung5.objects.filter(game=game))]
 
     def find_item(user_playing, user_goal, axis, list):
         for item in list:
             if item["player"] == user_playing and item["goal"] == user_goal and item["axis"] == axis:
                 return item
-	
+
     beef_table = []
     debug = []
-    
+
     axis_table = []
     for item in all_items:
         axis_table.append(item["axis"])
 
     axis_table = list(set(axis_table))
-        
+
     for pair in pair_table:
 
         u1 = pair[0].id
@@ -1172,19 +1172,19 @@ def heatmap(request, user):
         tension = 0
 
         for axis in axis_table:
-        
+
             u1Self = find_item(u1, u1, axis, all_items)["score"]
-            u1Foreign = find_item(u2, u1, axis, all_items)["score"] 
+            u1Foreign = find_item(u2, u1, axis, all_items)["score"]
             u2Self = find_item(u2, u2, axis, all_items)["score"]
             u2Foreign = find_item(u1, u2, axis, all_items)["score"]
-             
+
             t = abs(u1Self - u1Foreign) + abs(u2Self - u2Foreign)
 
             tension += t
             debug.append([ u1Self, u1Foreign, u2Self, u2Foreign, t, tension ])
 
         beef_table.append({ "user1" : { "name" : pair[0].name}, "user2" : {"name" : pair[1].name}, "tension" : tension })
- 
+
 
     ctx['row0'] = row0
     ctx['main_map'] = main_map
@@ -1196,7 +1196,7 @@ def heatmap(request, user):
     # for player in Player.objects.filter(game=game):
     #     if player.valid:
     #         player_list.append(player)
-     
+
     ctx['beef_table'] = beef_table
 #    ctx['debug'] = [i.ubung5_avg for i in game.ubung5_scale_order]
 #    ctx['debug'] = all_items
@@ -1334,7 +1334,7 @@ def ubung_1_api_pro(player_id, link, item, lang_code):
         lang_name = 'Chinese'
     elif lang_code == 'fr':
         lang_name = 'French'
-    
+
     item_id = -1
     for i in ubung_1_term_list_i18n[lang_name]:
         if i['value'] == item:
@@ -1348,7 +1348,7 @@ def ubung_1_api_pro(player_id, link, item, lang_code):
     if ubung1:
         ubung1.power = item
         ubung1.save()
-    else:   
+    else:
         Ubung1.objects.create(game=game,player=player,power=item,state='line-through')
 
     result_data = [i.api_json for i in list(Ubung1.objects.filter(game=game,player=player))]
@@ -1371,7 +1371,7 @@ def warteimmer_api_pro(player_id, link, item_power, item_drainer, lang_code):
         lang_name = 'Chinese'
     elif lang_code == 'fr':
         lang_name = 'French'
-    
+
     item_id = -1
     for i in ubung_1_term_list_i18n[lang_name]:
         if i['value'] == item_power:
@@ -1385,7 +1385,7 @@ def warteimmer_api_pro(player_id, link, item_power, item_drainer, lang_code):
     if ubung1:
         ubung1.power = item_power
         ubung1.save()
-    else:   
+    else:
         Ubung1.objects.create(game=game,player=player,power=item_power,state='line-through')
 
 
@@ -1402,7 +1402,7 @@ def warteimmer_api_pro(player_id, link, item_power, item_drainer, lang_code):
     if ubung3:
         ubung3.drainer = item_drainer
         ubung3.save()
-    else:   
+    else:
         Ubung3.objects.create(game=game,player=player,drainer=item_drainer,state='line-through')
 
 
@@ -1491,7 +1491,7 @@ def ubung_3_api_pro(player_id, link, item, lang_code):
         lang_name = 'Chinese'
     elif lang_code == 'fr':
         lang_name = 'French'
-    
+
     item_id = -1
     for i in ubung_3_term_list_i18n[lang_name]:
         if i['value'] == item:
@@ -1556,7 +1556,7 @@ def check_ubung5_finish(link):
 
 @api
 def ubung5_data(link, user_id, data, ubung1_id, ubung3_id):
-    
+
     ubung1_id = int(ubung1_id)
     ubung3_id = int(ubung3_id)
     print(ubung1_id)
@@ -1652,7 +1652,7 @@ def check_game_is_after_waiting_room(link):
 
 
 @api
-def last_stop_check(link):  
+def last_stop_check(link):
     game = Game.objects.filter(link=link).first()
     stop_list = [i.player for i in list(LastStop.objects.filter(game=game))]
     player_list = game.valid_players
