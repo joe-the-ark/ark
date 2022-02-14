@@ -27,7 +27,7 @@ DEBUG = True
 
 LOCAL = True
 
-ALLOWED_HOSTS = ['127.0.0.1','192.168.3.103','10.192.12.148']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost' ,'192.168.3.103','10.192.12.148']
 
 
 # Application definition
