@@ -3,7 +3,7 @@ The Ark is an Online Group Challenge to develop your teams sense of psychologica
 # 60 seconds preview video of the ARK challenge
 https://player.vimeo.com/video/553453877
 # The developers slidedeck on psychological safety
-* https://docs.google.com/presentation/d/1m8OOxnHOAqu-uezCv3RLud7_D_JlqlxnUrDExVdjFQk/edit#slide=id.g10434ef0003_0_0
+https://docs.google.com/presentation/d/1m8OOxnHOAqu-uezCv3RLud7_D_JlqlxnUrDExVdjFQk/edit#slide=id.g10434ef0003_0_0
 ## Git Notes for backend and frontend developers
 If you work on your local branches, make sure to do a `git pull origin master` before you merge your changes into the master branch or before you do a Pull-Request. This is very important to avoid merge conflicts.
 ## How to run the project 
