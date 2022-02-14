@@ -1,9 +1,17 @@
 # ark
 The Ark is an Online Group Challenge to develop your teams sense of psychological safety. It is developed by Dr. Joachim Maier, Sempach, Switzerland and made available under GPLv3. Frontend made in Omsk with a backend from China. German version is playable via https://www.arks.ch
+# 60 seconds preview video of the ARK challenge
+https://player.vimeo.com/video/553453877
+# The developers slidedeck on psychological safety
+* https://docs.google.com/presentation/d/1m8OOxnHOAqu-uezCv3RLud7_D_JlqlxnUrDExVdjFQk/edit#slide=id.g10434ef0003_0_0
 ## Git Notes for backend and frontend developers
 If you work on your local branches, make sure to do a `git pull origin master` before you merge your changes into the master branch or before you do a Pull-Request. This is very important to avoid merge conflicts.
 ## How to run the project 
 - If you are developing on a Mac goto your terminal and run ```xcode-select --install``` to install xcode
+- install brew by following the instructions via https://brew.sh/
+- After the basic brew install, here are the two lines of code you need to run in your console…
+```echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/maij/.profile```AND ```eval "$(/opt/homebrew/bin/brew shellenv)"```
+- Install a current python (e.g. 3.x) & Django (e.g. 2.2.x) version.
 - If you have not installed the meta library yet...
     - Please, under the ```meta/backend/src/``` directory, run ```python3 setup.py install``` to install the meta library.
     - If you have already installed the meta library, please continue to the next step.
@@ -24,8 +32,6 @@ If you work on your local branches, make sure to do a `git pull origin master` b
 https://www.dropbox.com/s/hpss180nj2dpeem/ARK_3_Gameflow.pdf?dl=0
 - Detailed overview in multiple languages (German, English, French, Chinese, Russian)
 https://www.dropbox.com/s/cc6c58ix6zp8mtl/ARK_2_Gameflow.pdf?dl=0
-- 60 seconds game_preview video
-https://vimeo.com/488263813
 ## Creator of the Game
 * [Dr. Joachim Maier, creator of the game](https://www.linkedin.com/in/dr-joachim-maier/)
 * [Some pictures The ARKS backstory](https://photos.app.goo.gl/4fHKgDkx9ChjeiuV8)
@@ -37,7 +43,8 @@ https://vimeo.com/488263813
 * https://vimeo.com/459637808 (The Secret To Making Business Teams Successful)
 * From Charles Duhigg – author of the newnowed 2016 New Yorker article on psychological safety https://www.nytimes.com/2016/02/28/magazine/what-google-learned-from-its-quest-to-build-the-perfect-team.html
 ## Links (Texts in German)
-* Mein Foliensatz zu Psychologischer Sicherheit...
+* Mein Blogbeitrag zu Psychologischer Sicherheit...
+* https://blog.zhaw.ch/iap/2021/05/10/psychologische-sicherheit-wie-aufrichtig-kann-ich-in-meinem-team-kommunizieren/
 https://www.dropbox.com/s/dme4jm2q556mbwt/2021_Psychologische_Sicherheit.pdf?dl=0
 * Guter halbwissenschaftlicher Einführungsartikel zu Psychologischer Sicherheit https://www.artop.de/psychologische-sicherheit-das-fundament-gelingender-arbeit-im-team/
 * Clip1: Wie kam ich zur psychologischen Sicherheit? (3:16 Min.)
