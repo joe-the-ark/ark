@@ -62,13 +62,13 @@
                         {% trans "Bitte tauscht euch aus." %}
                     </h1>
                     <p>
-                        {% trans "Was beflügelt dich im Team? Und was steht deiner Potentialentfaltung noch im Weg? Erzählt euch bitte kurz gegenseitig, welches Gegensatzpaar du ausgewählt hast, damit alle verstehen können, wovon die Rede ist." %}
+                        {% trans "Erzählt euch bitte kurz gegenseitig, welches Gegensatzpaar du ausgewählt hast, damit alle verstehen können, wovon die Rede ist." %}
                         <br/>
                     </p>
                     <p>
+                        <b>
                         {% trans "Überprüfe bitte noch einmal das von dir gewählte Spannungsfeld und überarbeite deine Begriffe bei Bedarf..." %}
-                        <br/>
-                        <br/>
+                        </b>
                     <input type="text" placeholder="Kraftquelle fehlt!" name="Kraftquelle" v-model="text_input_power" />
                     <input type="text" placeholder="Energiefresser fehlt!" name="Energiefresser" v-model="text_input_drainer" />
                     <button class="submit" @click="continue_()">
@@ -79,7 +79,7 @@
                             {{ x }}
                         </p>
                     <p>
-                        {% trans "Lade dein Team ein, um spielerisch herauszufinden, wie es um eure Psychologische Sicherheit steht. Starte richtig im Spiel durch, sobald alle Mitspieler hier im Warteraum sichtbar sind. Nur wer jetzt mit an Bord ist, kann am Spiel teilnehmen!" %}
+                        {% trans "Starte richtig im Spiel durch, sobald alle Mitspieler hier im Warteraum sichtbar sind. Nur wer jetzt mit an Bord ist, kann am Spiel teilnehmen!" %}
                     </p>
 
                 </div>

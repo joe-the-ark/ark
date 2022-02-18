@@ -26,6 +26,17 @@ msgid "Die Arche ist eine Online-Gruppen-Challenge, um das psychologische "
 msgstr "方舟》是一个培养团队心理安全感的线上团体挑战赛。游戏时间为45-90分钟，具体时间视小组人数而定。"
 
 #. onboarding
+#: loco:6071a6458d4f51635821d922
+msgid "Die Arche ist eine Online-Gruppen-Challenge, um das psychologische "
+"Sicherheitsgefühl in Teams zu entwickeln."
+msgstr "方舟》是一个培养团队心理安全感的线上团体挑战赛。"
+
+#. onboarding
+#: loco:6071a6458d4f51635821d922
+msgid "Die Spielzeit beträgt je nach Gruppengrösse 45-90 Minuten."
+msgstr "游戏时间为45-90分钟，具体时间视小组人数而定。"
+
+#. onboarding
 #: loco:6073033f7b216d70613ab4d2
 msgid "Wie steht es um eure Psychologische Sicherheit?"
 msgstr "你的心理安全感如何？"
@@ -72,14 +83,13 @@ msgstr "分享这个链接。"
 
 #. preview.html
 #: loco:606885b920934b401305cbb2
-msgid "Mission 1: Was beflügelt dich im Team?"
-msgstr "任务1：在团队中，是什么激励了你"
+msgid "Was erwartet dich auf der Reise mit der Arche?"
+msgstr "在与方舟的旅程中，有什么在等着你？"
 
 #. preview.html
 #: loco:60688694be899e32216f1b02
-msgid ""
-"Die Beantwortung dieser Frage mag anspruchsvoll sein."
-msgstr "回答这个问题可能具有挑战性"
+msgid "Bitte schau dir zur Einstimmung dieses 101 Sekunden lange Preview-Video an."
+msgstr "为了澄清你的期望，请观看这个101秒的预览视频。"
 
 #. preview.html
 #: loco:60688727a1837301bb1df633
@@ -100,8 +110,8 @@ msgstr "继续"
 
 #. ubung-1
 #: loco:606b759198a94a6cf8339672
-msgid "Was beflügelt dich?"
-msgstr "是什么激励了你？"
+msgid "Was beflügelt dich in diesem Team?"
+msgstr "在这个团队中，是什么激励了你？"
 
 #. ubung-1
 #: loco:606b768f6e464e1c4c0fcb40
@@ -150,8 +160,13 @@ msgstr "描述一下我们团队中激励你的反面因素。"
 
 #. ubung-3
 #: loco:606b7e554fe187702f150c72
-msgid "Schreib in das leere Feld oder klicke auf den passenden Begriff."
-msgstr "在空白处写出或点击相应的术语。"
+msgid "Schreib bitte ein Wort in das leere Feld oder klicke auf den passenden Begriff."
+msgstr "请在空栏里写一个词，或点击相应的术语。"
+
+#. ubung-3
+#: loco:606b7e554fe187702f150c72
+msgid "Bitte finde auch hier eine für dich stimmige Antwort, denn sie bestimmt die Struktur der Challenge für dich und alle anderen."
+msgstr "请找到一个对你来说是连贯的答案，因为它决定了你和其他人的挑战结构。"
 
 #. waitingroom-1
 #: loco:606b7eca211f3464ed134c33
@@ -160,18 +175,20 @@ msgstr "请分享您的观点。"
 
 #. wartezimmer-1
 #: loco:606b7f57401c1412f312f6a3
-msgid ""
-"Was beflügelt dich im Team? Und was steht deiner Potentialentfaltung noch im Weg? Erzählt euch bitte kurz gegenseitig, welches Gegensatzpaar du ausgewählt hast, damit alle verstehen können, wovon die Rede ist."
-msgstr "是什么激励着你们团队中的每个人？那么，什么东西仍然阻碍着你的潜在发展？请简要地告诉对方你选择了哪一对对立面，以便大家都能理解你在说什么。"
+msgid "Erzählt euch bitte kurz gegenseitig, welches Gegensatzpaar du ausgewählt hast, damit alle verstehen können, wovon die Rede ist."
+msgstr "请简要地告诉对方你选择了哪一对对立面，以便大家都能理解你在说什么。"
+
+#. waitingroom-1
+#: loco:606b7eca211f3464ed134c33
+msgid "Überprüfe bitte noch einmal das von dir gewählte Spannungsfeld und überarbeite deine Begriffe bei Bedarf..."
+msgstr "请再次检查您所选择的紧张领域，如有必要，请修改您的条款..."
 
 #. wartezimmer-1
 #: loco:606b7fef2743002d316f0e93
-msgid ""
-"Lade dein Team ein, um spielerisch herauszufinden, wie es um eure "
-"Psychologische Sicherheit steht. Starte richtig im Spiel durch, sobald alle "
+msgid "Starte richtig im Spiel durch, sobald alle "
 "Mitspieler hier im Warteraum sichtbar sind. Nur wer jetzt mit an Bord ist, "
 "kann am Spiel teilnehmen!"
-msgstr "请你的团队以游戏的方式来了解你的心理安全状况。在候场室这里所有队员都能看到后，就适当开始游戏。只有现在在船上的人才能参加游戏!"
+msgstr "在候场室这里所有队员都能看到后，就适当开始游戏。只有现在在船上的人才能参加游戏!"
 
 #. ubung-4
 #: loco:606b80f9efd09147ce142513

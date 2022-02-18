@@ -56,19 +56,20 @@
         element-loading-background="rgba(0, 0, 0, 0.8)">
                 <main class="screen ubung-1">
                     <h1>
-                        {% trans "Was beflügelt dich?" %}
+                        {% trans "Was beflügelt dich in diesem Team?" %}
                     </h1>
-                    <p>
-                        {% trans "Was gibt dir in unserem Team am meisten Energie?" %}
-                        <br/>
-                        <br/>
-                    </p>
-                    <input type="text" placeholder="Kraftquelle" name="kraftquelle" v-model="text_input" @keyup.enter="add_term" @keyup = "keyboard_()"/><
-                    <label>*Diese Qualität wurde bereits von einem anderen Spieler ausgewählt.</label>
                     <p>
                         <b>
                             {% trans "Jeder Spieler schreibe ein Wort in das leere Feld oder klicke auf den passenden Begriff." %}
                         </b>
+                    </p>
+                    <input type="text" placeholder="Kraftquelle" name="kraftquelle" v-model="text_input" @keyup.enter="add_term" @keyup = "keyboard_()"/><
+                    <label>*Diese Qualität wurde bereits von einem anderen Spieler ausgewählt.</label>
+
+                    <p>
+                        {% trans "Was gibt dir in unserem Team am meisten Energie?" %}
+                        <br/>
+                        <br/>
                     </p>
                     <div class="tags">
                         <span :id="item.value" v-bind:class="{ tag: item.state==='tag', 'line-through': item.state !== 'tag'}" v-for="item in term_list" @click="mark( item.value )">[[ item.value ]]</span>
@@ -104,6 +105,9 @@
                         <span id="Zuverlässigkeit" class="tag">Zuverlässigkeit</span> {% endcomment %}
                     </div>
                     <input id="tags" type="hidden" name="tags" value="输入你要传bai递的值">
+                    <p>
+                        {% trans "Bitte finde eine für dich stimmige Antwort, denn sie bestimmt die Struktur der Challenge." %}
+                    </p>
                     <div class="center">
                         {% comment %} <a href="/ubung-2/"> {% endcomment %}
                             <button class="submit" @click="continue_()">

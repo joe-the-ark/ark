@@ -58,16 +58,16 @@
                         {% trans "Was steht deiner Potentialentfaltung im Weg?" %}
                     </h1>
                     <p>
-                        {% trans "Beschreibe bitte den Gegenpol dessen, was dich im Team beflügelt." %}
-                        <br/>
-                        <br/>
+                        <b>
+                            {% trans "Schreib bitte ein Wort in das leere Feld oder klicke auf den passenden Begriff." %}
+                        </b>
                     </p>
                     <input type="text" placeholder="Energiefresser" name="energiefresser" v-model="text_input" @keyup.enter="add_term" @keyup = "keyboard_()"/>
                     <label>*Dieser Begriff wurde bereits von einem anderen Spieler ausgewählt.</label>
                     <p>
-                        <b>
-                            {% trans "Schreib in das leere Feld oder klicke auf den passenden Begriff." %}
-                        </b>
+                            {% trans "Beschreibe bitte den Gegenpol dessen, was dich im Team beflügelt." %}
+                            <br/>
+                            <br/>
                     </p>
                     <div class="tags">
                         <span :id="item.value" v-bind:class="{ tag: item.state==='tag', 'line-through': item.state !== 'tag'}" v-for="item in term_list" @click="mark( item.value )">[[ item.value ]]</span>
@@ -103,6 +103,9 @@
                         <span id="Willkür" class="tag">Willkür</span> {% endcomment %}
                     </div>
                     <input id="tags" type="hidden" name="tags" value="输入你要传bai递的值">
+                    <p>
+                        {% trans "Bitte finde auch hier eine für dich stimmige Antwort, denn sie bestimmt die Struktur der Challenge für dich und alle anderen." %}
+                    </p>
                     <div class="center">
                         {% comment %} <a href="/wartezimmer/"> {% endcomment %}
                             <button class="submit" @click="continue_()">

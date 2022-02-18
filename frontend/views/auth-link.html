@@ -62,6 +62,7 @@
                         <input id="nutzername" type="text" name="Nutzername" value="" required autofocus/>
                         <span class="form__placeholder">{% trans "Nutzername" %}</span>
                     </div>
+
                     <div class="form__field">
                         <div class="slider">
                             <label>
@@ -187,15 +188,14 @@
                     -->
                     <div class="form__field">
                         <p>
-                            {% trans "Die Arche ist eine Online-Gruppen-Challenge, um das psychologische Sicherheitsgefühl in Teams zu entwickeln. Die Spielzeit beträgt je nach Gruppengrösse 45-90 Minuten." %}<br/>
-                            {% trans "Spiel bitte mit einem Firefox, Chrome oder Opera Browser." %} 
-                            
+                            {% trans "Die Arche ist eine Online-Gruppen-Challenge, um das psychologische Sicherheitsgefühl in Teams zu entwickeln. Die Spielzeit beträgt je nach Gruppengrösse 45-90 Minuten." %}
                         </p>
 
                     </div>
 
                     <div class="form__field">
                         <p>
+                            {% trans "Spiel bitte mit einem Firefox, Chrome oder Opera Browser." %}<br>
                             {% trans "Teile diesen Link, um dein Team mitzunehmen:" %}
                         </p>
                         <button>
@@ -212,7 +212,8 @@
                         </span>
                     </div>
                     <span class="terms_str">{% trans "Das sind die" %}
-                      <span class="terms" style="text-decoration:underline;">{% trans "Nutzungsbedingungen" %}</span>
+                      <span class="terms" style="text-decoration:underline;">{% trans "Nutzungsbedingungen" %}.</span><br>The <a href="https://github.com/joe-the-ark/ark" target="_blank">ARK is published</a> under a GPLv3 license.
+                      
                     </span>
                     <div class="form__field">
                         {% comment %} <button id="submit_button" type="submit">
@@ -223,9 +224,6 @@
                     <button id="submit_button" type="button">
                         {% trans "Weiterspielen" %}
                     </button>
-                        <p style="display: inline;">
-                        The <a href="https://github.com/joe-the-ark/ark" target="_blank">ARK is published</a> under a GPLv3 license.
-                        </p>
             </main>
         </div>
     </div>

@@ -658,6 +658,11 @@ button,
   display: inline-block;
 }
 button:hover,
+.button:active {
+  background-color: #51CEEC;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
 .button:hover {
   box-shadow: 0 6px 10px rgba(117, 10, 237, 0.4);
 }
@@ -670,11 +675,11 @@ button--primary,
 }
 input {
   color: var(--ls-alfa-color);
-  font-size: var(--ls-font-large);
-  line-height: 52px;
+  font-size: var(--ls-h-font-base);
+  line-height: 72px;
   font-family: var(--ls-lato-regular);
   padding: 0 20px;
-  border: 1px solid var(--ls-between-color);
+  border: 2px solid var(--ls-between-color);
   transition: all 0.2s ease;
   width: 100%;
   box-sizing: border-box;

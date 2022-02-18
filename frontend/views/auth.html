@@ -60,9 +60,7 @@
                     {% trans "Wie steht es um eure Psychologische Sicherheit?" %}
                 </h1>
                 <p>
-                    {% trans "Die Arche ist eine Online-Gruppen-Challenge, um das psychologische Sicherheitsgefühl in Teams zu entwickeln. Die Spielzeit beträgt je nach Gruppengrösse 45-90 Minuten." %}<br>
-                    {% trans "Spiel bitte mit einem Firefox, Chrome oder Opera Browser." %}
-
+                    {% trans "Die Arche ist eine Online-Gruppen-Challenge, um das psychologische Sicherheitsgefühl in Teams zu entwickeln. Die Spielzeit beträgt je nach Gruppengrösse 45-90 Minuten." %}
                 </p>
                 <span class="terms_str">{% trans "Das sind die" %}
                   <span class="terms" style="text-decoration:underline;">{% trans "Nutzungsbedingungen" %}</span>
@@ -74,6 +72,9 @@
                         <input maxlength="20" minlength="2" id="nutzername" type="text" name="Nutzername" value="" required autofocus/>
                         <span class="form__placeholder">{% trans "Nutzername" %}</span>
                     </div>
+                        <p>
+                        {% trans "Spiel bitte mit einem Firefox, Chrome oder Opera Browser." %}
+                        </p>
                     <div class="form__field">
                         <input maxlength="20" minlength="2" id="name-des-spiels" type="text" name="name-des-spiels" value="" required/>
                         <span class="form__placeholder">{% trans "Name des Spiels" %}</span>

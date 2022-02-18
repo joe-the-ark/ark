@@ -28,6 +28,18 @@ msgstr "The Ark est un défi de groupe en ligne visant à développer un sentime
 "minutes, en fonction de la taille du groupe."
 
 #. onboarding
+#: loco:6071a6458d4f51635821d922
+msgid "Die Arche ist eine Online-Gruppen-Challenge, um das psychologische "
+"Sicherheitsgefühl in Teams zu entwickeln."
+msgstr "The Ark est un défi de groupe en ligne visant à développer un sentiment de "
+"sécurité psychologique au sein des équipes."
+
+#. onboarding
+#: loco:6071a6458d4f51635821d922
+msgid "Die Spielzeit beträgt je nach Gruppengrösse 45-90 Minuten."
+msgstr "La durée du jeu est de 45 à 90 minutes, en fonction de la taille du groupe."
+
+#. onboarding
 #: loco:6073033f7b216d70613ab4d2
 msgid "Wie steht es um eure Psychologische Sicherheit?"
 msgstr "Comment est votre sécurité psychologique ?"
@@ -74,15 +86,13 @@ msgstr "Partagez ce lien :"
 
 #. preview.html
 #: loco:606885b920934b401305cbb2
-msgid "Mission 1: Was beflügelt dich im Team?"
-msgstr "Mission 1 : Qu'est-ce qui vous inspire dans l'équipe ?"
+msgid "Was erwartet dich auf der Reise mit der Arche?"
+msgstr "Qu'est-ce qui t'attend lors de ton voyage avec l'arche ?"
 
 #. preview.html
 #: loco:60688694be899e32216f1b02
-msgid ""
-"Die Beantwortung dieser Frage mag anspruchsvoll sein."
-msgstr ""
-"Il peut être difficile de répondre à cette question."
+msgid "Bitte schau dir zur Einstimmung dieses 101 Sekunden lange Preview-Video an."
+msgstr "Pour clarifier tes attentes, regarde cette vidéo d'avant-première de 101 secondes."
 
 #. preview.html
 #: loco:60688727a1837301bb1df633
@@ -105,8 +115,8 @@ msgstr "Continuer"
 
 #. ubung-1
 #: loco:606b759198a94a6cf8339672
-msgid "Was beflügelt dich?"
-msgstr "Qu'est-ce qui vous inspire ?"
+msgid "Was beflügelt dich in diesem Team?"
+msgstr "Qu'est-ce qui t'inspire dans cette équipe ?"
 
 #. ubung-1
 #: loco:606b768f6e464e1c4c0fcb40
@@ -163,8 +173,13 @@ msgstr ""
 
 #. ubung-3
 #: loco:606b7e554fe187702f150c72
-msgid "Schreib in das leere Feld oder klicke auf den passenden Begriff."
-msgstr "Écrivez dans le champ vide ou cliquez sur le terme approprié."
+msgid "Schreib bitte ein Wort in das leere Feld oder klicke auf den passenden Begriff."
+msgstr "Ecris un mot dans le champ vide ou clique sur le terme correspondant."
+
+#. ubung-3
+#: loco:606b7e554fe187702f150c72
+msgid "Bitte finde auch hier eine für dich stimmige Antwort, denn sie bestimmt die Struktur der Challenge für dich und alle anderen."
+msgstr "Merci de trouver ici aussi une réponse qui te convienne, car elle détermine la structure du défi pour toi et pour tous les autres."
 
 #. waitingroom-1
 #: loco:606b7eca211f3464ed134c33
@@ -173,23 +188,18 @@ msgstr "Veuillez échanger vos perspectives."
 
 #. wartezimmer-1
 #: loco:606b7f57401c1412f312f6a3
-msgid ""
-"Was beflügelt dich im Team? Und was steht deiner Potentialentfaltung noch im Weg? Erzählt euch bitte kurz gegenseitig, welches Gegensatzpaar du ausgewählt hast, damit alle verstehen können, wovon die Rede ist."
-msgstr ""
-"Qu'est-ce qui inspire chacun d'entre vous dans l'équipe ? Et qu'est-ce qui fait encore obstacle à votre développement potentiel ? Veuillez indiquer brièvement la paire d'opposés que vous avez choisie afin que chacun puisse comprendre ce dont vous parlez."
+msgid "Erzählt euch bitte kurz gegenseitig, welches Gegensatzpaar du ausgewählt hast, damit alle verstehen können, wovon die Rede ist."
+msgstr "Veuillez indiquer brièvement la paire d'opposés que vous avez choisie afin que chacun puisse comprendre ce dont vous parlez."
+
+#. waitingroom-1
+#: loco:606b7eca211f3464ed134c33
+msgid "Überprüfe bitte noch einmal das von dir gewählte Spannungsfeld und überarbeite deine Begriffe bei Bedarf..."
+msgstr "Vérifie encore une fois le champ de tension que tu as choisi et révise tes termes si nécessaire..."
 
 #. wartezimmer-1
 #: loco:606b7fef2743002d316f0e93
-msgid ""
-"Lade dein Team ein, um spielerisch herauszufinden, wie es um eure "
-"Psychologische Sicherheit steht. Starte richtig im Spiel durch, sobald alle "
-"Mitspieler hier im Warteraum sichtbar sind. Nur wer jetzt mit an Bord ist, "
-"kann am Spiel teilnehmen!"
-msgstr ""
-"Invitez votre équipe à découvrir de manière ludique comment se porte votre "
-"sécurité psychologique. Commencez le jeu correctement dès que tous les "
-"joueurs sont visibles ici dans la salle d'attente. Seuls ceux qui sont déjà "
-"à bord peuvent participer au jeu!"
+msgid "Starte richtig im Spiel durch, sobald alle Mitspieler hier im Warteraum sichtbar sind. Nur wer jetzt mit an Bord ist, kann am Spiel teilnehmen!"
+msgstr "Commencez le jeu correctement dès que tous les joueurs sont visibles ici dans la salle d'attente. Seuls ceux qui sont déjà à bord peuvent participer au jeu!"
 
 #. ubung-4
 #: loco:606b80f9efd09147ce142513
