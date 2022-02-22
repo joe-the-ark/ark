@@ -15,7 +15,7 @@
 }
 .main-column {
   display: grid;
-  grid-template-rows: 50px 50px 50px 50px 50px 50px 50px 50px;
+  grid-template-rows: 50px auto 50px 50px 50px 50px 50px 50px;
   grid-gap: 3px;
 }
 
@@ -54,7 +54,6 @@
 }
 .average_by_players {
   background-color: #e6e6e6;
-
 }
 
 .average-by-player {
