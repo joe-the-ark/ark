@@ -68,9 +68,11 @@
                 {% csrf_token %}
                     <div class="center">
                         <input id="data" type="hidden" name="data" value=""/>
+                        <p>
                         <button type="submit" id="button">
                             Weiterspielen
                         </button>
+                        </p>
                     </div>
                 </form> {% endcomment %}
 
@@ -78,9 +80,11 @@
                         <input id="data" type="hidden" name="data" value=""/>
                         <input type="hidden" name="ubung1_id" value="{{ubung1.id}}">
                         <input type="hidden" name="ubung3_id" value="{{ubung3.id}}">
+                        <p>
                         <button type="submit" id="button">
                             {% trans "Weiterspielen" %}
                         </button>
+                    </p>
                     </div>
 
             </main>

@@ -32,8 +32,7 @@
 .heat_player {
   display:grid;
   justify-items: center;
-  padding: 10px;
-  background-color: #e6e6e6;
+  padding: 0px;
   align-items: end;
 }
 .heat_player>.name {

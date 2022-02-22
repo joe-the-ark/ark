@@ -46,9 +46,9 @@
     
     
     <div class="container">
-    	<h1>{% trans "Team-Beef-Dashboard" %}</h1>
+    	<h1>{% trans "Team Beef Dashboard" %}</h1>
 		<p>
-			{% trans "In dieser Liste sind alle Paarkonstellationen mit ihrem Spannungswert aufgeführt. Je weiter oben ein Paar steht, desto integrierender für das Teamzusammenspiel wirkt die Konstellation vermutlich. Paare weiter unten auf der Liste produzieren höhere Spannungswerte, mehr Reibung in den gegenseitigen Wahrnehmungen und haben vermutlich Beef miteinandern – sie täten zum Wohle der Gruppe gut daran, sich in den unterschiedlichen Sichtweisen abzugleichen und ihre soziale Sensibilität zu entwickeln." %}
+			{% trans "In dieser Liste sind alle Paarkonstellationen mit ihrem Spannungswert aufgeführt. Je weiter oben ein Paar steht, desto integrierender für das Teamzusammenspiel wirkt die Konstellation vermutlich. Paare weiter unten auf der Liste produzieren höhere Spannungswerte, mehr Reibung in den gegenseitigen Wahrnehmungen und haben eventuell Beef miteinandern – sie täten zum Wohle der Gruppe gut daran, sich in den unterschiedlichen Sichtweisen abzugleichen und ihre soziale Sensibilität zu entwickeln." %}
 		</p>
 			
 		<div class="dashboard">
@@ -92,14 +92,14 @@
 				</tbody>
 			</table>
 
-			<p class="font-size-small">Hinweis: Klicke auf einen Namen, damit dieser Name nur in der linken Spalte gezeigt wird.</p>
+			<p class="font-size-small">{% trans "Hinweis: Klicke auf einen Namen, damit dieser Name nur in der linken Spalte gezeigt wird." %}</p>
 
 		</div>
 	</div>
 
         <div class="container">
           <h1>{% trans "Team Heatmap" %}</h1>
-          <p>{% trans "Die Heatmap zeigt eine aggregierte Auswertung der Quellen aller Spannungen im Team: " %}<br><br></p>
+          <p>{% trans "Die Heatmap zeigt eine aggregierte Auswertung der Quellen aller Spannungen im Team:" %}<br><br></p>
             <ul>
               <li>
                 {% trans "Auf der Vertikalen den Beitrag jedes Spielers zu den Energiequellen. Je niedriger der Wert, desto grösser ist der Beitrag zu den Energiequellen im Team." %}<br> 
@@ -347,14 +347,17 @@
               {% trans "Werte über 16 deuten auf Spannungen mit dem Team hin." %}<br><br><br>
             </li>
           </ul>
+
+          <div class="center">
+          <p>
+          <a href="/farewell/" class="button" id="button">
+                        {% trans "Auf Wiedersehen sagen" %}
+          </a>
+          </p> 
+          </div> 
         </div>
   
-
-  <div class="center">
-      <a href="/farewell/" class="button" id="button">
-                        {% trans "Auf Wiedersehen sagen" %}
-      </a>  
-  </div>  
+ 
 
 </body>
 </html>

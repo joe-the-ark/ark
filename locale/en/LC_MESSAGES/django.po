@@ -633,6 +633,16 @@ msgid "Team Heatmap"
 msgstr "Team Heatmap"
 
 #. heatmap
+#: loco:606ef00efed6087585797d13
+msgid "In dieser Liste sind alle Paarkonstellationen mit ihrem Spannungswert aufgeführt. Je weiter oben ein Paar steht, desto integrierender für das Teamzusammenspiel wirkt die Konstellation vermutlich. Paare weiter unten auf der Liste produzieren höhere Spannungswerte, mehr Reibung in den gegenseitigen Wahrnehmungen und haben eventuell Beef miteinandern – sie täten zum Wohle der Gruppe gut daran, sich in den unterschiedlichen Sichtweisen abzugleichen und ihre soziale Sensibilität zu entwickeln."
+msgstr "In this list, all pair constellations are listed with their tension value. The higher a couple is on the list, the more integrative the constellation is for the team. Couples further down the list produce higher tension values, more friction in each other's perceptions and may have beef with each other - they would do well for the good of the group to align their different perspectives and develop their social sensitivity."
+
+#. heatmap
+#: loco:606ef181b72c7c09a00e9952
+msgid "Hinweis: Klicke auf einen Namen, damit dieser Name nur in der linken Spalte gezeigt wird."
+msgstr "Note: Click on a name so that this name is only shown in the left column."
+
+#. heatmap
 #: loco:606ef181b72c7c09a00e9952
 msgid "Die Heatmap zeigt eine aggregierte Auswertung der Quellen aller Spannungen im Team:"
 msgstr "The heatmap shows an aggregated evaluation of the sources of all tensions in the team:"
