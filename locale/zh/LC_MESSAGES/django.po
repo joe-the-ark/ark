@@ -27,9 +27,8 @@ msgstr "方舟》是一个培养团队心理安全感的线上团体挑战赛。
 
 #. onboarding
 #: loco:6071a6458d4f51635821d922
-msgid "Die Arche ist eine Online-Gruppen-Challenge, um das psychologische "
-"Sicherheitsgefühl in Teams zu entwickeln."
-msgstr "方舟》是一个培养团队心理安全感的线上团体挑战赛。"
+msgid "Die Arche ist eine Online-Gruppenreise, um psychologische Sicherheit mit deinem Team zu erkunden. Die Spielzeit der ersten Etappe beträgt eine halbe Stunde."
+msgstr "方舟 是一个与你的团队一起探索心理安全的在线小组旅程。第一阶段的比赛时间为半小时。"
 
 #. onboarding
 #: loco:6071a6458d4f51635821d922
@@ -83,8 +82,23 @@ msgstr "分享这个链接。"
 
 #. preview.html
 #: loco:606885b920934b401305cbb2
-msgid "Was erwartet dich auf der Reise mit der Arche?"
-msgstr "在与方舟的旅程中，有什么在等着你？"
+msgid "Woran erkenne ich psychologische Sicherheit?"
+msgstr "我如何识别心理安全？"
+
+msgid "Die drei Dimensionen psychologischer Sicherheit geben die Richtung vor: TRUST, VOICE & SOCIAL SENSITIVITY..."
+msgstr "心理安全的三个维度提供了方向。信任、声音和社会敏感性: TRUST, VOICE & SOCIAL SENSITIVITY..."
+
+msgid "Vertrauen - wie frei lasse ich zu, dass andere ihren Beitrag leisten, auch wenn sie gegen meine Interessen argumentieren?"
+msgstr "信任--我如何自由地允许他人做出贡献，即使他们反对我的利益？"
+
+msgid "Aufrichtigkeit - wie sicher fühle ich mich in der Lage, das anzusprechen, was mich eigentlich beschäftigen würde, um das Team voranzubringen?"
+msgstr "Voice--为了推动团队的发展，我有多大的信心来解决我实际关心的问题？"
+
+msgid "Augenhöhe - inwieweit nehme ich die Ursachen von Spannungen im Team wahr und traue mich, meinen Beitrag zur Gruppendynamik zu hinterfragen?"
+msgstr "Social sensitivity--我在多大程度上察觉到团队中紧张的原因，并敢于质疑自己对团体动态的贡献？"
+
+msgid "Psychologische Sicherheit ist messbar. Sie ist ausserdem der stärkste Prädiktor für gute TEAM-Performance: Psychologische Sicherheit führt zu starker Performance. Mit der Arche erkundest du die psychologische Sicherheit in deinem Team."
+msgstr "心理安全是可以衡量的。这也是对团队良好表现最有力的预测：心理安全导致强劲的表现。利用 方舟 探索你团队中的心理安全。"
 
 #. preview.html
 #: loco:60688694be899e32216f1b02
@@ -148,6 +162,9 @@ msgstr "请将您的角色移动到比例尺上最适合的点。在游戏后期
 msgid "schätzt"
 msgstr "时间"
 
+msgid "Psychologische Sicherheit ist der stärkste Prädiktor für Team Performance – wie gut ist eure Performance? Wie gut nutzt ihr euer Potential in der Zusammenarbeit?"
+msgstr "心理安全是团队绩效最有力的预测因素--你的绩效有多好？你在合作中的潜力发挥得如何？"
+
 #. ubung-3
 #: loco:606b7d13d2174c4ebc3e3762
 msgid "Was steht deiner Potentialentfaltung im Weg?"
@@ -180,7 +197,7 @@ msgstr "请简要地告诉对方你选择了哪一对对立面，以便大家都
 
 #. waitingroom-1
 #: loco:606b7eca211f3464ed134c33
-msgid "Überprüfe bitte noch einmal das von dir gewählte Spannungsfeld und überarbeite deine Begriffe bei Bedarf..."
+msgid "Überprüfe bitte noch einmal das von dir gewählte Gegensatzpaar und überarbeite deine Begriffe bei Bedarf..."
 msgstr "请再次检查您所选择的紧张领域，如有必要，请修改您的条款..."
 
 #. wartezimmer-1

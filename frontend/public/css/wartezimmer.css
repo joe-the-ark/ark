@@ -78,12 +78,12 @@ body > .user-connect .user-connect__name {
 }
 .wartezimmer {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(800px, 1fr));
   grid-gap: 60px;
 }
 @media screen and (max-width: 1200px) {
   .wartezimmer {
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(620px, 1fr));
   }
 }
 .wartezimmer p {
@@ -110,7 +110,7 @@ body > .user-connect .user-connect__name {
 }
 .wartezimmer__addition {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(640px, 1fr));
   grid-gap: 40px;
   max-width: 1450px;
   margin: 40px 0;

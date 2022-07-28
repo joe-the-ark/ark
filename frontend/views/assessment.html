@@ -85,50 +85,11 @@
                 <h1>
                     {% trans "Auswertung deiner Reise mit der Arche" %}
                 </h1>
-                <h3>
-                    {% trans "Team Potential Einschätzung:" %}
-                </h3>
-                <p>
-                    {% trans "Ist dein Team High oder Low Performing? Unsere und Googles Hypothese lautet: bessere Performance entsteht dank höherer Psychologischer Sicherheit." %}
-                </p>
-                <div class="custom-graph-info">
-                    <div class="custom-graph-info__item small" data-text="Minimal">
-                        {{ team_potential_minimal }}
-                    </div>
-                    <div class="custom-graph-info__item base" data-text="Average">
-                        {{ team_potential_median }}
-                    </div>
-                    <div class="custom-graph-info__item large" data-text="Maximal">
-                        {{ team_potential_maximal }}
-                    </div>
-                </div>
-                <div class="custom-graph-wrapper user"></div>
-                <h3 class="feed-h3">
-                    {% trans "Anonymes Feedback:" %}
-                </h3>
-                <div class="fields-fill__wrapper"></div>
 
-                <p class="bold feed-p-1">
-                    {% trans "MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team..." %}
-                </p>
-                {% for feedback in feedback1 %}
-                    <p class="feedback-1"style="font-size: 20px;color: #3781EE;">{{feedback}}</p>
-                {% endfor %}
-                <p class="bold feed-p-2">
-                    {% trans "ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem..." %}
-                </p>
-                {% for feedback in feedback2 %}
-                    <p class="feedback-2" style="font-size: 20px;color: #3781EE;">{{feedback}}</p>
-                {% endfor %}
-                <p class="bold feed-p-3">
-                    {% trans "FRAGEZEICHEN: ich wollte dich schon immer mal fragen..." %}
-                </p>
-                {% for feedback in feedback3 %}
-                    <p class="feedback-3" style="font-size: 20px;color: #3781EE;">{{feedback}}</p>
-                {% endfor %}
-                <h3 class="psycho-h3">
+                <h3 class="feed-h3">
                     {% trans "Euer Psychologischer Sicherheitswert:" %}
                 </h3>
+
                 <p class='psycho-p'>
                     {% trans "Hier siehst du den psychologische Sicherheitswert für dein Team auf einer Skala zwischen 0 (sehr unsicher) und 100 (aussergewöhnlich sicher). Wie verhält sich dieser Wert zu deiner Einschätzung der gefühlten psychologischen Sicherheit im Team?" %}
                 </p>
@@ -204,10 +165,33 @@
                     </div>
                 </div>
 
+                <h3>
+                    {% trans "Team Potential Einschätzung:" %}
+                </h3>
+                <p>
+                    {% trans "Ist dein Team High oder Low Performing? Unsere und Googles Hypothese lautet: bessere Performance entsteht dank höherer Psychologischer Sicherheit." %}
+                </p>
+                <div class="custom-graph-info">
+                    <div class="custom-graph-info__item small" data-text="Minimal">
+                        {{ team_potential_minimal }}
+                    </div>
+                    <div class="custom-graph-info__item base" data-text="Average">
+                        {{ team_potential_median }}
+                    </div>
+                    <div class="custom-graph-info__item large" data-text="Maximal">
+                        {{ team_potential_maximal }}
+                    </div>
+                </div>
+                <div class="custom-graph-wrapper user"></div>
+                <div class="fields-fill__wrapper"></div>
+
                 <h3 class="spanun-h3">
                     {% trans "Spannungsfelder:" %}
                 </h3>
                 <ul class="spanun-ul">
+                    <p>
+                    <br>
+                    </p>
                    <li>
                         {% trans "Weiss = Spannungsfreiheit" %}
                     </li>
@@ -245,12 +229,35 @@
                     <div class="swiper-pagination"></div>              
                 </div>
 
+                <h3 class="feed-h3">
+                    {% trans "Anonymes Feedback:" %}
+                </h3>
+
+                <p class="bold feed-p-1">
+                    {% trans "MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team..." %}
+                </p>
+                {% for feedback in feedback1 %}
+                    <p class="feedback-1"style="font-size: 20px;color: #3781EE;">{{feedback}}</p>
+                {% endfor %}
+                <p class="bold feed-p-2">
+                    {% trans "ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem..." %}
+                </p>
+                {% for feedback in feedback2 %}
+                    <p class="feedback-2" style="font-size: 20px;color: #3781EE;">{{feedback}}</p>
+                {% endfor %}
+                <p class="bold feed-p-3">
+                    {% trans "FRAGEZEICHEN: ich wollte dich schon immer mal fragen..." %}
+                </p>
+                {% for feedback in feedback3 %}
+                    <p class="feedback-3" style="font-size: 20px;color: #3781EE;">{{feedback}}</p>
+                {% endfor %}
+
                 <div class="center">
                     <p>
                     <br>
                     <br> 
-                    <a href="/heatmap/" class="button" id="button">
-                        {% trans "Zur Team Heatmap" %}
+                    <a href="/farewell/" class="button" id="button">
+                        {% trans "Auf Wiedersehen sagen" %}
                     </a>
                     </p>
                 </div>

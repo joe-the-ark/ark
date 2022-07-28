@@ -65,9 +65,10 @@
                         {% trans "Erzählt euch bitte kurz gegenseitig, welches Gegensatzpaar du ausgewählt hast, damit alle verstehen können, wovon die Rede ist." %}
                         <br/>
                     </p>
+                    <img src="http://info.arks.ch/wp-content/uploads/2022/07/Plus_Minus.png">
                     <p>
                         <b>
-                        {% trans "Überprüfe bitte noch einmal das von dir gewählte Spannungsfeld und überarbeite deine Begriffe bei Bedarf..." %}
+                        {% trans "Überprüfe bitte noch einmal das von dir gewählte Gegensatzpaar und überarbeite deine Begriffe bei Bedarf..." %}
                         </b>
                     <input type="text" placeholder="Kraftquelle fehlt!" name="Kraftquelle" v-model="text_input_power" />
                     <input type="text" placeholder="Energiefresser fehlt!" name="Energiefresser" v-model="text_input_drainer" />
@@ -553,7 +554,7 @@
                             .then(function(response){
                                 var result = response.data.result;
                                     if (result === 1){
-                                        window.location.href="/ubung-4/";
+                                        window.location.href="/ubung-5/";
                                     }else{
                                         uu += 1
                                         console.log(uu)

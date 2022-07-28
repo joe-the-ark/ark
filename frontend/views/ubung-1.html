@@ -104,7 +104,7 @@
                     </div>
                     <input id="tags" type="hidden" name="tags" value="输入你要传bai递的值">
                     <div class="center">
-                        {% comment %} <a href="/ubung-2/"> {% endcomment %}
+                        {% comment %} <a href="/ubung-3/"> {% endcomment %}
                             <button class="submit" @click="continue_()">
                                 {% trans "Weiterspielen" %}
                             </button>
@@ -240,7 +240,7 @@
                     if (this.keyboard_input === true){
                         app.add_term();
                     }else{
-                        window.location.href = "/ubung-2/";
+                        window.location.href = "/ubung-3/";
                     }
                 }
             },
@@ -306,7 +306,7 @@
                     .catch(function(error){
                         console.log(error);
                     })
-                window.location.href = "/ubung-2/";
+                window.location.href = "/ubung-3/";
             },
             mark: function(item){
                 clearInterval(refresh);

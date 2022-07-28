@@ -60,7 +60,8 @@
                     <p>
                         <b>
                             {% trans "Schreib bitte ein Wort in das leere Feld oder klicke auf den passenden Begriff." %}
-                        </b>
+                        </b><br>
+                    <img src="http://info.arks.ch/wp-content/uploads/2022/07/Minus.png">
                     </p>
                     <input type="text" placeholder="Energiefresser" name="energiefresser" v-model="text_input" @keyup.enter="add_term" @keyup = "keyboard_()"/>
                     <label>*Dieser Begriff wurde bereits von einem anderen Spieler ausgewählt.</label>
@@ -348,7 +349,7 @@
                     .catch(function(error){
                         console.log(error);
                     })
-                //window.location.href = "/wartezimmer/"
+                //window.location.href = "/ubung-2/"
             },
             mark: function(item){
                 //clearInterval(refresh);

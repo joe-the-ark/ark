@@ -29,10 +29,8 @@ msgstr "The Ark is an online group challenge to develop a sense of psychological
 
 #. onboarding
 #: loco:6071a6458d4f51635821d922
-msgid "Die Arche ist eine Online-Gruppen-Challenge, um das psychologische "
-"Sicherheitsgefühl in Teams zu entwickeln."
-msgstr "The Ark is an online group challenge to develop a sense of psychological "
-"safety in teams."
+msgid "Die Arche ist eine Online-Gruppenreise, um psychologische Sicherheit mit deinem Team zu erkunden. Die Spielzeit der ersten Etappe beträgt eine halbe Stunde."
+msgstr "The Ark is an online group journey to explore psychological safety with your team. The game time of the first stage is half an hour."
 
 #. onboarding
 #: loco:6071a6458d4f51635821d922
@@ -57,7 +55,7 @@ msgstr "Here are the"
 #. onboarding
 #: loco:6071d33b69d2863dd7653d02
 msgid "Nutzungsbedingungen"
-msgstr "Terms of use"
+msgstr "terms of use"
 
 #. onboarding
 #: loco:6071d38d23f502265231ca88
@@ -86,8 +84,23 @@ msgstr "Share this link:"
 
 #. preview.html
 #: loco:606885b920934b401305cbb2
-msgid "Was erwartet dich auf der Reise mit der Arche?"
-msgstr "What awaits you on the journey with the Ark?"
+msgid "Woran erkenne ich psychologische Sicherheit?"
+msgstr "How can I recognise psychological safety?"
+
+msgid "Die drei Dimensionen psychologischer Sicherheit geben die Richtung vor: TRUST, VOICE & SOCIAL SENSITIVITY..."
+msgstr "The three dimensions of psychological safety provide direction: TRUST, VOICE & SOCIAL SENSITIVITY..."
+
+msgid "Vertrauen - wie frei lasse ich zu, dass andere ihren Beitrag leisten, auch wenn sie gegen meine Interessen argumentieren?"
+msgstr "Trust - how freely do I allow others to contribute, even if they argue against my interests?"
+
+msgid "Aufrichtigkeit - wie sicher fühle ich mich in der Lage, das anzusprechen, was mich eigentlich beschäftigen würde, um das Team voranzubringen?"
+msgstr "Voice - how confident do I feel in my ability to address what would actually concern me in order to move the team forward?"
+
+msgid "Augenhöhe - inwieweit nehme ich die Ursachen von Spannungen im Team wahr und traue mich, meinen Beitrag zur Gruppendynamik zu hinterfragen?"
+msgstr "Social sensitivity - to what extent do I perceive the causes of tensions in the team and dare to question my contribution to the group dynamics?"
+
+msgid "Psychologische Sicherheit ist messbar. Sie ist ausserdem der stärkste Prädiktor für gute TEAM-Performance: Psychologische Sicherheit führt zu starker Performance. Mit der Arche erkundest du die psychologische Sicherheit in deinem Team."
+msgstr "Psychological safety is measurable. It is also the strongest predictor of good TEAM performance: Psychological safety leads to strong performance. With the Ark you explore the psychological safety in your team."
 
 #. preview.html
 #: loco:60688694be899e32216f1b02
@@ -159,6 +172,9 @@ msgstr ""
 msgid "schätzt"
 msgstr "estimates"
 
+msgid "Psychologische Sicherheit ist der stärkste Prädiktor für Team Performance – wie gut ist eure Performance? Wie gut nutzt ihr euer Potential in der Zusammenarbeit?"
+msgstr "Psychological safety is the strongest predictor of team performance - how good is your performance? How well do you use your potential in cooperation?"
+
 #. ubung-3
 #: loco:606b7d13d2174c4ebc3e3762
 msgid "Was steht deiner Potentialentfaltung im Weg?"
@@ -191,7 +207,7 @@ msgstr "Please briefly tell each other which pair of opposites you have chosen s
 
 #. wartezimmer-1
 #: loco:606b7f57401c1412f312f6a3
-msgid "Überprüfe bitte noch einmal das von dir gewählte Spannungsfeld und überarbeite deine Begriffe bei Bedarf..."
+msgid "Überprüfe bitte noch einmal das von dir gewählte Gegensatzpaar und überarbeite deine Begriffe bei Bedarf..."
 msgstr "Please check again the field of tension you have chosen and revise your terms if necessary..."
 
 #. wartezimmer-1

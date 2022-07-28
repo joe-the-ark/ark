@@ -196,6 +196,28 @@ def preview(request, user):
     ctx['game'] = Game.objects.filter(link=request.session['link']).first()
     return render(request, './views/preview.html', ctx)
 
+@user_required
+def ubung_2(request, user):
+    ctx = {}
+    ctx['game'] = game = Game.objects.filter(link=request.session['link']).first()
+
+    if request.method == 'POST':
+        link = request.session['link']
+        digit_value = request.POST.get('digit_value')
+        game = Game.objects.filter(link=link).first()
+        ubung2 = Ubung2.objects.filter(game=game,player=user).first()
+        if ubung2:
+            ubung2.value = digit_value
+            ubung2.save()
+        else:
+            Ubung2.objects.create(
+                game = game,
+                player = user,
+                value = digit_value,
+            )
+        return redirect(f'/ubung-1/')
+
+    return render(request, './views/ubung-2.html', ctx)
 
 @user_required
 def ubung_1(request, user):
@@ -224,30 +246,6 @@ def ubung_1(request, user):
     # print('term_list', term_list)
 
     return render(request, './views/ubung-1-pro.html', ctx)
-
-@user_required
-def ubung_2(request, user):
-    ctx = {}
-    ctx['game'] = game = Game.objects.filter(link=request.session['link']).first()
-
-    if request.method == 'POST':
-        link = request.session['link']
-        digit_value = request.POST.get('digit_value')
-        game = Game.objects.filter(link=link).first()
-        ubung2 = Ubung2.objects.filter(game=game,player=user).first()
-        if ubung2:
-            ubung2.value = digit_value
-            ubung2.save()
-        else:
-            Ubung2.objects.create(
-                game = game,
-                player = user,
-                value = digit_value,
-            )
-        return redirect(f'/ubung-3/')
-
-    return render(request, './views/ubung-2.html', ctx)
-
 
 @user_required
 def ubung_3(request, user):
@@ -279,6 +277,56 @@ def ubung_3(request, user):
 
     return render(request, './views/ubung-3-pro.html', ctx)
 
+@after_waitingroom
+@user_required
+def ubung_5(request, user):
+    from .utils import span_choose
+
+    ctx = {}
+    ctx['game'] = Game.objects.filter(link=request.session['link']).first()
+    link = request.session['link']
+    game = Game.objects.filter(link=link).first()
+    waiting_room = list(WaitingRoomMember.objects.filter(game=game,state=1))
+    member_list = [i.player.player_json for i in waiting_room]
+    ctx['member_list'] = member_list
+
+    ubung1, ubung3 = span_choose(user.id, link)
+    ctx['ubung1'] = ubung1
+    ctx['ubung3'] = ubung3
+
+    if not ubung1:
+        return redirect('/ubung-4/')
+        # ctx['loading'] = 1
+        # return render(request, './views/ubung-5.html', ctx)
+
+    # if request.method == 'POST':
+    #     data = request.POST.get('data')
+    #     ubung1_id = request.POST.get('ubung1_id')
+    #     ubung3_id = request.POST.get('ubung3_id')
+    #     data = json.loads(data)
+    #     ubung5 = Ubung5.objects.filter(game=game,player=user,ubung3__id=ubung3_id).first()
+    #     if ubung5:
+    #         ubung5_list = list(Ubung5.objects.filter(game=game,player=user,ubung3__id=ubung3_id))
+    #         uu = 0
+    #         while uu < len(ubung5_list):
+    #             ubung5_list[uu].delete()
+    #             uu += 1
+    #     for i in data:
+    #         goal = Player.objects.filter(id=int(i['id'])).first()
+    #         score = int(i['status'])
+    #         ubung5 = span_add(user, goal, game, score, ubung1_id, ubung3_id)
+
+    #         # Ubung5.objects.create(
+    #         #     game = game,
+    #         #     player = user,
+    #         #     goal = Player.objects.filter(id=int(i['id'])).first(),
+    #         #     score = int(i['status']),
+    #         # )
+    #     return redirect('/ubung-5/')
+
+        # return redirect('/potential-result/')
+
+    return render(request, './views/ubung-5.html', ctx)
 
 @after_waitingroom
 @user_required
@@ -345,62 +393,9 @@ def ubung_4(request, user):
         for i in row5:
             mem = Player.objects.filter(id=i).first()
             ubung4.row5.add(mem)
-        return redirect('/ubung-5/')
+        return redirect('/waiting-room2/')
 
     return render(request, './views/ubung-4.html', ctx)
-
-
-
-@after_waitingroom
-@user_required
-def ubung_5(request, user):
-    from .utils import span_choose
-
-    ctx = {}
-    ctx['game'] = Game.objects.filter(link=request.session['link']).first()
-    link = request.session['link']
-    game = Game.objects.filter(link=link).first()
-    waiting_room = list(WaitingRoomMember.objects.filter(game=game,state=1))
-    member_list = [i.player.player_json for i in waiting_room]
-    ctx['member_list'] = member_list
-
-    ubung1, ubung3 = span_choose(user.id, link)
-    ctx['ubung1'] = ubung1
-    ctx['ubung3'] = ubung3
-
-    if not ubung1:
-        return redirect('/potential-result/')
-        # ctx['loading'] = 1
-        # return render(request, './views/ubung-5.html', ctx)
-
-    # if request.method == 'POST':
-    #     data = request.POST.get('data')
-    #     ubung1_id = request.POST.get('ubung1_id')
-    #     ubung3_id = request.POST.get('ubung3_id')
-    #     data = json.loads(data)
-    #     ubung5 = Ubung5.objects.filter(game=game,player=user,ubung3__id=ubung3_id).first()
-    #     if ubung5:
-    #         ubung5_list = list(Ubung5.objects.filter(game=game,player=user,ubung3__id=ubung3_id))
-    #         uu = 0
-    #         while uu < len(ubung5_list):
-    #             ubung5_list[uu].delete()
-    #             uu += 1
-    #     for i in data:
-    #         goal = Player.objects.filter(id=int(i['id'])).first()
-    #         score = int(i['status'])
-    #         ubung5 = span_add(user, goal, game, score, ubung1_id, ubung3_id)
-
-    #         # Ubung5.objects.create(
-    #         #     game = game,
-    #         #     player = user,
-    #         #     goal = Player.objects.filter(id=int(i['id'])).first(),
-    #         #     score = int(i['status']),
-    #         # )
-    #     return redirect('/ubung-5/')
-
-        # return redirect('/potential-result/')
-
-    return render(request, './views/ubung-5.html', ctx)
 
 
 @after_waitingroom
@@ -513,6 +508,113 @@ def spannungsfelder(request, user):
     ctx['json_list'] = json_list
     ctx['user'] = user
     return render(request, './views/spannungsfelder.html', ctx)
+
+
+@user_required
+def heatmap(request, user):
+    from .utils import heatmap_cell, heatmap_color
+    from .utils import mean
+    ctx = {}
+    game = Game.objects.filter(link=request.session['link']).first()
+
+    user_list = game.ubung5_player_order
+    # print('user_list', user_list)
+    user_number = len(user_list)
+    ctx['user_number'] = user_number
+    avg_list = [i.ubung5_avg for i in game.ubung5_scale_order]
+
+    main_map = []
+    for i in user_list:
+        temp = []
+        temp.append(round(i.ubung5_sum/(user_number ** 2), ))
+        temp.append(i.name)
+        temp.append(i.avatar)
+        iknow = []
+        for u in game.ubung5_scale_order:
+            iknow.append(
+                # [round(heatmap_cell(i, game, u)/(user_number ** 2), 2), heatmap_color(i, game, u)]
+                [round(heatmap_cell(i, game, u)/(user_number ** 2), 1), heatmap_color(i, game, u)]
+            )
+        temp.append(iknow)
+        temp_ = [i[0] for i in iknow]
+        temp.append(round(sum(temp_)))
+        main_map.append(temp)
+    # print('main_map',main_map)
+
+
+    row0 = []
+    uu = 0
+    while uu < len(main_map[0][3]):
+        temp = []
+        for i in main_map:
+            temp.append(i[3][uu])
+        temp_ = [i[0] for i in temp]
+        row0.append(round(mean(temp_)))
+        uu += 1
+
+    # print('row0',row0)
+
+    pair_table = []
+    for i in range(0, len(user_list)):
+        for j in range(i+1, len(user_list)):
+            temp = [ user_list[i], user_list[j] ]
+            pair_table.append(temp)
+
+    all_items = [ {"score": i.score, "player": i.player.id, "goal": i.goal.id, "axis": (str(i.ubung1.id) + "." + str(i.ubung3.id)) }
+                  for i in list(Ubung5.objects.filter(game=game))]
+
+    def find_item(user_playing, user_goal, axis, list):
+        for item in list:
+            if item["player"] == user_playing and item["goal"] == user_goal and item["axis"] == axis:
+                return item
+
+    beef_table = []
+    debug = []
+
+    axis_table = []
+    for item in all_items:
+        axis_table.append(item["axis"])
+
+    axis_table = list(set(axis_table))
+
+    for pair in pair_table:
+
+        u1 = pair[0].id
+        u2 = pair[1].id
+        tension = 0
+
+        for axis in axis_table:
+
+            u1Self = find_item(u1, u1, axis, all_items)["score"]
+            u1Foreign = find_item(u2, u1, axis, all_items)["score"]
+            u2Self = find_item(u2, u2, axis, all_items)["score"]
+            u2Foreign = find_item(u1, u2, axis, all_items)["score"]
+
+            t = abs(u1Self - u1Foreign) + abs(u2Self - u2Foreign)
+
+            tension += t
+            debug.append([ u1Self, u1Foreign, u2Self, u2Foreign, t, tension ])
+
+        beef_table.append({ "user1" : { "name" : pair[0].name}, "user2" : {"name" : pair[1].name}, "tension" : tension })
+
+
+    ctx['row0'] = row0
+    ctx['main_map'] = main_map
+    # ctx['scale_list'] = scale_list = [ [i.power, i.connect_ubung3.drainer] for i in game.ubung5_scale_order]
+    ctx['scale_list'] = scale_list = [ [i.power_i18n, i.connect_ubung3.drainer_i18n] for i in game.ubung5_scale_order]
+    ctx['scale_value_list'] = scale_value_list = [round(i.ubung5_sum/(user_number ** 2) ) for i in game.ubung5_scale_order]
+    # ubung5 = Ubung5.objects.filter(game=game)
+    # player_list = []
+    # for player in Player.objects.filter(game=game):
+    #     if player.valid:
+    #         player_list.append(player)
+
+    ctx['beef_table'] = beef_table
+#    ctx['debug'] = [i.ubung5_avg for i in game.ubung5_scale_order]
+#    ctx['debug'] = all_items
+#    ctx['debug2'] = debug
+#    ctx['debug3'] = axis_table
+    return render(request, './views/heatmap.html', ctx)
 
 
 @after_waitingroom
@@ -825,7 +927,7 @@ def wartezimmer(request, user):
 
 
     if game.status != 0:
-        return redirect('/ubung-4/')
+        return redirect('/ubung-5/')
     room_member = WaitingRoomMember.objects.filter(game=game,player=user).first()
     room_member.state = 1
     room_member.save()
@@ -858,7 +960,7 @@ def wartezimmer(request, user):
                 player_ = WaitingRoomMember.objects.filter(game=game,player=user).first()
                 player_.state = 1
                 player_.save()
-                return redirect('/ubung-4/')
+                return redirect('/ubung-5/')
 
         # if nums < 3:
         #     return
@@ -1096,114 +1198,6 @@ def psychologischer(request, user):
     # print(row_4)
     # print(row_5)
     return render(request, './views/psychologischer.html', ctx)
-
-
-@user_required
-def heatmap(request, user):
-    from .utils import heatmap_cell, heatmap_color
-    from .utils import mean
-    ctx = {}
-    game = Game.objects.filter(link=request.session['link']).first()
-
-    user_list = game.ubung5_player_order
-    # print('user_list', user_list)
-    user_number = len(user_list)
-    ctx['user_number'] = user_number
-    avg_list = [i.ubung5_avg for i in game.ubung5_scale_order]
-
-    main_map = []
-    for i in user_list:
-        temp = []
-        temp.append(round(i.ubung5_sum/(user_number ** 2), ))
-        temp.append(i.name)
-        temp.append(i.avatar)
-        iknow = []
-        for u in game.ubung5_scale_order:
-            iknow.append(
-                # [round(heatmap_cell(i, game, u)/(user_number ** 2), 2), heatmap_color(i, game, u)]
-                [round(heatmap_cell(i, game, u)/(user_number ** 2), 1), heatmap_color(i, game, u)]
-            )
-        temp.append(iknow)
-        temp_ = [i[0] for i in iknow]
-        temp.append(round(sum(temp_)))
-        main_map.append(temp)
-    # print('main_map',main_map)
-
-
-    row0 = []
-    uu = 0
-    while uu < len(main_map[0][3]):
-        temp = []
-        for i in main_map:
-            temp.append(i[3][uu])
-        temp_ = [i[0] for i in temp]
-        row0.append(round(mean(temp_)))
-        uu += 1
-
-    # print('row0',row0)
-
-    pair_table = []
-    for i in range(0, len(user_list)):
-        for j in range(i+1, len(user_list)):
-            temp = [ user_list[i], user_list[j] ]
-            pair_table.append(temp)
-
-    all_items = [ {"score": i.score, "player": i.player.id, "goal": i.goal.id, "axis": (str(i.ubung1.id) + "." + str(i.ubung3.id)) }
-                  for i in list(Ubung5.objects.filter(game=game))]
-
-    def find_item(user_playing, user_goal, axis, list):
-        for item in list:
-            if item["player"] == user_playing and item["goal"] == user_goal and item["axis"] == axis:
-                return item
-
-    beef_table = []
-    debug = []
-
-    axis_table = []
-    for item in all_items:
-        axis_table.append(item["axis"])
-
-    axis_table = list(set(axis_table))
-
-    for pair in pair_table:
-
-        u1 = pair[0].id
-        u2 = pair[1].id
-        tension = 0
-
-        for axis in axis_table:
-
-            u1Self = find_item(u1, u1, axis, all_items)["score"]
-            u1Foreign = find_item(u2, u1, axis, all_items)["score"]
-            u2Self = find_item(u2, u2, axis, all_items)["score"]
-            u2Foreign = find_item(u1, u2, axis, all_items)["score"]
-
-            t = abs(u1Self - u1Foreign) + abs(u2Self - u2Foreign)
-
-            tension += t
-            debug.append([ u1Self, u1Foreign, u2Self, u2Foreign, t, tension ])
-
-        beef_table.append({ "user1" : { "name" : pair[0].name}, "user2" : {"name" : pair[1].name}, "tension" : tension })
-
-
-    ctx['row0'] = row0
-    ctx['main_map'] = main_map
-    # ctx['scale_list'] = scale_list = [ [i.power, i.connect_ubung3.drainer] for i in game.ubung5_scale_order]
-    ctx['scale_list'] = scale_list = [ [i.power_i18n, i.connect_ubung3.drainer_i18n] for i in game.ubung5_scale_order]
-    ctx['scale_value_list'] = scale_value_list = [round(i.ubung5_sum/(user_number ** 2) ) for i in game.ubung5_scale_order]
-    # ubung5 = Ubung5.objects.filter(game=game)
-    # player_list = []
-    # for player in Player.objects.filter(game=game):
-    #     if player.valid:
-    #         player_list.append(player)
-
-    ctx['beef_table'] = beef_table
-#    ctx['debug'] = [i.ubung5_avg for i in game.ubung5_scale_order]
-#    ctx['debug'] = all_items
-#    ctx['debug2'] = debug
-#    ctx['debug3'] = axis_table
-    return render(request, './views/heatmap.html', ctx)
-
 
 def logout(request):
     if 'uid' in request.session:

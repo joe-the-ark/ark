@@ -43,7 +43,7 @@
                 <div class="progress">
                     <label>Mission 1</label>
                     <div class="progress__bar">
-                        <div style="width: 48%">48%</div>
+                        <div style="width: 70%">70%</div>
                     </div>
                 </div>
             </div>
@@ -63,10 +63,8 @@
                         {% trans "Finde auf deiner Reise mit der Arche heraus, wie du die Psychologische Sicherheit in deinem Team verbessern könntest. Das Spiel kann weitergehen, sobald alle Mitspieler hier im Warteraum angekommen sind." %}
                     </p>
                 </div> 
-                <div class="wartezimmer__thumbnail">
-                    <span class="icon-player"></span>
-                    <iframe src="https://player.vimeo.com/video/482713162" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-                </div>
+
+                <p>
                 <div class="wartezimmer__addition" id="app-1">
                     <div class="user-connect active" v-for='(value, index) in waiting_list_active'>
                         <img :src="value.avatar" alt=""/>
@@ -88,6 +86,7 @@
                         </div>
                     </div>
                 </div>
+            </p>
             </main>
             <form action="#" method="POST" class="form">
             {% csrf_token %}

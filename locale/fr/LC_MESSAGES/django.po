@@ -29,10 +29,8 @@ msgstr "The Ark est un défi de groupe en ligne visant à développer un sentime
 
 #. onboarding
 #: loco:6071a6458d4f51635821d922
-msgid "Die Arche ist eine Online-Gruppen-Challenge, um das psychologische "
-"Sicherheitsgefühl in Teams zu entwickeln."
-msgstr "The Ark est un défi de groupe en ligne visant à développer un sentiment de "
-"sécurité psychologique au sein des équipes."
+msgid "Die Arche ist eine Online-Gruppenreise, um psychologische Sicherheit mit deinem Team zu erkunden. Die Spielzeit der ersten Etappe beträgt eine halbe Stunde."
+msgstr "L'Arche est un voyage de groupe en ligne pour explorer la sécurité psychologique avec ton équipe. Le temps de jeu de la première étape est d'une demi-heure."
 
 #. onboarding
 #: loco:6071a6458d4f51635821d922
@@ -57,7 +55,7 @@ msgstr "Voici les"
 #. onboarding
 #: loco:6071d33b69d2863dd7653d02
 msgid "Nutzungsbedingungen"
-msgstr "Conditions d'utilisation"
+msgstr "conditions d'utilisation"
 
 #. onboarding
 #: loco:6071d38d23f502265231ca88
@@ -86,8 +84,23 @@ msgstr "Partagez ce lien :"
 
 #. preview.html
 #: loco:606885b920934b401305cbb2
-msgid "Was erwartet dich auf der Reise mit der Arche?"
-msgstr "Qu'est-ce qui t'attend lors de ton voyage avec l'arche ?"
+msgid "Woran erkenne ich psychologische Sicherheit?"
+msgstr "À quoi puis-je reconnaître la sécurité psychologique ?"
+
+msgid "Die drei Dimensionen psychologischer Sicherheit geben die Richtung vor: TRUST, VOICE & SOCIAL SENSITIVITY..."
+msgstr "Les trois dimensions de la sécurité psychologique indiquent la direction à suivre : TRUST, VOICE & SOCIAL SENSITIVITY (CONFIANCE, VOIX & SENSIBILITÉ SOCIALE)..."
+
+msgid "Vertrauen - wie frei lasse ich zu, dass andere ihren Beitrag leisten, auch wenn sie gegen meine Interessen argumentieren?"
+msgstr "Confiance - dans quelle mesure suis-je libre d'accepter que les autres apportent leur contribution, même s'ils argumentent contre mes intérêts ?"
+
+msgid "Aufrichtigkeit - wie sicher fühle ich mich in der Lage, das anzusprechen, was mich eigentlich beschäftigen würde, um das Team voranzubringen?"
+msgstr "Voix - dans quelle mesure me sens-je en mesure d'aborder ce qui me préoccupe réellement pour faire avancer l'équipe ?"
+
+msgid "Augenhöhe - inwieweit nehme ich die Ursachen von Spannungen im Team wahr und traue mich, meinen Beitrag zur Gruppendynamik zu hinterfragen?"
+msgstr "Sensibilité sociale - dans quelle mesure est-ce que je perçois les causes des tensions dans l'équipe et ose remettre en question ma contribution à la dynamique de groupe ?"
+
+msgid "Psychologische Sicherheit ist messbar. Sie ist ausserdem der stärkste Prädiktor für gute TEAM-Performance: Psychologische Sicherheit führt zu starker Performance. Mit der Arche erkundest du die psychologische Sicherheit in deinem Team."
+msgstr "La sécurité psychologique est mesurable. Elle est également le meilleur prédicteur d'une bonne performance d'équipe : la sécurité psychologique conduit à une bonne performance. Avec l'Arche, tu explores la sécurité psychologique dans ton équipe."
 
 #. preview.html
 #: loco:60688694be899e32216f1b02
@@ -160,6 +173,9 @@ msgstr ""
 msgid "schätzt"
 msgstr "estime"
 
+msgid "Psychologische Sicherheit ist der stärkste Prädiktor für Team Performance – wie gut ist eure Performance? Wie gut nutzt ihr euer Potential in der Zusammenarbeit?"
+msgstr "La sécurité psychologique est le plus fort prédicteur de la performance d'une équipe - quelle est votre performance ? Dans quelle mesure utilisez-vous votre potentiel dans la collaboration ?"
+
 #. ubung-3
 #: loco:606b7d13d2174c4ebc3e3762
 msgid "Was steht deiner Potentialentfaltung im Weg?"
@@ -193,7 +209,7 @@ msgstr "Veuillez indiquer brièvement la paire d'opposés que vous avez choisie 
 
 #. waitingroom-1
 #: loco:606b7eca211f3464ed134c33
-msgid "Überprüfe bitte noch einmal das von dir gewählte Spannungsfeld und überarbeite deine Begriffe bei Bedarf..."
+msgid "Überprüfe bitte noch einmal das von dir gewählte Gegensatzpaar und überarbeite deine Begriffe bei Bedarf..."
 msgstr "Vérifie encore une fois le champ de tension que tu as choisi et révise tes termes si nécessaire..."
 
 #. wartezimmer-1
