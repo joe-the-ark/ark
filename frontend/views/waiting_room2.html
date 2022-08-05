@@ -11,6 +11,16 @@
     <title>Waiting-Room-SQUAD</title>
     <link rel="stylesheet" href="/static/css/app.css">
     <link rel="stylesheet" href="/static/css/wartezimmer.css">
+    <link rel="stylesheet" href="/static/css/app_graph.css">
+    <link rel="stylesheet" href="/static/css/assessment.css">
+    <link rel="stylesheet" href="/static/css/load.css">
+    <!-- <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"> -->
+    <script src="/static/jspdf.umd.min.js"></script>
+    <script src="/static/dom-to-image.min.js"></script>
+    <script src="/static/vue.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+    <!-- <script src="/static/html2canvas.min.js"></script> -->
 
     <!-- vue cdn  -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -54,13 +64,40 @@
             <main class="screen wartezimmer">
                 <div class="wartezimmer__data">
                     <h1>
-                        {% trans "Wartezimmer" %}
+                        {% trans "Team Potential Einschätzung" %}
                     </h1>
+                <p>
+                        {% trans "Hier siehst Du eure Selbsteinschätzung – so gut nutzt ihr aktuell euer Potential..." %}
+                        <br>
+                        <div class="custom-graph-info">
+                        <div class="custom-graph-info__item small" data-text="Minimal">
+                        {{ team_potential_minimal }}
+                        </div>
+                        <div class="custom-graph-info__item base" data-text="Average">
+                        {{ team_potential_median }}
+                        </div>
+                        <div class="custom-graph-info__item large" data-text="Maximal">
+                        {{ team_potential_maximal }}
+                        </div>
+                </div>
+                        <br>
+                </p>
+                <ul>
+                    <li>
+                        {% trans "In der Regel gilt folgender Zusammenhang: je höher die Team-Performance, desto höher die psychologische Sicherheit und desto weniger Spannungen im Team." %}
+                    </li>
+                    <li>
+                        {% trans "Oder umgekehrt: je mehr ungeklärte Spannungen, desto schlechter die Performance und desto geringer die psychologische Sicherheit." %}
+                    </li>
+                    <li>
+                        {% trans "Auf der nächsten Etappe siehst Du, ob dieser Zusammenhang auch für Dein Team stimmt." %}
+                    </li>
+                    <li>
+                        {% trans "Notier dazu bitte den Performance-Durchschnittswert!" %}
+                    </li>
+                </ul>
                     <p>
-                        {% trans "Psychologische Sicherheit sei ein Gefühl des Vertrauens, definiert Amy Edmondon, dass dein Team dich nicht in Verlegenheit bringen, ablehnen oder bestrafen wird, wenn du dich zu Wort meldest. Die Harvard Professorin beschreibt Psychologische Sicherheit als ein Teamklima, das von zwischenmenschlichem Vertrauen und gegenseitigem Respekt geprägt sei, so Edmondson, in dem sich die Menschen wohlfühlten, sich selbst zu sein." %}
-                        <br>
-                        <br>
-                        {% trans "Finde auf deiner Reise mit der Arche heraus, wie du die Psychologische Sicherheit in deinem Team verbessern könntest. Das Spiel kann weitergehen, sobald alle Mitspieler hier im Warteraum angekommen sind." %}
+                        {% trans "Die Reise kann weitergehen, sobald alle Mitspieler hier im Warteraum angekommen sind." %}
                     </p>
                 </div> 
 
@@ -99,6 +136,10 @@
         </div>
     </div>
 </div>
+
+
+
+
 
 <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
 <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>

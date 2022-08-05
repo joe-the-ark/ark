@@ -45,10 +45,10 @@
         <div class="container">
             <main class="screen psychologischer">
                 <h1>
-                    {% trans "Euer Psychologischer Sicherheitswert:" %}
+                    {% trans "Euer Psychologischer Sicherheitswert" %}
                 </h1>
                 <p>
-                    {% trans "Hier siehst du den psychologische Sicherheitswert für dein Team auf einer Skala zwischen 0 (sehr unsicher) und 100 (aussergewöhnlich sicher). Wie verhält sich dieser Wert zu deiner Einschätzung der gefühlten psychologischen Sicherheit im Team?" %}
+                    {% trans "Hier siehst Du den psychologische Sicherheitswert für Dein Team auf einer Skala zwischen 0 (sehr unsicher) bis 100 (aussergewöhnlich sicher). Wie verhält sich dieser Wert zur Team Performance? Normalerweise sind beide Werte ungefähr gleich hoch." %}
                     <br/>
                     <br/>
                 </p>
@@ -75,7 +75,7 @@
                     </div>
                     <div class="distry">
                         <div class="distry__description">
-                            {% trans "Ich beobachte wie du gelegentlich Menschen im Team ausschliesst." %}
+                            {% trans "Ich beobachte wie Du gelegentlich Menschen im Team ausschliesst." %}
                         </div>
                         <div class="distry__thumbnails">
                             <div class="distry__user" v-for="count in row1">
@@ -85,7 +85,7 @@
                     </div>
                     <div class="distry">
                         <div class="distry__description">
-                            {% trans "Für mich bist du im Team nicht immer sichtbar." %}
+                            {% trans "Für mich bist Du im Team nicht immer sichtbar." %}
                         </div>
                         <div class="distry__thumbnails">
                             <div class="distry__user" v-for="count in row2">
@@ -95,7 +95,7 @@
                     </div>
                     <div class="distry">
                         <div class="distry__description">
-                            {% trans "Ich fühle wie meine Talente von dir gesehen und einbezogen werden." %}
+                            {% trans "Ich fühle wie meine Talente von Dir gesehen und einbezogen werden." %}
                         </div>
                         <div class="distry__thumbnails">
                             <div class="distry__user" v-for="count in row3">
@@ -105,7 +105,7 @@
                     </div>
                     <div class="distry">
                         <div class="distry__description">
-                            {% trans "Ich habe das Gefühl du reagierst auf Fehler mit Schuldzuweisungen an Einzelne im Team." %}
+                            {% trans "Ich habe das Gefühl Du reagierst auf Fehler mit Schuldzuweisungen an Einzelne im Team." %}
                         </div>
                         <div class="distry__thumbnails">
                             <div class="distry__user" v-for="count in row4">
@@ -115,7 +115,7 @@
                     </div>
                     <div class="distry">
                         <div class="distry__description">
-                            {% trans "Mir fällt es mitunter schwer dich um Hilfe zu bitten." %}
+                            {% trans "Mir fällt es mitunter schwer Dich um Hilfe zu bitten." %}
                         </div>
                         <div class="distry__thumbnails">
                             <div class="distry__user" v-for="count in row5">
@@ -129,8 +129,11 @@
                     <a href="/potential-result/" class="button" id="button">
                         {% trans "Weiterspielen" %}
                     </a>
-                </p>
+                    </p>
                 </div>
+                <p>
+                    {% trans "Jeder graue Kreis steht für eine Person, die von jemand anderem dorthin gewählt wurde. Was denkst Du wohl, wo Deine Spielfigur steht? Tauscht euch kurz zu dieser Frage aus und notier Deine Einschätzung. Die Auflösung erfolgt zum Schluss der Reise." %}
+                </p>
             </main>
         </div>
     </div>

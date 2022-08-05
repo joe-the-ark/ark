@@ -29,7 +29,7 @@ msgstr "The Ark est un défi de groupe en ligne visant à développer un sentime
 
 #. onboarding
 #: loco:6071a6458d4f51635821d922
-msgid "Die Arche ist eine Online-Gruppenreise, um psychologische Sicherheit mit deinem Team zu erkunden. Die Spielzeit der ersten Etappe beträgt eine halbe Stunde."
+msgid "Die Arche ist eine Online-Gruppenreise, um psychologische Sicherheit mit Deinem Team zu erkunden. Die Spielzeit der ersten Etappe beträgt eine halbe Stunde."
 msgstr "L'Arche est un voyage de groupe en ligne pour explorer la sécurité psychologique avec ton équipe. Le temps de jeu de la première étape est d'une demi-heure."
 
 #. onboarding
@@ -74,7 +74,7 @@ msgstr "Image de l'utilisateur"
 
 #. onboarding
 #: loco:6071d4a234bb601a0c01d4a2
-msgid "Teile diesen Link, um dein Team mitzunehmen:"
+msgid "Teile diesen Link, um Dein Team mitzunehmen:"
 msgstr "Partagez ce lien pour amener votre équipe :"
 
 #. onboarding
@@ -110,7 +110,7 @@ msgstr "Pour clarifier tes attentes, regarde cette vidéo d'avant-première de 1
 #. preview.html
 #: loco:60688727a1837301bb1df633
 msgid ""
-"Bitte finde eine für dich stimmige Antwort, denn sie bestimmt die Struktur der Challenge."
+"Bitte finde eine für Dich stimmige Antwort, denn sie bestimmt die Struktur der Challenge."
 msgstr ""
 "Veuillez trouver une réponse qui vous convient, car elle déterminera la structure du défi."
 
@@ -128,13 +128,13 @@ msgstr "Continuer"
 
 #. ubung-1
 #: loco:606b759198a94a6cf8339672
-msgid "Was beflügelt dich in diesem Team?"
+msgid "Was beflügelt Dich in diesem Team?"
 msgstr "Qu'est-ce qui t'inspire dans cette équipe ?"
 
 #. ubung-1
 #: loco:606b768f6e464e1c4c0fcb40
 msgid ""
-"Was gibt dir in unserem Team am meisten Energie?"
+"Was gibt Dir in unserem Team am meisten Energie?"
 msgstr ""
 "Qu'est-ce qui vous donne le plus d'énergie dans notre équipe ?"
 
@@ -144,6 +144,9 @@ msgid ""
 "Jeder Spieler schreibe ein Wort in das leere Feld oder klicke auf den passenden Begriff."
 msgstr ""
 "Chaque joueur écrit un mot dans le champ vide ou clique sur le terme approprié."
+
+msgid "Kraftquelle"
+msgstr "source d'énergie"
 
 #. ubung-2
 #: loco:606b783b01bcd4016a5c7782
@@ -162,8 +165,8 @@ msgstr ""
 #. ubung-2
 #: loco:606b79b45a04ef17b613bf63
 msgid ""
-"Bewege bitte deine Spielfigur auf den Punkt der Skala, der am Besten passt. "
-"Später im Spiel siehst du die anonymisierte Einschätzung aller Mitspieler."
+"Bewege bitte Deine Spielfigur auf den Punkt der Skala, der am Besten passt. "
+"Später im Spiel siehst Du die anonymisierte Einschätzung aller Mitspieler."
 msgstr ""
 "Veuillez déplacer votre personnage à l'endroit de l'échelle qui vous "
 "convient le mieux. Plus tard dans le jeu, vous verrez l'évaluation anonyme "
@@ -178,12 +181,12 @@ msgstr "La sécurité psychologique est le plus fort prédicteur de la performan
 
 #. ubung-3
 #: loco:606b7d13d2174c4ebc3e3762
-msgid "Was steht deiner Potentialentfaltung im Weg?"
+msgid "Was steht Deiner Potentialentfaltung im Weg?"
 msgstr "Qu'est-ce qui fait obstacle à votre développement potentiel ?"
 
 #. ubung-3
 #: loco:606b7d7dfafd1642eb21fa72
-msgid "Beschreibe bitte den Gegenpol dessen, was dich im Team beflügelt."
+msgid "Beschreibe bitte den Gegenpol dessen, was Dich im Team beflügelt."
 msgstr ""
 "Décrivez le contraire de ce qui vous inspire dans notre équipe."
 
@@ -194,13 +197,25 @@ msgstr "Ecris un mot dans le champ vide ou clique sur le terme correspondant."
 
 #. ubung-3
 #: loco:606b7e554fe187702f150c72
-msgid "Bitte finde auch hier eine für dich stimmige Antwort, denn sie bestimmt die Struktur der Challenge für dich und alle anderen."
+msgid "Bitte finde auch hier eine für Dich stimmige Antwort, denn sie bestimmt die Struktur der Challenge für Dich und alle anderen."
 msgstr "Merci de trouver ici aussi une réponse qui te convienne, car elle détermine la structure du défi pour toi et pour tous les autres."
+
+msgid "Energiefresser"
+msgstr "draineur d'énergie"
 
 #. waitingroom-1
 #: loco:606b7eca211f3464ed134c33
-msgid "Bitte tauscht euch aus."
-msgstr "Veuillez échanger vos perspectives."
+msgid "Bitte tauscht euch jetzt aus."
+msgstr "Veuillez échanger vos perspectives maintenant."
+
+msgid "1) Erzählt euch bitte kurz gegenseitig, welches GEGENSATZPAAR Du ausgewählt hast, damit alle verstehen können, wovon die Rede ist."
+msgstr "1) Racontez-vous brièvement quelle paire de COMPOSANTS vous avez choisie, afin que tout le monde puisse comprendre de quoi il s'agit."
+
+msgid "2) Überprüfe bitte noch einmal das von Dir gewählte GEGENSATZPAAR und überarbeite Deine Begriffe bei Bedarf..."
+msgstr "2) Vérifie encore une fois le PARENT CONTRE que tu as choisi et révise tes termes si nécessaire..."
+
+msgid "3) Starte richtig durch, sobald alle Mitspieler hier im Warteraum sichtbar sind. Nur wer jetzt mit an Bord ist, nimmt an der Reise Teil!"
+msgstr "3) Commence vraiment dès que tous les joueurs sont visibles dans la salle d'attente. Seuls ceux qui sont à bord à ce moment-là participent au voyage !"
 
 #. wartezimmer-1
 #: loco:606b7f57401c1412f312f6a3
@@ -214,19 +229,19 @@ msgstr "Vérifie encore une fois le champ de tension que tu as choisi et révise
 
 #. wartezimmer-1
 #: loco:606b7fef2743002d316f0e93
-msgid "Starte richtig im Spiel durch, sobald alle Mitspieler hier im Warteraum sichtbar sind. Nur wer jetzt mit an Bord ist, kann am Spiel teilnehmen!"
-msgstr "Commencez le jeu correctement dès que tous les joueurs sont visibles ici dans la salle d'attente. Seuls ceux qui sont déjà à bord peuvent participer au jeu!"
+msgid "Starte richtig durch, sobald alle Mitspieler hier im Warteraum sichtbar sind. Nur wer jetzt mit an Bord ist, nimmt an der Reise Teil!"
+msgstr "Commence à jouer dès que tous les joueurs sont visibles dans la salle d'attente. Seuls ceux qui sont maintenant à bord participent au voyage !"
 
 #. ubung-4
 #: loco:606b80f9efd09147ce142513
-msgid "Teste eure Psychologische Sicherheit!"
+msgid "Mess nun eure Psychologische Sicherheit"
 msgstr "Testez votre sécurité psychologique!"
 
 #. ubung-4
 #: loco:606b816a85a8752578065132
 msgid ""
-"Bewege jeden Spieler zu der Aussage, die am ehesten passt! Beziehe deine "
-"Einschätzung auf alltägliche Situationen im Team, die sich bei dir "
+"Bewege jeden Spieler zu der Aussage, die am ehesten passt! Beziehe Deine "
+"Einschätzung auf alltägliche Situationen im Team, die sich bei Dir "
 "eingeprägt haben."
 msgstr ""
 "Déplacez chaque joueur vers la déclaration qui lui convient le mieux! Reliez "
@@ -240,36 +255,39 @@ msgstr ""
 
 #. ubung-4
 #: loco:606b8311a237a7415b52ae83
-msgid "Ich beobachte wie du gelegentlich Menschen im Team ausschliesst."
+msgid "Ich beobachte wie Du gelegentlich Menschen im Team ausschliesst."
 msgstr ""
 "J'observe comment vous excluez parfois des personnes de l'équipe."
 
 #. ubung-4
 #: loco:606b838816beb113812f8092
-msgid "Mir fällt es mitunter schwer dich um Hilfe zu bitten."
+msgid "Mir fällt es mitunter schwer Dich um Hilfe zu bitten."
 msgstr "Je trouve parfois difficile de vous demander de l'aide."
 
 #. ubung-4
 #: loco:606b8496da6eb5419c414472
-msgid "Für mich bist du im Team nicht immer sichtbar."
+msgid "Für mich bist Du im Team nicht immer sichtbar."
 msgstr "Je ne vous vois pas toujours dans l'équipe."
 
 #. ubung-4
 #: loco:606b8521ebad575f53053562
-msgid "Ich fühle wie meine Talente von dir gesehen und einbezogen werden."
+msgid "Ich fühle wie meine Talente von Dir gesehen und einbezogen werden."
 msgstr "Je sens que mes talents sont vus et inclus par vous."
 
 #. ubung-4
 #: loco:606b858b879aef6ea16b8435
 msgid ""
-"Ich habe das Gefühl du reagierst auf Fehler mit Schuldzuweisungen an Einzelne im Team."
+"Ich habe das Gefühl Du reagierst auf Fehler mit Schuldzuweisungen an Einzelne im Team."
 msgstr ""
 "J'ai l'impression que vous réagissez aux erreurs en blâmant des individus dans l'équipe."
 
+msgid "Jeder graue Kreis steht für eine Person, die von jemand anderem dorthin gewählt wurde. Was denkst Du wohl, wo Deine Spielfigur steht? Tauscht euch kurz zu dieser Frage aus und notier Deine Einschätzung. Die Auflösung erfolgt zum Schluss der Reise."
+msgstr "Chaque cercle gris représente une personne qui a été élue par quelqu'un d'autre. À ton avis, où se trouve ton personnage ? Echangez brièvement sur cette question et notez votre évaluation. La résolution aura lieu à la fin du voyage."
+
 #. ubung-5
 #: loco:606c350d53fac01eda5589b2
-msgid "Spannungsfelder einschätzen!"
-msgstr "Evaluer les échelles de tension!"
+msgid "Wo entstehen Spannungsfelder?"
+msgstr "Où se situent les zones de tension ?"
 
 #. ubung-5
 #: loco:606c3588f87f8e7dd763d4e2
@@ -279,8 +297,8 @@ msgstr "Veuillez positionner la contribution des joueurs dans la tension entre l
 #. ubung-5
 #: loco:606c46c40774bf65c217de22
 msgid ""
-"Klicke bitte jede Spielfigur an den Punkt, der aus deiner Sicht am Besten "
-"zum Verhalten des Spielers in für dich wichtigen Alltagssituationen passt."
+"Klicke bitte jede Spielfigur an den Punkt, der aus Deiner Sicht am Besten "
+"zum Verhalten des Spielers in für Dich wichtigen Alltagssituationen passt."
 msgstr ""
 "Veuillez cliquer sur chaque personnage sur le point qui, selon vous, "
 "correspond le mieux au comportement du joueur dans les situations "
@@ -288,8 +306,8 @@ msgstr ""
 
 #. potential-result
 #: loco:606c4d8d8f567155c2283dd2
-msgid "Team Potential Einschätzung:"
-msgstr "Évaluation du potentiel de l'équipe:"
+msgid "Team Potential Einschätzung"
+msgstr "Évaluation du potentiel de l'équipe"
 
 #. potential-result
 #: loco:606c4e795e2f794ae22b8e02
@@ -321,6 +339,12 @@ msgstr "Moyenne"
 msgid "Maximal"
 msgstr "Maximum"
 
+msgid "Diese Einschätzung setzt sich aus den gleichberechtigten Wahrnehmungen aller Teammitglieder zusammen. Liegen diese innerhalb der Safe-Zone, oder gibt es Ausreisser?"
+msgstr "Cette évaluation se compose des perceptions égales de tous les membres de l'équipe. Les résultats sont-ils dans la zone de sécurité ou y a-t-il des écarts ?"
+
+msgid "Nach wie vor gilt: je höher die Team-Performance, desto höher die psychologische Sicherheit und desto weniger Spannungen im Team. Auf der nächsten Etappe siehst du deinen Beitrag zu den Spannungen im Team. Spannend?"
+msgstr "Comme toujours, plus la performance de l'équipe est élevée, plus la sécurité psychologique est grande et moins il y a de tensions dans l'équipe. À l'étape suivante, tu verras ta contribution aux tensions dans l'équipe. Tendus ?"
+
 #. waitingroom-2
 #: loco:606c8630ca5cb5284152a872
 msgid ""
@@ -349,45 +373,60 @@ msgstr ""
 "la sécurité psychologique au sein de votre équipe. Le jeu peut continuer une "
 "fois que tous les coéquipiers sont arrivés ici dans la salle d'attente."
 
+msgid "Hier siehst Du eure Selbsteinschätzung – so gut nutzt ihr aktuell euer Potential..."
+msgstr "Ici, tu peux voir ton auto-évaluation - c'est à quel point tu utilises ton potentiel actuellement"
+
+msgid "In der Regel gilt folgender Zusammenhang: je höher die Team-Performance, desto höher die psychologische Sicherheit und desto weniger Spannungen im Team."
+msgstr "En règle générale, la relation suivante s'applique : plus la performance de l'équipe est élevée, plus la sécurité psychologique est grande et moins il y a de tensions au sein de l'équipe."
+
+msgid "Oder umgekehrt: je mehr ungeklärte Spannungen, desto schlechter die Performance und desto geringer die psychologische Sicherheit."
+msgstr "Or vice versa: the more unresolved tensions, the worse the performance and the lower the psychological security."
+
+msgid "Auf der nächsten Etappe siehst Du, ob dieser Zusammenhang auch für Dein Team stimmt."
+msgstr "À l'étape suivante, tu verras si cette relation est également valable pour ton équipe."
+
+msgid "Notier dazu bitte den Performance-Durchschnittswert!"
+msgstr "Note la valeur moyenne de la performance !"
+
+msgid "Die Reise kann weitergehen, sobald alle Mitspieler hier im Warteraum angekommen sind."
+msgstr "Le voyage peut continuer dès que tous les joueurs sont arrivés ici, dans la salle d'attente."
+
 #. ps-score
 #: loco:606c88b0ce3e5b40de0ea732
-msgid "Euer Psychologischer Sicherheitswert:"
-msgstr "Votre valeur de sécurité psychologique :"
+msgid "Euer Psychologischer Sicherheitswert"
+msgstr "Votre valeur de sécurité psychologique"
 
 #. ps-score
 #: loco:606c8965969b3140f152fba3
-msgid ""
-"Hier siehst du den psychologische Sicherheitswert für dein Team auf einer "
-"Skala zwischen 0 (sehr unsicher) und 100 (aussergewöhnlich sicher). Wie "
-"verhält sich dieser Wert zu deiner Einschätzung der gefühlten "
-"psychologischen Sicherheit im Team?"
-msgstr ""
-"Vous pouvez voir ici la valeur de la sécurité psychologique de votre équipe "
-"sur une échelle allant de 0 (très peu sûr) à 100 (exceptionnellement sûr). "
-"Comment cette valeur est-elle liée à votre évaluation de la sécurité "
-"psychologique perçue dans l'équipe ?"
+msgid "Hier siehst Du den psychologische Sicherheitswert für Dein Team auf einer Skala zwischen 0 (sehr unsicher) bis 100 (aussergewöhnlich sicher). Wie verhält sich dieser Wert zur Team Performance? Normalerweise sind beide Werte ungefähr gleich hoch."
+msgstr "Tu peux voir ici la valeur de sécurité psychologique de ton équipe sur une échelle allant de 0 (très peu sûr) à 100 (exceptionnellement sûr). Quel est le rapport entre cette valeur et la performance de l'équipe ? Normalement, les deux valeurs sont à peu près égales."
 
 #. spannungsfelder
 #: loco:606c8c5f591f8a4a1c131eb2
-msgid "Spannungsfelder:"
-msgstr "Tensions :"
+msgid "Spannungsfelder"
+msgstr "Tensions"
 
-#. spannungsfelder
-#: loco:606c8d571496867eed623662
-msgid ""
-"Der farbige Bereich ist die Safe Zone deines Teams. Was ist dein Beitrag zu "
-"den Kraftquellen und Energiefressern im Team? Wie erklärst du die "
-"Unterschiede zwischen deiner Selbstwahrnehmung und der Fremdwahrnehmung "
-"durch das Team?"
-msgstr ""
-"La zone colorée est la zone de sécurité de votre équipe. Quelle est votre "
-"contribution aux sources d'énergie et aux mangeurs d'énergie de l'équipe ? "
-"Comment expliquez-vous les différences entre la perception que vous avez de "
-"vous-même et la perception que l'équipe a de vos contributions ?"
+msgid "Bitte nimm Dir 5 Minuten Zeit, um Deinen Beitrag zu den Spannungen im Team zu verstehen"
+msgstr "Prends 5 minutes pour comprendre ta contribution aux tensions au sein de l'équipe"
+
+msgid "Der farbige Bereich ist die Safe-Zone Deines Teams:"
+msgstr "La zone colorée est la zone de sécurité de ton équipe :"
+
+msgid "Wer sieht Deinen Beitrag innerhalb, wer ausserhalb der Safe-Zone?"
+msgstr "Qui voit votre contribution à l'intérieur, qui à l'extérieur de la zone de sécurité ?"
+
+msgid "Was ist Dein Beitrag zu den Kraftquellen und Energiefressern im Team?"
+msgstr "Quelle est votre contribution aux sources d'énergie et aux draineurs d'énergie dans l'équipe ?"
+
+msgid "Unsere Hypothese: je weniger Spannung, desto grösser Dein Beitrag zur psychologischen Sicherheit."
+msgstr "Notre hypothèse : moins il y a de tension, plus ta contribution à la sécurité psychologique est grande."
+
+msgid "Wie erklärst Du die Unterschiede zwischen Deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team? Hier eine Interpretationshilfe:"
+msgstr "Comment expliques-tu les différences entre ta perception de toi-même et celle de l'équipe ? Voici une aide à l'interprétation :"
 
 #. spannungsfelder
 #: loco:606c8ee09eab385a0d6cd433
-msgid "Diese Kräfte beschreiben deinen Einfluss auf eure Teamdynamik:"
+msgid "Diese Kräfte beschreiben Deinen Einfluss auf eure Teamdynamik:"
 msgstr "Ces forces décrivent votre impact sur la dynamique de votre équipe :"
 
 #. spannungsfelder
@@ -402,31 +441,24 @@ msgstr "Les valeurs supérieures à 16 = tension avec l'équipe"
 
 #. spannungsfelder
 #: loco:606c933a22f3ef591a5fe833
-msgid ""
-"Negatives Vorzeichen = du schätzt deinen Beitrag zur Teamdynamik eher zu "
-"positiv ein"
-msgstr ""
-"Signe négatif = vous avez tendance à évaluer trop positivement votre "
+msgid "Negatives Vorzeichen = hier schätzt Du Deinen Beitrag zur Teamdynamik eher zu positiv ein"
+msgstr "Signe négatif = vous avez tendance à évaluer trop positivement votre "
 "contribution à la dynamique de l'équipe"
 
 #. spannungsfelder
 #: loco:606c9436f97c426ad140e022
-msgid ""
-"Positives Vorzeichen = schätzt den Beitrag zur Teamdynamik eher zu kritisch ein"
-msgstr ""
-"Signe positif = vous êtes plutôt trop critique quant à votre contribution à "
-"la dynamique de l'équipe"
+msgid "Positives Vorzeichen = hier schätzt Du Deinen Beitrag zur Teamdynamik eher zu kritisch ein"
+msgstr "Signe positif = vous êtes plutôt trop critique quant à votre contribution à la dynamique de l'équipe"
 
 #. spannungsfelder
 #: loco:606c956b93e66f6a681ca213
-msgid "Rot = deine Selbstwahrnehmung liegt ausserhalb der Safe Zone"
-msgstr ""
-"Rouge = votre perception de vous-même est en dehors de la zone de sécurité"
+msgid "Rot = Deine Selbstwahrnehmung liegt ausserhalb der Safe Zone"
+msgstr "Rouge = votre perception de vous-même est en dehors de la zone de sécurité"
 
 #. spannungsfelder
 #: loco:606c96870499e2705662b252
 msgid ""
-"Gelb = die Wahrnehmung deines Beitrags durch die anderen liegt außerhalb der "
+"Gelb = die Wahrnehmung Deines Beitrags durch die anderen liegt außerhalb der "
 "Safe Zone"
 msgstr ""
 "Jaune = la perception de votre contribution par les autres est en dehors de "
@@ -435,7 +467,7 @@ msgstr ""
 #. spannungsfelder
 #: loco:606c97c1e58ada651534cc72
 msgid ""
-"Schwarz = die Selbst- und die Fremdwahrnehmung deines Beitrags zur "
+"Schwarz = die Selbst- und die Fremdwahrnehmung Deines Beitrags zur "
 "Gruppendynamik liegen ausserhalb der Safe Zone"
 msgstr ""
 "Noir = la perception de soi et la perception externe de votre contribution à "
@@ -444,7 +476,7 @@ msgstr ""
 #. spannungsfelder
 #: loco:606c98a9cb092e7d000f4a92
 msgid ""
-"Möchtest du erraten, wie dein Beitrag zur Gruppendynamik von jedem einzelnen "
+"Möchtest Du erraten, wie Dein Beitrag zur Gruppendynamik von jedem einzelnen "
 "Teammitglied eingeschätzt wird? Dann spiel weiter!"
 msgstr ""
 "Vous voulez deviner comment votre contribution à la dynamique de groupe est "
@@ -467,8 +499,20 @@ msgstr "Tension"
 
 #. mission-2
 #: loco:606d6ec28f4a0d3d6157c8b2
-msgid "Mission 2: Jede Stimme zählt!"
-msgstr "Mission 2 : Chaque voix compte !"
+msgid "Trainiere Deine soziale Sensibilität"
+msgstr "Entraîne ta sensibilité sociale"
+
+msgid "Hilf mit die psychologische Sicherheit im Team zu verbessern:"
+msgstr "Aide à améliorer la sécurité psychologique de l'équipe :"
+
+msgid "Lerne einzuschätzen, wie Dein Beitrag zur Teamdynamik von den anderen Teammitgliedern wahrgenommen wird."
+msgstr "Apprends à évaluer comment ta contribution à la dynamique de l'équipe est perçue par les autres membres de l'équipe."
+
+msgid "Erkunde den Unterschied zwischen Selbst- und Fremdbild. Eine wesentliche Quelle von Spannungen im Team."
+msgstr "Explorez la différence entre l'image de soi et l'image extérieure. Une source majeure de tension dans l'équipe."
+
+msgid "Soziale Sensibilität ist eine der drei Dimensionen psychologischer Sicherheit. Soziale Sensibiltät bezeichnet den Willen und die Fähigkeit auf Augenhöhe wahrzunehmen, welche Kraftquelle den anderen beflügelt und wo Triggerpunkte liegen könnten."
+msgstr "La sensibilité sociale est l'une des trois dimensions de la sécurité psychologique. La sensibilité sociale désigne la volonté et la capacité de percevoir d'égal à égal quelle source de force anime l'autre et où pourraient se trouver des points de déclenchement."
 
 #. mission-2
 #: loco:606d6f4fe3c97c7ec231f3e2
@@ -518,20 +562,16 @@ msgstr ""
 
 #. soc-sensibility
 #: loco:606d77065abf173e0b77e052
-msgid "Wie steht es um deine soziale Sensibilität?"
+msgid "Wie steht es um Deine soziale Sensibilität?"
 msgstr "Et votre sensibilité sociale ?"
 
 #. soc-sensibility
 #: loco:606d77e44d18b322372f3ad5
-msgid ""
-"Bewege zuerst deine eigene und dann alle anderen Spielfiguren, um zu erraten,"
-" wie deine Mitspieler deinen Beitrag zur Gruppendynamik wahrnehmen. Sind "
-"alle Werte GRÜN kannst du weiterspielen."
-msgstr ""
-"Déplacez d'abord votre propre personnage, puis tous les autres avatars pour "
-"deviner comment vos compagnons de jeu perçoivent votre contribution à la "
-"dynamique de groupe. Si toutes les valeurs sont VERTES, vous pouvez "
-"continuer."
+msgid "Klicke zuerst Deine eigene und dann alle anderen Spielfiguren, um zu erraten, wie Deine Mitspieler Deinen Beitrag zur Gruppendynamik wahrnehmen."
+msgstr "Clique d'abord sur ton propre personnage, puis sur tous les autres, pour deviner comment tes coéquipiers perçoivent ta contribution à la dynamique de groupe."
+
+msgid "Du kannst weiterspielen, sobald alle Werte richtig erraten und GRÜN sind."
+msgstr "Tu peux continuer à jouer dès que toutes les valeurs ont été devinées correctement et sont VERTES."
 
 #. soc-sensibility
 #: loco:606d7959bb3f4b44f76ceb55
@@ -551,7 +591,7 @@ msgstr "Dernière tâche : feedback anonyme"
 #: loco:606da320a4487b31254c1a82
 msgid ""
 "Was ist der Beitrag vom Mitspieler zur Psychologischen Sicherheit im Team? "
-"Schau dir zuerst das Spannungsprofil deines Feedbacknehmers rechts an. Und "
+"Schau Dir zuerst das Spannungsprofil Deines Feedbacknehmers rechts an. Und "
 "Beantworte dann die drei Fragen für ein offenes, lösungsorientiertes und "
 "anonymes Feedback. Geh ein Risiko ein und schreib mit offenem Herzen..."
 msgstr ""
@@ -595,17 +635,17 @@ msgstr ""
 
 #. feedback
 #: loco:606dcbb5801da7547d3d60b3
-msgid "MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team..."
+msgid "MEHR davon: Ich schätze Deinen Beitrag zum gelingenden Zusammenspiel im Team..."
 msgstr "PLUS de ça : J'apprécie votre contribution à la réussite de l'interaction de l'équipe..."
 
 #. feedback
 #: loco:606dccafadb79a19d52e6333
-msgid "ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem..."
+msgid "ÄNDERN: Du könntest zur psychologischen Sicherheit im Team beitragen, in dem..."
 msgstr "CHANGER : Vous pourriez contribuer à la sécurité psychologique de l'équipe en..."
 
 #. feedback
 #: loco:606dcdc32edb02114d39aea2
-msgid "FRAGEZEICHEN: ich wollte dich schon immer mal fragen..."
+msgid "FRAGEZEICHEN: ich wollte Dich schon immer mal fragen..."
 msgstr "QUESTION : J'ai toujours voulu vous demander..."
 
 #. waiting-3
@@ -645,15 +685,27 @@ msgstr ""
 msgid "bereit"
 msgstr "prêt"
 
+msgid "Angstfrei aufrichtiges Feedback geben zu können, ist eine wesentliche Dimension psychologischer Sicherheit. Amy Edmondson geht sogar soweit, psychologische Sicherheit zu definieren als die gemeinsame Überzeugung aller Teammitglieder, dass es im Team sicher sei, zwischenmenschliche Risiken einzugehen."
+msgstr "Pouvoir donner un feedback sincère sans crainte est une dimension essentielle de la sécurité psychologique. Amy Edmondson va même jusqu'à définir la sécurité psychologique comme la conviction commune de tous les membres de l'équipe qu'il n'y a aucun risque à prendre des risques interpersonnels au sein de l'équipe."
+
+msgid "Wie hast Du beim Feedback-Geben Deine psychologische Sicherheit wahrgenommen?"
+msgstr "Comment as-tu perçu ta sécurité psychologique lorsque tu donnais un feedback ?"
+
+msgid "Hast Du Augenblicke von Selbstzensur wahrgenommen?"
+msgstr "As-tu perçu des moments d'autocensure ?"
+
+msgid "Wie wie sicher fühltest Du Dich in der Lage anzusprechen, was Dich eigentlich beschäftigt, um das Team voranzubringen?"
+msgstr "Dans quelle mesure te sentais-tu en mesure d'aborder ce qui te préoccupait réellement pour faire avancer l'équipe ?"
+
 #. assessment
 #: loco:606de487a98fce2936620172
-msgid "Auswertung deiner Reise mit der Arche"
+msgid "Auswertung Deiner Reise mit der Arche"
 msgstr "Évaluation de votre voyage avec l'Arche"
 
 #. assessment
 #: loco:606de58b06c7db0ecf363c02
-msgid "Anonymes Feedback:"
-msgstr "Feedback anonyme :"
+msgid "Anonymes Feedback"
+msgstr "Feedback anonyme"
 
 #. assessment
 #: loco:606de7868767a75ac70c05b2
@@ -664,6 +716,57 @@ msgstr "Goto Team Heatmap"
 #: loco:606ef00efed6087585797d13
 msgid "Team Heatmap"
 msgstr "Team Heatmap"
+
+msgid "Mit wem magst Du Deine Reise auswerten?"
+msgstr "Avec qui veux-tu évaluer ton voyage ?"
+
+msgid "Je weiter oben ein Paar steht, desto integrierender für das Teamzusammenspiel wirkt diese Paarung vermutlich. Finde bitte einen oder mehrere Partner, um die Ergebnisse Deiner Reise mit der Arche zu verstehen und zu interpretieren..."
+msgstr "Plus un binôme se situe en haut de l'échelle, plus il est susceptible d'avoir un effet intégrateur sur la cohésion de l'équipe. Veuillez trouver un ou plusieurs partenaires pour comprendre et interpréter les résultats de votre voyage avec l'arche..."
+
+msgid "Auswahl löschen"
+msgstr "Supprimer la sélection"
+
+msgid "Spieler"
+msgstr "Joueurs"
+
+msgid "Spannungswert"
+msgstr "Tension"
+
+msgid "Mitspieler"
+msgstr "Joueurs"
+
+msgid "Ablauf: Zeigt euch gegenseitig eure Spannungsfelder der vorherigen Seite."
+msgstr "Déroulement de la séance : Montrez-vous mutuellement vos champs de tension de la page précédente."
+
+msgid "Ordnet dann diese Spannungen in der Team Heatmap weiter unten ein."
+msgstr "Classe ensuite ces tensions dans la carte de chaleur de l'équipe ci-dessous."
+
+msgid "Schaut euch im Innern der Heatmap besonders alle farbigen Felder und alle Werte über 16 an."
+msgstr "À l'intérieur de la carte de chaleur, regardez particulièrement toutes les cases colorées et toutes les valeurs supérieures à 16."
+
+msgid "Ziel: Klärt die Quelle dieser Spannungen, um dadurch die psychologische Sicherheit im Team zu stärken. Zeitbedarf: 10 Minuten."
+msgstr "Objectif : Clarifier la source de ces tensions et renforcer ainsi la sécurité psychologique au sein de l'équipe. Temps nécessaire : 10 minutes."
+
+msgid "Wo könnten Spannungen im Team entstehen?"
+msgstr "Où des tensions pourraient-elles apparaître au sein de l'équipe ?"
+
+msgid "Die Heatmap zeigt eine Zusammenfassung der Quellen aller Spannungen..."
+msgstr "La carte thermique présente un résumé des sources de toutes les tensions..."
+
+msgid "Horizontal: siehst Du links die Lage der Safe Zones und rechts die zugehörigen Kraftquellen und Energiefresser; je höher der Wert rechts, desto grösser ist der Beitrag dieser Energiefressern zu den Spannungen."
+msgstr "Horizontal : à gauche, vous voyez l'emplacement des zones de sécurité et à droite les sources d'énergie et les drains énergétiques correspondants ; plus la valeur à droite est élevée, plus la contribution de ces drains énergétiques aux tensions est importante."
+
+msgid "Vertikal: siehst Du in der oberen Reihe den Beitrag jedes Spielers zu den Kraftquellen; je niedriger der Wert, desto grösser ist der Beitrag des Spielers zu den Kraftquellen."
+msgstr "Verticalement : tu vois dans la rangée supérieure la contribution de chaque joueur aux sources de force ; plus la valeur est basse, plus la contribution du joueur aux sources de force est grande."
+
+msgid "Im Innern der Heatmap siehst Du dieselben Zahlen und Farben, wie schon in der individuellen Auswertung der Spannungsfelder; als Abweichung zwischen Selbst- und Fremdwahrnehmung."
+msgstr "A l'intérieur de la carte de chaleur, tu vois les mêmes chiffres et couleurs que ceux déjà utilisés dans l'évaluation individuelle des champs de tension ; comme écart entre la perception de soi et celle des autres."
+
+msgid "Bei negativen Vorzeichen schätzt der Spieler den eigenen Beitrag zur Teamdynamik eher zu optimistisch ein; umgekehrtes gilt bei positiven Vorzeichen."
+msgstr "Si le signe est négatif, le joueur a tendance à être trop optimiste quant à sa propre contribution à la dynamique de l'équipe ; l'inverse est vrai si le signe est positif."
+
+msgid "Ganz unten sind alle Werte zusammengefasst. Hier gilt ebenfalls: je höher der Wert mit negativem Vorzeichen, desto stärker überschätzt der Spieler den eigenen positiven Betrag zur Teamdynamik; umgekehrtes gilt bei positiven Vorzeichen."
+msgstr "Toutes les valeurs sont résumées tout en bas. Ici aussi, plus la valeur est négative, plus le joueur surestime sa propre contribution positive à la dynamique de l'équipe ; l'inverse est vrai pour les valeurs positives."
 
 #. heatmap
 #: loco:606ef00efed6087585797d13
@@ -717,21 +820,30 @@ msgstr "Adieu"
 msgid "Danke für deine Reise mit der ARCHE"
 msgstr "Merci pour votre voyage avec l'Arche"
 
+msgid "Was jetzt: SOCIAL SENSITIVITY TRAINING? (Ca. 10 Minuten Zeitbedarf) Hilf mit die psychologische Sicherheit im Team zu verbessern: Trainiere dazu Deine soziale Sensibilität und lerne einzuschätzen, wie Du von Deinen Teammitgliedern wahrgenommen wirst."
+msgstr "Et maintenant : SOCIAL SENSITIVITY TRAINING ? (env. 10 minutes) Aide à améliorer la sécurité psychologique dans l'équipe : Entraîne ta sensibilité sociale et apprends à évaluer la manière dont tu es perçu par les membres de ton équipe."
+
+msgid "Was jetzt: AUFRICHTIGES FEEDBACK? (10-20 Minuten Zeitbedarf, je nach Teamgrösse) Hilf mit die psychologische Sicherheit im Team zu verbessern: Gib anonymes 1 zu 1 Feedback, um alle in einen psychologisch sichereren Raum mitzunehmen."
+msgstr "Et maintenant ? UN FEEDBACK SINCÈRE ? (10-20 minutes en fonction de la taille de l'équipe) Aide à améliorer la sécurité psychologique de l'équipe : Donne un feedback anonyme 1 à 1 pour emmener tout le monde dans un espace psychologiquement plus sûr."
+
+msgid "Interessiert Dich eure TEAM-HEATMAP? Klicke auf das Icon um eine Karte der Spannungen im Team zu sehen."
+msgstr "Tu es intéressé(e) par la carte des tensions de l'équipe ? Clique sur l'icône pour voir la carte des tensions dans l'équipe."
+
+msgid "SPIELDATEN? Klicke auf diesen Link für die Auswertung Deiner Reise mit der Arche. Speichere den Link, um die Auswertung später noch einmal anzuschauen."
+msgstr "DONNÉES DU JEU ? Clique sur ce lien pour voir l'évaluation de ton voyage avec l'arche. Sauvegarde le lien pour revoir l'évaluation plus tard."
+
+msgid "Was jetzt: DEBRIEF? (15 Minuten Zeitbedarf) Nutzt die Liberating Structure 1-2-4-All und tauscht euch über die Reise mit der Arche aus. Was hat Dich berührt, irritiert und bestärkt einen Beitrag zur psychologischen Sicherheit zu leisten? Worin genau wird Dein Beitrag bestehen?"
+msgstr "Et maintenant ? DEBRIEF ? (15 minutes de temps nécessaire) Utilise la Liberating Structure 1-2-4-All et échange sur le voyage avec l'arche. Qu'est-ce qui t'a touché, irrité et encouragé à apporter une contribution à la sécurité psychologique ? En quoi consistera exactement ta contribution ?"
+
+msgid "COUNSELING? Nimm'für eine professionelle Interpretation eurer Spieldaten und Begleitung Kontakt mit Dr. Joe Maier."
+msgstr "COUNSELING ? Prends contact avec le Dr Joe Maier pour une interprétation professionnelle de tes données de jeu et un accompagnement."
+
 #. farewell
 #: loco:606f028e88f4536b9b769575
 msgid ""
 "Spieldaten? Klicke auf diesen Link für die Auswertung deiner Reise mit der Arche. Speichere den Link, um die Auswertung später noch einmal anzuschauen."
 msgstr ""
 "Données de jeu ? Cliquez sur ce lien pour l'évaluation de votre voyage avec l'Arche. Enregistrez le lien pour consulter l'évaluation ultérieurement."
-
-#. farewell
-#: loco:606f03001e2d603c87126612
-msgid ""
-"Interessiert dich eure TEAM-HEATMAP? Klicke auf das Icon um eine Karte der "
-"Spannungen im Team zu sehen."
-msgstr ""
-"Vous êtes intéressé par votre TEAM-HEATMAP ? Cliquez sur l'icône pour voir "
-"une carte des tensions dans l'équipe."
 
 #. farewell
 #: loco:606f04b98f1a2512355b6063
@@ -744,8 +856,8 @@ msgstr ""
 
 #. farewell
 #: loco:606f052054a2c81762569dd3
-msgid "Paypal? Gib dem Entwickler einen Kaffee aus – Joe Maier dankt es dir!"
-msgstr "Paypal ? Offrez un café au développeur - Joe Maier vous remerciera !"
+msgid "PAYPAL? Gib dem Entwickler einen Kaffee aus – Joe Maier dankt es dir!"
+msgstr "PAYPAL ? Offrez un café au développeur - Joe Maier vous remerciera !"
 
 #. farewell
 #: loco:606f05ee28ef4738b26ef854

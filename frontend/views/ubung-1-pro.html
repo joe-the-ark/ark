@@ -56,7 +56,7 @@
         element-loading-background="rgba(0, 0, 0, 0.8)">
                 <main class="screen ubung-1">
                     <h1>
-                        {% trans "Was beflügelt dich in diesem Team?" %}
+                        {% trans "Was beflügelt Dich in diesem Team?" %}
                     </h1>
                     <p>
                         <b>
@@ -64,11 +64,11 @@
                         </b><br>
                     <img src="http://info.arks.ch/wp-content/uploads/2022/07/Plus.png">
                     </p>
-                    <input type="text" placeholder="Kraftquelle" name="kraftquelle" v-model="text_input" @keyup.enter="add_term" @keyup = "keyboard_()"/><
+                    <input type="text" placeholder={% trans "Kraftquelle" %} name="kraftquelle" v-model="text_input" @keyup.enter="add_term" @keyup = "keyboard_()"/><
                     <label>*Diese Qualität wurde bereits von einem anderen Spieler ausgewählt.</label>
 
                     <p>
-                        {% trans "Was gibt dir in unserem Team am meisten Energie?" %}
+                        {% trans "Was gibt Dir in unserem Team am meisten Energie?" %}
                         <br/>
                         <br/>
                     </p>
@@ -108,9 +108,9 @@
                     </div>
                     <input id="tags" type="hidden" name="tags" value="输入你要传bai递的值">
                     <p>
-                        {% trans "Bitte finde eine für dich stimmige Antwort, denn sie bestimmt die Struktur der Challenge." %}
+                        {% trans "Bitte finde eine für Dich stimmige Antwort, denn sie bestimmt die Struktur der Challenge." %}
                     </p>
-                    <div class="left">
+                    <div class="center">
                         {% comment %} <a href="/ubung-3/"> {% endcomment %}
                             <p>
                             <button class="submit" @click="continue_()">

@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
     <meta name="theme-color" content="#51ceec"/>
     <meta name="description" content="ARK"/>
-    <title>Social-Sensitivity-FEEDBACK</title>
+    <title>Social Sensitivity Training</title>
     <link rel="stylesheet" href="/static/css/app.css">
     <link rel="stylesheet" href="/static/css/ubung-5.css">
 
@@ -42,9 +42,9 @@
             </div>
             <div class="header-main__progress">
                 <div class="progress">
-                    <label>Mission 2</label>
+                    <label>Social Sensitivity</label>
                     <div class="progress__bar">
-                        <div style="width: 65%">65%</div>
+                        <div style="width: 100%">100%</div>
                     </div>
                 </div>
             </div>
@@ -54,27 +54,30 @@
         <div class="container">
             <main class="screen ubung-5">
                 <h1>
-                    {% trans "Wie steht es um deine soziale Sensibilität?" %}
+                    {% trans "Wie steht es um Deine soziale Sensibilität?" %}
                 </h1>
                 <p>
-                    {% trans "Bewege zuerst deine eigene und dann alle anderen Spielfiguren, um zu erraten, wie deine Mitspieler deinen Beitrag zur Gruppendynamik wahrnehmen. Sind alle Werte GRÜN kannst du weiterspielen." %}
+                    {% trans "Klicke zuerst Deine eigene und dann alle anderen Spielfiguren, um zu erraten, wie Deine Mitspieler Deinen Beitrag zur Gruppendynamik wahrnehmen." %}
                 </p>
                 <div class="custom-graph-wrapper"></div>
                 {% comment %} <form action="#" method="POST" class="form">
                 {% csrf_token %} {% endcomment %}
                 <p>
-                    {% trans "Eine durchschnittlich ausgeprägte soziale Sensibilität ist eine wesentliche Voraussetzung für psychologische Sicherheit." %}
+                    {% trans "Point and Click." %}<br> {% trans "Du kannst weiterspielen, sobald alle Werte richtig erraten und GRÜN sind." %}
                     <br>
                     <br>
                 </p>
                     <div class="center" id="app-1">
                         <input id="data" type="hidden" name="data" value=""/>
-                        <p>
+                    <p>
                         <button type="submit" id="button" @click="popup()">
                             {% trans "Weiterspielen" %}
                         </button>
                     </p>
                     </div>
+                    <p>
+                    {% trans "Eine durchschnittlich ausgeprägte soziale Sensibilität ist eine wesentliche Voraussetzung für psychologische Sicherheit." %}
+                </p>
             </main>
         </div>
     </div>

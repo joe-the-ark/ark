@@ -27,7 +27,7 @@ msgstr "方舟》是一个培养团队心理安全感的线上团体挑战赛。
 
 #. onboarding
 #: loco:6071a6458d4f51635821d922
-msgid "Die Arche ist eine Online-Gruppenreise, um psychologische Sicherheit mit deinem Team zu erkunden. Die Spielzeit der ersten Etappe beträgt eine halbe Stunde."
+msgid "Die Arche ist eine Online-Gruppenreise, um psychologische Sicherheit mit Deinem Team zu erkunden. Die Spielzeit der ersten Etappe beträgt eine halbe Stunde."
 msgstr "方舟 是一个与你的团队一起探索心理安全的在线小组旅程。第一阶段的比赛时间为半小时。"
 
 #. onboarding
@@ -72,7 +72,7 @@ msgstr "用户形象"
 
 #. onboarding
 #: loco:6071d4a234bb601a0c01d4a2
-msgid "Teile diesen Link, um dein Team mitzunehmen:"
+msgid "Teile diesen Link, um Dein Team mitzunehmen:"
 msgstr "分享这个链接，带上你的团队。"
 
 #. onboarding
@@ -108,7 +108,7 @@ msgstr "为了澄清你的期望，请观看这个101秒的预览视频。"
 #. preview.html
 #: loco:60688727a1837301bb1df633
 msgid ""
-"Bitte finde eine für dich stimmige Antwort, denn sie bestimmt die Struktur der Challenge."
+"Bitte finde eine für Dich stimmige Antwort, denn sie bestimmt die Struktur der Challenge."
 msgstr "请找到一个适合你的答案，因为这将决定挑战的结构。"
 
 #. preview.html
@@ -124,13 +124,13 @@ msgstr "继续"
 
 #. ubung-1
 #: loco:606b759198a94a6cf8339672
-msgid "Was beflügelt dich in diesem Team?"
+msgid "Was beflügelt Dich in diesem Team?"
 msgstr "在这个团队中，是什么激励了你？"
 
 #. ubung-1
 #: loco:606b768f6e464e1c4c0fcb40
 msgid ""
-"Was gibt dir in unserem Team am meisten Energie?"
+"Was gibt Dir in unserem Team am meisten Energie?"
 msgstr "在我们的团队中，什么给了你最大的能量？"
 
 #. ubung-1
@@ -138,6 +138,9 @@ msgstr "在我们的团队中，什么给了你最大的能量？"
 msgid ""
 "Jeder Spieler schreibe ein Wort in das leere Feld oder klicke auf den passenden Begriff."
 msgstr "每个玩家在空栏里写下一个词，或者点击相应的术语。"
+
+msgid "Kraftquelle"
+msgstr "能源来源"
 
 #. ubung-2
 #: loco:606b783b01bcd4016a5c7782
@@ -153,9 +156,7 @@ msgstr "匿名估计该团队的平均业绩，评分标准为1（低业绩）�
 
 #. ubung-2
 #: loco:606b79b45a04ef17b613bf63
-msgid ""
-"Bewege bitte deine Spielfigur auf den Punkt der Skala, der am Besten passt. "
-"Später im Spiel siehst du die anonymisierte Einschätzung aller Mitspieler."
+msgid "Bewege bitte Deine Spielfigur auf den Punkt der Skala, der am Besten passt. Später im Spiel siehst Du die anonymisierte Einschätzung aller Mitspieler."
 msgstr "请将您的角色移动到比例尺上最适合的点。在游戏后期，你会看到所有玩家的匿名评价。"
 
 #: loco:606b7a5e8e18de47d728d102
@@ -167,12 +168,12 @@ msgstr "心理安全是团队绩效最有力的预测因素--你的绩效有多�
 
 #. ubung-3
 #: loco:606b7d13d2174c4ebc3e3762
-msgid "Was steht deiner Potentialentfaltung im Weg?"
+msgid "Was steht Deiner Potentialentfaltung im Weg?"
 msgstr "是什么阻碍了你的潜在发展？"
 
 #. ubung-3
 #: loco:606b7d7dfafd1642eb21fa72
-msgid "Beschreibe bitte den Gegenpol dessen, was dich im Team beflügelt."
+msgid "Beschreibe bitte den Gegenpol dessen, was Dich im Team beflügelt."
 msgstr "描述一下我们团队中激励你的反面因素。"
 
 #. ubung-3
@@ -182,13 +183,25 @@ msgstr "请在空栏里写一个词，或点击相应的术语。"
 
 #. ubung-3
 #: loco:606b7e554fe187702f150c72
-msgid "Bitte finde auch hier eine für dich stimmige Antwort, denn sie bestimmt die Struktur der Challenge für dich und alle anderen."
+msgid "Bitte finde auch hier eine für Dich stimmige Antwort, denn sie bestimmt die Struktur der Challenge für Dich und alle anderen."
 msgstr "请找到一个对你来说是连贯的答案，因为它决定了你和其他人的挑战结构。"
+
+msgid "Energiefresser"
+msgstr "能源消耗者"
 
 #. waitingroom-1
 #: loco:606b7eca211f3464ed134c33
-msgid "Bitte tauscht euch aus."
-msgstr "请分享您的观点。"
+msgid "Bitte tauscht euch jetzt aus."
+msgstr "请现在交流你们的观点。"
+
+msgid "1) Erzählt euch bitte kurz gegenseitig, welches GEGENSATZPAAR Du ausgewählt hast, damit alle verstehen können, wovon die Rede ist."
+msgstr "1）请简要地告诉对方你选择的是哪一对，以便大家能理解你在说什么。"
+
+msgid "2) Überprüfe bitte noch einmal das von Dir gewählte GEGENSATZPAAR und überarbeite Deine Begriffe bei Bedarf..."
+msgstr "2) 请再次检查你所选择的对立面，如有必要，请修改你的条款....。"
+
+msgid "3) Starte richtig durch, sobald alle Mitspieler hier im Warteraum sichtbar sind. Nur wer jetzt mit an Bord ist, nimmt an der Reise Teil!"
+msgstr "3) 一旦所有其他玩家在这里的等候室中被看到，就立即开始。只有那些现在在船上的人才能参与到旅程中来!"
 
 #. wartezimmer-1
 #: loco:606b7f57401c1412f312f6a3
@@ -202,21 +215,19 @@ msgstr "请再次检查您所选择的紧张领域，如有必要，请修改您
 
 #. wartezimmer-1
 #: loco:606b7fef2743002d316f0e93
-msgid "Starte richtig im Spiel durch, sobald alle "
-"Mitspieler hier im Warteraum sichtbar sind. Nur wer jetzt mit an Bord ist, "
-"kann am Spiel teilnehmen!"
-msgstr "在候场室这里所有队员都能看到后，就适当开始游戏。只有现在在船上的人才能参加游戏!"
+msgid "Starte richtig durch, sobald alle Mitspieler hier im Warteraum sichtbar sind. Nur wer jetzt mit an Bord ist, nimmt an der Reise Teil!"
+msgstr "一旦所有其他玩家在这里的等候室中被看到，就立即开始。只有现在上了船的人才能参与到旅程中来!"
 
 #. ubung-4
 #: loco:606b80f9efd09147ce142513
-msgid "Teste eure Psychologische Sicherheit!"
+msgid "Mess nun eure Psychologische Sicherheit"
 msgstr "测试你的心理安全!"
 
 #. ubung-4
 #: loco:606b816a85a8752578065132
 msgid ""
-"Bewege jeden Spieler zu der Aussage, die am ehesten passt! Beziehe deine "
-"Einschätzung auf alltägliche Situationen im Team, die sich bei dir "
+"Bewege jeden Spieler zu der Aussage, die am ehesten passt! Beziehe Deine "
+"Einschätzung auf alltägliche Situationen im Team, die sich bei Dir "
 "eingeprägt haben."
 msgstr "让每个选手移动到最适合的语句! 将你的评估与日常难忘的情况联系起来。"
 
@@ -227,34 +238,37 @@ msgstr "我们通常可以一起看待困难的问题。"
 
 #. ubung-4
 #: loco:606b8311a237a7415b52ae83
-msgid "Ich beobachte wie du gelegentlich Menschen im Team ausschliesst."
+msgid "Ich beobachte wie Du gelegentlich Menschen im Team ausschliesst."
 msgstr "我观察到你偶尔会排斥团队中的人。"
 
 #. ubung-4
 #: loco:606b838816beb113812f8092
-msgid "Mir fällt es mitunter schwer dich um Hilfe zu bitten."
+msgid "Mir fällt es mitunter schwer Dich um Hilfe zu bitten."
 msgstr "我有时发现很难向你求助。"
 
 #. ubung-4
 #: loco:606b8496da6eb5419c414472
-msgid "Für mich bist du im Team nicht immer sichtbar."
+msgid "Für mich bist Du im Team nicht immer sichtbar."
 msgstr "在团队中，我并不总是能看到你。"
 
 #. ubung-4
 #: loco:606b8521ebad575f53053562
-msgid "Ich fühle wie meine Talente von dir gesehen und einbezogen werden."
+msgid "Ich fühle wie meine Talente von Dir gesehen und einbezogen werden."
 msgstr "我觉得我的才能被你们看到并纳入其中。"
 
 #. ubung-4
 #: loco:606b858b879aef6ea16b8435
 msgid ""
-"Ich habe das Gefühl du reagierst auf Fehler mit Schuldzuweisungen an Einzelne im Team."
+"Ich habe das Gefühl Du reagierst auf Fehler mit Schuldzuweisungen an Einzelne im Team."
 msgstr "我感觉，你对错误的反应是指责团队中的个人。"
+
+msgid "Jeder graue Kreis steht für eine Person, die von jemand anderem dorthin gewählt wurde. Was denkst Du wohl, wo Deine Spielfigur steht? Tauscht euch kurz zu dieser Frage aus und notier Deine Einschätzung. Die Auflösung erfolgt zum Schluss der Reise."
+msgstr "每一个灰色的圆圈代表一个人，他被别人选到那里。你认为你的角色在哪里？简要讨论这个问题并写下你的观点。旅程结束时将会给出解决方案。"
 
 #. ubung-5
 #: loco:606c350d53fac01eda5589b2
-msgid "Spannungsfelder einschätzen!"
-msgstr "评估张力表!"
+msgid "Wo entstehen Spannungsfelder?"
+msgstr "紧张的领域出现在哪里？"
 
 #. ubung-5
 #: loco:606c3588f87f8e7dd763d4e2
@@ -264,14 +278,14 @@ msgstr "请定位队员在团队中动力源和能量消耗者之间的张力的
 #. ubung-5
 #: loco:606c46c40774bf65c217de22
 msgid ""
-"Klicke bitte jede Spielfigur an den Punkt, der aus deiner Sicht am Besten "
-"zum Verhalten des Spielers in für dich wichtigen Alltagssituationen passt."
+"Klicke bitte jede Spielfigur an den Punkt, der aus Deiner Sicht am Besten "
+"zum Verhalten des Spielers in für Dich wichtigen Alltagssituationen passt."
 msgstr "请在每个角色上点击你认为最符合玩家在日常情况下的行为的点，这对你很重要。"
 
 #. potential-result
 #: loco:606c4d8d8f567155c2283dd2
-msgid "Team Potential Einschätzung:"
-msgstr "团队潜力评估:"
+msgid "Team Potential Einschätzung"
+msgstr "团队潜力评估"
 
 #. potential-result
 #: loco:606c4e795e2f794ae22b8e02
@@ -300,6 +314,12 @@ msgstr "平均值"
 msgid "Maximal"
 msgstr "最多"
 
+msgid "Diese Einschätzung setzt sich aus den gleichberechtigten Wahrnehmungen aller Teammitglieder zusammen. Liegen diese innerhalb der Safe-Zone, oder gibt es Ausreisser?"
+msgstr "这种评估是由所有团队成员的平等认知组成的。这些是在安全区域内，还是有异常值？"
+
+msgid "Nach wie vor gilt: je höher die Team-Performance, desto höher die psychologische Sicherheit und desto weniger Spannungen im Team. Auf der nächsten Etappe siehst du deinen Beitrag zu den Spannungen im Team. Spannend?"
+msgstr "如前所述，团队业绩越高，心理安全感就越高，团队的紧张程度就越低。在下一个阶段，你将看到你对团队紧张的贡献。紧张吗？"
+
 #. waitingroom-2
 #: loco:606c8630ca5cb5284152a872
 msgid ""
@@ -321,37 +341,65 @@ msgid ""
 "sobald alle Mitspieler hier im Warteraum angekommen sind."
 msgstr "在与 方舟 的旅途中，看看如何提高团队的心理安全。当所有队友都到达这里的候补室后，游戏就可以继续进行。"
 
+msgid "Hier siehst Du eure Selbsteinschätzung – so gut nutzt ihr aktuell euer Potential..."
+msgstr "在这里，你可以看到你的自我评估--这是你目前利用你的潜力的情况。"
+
+msgid "In der Regel gilt folgender Zusammenhang: je höher die Team-Performance, desto höher die psychologische Sicherheit und desto weniger Spannungen im Team."
+msgstr "通常情况下，以下相关性适用：团队业绩越高，心理安全感越高，团队的紧张程度越低。"
+
+msgid "Oder umgekehrt: je mehr ungeklärte Spannungen, desto schlechter die Performance und desto geringer die psychologische Sicherheit."
+msgstr "或者反过来说：未解决的紧张关系越多，表现越差，心理安全感越低。"
+
+msgid "Auf der nächsten Etappe siehst Du, ob dieser Zusammenhang auch für Dein Team stimmt."
+msgstr "在下一个阶段，你将看到这种相关性是否也适用于你的团队。"
+
+msgid "Notier dazu bitte den Performance-Durchschnittswert!"
+msgstr "请注意平均性能值!"
+
+msgid "Die Reise kann weitergehen, sobald alle Mitspieler hier im Warteraum angekommen sind."
+msgstr "一旦所有玩家都到达这里的等候室，旅程就可以继续。"
+
 #. ps-score
 #: loco:606c88b0ce3e5b40de0ea732
-msgid "Euer Psychologischer Sicherheitswert:"
+msgid "Euer Psychologischer Sicherheitswert"
 msgstr "你的心理安全值。"
 
 #. ps-score
 #: loco:606c8965969b3140f152fba3
-msgid ""
-"Hier siehst du den psychologische Sicherheitswert für dein Team auf einer "
-"Skala zwischen 0 (sehr unsicher) und 100 (aussergewöhnlich sicher). Wie "
-"verhält sich dieser Wert zu deiner Einschätzung der gefühlten "
-"psychologischen Sicherheit im Team?"
-msgstr "在这里，你可以看到你的团队的心理安全值在0（非常不安全）和100（特别安全）之间。这个数值与你对团队中心理安全感的评估有什么关系？"
+msgid "Hier siehst Du den psychologische Sicherheitswert für Dein Team auf einer Skala zwischen 0 (sehr unsicher) bis 100 (aussergewöhnlich sicher). Wie verhält sich dieser Wert zur Team Performance? Normalerweise sind beide Werte ungefähr gleich hoch."
+msgstr "在这里，你可以看到你的团队的心理安全值，在0（非常不安全）和100（特别安全）之间。这个数值与团队的表现有什么关系？通常情况下，这两个值是差不多的。"
 
 #. spannungsfelder
 #: loco:606c8c5f591f8a4a1c131eb2
-msgid "Spannungsfelder:"
-msgstr "紧张:"
+msgid "Spannungsfelder"
+msgstr "紧张"
+
+msgid "Bitte nimm Dir 5 Minuten Zeit, um Deinen Beitrag zu den Spannungen im Team zu verstehen"
+msgstr "请花5分钟时间了解你对团队中的紧张关系的贡献"
+
+msgid "Der farbige Bereich ist die Safe-Zone Deines Teams:"
+msgstr "彩色区域是你的团队的安全区。"
+
+msgid "Wer sieht Deinen Beitrag innerhalb, wer ausserhalb der Safe-Zone?"
+msgstr "谁在里面看到你的贡献，谁在安全区外看到？"
+
+msgid "Was ist Dein Beitrag zu den Kraftquellen und Energiefressern im Team?"
+msgstr "你对团队中的动力源和能量消耗者有什么贡献？"
+
+msgid "Unsere Hypothese: je weniger Spannung, desto grösser Dein Beitrag zur psychologischen Sicherheit."
+msgstr "我们的假设：紧张程度越低，你对心理安全的贡献就越大。"
+
+msgid "Wie erklärst Du die Unterschiede zwischen Deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team? Hier eine Interpretationshilfe:"
+msgstr "你如何解释你的自我认知和团队对他人的认知之间的差异？这里有一个解释指南。"
 
 #. spannungsfelder
 #: loco:606c8d571496867eed623662
-msgid ""
-"Der farbige Bereich ist die Safe Zone deines Teams. Was ist dein Beitrag zu "
-"den Kraftquellen und Energiefressern im Team? Wie erklärst du die "
-"Unterschiede zwischen deiner Selbstwahrnehmung und der Fremdwahrnehmung "
-"durch das Team?"
-msgstr "彩色区域是你团队的安全区。你对团队中的能量源和能量吃者的贡献是什么？你如何解释你的自我认知和团队对你贡献的认知之间的差异？"
+msgid "Der farbige Bereich ist die Safe Zone Deines Teams. Was ist Dein Beitrag zu den Kraftquellen und Energiefressern im Team? Wie erklärst Du die Unterschiede zwischen Deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team?"
+msgstr "彩色区域是你的团队的安全区。你对团队中的力量来源和能量消耗者有什么贡献？你如何解释你的自我认知和团队对他人的认知之间的差异？"
 
 #. spannungsfelder
 #: loco:606c8ee09eab385a0d6cd433
-msgid "Diese Kräfte beschreiben deinen Einfluss auf eure Teamdynamik:"
+msgid "Diese Kräfte beschreiben Deinen Einfluss auf eure Teamdynamik:"
 msgstr "这些力量描述了你对团队动态的影响。"
 
 #. spannungsfelder
@@ -366,40 +414,37 @@ msgstr "数值高于16=与团队关系紧张"
 
 #. spannungsfelder
 #: loco:606c933a22f3ef591a5fe833
-msgid ""
-"Negatives Vorzeichen = du schätzt deinen Beitrag zur Teamdynamik eher zu "
-"positiv ein"
+msgid "Negatives Vorzeichen = hier schätzt Du Deinen Beitrag zur Teamdynamik eher zu positiv ein"
 msgstr "负号=你倾向于过于积极地评估你对团队动态的贡献"
 
 #. spannungsfelder
 #: loco:606c9436f97c426ad140e022
-msgid ""
-"Positives Vorzeichen = schätzt den Beitrag zur Teamdynamik eher zu kritisch ein"
+msgid "Positives Vorzeichen = hier schätzt Du Deinen Beitrag zur Teamdynamik eher zu kritisch ein"
 msgstr "正面的迹象=你对你对团队活力的贡献过于苛刻"
 
 #. spannungsfelder
 #: loco:606c956b93e66f6a681ca213
-msgid "Rot = deine Selbstwahrnehmung liegt ausserhalb der Safe Zone"
+msgid "Rot = Deine Selbstwahrnehmung liegt ausserhalb der Safe Zone"
 msgstr "红色=你的自我认知在安全区之外"
 
 #. spannungsfelder
 #: loco:606c96870499e2705662b252
 msgid ""
-"Gelb = die Wahrnehmung deines Beitrags durch die anderen liegt außerhalb der "
+"Gelb = die Wahrnehmung Deines Beitrags durch die anderen liegt außerhalb der "
 "Safe Zone"
 msgstr "黄色=别人认为你的贡献在安全区之外"
 
 #. spannungsfelder
 #: loco:606c97c1e58ada651534cc72
 msgid ""
-"Schwarz = die Selbst- und die Fremdwahrnehmung deines Beitrags zur "
+"Schwarz = die Selbst- und die Fremdwahrnehmung Deines Beitrags zur "
 "Gruppendynamik liegen ausserhalb der Safe Zone"
 msgstr "黑色=自我感觉和外部感觉你对群体动态的贡献在安全区之外"
 
 #. spannungsfelder
 #: loco:606c98a9cb092e7d000f4a92
 msgid ""
-"Möchtest du erraten, wie dein Beitrag zur Gruppendynamik von jedem einzelnen "
+"Möchtest Du erraten, wie Dein Beitrag zur Gruppendynamik von jedem einzelnen "
 "Teammitglied eingeschätzt wird? Dann spiel weiter!"
 msgstr "想猜猜每个团队成员如何看待你对团队动态的贡献吗? 那就继续玩吧"
 
@@ -420,8 +465,20 @@ msgstr "电压"
 
 #. mission-2
 #: loco:606d6ec28f4a0d3d6157c8b2
-msgid "Mission 2: Jede Stimme zählt!"
-msgstr "任务2：每个人的声音都很重要！"
+msgid "Trainiere Deine soziale Sensibilität"
+msgstr "训练你的社会敏感性"
+
+msgid "Hilf mit die psychologische Sicherheit im Team zu verbessern:"
+msgstr "帮助提高团队的心理安全。"
+
+msgid "Lerne einzuschätzen, wie Dein Beitrag zur Teamdynamik von den anderen Teammitgliedern wahrgenommen wird."
+msgstr "学会评估其他团队成员如何看待你对团队动态的贡献。"
+
+msgid "Erkunde den Unterschied zwischen Selbst- und Fremdbild. Eine wesentliche Quelle von Spannungen im Team."
+msgstr "探索自我形象和外部形象的区别。团队中紧张的一个主要来源。"
+
+msgid "Soziale Sensibilität ist eine der drei Dimensionen psychologischer Sicherheit. Soziale Sensibiltät bezeichnet den Willen und die Fähigkeit auf Augenhöhe wahrzunehmen, welche Kraftquelle den anderen beflügelt und wo Triggerpunkte liegen könnten."
+msgstr "社会敏感性是心理安全的三个维度之一。社会敏感度指的是意志和能力，能够在眼睛的层面上感知什么力量来源激发了对方，以及触发点可能在哪里。"
 
 #. mission-2
 #: loco:606d6f4fe3c97c7ec231f3e2
@@ -460,16 +517,16 @@ msgstr "更多心理安全感的第二个关键是平均分配发言时间。用
 
 #. soc-sensibility
 #: loco:606d77065abf173e0b77e052
-msgid "Wie steht es um deine soziale Sensibilität?"
+msgid "Wie steht es um Deine soziale Sensibilität?"
 msgstr "你的社会敏感度如何？"
 
 #. soc-sensibility
 #: loco:606d77e44d18b322372f3ad5
-msgid ""
-"Bewege zuerst deine eigene und dann alle anderen Spielfiguren, um zu erraten,"
-" wie deine Mitspieler deinen Beitrag zur Gruppendynamik wahrnehmen. Sind "
-"alle Werte GRÜN kannst du weiterspielen."
-msgstr "首先移动自己的角色，然后移动其他所有头像，猜测你的同伴如何看待你对团体动态的贡献。如果所有数值都是GREEN，你就可以继续。"
+msgid "Klicke zuerst Deine eigene und dann alle anderen Spielfiguren, um zu erraten, wie Deine Mitspieler Deinen Beitrag zur Gruppendynamik wahrnehmen."
+msgstr "首先点击你自己的棋子，然后点击其他所有的棋子，猜测你的同伴如何看待你对小组动态的贡献。"
+
+msgid "Du kannst weiterspielen, sobald alle Werte richtig erraten und GRÜN sind."
+msgstr "只要所有的数值都猜对了，并且是绿色的，你就可以继续玩。"
 
 #. soc-sensibility
 #: loco:606d7959bb3f4b44f76ceb55
@@ -480,14 +537,14 @@ msgstr "平均的社会敏感度是心理安全的重要前提。"
 
 #. feedback
 #: loco:606da1a105edc05dd34391e2
-msgid "Letzte Aufgabe: Anonymes Feedback"
-msgstr "最后一项任务：匿名反馈"
+msgid "Bitte gib anonymes Feedback"
+msgstr "请给予匿名反馈"
 
 #. feedback
 #: loco:606da320a4487b31254c1a82
 msgid ""
 "Was ist der Beitrag vom Mitspieler zur Psychologischen Sicherheit im Team? "
-"Schau dir zuerst das Spannungsprofil deines Feedbacknehmers rechts an. Und "
+"Schau Dir zuerst das Spannungsprofil Deines Feedbacknehmers rechts an. Und "
 "Beantworte dann die drei Fragen für ein offenes, lösungsorientiertes und "
 "anonymes Feedback. Geh ein Risiko ein und schreib mit offenem Herzen..."
 msgstr ""
@@ -525,17 +582,17 @@ msgstr "黑色=自我感觉和对安全区以外的其他人的感觉。"
 
 #. feedback
 #: loco:606dcbb5801da7547d3d60b3
-msgid "MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team..."
+msgid "MEHR davon: Ich schätze Deinen Beitrag zum gelingenden Zusammenspiel im Team..."
 msgstr "更多的是这样。感谢你对团队成功互动的贡献..."
 
 #. feedback
 #: loco:606dccafadb79a19d52e6333
-msgid "ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem..."
+msgid "ÄNDERN: Du könntest zur psychologischen Sicherheit im Team beitragen, in dem..."
 msgstr "你可以为团队的心理安全做出贡献，..."
 
 #. feedback
 #: loco:606dcdc32edb02114d39aea2
-msgid "FRAGEZEICHEN: ich wollte dich schon immer mal fragen..."
+msgid "FRAGEZEICHEN: ich wollte Dich schon immer mal fragen..."
 msgstr "我一直想问你..."
 
 #. waiting-3
@@ -566,15 +623,27 @@ msgstr ""
 msgid "bereit"
 msgstr "妥当"
 
+msgid "Angstfrei aufrichtiges Feedback geben zu können, ist eine wesentliche Dimension psychologischer Sicherheit. Amy Edmondson geht sogar soweit, psychologische Sicherheit zu definieren als die gemeinsame Überzeugung aller Teammitglieder, dass es im Team sicher sei, zwischenmenschliche Risiken einzugehen."
+msgstr "能够毫无顾忌地给予真诚的反馈，是心理安全的一个重要方面。Amy Edmondson甚至将心理安全定义为所有团队成员的共同信念，即在团队中承担人际间的风险是安全的。"
+
+msgid "Wie hast Du beim Feedback-Geben Deine psychologische Sicherheit wahrgenommen?"
+msgstr "在给予反馈时，你是如何看待自己的心理安全的？"
+
+msgid "Hast Du Augenblicke von Selbstzensur wahrgenommen?"
+msgstr "你是否注意到自我审查的时刻？"
+
+msgid "Wie wie sicher fühltest Du Dich in der Lage anzusprechen, was Dich eigentlich beschäftigt, um das Team voranzubringen?"
+msgstr "你觉得自己有多大信心能够解决实际困扰你的问题，以推动团队前进？"
+
 #. assessment
 #: loco:606de487a98fce2936620172
-msgid "Auswertung deiner Reise mit der Arche"
+msgid "Auswertung Deiner Reise mit der Arche"
 msgstr "评估您的 \"方舟 \"之旅"
 
 #. assessment
 #: loco:606de58b06c7db0ecf363c02
-msgid "Anonymes Feedback:"
-msgstr "匿名反馈。"
+msgid "Anonymes Feedback"
+msgstr "匿名反馈"
 
 #. assessment
 #: loco:606de7868767a75ac70c05b2
@@ -585,6 +654,60 @@ msgstr "Goto Team Heatmap"
 #: loco:606ef00efed6087585797d13
 msgid "Team Heatmap"
 msgstr "团队热图"
+
+msgid "Mit wem magst Du Deine Reise auswerten?"
+msgstr "你喜欢和谁一起评估你的旅行？"
+
+msgid "Je weiter oben ein Paar steht, desto integrierender für das Teamzusammenspiel wirkt diese Paarung vermutlich. Finde bitte einen oder mehrere Partner, um die Ergebnisse Deiner Reise mit der Arche zu verstehen und zu interpretieren..."
+msgstr "一个配对的级别越高，对团队的整合性就越强。请找到一个或多个合作伙伴来理解和解释你与方舟的旅程结果...."
+
+msgid "Auswahl löschen"
+msgstr "删除选择"
+
+msgid "Spieler"
+msgstr "玩家"
+
+msgid "Spannungswert"
+msgstr "张力"
+
+msgid "Mitspieler"
+msgstr "同事们"
+
+msgid "Ablauf: Zeigt euch gegenseitig eure Spannungsfelder der vorherigen Seite."
+msgstr "程序。互相展示你在前一页中的紧张区域。"
+
+msgid "Ordnet dann diese Spannungen in der Team Heatmap weiter unten ein."
+msgstr "然后在下面的团队热力图中安排这些紧张关系。"
+
+msgid "Schaut euch im Innern der Heatmap besonders alle farbigen Felder und alle Werte über 16 an."
+msgstr "在热力图里面，特别要看所有的彩色区域和所有高于16的数值。"
+
+msgid "Ziel: Klärt die Quelle dieser Spannungen, um dadurch die psychologische Sicherheit im Team zu stärken. Zeitbedarf: 10 Minuten."
+msgstr "目标：请澄清这些紧张关系的来源，从而加强团队的心理安全。需要的时间。10分钟。"
+
+msgid "Wo könnten Spannungen im Team entstehen?"
+msgstr "团队中哪里可能出现紧张？"
+
+msgid "Die Heatmap zeigt eine Zusammenfassung der Quellen aller Spannungen..."
+msgstr "热图显示了所有紧张局势的来源摘要。"
+
+msgid "Horizontal: siehst Du links die Lage der Safe Zones und rechts die zugehörigen Kraftquellen und Energiefresser; je höher der Wert rechts, desto grösser ist der Beitrag dieser Energiefressern zu den Spannungen."
+msgstr "水平：在左边你可以看到安全区的位置，右边是相应的电源和能量消耗者；右边的数值越高，这些能量消耗者对紧张的贡献越大。"
+
+msgid "Vertikal: siehst Du in der oberen Reihe den Beitrag jedes Spielers zu den Kraftquellen; je niedriger der Wert, desto grösser ist der Beitrag des Spielers zu den Kraftquellen."
+msgstr "纵向：在最上面一行，你可以看到每个球员对权力来源的贡献；数值越低，球员对权力来源的贡献就越大。"
+
+msgid "Im Innern der Heatmap siehst Du dieselben Zahlen und Farben, wie schon in der individuellen Auswertung der Spannungsfelder; als Abweichung zwischen Selbst- und Fremdwahrnehmung."
+msgstr "在热图中，你看到的数字和颜色与张力场的个人评价相同；作为自我感知和外部感知之间的偏差。"
+
+msgid "Werte über 16 deuten auf Spannungen mit dem Team hin."
+msgstr "分数超过16分表示与团队关系紧张。"
+
+msgid "Bei negativen Vorzeichen schätzt der Spieler den eigenen Beitrag zur Teamdynamik eher zu optimistisch ein; umgekehrtes gilt bei positiven Vorzeichen."
+msgstr "如果符号为负数，该球员倾向于对自己对团队动态的贡献过于乐观；如果符号为正数，则相反。"
+
+msgid "Ganz unten sind alle Werte zusammengefasst. Hier gilt ebenfalls: je höher der Wert mit negativem Vorzeichen, desto stärker überschätzt der Spieler den eigenen positiven Betrag zur Teamdynamik; umgekehrtes gilt bei positiven Vorzeichen."
+msgstr "所有的数值都在底部进行了总结。这里同样适用：负号的数值越高，球员就越高估自己对团队活力的积极贡献；正号的情况则相反。"
 
 #. heatmap
 #: loco:606ef00efed6087585797d13
@@ -623,11 +746,6 @@ msgid "Bei negativen Vorzeichen schätzt der Spieler den Beitrag zur Teamdynamik
 msgstr "如果标志是负数，则说明该球员对团队动力的贡献往往过于积极。"
 
 #. heatmap
-#: loco:60718d2ed775586b0968a473
-msgid "Werte über 16 deuten auf Spannungen mit dem Team hin."
-msgstr "数值高于16表示与团队关系紧张。"
-
-#. heatmap
 #: loco:606ef28b897dc9441a675aa3
 msgid "Auf Wiedersehen sagen"
 msgstr "告别"
@@ -637,6 +755,21 @@ msgstr "告别"
 msgid "Danke für deine Reise mit der ARCHE"
 msgstr "感谢你与方舟的旅程"
 
+msgid "Was jetzt: SOCIAL SENSITIVITY TRAINING? (Ca. 10 Minuten Zeitbedarf) Hilf mit die psychologische Sicherheit im Team zu verbessern: Trainiere dazu Deine soziale Sensibilität und lerne einzuschätzen, wie Du von Deinen Teammitgliedern wahrgenommen wirst."
+msgstr "What now: 社会敏感度培训（约10分钟） 帮助提高团队的心理安全。训练你的社会敏感性，学会评估团队成员对你的看法。"
+
+msgid "Was jetzt: AUFRICHTIGES FEEDBACK? (10-20 Minuten Zeitbedarf, je nach Teamgrösse) Hilf mit die psychologische Sicherheit im Team zu verbessern: Gib anonymes 1 zu 1 Feedback, um alle in einen psychologisch sichereren Raum mitzunehmen."
+msgstr "现在怎么办。真诚的反馈？(10-20分钟，取决于团队规模) 帮助提高团队的心理安全。给予匿名的1对1反馈，把大家带入一个心理上更安全的空间。"
+
+msgid "SPIELDATEN? Klicke auf diesen Link für die Auswertung Deiner Reise mit der Arche. Speichere den Link, um die Auswertung später noch einmal anzuschauen."
+msgstr "游戏数据？点击这个链接，了解对你的方舟之旅的评估。保存链接，以便以后查看评价。"
+
+msgid "Was jetzt: DEBRIEF? (15 Minuten Zeitbedarf) Nutzt die Liberating Structure 1-2-4-All und tauscht euch über die Reise mit der Arche aus. Was hat Dich berührt, irritiert und bestärkt einen Beitrag zur psychologischen Sicherheit zu leisten? Worin genau wird Dein Beitrag bestehen?"
+msgstr "现在怎么办。DEBRIEF? (需要15分钟)使用解放结构1-2-4-所有人，分享关于方舟的旅程。是什么触动、刺激和鼓励你为心理安全作出贡献？你的贡献究竟包括哪些内容？"
+
+msgid "COUNSELING? Nimm'für eine professionelle Interpretation eurer Spieldaten und Begleitung Kontakt mit Dr. Joe Maier."
+msgstr "咨询？请联系乔-迈尔博士，对你的演奏数据进行专业的解释和指导。"
+
 #. farewell
 #: loco:606f028e88f4536b9b769575
 msgid ""
@@ -645,9 +778,7 @@ msgstr "游戏数据？点击这个链接，了解对你的方舟之旅的评估
 
 #. farewell
 #: loco:606f03001e2d603c87126612
-msgid ""
-"Interessiert dich eure TEAM-HEATMAP? Klicke auf das Icon um eine Karte der "
-"Spannungen im Team zu sehen."
+msgid "Interessiert dich eure TEAM-HEATMAP? Klicke auf das Icon um eine Karte der Spannungen im Team zu sehen."
 msgstr "您是否对您的TEAM-HEATMAP感兴趣？点击图标，可以看到团队中紧张的地图。"
 
 #. farewell
@@ -659,8 +790,8 @@ msgstr "游戏演绎？联系Joe Maier博士，为您的游戏数据做专业解
 
 #. farewell
 #: loco:606f052054a2c81762569dd3
-msgid "Paypal? Gib dem Entwickler einen Kaffee aus – Joe Maier dankt es dir!"
-msgstr "Paypal? 请开发商喝杯咖啡吧--Joe Maier会感谢你的!"
+msgid "PAYPAL? Gib dem Entwickler einen Kaffee aus – Joe Maier dankt es dir!"
+msgstr "PAYPAL? 请开发商喝杯咖啡吧--Joe Maier会感谢你的!"
 
 #. farewell
 #: loco:606f05ee28ef4738b26ef854

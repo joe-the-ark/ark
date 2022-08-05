@@ -541,7 +541,6 @@ def heatmap(request, user):
         main_map.append(temp)
     # print('main_map',main_map)
 
-
     row0 = []
     uu = 0
     while uu < len(main_map[0][3]):
@@ -642,7 +641,7 @@ def mission_2_ubung_1(request, user):
 
     ubung5 = m2_span_choose(user.id, link)
     if not ubung5:
-        return redirect('/mission-2-ubung-2/')
+        return redirect('/farewell/')
     ctx['ubung5'] = ubung5
 
     member_list = [ i.span_1 for i in Ubung5.objects.filter(game=game,goal=user,ubung1=ubung5.ubung1) ]
@@ -1006,6 +1005,38 @@ def waiting_room2(request, user):
             game = game,
             player = user,
         )
+
+    link = request.session['link']
+    game = Game.objects.filter(link=link).first()
+    ubung2 = Ubung2.objects.filter(game=game)
+    value_list = [int(i.value) for i in ubung2]
+    value_list = list(set(value_list))
+    temp = len(value_list)/2
+    from .utils import mean
+    median = mean(value_list)
+    # if temp.__class__ == int:
+    #     median = (value_list[temp-1] + value_list[temp])/2
+    # else:
+    #     temp = round(temp)
+    #     median = value_list[temp]
+    ctx['team_potential_minimal'] = round(min(value_list))
+    ctx['team_potential_maximal'] = round(max(value_list))
+    ctx['team_potential_median'] = round(median)
+    ctx['user'] = user
+
+    all_result = []
+    for i in value_list:
+        if i == ubung2.filter(player=user,game=game).first().value:
+            all_result.append(
+                {
+                    'name': user.name,
+                    'avatar': user.avatar,
+                    'statusSide': i
+                }
+            )
+        else:
+            all_result.append({"statusSide": i})
+    ctx['team_potential_all_result'] = all_result
 
     # Waitingroom2Start
     if request.method == 'POST':

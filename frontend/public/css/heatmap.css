@@ -1,5 +1,5 @@
 .container {
-  max-width: 900px;
+  max-width: 1000px;
 }
 
 .heatmap {
@@ -19,6 +19,16 @@
   grid-gap: 3px;
 }
 
+.teamtension {
+  background-color: #51ceec;
+  color: white;
+}
+
+.corner {
+  background-color: #51ceec;
+  color: white;
+}
+
 .main-column.left {
   grid-column: lft;
 
@@ -29,6 +39,7 @@
 .main-column.right {
   grid-column: rght;
 }
+
 .heat_player {
   display:grid;
   justify-items: center;
@@ -51,9 +62,19 @@
   align-items: center;
   padding: 15px 0 15px 0;
 }
+
+.heat_value.property_value {
+  background-color: #51ceec;
+  color: white;
+}
+
+.heat_value.over_player {
+  background-color: #51ceec;
+  color: white;
+}
+
 .average_by_players {
   background-color: #e6e6e6;
-
 }
 
 .average-by-player {

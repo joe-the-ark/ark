@@ -109,13 +109,13 @@
 }
 @media screen and (max-width: 1200px) {
   .preview__main {
-    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(700px, 1fr));
     grid-gap: 0;
   }
 }
-@media screen and (max-width: 540px) {
+@media screen and (max-width: 900px) {
   .preview__main {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
   }
 }
 @media screen and (max-width: 1200px) {

@@ -223,11 +223,20 @@ body {
 .icon-money:before {
   content: "\e903";
 }
+.icon-money:hover {
+  box-shadow: 0 12px 20px rgba(117, 10, 237, 0.4);
+}
 .icon-download:before {
   content: "\e904";
 }
+.icon-download:hover {
+  box-shadow: 0 12px 20px rgba(117, 10, 237, 0.4);
+}
 .icon-logo:before {
   content: "\e905";
+}
+.icon-logo:hover {
+  box-shadow: 0 12px 20px rgba(117, 10, 237, 0.4);
 }
 .icon-player:before {
   content: "\e906";

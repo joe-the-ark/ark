@@ -59,28 +59,28 @@
             <main class="screen wartezimmer">
                 <div class="wartezimmer__data" id="app-2">
                     <h1>
-                        {% trans "Bitte tauscht euch aus." %}
+                        {% trans "Bitte tauscht euch jetzt aus." %}
                     </h1>
                     <p>
-                        {% trans "Erzählt euch bitte kurz gegenseitig, welches Gegensatzpaar du ausgewählt hast, damit alle verstehen können, wovon die Rede ist." %}
+                        {% trans "1) Erzählt euch bitte kurz gegenseitig, welches GEGENSATZPAAR Du ausgewählt hast, damit alle verstehen können, wovon die Rede ist." %}
                         <br/>
                     </p>
                     <img src="http://info.arks.ch/wp-content/uploads/2022/07/Plus_Minus.png">
                     <p>
                         <b>
-                        {% trans "Überprüfe bitte noch einmal das von dir gewählte Gegensatzpaar und überarbeite deine Begriffe bei Bedarf..." %}
+                        {% trans "2) Überprüfe bitte noch einmal das von Dir gewählte GEGENSATZPAAR und überarbeite Deine Begriffe bei Bedarf..." %}
                         </b>
                     <input type="text" placeholder="Kraftquelle fehlt!" name="Kraftquelle" v-model="text_input_power" />
                     <input type="text" placeholder="Energiefresser fehlt!" name="Energiefresser" v-model="text_input_drainer" />
-                    <button class="submit" @click="continue_()">
-                                {% trans "Update" %}
-                            </button>
+
+                    <button class="glow-on-hover" type="button" @click="continue_()">Update</button>
+                    
                     </p>
                         <p v-for='(value, index) in 10' :key="index">
                             {{ x }}
                         </p>
                     <p>
-                        {% trans "Starte richtig im Spiel durch, sobald alle Mitspieler hier im Warteraum sichtbar sind. Nur wer jetzt mit an Bord ist, kann am Spiel teilnehmen!" %}
+                        {% trans "3) Starte richtig durch, sobald alle Mitspieler hier im Warteraum sichtbar sind. Nur wer jetzt mit an Bord ist, nimmt an der Reise Teil!" %}
                     </p>
 
                 </div>

@@ -46,13 +46,13 @@ urlpatterns = [
     path('psychologischer/',RedirectView.as_view(url='/safety-result')),
     path('team-potential-/',RedirectView.as_view(url='/potential-result')),
     path('spannungsfelder/',RedirectView.as_view(url='/tensions-result')),
+    path('arche/',RedirectView.as_view(url='/farewell')),
     path('preview-2/',RedirectView.as_view(url='/second-mission')),
     path('mission-2-ubung-1/',RedirectView.as_view(url='/social-sensitivity')),
     path('mission-2-ubung-2/',RedirectView.as_view(url='/development-feedbacks')),
     # path('waiting_room3/',RedirectView.as_view(url='/waiting-room3')),
     path('assessment/',RedirectView.as_view(url='/game-insights')),
     path('goodbye/',server_views.goodbye),
-    path('arche/',RedirectView.as_view(url='/farewell')),
     path('logout/', server_views.logout),
       
 
@@ -70,12 +70,12 @@ urlpatterns = [
     path('potential-result/',server_views.team_potential),
     path('tensions-result/',server_views.spannungsfelder),
     path('heatmap/', server_views.heatmap),
+    path('farewell/',server_views.arche),
     path('second-mission/',server_views.preview_2),
     path('social-sensitivity/',server_views.mission_2_ubung_1),
     path('development-feedbacks/',server_views.mission_2_ubung_2),
     path('waiting-room3/', server_views.waiting_room3),
     path('game-insights/',server_views.assessment),
-    path('farewell/',server_views.arche),
 
     
     
