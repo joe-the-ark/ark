@@ -87,19 +87,19 @@ msgstr "Partagez ce lien :"
 msgid "Woran erkenne ich psychologische Sicherheit?"
 msgstr "À quoi puis-je reconnaître la sécurité psychologique ?"
 
-msgid "Die drei Dimensionen psychologischer Sicherheit geben die Richtung vor: TRUST, VOICE & SOCIAL SENSITIVITY..."
-msgstr "Les trois dimensions de la sécurité psychologique indiquent la direction à suivre : TRUST, VOICE & SOCIAL SENSITIVITY (CONFIANCE, VOIX & SENSIBILITÉ SOCIALE)..."
+msgid "1) TRUST, 2) VOICE & 3) SOCIAL SENSITIVITY - achte auf diese drei Dimensionen, um psychologischer Sicherheit Raum zu geben:"
+msgstr "1) TRUST, 2) VOICE & 3) SOCIAL SENSITIVITY - tenez compte de ces trois dimensions pour donner de l'espace à la sécurité psychologique :"
 
 msgid "Vertrauen - wie frei lasse ich zu, dass andere ihren Beitrag leisten, auch wenn sie gegen meine Interessen argumentieren?"
 msgstr "Confiance - dans quelle mesure suis-je libre d'accepter que les autres apportent leur contribution, même s'ils argumentent contre mes intérêts ?"
 
-msgid "Aufrichtigkeit - wie sicher fühle ich mich in der Lage, das anzusprechen, was mich eigentlich beschäftigen würde, um das Team voranzubringen?"
+msgid "Voice - wie sicher fühle ich mich in der Lage, das anzusprechen, was mich eigentlich beschäftigen würde, um das Team voranzubringen?"
 msgstr "Voix - dans quelle mesure me sens-je en mesure d'aborder ce qui me préoccupe réellement pour faire avancer l'équipe ?"
 
-msgid "Augenhöhe - inwieweit nehme ich die Ursachen von Spannungen im Team wahr und traue mich, meinen Beitrag zur Gruppendynamik zu hinterfragen?"
+msgid "Soziale Sensibilität - inwieweit nehme ich die Ursachen von Spannungen im Team wahr und traue mich, meinen Beitrag zur Gruppendynamik zu hinterfragen?"
 msgstr "Sensibilité sociale - dans quelle mesure est-ce que je perçois les causes des tensions dans l'équipe et ose remettre en question ma contribution à la dynamique de groupe ?"
 
-msgid "Psychologische Sicherheit ist messbar. Sie ist ausserdem der stärkste Prädiktor für gute TEAM-Performance: Psychologische Sicherheit führt zu starker Performance. Mit der Arche erkundest du die psychologische Sicherheit in deinem Team."
+msgid "Psychologische Sicherheit ist messbar. Sie ist ausserdem der stärkste Prädiktor für gute TEAM-Performance: Psychologische Sicherheit führt zu starker Performance. Mit der Arche erkundest Du die psychologische Sicherheit in Deinem Team."
 msgstr "La sécurité psychologique est mesurable. Elle est également le meilleur prédicteur d'une bonne performance d'équipe : la sécurité psychologique conduit à une bonne performance. Avec l'Arche, tu explores la sécurité psychologique dans ton équipe."
 
 #. preview.html
@@ -110,9 +110,9 @@ msgstr "Pour clarifier tes attentes, regarde cette vidéo d'avant-première de 1
 #. preview.html
 #: loco:60688727a1837301bb1df633
 msgid ""
-"Bitte finde eine für Dich stimmige Antwort, denn sie bestimmt die Struktur der Challenge."
+"Bitte finde eine für Dich stimmige Antwort, denn sie bestimmt die Reiseroute."
 msgstr ""
-"Veuillez trouver une réponse qui vous convient, car elle déterminera la structure du défi."
+"Veuillez trouver une réponse qui vous convient, car elle déterminera le voyage."
 
 #. preview.html
 #: loco:606887e6fe06e11fb175e962
@@ -131,12 +131,8 @@ msgstr "Continuer"
 msgid "Was beflügelt Dich in diesem Team?"
 msgstr "Qu'est-ce qui t'inspire dans cette équipe ?"
 
-#. ubung-1
-#: loco:606b768f6e464e1c4c0fcb40
-msgid ""
-"Was gibt Dir in unserem Team am meisten Energie?"
-msgstr ""
-"Qu'est-ce qui vous donne le plus d'énergie dans notre équipe ?"
+msgid "Bitte benenne, was Dir in unserem Team am meisten Energie schenkt."
+msgstr "Veuillez nommer ce qui vous donne le plus d'énergie dans notre équipe."
 
 #. ubung-1
 #: loco:606b779c3639f72c8f45d892
@@ -148,10 +144,8 @@ msgstr ""
 msgid "Kraftquelle"
 msgstr "source d'énergie"
 
-#. ubung-2
-#: loco:606b783b01bcd4016a5c7782
-msgid "Wie gut nutzt ihr das Team Potential?"
-msgstr "Comment utilisez-vous le potentiel de l'équipe?"
+msgid "Wie gut ist die Team Performance?"
+msgstr "Quelle est la performance de l'équipe ?"
 
 #. ubung-2
 #: loco:606b78e5b8e7465f7b1b4262
@@ -197,8 +191,8 @@ msgstr "Ecris un mot dans le champ vide ou clique sur le terme correspondant."
 
 #. ubung-3
 #: loco:606b7e554fe187702f150c72
-msgid "Bitte finde auch hier eine für Dich stimmige Antwort, denn sie bestimmt die Struktur der Challenge für Dich und alle anderen."
-msgstr "Merci de trouver ici aussi une réponse qui te convienne, car elle détermine la structure du défi pour toi et pour tous les autres."
+msgid "Bitte finde auch hier eine für Dich stimmige Antwort, denn sie bestimmt die Reiseroute für Dich und alle anderen."
+msgstr "Merci de trouver ici aussi une réponse qui te convienne, car elle détermine le voyage pour toi et pour tous les autres."
 
 msgid "Energiefresser"
 msgstr "draineur d'énergie"
@@ -345,6 +339,9 @@ msgstr "Cette évaluation se compose des perceptions égales de tous les membres
 msgid "Nach wie vor gilt: je höher die Team-Performance, desto höher die psychologische Sicherheit und desto weniger Spannungen im Team. Auf der nächsten Etappe siehst du deinen Beitrag zu den Spannungen im Team. Spannend?"
 msgstr "Comme toujours, plus la performance de l'équipe est élevée, plus la sécurité psychologique est grande et moins il y a de tensions dans l'équipe. À l'étape suivante, tu verras ta contribution aux tensions dans l'équipe. Tendus ?"
 
+msgid "Wartezimmer"
+msgstr "Salle d'attente"
+
 #. waitingroom-2
 #: loco:606c8630ca5cb5284152a872
 msgid ""
@@ -373,11 +370,11 @@ msgstr ""
 "la sécurité psychologique au sein de votre équipe. Le jeu peut continuer une "
 "fois que tous les coéquipiers sont arrivés ici dans la salle d'attente."
 
-msgid "Hier siehst Du eure Selbsteinschätzung – so gut nutzt ihr aktuell euer Potential..."
-msgstr "Ici, tu peux voir ton auto-évaluation - c'est à quel point tu utilises ton potentiel actuellement"
+msgid "Erinnerst Du Dich an Deine Einschätzung der Team Performance zu Beginn der Reise? So gut nutzt ihr aktuell euer Potential (auf einer Skala von 1 bis 100)..."
+msgstr "Te souviens-tu de ton évaluation des performances de l'équipe au début du voyage ? A quel point utilisez-vous actuellement votre potentiel (sur une échelle de 1 à 100)..."
 
-msgid "In der Regel gilt folgender Zusammenhang: je höher die Team-Performance, desto höher die psychologische Sicherheit und desto weniger Spannungen im Team."
-msgstr "En règle générale, la relation suivante s'applique : plus la performance de l'équipe est élevée, plus la sécurité psychologique est grande et moins il y a de tensions au sein de l'équipe."
+msgid "In der Regel gilt folgender Zusammenhang: je grösser die psychologische Sicherheit, umso höher die Team-Performance und desto weniger Spannungen im Team. Auf der nächsten Etappe siehst du deinen Beitrag zu den Spannungen im Team."
+msgstr "En règle générale, la relation suivante s'applique : plus la sécurité psychologique est grande, plus les performances de l'équipe sont élevées et moins il y a de tensions dans l'équipe. À l'étape suivante, vous verrez votre contribution aux tensions dans l'équipe."
 
 msgid "Oder umgekehrt: je mehr ungeklärte Spannungen, desto schlechter die Performance und desto geringer die psychologische Sicherheit."
 msgstr "Or vice versa: the more unresolved tensions, the worse the performance and the lower the psychological security."
@@ -584,8 +581,8 @@ msgstr ""
 
 #. feedback
 #: loco:606da1a105edc05dd34391e2
-msgid "Letzte Aufgabe: Anonymes Feedback"
-msgstr "Dernière tâche : feedback anonyme"
+msgid "Bitte gib anonymes Feedback"
+msgstr "Veuillez donner un feedback anonyme"
 
 #. feedback
 #: loco:606da320a4487b31254c1a82
@@ -720,8 +717,8 @@ msgstr "Team Heatmap"
 msgid "Mit wem magst Du Deine Reise auswerten?"
 msgstr "Avec qui veux-tu évaluer ton voyage ?"
 
-msgid "Je weiter oben ein Paar steht, desto integrierender für das Teamzusammenspiel wirkt diese Paarung vermutlich. Finde bitte einen oder mehrere Partner, um die Ergebnisse Deiner Reise mit der Arche zu verstehen und zu interpretieren..."
-msgstr "Plus un binôme se situe en haut de l'échelle, plus il est susceptible d'avoir un effet intégrateur sur la cohésion de l'équipe. Veuillez trouver un ou plusieurs partenaires pour comprendre et interpréter les résultats de votre voyage avec l'arche..."
+msgid "Je weiter oben ein Paar steht, desto integrierender für das Teamzusammenspiel wirkt diese Paarung vermutlich. Finde bitte einen Partner von weiter unten auf der Liste, um die Ergebnisse Deiner Reise mit der Arche zu verstehen und zu interpretieren..."
+msgstr "Plus un couple se trouve en haut de la liste, plus il est susceptible d'avoir un effet intégrateur sur l'interaction de l'équipe. Veuillez trouver un partenaire plus bas dans la liste pour comprendre et interpréter les résultats de votre voyage avec l'arche..."
 
 msgid "Auswahl löschen"
 msgstr "Supprimer la sélection"
@@ -750,8 +747,8 @@ msgstr "Objectif : Clarifier la source de ces tensions et renforcer ainsi la sé
 msgid "Wo könnten Spannungen im Team entstehen?"
 msgstr "Où des tensions pourraient-elles apparaître au sein de l'équipe ?"
 
-msgid "Die Heatmap zeigt eine Zusammenfassung der Quellen aller Spannungen..."
-msgstr "La carte thermique présente un résumé des sources de toutes les tensions..."
+msgid "Die Heatmap zeigt eine Zusammenfassung der Quellen aller Spannungen. Beginnt eure Auswertung mit 1) den farbigen Feldern im inneren der Matrix und 2) den Werten über 16..."
+msgstr "La carte thermique montre un résumé des sources de toutes les tensions. Commencez votre évaluation par 1) les champs colorés à l'intérieur de la matrice et 2) les valeurs plus grand que 16..."
 
 msgid "Horizontal: siehst Du links die Lage der Safe Zones und rechts die zugehörigen Kraftquellen und Energiefresser; je höher der Wert rechts, desto grösser ist der Beitrag dieser Energiefressern zu den Spannungen."
 msgstr "Horizontal : à gauche, vous voyez l'emplacement des zones de sécurité et à droite les sources d'énergie et les drains énergétiques correspondants ; plus la valeur à droite est élevée, plus la contribution de ces drains énergétiques aux tensions est importante."
@@ -765,7 +762,7 @@ msgstr "A l'intérieur de la carte de chaleur, tu vois les mêmes chiffres et co
 msgid "Bei negativen Vorzeichen schätzt der Spieler den eigenen Beitrag zur Teamdynamik eher zu optimistisch ein; umgekehrtes gilt bei positiven Vorzeichen."
 msgstr "Si le signe est négatif, le joueur a tendance à être trop optimiste quant à sa propre contribution à la dynamique de l'équipe ; l'inverse est vrai si le signe est positif."
 
-msgid "Ganz unten sind alle Werte zusammengefasst. Hier gilt ebenfalls: je höher der Wert mit negativem Vorzeichen, desto stärker überschätzt der Spieler den eigenen positiven Betrag zur Teamdynamik; umgekehrtes gilt bei positiven Vorzeichen."
+msgid "Ganz unten sind alle Werte aus der Matrix zusammengefasst. Hier gilt ebenfalls: je höher der Wert mit negativem Vorzeichen, desto stärker überschätzt der Spieler den eigenen positiven Betrag zur Teamdynamik; umgekehrtes gilt bei positiven Vorzeichen."
 msgstr "Toutes les valeurs sont résumées tout en bas. Ici aussi, plus la valeur est négative, plus le joueur surestime sa propre contribution positive à la dynamique de l'équipe ; l'inverse est vrai pour les valeurs positives."
 
 #. heatmap

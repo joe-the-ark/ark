@@ -17,6 +17,7 @@
     <div class="app__head">
         <header class="header-main container">
             <div class="header-main__title">
+                <icon classs="icon" onClick="window.open('https://info.arks.ch/');">
                 <span class="icon-logo"></span>
                 <span>ARK</span>
             </div>
@@ -48,7 +49,7 @@
     <div class="container">
     	<h1>{% trans "Mit wem magst Du Deine Reise auswerten?" %}<br></h1>
 		<p><br>
-			{% trans "Je weiter oben ein Paar steht, desto integrierender für das Teamzusammenspiel wirkt diese Paarung vermutlich. Finde bitte einen oder mehrere Partner, um die Ergebnisse Deiner Reise mit der Arche zu verstehen und zu interpretieren..." %}
+			{% trans "Je weiter oben ein Paar steht, desto integrierender für das Teamzusammenspiel wirkt diese Paarung vermutlich. Finde bitte einen Partner von weiter unten auf der Liste, um die Ergebnisse Deiner Reise mit der Arche zu verstehen und zu interpretieren..." %}
 		</p>
 			
 		<div class="dashboard">
@@ -113,13 +114,16 @@
 
         <div class="container">
           <h1>{% trans "Wo könnten Spannungen im Team entstehen?" %}</h1><br>
-          <p><br>{% trans "Die Heatmap zeigt eine Zusammenfassung der Quellen aller Spannungen..." %}<br><br></p>
+          <p><br>{% trans "Die Heatmap zeigt eine Zusammenfassung der Quellen aller Spannungen. Beginnt eure Auswertung mit 1) den farbigen Feldern im inneren der Matrix und 2) den Werten über 16..." %}<br><br></p>
             <ul>
               <li>
-                {% trans "Horizontal: siehst Du links die Lage der Safe Zones und rechts die zugehörigen Kraftquellen und Energiefresser; je höher der Wert rechts, desto grösser ist der Beitrag dieser Energiefressern zu den Spannungen." %}
+              {% trans "Im Innern der Heatmap siehst Du dieselben Zahlen und Farben, wie schon in der individuellen Auswertung der Spannungsfelder; als Abweichung zwischen Selbst- und Fremdwahrnehmung." %}
               </li>
               <li>
-                {% trans "Vertikal: siehst Du in der oberen Reihe den Beitrag jedes Spielers zu den Kraftquellen; je niedriger der Wert, desto grösser ist der Beitrag des Spielers zu den Kraftquellen." %}<br> 
+              {% trans "Werte über 16 deuten auf Spannungen mit dem Team hin." %}
+              </li>
+              <li>
+              {% trans "Bei negativen Vorzeichen schätzt der Spieler den eigenen Beitrag zur Teamdynamik eher zu optimistisch ein; umgekehrtes gilt bei positiven Vorzeichen." %} 
               </li>
             </ul>
         <div class="heatmap">
@@ -352,17 +356,14 @@
 
          <div class="container">
           <ul>
+              <li>
+                {% trans "Vertikal: siehst Du in der oberen Reihe den Beitrag jedes Spielers zu den Kraftquellen; je niedriger der Wert, desto grösser ist der Beitrag des Spielers zu den Kraftquellen." %}<br> 
+              </li>
+              <li>
+                {% trans "Horizontal: siehst Du links die Lage der Safe Zones und rechts die zugehörigen Kraftquellen und Energiefresser; je höher der Wert rechts, desto grösser ist der Beitrag dieser Energiefressern zu den Spannungen." %}
+              </li>
             <li>
-              {% trans "Im Innern der Heatmap siehst Du dieselben Zahlen und Farben, wie schon in der individuellen Auswertung der Spannungsfelder; als Abweichung zwischen Selbst- und Fremdwahrnehmung." %}
-            </li>
-            <li>
-              {% trans "Werte über 16 deuten auf Spannungen mit dem Team hin." %}
-            </li>
-            <li>
-              {% trans "Bei negativen Vorzeichen schätzt der Spieler den eigenen Beitrag zur Teamdynamik eher zu optimistisch ein; umgekehrtes gilt bei positiven Vorzeichen." %} 
-            </li>
-            <li>
-              {% trans "Ganz unten sind alle Werte zusammengefasst. Hier gilt ebenfalls: je höher der Wert mit negativem Vorzeichen, desto stärker überschätzt der Spieler den eigenen positiven Betrag zur Teamdynamik; umgekehrtes gilt bei positiven Vorzeichen." %}<br><br><br>
+              {% trans "Ganz unten sind alle Werte aus der Matrix zusammengefasst. Hier gilt ebenfalls: je höher der Wert mit negativem Vorzeichen, desto stärker überschätzt der Spieler den eigenen positiven Betrag zur Teamdynamik; umgekehrtes gilt bei positiven Vorzeichen." %}<br><br><br>
             </li>
           </ul>
 

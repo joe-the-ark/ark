@@ -480,7 +480,6 @@ def team_potential(request, user):
 
     return render(request, './views/team-potential.html', ctx)
 
-
 @after_waitingroom
 @user_required
 def spannungsfelder(request, user):
@@ -507,6 +506,7 @@ def spannungsfelder(request, user):
     json_list.sort(key = lambda x:x['value'])
     ctx['json_list'] = json_list
     ctx['user'] = user
+
     return render(request, './views/spannungsfelder.html', ctx)
 
 

@@ -12,7 +12,11 @@
     <link rel="stylesheet" href="/static/css/app.css">
     <link rel="stylesheet" href="/static/css/app_graph.css">
     <link rel="stylesheet" href="/static/css/spannungsfelder.css">
+    <link rel="stylesheet" href="/static/css/assessment.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <script src="/static/dom-to-image.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
 </head>
 <body>
   {% get_current_language as LANGUAGE_CODE %}
@@ -20,6 +24,7 @@
     <div class="app__head">
         <header class="header-main container">
             <div class="header-main__title">
+                <icon classs="icon" onClick="window.open('https://info.arks.ch/');">
                 <span class="icon-logo"></span>
                 <span>ARK</span>
             </div>

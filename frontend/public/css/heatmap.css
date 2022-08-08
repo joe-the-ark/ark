@@ -155,7 +155,7 @@ table.beef-table th {
 			
 table.beef-table {
 	background: rgb(212,255,191);
-	background: linear-gradient(180deg, rgba(212,255,191,1) 0%, rgba(212,255,191,1) 54%, rgba(255,210,210,1) 100%);
+	background: linear-gradient(180deg, rgba(81,206,236, 0.8) 0%, rgba(81,206,236, 0.8) 54%, rgba(81,206,236, 0.8) 100%);
 
 	table-layout: fixed;
 	border-collapse: collapse;
@@ -188,7 +188,7 @@ table.beef-table th > span:after {
 } 
 
 table.beef-table a {
-	color: var(--ls-alfa-color);
+	color: white;
 }
 
 table.beef-table a:hover {

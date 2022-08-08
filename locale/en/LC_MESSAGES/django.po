@@ -85,19 +85,19 @@ msgstr "Share this link:"
 msgid "Woran erkenne ich psychologische Sicherheit?"
 msgstr "How can I recognise psychological safety?"
 
-msgid "Die drei Dimensionen psychologischer Sicherheit geben die Richtung vor: TRUST, VOICE & SOCIAL SENSITIVITY..."
-msgstr "The three dimensions of psychological safety provide direction: TRUST, VOICE & SOCIAL SENSITIVITY..."
+msgid "1) TRUST, 2) VOICE & 3) SOCIAL SENSITIVITY - achte auf diese drei Dimensionen, um psychologischer Sicherheit Raum zu geben:"
+msgstr "1) TRUST, 2) VOICE & 3) SOCIAL SENSITIVITY - heed these three dimensions to give space to psychological safety:"
 
 msgid "Vertrauen - wie frei lasse ich zu, dass andere ihren Beitrag leisten, auch wenn sie gegen meine Interessen argumentieren?"
 msgstr "Trust - how freely do I allow others to contribute, even if they argue against my interests?"
 
-msgid "Aufrichtigkeit - wie sicher fühle ich mich in der Lage, das anzusprechen, was mich eigentlich beschäftigen würde, um das Team voranzubringen?"
+msgid "Voice - wie sicher fühle ich mich in der Lage, das anzusprechen, was mich eigentlich beschäftigen würde, um das Team voranzubringen?"
 msgstr "Voice - how confident do I feel in my ability to address what would actually concern me in order to move the team forward?"
 
-msgid "Augenhöhe - inwieweit nehme ich die Ursachen von Spannungen im Team wahr und traue mich, meinen Beitrag zur Gruppendynamik zu hinterfragen?"
+msgid "Soziale Sensibilität - inwieweit nehme ich die Ursachen von Spannungen im Team wahr und traue mich, meinen Beitrag zur Gruppendynamik zu hinterfragen?"
 msgstr "Social sensitivity - to what extent do I perceive the causes of tensions in the team and dare to question my contribution to the group dynamics?"
 
-msgid "Psychologische Sicherheit ist messbar. Sie ist ausserdem der stärkste Prädiktor für gute TEAM-Performance: Psychologische Sicherheit führt zu starker Performance. Mit der Arche erkundest du die psychologische Sicherheit in deinem Team."
+msgid "Psychologische Sicherheit ist messbar. Sie ist ausserdem der stärkste Prädiktor für gute TEAM-Performance: Psychologische Sicherheit führt zu starker Performance. Mit der Arche erkundest Du die psychologische Sicherheit in Deinem Team."
 msgstr "Psychological safety is measurable. It is also the strongest predictor of good TEAM performance: Psychological safety leads to strong performance. With the Ark you explore the psychological safety in your team."
 
 #. preview.html
@@ -108,9 +108,9 @@ msgstr "Please watch this 101 second preview video to set your expectations."
 #. preview.html
 #: loco:60688727a1837301bb1df633
 msgid ""
-"Bitte finde eine für Dich stimmige Antwort, denn sie bestimmt die Struktur der Challenge."
+"Bitte finde eine für Dich stimmige Antwort, denn sie bestimmt die Reiseroute."
 msgstr ""
-"Please find an answer that is coherent for you, because it will determine the structure of the challenge."
+"Please find an answer that is coherent for you, because it will determine the journey."
 
 #. preview.html
 #: loco:606887e6fe06e11fb175e962
@@ -129,10 +129,8 @@ msgstr "Continue"
 msgid "Was beflügelt Dich in diesem Team?"
 msgstr "What inspires you in this team?"
 
-#. ubung-1
-#: loco:606b768f6e464e1c4c0fcb40
-msgid "Was gibt Dir in unserem Team am meisten Energie?"
-msgstr "What gives you the most energy in our team?"
+msgid "Bitte benenne, was Dir in unserem Team am meisten Energie schenkt."
+msgstr "Please name what gives you the most energy on our team."
 
 #. ubung-1
 #: loco:606b779c3639f72c8f45d892
@@ -144,10 +142,8 @@ msgstr ""
 msgid "Kraftquelle"
 msgstr "energy source"
 
-#. ubung-2
-#: loco:606b783b01bcd4016a5c7782
-msgid "Wie gut nutzt ihr das Team Potential?"
-msgstr "How well do you use the team potential?"
+msgid "Wie gut ist die Team Performance?"
+msgstr "How good is the team performance?"
 
 #. ubung-2
 #: loco:606b78e5b8e7465f7b1b4262
@@ -191,8 +187,8 @@ msgstr "Please write a word in the empty field or click on the appropriate term.
 
 #. ubung-3
 #: loco:606b7e554fe187702f150c72
-msgid "Bitte finde auch hier eine für Dich stimmige Antwort, denn sie bestimmt die Struktur der Challenge für Dich und alle anderen."
-msgstr "Please find an answer that is coherent for you, because it determines the structure of the challenge for you and everyone else."
+msgid "Bitte finde auch hier eine für Dich stimmige Antwort, denn sie bestimmt die Reiseroute für Dich und alle anderen."
+msgstr "Please find an answer that is coherent for you, because it determines the journey for you and everyone else."
 
 msgid "Energiefresser"
 msgstr "energy drainer"
@@ -335,6 +331,9 @@ msgstr "Average"
 msgid "Maximal"
 msgstr "Maximum"
 
+msgid "Wartezimmer"
+msgstr "Waiting room"
+
 #. waitingroom-2
 #: loco:606c8630ca5cb5284152a872
 msgid ""
@@ -362,11 +361,11 @@ msgstr ""
 "Safety in your team. The game can continue as soon as all players have "
 "arrived here in the waiting room."
 
-msgid "Hier siehst Du eure Selbsteinschätzung – so gut nutzt ihr aktuell euer Potential..."
-msgstr "Here you can see your self-assessment - this is how well you are currently using your potential..."
+msgid "Erinnerst Du Dich an Deine Einschätzung der Team Performance zu Beginn der Reise? So gut nutzt ihr aktuell euer Potential (auf einer Skala von 1 bis 100)..."
+msgstr "Do you remember your assessment of team performance at the beginning of the journey? That's how well you're currently using your potential (on a scale of 1 to 100)..."
 
-msgid "In der Regel gilt folgender Zusammenhang: je höher die Team-Performance, desto höher die psychologische Sicherheit und desto weniger Spannungen im Team."
-msgstr "As a rule, the following relationship applies: the higher the team performance, the higher the psychological security and the less tension in the team."
+msgid "In der Regel gilt folgender Zusammenhang: je grösser die psychologische Sicherheit, umso höher die Team-Performance und desto weniger Spannungen im Team. Auf der nächsten Etappe siehst du deinen Beitrag zu den Spannungen im Team."
+msgstr "As a rule, the following relationship applies: the greater the psychological safety, the higher the team performance and the less tension in the team. On the next stage you will see your contribution to the tensions in the team."
 
 msgid "Oder umgekehrt: je mehr ungeklärte Spannungen, desto schlechter die Performance und desto geringer die psychologische Sicherheit."
 msgstr "Or vice versa: the more unresolved tensions, the worse the performance and the lower the psychological security."
@@ -567,8 +566,8 @@ msgstr ""
 
 #. feedback
 #: loco:606da1a105edc05dd34391e2
-msgid "Letzte Aufgabe: Anonymes Feedback"
-msgstr "Last task: Anonymous feedback"
+msgid "Bitte gib anonymes Feedback"
+msgstr "Please provide anonymous feedback"
 
 #. feedback
 #: loco:606da320a4487b31254c1a82
@@ -695,8 +694,8 @@ msgstr "Team Heatmap"
 msgid "Mit wem magst Du Deine Reise auswerten?"
 msgstr "Who do you like to evaluate your trip with?"
 
-msgid "Je weiter oben ein Paar steht, desto integrierender für das Teamzusammenspiel wirkt diese Paarung vermutlich. Finde bitte einen oder mehrere Partner, um die Ergebnisse Deiner Reise mit der Arche zu verstehen und zu interpretieren..."
-msgstr "The higher up a pairing is, the more integrating for the team interaction this pairing is likely to be. Please find one or more partners to understand and interpret the results of your journey with the ark..."
+msgid "Je weiter oben ein Paar steht, desto integrierender für das Teamzusammenspiel wirkt diese Paarung vermutlich. Finde bitte einen Partner von weiter unten auf der Liste, um die Ergebnisse Deiner Reise mit der Arche zu verstehen und zu interpretieren..."
+msgstr "The higher up on the list a pair is, the more integrating for the team interaction this pairing is likely to be. Please find a partner from further down the list to understand and interpret the results of your journey with the Ark...."
 
 msgid "Auswahl löschen"
 msgstr "Delete selection"
@@ -725,8 +724,8 @@ msgstr "Goal: Clarify the source of these tensions, thereby strengthening psycho
 msgid "Wo könnten Spannungen im Team entstehen?"
 msgstr "Where might tensions arise in the team?"
 
-msgid "Die Heatmap zeigt eine Zusammenfassung der Quellen aller Spannungen..."
-msgstr "The heat map shows a summary of the sources of all tensions..."
+msgid "Die Heatmap zeigt eine Zusammenfassung der Quellen aller Spannungen. Beginnt eure Auswertung mit 1) den farbigen Feldern im inneren der Matrix und 2) den Werten über 16..."
+msgstr "The heatmap shows a summary of the sources of all tensions. Start your debrief with 1) the colored fields inside the matrix and 2) the values larger than 16..."
 
 msgid "Horizontal: siehst Du links die Lage der Safe Zones und rechts die zugehörigen Kraftquellen und Energiefresser; je höher der Wert rechts, desto grösser ist der Beitrag dieser Energiefressern zu den Spannungen."
 msgstr "Horizontal: on the left you see the location of the Safe Zones and on the right the corresponding power sources and energy drainers; the higher the value on the right, the greater the contribution of these energy drainer to the tensions."
@@ -740,7 +739,7 @@ msgstr "Inside the heatmap you see the same numbers and colors as already in the
 msgid "Bei negativen Vorzeichen schätzt der Spieler den eigenen Beitrag zur Teamdynamik eher zu optimistisch ein; umgekehrtes gilt bei positiven Vorzeichen."
 msgstr "If the sign is negative, the player tends to be too optimistic about his or her own contribution to the team dynamic; the reverse is true if the sign is positive."
 
-msgid "Ganz unten sind alle Werte zusammengefasst. Hier gilt ebenfalls: je höher der Wert mit negativem Vorzeichen, desto stärker überschätzt der Spieler den eigenen positiven Betrag zur Teamdynamik; umgekehrtes gilt bei positiven Vorzeichen."
+msgid "Ganz unten sind alle Werte aus der Matrix zusammengefasst. Hier gilt ebenfalls: je höher der Wert mit negativem Vorzeichen, desto stärker überschätzt der Spieler den eigenen positiven Betrag zur Teamdynamik; umgekehrtes gilt bei positiven Vorzeichen."
 msgstr "All values are summarized at the bottom. The same applies here: the higher the value with a negative sign, the more the player overestimates his own positive contribution to the team dynamics; the reverse is true for positive signs."
 
 #. heatmap

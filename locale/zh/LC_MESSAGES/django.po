@@ -85,19 +85,19 @@ msgstr "分享这个链接。"
 msgid "Woran erkenne ich psychologische Sicherheit?"
 msgstr "我如何识别心理安全？"
 
-msgid "Die drei Dimensionen psychologischer Sicherheit geben die Richtung vor: TRUST, VOICE & SOCIAL SENSITIVITY..."
-msgstr "心理安全的三个维度提供了方向。信任、声音和社会敏感性: TRUST, VOICE & SOCIAL SENSITIVITY..."
+msgid "1) TRUST, 2) VOICE & 3) SOCIAL SENSITIVITY - achte auf diese drei Dimensionen, um psychologischer Sicherheit Raum zu geben:"
+msgstr "1）信任，2）声音和3）社会敏感度--注意这三个方面，给心理安全以空间。"
 
 msgid "Vertrauen - wie frei lasse ich zu, dass andere ihren Beitrag leisten, auch wenn sie gegen meine Interessen argumentieren?"
 msgstr "信任--我如何自由地允许他人做出贡献，即使他们反对我的利益？"
 
-msgid "Aufrichtigkeit - wie sicher fühle ich mich in der Lage, das anzusprechen, was mich eigentlich beschäftigen würde, um das Team voranzubringen?"
+msgid "Voice - wie sicher fühle ich mich in der Lage, das anzusprechen, was mich eigentlich beschäftigen würde, um das Team voranzubringen?"
 msgstr "Voice--为了推动团队的发展，我有多大的信心来解决我实际关心的问题？"
 
-msgid "Augenhöhe - inwieweit nehme ich die Ursachen von Spannungen im Team wahr und traue mich, meinen Beitrag zur Gruppendynamik zu hinterfragen?"
+msgid "Soziale Sensibilität - inwieweit nehme ich die Ursachen von Spannungen im Team wahr und traue mich, meinen Beitrag zur Gruppendynamik zu hinterfragen?"
 msgstr "Social sensitivity--我在多大程度上察觉到团队中紧张的原因，并敢于质疑自己对团体动态的贡献？"
 
-msgid "Psychologische Sicherheit ist messbar. Sie ist ausserdem der stärkste Prädiktor für gute TEAM-Performance: Psychologische Sicherheit führt zu starker Performance. Mit der Arche erkundest du die psychologische Sicherheit in deinem Team."
+msgid "Psychologische Sicherheit ist messbar. Sie ist ausserdem der stärkste Prädiktor für gute TEAM-Performance: Psychologische Sicherheit führt zu starker Performance. Mit der Arche erkundest Du die psychologische Sicherheit in Deinem Team."
 msgstr "心理安全是可以衡量的。这也是对团队良好表现最有力的预测：心理安全导致强劲的表现。利用 方舟 探索你团队中的心理安全。"
 
 #. preview.html
@@ -108,8 +108,8 @@ msgstr "为了澄清你的期望，请观看这个101秒的预览视频。"
 #. preview.html
 #: loco:60688727a1837301bb1df633
 msgid ""
-"Bitte finde eine für Dich stimmige Antwort, denn sie bestimmt die Struktur der Challenge."
-msgstr "请找到一个适合你的答案，因为这将决定挑战的结构。"
+"Bitte finde eine für Dich stimmige Antwort, denn sie bestimmt die Reiseroute."
+msgstr "请找到一个对你来说是连贯的答案，因为它决定了行程。"
 
 #. preview.html
 #: loco:606887e6fe06e11fb175e962
@@ -127,11 +127,8 @@ msgstr "继续"
 msgid "Was beflügelt Dich in diesem Team?"
 msgstr "在这个团队中，是什么激励了你？"
 
-#. ubung-1
-#: loco:606b768f6e464e1c4c0fcb40
-msgid ""
-"Was gibt Dir in unserem Team am meisten Energie?"
-msgstr "在我们的团队中，什么给了你最大的能量？"
+msgid "Bitte benenne, was Dir in unserem Team am meisten Energie schenkt."
+msgstr "请说出我们团队中给你带来最大能量的东西。"
 
 #. ubung-1
 #: loco:606b779c3639f72c8f45d892
@@ -142,10 +139,8 @@ msgstr "每个玩家在空栏里写下一个词，或者点击相应的术语。
 msgid "Kraftquelle"
 msgstr "能源来源"
 
-#. ubung-2
-#: loco:606b783b01bcd4016a5c7782
-msgid "Wie gut nutzt ihr das Team Potential?"
-msgstr "你对团队潜力的利用程度如何？"
+msgid "Wie gut ist die Team Performance?"
+msgstr "团队表现有多好？"
 
 #. ubung-2
 #: loco:606b78e5b8e7465f7b1b4262
@@ -183,8 +178,8 @@ msgstr "请在空栏里写一个词，或点击相应的术语。"
 
 #. ubung-3
 #: loco:606b7e554fe187702f150c72
-msgid "Bitte finde auch hier eine für Dich stimmige Antwort, denn sie bestimmt die Struktur der Challenge für Dich und alle anderen."
-msgstr "请找到一个对你来说是连贯的答案，因为它决定了你和其他人的挑战结构。"
+msgid "Bitte finde auch hier eine für Dich stimmige Antwort, denn sie bestimmt die Reiseroute für Dich und alle anderen."
+msgstr "请找到一个适合你的答案，因为它决定了你和其他人的行程。"
 
 msgid "Energiefresser"
 msgstr "能源消耗者"
@@ -320,6 +315,9 @@ msgstr "这种评估是由所有团队成员的平等认知组成的。这些是
 msgid "Nach wie vor gilt: je höher die Team-Performance, desto höher die psychologische Sicherheit und desto weniger Spannungen im Team. Auf der nächsten Etappe siehst du deinen Beitrag zu den Spannungen im Team. Spannend?"
 msgstr "如前所述，团队业绩越高，心理安全感就越高，团队的紧张程度就越低。在下一个阶段，你将看到你对团队紧张的贡献。紧张吗？"
 
+msgid "Wartezimmer"
+msgstr "等待室"
+
 #. waitingroom-2
 #: loco:606c8630ca5cb5284152a872
 msgid ""
@@ -341,11 +339,11 @@ msgid ""
 "sobald alle Mitspieler hier im Warteraum angekommen sind."
 msgstr "在与 方舟 的旅途中，看看如何提高团队的心理安全。当所有队友都到达这里的候补室后，游戏就可以继续进行。"
 
-msgid "Hier siehst Du eure Selbsteinschätzung – so gut nutzt ihr aktuell euer Potential..."
-msgstr "在这里，你可以看到你的自我评估--这是你目前利用你的潜力的情况。"
+msgid "Erinnerst Du Dich an Deine Einschätzung der Team Performance zu Beginn der Reise? So gut nutzt ihr aktuell euer Potential (auf einer Skala von 1 bis 100)..."
+msgstr "你还记得你在旅程开始时对团队表现的评估吗？你目前在多大程度上发挥了你的潜力（以1到100为标准）？"
 
-msgid "In der Regel gilt folgender Zusammenhang: je höher die Team-Performance, desto höher die psychologische Sicherheit und desto weniger Spannungen im Team."
-msgstr "通常情况下，以下相关性适用：团队业绩越高，心理安全感越高，团队的紧张程度越低。"
+msgid "In der Regel gilt folgender Zusammenhang: je grösser die psychologische Sicherheit, umso höher die Team-Performance und desto weniger Spannungen im Team. Auf der nächsten Etappe siehst du deinen Beitrag zu den Spannungen im Team."
+msgstr "通常情况下，以下关系适用：心理安全感越强，团队绩效越高，团队的紧张程度越低。在下一个阶段，你将看到你对团队中的紧张关系的贡献。"
 
 msgid "Oder umgekehrt: je mehr ungeklärte Spannungen, desto schlechter die Performance und desto geringer die psychologische Sicherheit."
 msgstr "或者反过来说：未解决的紧张关系越多，表现越差，心理安全感越低。"
@@ -658,8 +656,8 @@ msgstr "团队热图"
 msgid "Mit wem magst Du Deine Reise auswerten?"
 msgstr "你喜欢和谁一起评估你的旅行？"
 
-msgid "Je weiter oben ein Paar steht, desto integrierender für das Teamzusammenspiel wirkt diese Paarung vermutlich. Finde bitte einen oder mehrere Partner, um die Ergebnisse Deiner Reise mit der Arche zu verstehen und zu interpretieren..."
-msgstr "一个配对的级别越高，对团队的整合性就越强。请找到一个或多个合作伙伴来理解和解释你与方舟的旅程结果...."
+msgid "Je weiter oben ein Paar steht, desto integrierender für das Teamzusammenspiel wirkt diese Paarung vermutlich. Finde bitte einen Partner von weiter unten auf der Liste, um die Ergebnisse Deiner Reise mit der Arche zu verstehen und zu interpretieren..."
+msgstr "一对组合在名单上的位置越高，它对团队的整合性就越强。请从更远的地方找一个伙伴，以便理解和解释你与方舟的旅程的结果......。"
 
 msgid "Auswahl löschen"
 msgstr "删除选择"
@@ -688,8 +686,8 @@ msgstr "目标：请澄清这些紧张关系的来源，从而加强团队的心
 msgid "Wo könnten Spannungen im Team entstehen?"
 msgstr "团队中哪里可能出现紧张？"
 
-msgid "Die Heatmap zeigt eine Zusammenfassung der Quellen aller Spannungen..."
-msgstr "热图显示了所有紧张局势的来源摘要。"
+msgid "Die Heatmap zeigt eine Zusammenfassung der Quellen aller Spannungen. Beginnt eure Auswertung mit 1) den farbigen Feldern im inneren der Matrix und 2) den Werten über 16..."
+msgstr "热图显示了所有紧张局势的来源摘要。从1）矩阵内的彩色字段和2）超过16的数值开始评估..."
 
 msgid "Horizontal: siehst Du links die Lage der Safe Zones und rechts die zugehörigen Kraftquellen und Energiefresser; je höher der Wert rechts, desto grösser ist der Beitrag dieser Energiefressern zu den Spannungen."
 msgstr "水平：在左边你可以看到安全区的位置，右边是相应的电源和能量消耗者；右边的数值越高，这些能量消耗者对紧张的贡献越大。"
@@ -706,7 +704,7 @@ msgstr "分数超过16分表示与团队关系紧张。"
 msgid "Bei negativen Vorzeichen schätzt der Spieler den eigenen Beitrag zur Teamdynamik eher zu optimistisch ein; umgekehrtes gilt bei positiven Vorzeichen."
 msgstr "如果符号为负数，该球员倾向于对自己对团队动态的贡献过于乐观；如果符号为正数，则相反。"
 
-msgid "Ganz unten sind alle Werte zusammengefasst. Hier gilt ebenfalls: je höher der Wert mit negativem Vorzeichen, desto stärker überschätzt der Spieler den eigenen positiven Betrag zur Teamdynamik; umgekehrtes gilt bei positiven Vorzeichen."
+msgid "Ganz unten sind alle Werte aus der Matrix zusammengefasst. Hier gilt ebenfalls: je höher der Wert mit negativem Vorzeichen, desto stärker überschätzt der Spieler den eigenen positiven Betrag zur Teamdynamik; umgekehrtes gilt bei positiven Vorzeichen."
 msgstr "所有的数值都在底部进行了总结。这里同样适用：负号的数值越高，球员就越高估自己对团队活力的积极贡献；正号的情况则相反。"
 
 #. heatmap

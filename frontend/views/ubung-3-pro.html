@@ -23,6 +23,7 @@
     <div class="app__head">
         <header class="header-main container">
             <div class="header-main__title">
+                <icon classs="icon" onClick="window.open('https://info.arks.ch/');">
                 <span class="icon-logo"></span>
                 <span>ARK</span>
             </div>
@@ -63,7 +64,7 @@
                         </b><br>
                     <img src="http://info.arks.ch/wp-content/uploads/2022/07/Minus.png">
                     </p>
-                    <input type="text" placeholder={% trans "Energiefresser" %} name="energiefresser" v-model="text_input" @keyup.enter="add_term" @keyup = "keyboard_()"/>
+                    <input type="text" placeholder="Energiefresser" name="energiefresser" v-model="text_input" @keyup.enter="add_term" @keyup = "keyboard_()"/>
                     <label>*Dieser Begriff wurde bereits von einem anderen Spieler ausgewählt.</label>
                     <p>
                             {% trans "Beschreibe bitte den Gegenpol dessen, was Dich im Team beflügelt." %}
@@ -105,7 +106,7 @@
                     </div>
                     <input id="tags" type="hidden" name="tags" value="输入你要传bai递的值">
                     <p>
-                        {% trans "Bitte finde auch hier eine für Dich stimmige Antwort, denn sie bestimmt die Struktur der Challenge für Dich und alle anderen." %}
+                        {% trans "Bitte finde auch hier eine für Dich stimmige Antwort, denn sie bestimmt die Reiseroute für Dich und alle anderen." %}
                     </p>
                     <div class="center">
                         {% comment %} <a href="/wartezimmer/"> {% endcomment %}

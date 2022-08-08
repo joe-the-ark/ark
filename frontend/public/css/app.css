@@ -250,10 +250,10 @@ body {
   animation-duration: 1s;
 }
 .app.started .app__head {
-  padding: 73px 0 86px;
+  padding: 103px 0 56px;
   position: relative;
   background-image: url("../images/general/bg-global-started.png"), url("../images/general/buoy-started.png"), url("../images/general/buoy-min-started.png"), url("../images/general/boat.png");
-  background-position: 100% 0%, 35% 92%, 22% 65%, 5% 30%;
+  background-position: 100% 0%, 35% 92%, 22% 65%, 3% 80%;
   background-size: auto;
   background-repeat: no-repeat;
   background-color: var(--ls-accent-1-color);

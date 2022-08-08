@@ -257,20 +257,17 @@
 .inactive .custom-graph__item-name {
   color: var(--ls-alfa-color);
 }
+
 .custom-graph__status {
-  width: 4px;
-  position: absolute;
-  background: linear-gradient(
-    to top,
-    #3dff39 0%,
-    #e1f131 52.91%,
-    #f53131 101.58%
-  );
-  left: 45px;
-  bottom: 0;
-  top: 70px;
-  height: calc(100% - 220px);
+    width: 5px;
+    position: absolute;
+    background: linear-gradient(to bottom, #3781ee 0%, #51ceec 52.91%, #000000 101.58%);
+    left: 75px;
+    bottom: 0;
+    top: 70px;
+    height: calc(100% - 220px);
 }
+
 .custom-graph__status-down,
 .custom-graph__status-up {
   color: var(--ls-alfa-color);

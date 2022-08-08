@@ -18,16 +18,11 @@
 <body>
 <div class="app started">
     <div class="app__head">
-        <header class="header-main container">
-            <div class="header-main__title">
-                <span class="icon-logo"></span>
-                <span>ARK</span>
-            </div>
-
-              <div class="language-selector" style="display:inline-block;">
+            <div class="language-selector" style="display:inline-block;">
                 <form action="{% url 'set_language' %}" method="post" style="vertical-align:middle;">{% csrf_token %}
                     <input name="next" type="hidden" value="">
-                    <select onchange="this.form.submit()" name="language" id="select_" style="width: 7px;">
+                    <img id="flag" src="" style="width:20%;vertical-align:middle;padding-left:1px">
+                    <select onchange="this.form.submit()" name="language" id="select_" style="width: auto;">
                         {% get_current_language as LANGUAGE_CODE %}
                         {% get_available_languages as LANGUAGES %}
                         {% get_language_info_list for LANGUAGES as languages %}
@@ -37,9 +32,18 @@
                             </option>
                         {% endfor %}
                     </select>
-                    <img id="flag" src="" style="width:45%;vertical-align:middle;padding-left:1px">
+
                 </form>
               </div>
+        <header class="header-main container">
+            <div class="header-main__title">
+                <icon classs="icon" onClick="window.open('https://info.arks.ch/');">
+                <span class="icon-logo"></span>
+                <span>ARKS</span>
+
+            </div>
+
+
 
                 <div class="user">
                     <div class="user__subtitle">
@@ -188,7 +192,7 @@
                     -->
                     <div class="form__field">
                         <p>
-                            {% trans "Die Arche ist eine Online-Gruppenreise, um psychologische Sicherheit mit deinem Team zu erkunden. Die Spielzeit der ersten Etappe beträgt eine halbe Stunde." %}
+                            {% trans "Die Arche ist eine Online-Gruppenreise, um psychologische Sicherheit mit Deinem Team zu erkunden. Die Spielzeit der ersten Etappe beträgt eine halbe Stunde." %}
                         </p>
 
                     </div>
@@ -196,7 +200,7 @@
                     <div class="form__field">
                         <p>
                             {% trans "Spiel bitte mit einem Firefox, Chrome oder Opera Browser." %}<br>
-                            {% trans "Teile diesen Link, um dein Team mitzunehmen:" %}
+                            {% trans "Teile diesen Link, um Dein Team mitzunehmen:" %}
                         </p>
                         <button>
                             {% trans "Spiellink teilen:" %}

@@ -24,6 +24,7 @@
     <div class="app__head">
         <header class="header-main container">
             <div class="header-main__title">
+                <icon classs="icon" onClick="window.open('https://info.arks.ch/');">
                 <span class="icon-logo"></span>
                 <span>ARK</span>
             </div>
@@ -64,11 +65,11 @@
                         </b><br>
                     <img src="http://info.arks.ch/wp-content/uploads/2022/07/Plus.png">
                     </p>
-                    <input type="text" placeholder={% trans "Kraftquelle" %} name="kraftquelle" v-model="text_input" @keyup.enter="add_term" @keyup = "keyboard_()"/><
+                    <input type="text" placeholder="Kraftquelle" name="kraftquelle" v-model="text_input" @keyup.enter="add_term" @keyup = "keyboard_()"/><
                     <label>*Diese Qualität wurde bereits von einem anderen Spieler ausgewählt.</label>
 
                     <p>
-                        {% trans "Was gibt Dir in unserem Team am meisten Energie?" %}
+                        {% trans "Bitte benenne, was Dir in unserem Team am meisten Energie schenkt." %}
                         <br/>
                         <br/>
                     </p>
@@ -108,7 +109,7 @@
                     </div>
                     <input id="tags" type="hidden" name="tags" value="输入你要传bai递的值">
                     <p>
-                        {% trans "Bitte finde eine für Dich stimmige Antwort, denn sie bestimmt die Struktur der Challenge." %}
+                        {% trans "Bitte finde eine für Dich stimmige Antwort, denn sie bestimmt die Reiseroute." %}
                     </p>
                     <div class="center">
                         {% comment %} <a href="/ubung-3/"> {% endcomment %}

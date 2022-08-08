@@ -33,6 +33,7 @@
     <div class="app__head">
         <header class="header-main container">
             <div class="header-main__title">
+                <icon classs="icon" onClick="window.open('https://info.arks.ch/');">
                 <span class="icon-logo"></span>
                 <span>ARK</span>
             </div>
@@ -64,30 +65,23 @@
             <main class="screen wartezimmer">
                 <div class="wartezimmer__data">
                     <h1>
-                        {% trans "Team Potential Einschätzung" %}
+                        {% trans "Wartezimmer" %}
                     </h1>
                 <p>
-                        {% trans "Hier siehst Du eure Selbsteinschätzung – so gut nutzt ihr aktuell euer Potential..." %}
+                        {% trans "Erinnerst Du Dich an Deine Einschätzung der Team Performance zu Beginn der Reise? So gut nutzt ihr aktuell euer Potential (auf einer Skala von 1 bis 100)..." %}
                         <br>
                         <div class="custom-graph-info">
-                        <div class="custom-graph-info__item small" data-text="Minimal">
-                        {{ team_potential_minimal }}
-                        </div>
-                        <div class="custom-graph-info__item base" data-text="Average">
+                        <div class="custom-graph-info__item base" data-text="">
                         {{ team_potential_median }}
-                        </div>
-                        <div class="custom-graph-info__item large" data-text="Maximal">
-                        {{ team_potential_maximal }}
-                        </div>
+                        <br><br></div>
                 </div>
-                        <br>
                 </p>
                 <ul>
                     <li>
                         {% trans "In der Regel gilt folgender Zusammenhang: je höher die Team-Performance, desto höher die psychologische Sicherheit und desto weniger Spannungen im Team." %}
                     </li>
                     <li>
-                        {% trans "Oder umgekehrt: je mehr ungeklärte Spannungen, desto schlechter die Performance und desto geringer die psychologische Sicherheit." %}
+                        {% trans "Oder umgekehrt: je schlechter die Performance, desto geringer die psychologische Sicherheit." %}
                     </li>
                     <li>
                         {% trans "Auf der nächsten Etappe siehst Du, ob dieser Zusammenhang auch für Dein Team stimmt." %}
