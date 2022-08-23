@@ -85,8 +85,8 @@ msgstr "Share this link:"
 msgid "Woran erkenne ich psychologische Sicherheit?"
 msgstr "How can I recognise psychological safety?"
 
-msgid "1) TRUST, 2) VOICE & 3) SOCIAL SENSITIVITY - achte auf diese drei Dimensionen, um psychologischer Sicherheit Raum zu geben:"
-msgstr "1) TRUST, 2) VOICE & 3) SOCIAL SENSITIVITY - heed these three dimensions to give space to psychological safety:"
+msgid "Achte auf diese drei Dimensionen, um psychologischer Sicherheit Raum zu geben:"
+msgstr "Heed these three dimensions to give space to psychological safety:"
 
 msgid "Vertrauen - wie frei lasse ich zu, dass andere ihren Beitrag leisten, auch wenn sie gegen meine Interessen argumentieren?"
 msgstr "Trust - how freely do I allow others to contribute, even if they argue against my interests?"

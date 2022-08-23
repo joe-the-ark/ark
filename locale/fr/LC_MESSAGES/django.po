@@ -87,8 +87,8 @@ msgstr "Partagez ce lien :"
 msgid "Woran erkenne ich psychologische Sicherheit?"
 msgstr "À quoi puis-je reconnaître la sécurité psychologique ?"
 
-msgid "1) TRUST, 2) VOICE & 3) SOCIAL SENSITIVITY - achte auf diese drei Dimensionen, um psychologischer Sicherheit Raum zu geben:"
-msgstr "1) TRUST, 2) VOICE & 3) SOCIAL SENSITIVITY - tenez compte de ces trois dimensions pour donner de l'espace à la sécurité psychologique :"
+msgid "Achte auf diese drei Dimensionen, um psychologischer Sicherheit Raum zu geben:"
+msgstr "Tenez compte de ces trois dimensions pour donner de l'espace à la sécurité psychologique :"
 
 msgid "Vertrauen - wie frei lasse ich zu, dass andere ihren Beitrag leisten, auch wenn sie gegen meine Interessen argumentieren?"
 msgstr "Confiance - dans quelle mesure suis-je libre d'accepter que les autres apportent leur contribution, même s'ils argumentent contre mes intérêts ?"
