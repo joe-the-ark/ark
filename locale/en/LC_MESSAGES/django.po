@@ -39,13 +39,16 @@ msgstr "The game time is 45-90 minutes, depending on the size of the group."
 
 #. onboarding
 #: loco:6073033f7b216d70613ab4d2
-msgid "Wie steht es um eure Psychologische Sicherheit?"
+msgid "Wie steht es um eure psychologische Sicherheit?"
 msgstr "How is your psychological safety?"
 
 #. onboarding
 #: loco:6071a6e2c120e22f85749162
 msgid "Spiel bitte mit einem Firefox, Chrome oder Opera Browser."
 msgstr "Please play with a Firefox, Chrome or Opera browser."
+
+msgid "Lade Dein Team ein."
+msgstr "Invite your crew."
 
 #. onboarding
 #: loco:6072acd67bb40161e53bf0d2

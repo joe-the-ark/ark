@@ -39,8 +39,11 @@ msgstr "La durée du jeu est de 45 à 90 minutes, en fonction de la taille du gr
 
 #. onboarding
 #: loco:6073033f7b216d70613ab4d2
-msgid "Wie steht es um eure Psychologische Sicherheit?"
+msgid "Wie steht es um eure psychologische Sicherheit?"
 msgstr "Comment est votre sécurité psychologique ?"
+
+msgid "Lade Dein Team ein."
+msgstr "Invite ton équipe."
 
 #. onboarding
 #: loco:6071a6e2c120e22f85749162

@@ -37,8 +37,11 @@ msgstr "游戏时间为45-90分钟，具体时间视小组人数而定。"
 
 #. onboarding
 #: loco:6073033f7b216d70613ab4d2
-msgid "Wie steht es um eure Psychologische Sicherheit?"
+msgid "Wie steht es um eure psychologische Sicherheit?"
 msgstr "你的心理安全感如何？"
+
+msgid "Lade Dein Team ein."
+msgstr "邀请你的团队。"
 
 #. onboarding
 #: loco:6071a6e2c120e22f85749162
