@@ -279,8 +279,8 @@ msgstr "请在每个角色上点击你认为最符合玩家在日常情况下的
 
 #. potential-result
 #: loco:606c4d8d8f567155c2283dd2
-msgid "Team Potential Einschätzung"
-msgstr "团队潜力评估"
+msgid "Team Performance Einschätzung"
+msgstr "团队绩效评估"
 
 #. potential-result
 #: loco:606c4e795e2f794ae22b8e02

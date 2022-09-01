@@ -202,6 +202,8 @@
                             {% trans "Teile diesen Link, um Dein Team mitzunehmen:" %}
                             
                         </p>
+                        <span id="icon-link" class="icon-link" data-clipboard-target="#link_url">
+                        </span>
                         <button style="display: none;">
                             {% trans "Diesen Link teilen:" %}
                         </button>
@@ -212,6 +214,8 @@
                         </span>
                     </div>
                     <div class="form__field">
+                        <span id="icon-link" class="icon-link" data-clipboard-target="#link_url">
+                        </span>
                         <button id="submit_button" type="button">
                             {% trans "Weiterspielen" %}
                         </button>
@@ -236,7 +240,7 @@
     new ClipboardJS('.icon-link');
     let linkSpan = tippy(document.querySelector('.icon-link'));
     tippy('.icon-link', {
-      content: 'Copy to clipboard',
+      content: 'Copy link to clipboard and start the journey',
     });
     tippy('.icon-link', {
       trigger: 'click',
@@ -374,7 +378,7 @@
 
     function defaultLoad() {
         const el = document.getElementById('title-game');
-        el.innerHTML = window.innerWidth < 768 ? 'Spiel erstellen' : "{% trans 'Wie steht es um eure Psychologische Sicherheit?' %}"
+        el.innerHTML = window.innerWidth < 768 ? 'Start your journey' : "{% trans 'Invite your crew' %}"
     }
 
     function check_game_name(){

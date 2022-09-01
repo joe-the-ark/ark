@@ -300,8 +300,8 @@ msgstr ""
 
 #. potential-result
 #: loco:606c4d8d8f567155c2283dd2
-msgid "Team Potential Einschätzung"
-msgstr "Évaluation du potentiel de l'équipe"
+msgid "Team Performance Einschätzung"
+msgstr "Évaluation de la performance de l'équipe"
 
 #. potential-result
 #: loco:606c4e795e2f794ae22b8e02
