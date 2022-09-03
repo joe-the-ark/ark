@@ -197,7 +197,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form__field">
+                    <div class="form__field" style="position: absolute;left:-10000px;">
                         <p style="display: block;">
                             {% trans "Teile diesen Link, um Dein Team mitzunehmen:" %}
                             
@@ -214,10 +214,8 @@
                         </span>
                     </div>
                     <div class="form__field">
-                        <span id="icon-link" class="icon-link" data-clipboard-target="#link_url">
-                        </span>
-                        <button id="submit_button" type="button">
-                            {% trans "Weiterspielen" %}
+                        <button id="submit_button" type="button" style="margin-top: 50px;line-height: 38px; padding: 26px 26px; width:100%; font-size: 30px">
+                            {% trans "Spiel starten <br> <span style='font-size:24px;'>und Link kopieren</span>" %}
                         </button>
                     </div>
                         <p style="display: inline;">
@@ -423,13 +421,17 @@
     }
 
     $('#icon-link').click(function(){
-        console.log('click');
-        check_game_name();
+        //console.log('click');
+        //check_game_name();
     })
 
     $('#submit_button').click(function(){
-        console.log('click');
-        check_game_name();
+
+        $('.icon-link').trigger('click');
+        window.setTimeout(function(){
+            console.log('click');
+            check_game_name();
+        }, 100);
     })
 
     // Safari 3.0+ "[object HTMLElementConstructor]" 

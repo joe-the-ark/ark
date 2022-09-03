@@ -129,10 +129,10 @@
         <div class="heatmap">
 
           <div class="main-column left">
-            <div class="teamtension">tension</div>
+            <div class="teamtension" style="font-size: 36px; padding: 10px; text-align: center"><span>[[tension_average]]</span></div>
 
             
-              <div class="heat_value property_value" v-for="value in scale_value_list">[[ value -16]]-[[ value +16]]</div>
+              <div class="heat_value property_value" v-for="value in scale_value_list">[[ value -16]]&nbsp;. .&nbsp;[[ value +16]]</div>
               {% comment %} <div class="heat_value property_value">200</div>
               <div class="heat_value property_value">250</div>
               <div class="heat_value property_value">300</div>
@@ -143,7 +143,7 @@
 
           <div class="main-column player" v-for="user in main_map">
             <div class="heat_value over_player">[[ user[0] ]]</div>
-            <div v-for="value in user[3]" v-bind:class="{ 'heat_value one': value[1]==='yellow', 'heat_value two': value[1]==='black', 'heat_value three': value[1]==='None', 'heat_value four': value[1]==='red' }">[[ keepTwoDecimal(value[0]) ]]</div>
+            <div v-for="value in user[3]" v-bind:class="{ 'heat_value one': value[1]==='yellow', 'heat_value two': value[1]==='black', 'heat_value three': value[1]==='None', 'heat_value four': value[1]==='red' }">[[ keepTwoDecimal(value[2])]]&nbsp;&nbsp;[[ (value[0] >= 0 ? '+' : '') + keepTwoDecimal(value[0]) ]]</div>
             {% comment %} <div class="heat_value one">[[ user[4] ]]</div>
             <div class="heat_value two">[[ user[5] ]]</div>
             <div class="heat_value one">[[ user[6] ]]</div>
@@ -280,6 +280,17 @@
       //debug3: '{{debug3|safe}}'
     },
     computed:{
+      tension_average: function() {
+        debugger;
+        var sum = 0;
+        var length = this.$data.main_map.length;
+        for (var i=0; i < length; i++) {
+          var row = this.$data.main_map[i];
+          sum += row[0];
+        }
+        var avg = sum / length;
+        return Math.round(avg);
+      },
       scale_list_pro:function(){
         var result = []
         this.scale_list.forEach((item)=>{

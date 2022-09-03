@@ -533,7 +533,7 @@ def heatmap(request, user):
         for u in game.ubung5_scale_order:
             iknow.append(
                 # [round(heatmap_cell(i, game, u)/(user_number ** 2), 2), heatmap_color(i, game, u)]
-                [round(heatmap_cell(i, game, u)/(user_number ** 2), 1), heatmap_color(i, game, u)]
+                [round(heatmap_cell(i, game, u)/(user_number ** 2), 1), heatmap_color(i, game, u), round(heatmap_cell_other(i, game, u)/(user_number ** 2), 1)]
             )
         temp.append(iknow)
         temp_ = [i[0] for i in iknow]
