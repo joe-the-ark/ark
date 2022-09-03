@@ -87,7 +87,7 @@
                     {% trans "Auswertung Deiner Reise mit der Arche" %}
                 </h1>
 
-                <h3 class="feed-h3">
+                <h3 class="psycho-h3">
                     {% trans "Euer Psychologischer Sicherheitswert" %}
                 </h3>
 
@@ -741,10 +741,10 @@
         collectImages()
         .then(()=> {
             // lorem();
-            addTeamPotential();
-            addFeedback();
             addPsycho();
+            addTeamPotential();
             addSpanung();
+            addFeedback();
             doc.save();
             document.querySelector('.windows8').style['display'] = 'none';
         })
