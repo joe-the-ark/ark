@@ -1047,7 +1047,7 @@ def waiting_room2(request, user):
         mem_num = len(mem_list)
         item_num = len(list(ubung5_list))
         if item_num != (mem_num ** 3):
-            return redirect('/ubung-5/')
+            return redirect('/psychologischer/')
 
         if user == game.creator:
             waiting2 = Waitingroom2Start.objects.filter(
