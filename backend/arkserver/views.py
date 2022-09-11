@@ -565,7 +565,8 @@ def heatmap(request, user):
     def find_item(user_playing, user_goal, axis, list):
         for item in list:
             if item["player"] == user_playing and item["goal"] == user_goal and item["axis"] == axis:
-                return item
+                return item['score']
+        return 0
 
     beef_table = []
     debug = []
@@ -584,10 +585,10 @@ def heatmap(request, user):
 
         for axis in axis_table:
 
-            u1Self = find_item(u1, u1, axis, all_items)["score"]
-            u1Foreign = find_item(u2, u1, axis, all_items)["score"]
-            u2Self = find_item(u2, u2, axis, all_items)["score"]
-            u2Foreign = find_item(u1, u2, axis, all_items)["score"]
+            u1Self = find_item(u1, u1, axis, all_items)
+            u1Foreign = find_item(u2, u1, axis, all_items)
+            u2Self = find_item(u2, u2, axis, all_items)
+            u2Foreign = find_item(u1, u2, axis, all_items)
 
             t = abs(u1Self - u1Foreign) + abs(u2Self - u2Foreign)
 
