@@ -44,6 +44,8 @@ https://www.dropbox.com/s/cc6c58ix6zp8mtl/ARK_2_Gameflow.pdf?dl=0
 * https://vimeo.com/459637808 (The Secret To Making Business Teams Successful)
 * From Charles Duhigg – author of the newnowed 2016 New Yorker article on psychological safety https://www.nytimes.com/2016/02/28/magazine/what-google-learned-from-its-quest-to-build-the-perfect-team.html
 ## Links (Texts in German)
+* Podcast Ark-Backstory & discussion of the safe-zone concept
+* https://lnkd.in/dxRNT-46
 * Mein Blogbeitrag zu Psychologischer Sicherheit...
 * https://blog.zhaw.ch/iap/2021/05/10/psychologische-sicherheit-wie-aufrichtig-kann-ich-in-meinem-team-kommunizieren/
 https://www.dropbox.com/s/dme4jm2q556mbwt/2021_Psychologische_Sicherheit.pdf?dl=0
@@ -59,7 +61,6 @@ https://youtu.be/H0WkHyPhdps
 * Clip 5: Über das Bedürfnis gemeinsam unterwegs zu sein und einem angemessenen Umgang mit der Vielgestaltigkeit gruppendynamischer Prozesse. (7:33 Min.)
 https://youtu.be/O--N9XMrRcw
 * Digitec Galaxus Intervew zu heiligen Kühen [Interview bei Digitec Galaxus](https://www.personal-schweiz.ch/experten-interviews/article/innovation-bei-digitec-galaxus-gibt-es-keine-heiligen-kuehe/)
-* Angebotsskizze für den Einsatz der Arche in Unternehmen [Short flyer about the game](https://www.ywesee.com/uploads/Arks/Arks_The_Game.pdf)
 
 ## Troubleshooting for the installation:
 Installing Meta Framework:
