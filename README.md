@@ -1,5 +1,6 @@
 # ark
-The Ark is an Online Group Challenge to develop your teams sense of psychological safety. It is developed by Dr. Joachim Maier, Sempach, Switzerland and made available under GPLv3. Frontend made in Omsk with a backend from China. German version is playable via https://www.arks.ch
+The Ark is an Online Group Challenge to develop your teams sense of psychological safety. It is developed by Dr. Joachim Maier, Sempach, Switzerland and made available under GPLv3. Frontend made in Omsk with a backend from China. German / English / French / Chinese versions are playable via https://www.arks.ch
+# PDF-Intro to the ARK
 # 60 seconds preview video of the ARK challenge
 https://player.vimeo.com/video/553453877
 # The developers slidedeck on psychological safety
