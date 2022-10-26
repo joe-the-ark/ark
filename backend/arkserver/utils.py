@@ -1919,7 +1919,11 @@ def heatmap_color(user, game, ubung1):
     low_bond = ubung1.ubung5_avg - 16
     high_bond = ubung1.ubung5_avg + 16
 
-    user_self = Ubung5.objects.filter(game=game, goal=user, player=user,ubung1=ubung1).first().score
+    temp = Ubung5.objects.filter(game=game, goal=user, player=user,ubung1=ubung1).first()
+    if temp:
+        user_self = Ubung5.objects.filter(game=game, goal=user, player=user,ubung1=ubung1).first().score
+    else:
+        user_self = 0
     others = [i.score for i in Ubung5.objects.filter(game=game, goal=user, ubung1=ubung1).exclude(player=user)]
     others_avg = mean(others)
 
