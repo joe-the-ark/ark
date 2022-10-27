@@ -29,8 +29,8 @@ msgstr "The Ark is an online group challenge to develop a sense of psychological
 
 #. onboarding
 #: loco:6071a6458d4f51635821d922
-msgid "Die Arche ist eine Online-Gruppenreise, um psychologische Sicherheit mit Deinem Team zu erkunden. Die Spielzeit der ersten Etappe beträgt eine halbe Stunde."
-msgstr "The Ark is an online group journey to explore psychological safety with your team. The game time of the first stage is half an hour."
+msgid "Die Arche ist eine Online-Gruppenreise für 3 bis 9 Personen, um psychologische Sicherheit zu erkunden. Die Spielzeit der ersten Etappe beträgt eine halbe Stunde."
+msgstr "The Ark is an online group journey for 3 to 9 people to explore psychological safety. The playing time of the first stage is half an hour."
 
 #. onboarding
 #: loco:6071a6458d4f51635821d922
@@ -84,6 +84,12 @@ msgstr "Share this link to take your team with you:"
 #: loco:6071d4f434bb601a0c01d4a4
 msgid "Diesen Link teilen:"
 msgstr "Share this link:"
+
+msgid "Spiel starten"
+msgstr "Launch game"
+
+msgid "und Link kopieren"
+msgstr "and copy link"
 
 msgid "Woran erkenne ich psychologische Sicherheit?"
 msgstr "How can I recognise psychological safety?"
@@ -207,8 +213,11 @@ msgstr "1) Please briefly tell each other which OPPOSITE PAIR you have chosen so
 msgid "2) Überprüfe bitte noch einmal das von Dir gewählte GEGENSATZPAAR und überarbeite Deine Begriffe bei Bedarf..."
 msgstr "2) Please recheck the OPPOSITE PAIR you chose and revise your terms if needed...."
 
-msgid "3) Starte richtig durch, sobald alle Mitspieler hier im Warteraum sichtbar sind. Nur wer jetzt mit an Bord ist, nimmt an der Reise Teil!"
-msgstr "3) Get started as soon as all the other players are visible here in the waiting room. Only those who are now on board will take part in the journey!"
+msgid "3) Bildet jetzt bitte Zweier- oder Dreiergruppen mit je ähnlichen Gegensatzpaaren. In diesen Gruppen reflektiert bitte zum Abschluss die Auswertung der Reise."
+msgstr "3) Now please form groups of two or three, each with similar pairs of opposites. In these groups, please reflect on the evaluation of the trip at the end."
+
+msgid "4) Starte richtig durch, sobald alle Mitspieler hier im Warteraum sichtbar sind. Nur wer jetzt mit an Bord ist, nimmt an der Reise Teil!"
+msgstr "4) Get started as soon as all the other players are visible here in the waiting room. Only those who are now on board will take part in the journey!"
 
 #. wartezimmer-1
 #: loco:606b7f57401c1412f312f6a3
@@ -367,11 +376,11 @@ msgstr ""
 msgid "Erinnerst Du Dich an Deine Einschätzung der Team Performance zu Beginn der Reise? So gut nutzt ihr aktuell euer Potential (auf einer Skala von 1 bis 100)..."
 msgstr "Do you remember your assessment of team performance at the beginning of the journey? That's how well you're currently using your potential (on a scale of 1 to 100)..."
 
-msgid "In der Regel gilt folgender Zusammenhang: je grösser die psychologische Sicherheit, umso höher die Team-Performance und desto weniger Spannungen im Team. Auf der nächsten Etappe siehst du deinen Beitrag zu den Spannungen im Team."
-msgstr "As a rule, the following relationship applies: the greater the psychological safety, the higher the team performance and the less tension in the team. On the next stage you will see your contribution to the tensions in the team."
+msgid "In der Regel gilt folgender Zusammenhang: je grösser die psychologische Sicherheit, umso höher die Team-Performance und desto weniger Spannungen im Team."
+msgstr "As a rule, the following relationship applies: the greater the psychological safety, the higher the team performance and the less tension in the team."
 
-msgid "Oder umgekehrt: je mehr ungeklärte Spannungen, desto schlechter die Performance und desto geringer die psychologische Sicherheit."
-msgstr "Or vice versa: the more unresolved tensions, the worse the performance and the lower the psychological security."
+msgid "Oder umgekehrt: je mehr ungeklärte Spannungen, desto geringer die psychologische Sicherheit."
+msgstr "Or vice versa: the more unresolved tensions, the lower the psychological safety."
 
 msgid "Auf der nächsten Etappe siehst Du, ob dieser Zusammenhang auch für Dein Team stimmt."
 msgstr "On the next stage you will see if this correlation is also true for your team."
@@ -696,6 +705,12 @@ msgstr "Team Heatmap"
 
 msgid "Mit wem magst Du Deine Reise auswerten?"
 msgstr "Who do you like to evaluate your trip with?"
+
+msgid "Auswertung in der Kleingruppe"
+msgstr "Review in the small group"
+
+msgid "Bildet jetzt bitte Zweier- oder Dreiergruppen mit Menschen, die ähnliche Kraftquellen gewählt hatten. Und interpretiert in diesen Kleingruppen die Auswertung der ersten Etappe eurer Reise zur psychologischen Sicherheit."
+msgstr "Now please form groups of two or three with people who had chosen similar energy sources. And in these small groups, interpret the evaluation of the first stage of your journey to psychological safety."
 
 msgid "Je weiter oben ein Paar steht, desto integrierender für das Teamzusammenspiel wirkt diese Paarung vermutlich. Finde bitte einen Partner von weiter unten auf der Liste, um die Ergebnisse Deiner Reise mit der Arche zu verstehen und zu interpretieren..."
 msgstr "The higher up on the list a pair is, the more integrating for the team interaction this pairing is likely to be. Please find a partner from further down the list to understand and interpret the results of your journey with the Ark...."

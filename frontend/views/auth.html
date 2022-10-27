@@ -61,7 +61,7 @@
                     {% trans "Wie steht es um eure Psychologische Sicherheit?" %}
                 </h1>
                 <p>
-                    {% trans "Die Arche ist eine Online-Gruppenreise, um psychologische Sicherheit mit Deinem Team zu erkunden. Die Spielzeit der ersten Etappe beträgt eine halbe Stunde." %}
+                    {% trans "Die Arche ist eine Online-Gruppenreise für 3 bis 9 Personen, um psychologische Sicherheit zu erkunden. Die Spielzeit der ersten Etappe beträgt eine halbe Stunde." %}
                 </p>
                 <span class="terms_str">{% trans "Das sind die" %}
                   <span class="terms" style="text-decoration:underline;">{% trans "Nutzungsbedingungen" %}</span>
@@ -215,7 +215,7 @@
                     </div>
                     <div class="form__field">
                         <button id="submit_button" type="button" style="margin-top: 50px;line-height: 38px; padding: 26px 26px; width:100%; font-size: 30px">
-                            {% trans "Spiel starten <br> <span style='font-size:24px;'>und Link kopieren</span>" %}
+                            {% trans "Spiel starten" %} <br> <span style='font-size:24px;'>{% trans "und Link kopieren" %}</span>
                         </button>
                     </div>
                         <p style="display: inline;">
@@ -376,7 +376,7 @@
 
     function defaultLoad() {
         const el = document.getElementById('title-game');
-        el.innerHTML = window.innerWidth < 768 ? 'Start your journey' : "{% trans 'Lade Dein Team ein.' %}"
+        el.innerHTML = window.innerWidth < 768 ? 'Lade Dein Team ein.' : "{% trans 'Lade Dein Team ein.' %}"
     }
 
     function check_game_name(){

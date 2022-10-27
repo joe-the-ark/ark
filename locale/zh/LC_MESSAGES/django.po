@@ -27,8 +27,8 @@ msgstr "方舟》是一个培养团队心理安全感的线上团体挑战赛。
 
 #. onboarding
 #: loco:6071a6458d4f51635821d922
-msgid "Die Arche ist eine Online-Gruppenreise, um psychologische Sicherheit mit Deinem Team zu erkunden. Die Spielzeit der ersten Etappe beträgt eine halbe Stunde."
-msgstr "方舟 是一个与你的团队一起探索心理安全的在线小组旅程。第一阶段的比赛时间为半小时。"
+msgid "Die Arche ist eine Online-Gruppenreise für 3 bis 9 Personen, um psychologische Sicherheit zu erkunden. Die Spielzeit der ersten Etappe beträgt eine halbe Stunde."
+msgstr "方舟 是一个3至9人的在线小组旅程，以探索心理安全。第一阶段的比赛时间为半小时。"
 
 #. onboarding
 #: loco:6071a6458d4f51635821d922
@@ -82,6 +82,12 @@ msgstr "分享这个链接，带上你的团队。"
 #: loco:6071d4f434bb601a0c01d4a4
 msgid "Diesen Link teilen:"
 msgstr "分享这个链接。"
+
+msgid "Spiel starten"
+msgstr "开始游戏"
+
+msgid "und Link kopieren"
+msgstr "并复制链接"
 
 #. preview.html
 #: loco:606885b920934b401305cbb2
@@ -198,8 +204,11 @@ msgstr "1）请简要地告诉对方你选择的是哪一对，以便大家能�
 msgid "2) Überprüfe bitte noch einmal das von Dir gewählte GEGENSATZPAAR und überarbeite Deine Begriffe bei Bedarf..."
 msgstr "2) 请再次检查你所选择的对立面，如有必要，请修改你的条款....。"
 
-msgid "3) Starte richtig durch, sobald alle Mitspieler hier im Warteraum sichtbar sind. Nur wer jetzt mit an Bord ist, nimmt an der Reise Teil!"
-msgstr "3) 一旦所有其他玩家在这里的等候室中被看到，就立即开始。只有那些现在在船上的人才能参与到旅程中来!"
+msgid "3) Bildet jetzt bitte Zweier- oder Dreiergruppen mit je ähnlichen Gegensatzpaaren. In diesen Gruppen reflektiert bitte zum Abschluss die Auswertung der Reise."
+msgstr "3）现在请用相似的对立面组成两到三组。在这些小组中，请思考对旅程的评价。"
+
+msgid "4) Starte richtig durch, sobald alle Mitspieler hier im Warteraum sichtbar sind. Nur wer jetzt mit an Bord ist, nimmt an der Reise Teil!"
+msgstr "4) 一旦所有其他玩家在这里的等候室中被看到，就立即开始。只有那些现在在船上的人才能参与到旅程中来!"
 
 #. wartezimmer-1
 #: loco:606b7f57401c1412f312f6a3
@@ -345,11 +354,11 @@ msgstr "在与 方舟 的旅途中，看看如何提高团队的心理安全。�
 msgid "Erinnerst Du Dich an Deine Einschätzung der Team Performance zu Beginn der Reise? So gut nutzt ihr aktuell euer Potential (auf einer Skala von 1 bis 100)..."
 msgstr "你还记得你在旅程开始时对团队表现的评估吗？你目前在多大程度上发挥了你的潜力（以1到100为标准）？"
 
-msgid "In der Regel gilt folgender Zusammenhang: je grösser die psychologische Sicherheit, umso höher die Team-Performance und desto weniger Spannungen im Team. Auf der nächsten Etappe siehst du deinen Beitrag zu den Spannungen im Team."
-msgstr "通常情况下，以下关系适用：心理安全感越强，团队绩效越高，团队的紧张程度越低。在下一个阶段，你将看到你对团队中的紧张关系的贡献。"
+msgid "In der Regel gilt folgender Zusammenhang: je grösser die psychologische Sicherheit, umso höher die Team-Performance und desto weniger Spannungen im Team."
+msgstr "通常情况下，以下关系适用：心理安全感越强，团队绩效越高，团队的紧张程度越低。"
 
-msgid "Oder umgekehrt: je mehr ungeklärte Spannungen, desto schlechter die Performance und desto geringer die psychologische Sicherheit."
-msgstr "或者反过来说：未解决的紧张关系越多，表现越差，心理安全感越低。"
+msgid "Oder umgekehrt: je mehr ungeklärte Spannungen, desto geringer die psychologische Sicherheit."
+msgstr "或者反过来说：未解决的紧张关系越多，心理上的安全感就越少。"
 
 msgid "Auf der nächsten Etappe siehst Du, ob dieser Zusammenhang auch für Dein Team stimmt."
 msgstr "在下一个阶段，你将看到这种相关性是否也适用于你的团队。"
@@ -658,6 +667,12 @@ msgstr "团队热图"
 
 msgid "Mit wem magst Du Deine Reise auswerten?"
 msgstr "你喜欢和谁一起评估你的旅行？"
+
+msgid "Auswertung in der Kleingruppe"
+msgstr "在小组中审查"
+
+msgid "Bildet jetzt bitte Zweier- oder Dreiergruppen mit Menschen, die ähnliche Kraftquellen gewählt hatten. Und interpretiert in diesen Kleingruppen die Auswertung der ersten Etappe eurer Reise zur psychologischen Sicherheit."
+msgstr "现在请与选择了类似能源的人组成两到三个小组。并在这些小组中，解释对你的心理安全之旅的第一阶段的评价。"
 
 msgid "Je weiter oben ein Paar steht, desto integrierender für das Teamzusammenspiel wirkt diese Paarung vermutlich. Finde bitte einen Partner von weiter unten auf der Liste, um die Ergebnisse Deiner Reise mit der Arche zu verstehen und zu interpretieren..."
 msgstr "一对组合在名单上的位置越高，它对团队的整合性就越强。请从更远的地方找一个伙伴，以便理解和解释你与方舟的旅程的结果......。"
