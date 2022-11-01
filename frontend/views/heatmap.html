@@ -49,7 +49,8 @@
     <div class="container">
     	<h1>{% trans "Auswertung in der Kleingruppe" %}<br></h1>
 		<p><br>
-			{% trans "Bildet jetzt bitte Zweier- oder Dreiergruppen mit Menschen, die ähnliche Kraftquellen gewählt hatten. Und interpretiert in diesen Kleingruppen die Auswertung der ersten Etappe eurer Reise zur psychologischen Sicherheit." %}<br><br>
+			{% trans "In eurem Team besträgt der durchschnittliche Spannungswert" %} [[tension_average]]. {% trans "Als Daumenregel gilt: Werte unter 20 sind entspannt. Werte unter 40 sind meist noch ohne externe Begleitung bearbeitbar. Die Skala reicht von 1 (absolute Spannungsfreiheit) bis 99." %}<br><br> 
+      {% trans "Bildet jetzt bitte Zweier- oder Dreiergruppen mit Menschen, die ähnliche Kraftquellen gewählt hatten. Und interpretiert in diesen Kleingruppen die Auswertung der ersten Etappe eurer Reise zur psychologischen Sicherheit. Ablauf:" %}<br><br>
 		</p>
 			
 		<!--<div class="dashboard">
@@ -99,29 +100,38 @@
     -->
     <ul>
               <li>
-                {% trans "Ablauf: Zeigt euch gegenseitig eure Spannungsfelder der vorherigen Seite." %}<br> 
+                {% trans "Zeigt euch gegenseitig eure Spannungsfelder der vorherigen Seite." %}<br> 
               </li>
                 <li>
                 {% trans "Ordnet dann diese Spannungen in der Team Heatmap weiter unten ein." %} 
               </li>
               <li>
-                {% trans "Ziel: Klärt die Quelle dieser Spannungen, um dadurch die psychologische Sicherheit im Team zu stärken. Zeitbedarf: 10 Minuten." %}<br><br> 
+                {% trans "Reflektiert die Quelle dieser Spannungen: Erkennt ihr Muster? Was überrascht?" %}
+              </li>
+              <li>
+                {% trans "Zeitbedarf: 10 Minuten." %}<br><br> 
               </li>
     </ul>
 	</div>
 
         <div class="container">
-          <h1>{% trans "Wo könnten Spannungen im Team entstehen?" %}</h1><br>
-          <p><br>{% trans "Die Heatmap zeigt eine Zusammenfassung der Quellen aller Spannungen. Beginnt eure Auswertung mit 1) den farbigen Feldern im inneren der Matrix und 2) den Werten über 16..." %}<br><br></p>
+          <h1>{% trans "Welche Spannungen im Team wären zu lösen?" %}</h1><br>
+          <p><br>{% trans "Die Heatmap zeigt eine Zusammenfassung der Quellen aller Spannungen. Beginnt eure Auswertung mit den a) farbigen Feldern im inneren der Matrix und mit den b) Feldern, deren rechter Werte grösser als 16 ist..." %}<br><br></p>
             <ul>
               <li>
-              {% trans "Im Innern der Heatmap siehst Du dieselben Zahlen und Farben, wie schon in der individuellen Auswertung der Spannungsfelder; als Abweichung zwischen Selbst- und Fremdwahrnehmung." %}
+              {% trans "Der Farbcode im Innern der Heatmap gilt unverändert." %}
               </li>
               <li>
-              {% trans "Werte über 16 deuten auf Spannungen mit dem Team hin." %}
+              {% trans "Bei weissen Feldern liegen Fremd- und Selbstwahrnehmung im sicheren Bereich der Safe-Zone." %}
               </li>
               <li>
-              {% trans "Bei negativen Vorzeichen schätzt der Spieler den eigenen Beitrag zur Teamdynamik eher zu optimistisch ein; umgekehrtes gilt bei positiven Vorzeichen." %} 
+              {% trans "Der erste Wert (in Klammern) zeigt die Fremdwahrnehmung. Je höher dieser Wert, desto grösser der Beitrag zur Spannung im Team." %}
+              </li>
+              <li>
+              {% trans "Der zweite Werte zeigt die Abweichung von Fremd- und Selbstwahrnehmung. Werte über 16 deuten auf Spannungen mit dem Team hin." %}
+              </li>
+              <li>
+              {% trans "Bei negativen Vorzeichen schätzt der Spieler den eigenen Beitrag zur Teamdynamik eher zu optimistisch ein. Dadurch entstehen manchmal Spannungen mit dem Team." %} 
               </li>
             </ul>
         <div class="heatmap">
@@ -141,7 +151,7 @@
 
           <div class="main-column player" v-for="user in main_map">
             <div class="heat_value over_player">[[ user[0] ]]</div>
-            <div v-for="value in user[3]" v-bind:class="{ 'heat_value one': value[1]==='yellow', 'heat_value two': value[1]==='black', 'heat_value three': value[1]==='None', 'heat_value four': value[1]==='red' }">[[ keepTwoDecimal(value[2])]]&nbsp;&nbsp;[[ (value[0] >= 0 ? '+' : '') + keepTwoDecimal(value[0]) ]]</div>
+            <div v-for="value in user[3]" v-bind:class="{ 'heat_value one': value[1]==='yellow', 'heat_value two': value[1]==='black', 'heat_value three': value[1]==='None', 'heat_value four': value[1]==='red' }">([[ keepTwoDecimal(value[2])]])&nbsp;&nbsp;[[ (value[0] >= 0 ? '+' : '') + keepTwoDecimal(value[0]) ]]</div>
             {% comment %} <div class="heat_value one">[[ user[4] ]]</div>
             <div class="heat_value two">[[ user[5] ]]</div>
             <div class="heat_value one">[[ user[6] ]]</div>
@@ -369,25 +379,24 @@
                 {% trans "Vertikal: siehst Du in der oberen Reihe den Beitrag jedes Spielers zu den Kraftquellen; je niedriger der Wert, desto grösser ist der Beitrag des Spielers zu den Kraftquellen." %}<br> 
               </li>
               <li>
-                {% trans "Horizontal: siehst Du links die Lage der Safe Zones und rechts die zugehörigen Kraftquellen und Energiefresser; je höher der Wert rechts, desto grösser ist der Beitrag dieser Energiefressern zu den Spannungen." %}
+                {% trans "Horizontal: siehst Du links die Lage der Safe-Zones und rechts die zugehörigen Kraftquellen und Energiefresser; je höher der Wert rechts, desto grösser ist der Beitrag dieser Energiefresser zu den Spannungen." %}
               </li>
             <li>
-              {% trans "Ganz unten sind alle Werte aus der Matrix zusammengefasst. Hier gilt ebenfalls: je höher der Wert mit negativem Vorzeichen, desto stärker überschätzt der Spieler den eigenen positiven Betrag zur Teamdynamik; umgekehrtes gilt bei positiven Vorzeichen." %}<br><br><br>
+              {% trans "Ganz unten sind die Spannungswerte aufaddiert. Auch hier gilt: je höher der Wert mit negativem Vorzeichen, desto stärker überschätzt der Spieler den positive Betrag zur Teamdynamik." %}<br><br><br>
             </li>
           </ul>
+
+
 
           <div class="center">
           <p>
           <a href="/farewell/" class="button" id="button">
-                        {% trans "Auf Wiedersehen sagen" %}
+                        {% trans "Zum Abschluss." %}
           </a>
           <br>
           <br>
           </p> 
           </div> 
         </div>
-  
- 
-
 </body>
 </html>
