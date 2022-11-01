@@ -36,7 +36,7 @@ https://www.dropbox.com/s/hpss180nj2dpeem/ARK_3_Gameflow.pdf?dl=0
 https://www.dropbox.com/s/cc6c58ix6zp8mtl/ARK_2_Gameflow.pdf?dl=0
 ## Creator of the Game
 * [Dr. Joachim Maier, creator of the game](https://www.linkedin.com/in/dr-joachim-maier/)
-* [Some pictures The ARKS backstory](https://photos.app.goo.gl/4fHKgDkx9ChjeiuV8)
+* [Some pictures :: The ARKS backstory](https://photos.app.goo.gl/4fHKgDkx9ChjeiuV8)
 ## Videos on Psychological Safety
 * https://vimeo.com/482714127 (Amy Edmondson Creating Psychological Safety at Work)
 * https://vimeo.com/482713162 (Psychological Safety talk with Steven Baert - Novartis - and Amy C. Edmondson - Harvard Business School)
