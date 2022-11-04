@@ -550,15 +550,17 @@ msgstr "平均的社会敏感度是心理安全的重要前提。"
 msgid "Bitte gib anonymes Feedback"
 msgstr "请给予匿名反馈"
 
-#. feedback
-#: loco:606da320a4487b31254c1a82
-msgid ""
-"Was ist der Beitrag vom Mitspieler zur Psychologischen Sicherheit im Team? "
-"Schau Dir zuerst das Spannungsprofil Deines Feedbacknehmers rechts an. Und "
-"Beantworte dann die drei Fragen für ein offenes, lösungsorientiertes und "
-"anonymes Feedback. Geh ein Risiko ein und schreib mit offenem Herzen..."
-msgstr ""
-"队友对团队心理安全的贡献是什么？首先，看看右边你的反馈者的张力曲线。然后回答开放性、解决性和匿名反馈的三个问题。冒着风险，敞开心扉写作...."
+msgid "Schau Dir zuerst das Spannungsprofil Deines Feedbacknehmers rechts an. Und beantworte dann die drei Fragen für ein offenes, lösungsorientiertes und anonymes Feedback. Geh ein Risiko ein und schreib mit offenem Herzen..."
+msgstr "首先看一下右边的反馈接收者的紧张情况。然后回答这三个问题，以获得公开的、面向解决方案的和匿名的反馈。承担风险，以开放的心态写作......"
+
+msgid "WEITER SO: Besonders schätze ich Deinen Beitrag zum gelingenden Zusammenspiel im Team, wenn WIR..."
+msgstr "所以，我特别感谢你对成功的团队合作的贡献，当WE....。"
+
+msgid "WUNSCH: Du könntest zu mehr psychologischen Sicherheit im Team beitragen, indem DU..."
+msgstr "愿望：你可以通过以下方式为团队中更多的心理安全作出贡献。"
+
+msgid "UNTERSTÜTZUNG: Ich werde Dich unterstützen unser Team psychologisch sicherer zu machen, indem ICH..."
+msgstr "支持：我将支持你通过以下方式使我们的团队在心理上更加安全。"
 
 #. feedback
 #: loco:606da42f2d32a745bb42f802
