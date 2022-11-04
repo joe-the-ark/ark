@@ -727,13 +727,58 @@ msgid "Team Heatmap"
 msgstr "Team Heatmap"
 
 msgid "Mit wem magst Du Deine Reise auswerten?"
-msgstr "Avec qui veux-tu évaluer ton voyage ?"
+msgstr "Who do you like to evaluate your trip with?"
 
 msgid "Auswertung in der Kleingruppe"
-msgstr "Révision en petit groupe"
+msgstr "Review in the small group"
 
-msgid "Bildet jetzt bitte Zweier- oder Dreiergruppen mit Menschen, die ähnliche Kraftquellen gewählt hatten. Und interpretiert in diesen Kleingruppen die Auswertung der ersten Etappe eurer Reise zur psychologischen Sicherheit."
-msgstr "Formez maintenant des groupes de deux ou trois personnes avec des personnes ayant choisi des sources d'énergie similaires. Et dans ces petits groupes, interprétez l'évaluation de la première étape de votre voyage vers la sécurité psychologique."
+msgid "In eurem Team besträgt der durchschnittliche Spannungswert"
+msgstr "Dans votre équipe, la valeur moyenne de la tension est"
+
+msgid "Als Daumenregel gilt: Werte unter 20 sind entspannt. Werte unter 40 sind meist noch ohne externe Begleitung bearbeitbar. Die Skala reicht von 1 (absolute Spannungsfreiheit) bis 99."
+msgstr "La règle du pouce est la suivante : les valeurs inférieures à 20 sont détendues. Les valeurs inférieures à 40 peuvent généralement encore être traitées sans accompagnement externe. L'échelle va de 1 (absence totale de tension) à 99."
+
+msgid "Bildet jetzt bitte Zweier- oder Dreiergruppen mit Menschen, die ähnliche Kraftquellen gewählt hatten. Und interpretiert zusammen die erste Etappe eurer Reise zur psychologischen Sicherheit. Ablauf:"
+msgstr "Veuillez maintenant former des groupes de deux ou trois avec des personnes qui ont choisi des sources de force similaires. Et interprétez ensemble la première étape de votre voyage vers la sécurité psychologique. Déroulement :"
+
+msgid "Zeigt euch gegenseitig eure Spannungsfelder der vorherigen Seite."
+msgstr "Montrez-vous mutuellement vos zones de tension de la page précédente."
+
+msgid "Reflektiert die Quelle dieser Spannungen: Erkennt ihr Muster? Was überrascht?"
+msgstr "Réfléchissez à la source de ces tensions : Reconnaissez-vous des modèles ? Qu'est-ce qui vous surprend ?"
+
+msgid "Zeitbedarf: 10 Minuten."
+msgstr "Temps nécessaire : 10 minutes."
+
+msgid "Welche Spannungen im Team wären zu lösen?"
+msgstr "Quelles tensions au sein de l'équipe devraient être résolues ?"
+
+msgid "Die Heatmap zeigt eine Zusammenfassung aller Spannungen. Beginnt eure Auswertung mit den farbigen Feldern im inneren der Matrix, deren rechter Werte grösser als 16 ist..."
+msgstr "La carte de chaleur montre un résumé de toutes les tensions. Commencez votre évaluation par les cases colorées à l'intérieur de la matrice dont la valeur de droite est supérieure à 16..."
+
+msgid "Der Farbcode im Innern der Heatmap gilt unverändert."
+msgstr "Le code couleur à l'intérieur de la heatmap reste inchangé."
+
+msgid "Bei weissen Feldern liegen Fremd- und Selbstwahrnehmung im sicheren Bereich der Safe-Zone."
+msgstr "Dans le cas des cases blanches, la perception des autres et de soi-même se situe dans la zone de sécurité."
+
+msgid "Der erste Wert (in Klammern) zeigt die Fremdwahrnehmung. Je höher dieser Wert, desto grösser der Beitrag zur Spannung aus Teamsicht."
+msgstr "La première valeur (entre parenthèses) indique la perception des autres. Plus cette valeur est élevée, plus la contribution à la tension du point de vue de l'équipe est importante."
+
+msgid "Der zweite Werte zeigt die Abweichung von Fremd- und Selbstwahrnehmung. Werte über 16 deuten auf Spannungen mit dem Team hin."
+msgstr "La deuxième valeur montre l'écart entre la perception des autres et la perception de soi. Les valeurs supérieures à 16 indiquent des tensions avec l'équipe."
+
+msgid "Bei negativen Vorzeichen schätzt der Spieler den eigenen Beitrag zur Teamdynamik eher zu optimistisch ein. Dadurch entstehen manchmal Spannungen mit dem Team."
+msgstr "En cas de signes négatifs, le joueur a tendance à évaluer de manière trop optimiste sa propre contribution à la dynamique de l'équipe. Cela crée parfois des tensions avec l'équipe."
+
+msgid "Vertikal: siehst Du in der oberen Reihe den Beitrag jedes Spielers zu den Kraftquellen; je niedriger der Wert, desto grösser ist der Beitrag des Spielers zu den Kraftquellen."
+msgstr "Verticalement : tu vois dans la rangée supérieure la contribution de chaque joueur aux sources de force ; plus la valeur est basse, plus la contribution du joueur aux sources de force est grande."
+
+msgid "Horizontal: siehst Du links die Lage der Safe-Zones und rechts die zugehörigen Kraftquellen und Energiefresser; je höher der Wert rechts, desto grösser ist der Beitrag dieser Energiefresser zu den Spannungen."
+msgstr "Horizontalement : tu vois à gauche l'emplacement des safe-zones et à droite les sources de force et les dévoreurs d'énergie correspondants ; plus la valeur à droite est élevée, plus la contribution de ces dévoreurs d'énergie aux tensions est importante."
+
+msgid "Ganz unten sind die inneren Spannungswerte aufaddiert. Auch hier gilt: je höher der Wert mit negativem Vorzeichen, desto stärker überschätzt der Spieler den positive Betrag zur Teamdynamik."
+msgstr "Tout en bas, les valeurs de tension interne sont additionnées. Ici aussi, plus la valeur est de signe négatif, plus le joueur surestime le montant positif de la dynamique de l'équipe."
 
 msgid "Je weiter oben ein Paar steht, desto integrierender für das Teamzusammenspiel wirkt diese Paarung vermutlich. Finde bitte einen Partner von weiter unten auf der Liste, um die Ergebnisse Deiner Reise mit der Arche zu verstehen und zu interpretieren..."
 msgstr "Plus un couple se trouve en haut de la liste, plus il est susceptible d'avoir un effet intégrateur sur l'interaction de l'équipe. Veuillez trouver un partenaire plus bas dans la liste pour comprendre et interpréter les résultats de votre voyage avec l'arche..."
@@ -762,26 +807,14 @@ msgstr "À l'intérieur de la carte de chaleur, regardez particulièrement toute
 msgid "Ziel: Klärt die Quelle dieser Spannungen, um dadurch die psychologische Sicherheit im Team zu stärken. Zeitbedarf: 10 Minuten."
 msgstr "Objectif : Clarifier la source de ces tensions et renforcer ainsi la sécurité psychologique au sein de l'équipe. Temps nécessaire : 10 minutes."
 
-msgid "Wo könnten Spannungen im Team entstehen?"
-msgstr "Où des tensions pourraient-elles apparaître au sein de l'équipe ?"
-
-msgid "Die Heatmap zeigt eine Zusammenfassung der Quellen aller Spannungen. Beginnt eure Auswertung mit 1) den farbigen Feldern im inneren der Matrix und 2) den Werten über 16..."
-msgstr "La carte thermique montre un résumé des sources de toutes les tensions. Commencez votre évaluation par 1) les champs colorés à l'intérieur de la matrice et 2) les valeurs plus grand que 16..."
-
-msgid "Horizontal: siehst Du links die Lage der Safe Zones und rechts die zugehörigen Kraftquellen und Energiefresser; je höher der Wert rechts, desto grösser ist der Beitrag dieser Energiefressern zu den Spannungen."
-msgstr "Horizontal : à gauche, vous voyez l'emplacement des zones de sécurité et à droite les sources d'énergie et les drains énergétiques correspondants ; plus la valeur à droite est élevée, plus la contribution de ces drains énergétiques aux tensions est importante."
-
-msgid "Vertikal: siehst Du in der oberen Reihe den Beitrag jedes Spielers zu den Kraftquellen; je niedriger der Wert, desto grösser ist der Beitrag des Spielers zu den Kraftquellen."
-msgstr "Verticalement : tu vois dans la rangée supérieure la contribution de chaque joueur aux sources de force ; plus la valeur est basse, plus la contribution du joueur aux sources de force est grande."
-
 msgid "Im Innern der Heatmap siehst Du dieselben Zahlen und Farben, wie schon in der individuellen Auswertung der Spannungsfelder; als Abweichung zwischen Selbst- und Fremdwahrnehmung."
 msgstr "A l'intérieur de la carte de chaleur, tu vois les mêmes chiffres et couleurs que ceux déjà utilisés dans l'évaluation individuelle des champs de tension ; comme écart entre la perception de soi et celle des autres."
 
 msgid "Bei negativen Vorzeichen schätzt der Spieler den eigenen Beitrag zur Teamdynamik eher zu optimistisch ein; umgekehrtes gilt bei positiven Vorzeichen."
 msgstr "Si le signe est négatif, le joueur a tendance à être trop optimiste quant à sa propre contribution à la dynamique de l'équipe ; l'inverse est vrai si le signe est positif."
 
-msgid "Ganz unten sind alle Werte aus der Matrix zusammengefasst. Hier gilt ebenfalls: je höher der Wert mit negativem Vorzeichen, desto stärker überschätzt der Spieler den eigenen positiven Betrag zur Teamdynamik; umgekehrtes gilt bei positiven Vorzeichen."
-msgstr "Toutes les valeurs sont résumées tout en bas. Ici aussi, plus la valeur est négative, plus le joueur surestime sa propre contribution positive à la dynamique de l'équipe ; l'inverse est vrai pour les valeurs positives."
+msgid "Zum Abschluss."
+msgstr "Pour conclure."
 
 #. heatmap
 #: loco:606ef00efed6087585797d13
@@ -835,11 +868,11 @@ msgstr "Adieu"
 msgid "Danke für deine Reise mit der ARCHE"
 msgstr "Merci pour votre voyage avec l'Arche"
 
-msgid "Was jetzt: SOCIAL SENSITIVITY TRAINING? (Ca. 10 Minuten Zeitbedarf) Hilf mit die psychologische Sicherheit im Team zu verbessern: Trainiere dazu Deine soziale Sensibilität und lerne einzuschätzen, wie Du von Deinen Teammitgliedern wahrgenommen wirst."
-msgstr "Et maintenant : SOCIAL SENSITIVITY TRAINING ? (env. 10 minutes) Aide à améliorer la sécurité psychologique dans l'équipe : Entraîne ta sensibilité sociale et apprends à évaluer la manière dont tu es perçu par les membres de ton équipe."
+msgid "Was jetzt: SOCIAL SENSITIVITY TRAINING? (Ca. 10 Minuten Zeitbedarf) Hilf mit die psychologische Sicherheit im Team zu verbessern: Trainiere dazu Deine soziale Sensibilität und lerne einzuschätzen, wie Du von Deinen Teammitgliedern wahrgenommen wirst. (Empfohlen für Teams mit einem Spannungswert höher als 30)"
+msgstr "Et maintenant : SOCIAL SENSITIVITY TRAINING ? (env. 10 minutes) Aide à améliorer la sécurité psychologique dans l'équipe : Entraîne ta sensibilité sociale et apprends à évaluer la manière dont tu es perçu par les membres de ton équipe. (Recommandé pour les équipes dont le niveau de tension est supérieur à 30)"
 
-msgid "Was jetzt: AUFRICHTIGES FEEDBACK? (10-20 Minuten Zeitbedarf, je nach Teamgrösse) Hilf mit die psychologische Sicherheit im Team zu verbessern: Gib anonymes 1 zu 1 Feedback, um alle in einen psychologisch sichereren Raum mitzunehmen."
-msgstr "Et maintenant ? UN FEEDBACK SINCÈRE ? (10-20 minutes en fonction de la taille de l'équipe) Aide à améliorer la sécurité psychologique de l'équipe : Donne un feedback anonyme 1 à 1 pour emmener tout le monde dans un espace psychologiquement plus sûr."
+msgid "Was jetzt: AUFRICHTIGES FEEDBACK? (10-20 Minuten Zeitbedarf, je nach Teamgrösse) Hilf mit die psychologische Sicherheit im Team zu verbessern: Gib anonymes 1 zu 1 Feedback, um alle in einen psychologisch sichereren Raum mitzunehmen. (Empfohlen für Teams mit einem Spannungswert höher als 20)"
+msgstr "Et maintenant ? UN FEEDBACK SINCÈRE ? (10-20 minutes, selon la taille de l'équipe) Aide à améliorer la sécurité psychologique de l'équipe : Donne un feedback anonyme 1 à 1 pour emmener tout le monde dans un espace psychologiquement plus sûr. (Recommandé pour les équipes dont le niveau de tension est supérieur à 20)"
 
 msgid "Interessiert Dich eure TEAM-HEATMAP? Klicke auf das Icon um eine Karte der Spannungen im Team zu sehen."
 msgstr "Tu es intéressé(e) par la carte des tensions de l'équipe ? Clique sur l'icône pour voir la carte des tensions dans l'équipe."
@@ -847,11 +880,11 @@ msgstr "Tu es intéressé(e) par la carte des tensions de l'équipe ? Clique sur
 msgid "SPIELDATEN? Klicke auf diesen Link für die Auswertung Deiner Reise mit der Arche. Speichere den Link, um die Auswertung später noch einmal anzuschauen."
 msgstr "DONNÉES DU JEU ? Clique sur ce lien pour voir l'évaluation de ton voyage avec l'arche. Sauvegarde le lien pour revoir l'évaluation plus tard."
 
-msgid "Was jetzt: DEBRIEF? (15 Minuten Zeitbedarf) Nutzt die Liberating Structure 1-2-4-All und tauscht euch über die Reise mit der Arche aus. Was hat Dich berührt, irritiert und bestärkt einen Beitrag zur psychologischen Sicherheit zu leisten? Worin genau wird Dein Beitrag bestehen?"
-msgstr "Et maintenant ? DEBRIEF ? (15 minutes de temps nécessaire) Utilise la Liberating Structure 1-2-4-All et échange sur le voyage avec l'arche. Qu'est-ce qui t'a touché, irrité et encouragé à apporter une contribution à la sécurité psychologique ? En quoi consistera exactement ta contribution ?"
+msgid "Was jetzt: DEBRIEF? (15 Minuten Zeitbedarf) Nutzt die Liberating Structure 1-2-4-All und tauscht euch über die Reise mit der Arche aus. Leitfragen: Was hat Dich berührt, irritiert und bestärkt einen Beitrag zur psychologischen Sicherheit zu leisten? Worin genau wird Dein Beitrag bestehen?"
+msgstr "Et maintenant ? DEBRIEF ? (15 minutes) Utilisez la structure de consultation 1-2-4-All et échangez sur le voyage avec l'arche. Questions directrices : Qu'est-ce qui t'a touché, irrité et encouragé à apporter une contribution à la sécurité psychologique ? En quoi consistera exactement ta contribution ?"
 
-msgid "COUNSELING? Nimm'für eine professionelle Interpretation eurer Spieldaten und Begleitung Kontakt mit Dr. Joe Maier."
-msgstr "COUNSELING ? Prends contact avec le Dr Joe Maier pour une interprétation professionnelle de tes données de jeu et un accompagnement."
+msgid "COUNSELING? Nimm'für eine professionelle Interpretation eurer Spieldaten und Begleitung Kontakt mit Dr. Joe Maier. (Empfohlen für Teams mit einem Spannungswert höher als 40)"
+msgstr "COUNSELING ? Prends contact avec le Dr Joe Maier pour une interprétation professionnelle de tes données de jeu et un accompagnement. (Recommandé pour les équipes avec une valeur de tension supérieure à 40)"
 
 #. farewell
 #: loco:606f028e88f4536b9b769575

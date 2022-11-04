@@ -666,13 +666,58 @@ msgid "Team Heatmap"
 msgstr "团队热图"
 
 msgid "Mit wem magst Du Deine Reise auswerten?"
-msgstr "你喜欢和谁一起评估你的旅行？"
+msgstr "Who do you like to evaluate your trip with?"
 
 msgid "Auswertung in der Kleingruppe"
-msgstr "在小组中审查"
+msgstr "Review in the small group"
 
-msgid "Bildet jetzt bitte Zweier- oder Dreiergruppen mit Menschen, die ähnliche Kraftquellen gewählt hatten. Und interpretiert in diesen Kleingruppen die Auswertung der ersten Etappe eurer Reise zur psychologischen Sicherheit."
-msgstr "现在请与选择了类似能源的人组成两到三个小组。并在这些小组中，解释对你的心理安全之旅的第一阶段的评价。"
+msgid "In eurem Team besträgt der durchschnittliche Spannungswert"
+msgstr "在你的团队中，平均张力值是"
+
+msgid "Als Daumenregel gilt: Werte unter 20 sind entspannt. Werte unter 40 sind meist noch ohne externe Begleitung bearbeitbar. Die Skala reicht von 1 (absolute Spannungsfreiheit) bis 99."
+msgstr "作为一条经验法则，低于20的数值是放松的。低于40的数值通常在没有外部指导的情况下仍是可行的。等级范围从1（绝对没有张力）到99。"
+
+msgid "Bildet jetzt bitte Zweier- oder Dreiergruppen mit Menschen, die ähnliche Kraftquellen gewählt hatten. Und interpretiert zusammen die erste Etappe eurer Reise zur psychologischen Sicherheit. Ablauf:"
+msgstr "现在请与选择了类似力量来源的人组成两到三组。并一起诠释你的心理安全之旅的第一阶段。程序。"
+
+msgid "Zeigt euch gegenseitig eure Spannungsfelder der vorherigen Seite."
+msgstr "互相展示你在前一页中的紧张区域。"
+
+msgid "Reflektiert die Quelle dieser Spannungen: Erkennt ihr Muster? Was überrascht?"
+msgstr "思考这些紧张关系的来源。你能识别出模式吗？有什么惊喜？"
+
+msgid "Zeitbedarf: 10 Minuten."
+msgstr "所需时间：10分钟。"
+
+msgid "Welche Spannungen im Team wären zu lösen?"
+msgstr "团队中的哪些紧张关系需要得到解决？"
+
+msgid "Die Heatmap zeigt eine Zusammenfassung aller Spannungen. Beginnt eure Auswertung mit den farbigen Feldern im inneren der Matrix, deren rechter Werte grösser als 16 ist..."
+msgstr "热图显示了所有电压的汇总。从矩阵内右侧数值大于16的彩色区域开始评估..."
+
+msgid "Der Farbcode im Innern der Heatmap gilt unverändert."
+msgstr "热力图内的颜色代码适用不变。"
+
+msgid "Bei weissen Feldern liegen Fremd- und Selbstwahrnehmung im sicheren Bereich der Safe-Zone."
+msgstr "在白色领域的情况下，外部和自我认知位于安全区。"
+
+msgid "Der erste Wert (in Klammern) zeigt die Fremdwahrnehmung. Je höher dieser Wert, desto grösser der Beitrag zur Spannung aus Teamsicht."
+msgstr "第一个值（在括号内）显示了外部感知。这个值越高，从团队的角度看，对紧张局势的贡献就越大。"
+
+msgid "Der zweite Werte zeigt die Abweichung von Fremd- und Selbstwahrnehmung. Werte über 16 deuten auf Spannungen mit dem Team hin."
+msgstr "第二个值显示了外部认知和自我认知之间的偏差。数值超过16表示与团队关系紧张。"
+
+msgid "Bei negativen Vorzeichen schätzt der Spieler den eigenen Beitrag zur Teamdynamik eher zu optimistisch ein. Dadurch entstehen manchmal Spannungen mit dem Team."
+msgstr "如果征兆是负面的，该球员往往对自己对团队动态的贡献过于乐观。这有时会造成与团队的紧张关系。"
+
+msgid "Vertikal: siehst Du in der oberen Reihe den Beitrag jedes Spielers zu den Kraftquellen; je niedriger der Wert, desto grösser ist der Beitrag des Spielers zu den Kraftquellen."
+msgstr "纵向：在最上面一行，你可以看到每个球员对权力来源的贡献；数值越低，球员对权力来源的贡献就越大。"
+
+msgid "Horizontal: siehst Du links die Lage der Safe-Zones und rechts die zugehörigen Kraftquellen und Energiefresser; je höher der Wert rechts, desto grösser ist der Beitrag dieser Energiefresser zu den Spannungen."
+msgstr "水平：左边是安全区的位置，右边是相关的电源和能源消耗者；右边的数值越高，这些能源消耗者对电压的贡献就越大。"
+
+msgid "Ganz unten sind die inneren Spannungswerte aufaddiert. Auch hier gilt: je höher der Wert mit negativem Vorzeichen, desto stärker überschätzt der Spieler den positive Betrag zur Teamdynamik."
+msgstr "内部张力值在底部加起来。同样，带负号的数值越高，玩家越是高估了对团队动力的积极量。"
 
 msgid "Je weiter oben ein Paar steht, desto integrierender für das Teamzusammenspiel wirkt diese Paarung vermutlich. Finde bitte einen Partner von weiter unten auf der Liste, um die Ergebnisse Deiner Reise mit der Arche zu verstehen und zu interpretieren..."
 msgstr "一对组合在名单上的位置越高，它对团队的整合性就越强。请从更远的地方找一个伙伴，以便理解和解释你与方舟的旅程的结果......。"
@@ -701,18 +746,6 @@ msgstr "在热力图里面，特别要看所有的彩色区域和所有高于16�
 msgid "Ziel: Klärt die Quelle dieser Spannungen, um dadurch die psychologische Sicherheit im Team zu stärken. Zeitbedarf: 10 Minuten."
 msgstr "目标：请澄清这些紧张关系的来源，从而加强团队的心理安全。需要的时间。10分钟。"
 
-msgid "Wo könnten Spannungen im Team entstehen?"
-msgstr "团队中哪里可能出现紧张？"
-
-msgid "Die Heatmap zeigt eine Zusammenfassung der Quellen aller Spannungen. Beginnt eure Auswertung mit 1) den farbigen Feldern im inneren der Matrix und 2) den Werten über 16..."
-msgstr "热图显示了所有紧张局势的来源摘要。从1）矩阵内的彩色字段和2）超过16的数值开始评估..."
-
-msgid "Horizontal: siehst Du links die Lage der Safe Zones und rechts die zugehörigen Kraftquellen und Energiefresser; je höher der Wert rechts, desto grösser ist der Beitrag dieser Energiefressern zu den Spannungen."
-msgstr "水平：在左边你可以看到安全区的位置，右边是相应的电源和能量消耗者；右边的数值越高，这些能量消耗者对紧张的贡献越大。"
-
-msgid "Vertikal: siehst Du in der oberen Reihe den Beitrag jedes Spielers zu den Kraftquellen; je niedriger der Wert, desto grösser ist der Beitrag des Spielers zu den Kraftquellen."
-msgstr "纵向：在最上面一行，你可以看到每个球员对权力来源的贡献；数值越低，球员对权力来源的贡献就越大。"
-
 msgid "Im Innern der Heatmap siehst Du dieselben Zahlen und Farben, wie schon in der individuellen Auswertung der Spannungsfelder; als Abweichung zwischen Selbst- und Fremdwahrnehmung."
 msgstr "在热图中，你看到的数字和颜色与张力场的个人评价相同；作为自我感知和外部感知之间的偏差。"
 
@@ -722,8 +755,8 @@ msgstr "分数超过16分表示与团队关系紧张。"
 msgid "Bei negativen Vorzeichen schätzt der Spieler den eigenen Beitrag zur Teamdynamik eher zu optimistisch ein; umgekehrtes gilt bei positiven Vorzeichen."
 msgstr "如果符号为负数，该球员倾向于对自己对团队动态的贡献过于乐观；如果符号为正数，则相反。"
 
-msgid "Ganz unten sind alle Werte aus der Matrix zusammengefasst. Hier gilt ebenfalls: je höher der Wert mit negativem Vorzeichen, desto stärker überschätzt der Spieler den eigenen positiven Betrag zur Teamdynamik; umgekehrtes gilt bei positiven Vorzeichen."
-msgstr "所有的数值都在底部进行了总结。这里同样适用：负号的数值越高，球员就越高估自己对团队活力的积极贡献；正号的情况则相反。"
+msgid "Zum Abschluss."
+msgstr "总而言之。"
 
 #. heatmap
 #: loco:606ef00efed6087585797d13
@@ -771,20 +804,20 @@ msgstr "告别"
 msgid "Danke für deine Reise mit der ARCHE"
 msgstr "感谢你与方舟的旅程"
 
-msgid "Was jetzt: SOCIAL SENSITIVITY TRAINING? (Ca. 10 Minuten Zeitbedarf) Hilf mit die psychologische Sicherheit im Team zu verbessern: Trainiere dazu Deine soziale Sensibilität und lerne einzuschätzen, wie Du von Deinen Teammitgliedern wahrgenommen wirst."
-msgstr "What now: 社会敏感度培训（约10分钟） 帮助提高团队的心理安全。训练你的社会敏感性，学会评估团队成员对你的看法。"
+msgid "Was jetzt: SOCIAL SENSITIVITY TRAINING? (Ca. 10 Minuten Zeitbedarf) Hilf mit die psychologische Sicherheit im Team zu verbessern: Trainiere dazu Deine soziale Sensibilität und lerne einzuschätzen, wie Du von Deinen Teammitgliedern wahrgenommen wirst. (Empfohlen für Teams mit einem Spannungswert höher als 30)"
+msgstr "What now: 社会敏感度培训（约10分钟） 帮助提高团队的心理安全。训练你的社会敏感性，学会评估团队成员对你的看法。(推荐给张力值高于30的团队)"
 
-msgid "Was jetzt: AUFRICHTIGES FEEDBACK? (10-20 Minuten Zeitbedarf, je nach Teamgrösse) Hilf mit die psychologische Sicherheit im Team zu verbessern: Gib anonymes 1 zu 1 Feedback, um alle in einen psychologisch sichereren Raum mitzunehmen."
-msgstr "现在怎么办。真诚的反馈？(10-20分钟，取决于团队规模) 帮助提高团队的心理安全。给予匿名的1对1反馈，把大家带入一个心理上更安全的空间。"
+msgid "Was jetzt: AUFRICHTIGES FEEDBACK? (10-20 Minuten Zeitbedarf, je nach Teamgrösse) Hilf mit die psychologische Sicherheit im Team zu verbessern: Gib anonymes 1 zu 1 Feedback, um alle in einen psychologisch sichereren Raum mitzunehmen. (Empfohlen für Teams mit einem Spannungswert höher als 20)"
+msgstr "现在怎么办。真诚的反馈？(10-20分钟，取决于团队的规模）帮助提高团队的心理安全。给予匿名的1对1反馈，把大家带入一个心理上更安全的空间。(推荐给紧张程度高于20分的团队)"
 
 msgid "SPIELDATEN? Klicke auf diesen Link für die Auswertung Deiner Reise mit der Arche. Speichere den Link, um die Auswertung später noch einmal anzuschauen."
 msgstr "游戏数据？点击这个链接，了解对你的方舟之旅的评估。保存链接，以便以后查看评价。"
 
-msgid "Was jetzt: DEBRIEF? (15 Minuten Zeitbedarf) Nutzt die Liberating Structure 1-2-4-All und tauscht euch über die Reise mit der Arche aus. Was hat Dich berührt, irritiert und bestärkt einen Beitrag zur psychologischen Sicherheit zu leisten? Worin genau wird Dein Beitrag bestehen?"
-msgstr "现在怎么办。DEBRIEF? (需要15分钟)使用解放结构1-2-4-所有人，分享关于方舟的旅程。是什么触动、刺激和鼓励你为心理安全作出贡献？你的贡献究竟包括哪些内容？"
+msgid "Was jetzt: DEBRIEF? (15 Minuten Zeitbedarf) Nutzt die Liberating Structure 1-2-4-All und tauscht euch über die Reise mit der Arche aus. Leitfragen: Was hat Dich berührt, irritiert und bestärkt einen Beitrag zur psychologischen Sicherheit zu leisten? Worin genau wird Dein Beitrag bestehen?"
+msgstr "现在怎么办。DEBRIEF? (15分钟)使用解放结构1-2-4-所有人，分享有关方舟的旅程。引导性问题：是什么触动、刺激和鼓励你为心理安全做出贡献？你的贡献究竟是什么？"
 
-msgid "COUNSELING? Nimm'für eine professionelle Interpretation eurer Spieldaten und Begleitung Kontakt mit Dr. Joe Maier."
-msgstr "咨询？请联系乔-迈尔博士，对你的演奏数据进行专业的解释和指导。"
+msgid "COUNSELING? Nimm'für eine professionelle Interpretation eurer Spieldaten und Begleitung Kontakt mit Dr. Joe Maier. (Empfohlen für Teams mit einem Spannungswert höher als 40)"
+msgstr "咨询？请联系乔-迈尔博士，对你的游戏数据进行专业的解释和指导。(建议电压值高于40的团队使用)"
 
 #. farewell
 #: loco:606f028e88f4536b9b769575
