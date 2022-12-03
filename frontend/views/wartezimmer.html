@@ -70,6 +70,7 @@
                     <p>
                         <b>
                         {% trans "2) Überprüfe bitte noch einmal das von Dir gewählte GEGENSATZPAAR und überarbeite Deine Begriffe bei Bedarf..." %}
+                        <br><br>
                         </b>
                     <input type="text" placeholder="Kraftquelle fehlt!" name="Kraftquelle" v-model="text_input_power" />
                     <input type="text" placeholder="Energiefresser fehlt!" name="Energiefresser" v-model="text_input_drainer" />
@@ -84,10 +85,6 @@
                     <p>
                         {% trans "3) Bildet jetzt bitte Zweier- oder Dreiergruppen mit je ähnlichen Gegensatzpaaren. In diesen Gruppen reflektiert bitte zum Abschluss die Auswertung der Reise." %}
                     </p>                        
-                    <p>
-                        {% trans "4) Starte richtig durch, sobald alle Mitspieler hier im Warteraum sichtbar sind. Nur wer jetzt mit an Bord ist, nimmt an der Reise Teil!" %}
-                    </p>
-
                 </div>
 
 <!--
@@ -283,6 +280,9 @@
                     <button id='main_btn' type="button" onclick="choosePopup()">
                         {% trans "Weiterspielen" %}
                     </button>
+                    <p><br>
+                        {% trans "Starte richtig durch, sobald alle Mitspieler hier im Warteraum sichtbar sind. Nur wer jetzt mit an Bord ist, nimmt an der Reise Teil!" %}
+                    </p>
                 </div>
             </form>
         </div>

@@ -57,19 +57,19 @@
         element-loading-background="rgba(0, 0, 0, 0.8)">
                 <main class="screen ubung-1">
                     <h1>
-                        {% trans "Was beflügelt Dich in diesem Team?" %}
+                        {% trans "Was schenkt Dir in unserem Team SICHERHEIT?" %}
                     </h1>
                     <p>
                         <b>
-                            {% trans "Jeder Spieler schreibe ein Wort in das leere Feld oder klicke auf den passenden Begriff." %}
+                            {% trans "Schreib bitte ein Wort in das SICHERHEITS_ANKER-Feld oder klicke auf den passenden Begriff." %}
                         </b><br>
                     <img src="http://info.arks.ch/wp-content/uploads/2022/07/Plus.png">
                     </p>
-                    <input type="text" placeholder="Kraftquelle" name="kraftquelle" v-model="text_input" @keyup.enter="add_term" @keyup = "keyboard_()"/><
+                    <input type="text" placeholder={% trans "Sicherheits_Anker" %} name="kraftquelle" v-model="text_input" @keyup.enter="add_term" @keyup = "keyboard_()"/><
                     <label>*Diese Qualität wurde bereits von einem anderen Spieler ausgewählt.</label>
 
                     <p>
-                        {% trans "Bitte benenne, was Dir in unserem Team am meisten Energie schenkt." %}
+                        {% trans "Bitte benenne, was Dir in unserem Team am meisten Sicherheit schenkt." %}
                         <br/>
                         <br/>
                     </p>

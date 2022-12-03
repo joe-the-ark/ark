@@ -195,7 +195,7 @@
                     -->
                     <div class="form__field">
                         <p>
-                            {% trans "Die Arche ist eine Online-Gruppenreise für 3 bis 9 Personen, um psychologische Sicherheit zu erkunden. Die Spielzeit der ersten Etappe beträgt eine halbe Stunde." %}
+                            {% trans "Die Arche ist eine Online-Gruppenreise für 3 bis 9 Personen, um die gefühlte und psychologische Sicherheit im Team zu erkunden. Die Spielzeit der ersten Etappe beträgt eine halbe Stunde." %}
                         </p>
 
                     </div>
@@ -345,7 +345,7 @@
 
     function defaultLoad() {
         const el = document.getElementById('title-game');
-        el.innerHTML = window.innerWidth < 768 ? 'Mitspielen' : "{% trans 'Wie steht es um eure psychologische Sicherheit?' %}"
+        el.innerHTML = window.innerWidth < 768 ? "{% trans 'Komm an Bord.' %}" : "{% trans 'Erkundet eure gefühlte und psychologische Sicherheit.' %}"
     }
     
 

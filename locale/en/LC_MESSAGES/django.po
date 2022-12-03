@@ -20,27 +20,18 @@ msgstr ""
 
 #. onboarding
 #: loco:6071a6458d4f51635821d922
-msgid "Die Arche ist eine Online-Gruppen-Challenge, um das psychologische "
-"Sicherheitsgefühl in Teams zu entwickeln. Die Spielzeit beträgt je nach "
-"Gruppengrösse 45-90 Minuten."
-msgstr "The Ark is an online group challenge to develop a sense of psychological "
-"safety in teams. The game time is 45-90 minutes, depending on the size of "
-"the group."
+msgid "Die Arche ist eine Online-Gruppenreise für 3 bis 9 Personen, um die gefühlte und psychologische Sicherheit im Team zu erkunden. Die Spielzeit der ersten Etappe beträgt eine halbe Stunde."
+msgstr "The Ark is an online group journey for 3 to 9 people to explore perceived and psychological safety in a team. The playing time of the first stage is half an hour."
 
 #. onboarding
 #: loco:6071a6458d4f51635821d922
-msgid "Die Arche ist eine Online-Gruppenreise für 3 bis 9 Personen, um psychologische Sicherheit zu erkunden. Die Spielzeit der ersten Etappe beträgt eine halbe Stunde."
-msgstr "The Ark is an online group journey for 3 to 9 people to explore psychological safety. The playing time of the first stage is half an hour."
-
-#. onboarding
-#: loco:6071a6458d4f51635821d922
-msgid "Die Spielzeit beträgt je nach Gruppengrösse 45-90 Minuten."
-msgstr "The game time is 45-90 minutes, depending on the size of the group."
+msgid "Komm an Bord."
+msgstr "Come aboard."
 
 #. onboarding
 #: loco:6073033f7b216d70613ab4d2
-msgid "Wie steht es um eure psychologische Sicherheit?"
-msgstr "How is your psychological safety?"
+msgid "Erkundet eure gefühlte und psychologische Sicherheit."
+msgstr "Explore your perceived and psychological safety."
 
 #. onboarding
 #: loco:6071a6e2c120e22f85749162
@@ -91,28 +82,28 @@ msgstr "Launch game"
 msgid "und Link kopieren"
 msgstr "and copy link"
 
-msgid "Woran erkenne ich psychologische Sicherheit?"
-msgstr "How can I recognise psychological safety?"
+msgid "Wie sicher ist euer Gruppenklima?"
+msgstr "How safe is your group climate?"
 
-msgid "Achte auf diese drei Dimensionen, um psychologischer Sicherheit Raum zu geben:"
-msgstr "Heed these three dimensions to give space to psychological safety:"
+msgid "In psychologische sicheren Teams gelingen Lernprozesse und die Team Performance steigt. Die drei Dimensionen psychologischer Sicherheit sind:"
+msgstr "In psychologically safe teams, learning processes succeed and team performance increases. The three dimensions of psychological safety are:"
 
-msgid "Vertrauen - wie frei lasse ich zu, dass andere ihren Beitrag leisten, auch wenn sie gegen meine Interessen argumentieren?"
-msgstr "Trust - how freely do I allow others to contribute, even if they argue against my interests?"
+msgid "durchschnittlich ausgeprägte soziale Sensibilität"
+msgstr "average social sensitivity"
 
-msgid "Voice - wie sicher fühle ich mich in der Lage, das anzusprechen, was mich eigentlich beschäftigen würde, um das Team voranzubringen?"
-msgstr "Voice - how confident do I feel in my ability to address what would actually concern me in order to move the team forward?"
+msgid "gleichberechtigte Redeanteile"
+msgstr "equal turn taking of speech"
 
-msgid "Soziale Sensibilität - inwieweit nehme ich die Ursachen von Spannungen im Team wahr und traue mich, meinen Beitrag zur Gruppendynamik zu hinterfragen?"
-msgstr "Social sensitivity - to what extent do I perceive the causes of tensions in the team and dare to question my contribution to the group dynamics?"
+msgid "offen und ohne Angst kommunizieren"
+msgstr "communicate openly and without fear"
 
-msgid "Psychologische Sicherheit ist messbar. Sie ist ausserdem der stärkste Prädiktor für gute TEAM-Performance: Psychologische Sicherheit führt zu starker Performance. Mit der Arche erkundest Du die psychologische Sicherheit in Deinem Team."
-msgstr "Psychological safety is measurable. It is also the strongest predictor of good TEAM performance: Psychological safety leads to strong performance. With the Ark you explore the psychological safety in your team."
+msgid "Psychologische Sicherheit ist laut Google’s Aristoteles-Studie stärkster Prädiktor für Team-Performance."
+msgstr "Psychological safety is the strongest predictor of team performance, according to Google's Aristotle study."
 
 #. preview.html
 #: loco:60688694be899e32216f1b02
-msgid "Bitte schau dir zur Einstimmung dieses 101 Sekunden lange Preview-Video an."
-msgstr "Please watch this 101 second preview video to set your expectations."
+msgid "Gefühlte Sicherheit erlaubt es achtsam mit sich selbst und anderen umzugehen. Defensivreaktionen werden überflüssig (Fight, Flight & Freeze)"
+msgstr "A sense of security allows one to be mindful of oneself and others. Defensive reactions become superfluous (Fight, Flight & Freeze)."
 
 #. preview.html
 #: loco:60688727a1837301bb1df633
@@ -128,6 +119,9 @@ msgid ""
 msgstr ""
 "By the way: you will see your evaluation of the challenge at the end of the game."
 
+msgid "https://docs.google.com/presentation/d/1xmsuoUm31ay2ecqG-FOb49HdyJkq9mTfcn97gMkzmdw/embed?start=true&loop=false&delayms=8000"
+msgstr "https://docs.google.com/presentation/d/145ag9wNeB7N0-oWSJ_BSVY2u4A1xc4GLgkzTad99HUg/embed?start=true&loop=false&delayms=8000"
+
 #. preview.html
 #: loco:606888e4b1ed7b49ac1acb02
 msgid "Weiterspielen"
@@ -135,24 +129,22 @@ msgstr "Continue"
 
 #. ubung-1
 #: loco:606b759198a94a6cf8339672
-msgid "Was beflügelt Dich in diesem Team?"
-msgstr "What inspires you in this team?"
+msgid "Was schenkt Dir in unserem Team SICHERHEIT?"
+msgstr "What gives you SAFETY in our team?"
 
-msgid "Bitte benenne, was Dir in unserem Team am meisten Energie schenkt."
-msgstr "Please name what gives you the most energy on our team."
+msgid "Bitte benenne, was Dir in unserem Team am meisten Sicherheit schenkt."
+msgstr "Please name what gives you the most safety in our team."
 
 #. ubung-1
 #: loco:606b779c3639f72c8f45d892
-msgid ""
-"Jeder Spieler schreibe ein Wort in das leere Feld oder klicke auf den passenden Begriff."
-msgstr ""
-"Each player writes a word in the empty field or clicks on the matching term."
+msgid "Schreib bitte ein Wort in das SICHERHEITS_ANKER-Feld oder klicke auf den passenden Begriff."
+msgstr "Please write a word in the SAFETY_ANCHOR field or click on the appropriate term."
 
-msgid "Kraftquelle"
-msgstr "energy source"
+msgid "Sicherheits_Anker"
+msgstr "Safety_anchor"
 
-msgid "Wie gut ist die Team Performance?"
-msgstr "How good is the team performance?"
+msgid "Wie gut ist eure gefühlte Team Performance?"
+msgstr "How good is your perceived team performance?"
 
 #. ubung-2
 #: loco:606b78e5b8e7465f7b1b4262
@@ -181,26 +173,24 @@ msgstr "Psychological safety is the strongest predictor of team performance - ho
 
 #. ubung-3
 #: loco:606b7d13d2174c4ebc3e3762
-msgid "Was steht Deiner Potentialentfaltung im Weg?"
-msgstr "What stands in the way of your potential unfolding?"
+msgid "Was TRIGGERT Dich im Team?"
+msgstr "What TRIGGERS you in the team?"
+
+msgid "Schreib bitte ein Wort in das TRIGGER-Feld oder klicke auf den passenden Begriff."
+msgstr "Please write a word in the TRIGGER-field or click on the appropriate term."
 
 #. ubung-3
 #: loco:606b7d7dfafd1642eb21fa72
-msgid "Beschreibe bitte den Gegenpol dessen, was Dich im Team beflügelt."
-msgstr "Describe the opposite of what inspires you in our team."
-
-#. ubung-3
-#: loco:606b7e554fe187702f150c72
-msgid "Schreib bitte ein Wort in das leere Feld oder klicke auf den passenden Begriff."
-msgstr "Please write a word in the empty field or click on the appropriate term."
+msgid "Beschreibe bitte den GEGENPOL dessen, was Dir in unserem Team Sicherheit schenkt."
+msgstr "Describe the OPPOSITE of what inspires you in our team."
 
 #. ubung-3
 #: loco:606b7e554fe187702f150c72
 msgid "Bitte finde auch hier eine für Dich stimmige Antwort, denn sie bestimmt die Reiseroute für Dich und alle anderen."
 msgstr "Please find an answer that is coherent for you, because it determines the journey for you and everyone else."
 
-msgid "Energiefresser"
-msgstr "energy drainer"
+msgid "Trigger"
+msgstr "trigger"
 
 #. waitingroom-1
 #: loco:606b7eca211f3464ed134c33
@@ -216,8 +206,8 @@ msgstr "2) Please recheck the OPPOSITE PAIR you chose and revise your terms if n
 msgid "3) Bildet jetzt bitte Zweier- oder Dreiergruppen mit je ähnlichen Gegensatzpaaren. In diesen Gruppen reflektiert bitte zum Abschluss die Auswertung der Reise."
 msgstr "3) Now please form groups of two or three, each with similar pairs of opposites. In these groups, please reflect on the evaluation of the trip at the end."
 
-msgid "4) Starte richtig durch, sobald alle Mitspieler hier im Warteraum sichtbar sind. Nur wer jetzt mit an Bord ist, nimmt an der Reise Teil!"
-msgstr "4) Get started as soon as all the other players are visible here in the waiting room. Only those who are now on board will take part in the journey!"
+msgid "Starte richtig durch, sobald alle Mitspieler hier im Warteraum sichtbar sind. Nur wer jetzt mit an Bord ist, nimmt an der Reise Teil!"
+msgstr "Get started as soon as all the other players are visible here in the waiting room. Only those who are now on board will take part in the journey!"
 
 #. wartezimmer-1
 #: loco:606b7f57401c1412f312f6a3
@@ -228,11 +218,6 @@ msgstr "Please briefly tell each other which pair of opposites you have chosen s
 #: loco:606b7f57401c1412f312f6a3
 msgid "Überprüfe bitte noch einmal das von dir gewählte Gegensatzpaar und überarbeite deine Begriffe bei Bedarf..."
 msgstr "Please check again the field of tension you have chosen and revise your terms if necessary..."
-
-#. wartezimmer-1
-#: loco:606b7fef2743002d316f0e93
-msgid "Starte richtig durch, sobald alle Mitspieler hier im Warteraum sichtbar sind. Nur wer jetzt mit an Bord ist, nimmt an der Reise Teil!"
-msgstr "Get started as soon as all the other players are visible here in the waiting room. Only those who are on board now will take part in the journey!"
 
 #. ubung-4
 #: loco:606b80f9efd09147ce142513

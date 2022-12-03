@@ -56,18 +56,18 @@
         element-loading-background="rgba(0, 0, 0, 0.8)">
                 <main class="screen ubung-1">
                     <h1>
-                        {% trans "Was steht Deiner Potentialentfaltung im Weg?" %}
+                        {% trans "Was TRIGGERT Dich im Team?" %}
                     </h1>
                     <p>
                         <b>
-                            {% trans "Schreib bitte ein Wort in das leere Feld oder klicke auf den passenden Begriff." %}
+                            {% trans "Schreib bitte ein Wort in das TRIGGER-Feld oder klicke auf den passenden Begriff." %}
                         </b><br>
                     <img src="http://info.arks.ch/wp-content/uploads/2022/07/Minus.png">
                     </p>
-                    <input type="text" placeholder="Energiefresser" name="energiefresser" v-model="text_input" @keyup.enter="add_term" @keyup = "keyboard_()"/>
+                    <input type="text" placeholder={% trans "Trigger" %} name="energiefresser" v-model="text_input" @keyup.enter="add_term" @keyup = "keyboard_()"/>
                     <label>*Dieser Begriff wurde bereits von einem anderen Spieler ausgewählt.</label>
                     <p>
-                            {% trans "Beschreibe bitte den Gegenpol dessen, was Dich im Team beflügelt." %}
+                            {% trans "Beschreibe bitte den GEGENPOL dessen, was Dir in unserem Team Sicherheit schenkt." %}
                             <br/>
                             <br/>
                     </p>
