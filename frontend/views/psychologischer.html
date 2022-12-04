@@ -11,6 +11,7 @@
     <title>Safety-Score-RESULT</title>
     <link rel="stylesheet" href="/static/css/app.css">
     <link rel="stylesheet" href="/static/css/boxings.css">
+
 </head>
 <body>
 <div class="app">
@@ -34,7 +35,7 @@
             </div>
             <div class="header-main__progress">
                 <div class="progress">
-                    <label>Mission 1</label>
+                    <label>{% trans "GRUPPE" %}</label>
                     <div class="progress__bar">
                         <div style="width: 70%">70%</div>
                     </div>
@@ -49,9 +50,7 @@
                     {% trans "Euer Psychologischer Sicherheitswert" %}
                 </h1>
                 <p>
-                    {% trans "Hier siehst Du den psychologische Sicherheitswert für Dein Team auf einer Skala zwischen 0 (sehr unsicher) bis 100 (aussergewöhnlich sicher). Wie verhält sich dieser Wert zur Team Performance? Normalerweise sind beide Werte ungefähr gleich hoch." %}
-                    <br/>
-                    <br/>
+                    {% trans "Hier siehst Du den psychologische Sicherheitswert für Dein Team auf einer Skala zwischen 0 (sehr unsicher) bis 99 (aussergewöhnlich sicher). Welches Verhalten trägt zur psychologischen Sicherheit bei?" %} 
                 </p>
 
                 <div class="psychologischer__container">
@@ -125,6 +124,11 @@
                         </div>
                     </div>
                 </div>
+
+                <p>
+                    {% trans "Jeder graue Kreis steht für eine Person, die von jemandem dorthin gewählt wurde. Was denkst Du wohl, wo Deine Spielfiguren stehen? Tauscht euch kurz zu dieser Frage aus und notiere, wenn Du magst, Deine Einschätzung. Die Auflösung erfolgt zum Schluss der Reise." %}
+                </p>
+
                 <div class="center">
                     <p>
                     <a href="/potential-result/" class="button" id="button">
@@ -132,9 +136,6 @@
                     </a>
                     </p>
                 </div>
-                <p>
-                    {% trans "Jeder graue Kreis steht für eine Person, die von jemand anderem dorthin gewählt wurde. Was denkst Du wohl, wo Deine Spielfigur steht? Tauscht euch kurz zu dieser Frage aus und notier Deine Einschätzung. Die Auflösung erfolgt zum Schluss der Reise." %}
-                </p>
             </main>
         </div>
     </div>

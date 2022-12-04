@@ -30,7 +30,7 @@
     position: absolute;
 
     width: calc(100% - 2px);
-    background-color: #f5fcfe;
+    background-color: #9FE2BF;
     border: 1px solid #51ceec;
 }
 
@@ -471,7 +471,7 @@
 }
 
 .custom-graph-info__item.base {
-    color: #d4f131;
+    color: #9FE2BF;
     margin: 0 60px;
 }
 

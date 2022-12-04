@@ -168,8 +168,8 @@ msgstr ""
 msgid "schätzt"
 msgstr "estimates"
 
-msgid "Psychologische Sicherheit ist der stärkste Prädiktor für Team Performance – wie gut ist eure Performance? Wie gut nutzt ihr euer Potential in der Zusammenarbeit?"
-msgstr "Psychological safety is the strongest predictor of team performance - how good is your performance? How well do you use your potential in cooperation?"
+msgid "Psychologische Sicherheit ist der stärkste Prädiktor für Team Performance – wie gut ist eure gefühlte Performance? Wie gut nutzt ihr euer Potential in der Zusammenarbeit?"
+msgstr "Psychological safety is the strongest predictor of team performance - how good is your perceived performance? How well do you use your potential in the cooperation?"
 
 #. ubung-3
 #: loco:606b7d13d2174c4ebc3e3762
@@ -197,27 +197,17 @@ msgstr "trigger"
 msgid "Bitte tauscht euch jetzt aus."
 msgstr "Please share your perspectives now."
 
-msgid "1) Erzählt euch bitte kurz gegenseitig, welches GEGENSATZPAAR Du ausgewählt hast, damit alle verstehen können, wovon die Rede ist."
-msgstr "1) Please briefly tell each other which OPPOSITE PAIR you have chosen so that everyone can understand what you are talking about."
+msgid "Erzählt euch bitte kurz gegenseitig, welches GEGENSATZPAAR Du ausgewählt hast, damit alle verstehen können, wovon die Rede ist."
+msgstr "Please briefly tell each other which OPPOSITE PAIR you have chosen so that everyone can understand what you are talking about."
 
-msgid "2) Überprüfe bitte noch einmal das von Dir gewählte GEGENSATZPAAR und überarbeite Deine Begriffe bei Bedarf..."
-msgstr "2) Please recheck the OPPOSITE PAIR you chose and revise your terms if needed...."
+msgid "Überprüfe bitte noch einmal das von Dir gewählte GEGENSATZPAAR und überarbeite Deine Begriffe bei Bedarf..."
+msgstr "Please recheck the OPPOSITE PAIR you chose and revise your terms if needed...."
 
-msgid "3) Bildet jetzt bitte Zweier- oder Dreiergruppen mit je ähnlichen Gegensatzpaaren. In diesen Gruppen reflektiert bitte zum Abschluss die Auswertung der Reise."
-msgstr "3) Now please form groups of two or three, each with similar pairs of opposites. In these groups, please reflect on the evaluation of the trip at the end."
+msgid "Bildet jetzt bitte Zweier- oder Dreiergruppen mit je ähnlichen Gegensatzpaaren. In diesen Gruppen reflektiert bitte zum Abschluss die Auswertung der Reise."
+msgstr "Now please form groups of two or three, each with similar pairs of opposites. In these groups, please reflect on the evaluation of the trip at the end."
 
 msgid "Starte richtig durch, sobald alle Mitspieler hier im Warteraum sichtbar sind. Nur wer jetzt mit an Bord ist, nimmt an der Reise Teil!"
 msgstr "Get started as soon as all the other players are visible here in the waiting room. Only those who are now on board will take part in the journey!"
-
-#. wartezimmer-1
-#: loco:606b7f57401c1412f312f6a3
-msgid "Erzählt euch bitte kurz gegenseitig, welches Gegensatzpaar du ausgewählt hast, damit alle verstehen können, wovon die Rede ist."
-msgstr "Please briefly tell each other which pair of opposites you have chosen so that everyone can understand what you are talking about."
-
-#. wartezimmer-1
-#: loco:606b7f57401c1412f312f6a3
-msgid "Überprüfe bitte noch einmal das von dir gewählte Gegensatzpaar und überarbeite deine Begriffe bei Bedarf..."
-msgstr "Please check again the field of tension you have chosen and revise your terms if necessary..."
 
 #. ubung-4
 #: loco:606b80f9efd09147ce142513
@@ -266,13 +256,13 @@ msgid ""
 msgstr ""
 "I have the feeling that you react to mistakes by blaming individuals in the team."
 
-msgid "Jeder graue Kreis steht für eine Person, die von jemand anderem dorthin gewählt wurde. Was denkst Du wohl, wo Deine Spielfigur steht? Tauscht euch kurz zu dieser Frage aus und notier Deine Einschätzung. Die Auflösung erfolgt zum Schluss der Reise."
-msgstr "Each gray circle represents a person who was chosen there by someone else. Where do you think your character stands? Briefly share your thoughts on this question and write down your assessment. The solution will be given at the end of the journey."
+msgid "Jeder graue Kreis steht für eine Person, die von jemandem dorthin gewählt wurde. Was denkst Du wohl, wo Deine Spielfiguren stehen? Tauscht euch kurz zu dieser Frage aus und notiere, wenn Du magst, Deine Einschätzung. Die Auflösung erfolgt zum Schluss der Reise."
+msgstr "Each grey circle represents a person who was voted there by someone. Where do you think your pawns are? Share your thoughts on this question briefly and, if you like, write down your assessment. The solution will be given at the end of the journey."
 
 #. ubung-5
 #: loco:606c350d53fac01eda5589b2
-msgid "Wo entstehen Spannungsfelder?"
-msgstr "Where do areas of tension arise?"
+msgid "Wie nimmst Du den Beitrag zur gefühlten Sicherheit im Team wahr?"
+msgstr "How do you perceive the contribution to perceived safety in the team?"
 
 #. ubung-5
 #: loco:606c3588f87f8e7dd763d4e2
@@ -281,17 +271,28 @@ msgstr "Please position the contribution of the players in the field of tension 
 
 #. ubung-5
 #: loco:606c46c40774bf65c217de22
-msgid ""
-"Klicke bitte jede Spielfigur an den Punkt, der aus Deiner Sicht am Besten "
-"zum Verhalten des Spielers in für Dich wichtigen Alltagssituationen passt."
-msgstr ""
-"Please click each character on the point that you think best fits the "
-"player's behaviour in everyday situations that are important to you."
+msgid "KLICKE bitte jede Spielfigur an den Punkt, der aus Deiner Sicht am Besten zum Beitrag des Spielers in für Dich wichtigen Alltagssituationen passt."
+msgstr "CLICK each character to the point that you think best fits the player's contribution in everyday situations that are important to you."
+
+msgid "GRUPPE"
+msgstr "GROUP"
+
+msgid "INDIVIDUUM"
+msgstr "INDIVIDUUM"
+
+msgid "Andere"
+msgstr "Other"
+
+msgid "Selbst"
+msgstr "Self"
+
+msgid "Spannung"
+msgstr "Tension"
 
 #. potential-result
 #: loco:606c4d8d8f567155c2283dd2
-msgid "Team Performance Einschätzung"
-msgstr "Team Performance Assessment"
+msgid "Gefühlte Team-Performance-Einschätzung"
+msgstr "Perceived team performance assessment"
 
 #. potential-result
 #: loco:606c4e795e2f794ae22b8e02
@@ -310,8 +311,8 @@ msgstr "You will see your Psychological Safety Score in the next step."
 msgid "Diese Einschätzung setzt sich aus den gleichberechtigten Wahrnehmungen aller Teammitglieder zusammen. Liegen diese innerhalb der Safe-Zone, oder gibt es Ausreisser?"
 msgstr "This assessment is made up of the equal perceptions of all team members. Are these within the safe zone, or are there outliers?"
 
-msgid "Nach wie vor gilt: je höher die Team-Performance, desto höher die psychologische Sicherheit und desto weniger Spannungen im Team. Auf der nächsten Etappe siehst du deinen Beitrag zu den Spannungen im Team. Spannend?"
-msgstr "As before, the higher the team performance, the higher the psychological safety and the less tension in the team. On the next stage, you'll see your contribution to team tensions. Is that exciting?"
+msgid "Meist liegen die gefühlte Team-Performance und der psychologische Sicherheitswert nahe beisammen. Der Schlüssel zu einer Verbesserung der Beiden führt über eine Verbesserung der gefühlten Sicherheit jedes Einzelnen. Kennst Du Deinen Beitrag zur gefühlten Sicherheit im Team?"
+msgstr "In most cases, the perceived team performance and the psychological safety value are close to each other. The key to improving both is to improve the perceived safety of each individual. Do you know your contribution to perceived safety in the team?"
 
 #. potential-result
 #: loco:606c4fbdc90c0948f5020172
@@ -358,17 +359,14 @@ msgstr ""
 "Safety in your team. The game can continue as soon as all players have "
 "arrived here in the waiting room."
 
-msgid "Erinnerst Du Dich an Deine Einschätzung der Team Performance zu Beginn der Reise? So gut nutzt ihr aktuell euer Potential (auf einer Skala von 1 bis 100)..."
-msgstr "Do you remember your assessment of team performance at the beginning of the journey? That's how well you're currently using your potential (on a scale of 1 to 100)..."
+msgid "Erinnerst Du Dich an Deine Einschätzung der gefühlten Team-Performance? Hier siehst Du den Durchschnitt aller abgegebenen Werte im Team (auf einer Skala von 1 bis 99):"
+msgstr "Do you remember your assessment of the perceived team performance? Here you can see the average of all the scores given in the team (on a scale of 1 to 99):"
 
-msgid "In der Regel gilt folgender Zusammenhang: je grösser die psychologische Sicherheit, umso höher die Team-Performance und desto weniger Spannungen im Team."
-msgstr "As a rule, the following relationship applies: the greater the psychological safety, the higher the team performance and the less tension in the team."
+msgid "In der Regel gilt folgender Zusammenhang: je grösser eure psychologische Sicherheit, umso höher die Team-Performance."
+msgstr "As a rule, the following correlation applies: the greater your psychological safety, the higher your team performance."
 
-msgid "Oder umgekehrt: je mehr ungeklärte Spannungen, desto geringer die psychologische Sicherheit."
-msgstr "Or vice versa: the more unresolved tensions, the lower the psychological safety."
-
-msgid "Auf der nächsten Etappe siehst Du, ob dieser Zusammenhang auch für Dein Team stimmt."
-msgstr "On the next stage you will see if this correlation is also true for your team."
+msgid "Auf der nächsten Etappe siehst Du, welches Verhalten zu eurer psychologischen Sicherheit beiträgt."
+msgstr "On the next stage you will see what behaviour contributes to your psychological safety."
 
 msgid "Notier dazu bitte den Performance-Durchschnittswert!"
 msgstr "Please note the average performance value!"
@@ -383,80 +381,83 @@ msgstr "Your Psychological Safety Score"
 
 #. ps-score
 #: loco:606c8965969b3140f152fba3
-msgid "Hier siehst Du den psychologische Sicherheitswert für Dein Team auf einer Skala zwischen 0 (sehr unsicher) bis 100 (aussergewöhnlich sicher). Wie verhält sich dieser Wert zur Team Performance? Normalerweise sind beide Werte ungefähr gleich hoch."
-msgstr "Here you can see the psychological safety value for your team on a scale between 0 (very unsafe) and 100 (exceptionally safe). How does this value relate to the team performance? Normally, both values are about the same."
+msgid "Hier siehst Du den psychologische Sicherheitswert für Dein Team auf einer Skala zwischen 0 (sehr unsicher) bis 99 (aussergewöhnlich sicher). Welches Verhalten trägt zur psychologischen Sicherheit bei?"
+msgstr "Here you can see the psychological safety score for your team on a scale from 0 (very unsafe) to 99 (exceptionally safe). Which behaviour contributes to psychological safety?"
+
+msgid "Die grünen Bereiche sind die sicheren Zonen Deines Teams. Unsere Hypothese: Spannungsfreiheit erzeugt Sicherheit. Eine gute gefühlte Sicherheit macht Defensivreaktionen überflüssig (Fight, Flight & Freeze) und lässt Dich achtsam mit Dir und anderen umgehen. Was ist Dein Beitrag zur gefühlten Sicherheit? Wie erklärst du die Unterschiede zwischen Deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team?"
+msgstr "The green areas are the safe zones of your team. Our hypothesis: Freedom from tension creates safety. Good perceived safety makes defensive reactions unnecessary (Fight, Flight & Freeze) and allows you to be mindful of yourself and others. What is your contribution to perceived safety? How do you explain the differences between your self-perception and the perception of others by the team?"
 
 #. spannungsfelder
 #: loco:606c8c5f591f8a4a1c131eb2
 msgid "Spannungsfelder"
 msgstr "Tensions"
 
-msgid "Bitte nimm Dir 5 Minuten Zeit, um Deinen Beitrag zu den Spannungen im Team zu verstehen"
-msgstr "Please take 5 minutes to understand your contribution to the tensions in the team"
+msgid "Dein Beitrag zur gefühlten Sicherheit im Team"
+msgstr "Your contribution to the perceived safety in the team"
 
-msgid "Der farbige Bereich ist die Safe-Zone Deines Teams:"
-msgstr "The colored area is your team's safe zone:"
+msgid "Bitte nimm Dir 3 Minuten Zeit, um Deinen Beitrag zur gefühlten Sicherheit im Team zu begreifen"
+msgstr "Please take 3 minutes to understand your contribution to the perceived safety in the team"
 
-msgid "Wer sieht Deinen Beitrag innerhalb, wer ausserhalb der Safe-Zone?"
-msgstr "Who sees your contribution inside, who outside the safe zone?"
+msgid "Das grüne Band zeigt die Safe-Zone Deines Teams:"
+msgstr "The green band shows your team's safe zone:"
 
-msgid "Was ist Dein Beitrag zu den Kraftquellen und Energiefressern im Team?"
-msgstr "What is your contribution to the power sources and energy drainers in the team?"
+msgid "Was ist Dein Beitrag zu den Sicherheits-Ankern und Trigger-Themen im Team?"
+msgstr "What is your contribution to the safety anchors and trigger issues in the team?"
 
-msgid "Unsere Hypothese: je weniger Spannung, desto grösser Dein Beitrag zur psychologischen Sicherheit."
-msgstr "Our hypothesis: the less tension, the greater your contribution to psychological safety."
+msgid "Wer sieht Deinen Beitrag zur gefühlten Sicherheit innerhalb, wer ausserhalb, dieser Safe-Zone?"
+msgstr "Who sees your contribution to the perceived safety inside, who outside, this safe zone?"
 
-msgid "Wie erklärst Du die Unterschiede zwischen Deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team? Hier eine Interpretationshilfe:"
-msgstr "How do you explain the differences between your self-perception and the team's perception of you? Here is an interpretation guide:"
+msgid "Wie erklärst du die Spannung zwischen Deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team?"
+msgstr "How do you explain the tension between your self-perception and the team's perception of your contribution?"
+
+msgid "Unsere Hypothese: Spannung erzeugt Unsicherheit. Eine gute gefühlte Sicherheit macht Defensivreaktionen überflüssig (Fight, Flight & Freeze) und lässt Dich achtsam mit Dir und anderen umgehen."
+msgstr "Our hypothesis: Tension creates insecurity. A good sense of security makes defensive reactions superfluous (Fight, Flight & Freeze) and allows you to be mindful of yourself and others."
 
 #. spannungsfelder
 #: loco:606c8ee09eab385a0d6cd433
-msgid "Diese Kräfte beschreiben Deinen Einfluss auf eure Teamdynamik:"
-msgstr "These forces describe your influence on your team dynamics:"
+msgid "Hier eine Interpretationshilfe:"
+msgstr "Here is an interpretation guide:"
 
 #. spannungsfelder
 #: loco:606c90973e98ca2508753824
-msgid "Weiss = Spannungsfreiheit"
-msgstr "White = absence of tension"
+msgid "Grün = Spannungsfreiheit"
+msgstr "Green = tension-free"
+
+msgid "Was ist Dein Beitrag zur gefühlter Sicherheit im Team?"
+msgstr "What is your contribution to the perceived safety in the team?"
 
 #. spannungsfelder
 #: loco:606c91a533e17862a45e96f2
-msgid "Werte über 16 = Spannung mit dem Team"
-msgstr "Values above 16 = tension with the team"
+msgid "Negatives Spannungs-Vorzeichen = hier schätzt Du Deinen Beitrag zur gefühlten Sicherheit im Team eher zu positiv ein"
+msgstr "Negative tension sign = here you tend to assess your contribution to the perceived security in the team too positively."
 
 #. spannungsfelder
 #: loco:606c933a22f3ef591a5fe833
-msgid "Negatives Vorzeichen = hier schätzt Du Deinen Beitrag zur Teamdynamik eher zu positiv ein"
-msgstr "Negative sign = you tend to assess your contribution to the team dynamic too positively"
+msgid "Positives Spannungs-Vorzeichen = hier schätzt Du Deinen Beitrag zur gefühlten Sicherheit im Team eher zu kritisch ein"
+msgstr "Positive tension sign = here you assess your contribution to the perceived security in the team rather too critically."
 
 #. spannungsfelder
 #: loco:606c9436f97c426ad140e022
-msgid "Positives Vorzeichen = hier schätzt Du Deinen Beitrag zur Teamdynamik eher zu kritisch ein"
-msgstr "Positive sign = you are rather too critical of your contribution to the team "
-"dynamic"
+msgid "Spannungs-Werte über 16 = deuten auf Spannungen mit dem Team hin"
+msgstr "Tension values above 16 = indicate tensions with the team"
+
+msgid "Spannungs-Werte unter 16 = deuten auf Spannungsfreiheit mit dem Team hin"
+msgstr "Tension values below 16 = indicate absence of tension with the team"
 
 #. spannungsfelder
 #: loco:606c956b93e66f6a681ca213
-msgid "Rot = Deine Selbstwahrnehmung liegt ausserhalb der Safe Zone"
+msgid "Rot = Deine Selbstwahrnehmung liegt ausserhalb der Safe-Zone"
 msgstr "Red = your self-perception is outside the safe zone"
 
 #. spannungsfelder
 #: loco:606c96870499e2705662b252
-msgid ""
-"Gelb = die Wahrnehmung Deines Beitrags durch die anderen liegt außerhalb der "
-"Safe Zone"
-msgstr ""
-"Yellow = the perception of your contribution by the others is outside the "
-"safe zone"
+msgid "Gelb = die Wahrnehmung Deines Beitrags zur gefühlten Sicherheit durch die anderen liegt außerhalb der Safe-Zone"
+msgstr "Yellow = the perception of your contribution to the perceived safety by others is outside the safe zone"
 
 #. spannungsfelder
 #: loco:606c97c1e58ada651534cc72
-msgid ""
-"Schwarz = die Selbst- und die Fremdwahrnehmung Deines Beitrags zur "
-"Gruppendynamik liegen ausserhalb der Safe Zone"
-msgstr ""
-"Black = the self-perception and the external perception of your contribution "
-"to the group dynamics are outside the safe zone"
+msgid "Schwarz = die Selbst- und die Fremdwahrnehmung Deines Beitrags zur gefühlten Sicherheit liegen ausserhalb der Safe-Zone"
+msgstr "Black = the self-perception and the perception by others of your contribution to perceived safety are outside the safe zone"
 
 #. spannungsfelder
 #: loco:606c98a9cb092e7d000f4a92

@@ -41,7 +41,7 @@
             </div>
             <div class="header-main__progress">
                 <div class="progress">
-                    <label>Tensions</label>
+                    <label>{% trans "INDIVIDUUM" %}</label>
                     <div class="progress__bar">
                         <div style="width: 80%">80%</div>
                     </div>
@@ -53,22 +53,25 @@
         <div class="container">
             <main class="screen spannungsfelder">
                 <h1>
-                    {% trans "Bitte nimm Dir 5 Minuten Zeit, um Deinen Beitrag zu den Spannungen im Team zu verstehen" %}
+                    {% trans "Bitte nimm Dir 3 Minuten Zeit, um Deinen Beitrag zur gefühlten Sicherheit im Team zu begreifen" %}
                 </h1>
                 <p>
-                    {% trans "Der farbige Bereich ist die Safe-Zone Deines Teams:" %}
+                    {% trans "Das grüne Band zeigt die Safe-Zone Deines Teams:" %}
                 </p>
                         <ul>
                             <li>
-                                {% trans "Wer sieht Deinen Beitrag innerhalb, wer ausserhalb der Safe-Zone?"%}
+                                {% trans "Was ist Dein Beitrag zu den Sicherheits-Ankern und Trigger-Themen im Team?" %}
                             </li>
                             <li>
-                                {% trans "Was ist Dein Beitrag zu den Kraftquellen und Energiefressern im Team?" %}
+                                {% trans "Wer sieht Deinen Beitrag zur gefühlten Sicherheit innerhalb, wer ausserhalb, dieser Safe-Zone?"%}
                             </li>
                             <li>
-                                {% trans "Unsere Hypothese: je weniger Spannung, desto grösser Dein Beitrag zur psychologischen Sicherheit." %}
+                                {% trans "Wie erklärst du die Spannung zwischen Deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team?"%}
                             </li>
                         </ul>
+                <p>
+                    {% trans "Unsere Hypothese: Spannung erzeugt Unsicherheit. Eine gute gefühlte Sicherheit macht Defensivreaktionen überflüssig (Fight, Flight & Freeze) und lässt Dich achtsam mit Dir und anderen umgehen." %}
+                </p>
 
                 <div id="graph-slider" class="swiper-container">
                     <div class="swiper-wrapper"></div>
@@ -77,13 +80,13 @@
                     <div class="swiper-pagination"></div>
                 </div>
                 <div class="custom-graph-info">
-                    <div class="custom-graph-info__item small" data-text={% trans "Others" %}>
+                    <div class="custom-graph-info__item small" data-text={% trans "Andere" %}>
                         {{ others }}
                     </div>
-                    <div class="custom-graph-info__item base" data-text={% trans "Self" %}>
+                    <div class="custom-graph-info__item base" data-text={% trans "Selbst" %}>
                         {{ himself }}
                     </div>
-                    <div class="custom-graph-info__item large" data-text={% trans "Tension" %}>
+                    <div class="custom-graph-info__item large" data-text={% trans "Spannung" %}>
                         {{ tension }}
                     </div>
                 </div>
@@ -95,35 +98,35 @@
                     </div>
                 </div>
                 <p>
-                    {% trans "Wie erklärst Du die Unterschiede zwischen Deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team? Hier eine Interpretationshilfe:" %}
+                    {% trans "Hier eine Interpretationshilfe:" %}
                 </p>
                 <ul>
                     <li>
-                        {% trans "Weiss = Spannungsfreiheit" %}
+                        {% trans "Grün = Spannungsfreiheit" %}
                     </li>
                     <li>
-                        {% trans "Werte über 16 = Spannung mit dem Team" %}
+                        {% trans "Spannungs-Werte über 16 = deuten auf Spannungen mit dem Team hin" %}
                     </li>
                     <li>
-                        {% trans "Negatives Vorzeichen = hier schätzt Du Deinen Beitrag zur Teamdynamik eher zu positiv ein" %}
+                        {% trans "Negatives Spannungs-Vorzeichen = hier schätzt Du Deinen Beitrag zur gefühlten Sicherheit im Team eher zu positiv ein" %}
                     </li>
                     <li>
-                        {% trans "Positives Vorzeichen = hier schätzt Du Deinen Beitrag zur Teamdynamik eher zu kritisch ein" %}
+                        {% trans "Positives Spannungs-Vorzeichen = hier schätzt Du Deinen Beitrag zur gefühlten Sicherheit im Team eher zu kritisch ein" %}
                     </li>                    
                     <li>
-                        {% trans "Rot = Deine Selbstwahrnehmung liegt ausserhalb der Safe Zone" %}
+                        {% trans "Rot = Deine Selbstwahrnehmung liegt ausserhalb der Safe-Zone" %}
                     </li>
                     <li>
-                        {% trans "Gelb = die Wahrnehmung Deines Beitrags durch die anderen liegt außerhalb der Safe Zone" %}
+                        {% trans "Gelb = die Wahrnehmung Deines Beitrags zur gefühlten Sicherheit durch die anderen liegt außerhalb der Safe-Zone" %}
                     </li>
                     <li>
-                        {% trans "Schwarz = die Selbst- und die Fremdwahrnehmung Deines Beitrags zur Gruppendynamik liegen ausserhalb der Safe Zone" %}
+                        {% trans "Schwarz = die Selbst- und die Fremdwahrnehmung Deines Beitrags zur gefühlten Sicherheit liegen ausserhalb der Safe-Zone" %}
                     </li>
                 </ul>
                 <div class="center">
                     <p>
-                    <a href="/heatmap/" class="button" id="button">
-                        {% trans "Weiterspielen" %}
+                    <a href="/farewell/" class="button" id="button">
+                        {% trans "Zum Abschluss." %}
                     </a>
                 </p>
                 </div>

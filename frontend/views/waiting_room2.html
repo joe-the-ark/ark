@@ -68,31 +68,24 @@
                         {% trans "Wartezimmer" %}
                     </h1>
                 <p>
-                        {% trans "Erinnerst Du Dich an Deine Einschätzung der Team Performance zu Beginn der Reise? So gut nutzt ihr aktuell euer Potential (auf einer Skala von 1 bis 100)..." %}
+                        {% trans "Erinnerst Du Dich an Deine Einschätzung der gefühlten Team-Performance? Hier siehst Du den Durchschnitt aller abgegebenen Werte im Team (auf einer Skala von 1 bis 99):" %}
                         <br>
-                        <div class="custom-graph-info">
+                </p>
                         <div class="custom-graph-info__item base" data-text="">
                         {{ team_potential_median }}
-                        <br><br></div>
-                </div>
+                        </div>
+                <p>
+
                 </p>
+
                 <ul>
                     <li>
-                        {% trans "In der Regel gilt folgender Zusammenhang: je grösser die psychologische Sicherheit, umso höher die Team-Performance und desto weniger Spannungen im Team." %}
+                        {% trans "In der Regel gilt folgender Zusammenhang: je grösser eure psychologische Sicherheit, umso höher die Team-Performance." %}
                     </li>
                     <li>
-                        {% trans "Oder umgekehrt: je mehr ungeklärte Spannungen, desto geringer die psychologische Sicherheit." %}
-                    </li>
-                    <li>
-                        {% trans "Auf der nächsten Etappe siehst Du, ob dieser Zusammenhang auch für Dein Team stimmt." %}
-                    </li>
-                    <li>
-                        {% trans "Notier dazu bitte den Performance-Durchschnittswert!" %}
+                        {% trans "Auf der nächsten Etappe siehst Du, welches Verhalten zu eurer psychologischen Sicherheit beiträgt." %}
                     </li>
                 </ul>
-                    <p>
-                        {% trans "Die Reise kann weitergehen, sobald alle Mitspieler hier im Warteraum angekommen sind." %}
-                    </p>
                 </div> 
 
                 <p>
@@ -125,6 +118,9 @@
                     <button id='main_btn' type="button" onclick="choosePopup()">
                         {% trans "Weiterspielen" %}
                     </button>
+                    <p><br>
+                        {% trans "Die Reise kann weitergehen, sobald alle Mitspieler hier im Warteraum angekommen sind." %}
+                    </p>
                 </div>
             </form>
         </div>
