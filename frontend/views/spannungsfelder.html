@@ -53,7 +53,7 @@
         <div class="container">
             <main class="screen spannungsfelder">
                 <h1>
-                    {% trans "Bitte nimm Dir 3 Minuten Zeit, um Deinen Beitrag zur gefühlten Sicherheit im Team zu begreifen" %}
+                    {% trans "Bitte nimm Dir 3 Minuten Zeit, um Deinen Beitrag zur inneren Sicherheit im Team zu begreifen" %}
                 </h1>
                 <p>
                     {% trans "Das grüne Band zeigt die Safe-Zone Deines Teams:" %}
@@ -63,14 +63,14 @@
                                 {% trans "Was ist Dein Beitrag zu den Sicherheits-Ankern und Trigger-Themen im Team?" %}
                             </li>
                             <li>
-                                {% trans "Wer sieht Deinen Beitrag zur gefühlten Sicherheit innerhalb, wer ausserhalb, dieser Safe-Zone?"%}
+                                {% trans "Wer sieht Deinen Beitrag zur inneren Sicherheit innerhalb, wer ausserhalb, dieser Safe-Zone?"%}
                             </li>
                             <li>
                                 {% trans "Wie erklärst du die Spannung zwischen Deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team?"%}
                             </li>
                         </ul>
                 <p>
-                    {% trans "Unsere Hypothese: Spannung erzeugt Unsicherheit. Eine gute gefühlte Sicherheit macht Defensivreaktionen überflüssig (Fight, Flight & Freeze) und lässt Dich achtsam mit Dir und anderen umgehen." %}
+                    {% trans "Unsere Hypothese: Spannung erzeugt Unsicherheit. Eine gute innere Sicherheit macht Defensivreaktionen überflüssig (Fight, Flight & Freeze) und lässt Dich achtsam mit Dir und anderen umgehen." %}
                 </p>
 
                 <div id="graph-slider" class="swiper-container">
@@ -83,10 +83,10 @@
                     <div class="custom-graph-info__item small" data-text={% trans "Andere" %}>
                         {{ others }}
                     </div>
-                    <div class="custom-graph-info__item base" data-text={% trans "Selbst" %}>
+                    <div class="custom-graph-info__item base" data-text={% trans "Spannung" %}>
                         {{ himself }}
                     </div>
-                    <div class="custom-graph-info__item large" data-text={% trans "Spannung" %}>
+                    <div class="custom-graph-info__item large" data-text={% trans "Ich" %}>
                         {{ tension }}
                     </div>
                 </div>
@@ -105,27 +105,27 @@
                         {% trans "Grün = Spannungsfreiheit" %}
                     </li>
                     <li>
-                        {% trans "Spannungs-Werte über 16 = deuten auf Spannungen mit dem Team hin" %}
+                        {% trans "Spannungs-Werte unter 16 = deuten auf Spannungsfreiheit mit dem Team hin" %}
                     </li>
                     <li>
-                        {% trans "Negatives Spannungs-Vorzeichen = hier schätzt Du Deinen Beitrag zur gefühlten Sicherheit im Team eher zu positiv ein" %}
+                        {% trans "Negatives Spannungs-Vorzeichen = hier schätzt Du Deinen Beitrag zur inneren Sicherheit im Team eher zu positiv ein" %}
                     </li>
                     <li>
-                        {% trans "Positives Spannungs-Vorzeichen = hier schätzt Du Deinen Beitrag zur gefühlten Sicherheit im Team eher zu kritisch ein" %}
+                        {% trans "Positives Spannungs-Vorzeichen = hier schätzt Du Deinen Beitrag zur inneren Sicherheit im Team eher zu kritisch ein" %}
                     </li>                    
                     <li>
                         {% trans "Rot = Deine Selbstwahrnehmung liegt ausserhalb der Safe-Zone" %}
                     </li>
                     <li>
-                        {% trans "Gelb = die Wahrnehmung Deines Beitrags zur gefühlten Sicherheit durch die anderen liegt außerhalb der Safe-Zone" %}
+                        {% trans "Gelb = die Wahrnehmung Deines Beitrags zur inneren Sicherheit durch die anderen liegt außerhalb der Safe-Zone" %}
                     </li>
                     <li>
-                        {% trans "Schwarz = die Selbst- und die Fremdwahrnehmung Deines Beitrags zur gefühlten Sicherheit liegen ausserhalb der Safe-Zone" %}
+                        {% trans "Schwarz = die Selbst- und die Fremdwahrnehmung Deines Beitrags zur inneren Sicherheit liegen ausserhalb der Safe-Zone" %}
                     </li>
                 </ul>
                 <div class="center">
                     <p>
-                    <a href="/farewell/" class="button" id="button">
+                    <a href="/game-insights/" class="button" id="button">
                         {% trans "Zum Abschluss." %}
                     </a>
                 </p>
@@ -318,8 +318,9 @@
                 item.classList.add('active');
                 bottomValues = document.querySelector('.custom-graph-info').children;
                 bottomValues[0].innerText = this.data[i].others;
-                bottomValues[1].innerText = this.data[i].self;
-                bottomValues[2].innerText = this.data[i].tension;
+                bottomValues[1].innerText = this.data[i].tension;
+                bottomValues[2].innerText = this.data[i].self;
+
             }
         },
         update(item) {
@@ -331,8 +332,9 @@
             $self = this;
             bottomValues = document.querySelector('.custom-graph-info').children;
             bottomValues[0].innerText = $self.data[0].others;
-            bottomValues[1].innerText = $self.data[0].self;
-            bottomValues[2].innerText = $self.data[0].tension;
+            bottomValues[1].innerText = $self.data[0].tension;
+            bottomValues[2].innerText = $self.data[0].self;
+
             
             // let contNum = i;
             if (isMobile()) {
@@ -372,8 +374,9 @@
                             bottomValues = document.querySelector('.custom-graph-info').children;
                             // console.log($self.data);
                             bottomValues[0].innerText = $self.data[index].others;
-                            bottomValues[1].innerText = $self.data[index].self;
-                            bottomValues[2].innerText = $self.data[index].tension;
+                            bottomValues[1].innerText = $self.data[index].tension;
+                            bottomValues[2].innerText = $self.data[index].self;
+
                         }
                     }
                 });

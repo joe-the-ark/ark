@@ -20,8 +20,8 @@ msgstr ""
 
 #. onboarding
 #: loco:6071a6458d4f51635821d922
-msgid "Die Arche ist eine Online-Gruppenreise für 3 bis 9 Personen, um die gefühlte und psychologische Sicherheit im Team zu erkunden. Die Spielzeit der ersten Etappe beträgt eine halbe Stunde."
-msgstr "The Ark is an online group journey for 3 to 9 people to explore perceived and psychological safety in a team. The playing time of the first stage is half an hour."
+msgid "Die Arche ist eine Online-Gruppenreise für 3 bis 9 Personen, um die innere und psychologische Sicherheit im Team zu erkunden. Die Spielzeit der ersten Etappe beträgt eine halbe Stunde."
+msgstr "The Ark is an online group journey for 3 to 9 people to explore inner and psychological safety in a team. The playing time of the first stage is half an hour."
 
 #. onboarding
 #: loco:6071a6458d4f51635821d922
@@ -30,8 +30,8 @@ msgstr "Come aboard."
 
 #. onboarding
 #: loco:6073033f7b216d70613ab4d2
-msgid "Erkundet eure gefühlte und psychologische Sicherheit."
-msgstr "Explore your perceived and psychological safety."
+msgid "Erkundet eure innere und psychologische Sicherheit."
+msgstr "Explore your inner and psychological safety."
 
 #. onboarding
 #: loco:6071a6e2c120e22f85749162
@@ -102,8 +102,8 @@ msgstr "Psychological safety is the strongest predictor of team performance, acc
 
 #. preview.html
 #: loco:60688694be899e32216f1b02
-msgid "Gefühlte Sicherheit erlaubt es achtsam mit sich selbst und anderen umzugehen. Defensivreaktionen werden überflüssig (Fight, Flight & Freeze)"
-msgstr "A sense of security allows one to be mindful of oneself and others. Defensive reactions become superfluous (Fight, Flight & Freeze)."
+msgid "Innere Sicherheit erlaubt es achtsam mit sich selbst und anderen umzugehen. Defensivreaktionen werden überflüssig (Fight, Flight & Freeze)"
+msgstr "A sense of inner security allows one to be mindful of oneself and others. Defensive reactions become superfluous (Fight, Flight & Freeze)."
 
 #. preview.html
 #: loco:60688727a1837301bb1df633
@@ -261,8 +261,8 @@ msgstr "Each grey circle represents a person who was voted there by someone. Whe
 
 #. ubung-5
 #: loco:606c350d53fac01eda5589b2
-msgid "Wie nimmst Du den Beitrag zur gefühlten Sicherheit im Team wahr?"
-msgstr "How do you perceive the contribution to perceived safety in the team?"
+msgid "Wie nimmst Du den Beitrag zur inneren Sicherheit im Team wahr?"
+msgstr "How do you perceive the contribution to inner safety in the team?"
 
 #. ubung-5
 #: loco:606c3588f87f8e7dd763d4e2
@@ -283,8 +283,8 @@ msgstr "INDIVIDUUM"
 msgid "Andere"
 msgstr "Other"
 
-msgid "Selbst"
-msgstr "Self"
+msgid "Ich"
+msgstr "Me"
 
 msgid "Spannung"
 msgstr "Tension"
@@ -293,6 +293,15 @@ msgstr "Tension"
 #: loco:606c4d8d8f567155c2283dd2
 msgid "Gefühlte Team-Performance-Einschätzung"
 msgstr "Perceived team performance assessment"
+
+msgid Psychologische Sicherheit im Team"
+msgstr "Team Psychological safety"
+
+msgid "Meine innere Sicherheit"
+msgstr "My inner safety"
+
+msgid "Gefühlte Team Performance"
+msgstr "Perceived Team Performance"
 
 #. potential-result
 #: loco:606c4e795e2f794ae22b8e02
@@ -311,8 +320,8 @@ msgstr "You will see your Psychological Safety Score in the next step."
 msgid "Diese Einschätzung setzt sich aus den gleichberechtigten Wahrnehmungen aller Teammitglieder zusammen. Liegen diese innerhalb der Safe-Zone, oder gibt es Ausreisser?"
 msgstr "This assessment is made up of the equal perceptions of all team members. Are these within the safe zone, or are there outliers?"
 
-msgid "Meist liegen die gefühlte Team-Performance und der psychologische Sicherheitswert nahe beisammen. Der Schlüssel zu einer Verbesserung der Beiden führt über eine Verbesserung der gefühlten Sicherheit jedes Einzelnen. Kennst Du Deinen Beitrag zur gefühlten Sicherheit im Team?"
-msgstr "In most cases, the perceived team performance and the psychological safety value are close to each other. The key to improving both is to improve the perceived safety of each individual. Do you know your contribution to perceived safety in the team?"
+msgid "Meist liegen die gefühlte Team-Performance und der psychologische Sicherheitswert nahe beisammen. Der Schlüssel zu einer Verbesserung der Beiden führt über eine Verbesserung der inneren Sicherheit jedes Einzelnen. Kennst Du Deinen Beitrag zur inneren Sicherheit im Team?"
+msgstr "In most cases, the perceived team performance and the psychological safety value are close to each other. The key to improving both is to improve the inner safety of each individual. Do you know your contribution to inner safety in the team?"
 
 #. potential-result
 #: loco:606c4fbdc90c0948f5020172
@@ -384,19 +393,19 @@ msgstr "Your Psychological Safety Score"
 msgid "Hier siehst Du den psychologische Sicherheitswert für Dein Team auf einer Skala zwischen 0 (sehr unsicher) bis 99 (aussergewöhnlich sicher). Welches Verhalten trägt zur psychologischen Sicherheit bei?"
 msgstr "Here you can see the psychological safety score for your team on a scale from 0 (very unsafe) to 99 (exceptionally safe). Which behaviour contributes to psychological safety?"
 
-msgid "Die grünen Bereiche sind die sicheren Zonen Deines Teams. Unsere Hypothese: Spannungsfreiheit erzeugt Sicherheit. Eine gute gefühlte Sicherheit macht Defensivreaktionen überflüssig (Fight, Flight & Freeze) und lässt Dich achtsam mit Dir und anderen umgehen. Was ist Dein Beitrag zur gefühlten Sicherheit? Wie erklärst du die Unterschiede zwischen Deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team?"
-msgstr "The green areas are the safe zones of your team. Our hypothesis: Freedom from tension creates safety. Good perceived safety makes defensive reactions unnecessary (Fight, Flight & Freeze) and allows you to be mindful of yourself and others. What is your contribution to perceived safety? How do you explain the differences between your self-perception and the perception of others by the team?"
+msgid "Die grünen Bereiche sind die sicheren Zonen Deines Teams. Unsere Hypothese: Spannungsfreiheit erzeugt Sicherheit. Eine gute innere Sicherheit macht Defensivreaktionen überflüssig (Fight, Flight & Freeze) und lässt Dich achtsam mit Dir und anderen umgehen. Was ist Dein Beitrag zur inneren Sicherheit? Wie erklärst du die Unterschiede zwischen Deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team?"
+msgstr "The green areas are the safe zones of your team. Our hypothesis: Freedom from tension creates safety. Good inner safety makes defensive reactions unnecessary (Fight, Flight & Freeze) and allows you to be mindful of yourself and others. What is your contribution to inner safety? How do you explain the differences between your self-perception and the perception of others by the team?"
 
 #. spannungsfelder
 #: loco:606c8c5f591f8a4a1c131eb2
 msgid "Spannungsfelder"
 msgstr "Tensions"
 
-msgid "Dein Beitrag zur gefühlten Sicherheit im Team"
-msgstr "Your contribution to the perceived safety in the team"
+msgid "Dein Beitrag zur inneren Sicherheit im Team"
+msgstr "Your contribution to the inner safety in the team"
 
-msgid "Bitte nimm Dir 3 Minuten Zeit, um Deinen Beitrag zur gefühlten Sicherheit im Team zu begreifen"
-msgstr "Please take 3 minutes to understand your contribution to the perceived safety in the team"
+msgid "Bitte nimm Dir 3 Minuten Zeit, um Deinen Beitrag zur inneren Sicherheit im Team zu begreifen"
+msgstr "Please take 3 minutes to understand your contribution to the inner safety in the team"
 
 msgid "Das grüne Band zeigt die Safe-Zone Deines Teams:"
 msgstr "The green band shows your team's safe zone:"
@@ -404,14 +413,14 @@ msgstr "The green band shows your team's safe zone:"
 msgid "Was ist Dein Beitrag zu den Sicherheits-Ankern und Trigger-Themen im Team?"
 msgstr "What is your contribution to the safety anchors and trigger issues in the team?"
 
-msgid "Wer sieht Deinen Beitrag zur gefühlten Sicherheit innerhalb, wer ausserhalb, dieser Safe-Zone?"
-msgstr "Who sees your contribution to the perceived safety inside, who outside, this safe zone?"
+msgid "Wer sieht Deinen Beitrag zur inneren Sicherheit innerhalb, wer ausserhalb, dieser Safe-Zone?"
+msgstr "Who sees your contribution to the inner safety inside, who outside, this safe zone?"
 
 msgid "Wie erklärst du die Spannung zwischen Deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team?"
 msgstr "How do you explain the tension between your self-perception and the team's perception of your contribution?"
 
-msgid "Unsere Hypothese: Spannung erzeugt Unsicherheit. Eine gute gefühlte Sicherheit macht Defensivreaktionen überflüssig (Fight, Flight & Freeze) und lässt Dich achtsam mit Dir und anderen umgehen."
-msgstr "Our hypothesis: Tension creates insecurity. A good sense of security makes defensive reactions superfluous (Fight, Flight & Freeze) and allows you to be mindful of yourself and others."
+msgid "Unsere Hypothese: Spannung erzeugt Unsicherheit. Eine starke innere Sicherheit macht Defensivreaktionen überflüssig (Fight, Flight & Freeze) und lässt Dich achtsam mit Dir und anderen umgehen."
+msgstr "Our hypothesis: Tension creates insecurity. A good sense of inner security makes defensive reactions superfluous (Fight, Flight & Freeze) and allows you to be mindful of yourself and others."
 
 #. spannungsfelder
 #: loco:606c8ee09eab385a0d6cd433
@@ -423,18 +432,18 @@ msgstr "Here is an interpretation guide:"
 msgid "Grün = Spannungsfreiheit"
 msgstr "Green = tension-free"
 
-msgid "Was ist Dein Beitrag zur gefühlter Sicherheit im Team?"
-msgstr "What is your contribution to the perceived safety in the team?"
+msgid "Was ist Dein Beitrag zur inneren Sicherheit im Team?"
+msgstr "What is your contribution to the inner safety in the team?"
 
 #. spannungsfelder
 #: loco:606c91a533e17862a45e96f2
-msgid "Negatives Spannungs-Vorzeichen = hier schätzt Du Deinen Beitrag zur gefühlten Sicherheit im Team eher zu positiv ein"
-msgstr "Negative tension sign = here you tend to assess your contribution to the perceived security in the team too positively."
+msgid "Negatives Spannungs-Vorzeichen = hier schätzt Du Deinen Beitrag zur inneren Sicherheit im Team eher zu positiv ein"
+msgstr "Negative tension sign = here you tend to assess your contribution to the inner safety in the team too positively."
 
 #. spannungsfelder
 #: loco:606c933a22f3ef591a5fe833
-msgid "Positives Spannungs-Vorzeichen = hier schätzt Du Deinen Beitrag zur gefühlten Sicherheit im Team eher zu kritisch ein"
-msgstr "Positive tension sign = here you assess your contribution to the perceived security in the team rather too critically."
+msgid "Positives Spannungs-Vorzeichen = hier schätzt Du Deinen Beitrag zur inneren Sicherheit im Team eher zu kritisch ein"
+msgstr "Positive tension sign = here you assess your contribution to the inner safety in the team rather too critically."
 
 #. spannungsfelder
 #: loco:606c9436f97c426ad140e022
@@ -451,13 +460,13 @@ msgstr "Red = your self-perception is outside the safe zone"
 
 #. spannungsfelder
 #: loco:606c96870499e2705662b252
-msgid "Gelb = die Wahrnehmung Deines Beitrags zur gefühlten Sicherheit durch die anderen liegt außerhalb der Safe-Zone"
-msgstr "Yellow = the perception of your contribution to the perceived safety by others is outside the safe zone"
+msgid "Gelb = die Wahrnehmung Deines Beitrags zur inneren Sicherheit durch die anderen liegt außerhalb der Safe-Zone"
+msgstr "Yellow = the perception of your contribution to the inner safety by others is outside the safe zone"
 
 #. spannungsfelder
 #: loco:606c97c1e58ada651534cc72
-msgid "Schwarz = die Selbst- und die Fremdwahrnehmung Deines Beitrags zur gefühlten Sicherheit liegen ausserhalb der Safe-Zone"
-msgstr "Black = the self-perception and the perception by others of your contribution to perceived safety are outside the safe zone"
+msgid "Schwarz = die Selbst- und die Fremdwahrnehmung Deines Beitrags zur inneren Sicherheit liegen ausserhalb der Safe-Zone"
+msgstr "Black = the self-perception and the perception by others of your contribution to inner safety are outside the safe zone"
 
 #. spannungsfelder
 #: loco:606c98a9cb092e7d000f4a92
@@ -670,8 +679,8 @@ msgstr "How confident did you feel in being able to address what was actually bo
 
 #. assessment
 #: loco:606de487a98fce2936620172
-msgid "Auswertung Deiner Reise mit der Arche"
-msgstr "Evaluation of your journey with the Ark"
+msgid "Souvenir Deiner Reise mit der Arche"
+msgstr "Souvenir of your journey with the Ark"
 
 #. assessment
 #: loco:606de58b06c7db0ecf363c02
@@ -824,14 +833,14 @@ msgstr "Farewell"
 msgid "Danke für deine Reise mit der ARCHE"
 msgstr "Thank you for your journey with the Ark"
 
-msgid "Was jetzt: SOCIAL SENSITIVITY TRAINING? (Ca. 10 Minuten Zeitbedarf) Hilf mit die psychologische Sicherheit im Team zu verbessern: Trainiere dazu Deine soziale Sensibilität und lerne einzuschätzen, wie Du von Deinen Teammitgliedern wahrgenommen wirst. (Empfohlen für Teams mit einem Spannungswert höher als 30)"
-msgstr "What now: SOCIAL SENSITIVITY TRAINING (approx. 10 minutes) Help to improve the psychological safety in your team: To do this, train your social sensitivity and learn to assess how you are perceived by your team members. (Recommended for teams with a tension value higher than 30)"
+msgid "Was jetzt: SOCIAL SENSITIVITY TRAINING? (Ca. 10 Minuten Zeitbedarf) Hilf mit die psychologische Sicherheit im Team zu verbessern: Trainiere dazu Deine soziale Sensibilität und lerne einzuschätzen, wie Du von Deinen Teammitgliedern wahrgenommen wirst. (Empfohlen für Teams mit einem psychologischen Sicherheitswert unter 70)."
+msgstr "What now: SOCIAL SENSITIVITY TRAINING (approx. 10 minutes) Help to improve the psychological safety in your team: To do this, train your social sensitivity and learn to assess how you are perceived by your team members. (Recommended for teams with a psychological safety score lower than 70)."
 
-msgid "Was jetzt: AUFRICHTIGES FEEDBACK? (10-20 Minuten Zeitbedarf, je nach Teamgrösse) Hilf mit die psychologische Sicherheit im Team zu verbessern: Gib anonymes 1 zu 1 Feedback, um alle in einen psychologisch sichereren Raum mitzunehmen. (Empfohlen für Teams mit einem Spannungswert höher als 20)"
-msgstr "What now: CANDID FEEDBACK? (10-20 minutes required, depending on team size) Help improve the psychological safety of the team: Give anonymous 1 to 1 feedback to take everyone into a psychologically safer space. (Recommended for teams with a tension score higher than 20)."
+msgid "Was jetzt: AUFRICHTIGES FEEDBACK? (10-20 Minuten Zeitbedarf, je nach Teamgrösse) Hilf mit die psychologische Sicherheit im Team zu verbessern: Gib anonymes 1 zu 1 Feedback, um alle in einen psychologisch sichereren Raum mitzunehmen. (Empfohlen für Teams mit einem psychologischen Sicherheitswert unter 80)."
+msgstr "What now: CANDID FEEDBACK? (10-20 minutes required, depending on team size) Help improve the psychological safety of the team: Give anonymous 1 to 1 feedback to take everyone into a psychologically safer space. (Recommended for teams with a psychological safety score lower than 80)."
 
-msgid "Interessiert Dich eure TEAM-HEATMAP? Klicke auf das Icon um eine Karte der Spannungen im Team zu sehen."
-msgstr "Are you interested in your TEAM HEATMAP? Click on the icon to see a map of the tensions in the team."
+msgid "Bist Du Coach oder vertraut mit gruppendynamischen Mustern? Dann ist die TEAM-HEATMAP für Dich. Klicke auf das Icon um eine Karte der Safe-Zones und Spannungen im Team zu sehen."
+msgstr "Are you a coach or familiar with group dynamic patterns? Then the TEAM HEATMAP is for you. Click on the icon to see a map of safe zones and tensions in the team."
 
 msgid "SPIELDATEN? Klicke auf diesen Link für die Auswertung Deiner Reise mit der Arche. Speichere den Link, um die Auswertung später noch einmal anzuschauen."
 msgstr "GAME DATA? Click on this link for the evaluation of your journey with the Ark. Save the link to view the evaluation later."
@@ -839,8 +848,8 @@ msgstr "GAME DATA? Click on this link for the evaluation of your journey with th
 msgid "Was jetzt: DEBRIEF? (15 Minuten Zeitbedarf) Nutzt die Liberating Structure 1-2-4-All und tauscht euch über die Reise mit der Arche aus. Leitfragen: Was hat Dich berührt, irritiert und bestärkt einen Beitrag zur psychologischen Sicherheit zu leisten? Worin genau wird Dein Beitrag bestehen?"
 msgstr "What now: DEBRIEF? (15 minutes time required) Use the Liberating Structure 1-2-4-All and share about the journey with the Ark. Guiding Questions: What touched you, irritated you, and encouraged you to make a contribution to psychological safety? What exactly will your contribution consist of?"
 
-msgid "COUNSELING? Nimm'für eine professionelle Interpretation eurer Spieldaten und Begleitung Kontakt mit Dr. Joe Maier. (Empfohlen für Teams mit einem Spannungswert höher als 40)"
-msgstr "COUNSELING? Contact Dr. Joe Maier for a professional interpretation of your game data and guidance. (Recommended for teams with a voltage value higher than 40)"
+msgid "COUNSELING? Nimm'für eine professionelle Interpretation eurer Spieldaten und Begleitung Kontakt mit Deinem Coach oder mit Dr. Joe Maier. (Empfohlen für Teams mit einem psychologischen Sicherheitswert unter 60)."
+msgstr "COUNSELING? Contact your coach or Dr. Joe Maier for a professional interpretation of your game data and guidance. (Recommended for teams with a psychological safety score below 60)."
 
 #. farewell
 #: loco:606f028e88f4536b9b769575

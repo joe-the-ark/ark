@@ -46,7 +46,7 @@
             </div>
             <div class="header-main__progress">
                 <div class="progress">
-                    <label>Mission 2</label>
+                    <label>SOUVENIRS</label>
                     <div class="progress__bar">
                         <div style="width: 95%">95%</div>
                     </div>
@@ -84,13 +84,22 @@
         <div class="container">
             <main class="screen assessment">
                 <h1>
-                    {% trans "Auswertung Deiner Reise mit der Arche" %}
+                    {% trans "Wie sicher ist euer Gruppenklima?" %}
                 </h1>
+                <div class="custom-graph-info">
+                    <div class="custom-graph-info__item small" data-text="{% trans 'Psychologische Sicherheit im Team' %}">
+                        {{ psy_score }}
+                    </div>
+                    <div class="custom-graph-info__item base" data-text="{% trans 'Deine innere Sicherheit?' %}">
 
-                <h3 class="psycho-h3">
-                    {% trans "Euer Psychologischer Sicherheitswert" %}
+                    </div>
+                    <div class="custom-graph-info__item large" data-text="{% trans 'Gefühlte Team Performance' %}">
+                        {{ team_potential_median }}
+                    </div>
+                </div>
+                <h3 class="psycho-h3"><br><br>
+                    {% trans "Psychologischer Sicherheitswert" %}
                 </h3>
-
                 <p class='psycho-p'>
                     {% trans "Hier siehst Du den psychologische Sicherheitswert für Dein Team auf einer Skala zwischen 0 (sehr unsicher) bis 99 (aussergewöhnlich sicher). Welches Verhalten trägt zur psychologischen Sicherheit bei?" %}
                 </p>
@@ -110,8 +119,8 @@
                             <div class="team-average__range" v-bind:style="{width: widthCalc}">
                                 <div class="team-average__circle">[[ score ]]</div>
                             </div>
-                            <div class="team-average__down">100</div>
-                            <div class="team-average__up">0</div>
+                            <div class="team-average__down">99</div>
+                            <div class="team-average__up">1</div>
                         </div>
                     </div>
                     <div class="distry">
@@ -165,7 +174,6 @@
                         </div>
                     </div>
                 </div>
-
                 <h3>
                     {% trans "Gefühlte Team-Performance-Einschätzung" %}
                 </h3>
@@ -173,13 +181,13 @@
                     {% trans "Diese Einschätzung setzt sich aus den gleichberechtigten Wahrnehmungen aller Teammitglieder zusammen. Liegen diese innerhalb der Safe-Zone, oder gibt es Ausreisser?" %}
                 </p>
                 <div class="custom-graph-info">
-                    <div class="custom-graph-info__item small" data-text="Minimal">
+                    <div class="custom-graph-info__item small" data-text="{% trans 'Minimal' %}">
                         {{ team_potential_minimal }}
                     </div>
-                    <div class="custom-graph-info__item base" data-text="Average">
+                    <div class="custom-graph-info__item base" data-text="{% trans 'Durchschnitt' %}">
                         {{ team_potential_median }}
                     </div>
-                    <div class="custom-graph-info__item large" data-text="Maximal">
+                    <div class="custom-graph-info__item large" data-text="{% trans 'Maximal' %}">
                         {{ team_potential_maximal }}
                     </div>
                 </div>
@@ -187,8 +195,16 @@
                 <div class="fields-fill__wrapper"></div>
 
                 <h3 class="spanun-h3">
-                    {% trans "Was ist Dein Beitrag zur gefühlter Sicherheit im Team?" %}
+                    {% trans "Was ist Dein Beitrag zur inneren Sicherheit im Team?" %}
                 </h3>
+
+                <p class="spanun-p">
+                    {% trans "Die grünen Bereiche sind die sicheren Zonen Deines Teams. Unsere Hypothese: Spannungsfreiheit erzeugt Sicherheit. Eine gute innere Sicherheit macht Defensivreaktionen überflüssig (Fight, Flight & Freeze) und lässt Dich achtsam mit Dir und anderen umgehen. Was ist Dein Beitrag zur inneren Sicherheit? Wie erklärst du die Unterschiede zwischen Deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team?" %}
+                </p>
+                <div id="rang-slider" class="swiper-container">
+                    <div class="swiper-wrapper">
+                    </div>
+                </div>
                 <ul class="spanun-ul">
                     <p>
                     <br>
@@ -215,13 +231,6 @@
                         {% trans "Schwarz = Selbst- & Fremdwahrnehmung ausserhalb Safe Zone" %}
                     </li>
                 </ul>
-                <div id="rang-slider" class="swiper-container">
-                    <div class="swiper-wrapper">
-                    </div>
-                </div>
-                <p class="spanun-p">
-                    {% trans "Die grünen Bereiche sind die sicheren Zonen Deines Teams. Unsere Hypothese: Spannungsfreiheit erzeugt Sicherheit. Eine gute gefühlte Sicherheit macht Defensivreaktionen überflüssig (Fight, Flight & Freeze) und lässt Dich achtsam mit Dir und anderen umgehen. Was ist Dein Beitrag zur gefühlten Sicherheit? Wie erklärst du die Unterschiede zwischen Deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team?" %}
-                </p>
                 <div id="graph-slider" class="swiper-container">
                     <div class="swiper-wrapper">
                     </div>
@@ -231,23 +240,23 @@
                 </div>
 
                 <h3 class="feed-h3">
-                    {% trans "Anonymes Feedback:" %}
+                    {% trans "Anonymes Feedback" %}
                 </h3>
 
                 <p class="bold feed-p-1">
-                    {% trans "MEHR davon: Ich schätze Deinen Beitrag zum gelingenden Zusammenspiel im Team..." %}
+                    {% trans "WEITER SO: Besonders schätze ich Deinen Beitrag zum gelingenden Zusammenspiel im Team, wenn WIR..." %}
                 </p>
                 {% for feedback in feedback1 %}
                     <p class="feedback-1"style="font-size: 20px;color: #3781EE;">{{feedback}}</p>
                 {% endfor %}
                 <p class="bold feed-p-2">
-                    {% trans "ÄNDERN: Du könntest zur psychologischen Sicherheit im Team beitragen, in dem..." %}
+                    {% trans "WUNSCH: Du könntest zu mehr psychologischen Sicherheit im Team beitragen, indem DU..." %}
                 </p>
                 {% for feedback in feedback2 %}
                     <p class="feedback-2" style="font-size: 20px;color: #3781EE;">{{feedback}}</p>
                 {% endfor %}
                 <p class="bold feed-p-3">
-                    {% trans "FRAGEZEICHEN: ich wollte Dich schon immer mal fragen..." %}
+                    {% trans "UNTERSTÜTZUNG: Ich werde Dich unterstützen unser Team psychologisch sicherer zu machen, indem ICH..." %}
                 </p>
                 {% for feedback in feedback3 %}
                     <p class="feedback-3" style="font-size: 20px;color: #3781EE;">{{feedback}}</p>
@@ -347,13 +356,14 @@
     dataForGraph(jsonAll, user).forEach((item, i) => {
         htmlWrappers += `<div class="swiper-slide slide-${i}"></div>
                         <div class="custom-graph-info">
-                    <div class="custom-graph-info__item small" data-text={% trans "Others" %}>
+                    <div class="custom-graph-info__item small" data-text={% trans "Andere" %}>
                         
                     </div>
-                    <div class="custom-graph-info__item base" data-text={% trans "Self" %}>
-                        
+
+                    <div class="custom-graph-info__item base" data-text={% trans "Spannung" %}>    
                     </div>
-                    <div class="custom-graph-info__item large" data-text={% trans "Tension" %}>
+
+                    <div class="custom-graph-info__item large" data-text={% trans "Ich" %}>
                         
                     </div>
                 </div>`;
@@ -562,8 +572,8 @@
     function circlesValue(dataForRange, selectors) {
         selectors.forEach((item,i) => {
             item.children[0].innerText = dataForRange[i].others;
-            item.children[1].innerText = dataForRange[i].self;
-            item.children[2].innerText = dataForRange[i].tension;
+                        item.children[1].innerText = dataForRange[i].tension;
+            item.children[2].innerText = dataForRange[i].self;
         })
     }
     circlesValue(dataForRange(jsonAll, user), document.querySelectorAll('.swiper-wrapper .custom-graph-info'))
