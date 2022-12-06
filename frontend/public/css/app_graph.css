@@ -29,7 +29,7 @@
     content: " ";
     position: absolute;
 
-    width: calc(100% - 2px);
+    width: calc(100% - 6px);
     background-color: #9FE2BF;
     border: 1px solid #51ceec;
 }
@@ -290,7 +290,7 @@
 }
 
 .custom-graph__status {
-    width: 5px;
+    width: 8px;
     position: absolute;
     background: linear-gradient(to bottom, #3781ee 0%, #51ceec 52.91%, #000000 101.58%);
     left: 75px;

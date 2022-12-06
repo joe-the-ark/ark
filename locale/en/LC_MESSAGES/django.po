@@ -294,11 +294,11 @@ msgstr "Tension"
 msgid "Gefühlte Team-Performance-Einschätzung"
 msgstr "Perceived team performance assessment"
 
-msgid Psychologische Sicherheit im Team"
-msgstr "Team Psychological safety"
+msgid "Sicherheit im Team"
+msgstr "Safety in the team"
 
-msgid "Meine innere Sicherheit"
-msgstr "My inner safety"
+msgid "Deine innere Sicherheit"
+msgstr "Your inner safety"
 
 msgid "Gefühlte Team Performance"
 msgstr "Perceived Team Performance"
@@ -385,8 +385,8 @@ msgstr "The journey can continue as soon as all the players have arrived here in
 
 #. ps-score
 #: loco:606c88b0ce3e5b40de0ea732
-msgid "Euer Psychologischer Sicherheitswert"
-msgstr "Your Psychological Safety Score"
+msgid "Euer psychologischer Sicherheitswert"
+msgstr "Your psychological safety score"
 
 #. ps-score
 #: loco:606c8965969b3140f152fba3

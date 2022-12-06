@@ -274,11 +274,11 @@ msgstr "将每个人物的性格填入你认为最符合玩家在日常情况下
 msgid "Gefühlte Team-Performance-Einschätzung"
 msgstr "感知的团队绩效评估"
 
-msgid "Psychologische Sicherheit"
-msgstr "心理安全"
+msgid "Sicherheit im Team"
+msgstr "团队中的心理安全"
 
-msgid "Meine innere Sicherheit"
-msgstr "我内心的安全感"
+msgid "Deine innere Sicherheit"
+msgstr "你内心的安全感"
 
 msgid "Gefühlte Team Performance"
 msgstr "感知的团队表现"
@@ -372,7 +372,7 @@ msgstr "一旦所有玩家都到达这里的等候室，旅程就可以继续。
 
 #. ps-score
 #: loco:606c88b0ce3e5b40de0ea732
-msgid "Euer Psychologischer Sicherheitswert"
+msgid "Euer psychologischer Sicherheitswert"
 msgstr "你的心理安全值。"
 
 #. ps-score

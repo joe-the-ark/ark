@@ -87,20 +87,20 @@
                     {% trans "Wie sicher ist euer Gruppenklima?" %}
                 </h1>
                 <div class="custom-graph-info">
-                    <div class="custom-graph-info__item small" data-text="{% trans 'Psychologische Sicherheit im Team' %}">
+                    <div class="custom-graph-info__item small" data-text="{% trans 'Sicherheit im Team' %}">
                         {{ psy_score }}
                     </div>
-                    <div class="custom-graph-info__item base" data-text="{% trans 'Deine innere Sicherheit?' %}">
-
+                    <div class="custom-graph-info__item base" data-text="{% trans 'Deine innere Sicherheit' %}">
+                        ?
                     </div>
                     <div class="custom-graph-info__item large" data-text="{% trans 'Gefühlte Team Performance' %}">
                         {{ team_potential_median }}
                     </div>
                 </div>
                 <h3 class="psycho-h3"><br><br>
-                    {% trans "Psychologischer Sicherheitswert" %}
+                    {% trans "Euer psychologischer Sicherheitswert" %}
                 </h3>
-                <p class='psycho-p'>
+                <p class="psycho-p">
                     {% trans "Hier siehst Du den psychologische Sicherheitswert für Dein Team auf einer Skala zwischen 0 (sehr unsicher) bis 99 (aussergewöhnlich sicher). Welches Verhalten trägt zur psychologischen Sicherheit bei?" %}
                 </p>
                 <div class="psychologischer__container" id="app-1">
@@ -174,6 +174,7 @@
                         </div>
                     </div>
                 </div>
+
                 <h3>
                     {% trans "Gefühlte Team-Performance-Einschätzung" %}
                 </h3>
@@ -222,7 +223,7 @@
                         {% trans "Positives Vorzeichen = zu kritische Selbstwahrnehmung" %}<br>
                     </li>                    
                     <li>
-                        {% trans "Rot = Selbstwahrnehmung ausserhalb Safe Zone" %}<br>
+                        {% trans "Rot = Selbstwahrnehmung ausserhalb Safe Zone" %}
                     </li>
                     <li>
                         {% trans "Gelb = Wahrnehmung durch die anderen ausserhalb Safe Zone" %}
@@ -761,48 +762,6 @@
 
     }
 
-    function addTeamPotential() {
-        let pageData = {
-            currentCord:120,
-        };
-        let pageType = '';
-        let textMaxWidth = 0;
-        let ballsStart = 0;
-        let graphWidth = 0;
-        if (window.innerWidth < 1200) {
-            pageType = 'portrait';
-            textMaxWidth = 380;
-            ballsStart = 160;
-            graphWidth = 350;
-        }
-        if (window.innerWidth > 1200) {
-            pageType = 'landscape';
-            textMaxWidth = 580;
-            ballsStart = 230;
-            graphWidth = 580;
-        }
-
-
-        addPageWithHead(doc, pageType);
-        doc.setFont('Helvetica', "bold");
-        doc.setFontSize(18);
-        addText(doc, pageData, textArrayer(doc, mainH1, textMaxWidth));
-        doc.setFontSize(16);
-        addText(doc, pageData, textArrayer(doc, mainH3, textMaxWidth));
-        doc.setFont('Helvetica', "normal");
-        doc.setFontSize(12);
-        addText(doc, pageData, textArrayer(doc, mainP, textMaxWidth));
-        console.log(pageData.currentCord);
-        doc.addImage(teamThree, 'png', ballsStart, pageData.currentCord, 200, 200*zoomLvl(teamThree));
-        pageData.currentCord += 200*zoomLvl(teamThree);
-        console.log(pageData.currentCord);
-        doc.addImage(teamGraph, 'png', 30, pageData.currentCord, graphWidth, graphWidth*zoomLvl(teamGraph));
-        doc.deletePage(1);
-
-
-
-    }
-
     function addPsycho() {
         let pageData = {
             currentCord:120,
@@ -843,6 +802,46 @@
             doc.addImage(distry4, 'png', 30, pageData.currentCord, 180, 200*zoomLvl(distry4));
             doc.addImage(distry5, 'png', 230, pageData.currentCord, 180, 200*zoomLvl(distry5));
         }
+
+
+
+    }
+
+
+    function addTeamPotential() {
+        let pageData = {
+            currentCord:120,
+        };
+        let pageType = '';
+        let textMaxWidth = 0;
+        let ballsStart = 0;
+        let graphWidth = 0;
+        if (window.innerWidth < 1200) {
+            pageType = 'portrait';
+            textMaxWidth = 380;
+            ballsStart = 160;
+            graphWidth = 350;
+        }
+        if (window.innerWidth > 1200) {
+            pageType = 'landscape';
+            textMaxWidth = 580;
+            ballsStart = 230;
+            graphWidth = 580;
+        }
+
+
+        addPageWithHead(doc, pageType);
+        doc.setFont('Helvetica', "bold");
+        doc.setFontSize(16);
+        addText(doc, pageData, textArrayer(doc, mainH1, textMaxWidth));
+        doc.setFontSize(12);
+
+        console.log(pageData.currentCord);
+        doc.addImage(teamThree, 'png', ballsStart, pageData.currentCord, 200, 200*zoomLvl(teamThree));
+        pageData.currentCord += 200*zoomLvl(teamThree);
+        console.log(pageData.currentCord);
+        doc.addImage(teamGraph, 'png', 30, pageData.currentCord, graphWidth, graphWidth*zoomLvl(teamGraph));
+        doc.deletePage(1);
 
 
 

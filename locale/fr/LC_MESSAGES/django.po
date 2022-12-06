@@ -293,11 +293,11 @@ msgstr "INDIVIDU"
 msgid "Gefühlte Team-Performance-Einschätzung"
 msgstr "Évaluation ressentie de la performance de l'équipe"
 
-msgid "Psychologische Sicherheit"
+msgid "Sicherheit im Team"
 msgstr "Sécurité psychologique"
 
-msgid "Meine innere Sicherheit"
-msgstr "Ma sécurité intérieure"
+msgid "Deine innere Sicherheit"
+msgstr "Ta sécurité intérieure"
 
 msgid "Gefühlte Team Performance"
 msgstr "Performance ressentie de l'équipe"
@@ -395,7 +395,7 @@ msgstr "Le voyage peut continuer dès que tous les joueurs sont arrivés ici, da
 
 #. ps-score
 #: loco:606c88b0ce3e5b40de0ea732
-msgid "Euer Psychologischer Sicherheitswert"
+msgid "Euer psychologischer Sicherheitswert"
 msgstr "Votre valeur de sécurité psychologique"
 
 #. ps-score
