@@ -25,8 +25,12 @@
 }
 
 .corner {
-  background-color: #51ceec;
+  background-color: #9FE2BF;
   color: white;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 0 15px 0;
 }
 
 .main-column.left {
@@ -43,6 +47,8 @@
 .heat_player {
   display:grid;
   justify-items: center;
+  background-color: #e6e6e6;
+  color: black;
   padding: 0px;
   align-items: end;
 }
@@ -64,12 +70,12 @@
 }
 
 .heat_value.property_value {
-  background-color: #51ceec;
+  background-color: #9FE2BF;
   color: white;
 }
 
 .heat_value.over_player {
-  background-color: #51ceec;
+  background-color: #e6e6e6;
   color: white;
 }
 
@@ -78,7 +84,9 @@
 }
 
 .average-by-player {
-  background-color: #e6e6e6;
+  background-color: #e0bfbf;
+  color: white;
+
 }
 
 .over_player{
@@ -90,12 +98,19 @@
 }
 .property{
   padding-left: 15px;
-  background-color: #e6e6e6;
+  background-color: none;
 }
 .property>p {
   font-size: 20px;
+  color: black;
   line-height: normal;
 }
+
+
+.property .property_two {
+  color: #e0bfbf;
+}
+
 
 .property .property_one:after {
   content: '';
@@ -110,14 +125,14 @@
 
 .one {
   background-color: #FAE03C;
-  color: black;
+  color: white;
 }
 .two {
   background-color: #3b4252;
   color: white;
 }
 .three {
-  background-color: #f9fbfd;
+  background-color: #9FE2BF;
   color: black;
 }
 .four {

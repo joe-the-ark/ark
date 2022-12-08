@@ -35,9 +35,9 @@
             </div>
             <div class="header-main__progress">
                 <div class="progress">
-                    <label>Review</label>
+                    <label>COACH</label>
                     <div class="progress__bar">
-                        <div style="width: 95%">95%</div>
+                        <div style="width: 100%">100%</div>
                   </div>
                 </div>
             </div>
@@ -50,7 +50,7 @@
     	<h1>{% trans "Auswertung in der Kleingruppe" %}<br></h1>
 		<p><br>
 			{% trans "In eurem Team besträgt der durchschnittliche Spannungswert" %} [[tension_average]]. {% trans "Als Daumenregel gilt: Werte unter 20 sind entspannt. Werte unter 40 sind meist noch ohne externe Begleitung bearbeitbar. Die Skala reicht von 1 (absolute Spannungsfreiheit) bis 99." %}<br><br> 
-      {% trans "Bildet jetzt bitte Zweier- oder Dreiergruppen mit Menschen, die ähnliche Kraftquellen gewählt hatten. Und interpretiert zusammen die erste Etappe eurer Reise zur psychologischen Sicherheit. Ablauf:" %}<br><br>
+      {% trans "Bildet jetzt bitte Zweier- oder Dreiergruppen mit Menschen, die ähnliche Sicherheitsanker gewählt hatten. Und interpretiert zusammen die erste Etappe eurer Reise zur psychologischen Sicherheit. Ablauf:" %}<br><br>
 		</p>
 			
 		<!--<div class="dashboard">
@@ -116,13 +116,13 @@
 
         <div class="container">
           <h1>{% trans "Welche Spannungen im Team wären zu lösen?" %}</h1><br>
-          <p><br>{% trans "Die Heatmap zeigt eine Zusammenfassung aller Spannungen. Beginnt eure Auswertung mit den farbigen Feldern im inneren der Matrix, deren rechter Werte grösser als 16 ist..." %}<br><br></p>
+          <p><br>{% trans "Die Heatmap zeigt eine Zusammenfassung aller Spannungen. Beginnt eure Auswertung mit den farbigen Feldern im inneren der Matrix, deren rechte Werte grösser als 16 sind..." %}<br><br></p>
             <ul>
               <li>
               {% trans "Der Farbcode im Innern der Heatmap gilt unverändert." %}
               </li>
               <li>
-              {% trans "Bei weissen Feldern liegen Fremd- und Selbstwahrnehmung im sicheren Bereich der Safe-Zone." %}
+              {% trans "Bei grünen Feldern liegen Fremd- und Selbstwahrnehmung im sicheren Bereich der Safe-Zone." %}
               </li>
               <li>
               {% trans "Der erste Wert (in Klammern) zeigt die Fremdwahrnehmung. Je höher dieser Wert, desto grösser der Beitrag zur Spannung aus Teamsicht." %}
@@ -139,8 +139,7 @@
           <div class="main-column left">
             <div class="teamtension" style="font-size: 36px; padding: 10px; text-align: center"><span>[[tension_average]]</span></div>
 
-            
-              <div class="heat_value property_value" v-for="value in scale_value_list">[[ value -16]]&nbsp;. .&nbsp;[[ value +16]]</div>
+              <div class="heat_value property_value" v-for="value in scale_value_list">[[ value ]]</div>
               {% comment %} <div class="heat_value property_value">200</div>
               <div class="heat_value property_value">250</div>
               <div class="heat_value property_value">300</div>
@@ -250,9 +249,11 @@
           </div>
 
           <div class="main-column right">
-            <div class="corner"></div>
+            <div class="corner">
+            Safe-Zone  
+            </div>
             
-              <div class="heat_value property_value" v-for="value in scale_value_list">[[ value ]]</div>
+              <div class="heat_value property_value" v-for="value in scale_value_list">[[ value -16]]&nbsp;. .&nbsp;[[ value +16]]</div>
               {% comment %} <div class="heat_value property_value">200</div>
               <div class="heat_value property_value">250</div>
               <div class="heat_value property_value">300</div>
@@ -376,13 +377,13 @@
          <div class="container">
           <ul>
               <li>
-                {% trans "Vertikal: siehst Du in der oberen Reihe den Beitrag jedes Spielers zu den Kraftquellen; je niedriger der Wert, desto grösser ist der Beitrag des Spielers zu den Kraftquellen." %}<br> 
+                {% trans "Vertikal: siehst Du in der oberen Reihe den Beitrag jedes Spielers zu den Sicherheitsankern; je niedriger der Wert, desto grösser ist der Beitrag des Spielers zur Sicherheit im Team." %}<br> 
               </li>
               <li>
-                {% trans "Horizontal: siehst Du links die Lage der Safe-Zones und rechts die zugehörigen Kraftquellen und Energiefresser; je höher der Wert rechts, desto grösser ist der Beitrag dieser Energiefresser zu den Spannungen." %}
+                {% trans "Horizontal: siehst Du die Lage der Safe-Zones und die zugehörigen Sicherheitsanker und Triggerthemen; je kleiner der Wert links, desto kleiner ist der Beitrag dieser Triggerthemen zur Unsicherheit im Team." %}
               </li>
             <li>
-              {% trans "Ganz unten sind die inneren Spannungswerte aufaddiert. Auch hier gilt: je höher der Wert mit negativem Vorzeichen, desto stärker überschätzt der Spieler den positive Betrag zur Teamdynamik." %}<br><br><br>
+              {% trans "Ganz unten sind die inneren Spannungswerte aufaddiert. Auch hier gilt: je höher der Wert mit negativem Vorzeichen, desto stärker überschätzt der Spieler den positiven Beitrag zur Sicherheit im Team." %}<br><br><br>
             </li>
           </ul>
 

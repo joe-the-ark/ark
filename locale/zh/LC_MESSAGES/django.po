@@ -683,8 +683,8 @@ msgstr "在你的团队中，平均张力值是"
 msgid "Als Daumenregel gilt: Werte unter 20 sind entspannt. Werte unter 40 sind meist noch ohne externe Begleitung bearbeitbar. Die Skala reicht von 1 (absolute Spannungsfreiheit) bis 99."
 msgstr "作为一条经验法则，低于20的数值是放松的。低于40的数值通常在没有外部指导的情况下仍是可行的。等级范围从1（绝对没有张力）到99。"
 
-msgid "Bildet jetzt bitte Zweier- oder Dreiergruppen mit Menschen, die ähnliche Kraftquellen gewählt hatten. Und interpretiert zusammen die erste Etappe eurer Reise zur psychologischen Sicherheit. Ablauf:"
-msgstr "现在请与选择了类似力量来源的人组成两到三组。并一起诠释你的心理安全之旅的第一阶段。程序。"
+msgid "Bildet jetzt bitte Zweier- oder Dreiergruppen mit Menschen, die ähnliche Sicherheitsanker gewählt hatten. Und interpretiert zusammen die erste Etappe eurer Reise zur psychologischen Sicherheit. Ablauf:"
+msgstr "现在请与选择了类似安全锚的人组成两到三组。并一起诠释你的心理安全之旅的第一阶段。程序。"
 
 msgid "Zeigt euch gegenseitig eure Spannungsfelder der vorherigen Seite."
 msgstr "互相展示你在前一页中的紧张区域。"
@@ -698,14 +698,14 @@ msgstr "所需时间：10分钟。"
 msgid "Welche Spannungen im Team wären zu lösen?"
 msgstr "团队中的哪些紧张关系需要得到解决？"
 
-msgid "Die Heatmap zeigt eine Zusammenfassung aller Spannungen. Beginnt eure Auswertung mit den farbigen Feldern im inneren der Matrix, deren rechter Werte grösser als 16 ist..."
+msgid "Die Heatmap zeigt eine Zusammenfassung aller Spannungen. Beginnt eure Auswertung mit den farbigen Feldern im inneren der Matrix, deren rechte Werte grösser als 16 sind..."
 msgstr "热图显示了所有电压的汇总。从矩阵内右侧数值大于16的彩色区域开始评估..."
 
 msgid "Der Farbcode im Innern der Heatmap gilt unverändert."
 msgstr "热力图内的颜色代码适用不变。"
 
-msgid "Bei weissen Feldern liegen Fremd- und Selbstwahrnehmung im sicheren Bereich der Safe-Zone."
-msgstr "在白色领域的情况下，外部和自我认知位于安全区。"
+msgid "Bei grünen Feldern liegen Fremd- und Selbstwahrnehmung im sicheren Bereich der Safe-Zone."
+msgstr "在绿地的情况下，外部和自我感觉都处于安全区。"
 
 msgid "Der erste Wert (in Klammern) zeigt die Fremdwahrnehmung. Je höher dieser Wert, desto grösser der Beitrag zur Spannung aus Teamsicht."
 msgstr "第一个值（在括号内）显示了外部感知。这个值越高，从团队的角度看，对紧张局势的贡献就越大。"
@@ -716,14 +716,14 @@ msgstr "第二个值显示了外部认知和自我认知之间的偏差。数值
 msgid "Bei negativen Vorzeichen schätzt der Spieler den eigenen Beitrag zur Teamdynamik eher zu optimistisch ein. Dadurch entstehen manchmal Spannungen mit dem Team."
 msgstr "如果征兆是负面的，该球员往往对自己对团队动态的贡献过于乐观。这有时会造成与团队的紧张关系。"
 
-msgid "Vertikal: siehst Du in der oberen Reihe den Beitrag jedes Spielers zu den Kraftquellen; je niedriger der Wert, desto grösser ist der Beitrag des Spielers zu den Kraftquellen."
-msgstr "纵向：在最上面一行，你可以看到每个球员对权力来源的贡献；数值越低，球员对权力来源的贡献就越大。"
+msgid "Vertikal: siehst Du in der oberen Reihe den Beitrag jedes Spielers zu den Sicherheitsankern; je niedriger der Wert, desto grösser ist der Beitrag des Spielers zur Sicherheit im Team."
+msgstr "纵向：在最上面一行，你可以看到每个球员对安全锚的贡献；数值越低，球员对球队安全的贡献就越大。"
 
-msgid "Horizontal: siehst Du links die Lage der Safe-Zones und rechts die zugehörigen Kraftquellen und Energiefresser; je höher der Wert rechts, desto grösser ist der Beitrag dieser Energiefresser zu den Spannungen."
-msgstr "水平：左边是安全区的位置，右边是相关的电源和能源消耗者；右边的数值越高，这些能源消耗者对电压的贡献就越大。"
+msgid "Horizontal: siehst Du die Lage der Safe-Zones und die zugehörigen Sicherheitsanker und Triggerthemen; je kleiner der Wert links, desto kleiner ist der Beitrag dieser Triggerthemen zur Unsicherheit im Team."
+msgstr "横向：你可以看到安全区的位置以及相关的安全锚和触发话题；左边的数值越小，这些触发话题对团队中的不安全感的贡献就越小。"
 
-msgid "Ganz unten sind die inneren Spannungswerte aufaddiert. Auch hier gilt: je höher der Wert mit negativem Vorzeichen, desto stärker überschätzt der Spieler den positive Betrag zur Teamdynamik."
-msgstr "内部张力值在底部加起来。同样，带负号的数值越高，玩家越是高估了对团队动力的积极量。"
+msgid "Ganz unten sind die inneren Spannungswerte aufaddiert. Auch hier gilt: je höher der Wert mit negativem Vorzeichen, desto stärker überschätzt der Spieler den positiven Beitrag zur Sicherheit im Team."
+msgstr "内部张力值在底部加起来。同样，带负号的数值越高，玩家越是高估了对团队安全的积极贡献。"
 
 msgid "Je weiter oben ein Paar steht, desto integrierender für das Teamzusammenspiel wirkt diese Paarung vermutlich. Finde bitte einen Partner von weiter unten auf der Liste, um die Ergebnisse Deiner Reise mit der Arche zu verstehen und zu interpretieren..."
 msgstr "一对组合在名单上的位置越高，它对团队的整合性就越强。请从更远的地方找一个伙伴，以便理解和解释你与方舟的旅程的结果......。"

@@ -709,8 +709,8 @@ msgstr "In your team, the average tension value is"
 msgid "Als Daumenregel gilt: Werte unter 20 sind entspannt. Werte unter 40 sind meist noch ohne externe Begleitung bearbeitbar. Die Skala reicht von 1 (absolute Spannungsfreiheit) bis 99."
 msgstr "As a rule of thumb, values below 20 are relaxed. Values below 40 are usually still workable without external guidance. The scale ranges from 1 (absolute absence of tension) to 99."
 
-msgid "Bildet jetzt bitte Zweier- oder Dreiergruppen mit Menschen, die ähnliche Kraftquellen gewählt hatten. Und interpretiert zusammen die erste Etappe eurer Reise zur psychologischen Sicherheit. Ablauf:"
-msgstr "Now please form groups of two or three with people who had chosen similar sources of strength. And together interpret the first stage of your journey to psychological safety. Sequence of events:"
+msgid "Bildet jetzt bitte Zweier- oder Dreiergruppen mit Menschen, die ähnliche Sicherheitsanker gewählt hatten. Und interpretiert zusammen die erste Etappe eurer Reise zur psychologischen Sicherheit. Ablauf:"
+msgstr "Now please form groups of two or three with people who had chosen similar safety anchors. And together interpret the first stage of your journey to psychological safety. Procedure:"
 
 msgid "Zeigt euch gegenseitig eure Spannungsfelder der vorherigen Seite."
 msgstr "Show each other your areas of tension from the previous page."
@@ -724,14 +724,14 @@ msgstr "Time required: 10 minutes."
 msgid "Welche Spannungen im Team wären zu lösen?"
 msgstr "What tensions in the team would need to be resolved?"
 
-msgid "Die Heatmap zeigt eine Zusammenfassung aller Spannungen. Beginnt eure Auswertung mit den farbigen Feldern im inneren der Matrix, deren rechter Werte grösser als 16 ist..."
+msgid "Die Heatmap zeigt eine Zusammenfassung aller Spannungen. Beginnt eure Auswertung mit den farbigen Feldern im inneren der Matrix, deren rechte Werte grösser als 16 sind..."
 msgstr "The heatmap shows a summary of all voltages. Start your evaluation with the colored fields inside the matrix, whose right values are greater than 16..."
 
 msgid "Der Farbcode im Innern der Heatmap gilt unverändert."
 msgstr "The color code inside the heatmap applies unchanged."
 
-msgid "Bei weissen Feldern liegen Fremd- und Selbstwahrnehmung im sicheren Bereich der Safe-Zone."
-msgstr "In the case of white fields, foreign and self-perception lie in the safe zone."
+msgid "Bei grünen Feldern liegen Fremd- und Selbstwahrnehmung im sicheren Bereich der Safe-Zone."
+msgstr "In the case of green fields, foreign and self-perception lie in the safe zone."
 
 msgid "Der erste Wert (in Klammern) zeigt die Fremdwahrnehmung. Je höher dieser Wert, desto grösser der Beitrag zur Spannung aus Teamsicht."
 msgstr "The first value (in parentheses) shows the external perception. The higher this value, the greater the contribution to tension from the team perspective."
@@ -742,14 +742,14 @@ msgstr "The second value shows the deviation between external and self-perceptio
 msgid "Bei negativen Vorzeichen schätzt der Spieler den eigenen Beitrag zur Teamdynamik eher zu optimistisch ein. Dadurch entstehen manchmal Spannungen mit dem Team."
 msgstr "If the signs are negative, the player tends to be too optimistic about his own contribution to the team dynamic. This sometimes creates tensions with the team."
 
-msgid "Vertikal: siehst Du in der oberen Reihe den Beitrag jedes Spielers zu den Kraftquellen; je niedriger der Wert, desto grösser ist der Beitrag des Spielers zu den Kraftquellen."
-msgstr "Vertical: in the upper row you can see the contribution of each player to the power sources; the lower the value, the greater the player's contribution to the power sources."
+msgid "Vertikal: siehst Du in der oberen Reihe den Beitrag jedes Spielers zu den Sicherheitsankern; je niedriger der Wert, desto grösser ist der Beitrag des Spielers zur Sicherheit im Team."
+msgstr "Vertical: in the top row you see the contribution of each player to the safety anchors; the lower the value, the greater the player's contribution to team safety."
 
-msgid "Horizontal: siehst Du links die Lage der Safe-Zones und rechts die zugehörigen Kraftquellen und Energiefresser; je höher der Wert rechts, desto grösser ist der Beitrag dieser Energiefresser zu den Spannungen."
-msgstr "Horizontal: on the left you can see the location of the safe zones and on the right the corresponding power sources and energy guzzlers; the higher the value on the right, the greater the contribution of these energy drainer to the team tensions."
+msgid "Horizontal: siehst Du die Lage der Safe-Zones und die zugehörigen Sicherheitsanker und Triggerthemen; je kleiner der Wert links, desto kleiner ist der Beitrag dieser Triggerthemen zur Unsicherheit im Team."
+msgstr "Horizontal: you see the location of the safe zones and the associated safety anchors and trigger topics; the smaller the value on the left, the smaller the contribution of these trigger topics to the insecurity in the team."
 
-msgid "Ganz unten sind die inneren Spannungswerte aufaddiert. Auch hier gilt: je höher der Wert mit negativem Vorzeichen, desto stärker überschätzt der Spieler den positive Betrag zur Teamdynamik."
-msgstr "At the bottom, the inner tension values are added up. Again, the higher the value with a negative sign, the more the player overestimates the positive amount to the team dynamics."
+msgid "Ganz unten sind die inneren Spannungswerte aufaddiert. Auch hier gilt: je höher der Wert mit negativem Vorzeichen, desto stärker überschätzt der Spieler den positiven Beitrag zur Sicherheit im Team."
+msgstr "The inner tension values are added up at the bottom. Again, the higher the value with a negative sign, the more the player overestimates the positive contribution to team safety."
 
 msgid "Je weiter oben ein Paar steht, desto integrierender für das Teamzusammenspiel wirkt diese Paarung vermutlich. Finde bitte einen Partner von weiter unten auf der Liste, um die Ergebnisse Deiner Reise mit der Arche zu verstehen und zu interpretieren..."
 msgstr "The higher up on the list a pair is, the more integrating for the team interaction this pairing is likely to be. Please find a partner from further down the list to understand and interpret the results of your journey with the Ark...."
@@ -845,7 +845,7 @@ msgstr "Are you a coach or familiar with group dynamic patterns? Then the TEAM H
 msgid "SPIELDATEN? Klicke auf diesen Link für die Auswertung Deiner Reise mit der Arche. Speichere den Link, um die Auswertung später noch einmal anzuschauen."
 msgstr "GAME DATA? Click on this link for the evaluation of your journey with the Ark. Save the link to view the evaluation later."
 
-msgid "Was jetzt: DEBRIEF? (15 Minuten Zeitbedarf) Nutzt die Liberating Structure 1-2-4-All und tauscht euch über die Reise mit der Arche aus. Leitfragen: Wie sicher ist euer Gruppenklima im Verhältnis zu Deiner inneren Sicherheit? Wie könntest Du zur Stärkung Deiner inneren Sicherheit und der psychologischen Sicherheit im Team beitragen?"
+msgid "Was jetzt: DEBRIEF? (15 Minuten Zeitbedarf) Nutzt die Liberating Structure 1-2-4-All und tauscht euch über die Reise mit der Arche aus. Leitfragen: Wie sicher ist euer Gruppenklima im Verhältnis zu Deiner inneren Sicherheit? Wie kannst Du zur Stärkung Deiner inneren Sicherheit und der psychologischen Sicherheit im Team beitragen?"
 msgstr "What's next: DEBRIEF? (15 minutes) Use the Liberating Structure 1-2-4-All and share about the journey with the Ark. Guiding questions: How safe is your group climate in relation to your inner safety? How will you contribute to strengthening your inner safety and the psychological safety of the team?"
 
 msgid "COUNSELING? Nimm'für eine professionelle Interpretation eurer Spieldaten und Begleitung Kontakt mit Deinem Coach oder mit Dr. Joe Maier. (Empfohlen für Teams mit einem psychologischen Sicherheitswert unter 60)."
