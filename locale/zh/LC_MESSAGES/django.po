@@ -819,8 +819,8 @@ msgstr "现在怎么办。真诚的反馈？(10-20分钟，取决于团队的规
 msgid "SPIELDATEN? Klicke auf diesen Link für die Auswertung Deiner Reise mit der Arche. Speichere den Link, um die Auswertung später noch einmal anzuschauen."
 msgstr "游戏数据？点击这个链接，了解对你的方舟之旅的评估。保存链接，以便以后查看评价。"
 
-msgid "Was jetzt: DEBRIEF? (15 Minuten Zeitbedarf) Nutzt die Liberating Structure 1-2-4-All und tauscht euch über die Reise mit der Arche aus. Leitfragen: Was hat Dich berührt, irritiert und bestärkt einen Beitrag zur psychologischen Sicherheit zu leisten? Worin genau wird Dein Beitrag bestehen?"
-msgstr "现在怎么办。DEBRIEF? (15分钟)使用解放结构1-2-4-所有人，分享有关方舟的旅程。引导性问题：是什么触动、刺激和鼓励你为心理安全做出贡献？你的贡献究竟是什么？"
+msgid "Was jetzt: DEBRIEF? (15 Minuten Zeitbedarf) Nutzt die Liberating Structure 1-2-4-All und tauscht euch über die Reise mit der Arche aus. Leitfragen: Wie sicher ist euer Gruppenklima im Verhältnis zu Deiner inneren Sicherheit? Wie kannst Du zur Stärkung Deiner inneren Sicherheit und der psychologischen Sicherheit im Team beitragen?"
+msgstr "下一步是什么。DEBRIEF? (15分钟)使用解放结构1-2-4-All，分享与方舟的旅程。引导性问题。你的团体氛围与你的内在安全有多大的关系？你怎样才能为加强你的内在安全和团队的心理安全作出贡献？"
 
 msgid "COUNSELING? Nimm'für eine professionelle Interpretation eurer Spieldaten und Begleitung Kontakt mit Deinem Coach oder mit Dr. Joe Maier. (Empfohlen für Teams mit einem psychologischen Sicherheitswert unter 60)."
 msgstr "联系你的教练或乔-迈尔博士，对你的比赛数据进行专业解读和指导。(推荐给心理安全分数低于60分的团队)."

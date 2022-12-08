@@ -845,8 +845,8 @@ msgstr "Are you a coach or familiar with group dynamic patterns? Then the TEAM H
 msgid "SPIELDATEN? Klicke auf diesen Link für die Auswertung Deiner Reise mit der Arche. Speichere den Link, um die Auswertung später noch einmal anzuschauen."
 msgstr "GAME DATA? Click on this link for the evaluation of your journey with the Ark. Save the link to view the evaluation later."
 
-msgid "Was jetzt: DEBRIEF? (15 Minuten Zeitbedarf) Nutzt die Liberating Structure 1-2-4-All und tauscht euch über die Reise mit der Arche aus. Leitfragen: Was hat Dich berührt, irritiert und bestärkt einen Beitrag zur psychologischen Sicherheit zu leisten? Worin genau wird Dein Beitrag bestehen?"
-msgstr "What now: DEBRIEF? (15 minutes time required) Use the Liberating Structure 1-2-4-All and share about the journey with the Ark. Guiding Questions: What touched you, irritated you, and encouraged you to make a contribution to psychological safety? What exactly will your contribution consist of?"
+msgid "Was jetzt: DEBRIEF? (15 Minuten Zeitbedarf) Nutzt die Liberating Structure 1-2-4-All und tauscht euch über die Reise mit der Arche aus. Leitfragen: Wie sicher ist euer Gruppenklima im Verhältnis zu Deiner inneren Sicherheit? Wie könntest Du zur Stärkung Deiner inneren Sicherheit und der psychologischen Sicherheit im Team beitragen?"
+msgstr "What's next: DEBRIEF? (15 minutes) Use the Liberating Structure 1-2-4-All and share about the journey with the Ark. Guiding questions: How safe is your group climate in relation to your inner safety? How will you contribute to strengthening your inner safety and the psychological safety of the team?"
 
 msgid "COUNSELING? Nimm'für eine professionelle Interpretation eurer Spieldaten und Begleitung Kontakt mit Deinem Coach oder mit Dr. Joe Maier. (Empfohlen für Teams mit einem psychologischen Sicherheitswert unter 60)."
 msgstr "COUNSELING? Contact your coach or Dr. Joe Maier for a professional interpretation of your game data and guidance. (Recommended for teams with a psychological safety score below 60)."

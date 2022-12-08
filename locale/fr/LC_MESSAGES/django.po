@@ -866,7 +866,7 @@ msgid "Was jetzt: SOCIAL SENSITIVITY TRAINING? (Ca. 10 Minuten Zeitbedarf) Hilf 
 msgstr "Et maintenant : SOCIAL SENSITIVITY TRAINING ? (env. 10 minutes) Aide à améliorer la sécurité psychologique dans l'équipe : Entraîne ta sensibilité sociale et apprends à évaluer la manière dont tu es perçu par les membres de ton équipe. (Recommandé pour les équipes dont le score de sécurité psychologique est inférieur à 70)."
 
 msgid "Was jetzt: AUFRICHTIGES FEEDBACK? (10-20 Minuten Zeitbedarf, je nach Teamgrösse) Hilf mit die psychologische Sicherheit im Team zu verbessern: Gib anonymes 1 zu 1 Feedback, um alle in einen psychologisch sichereren Raum mitzunehmen. (Empfohlen für Teams mit einem psychologischen Sicherheitswert unter 80)."
-msgstr "Et maintenant ? UN FEEDBACK SINCÈRE ? (10-20 minutes, selon la taille de l'équipe) Aide à améliorer la sécurité psychologique de l'équipe : Donne un feedback anonyme 1 à 1 pour emmener tout le monde dans un espace psychologiquement plus sûr. (Recommandé pour les équipes dont le score de sécurité psychologique est inférieur à 80)."
+msgstr "Et maintenant : UN FEEDBACK SINCÈRE ? (10-20 minutes, selon la taille de l'équipe) Aide à améliorer la sécurité psychologique de l'équipe : Donne un feedback anonyme 1 à 1 pour emmener tout le monde dans un espace psychologiquement plus sûr. (Recommandé pour les équipes dont le score de sécurité psychologique est inférieur à 80)."
 
 msgid "Bist Du Coach oder vertraut mit gruppendynamischen Mustern? Dann ist die TEAM-HEATMAP für Dich. Klicke auf das Icon um eine Karte der Safe-Zones und Spannungen im Team zu sehen."
 msgstr "Tu es coach ou tu connais les modèles de dynamique de groupe ? Alors la TEAM-HEATMAP est faite pour toi. Clique sur l'icône pour voir une carte des zones de sécurité et des tensions dans l'équipe."
@@ -874,8 +874,8 @@ msgstr "Tu es coach ou tu connais les modèles de dynamique de groupe ? Alors la
 msgid "SPIELDATEN? Klicke auf diesen Link für die Auswertung Deiner Reise mit der Arche. Speichere den Link, um die Auswertung später noch einmal anzuschauen."
 msgstr "DONNÉES DU JEU ? Clique sur ce lien pour voir l'évaluation de ton voyage avec l'arche. Sauvegarde le lien pour revoir l'évaluation plus tard."
 
-msgid "Was jetzt: DEBRIEF? (15 Minuten Zeitbedarf) Nutzt die Liberating Structure 1-2-4-All und tauscht euch über die Reise mit der Arche aus. Leitfragen: Was hat Dich berührt, irritiert und bestärkt einen Beitrag zur psychologischen Sicherheit zu leisten? Worin genau wird Dein Beitrag bestehen?"
-msgstr "Et maintenant ? DEBRIEF ? (15 minutes) Utilisez la structure de consultation 1-2-4-All et échangez sur le voyage avec l'arche. Questions directrices : Qu'est-ce qui t'a touché, irrité et encouragé à apporter une contribution à la sécurité psychologique ? En quoi consistera exactement ta contribution ?"
+msgid "Was jetzt: DEBRIEF? (15 Minuten Zeitbedarf) Nutzt die Liberating Structure 1-2-4-All und tauscht euch über die Reise mit der Arche aus. Leitfragen: Wie sicher ist euer Gruppenklima im Verhältnis zu Deiner inneren Sicherheit? Wie kannst Du zur Stärkung Deiner inneren Sicherheit und der psychologischen Sicherheit im Team beitragen?"
+msgstr "Et maintenant : DEBRIEF ? (15 minutes) Utilisez la structure de consultation 1-2-4-All et échangez sur le voyage avec l'arche. Questions directrices : Qu'est-ce qui t'a touché, irrité et encouragé à apporter une contribution à la sécurité psychologique ? En quoi consistera exactement ta contribution ?"
 
 msgid "COUNSELING? Nimm'für eine professionelle Interpretation eurer Spieldaten und Begleitung Kontakt mit Deinem Coach oder mit Dr. Joe Maier. (Empfohlen für Teams mit einem psychologischen Sicherheitswert unter 60)."
 msgstr "COUNSELING ? Pour une interprétation professionnelle de tes résultats de jeu et un accompagnement, prends contact avec ton coach ou avec le Dr Joe Maier. (Recommandé pour les équipes ayant un score de sécurité psychologique inférieur à 60)"
