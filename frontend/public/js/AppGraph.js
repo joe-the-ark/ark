@@ -191,7 +191,7 @@ class AppGraph {
                              <div class="custom-graph__item-line"></div>
                              <div class="custom-graph__item-polygon"></div>
                              <div class="custom-graph__item-trace"></div>`;
-    item.classList.toggle('inactive');
+    item.classList.toggle('active');
     item.querySelector('.custom-graph__item-head').innerHTML = html;
     this.updateDots();
     this.update();

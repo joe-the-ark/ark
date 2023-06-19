@@ -75,7 +75,7 @@
                     <input type="text" placeholder="Sicherheitsanker fehlt!" name="Kraftquelle" v-model="text_input_power" />
                     <input type="text" placeholder="Trigger fehlt!" name="Energiefresser" v-model="text_input_drainer" />
 
-                    <button class="glow-on-hover" type="button" @click="continue_()">Update</button>
+                    <button class="glow-on-hover" type="button" @click="continue_()" onclick="alert('Updated!')">Update</button>
                     
                     </p>
                         <p v-for='(value, index) in 10' :key="index">

@@ -1,6 +1,6 @@
 .custom-graph {
   position: relative;
-  padding: 70px 0 150px 45px;
+  padding: 130px 0 150px 45px;
 }
 @media screen and (max-width: 1200px) {
   .custom-graph {
@@ -18,9 +18,11 @@
   box-sizing: border-box;
   position: relative;
 }
+
 .statistic .custom-graph__items {
   pointer-events: none;
 }
+
 .statistic .custom-graph__items:before {
   content: ' ';
   position: absolute;
@@ -53,6 +55,7 @@
   margin: 0 2px -33px;
 }
 .custom-graph__item input {
+  outline: 1px dotted blue;
   position: absolute;
   width: min(382px, calc(30vh - 19px));
   transform: translateX(-50%) rotate(-90deg) translateX(calc(50% - 93px / 2));
@@ -68,7 +71,7 @@
   cursor: pointer;
 }
 .custom-graph__item input:focus {
-  outline: none;
+  outline: 2px dotted red;
 }
 .custom-graph__item input::-webkit-slider-runnable-track {
   width: 100%;
@@ -287,17 +290,18 @@
     padding-left: 0;
   }
   .custom-graph {
-    margin-left: 26px;
+    margin-left: 126px;
+    margin-right: 26px;
   }
   .custom-graph__status {
     position: relative;
     width: 100%;
-    height: 4px;
+    height: 8px;
     background: linear-gradient(
       to right,
-      #3dff39 0%,
-      #e1f131 52.91%,
-      #f53131 101.58%
+      #000000 0%,
+      #51ceec 52.91%,
+      #3781ee 101.58%
     );
     top: 0;
     left: 0;

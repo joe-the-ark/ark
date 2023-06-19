@@ -12,6 +12,7 @@
     <title>First-Mission-INFO</title>
     <link rel="stylesheet" href="/static/css/app.css">
     <link rel="stylesheet" href="/static/css/preview.css">
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
 </head>
 <body>
   {% get_current_language as LANGUAGE_CODE %}
@@ -64,6 +65,16 @@
         </header>
     </div>
     <div class="app__body">
+
+        <div id="qrcode">
+                <h1>
+                    {% trans "Teile diesen QR-Code mit den anderen" %}
+                </h1>            
+                <p>
+                    {% trans "(oder bitte den Innitiator um den Link im Zwischenspeicher)." %}
+                </p>
+        </div>
+
         <div class="container">
             <main class="screen preview">
                 <h1>
@@ -78,10 +89,10 @@
                         </p>
                         <ul>
                             <li>
-                                {% trans "durchschnittlich ausgeprägte soziale Sensibilität"%}
+                                {% trans "gleichberechtigte Redeanteile" %}
                             </li>
                             <li>
-                                {% trans "gleichberechtigte Redeanteile" %}
+                                {% trans "durchschnittlich ausgeprägte soziale Sensibilität"%}
                             </li>
                             <li>
                                 {% trans "offen und ohne Angst kommunizieren" %}
@@ -91,7 +102,10 @@
                             {% trans "Psychologische Sicherheit ist laut Google’s Aristoteles-Studie stärkster Prädiktor für Team-Performance." %}
                         </p>
                         <p>
-                            <a href="/ubung-2/" class="button"> {% trans "Weiterspielen" %} </a>
+                        <a href="/ubung-2/">
+                        <button class="button" type="button">
+                            {% trans "Weiterspielen" %}
+                        </button>
                         </p>
                         <p>
                                 {% trans "Innere Sicherheit erlaubt es achtsam mit sich selbst und anderen umzugehen. Defensivreaktionen werden überflüssig (Fight, Flight & Freeze)" %}
@@ -114,8 +128,8 @@
                 position: absolute;
                 top: 0;
                 left: 0;
-                width: 70%;
-                height: 70%;
+                width: 100%;
+                height: 100%;
                 }
                 </style>
 
@@ -149,6 +163,21 @@
   var temp_link_ = url_host + '/link/' + temp_link + '/';
   document.querySelector('.icon-link').dataset.clipboardText = temp_link_;
 
+
+
+
+
+    var qr = new QRCode(document.getElementById("qrcode"), {
+    text: temp_link_,
+
+    width: 400,
+    height: 400,
+    colorDark : "#000000",
+    colorLight : "#ffffff",
+    correctLevel : QRCode.CorrectLevel.H
+    });
+
+
     var lang_code = $('#select_').val()
     if (lang_code == 'zh-hans'){
         $("#flag").attr("src", "{% static 'images/flags/4_zh-hans_transparent.png'%}");
@@ -160,5 +189,8 @@
         $("#flag").attr("src", "{% static 'images/flags/3_fr_transparent.png'%}");
     }
 
+
+
 </script>
+
 </html>

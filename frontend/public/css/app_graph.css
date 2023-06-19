@@ -1,6 +1,6 @@
 .custom-graph {
     position: relative;
-    padding: 70px 0 150px 45px;
+    padding: 130px 0 150px 45px;
 }
 
 @media screen and (max-width: 1200px) {
@@ -432,7 +432,7 @@
     }
     .custom-graph__item-trace {
         border-top: 2px dashed var(--ls-extra-color);
-        position: absolute;
+        position: 272px;
         width: 100%;
         z-index: -1;
     }

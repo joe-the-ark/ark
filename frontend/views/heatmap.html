@@ -155,11 +155,12 @@
             <div class="heat_value two">[[ user[5] ]]</div>
             <div class="heat_value one">[[ user[6] ]]</div>
             <div class="heat_value three"></div> {% endcomment %}
-            <div class="heat_value average-by-player">[[ user[4] ]]</div>
+            <div class="heat_value average-by-player"></div>
             <div class="heat_player">
-            <div class="name">[[ user[1] ]]</div>
             <div class="heat_player">
             <img :src="user[2]" alt="">
+            <div class="heat_value over_player">[[ user[1] ]]</div>
+            <div class="heat_value over_player">[[ user[4] ]]</div>
             </div>
             </div>
           </div>
@@ -250,7 +251,6 @@
 
           <div class="main-column right">
             <div class="corner">
-            Safe-Zone  
             </div>
             
               <div class="heat_value property_value" v-for="value in scale_value_list">[[ value -16]]&nbsp;. .&nbsp;[[ value +16]]</div>
@@ -259,7 +259,7 @@
               <div class="heat_value property_value">300</div>
               <div class="heat_value property_value">350</div> {% endcomment %}
             
-            <div class="corner"></div>
+            <div class="corner"> Safe-Zone </div>
           </div>
 
 
@@ -370,13 +370,13 @@
   })
   let playersCount = {{user_number}};; 
   let heatmapEl = document.querySelector('.heatmap');
-  heatmapEl.style.gridTemplateColumns = `[lft] minmax(50px, 100px) repeat(${playersCount}, minmax(50px, 100px)) [prop] 150px [rght] minmax(50px, 100px) `
+  heatmapEl.style.gridTemplateColumns = `[lft] minmax(50px, 100px) repeat(${playersCount}, minmax(50px, 100px)) [prop] 180px [rght] minmax(50px, 100px) `
 
   </script>
 
          <div class="container">
           <ul>
-              <li>
+              <li><br><br><br><br><br><br><br>
                 {% trans "Vertikal: siehst Du in der oberen Reihe den Beitrag jedes Spielers zu den Sicherheitsankern; je niedriger der Wert, desto grösser ist der Beitrag des Spielers zur Sicherheit im Team." %}<br> 
               </li>
               <li>

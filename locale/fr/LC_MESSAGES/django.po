@@ -82,10 +82,17 @@ msgstr "Partagez ce lien :"
 msgid "Spiel starten"
 msgstr "Commencer le jeu"
 
-msgid "und Link kopieren"
-msgstr "et copier le lien"
+msgid "Link kopieren & QR-Code anzeigen"
+msgstr "copier le lien & afficher le code QR"
 
 #. preview.html
+
+msgid "Teile diesen QR-Code mit den anderen"
+msgstr "Partage ce code QR avec les autres"
+
+msgid "(oder bitte den Innitiator um den Link im Zwischenspeicher)."
+msgstr "(ou demande à l'initiateur de mettre le lien en cache)."
+
 #: loco:606885b920934b401305cbb2
 msgid "Wie sicher ist euer Gruppenklima?"
 msgstr "Quel est le degré de sécurité de votre climat de groupe ?"
@@ -162,13 +169,8 @@ msgstr ""
 
 #. ubung-2
 #: loco:606b79b45a04ef17b613bf63
-msgid ""
-"Bewege bitte Deine Spielfigur auf den Punkt der Skala, der am Besten passt. "
-"Später im Spiel siehst Du die anonymisierte Einschätzung aller Mitspieler."
-msgstr ""
-"Veuillez déplacer votre personnage à l'endroit de l'échelle qui vous "
-"convient le mieux. Plus tard dans le jeu, vous verrez l'évaluation anonyme "
-"de tous les joueurs."
+msgid "Bewege bitte Deine Avatar auf den Punkt der Skala, der am Besten passt. Später siehst Du die ANONYMISIERTE Einschätzung aller Mitspieler."
+msgstr "Déplace ton avatar sur le point de l'échelle qui convient le mieux. Plus tard, tu verras l'évaluation ANONYMISÉE de tous les autres joueurs."
 
 #: loco:606b7a5e8e18de47d728d102
 msgid "schätzt"
@@ -238,7 +240,7 @@ msgstr ""
 
 #. ubung-4
 #: loco:606b8311a237a7415b52ae83
-msgid "Ich beobachte wie Du gelegentlich Menschen im Team ausschliesst."
+msgid "Ich beobachte, wie Du gelegentlich Menschen im Team ausschliesst."
 msgstr ""
 "J'observe comment vous excluez parfois des personnes de l'équipe."
 

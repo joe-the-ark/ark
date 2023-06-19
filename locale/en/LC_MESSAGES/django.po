@@ -79,8 +79,14 @@ msgstr "Share this link:"
 msgid "Spiel starten"
 msgstr "Launch game"
 
-msgid "und Link kopieren"
-msgstr "and copy link"
+msgid "Link kopieren & QR-Code anzeigen"
+msgstr "copy link & show QR code"
+
+msgid "Teile diesen QR-Code mit den anderen"
+msgstr "Share this QR code with the others"
+
+msgid "(oder bitte den Innitiator um den Link im Zwischenspeicher)."
+msgstr "(or ask the initiator for the link in the cache)."
 
 msgid "Wie sicher ist euer Gruppenklima?"
 msgstr "How safe is your group climate?"
@@ -157,12 +163,8 @@ msgstr ""
 
 #. ubung-2
 #: loco:606b79b45a04ef17b613bf63
-msgid ""
-"Bewege bitte Deine Spielfigur auf den Punkt der Skala, der am Besten passt. "
-"Später im Spiel siehst Du die anonymisierte Einschätzung aller Mitspieler."
-msgstr ""
-"Please move your character to the point on the scale that fits best. Later "
-"in the game you will see the anonymous assessment of all players."
+msgid "Bewege bitte Deine Avatar auf den Punkt der Skala, der am Besten passt. Später siehst Du die ANONYMISIERTE Einschätzung aller Mitspieler."
+msgstr "Please move your avatar to the point on the scale that fits best. Later, you will see the ANONYMISED assessment of all the other players."
 
 #: loco:606b7a5e8e18de47d728d102
 msgid "schätzt"
@@ -231,7 +233,7 @@ msgstr "We can usually look at difficult topics well together."
 
 #. ubung-4
 #: loco:606b8311a237a7415b52ae83
-msgid "Ich beobachte wie Du gelegentlich Menschen im Team ausschliesst."
+msgid "Ich beobachte, wie Du gelegentlich Menschen im Team ausschliesst."
 msgstr "I observe how you occasionally exclude people in the team."
 
 #. ubung-4
