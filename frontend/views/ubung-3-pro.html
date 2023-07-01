@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
     <meta name="theme-color" content="#51ceec"/>
     <meta name="description" content="ARK"/>
-    <title>Energy-Drainer-VOTE-3</title>
+    <title>Inner_Safety</title>
     <link rel="stylesheet" href="/static/css/app.css">
     <link rel="stylesheet" href="/static/css/ubung-1.css">
     <script src="/static/vue.js"></script>
@@ -56,15 +56,15 @@
         element-loading-background="rgba(0, 0, 0, 0.8)">
                 <main class="screen ubung-1">
                     <h1>
-                        {% trans "Was TRIGGERT Dich im Team?" %}
+                        {% trans "Was erzeugt mitunter Unsicherheit und TRIGGERT Dich im Team?" %}
                     </h1>
                     <p>
                         <b>
-                            {% trans "Schreib bitte ein Wort in das TRIGGER-Feld oder klicke auf den passenden Begriff." %}
+                            {% trans "Schreib bitte ein Wort in das NEGATIVE_TRIGGER-Feld oder klicke auf den passenden Begriff." %}
                         </b><br>
                     <img src="http://info.arks.ch/wp-content/uploads/2022/07/Minus.png">
                     </p>
-                    <input type="text" placeholder={% trans "Trigger" %} name="energiefresser" v-model="text_input" @keyup.enter="add_term" @keyup = "keyboard_()"/>
+                    <input type="text" placeholder={% trans "Negative_Trigger" %} name="energiefresser" v-model="text_input" @keyup.enter="add_term" @keyup = "keyboard_()"/>
                     <label>*Dieser Begriff wurde bereits von einem anderen Spieler ausgewählt.</label>
                     <p>
                             {% trans "Beschreibe bitte den GEGENPOL dessen, was Dir in unserem Team Sicherheit schenkt." %}
