@@ -25,7 +25,7 @@
                 <div class="user">
                     <div class="user__subtitle">
                         {{game.name}}
-                        <span class="icon-link" data-clipboard-text="#link_url"></span>
+                        <span class="icon-link" data-clipboard-text="#link_url"></span> link
                     </div>
                     <img src="{{user.avatar}}" alt="">
                     <div class="user__title">
@@ -36,7 +36,7 @@
             </div>
             <div class="header-main__progress">
                 <div class="progress">
-                    <label>{% trans "GRUPPE" %}</label>
+                    <label>{% trans "ANONYM" %}</label>
                     <div class="progress__bar">
                         <div style="width: 5%">5%</div>
                     </div>
@@ -70,13 +70,13 @@
                         </div>
                     </div>
                     <p>
-                        {% trans "Bewege bitte Deine Avatar auf den Punkt der Skala, der am Besten passt. Später siehst Du die ANONYMISIERTE Einschätzung aller Mitspieler." %}
+                        {% trans "Bewege bitte deinen Avatar auf den Punkt der Skala, der am besten passt. Später siehst du die ANONYMISIERTE Einschätzung aller Mitreisenden." %}
                     </p>
                     <input id="digit_value" type="hidden" name="digit_value" value="0">
                      <div class="center">
                         <p>
                         <button class="button" type="button">
-                            {% trans "Weiterspielen" %}
+                            {% trans "Weiter" %}
                         </button>
                         </p>
                         <p>

@@ -41,7 +41,7 @@
             </div>
             <div class="header-main__progress">
                 <div class="progress">
-                    <label>{% trans "INDIVIDUUM" %}</label>
+                    <label>{% trans "SECURE BASE" %}</label>
                     <div class="progress__bar">
                         <div style="width: 80%">80%</div>
                     </div>
@@ -53,24 +53,24 @@
         <div class="container">
             <main class="screen spannungsfelder">
                 <h1>
-                    {% trans "Bitte nimm Dir 3 Minuten Zeit, um Deinen Beitrag zur inneren Sicherheit im Team zu begreifen" %}
+                    {% trans "Bitte nimm dir 3 Minuten Zeit, um deinen Beitrag zur inneren Sicherheit der anderen Teammitglieder zu begreifen" %}
                 </h1>
                 <p>
-                    {% trans "Das grüne Band zeigt die Safe-Zone Deines Teams:" %}
+                    {% trans "Das grüne Band zeigt die sichere Zone deines Teams:" %}
                 </p>
                         <ul>
                             <li>
-                                {% trans "Was ist Dein Beitrag zu den Sicherheits-Ankern und Trigger-Themen im Team?" %}
+                                {% trans "Wer sieht deinen Beitrag zur inneren Sicherheit innerhalb, wer ausserhalb, dieser grünen sicheren Zone?"%}
                             </li>
                             <li>
-                                {% trans "Wer sieht Deinen Beitrag zur inneren Sicherheit innerhalb, wer ausserhalb, dieser Safe-Zone?"%}
+                                {% trans "Was ist dein Beitrag zur Stärkung der den Sicherheits-Anker im Team?" %}
                             </li>
                             <li>
-                                {% trans "Wo entstehen Spannungen zwischen Deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team? Kannst Du diese Spannungen erklären?"%}
+                                {% trans "Wo entstehen Spannungen zwischen deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team? Kannst du diese Spannungen erklären?"%}
                             </li>
                         </ul>
                 <p>
-                    {% trans "Unsere Hypothese: Spannung erzeugt Unsicherheit. Eine gute innere Sicherheit macht Defensivreaktionen überflüssig (Fight, Flight & Freeze) und lässt Dich achtsam mit Dir und anderen umgehen." %}
+                    {% trans "Unsere Hypothese: Spannung erzeugt Unsicherheit und gefährdet Vertrauen. Eine tragfähige, sichere Beziehungsbasis macht Defensivreaktionen überflüssig (Fight, Flight & Freeze) und lässt dich achtsam mit dir und anderen umgehen." %}
                 </p>
 
                 <div id="graph-slider" class="swiper-container">
@@ -90,6 +90,9 @@
                         {{ tension }}
                     </div>
                 </div>
+                <p>
+                    {% trans "Klick bitte auf die Kacheln für eine detailierte Darstellung der Ergebnisse:" %}
+                </p>
                 <div class="custom-graph1"></div>
                 <div class="custom-graph2"></div>
                 <div id="rang-slider" class="swiper-container">
@@ -108,27 +111,30 @@
                         {% trans "Spannungs-Werte unter 16 = deuten auf Spannungsfreiheit mit dem Team hin" %}
                     </li>
                     <li>
-                        {% trans "Negatives Spannungs-Vorzeichen = hier schätzt Du Deinen Beitrag zur inneren Sicherheit im Team eher zu positiv ein" %}
+                        {% trans "Negatives Spannungs-Vorzeichen = hier schätzt du deinen Beitrag zur inneren Sicherheit im Team eher zu positiv ein" %}
                     </li>
                     <li>
-                        {% trans "Positives Spannungs-Vorzeichen = hier schätzt Du Deinen Beitrag zur inneren Sicherheit im Team eher zu kritisch ein" %}
+                        {% trans "Positives Spannungs-Vorzeichen = hier schätzt du deinen Beitrag zur inneren Sicherheit im Team eher zu kritisch ein" %}
                     </li>                    
                     <li>
-                        {% trans "Rot = Deine Selbstwahrnehmung liegt ausserhalb der Safe-Zone" %}
+                        {% trans "Rot = deine Selbstwahrnehmung liegt ausserhalb der Safe-Zone" %}
                     </li>
                     <li>
-                        {% trans "Gelb = die Wahrnehmung Deines Beitrags zur inneren Sicherheit durch die anderen liegt außerhalb der Safe-Zone" %}
+                        {% trans "Gelb = die Wahrnehmung deines Beitrags zur inneren Sicherheit der anderen liegt außerhalb der Safe-Zone" %}
                     </li>
                     <li>
-                        {% trans "Schwarz = die Selbst- und die Fremdwahrnehmung Deines Beitrags zur inneren Sicherheit liegen ausserhalb der Safe-Zone" %}
+                        {% trans "Schwarz = die Selbst- und die Fremdwahrnehmung deines Beitrags zur inneren Sicherheit liegen ausserhalb der Safe-Zone" %}
                     </li>
                 </ul>
                 <div class="center">
                     <p>
-                    <a href="/game-insights/" class="button" id="button">
-                        {% trans "Zum Abschluss." %}
-                    </a>
-                </p>
+
+                        <a href="/game-insights/">
+                        <button class="button" type="button">
+                            {% trans "Weiter" %}
+                        </button>
+
+                    </p>
                 </div>
 
             </main>

@@ -68,24 +68,16 @@
                         {% trans "Wartezimmer" %}
                     </h1>
                 <p>
-                        {% trans "Erinnerst Du Dich an Deine Einschätzung der gefühlten Team-Performance? Hier siehst Du den Durchschnitt aller abgegebenen Werte im Team (auf einer Skala von 1 bis 99):" %}
+                        {% trans "Erinnerst du dich an deine Einschätzung der gefühlten Team-Performance? Hier siehst du den Durchschnitt aller abgegebenen Werte im Team (auf einer Skala von 1 bis 99):" %}
                         <br>
                 </p>
                         <div class="custom-graph-info__item base" data-text="">
                         {{ team_potential_median }}
                         </div>
+
                 <p>
-
+                        {% trans "In der Regel gilt folgender Zusammenhang: je höher die Team-Performance, desto besser eure psychologische Sicherheit. Auf der nächsten Etappe siehst du, welches Verhalten zu eurer psychologischen (Un-)Sicherheit beiträgt." %}
                 </p>
-
-                <ul>
-                    <li>
-                        {% trans "In der Regel gilt folgender Zusammenhang: je grösser eure psychologische Sicherheit, umso höher die Team-Performance." %}
-                    </li>
-                    <li>
-                        {% trans "Auf der nächsten Etappe siehst Du, welches Verhalten zu eurer psychologischen Sicherheit beiträgt." %}
-                    </li>
-                </ul>
                 </div> 
 
                 <p>
@@ -96,7 +88,7 @@
                             [[ value.name ]]
                         </div>
                         <div class="user-connect__now">
-                            {% trans "bereit" %}
+                            {% trans "bereit?" %}
                         </div>
                     </div>
 
@@ -106,7 +98,7 @@
                             [[ value.name ]]
                         </div>
                         <div class="user-connect__now">
-                            {% trans "bereit" %}
+                            {% trans "bereit?" %}
                         </div>
                     </div>
                 </div>
@@ -116,7 +108,7 @@
             {% csrf_token %}
                 <div class="center">
                     <button id='main_btn' type="button" onclick="choosePopup()">
-                        {% trans "Weiterspielen" %}
+                        {% trans "Weiter" %}
                     </button>
                     <p><br>
                         {% trans "Die Reise kann weitergehen, sobald alle Mitspieler hier im Warteraum angekommen sind." %}

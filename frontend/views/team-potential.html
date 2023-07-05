@@ -40,7 +40,7 @@
             </div>
             <div class="header-main__progress">
                 <div class="progress">
-                    <label>{% trans "GRUPPE" %}</label>
+                    <label>{% trans "" %}</label>
                     <div class="progress__bar">
                         <div style="width: 75%">75%</div>
                     </div>
@@ -86,13 +86,15 @@
                         <button id="button" @click="waiting_room">
                             Weiterspielen
                         </button>  {% endcomment %}
-                        <a href="/spannungsfelder/" class="button">
-                            {% trans 'Weiterspielen' %}
+
+                        <a href="/spannungsfelder/">
+                        <button class="button" type="button">
+                            {% trans "Weiter" %}
+                        </button>
                         </p>
-                        </a>
                     </div>
                 <p>
-                    {% trans "Meist liegen die gefühlte Team-Performance und der psychologische Sicherheitswert nahe beisammen. Der Schlüssel zu einer Verbesserung der Beiden führt über eine Verbesserung der inneren Sicherheit jedes Einzelnen. Kennst Du Deinen Beitrag zur inneren Sicherheit im Team?" %}
+                    {% trans "Meist liegen die gefühlte Team-Performance und der psychologische Sicherheitswert nahe beisammen. Der Schlüssel zu einer Verbesserung beider Werte führt über eine Verbesserung der inneren Sicherheit aller Teammitglieder. Kennst Du Deinen Beitrag zur inneren Sicherheit im Team?" %}
                 </p>
 
                 {% comment %} </form> {% endcomment %}                

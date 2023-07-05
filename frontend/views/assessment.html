@@ -101,7 +101,7 @@
                     {% trans "Euer psychologischer Sicherheitswert" %}
                 </h3>
                 <p class="psycho-p">
-                    {% trans "Hier siehst Du den psychologische Sicherheitswert für Dein Team auf einer Skala zwischen 0 (sehr unsicher) bis 99 (aussergewöhnlich sicher). Welches Verhalten trägt zur psychologischen Sicherheit bei?" %}
+                    {% trans "Hier siehst du den psychologische Sicherheitswert für dein Team auf einer Skala zwischen 0 (sehr unsicher) bis 99 (aussergewöhnlich sicher). Welches Verhalten trägt zur psychologischen Sicherheit bei?" %}
                 </p>
                 <div class="psychologischer__container" id="app-1">
                     <div class="distry">
@@ -125,7 +125,7 @@
                     </div>
                     <div class="distry">
                         <div class="distry__description">
-                            {% trans "Ich beobachte wie Du gelegentlich Menschen im Team ausschliesst." %}
+                            {% trans "Ich beobachte wie du gelegentlich Menschen im Team ausschliesst." %}
                         </div>
                         <div class="distry__thumbnails">
                             <div class="distry__user" v-for="person in row1">
@@ -135,7 +135,7 @@
                     </div>
                     <div class="distry">
                         <div class="distry__description">
-                            {% trans "Für mich bist Du im Team nicht immer sichtbar." %}
+                            {% trans "Für mich bist du im Team nicht immer sichtbar." %}
                         </div>
                         <div class="distry__thumbnails">
                             <div class="distry__user" v-for="person in row2">
@@ -145,7 +145,7 @@
                     </div>
                     <div class="distry">
                         <div class="distry__description">
-                            {% trans "Ich fühle wie meine Talente von Dir gesehen und einbezogen werden." %}
+                            {% trans "Ich fühle wie meine Talente von dir gesehen und einbezogen werden." %}
                         </div>
                         <div class="distry__thumbnails">
                             <div class="distry__user" v-for="person in row3">
@@ -155,7 +155,7 @@
                     </div>
                     <div class="distry">
                         <div class="distry__description">
-                            {% trans "Ich habe das Gefühl Du reagierst auf Fehler mit Schuldzuweisungen an Einzelne im Team." %}
+                            {% trans "Ich habe das Gefühl du reagierst auf Fehler mit Schuldzuweisungen an Einzelne im Team." %}
                         </div>
                         <div class="distry__thumbnails">
                             <div class="distry__user" v-for="person in row4">
@@ -165,7 +165,7 @@
                     </div>
                     <div class="distry">
                         <div class="distry__description">
-                            {% trans "Mir fällt es mitunter schwer Dich um Hilfe zu bitten." %}
+                            {% trans "Mir fällt es mitunter schwer dich um Hilfe zu bitten." %}
                         </div>
                         <div class="distry__thumbnails">
                             <div class="distry__user" v-for="person in row5">
@@ -196,11 +196,11 @@
                 <div class="fields-fill__wrapper"></div>
 
                 <h3 class="spanun-h3">
-                    {% trans "Was ist Dein Beitrag zur inneren Sicherheit im Team?" %}
+                    {% trans "Was ist dein Beitrag zur inneren Sicherheit im Team?" %}
                 </h3>
 
                 <p class="spanun-p">
-                    {% trans "Die grünen Bereiche sind die sicheren Zonen Deines Teams. Unsere Hypothese: Spannungsfreiheit erzeugt Sicherheit. Eine gute innere Sicherheit macht Defensivreaktionen überflüssig (Fight, Flight & Freeze) und lässt Dich achtsam mit Dir und anderen umgehen. Was ist Dein Beitrag zur inneren Sicherheit? Wie erklärst du die Unterschiede zwischen Deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team?" %}
+                    {% trans "Die grünen Bereiche sind die sicheren Zonen deines Teams. Unsere Hypothese: Spannung erzeugt Unsicherheit und gefährdet Vertrauen. Eine tragfähige, sichere Beziehungsbasis macht Defensivreaktionen überflüssig (Fight, Flight & Freeze) und lässt dich achtsam mit dir und anderen umgehen. Was ist dein Beitrag zur inneren Sicherheit? Wie erklärst du die Unterschiede zwischen deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team?" %}
                 </p>
                 <div id="rang-slider" class="swiper-container">
                     <div class="swiper-wrapper">
@@ -240,12 +240,12 @@
                     <div class="swiper-pagination"></div>              
                 </div>
 
-                <h3 class="feed-h3">
-                    {% trans "Anonymes Feedback" %}
-                </h3>
+                <h1 class="feed-h3">
+                    {% trans "Feedback aussprechen" %}
+                </h1>
 
                 <p class="bold feed-p-1">
-                    {% trans "WEITER SO: Besonders schätze ich Deinen Beitrag zum gelingenden Zusammenspiel im Team, wenn WIR..." %}
+                    {% trans "WEITER SO: Besonders schätze ich deinen Beitrag zum gelingenden Zusammenspiel im Team, wenn WIR..." %}
                 </p>
                 {% for feedback in feedback1 %}
                     <p class="feedback-1"style="font-size: 20px;color: #3781EE;">{{feedback}}</p>
@@ -257,20 +257,29 @@
                     <p class="feedback-2" style="font-size: 20px;color: #3781EE;">{{feedback}}</p>
                 {% endfor %}
                 <p class="bold feed-p-3">
-                    {% trans "UNTERSTÜTZUNG: Ich werde Dich unterstützen unser Team psychologisch sicherer zu machen, indem ICH..." %}
+                    {% trans "UNTERSTÜTZUNG: Ich werde dich unterstützen unser Team psychologisch sicherer zu machen, indem ICH..." %}
                 </p>
                 {% for feedback in feedback3 %}
                     <p class="feedback-3" style="font-size: 20px;color: #3781EE;">{{feedback}}</p>
                 {% endfor %}
 
                 <div class="center">
-                    <p>
-                    <br>
-                    <br> 
-                    <a href="/farewell/" class="button" id="button">
-                        {% trans "Auf Wiedersehen sagen" %}
-                    </a>
-                    </p>
+
+                        <p>
+                        <a href="/farewell/">
+                        <button class="button" type="button">
+                            {% trans "Auf Wiedersehen sagen" %}
+                        </button>
+                        </p>
+                        <p>
+                        <br> 
+                        <br> 
+                        <a href="/heatmap/">
+                        <button class="button" type="button">
+                            {% trans "Zur Team Heatmap" %}
+                        </button>
+                        </p>
+
                 </div>
             </main>
         </div>

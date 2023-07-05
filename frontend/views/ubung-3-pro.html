@@ -31,7 +31,7 @@
                 <div class="user">
                     <div class="user__subtitle">
                         {{game.name}}
-                        <span class="icon-link" data-clipboard-text="#link_url"></span>
+                        <span class="icon-link" data-clipboard-text="#link_url"></span> link
                     </div>
                     <img src="{{user.avatar}}" alt="">
                     <div class="user__title">
@@ -56,19 +56,18 @@
         element-loading-background="rgba(0, 0, 0, 0.8)">
                 <main class="screen ubung-1">
                     <h1>
-                        {% trans "Beschreibe bitte den GEGENPOL dessen, was Dir in unserem Team Sicherheit schenkt." %}
+                        {% trans "Beschreibe nun bitte den GEGENPOL, der für dich Unsicherheit erzeugt." %}
                     </h1>
                     <p>
                         <b>
-                            {% trans "Schreib bitte ein Wort in das NEGATIVE_TRIGGER-Feld oder klicke auf den passenden Begriff." %}
+                            {% trans "Schreib bitte ein Wort in das leere Feld oder klicke auf den passenden Begriff." %}
                         </b><br>
                     <img src="http://info.arks.ch/wp-content/uploads/2022/07/Minus.png">
                     </p>
-                    <input type="text" placeholder={% trans "Negative_Trigger" %} name="energiefresser" v-model="text_input" @keyup.enter="add_term" @keyup = "keyboard_()"/>
+                    <input type="text" placeholder={% trans "..." %} name="energiefresser" v-model="text_input" @keyup.enter="add_term" @keyup = "keyboard_()"/>
                     <label>*Dieser Begriff wurde bereits von einem anderen Spieler ausgewählt.</label>
                     <p>
-                            {% trans "Was erzeugt mitunter Unsicherheit für Dich im Team?" %}
-                            <br/>
+                            {% trans "Bitte teile mit uns, was massgeblich zu deiner inneren Unsicherheit im Team oder vielleicht sogar zu einem Gefühl von Angst beiträgt:" %}
                             <br/>
                     </p>
                     <div class="tags">
@@ -105,17 +104,20 @@
                         <span id="Willkür" class="tag">Willkür</span> {% endcomment %}
                     </div>
                     <input id="tags" type="hidden" name="tags" value="输入你要传bai递的值">
-                    <p>
-                        {% trans "Bitte finde auch hier eine für Dich stimmige Antwort, denn sie bestimmt die Reiseroute für Dich und alle anderen." %}
-                    </p>
                     <div class="center">
                         {% comment %} <a href="/wartezimmer/"> {% endcomment %}
-                            <p>
+                        
+                        <p>
+                            {% trans "Bitte finde auch hier eine für dich stimmige Antwort, denn sie bestimmt die Reiseroute für dich und alle anderen." %}
+                            <br/>
+                            <br/>
+                        </p>
+
+                        <p>
                             <button class="submit" @click="continue_()">
-                                {% trans "Weiterspielen" %}
+                                {% trans "Weiter" %}
                             </button>
                         </p>
-                        {% comment %} </a> {% endcomment %}
                     </div>
                 </main>
         </div>

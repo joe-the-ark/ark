@@ -33,7 +33,7 @@
                 <div class="user">
                     <div class="user__subtitle">
                         {{game.name}}
-                        <span class="icon-link" data-clipboard-text="#link_url"></span>
+                        <span class="icon-link" data-clipboard-text="#link_url"></span> link
                     </div>
                     <img src="{{avatar}}" alt="boar">
                     <div class="user__title">
@@ -63,13 +63,13 @@
                         {% trans "Bitte tauscht euch jetzt aus." %}
                     </h1>
                     <p>
-                        {% trans "Erzählt euch bitte kurz gegenseitig, welches GEGENSATZPAAR Du ausgewählt hast, damit alle verstehen können, wovon die Rede ist." %}
+                        {% trans "Erklärt euch bitte kurz eure GEGENSATZPAARE, damit alle verstehen können, wovon die Rede ist." %}
                         <br/>
                     </p>
                     <img src="http://info.arks.ch/wp-content/uploads/2022/07/Plus_Minus.png">
                     <p>
                         <b>
-                        {% trans "Überprüfe bitte noch einmal das von Dir gewählte GEGENSATZPAAR und überarbeite Deine Begriffe bei Bedarf..." %}
+                        {% trans "Überprüfe nun bitte noch einmal die von dir gewählten Begriffe. Sind die wirklich ein griffiges GEGENSATZPAAR? Das wäre für den weiteren Verlauf der Reise entscheidend. Überarbeite deine Begriffe bei Bedarf..." %}
                         <br><br>
                         </b>
                     <input type="text" placeholder="Sicherheitsanker fehlt!" name="Kraftquelle" v-model="text_input_power" />
@@ -124,7 +124,7 @@
                             [[ value.name ]]
                         </div>
                         <div class="user-connect__now">
-                            {% trans "bereit" %}
+                            {% trans "bereit?" %}
                         </div>
                     </div>
 
@@ -134,7 +134,7 @@
                             [[ value.name ]]
                         </div>
                         <div class="user-connect__now">
-                            {% trans "bereit" %}
+                            {% trans "bereit?" %}
                         </div>
 
                     </div>
@@ -145,7 +145,7 @@
                             Constantinopol
                         </div>
                         <div class="user-connect__now">
-                            {% trans "bereit" %}
+                            {% trans "bereit?" %}
                         </div>
                     </div>
                     <div class="user-connect active">
@@ -155,7 +155,7 @@
                             Constantinopol
                         </div>
                         <div class="user-connect__now">
-                            {% trans "bereit" %}
+                            {% trans "bereit?" %}
                         </div>
                     </div>
                     <div class="user-connect">
@@ -165,7 +165,7 @@
                             Constantinopol
                         </div>
                         <div class="user-connect__now">
-                            {% trans "bereit" %}
+                            {% trans "bereit?" %}
                         </div>
                     </div>
                     <div class="user-connect">
@@ -175,7 +175,7 @@
                             Constantinopol
                         </div>
                         <div class="user-connect__now">
-                            {% trans "bereit" %}
+                            {% trans "bereit?" %}
                         </div>
                     </div>
                     <div class="user-connect">
@@ -185,7 +185,7 @@
                             Constantinopol
                         </div>
                         <div class="user-connect__now">
-                            {% trans "bereit" %}
+                            {% trans "bereit?" %}
                         </div>
                     </div>
                     <div class="user-connect">
@@ -195,7 +195,7 @@
                             Constantinopol
                         </div>
                         <div class="user-connect__now">
-                            {% trans "bereit" %}
+                            {% trans "bereit?" %}
                         </div>
                     </div>
                     <div class="user-connect">
@@ -205,7 +205,7 @@
                             Constantinopol
                         </div>
                         <div class="user-connect__now">
-                            {% trans "bereit" %}
+                            {% trans "bereit?" %}
                         </div>
                     </div>
                     <div class="user-connect">
@@ -215,7 +215,7 @@
                             Constantinopol
                         </div>
                         <div class="user-connect__now">
-                            {% trans "bereit" %}
+                            {% trans "bereit?" %}
                         </div>
                     </div>
                     <div class="user-connect">
@@ -225,7 +225,7 @@
                             Constantinopol
                         </div>
                         <div class="user-connect__now">
-                            {% trans "bereit" %}
+                            {% trans "bereit?" %}
                         </div>
                     </div>
                     <div class="user-connect">
@@ -235,7 +235,7 @@
                             Constantinopol
                         </div>
                         <div class="user-connect__now">
-                            {% trans "bereit" %}
+                            {% trans "bereit?" %}
                         </div>
                     </div>
                     <div class="user-connect">
@@ -245,7 +245,7 @@
                             Constantinopol
                         </div>
                         <div class="user-connect__now">
-                            {% trans "bereit" %}
+                            {% trans "bereit?" %}
                         </div>
                     </div>
                     <div class="user-connect">
@@ -255,7 +255,7 @@
                             Constantinopol
                         </div>
                         <div class="user-connect__now">
-                            {% trans "bereit" %}
+                            {% trans "bereit?" %}
                         </div>
                     </div>
                     <div class="user-connect">
@@ -265,7 +265,7 @@
                             Constantinopol
                         </div>
                         <div class="user-connect__now">
-                            {% trans "bereit" %}
+                            {% trans "bereit?" %}
                         </div>
                     </div>  {% endcomment %}
                 </div>
@@ -275,10 +275,10 @@
             {% csrf_token %}
                 <div class="center">
                     <button id='main_btn' type="button" onclick="choosePopup()">
-                        {% trans "Weiterspielen" %}
+                        {% trans "Weiter" %}
                     </button>
                     <p><br>
-                        {% trans "Starte richtig durch, sobald alle Mitspieler hier im Warteraum sichtbar sind. Nur wer jetzt mit an Bord ist, nimmt an der Reise Teil!" %}
+                        {% trans "Startet richtig durch, sobald alle Mitreisenden hier im Warteraum sichtbar sind. Nur wer jetzt mit an Bord ist, nimmt an der Reise Teil!" %}
                     </p>
                 </div>
             </form>
@@ -583,7 +583,7 @@
         <div class="popup_content">
             <form class="popup_form" action="#" method="post">
               {% csrf_token %}
-              <button class="modal_button" type="submit" id="button" >Continue playing with </br> Green players</button>
+              <button class="modal_button" type="submit" id="button" >Continue journey with </br> Green players</button>
               <button class="modal_button" type="button" >Wait for </br> More players</button>
             </form>
         </div>

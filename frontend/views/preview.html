@@ -46,7 +46,7 @@
                 <div class="user">
                     <div class="user__subtitle">
                         {{game.name}}
-                        <span class="icon-link" data-clipboard-text="#link_url"></span>
+                        <span class="icon-link" data-clipboard-text="#link_url"></span> link
                     </div>
                     <img src="{{user.avatar}}" alt="">
                     <div class="user__title">
@@ -66,52 +66,45 @@
     </div>
     <div class="app__body">
 
-        <div id="qrcode">
-                <h1>
-                    {% trans "Teile diesen QR-Code mit den anderen" %}
-                </h1>            
-                <p>
-                    {% trans "(oder bitte den Innitiator um den Link im Zwischenspeicher)." %}
-                </p>
-        </div>
-
         <div class="container">
+
             <main class="screen preview">
                 <h1>
                     {% trans "Wie sicher ist euer Gruppenklima?" %}
                 </h1>
 
                 <div class="preview__main">
+
                     <div class="preview__data">
                         <div class="preview__thumbnail">
                         <p>
-                            {% trans "In psychologische sicheren Teams gelingen Lernprozesse und die Team Performance steigt. Die drei Dimensionen psychologischer Sicherheit sind:" %}
+                            {% trans "In psychologisch sicheren Teams gelingen Lernprozesse und die Team Performance steigt. Innere Sicherheit erlaubt es achtsam mit sich selbst und anderen umzugehen. Dadurch werden Defensivreaktionen (Fight, Flight & Freeze) überflüssig." %}
                         </p>
-                        <ul>
-                            <li>
-                                {% trans "gleichberechtigte Redeanteile" %}
-                            </li>
-                            <li>
-                                {% trans "durchschnittlich ausgeprägte soziale Sensibilität"%}
-                            </li>
-                            <li>
-                                {% trans "offen und ohne Angst kommunizieren" %}
-                            </li>
-                        </ul>
                         <p>
-                            {% trans "Psychologische Sicherheit ist laut Google’s Aristoteles-Studie stärkster Prädiktor für Team-Performance." %}
+                                {% trans "In den nächsten 30 Minuten erkundet ihr eure sichere Basis der inneren und psychologischen (Un-)Sicherheit im Team." %}
                         </p>
                         <p>
                         <a href="/ubung-2/">
                         <button class="button" type="button">
-                            {% trans "Weiterspielen" %}
+                            {% trans "Weiter" %}
                         </button>
                         </p>
-                        <p>
-                                {% trans "Innere Sicherheit erlaubt es achtsam mit sich selbst und anderen umzugehen. Dadurch werden Defensivreaktionen (Fight, Flight & Freeze) überflüssig." %}
+
+                        <p><br>
+                            {% trans "Psychologische Sicherheit ist laut Google’s Aristoteles-Studie stärkster Prädiktor für Team-Performance." %}<br>
                         </p>
                     </div>
                     </div>  
+
+                    <div id="qrcode">
+                        <h3>
+                            {% trans "Teile diesen QR-Code mit den anderen" %}
+                        </h3>            
+                        <p>
+                            {% trans "(oder bitte den Innitiator um den Link im Zwischenspeicher)." %}
+                        </p>
+                    </div>
+
                 </div>
 
                 <div class="google-slides-container">
@@ -170,8 +163,8 @@
     var qr = new QRCode(document.getElementById("qrcode"), {
     text: temp_link_,
 
-    width: 400,
-    height: 400,
+    width: 300,
+    height: 300,
     colorDark : "#000000",
     colorLight : "#ffffff",
     correctLevel : QRCode.CorrectLevel.H
