@@ -47,9 +47,11 @@
     
     
     <div class="container">
-    	<h1>{% trans "Auswertung in der Kleingruppe" %}<br></h1>
+    	<h1>{% trans "Reflexion in einer Kleingruppe" %}<br></h1>
 		<p><br>
-			{% trans "In eurem Team besträgt der durchschnittliche Spannungswert" %} [[tension_average]]. {% trans "Als Daumenregel gilt: Werte unter 20 sind entspannt. Werte unter 40 sind meist noch ohne externe Begleitung bearbeitbar. Die Skala reicht von 1 (absolute Spannungsfreiheit) bis 99." %}<br><br> 
+			{% trans "In eurem Team besträgt der durchschnittliche Spannungswert" %} [[tension_average]]. {% trans "Als Daumenregel gilt: Werte unter 20 sind entspannt. Werte unter 40 sind meist noch ohne externe Begleitung bearbeitbar. Die Skala reicht von 1 (absolute Spannungsfreiheit) bis 99." %}<br><br>
+    </p>
+    <p style="background-color: #9FE2BF; color: #626262;">
       {% trans "Bildet jetzt bitte Zweier- oder Dreiergruppen mit Menschen, die ähnliche Sicherheitsanker gewählt hatten. Und interpretiert zusammen die erste Etappe eurer Reise zur psychologischen Sicherheit. Ablauf:" %}<br><br>
 		</p>
 			
@@ -115,25 +117,7 @@
 	</div>
 
         <div class="container">
-          <h1>{% trans "Welche Spannungen im Team wären zu lösen?" %}</h1><br>
-          <p><br>{% trans "Die Heatmap zeigt eine Zusammenfassung aller Spannungen. Beginnt eure Auswertung mit den farbigen Feldern im inneren der Matrix, deren rechte Werte grösser als 16 sind..." %}<br><br></p>
-            <ul>
-              <li>
-              {% trans "Der Farbcode im Innern der Heatmap gilt unverändert." %}
-              </li>
-              <li>
-              {% trans "Bei grünen Feldern liegen Fremd- und Selbstwahrnehmung im sicheren Bereich der Safe-Zone." %}
-              </li>
-              <li>
-              {% trans "Der erste Wert (in Klammern) zeigt die Fremdwahrnehmung. Je höher dieser Wert, desto grösser der Beitrag zur Spannung aus Teamsicht." %}
-              </li>
-              <li>
-              {% trans "Der zweite Werte zeigt die Abweichung von Fremd- und Selbstwahrnehmung. Werte über 16 deuten auf Spannungen mit dem Team hin." %}
-              </li>
-              <li>
-              {% trans "Bei negativen Vorzeichen schätzt der Spieler den eigenen Beitrag zur Teamdynamik eher zu optimistisch ein. Dadurch entstehen manchmal Spannungen mit dem Team." %} 
-              </li>
-            </ul>
+
         <div class="heatmap">
 
           <div class="main-column left">
@@ -375,6 +359,27 @@
   </script>
 
          <div class="container">
+
+          <h1>{% trans "Welche Spannungen im Team könnt ihr mit Feedback lösen?" %}</h1><br>
+          <p><br>{% trans "Die Heatmap zeigt eine Zusammenfassung aller Spannungen. Beginnt eure Auswertung mit den farbigen Feldern im inneren der Matrix, deren rechte Werte grösser als 16 sind..." %}<br><br></p>
+            <ul>
+              <li>
+              {% trans "Der Farbcode im Innern der Heatmap gilt unverändert." %}
+              </li>
+              <li style="background-color: #9FE2BF; color: #626262;">
+              {% trans "Bei grünen Feldern liegen Fremd- und Selbstwahrnehmung im sicheren Bereich der Safe-Zone." %}
+              </li>
+              <li>
+              {% trans "Der erste Wert (in Klammern) zeigt die Fremdwahrnehmung. Je höher dieser Wert, desto grösser der Beitrag zur Spannung aus Teamsicht." %}
+              </li>
+              <li>
+              {% trans "Der zweite Werte zeigt die Abweichung von Fremd- und Selbstwahrnehmung. Werte über 16 deuten auf Spannungen mit dem Team hin." %}
+              </li>
+              <li>
+              {% trans "Bei negativen Vorzeichen schätzt der Spieler den eigenen Beitrag zur Teamdynamik eher zu optimistisch ein. Dadurch entstehen manchmal Spannungen mit dem Team." %} 
+              </li>
+            </ul>
+
           <ul>
               <br><br><br><br><br>
               <li>
@@ -388,11 +393,29 @@
             </li>
           </ul>
 
-
-
           <div class="center">
 
-                <p>
+                <h1 class="feed-h3" style="background-color: #9FE2BF; color: #626262;">
+                    {% trans "Feedback aussprechen" %}
+                </h1>
+
+                <p class="bold feed-p-1" style="background-color: #9FE2BF; color: #626262;">
+                    {% trans "WEITER SO: Besonders schätze ich deinen Beitrag zum gelingenden Zusammenspiel im Team, wenn WIR..." %}
+                </p>
+                {% for feedback in feedback1 %}
+                    <p class="feedback-1"style="font-size: 20px;color: #3781EE;">{{feedback}}</p>
+                {% endfor %}
+                <p class="bold feed-p-2">
+                    {% trans "WUNSCH: Du könntest zu mehr psychologischen Sicherheit im Team beitragen, indem DU..." %}
+                </p>
+                {% for feedback in feedback2 %}
+                    <p class="feedback-2" style="font-size: 20px;color: #3781EE;">{{feedback}}</p>
+                {% endfor %}
+                <p class="bold feed-p-3" style="background-color: #9FE2BF; color: #626262;">
+                    {% trans "UNTERSTÜTZUNG: Ich werde dich unterstützen unser Team psychologisch sicherer zu machen, indem ICH..." %}
+                </p>
+
+                <p><br><br>
                         <a href="/farewell/">
                         <button class="button" type="button">
                             {% trans "Zum Abschluss." %}

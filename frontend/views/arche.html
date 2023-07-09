@@ -52,7 +52,7 @@
                     </div>
                     <div class="options__item">
                         <div class="icon-logo" onclick="location='/mission-2-ubung-2/'"></div>
-                        <p>
+                        <p style="background-color: #9FE2BF; color: #626262;">
                             {% trans "Was jetzt: AUFRICHTIGES FEEDBACK? (10-20 Minuten Zeitbedarf, je nach Teamgrösse) Hilf mit die psychologische Sicherheit im Team zu verbessern: Gib anonymes 1 zu 1 Feedback, um alle in einen psychologisch sichereren Raum mitzunehmen. (Empfohlen für Teams mit einem psychologischen Sicherheitswert unter 80)." %}
                         </p>
                     </div>
@@ -67,13 +67,13 @@
                         <div class="icon-money"></div>
                         </a>
                         <p>
-                            {% trans "COUNSELING? Nimm'für eine professionelle Interpretation eurer Spieldaten und Begleitung Kontakt mit deinem Coach oder mit Dr. Joe Maier. (Empfohlen für Teams mit einem psychologischen Sicherheitswert unter 60)." %}
+                            {% trans "COUNSELING? Nimm'für eine professionelle Interpretation eurer Reisedaten und Begleitung Kontakt mit deinem Coach oder mit Dr. Joe Maier. (Empfohlen für Teams mit einem psychologischen Sicherheitswert unter 55)." %}
                         </p>
                     </div>
                     <div class="options__item">
                         <div class="icon-download" onclick="location='/heatmap/'"></div>
                         <p>
-                            {% trans "Bist Du Coach oder vertraut mit gruppendynamischen Mustern? Dann ist die TEAM-HEATMAP für dich. Klicke auf das Icon um eine Karte der Safe-Zones und Spannungen im Team zu sehen." %}
+                            {% trans "Bist du Coach oder vertraut mit gruppendynamischen Mustern? Dann ist die TEAM-HEATMAP für dich. Klicke auf das Icon um eine Karte der sicheren Basis und Spannungen im Team zu sehen." %}
                         </p>
                     </div>
                     <div class="options__item">
@@ -86,14 +86,22 @@
                         <a href="https://www.paypal.me/joetheark?nsukey=Cv9DYpec9jSFBrhYMyG9ykAZjUgNbEQDsmPE6GXAwsF2Zk0d4nZh32OO2%2BLAnWMQrHpAgJar7t0TlkRgmPwi9c03UHIIRpCOepR136%2BGHLevVY1gXinDcDvAMKCqGvzkYRWiQ9vvGgd8HxfbiQZNROA2jEK58%2FHWrgQT5Kg%2FCjSbGePxGdZb7iWDX9gM5DMIyiSzSf1%2BThqtZEoJdoor9w%3D%3D" target="_blank">
                         <div class="icon-money"></div>
                         </a>
-                         <p>
+                         <p style="background-color: #9FE2BF; color: #626262;">
                             {% trans "PAYPAL? Gib dem Entwickler einen Kaffee aus – Joe Maier dankt es dir!" %}
+                            <br><br>
                         </p>
                     </div>
                 </div>
+                <p>
+                        <a href="/heatmap/">
+                        <button class="button" type="button">
+                            {% trans "Zur Team Heatmap" %}
+                        </button>
+
                 <button onClick="window.open('https://info.arks.ch/');">
                     {% trans "About the ARK" %}
                 </button>
+                </p>
                         <p><br><br>
                             {% trans "Psychologische Sicherheit ist laut Google’s Aristoteles-Studie stärkster Prädiktor für Team-Performance." %}<br><br><br>
                         </p>
@@ -114,6 +122,7 @@
                 left: 0;
                 width: 100%;
                 height: 100%;
+                background-color: #9FE2BF;
                 }
                 </style>
 

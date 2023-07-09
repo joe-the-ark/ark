@@ -105,7 +105,7 @@
                 </p>
                 <div class="psychologischer__container" id="app-1">
                     <div class="distry">
-                        <div class="distry__description">
+                        <div class="distry__description" style="background-color: #9FE2BF; color: #626262;">
                             {% trans "Schwierige Themen können wir meist gut zusammen anschauen." %}
                         </div>
                         <div class="distry__thumbnails">
@@ -124,7 +124,7 @@
                         </div>
                     </div>
                     <div class="distry">
-                        <div class="distry__description">
+                        <div class="distry__description" style="background-color: #fa5252; color: white;">
                             {% trans "Ich beobachte wie du gelegentlich Menschen im Team ausschliesst." %}
                         </div>
                         <div class="distry__thumbnails">
@@ -134,7 +134,7 @@
                         </div>
                     </div>
                     <div class="distry">
-                        <div class="distry__description">
+                        <div class="distry__description" style="background-color: #FAE03C; color: #626262;">
                             {% trans "Für mich bist du im Team nicht immer sichtbar." %}
                         </div>
                         <div class="distry__thumbnails">
@@ -144,7 +144,7 @@
                         </div>
                     </div>
                     <div class="distry">
-                        <div class="distry__description">
+                        <div class="distry__description" style="background-color: #9FE2BF; color: #626262;">
                             {% trans "Ich fühle wie meine Talente von dir gesehen und einbezogen werden." %}
                         </div>
                         <div class="distry__thumbnails">
@@ -154,7 +154,7 @@
                         </div>
                     </div>
                     <div class="distry">
-                        <div class="distry__description">
+                        <div class="distry__description" style="background-color: #fa5252; color: white;">
                             {% trans "Ich habe das Gefühl du reagierst auf Fehler mit Schuldzuweisungen an Einzelne im Team." %}
                         </div>
                         <div class="distry__thumbnails">
@@ -164,7 +164,7 @@
                         </div>
                     </div>
                     <div class="distry">
-                        <div class="distry__description">
+                        <div class="distry__description" style="background-color: #FAE03C; color: #626262;">
                             {% trans "Mir fällt es mitunter schwer dich um Hilfe zu bitten." %}
                         </div>
                         <div class="distry__thumbnails">
@@ -178,8 +178,8 @@
                 <h3>
                     {% trans "Gefühlte Team-Performance-Einschätzung" %}
                 </h3>
-                <p>
-                    {% trans "Diese Einschätzung setzt sich aus den gleichberechtigten Wahrnehmungen aller Teammitglieder zusammen. Liegen diese innerhalb der Safe-Zone, oder gibt es Ausreisser?" %}
+                <p style="background-color: #9FE2BF; color: #626262;">
+                    {% trans "Eure Einschätzung setzt sich aus den gleichberechtigten Wahrnehmungen aller Teammitglieder zusammen. Bilden diese Werte eine sichere Basis, oder gibt es Ausreisser?" %}
                 </p>
                 <div class="custom-graph-info">
                     <div class="custom-graph-info__item small" data-text="{% trans 'Minimal' %}">
@@ -196,11 +196,15 @@
                 <div class="fields-fill__wrapper"></div>
 
                 <h3 class="spanun-h3">
-                    {% trans "Was ist dein Beitrag zur inneren Sicherheit im Team?" %}
+                    {% trans "Was ist dein Beitrag zur Stärkung der Sicherheits-Anker im Team?" %}
                 </h3>
 
+                <p class="spanun-p" style="background-color: #9FE2BF; color: #626262;">
+                    {% trans "Die grünen Bereiche sind die sichere Basis deines Teams." %}<br><br>
+                </p>
+
                 <p class="spanun-p">
-                    {% trans "Die grünen Bereiche sind die sicheren Zonen deines Teams. Unsere Hypothese: Spannung erzeugt Unsicherheit und gefährdet Vertrauen. Eine tragfähige, sichere Beziehungsbasis macht Defensivreaktionen überflüssig (Fight, Flight & Freeze) und lässt dich achtsam mit dir und anderen umgehen. Was ist dein Beitrag zur inneren Sicherheit? Wie erklärst du die Unterschiede zwischen deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team?" %}
+                    {% trans "Unsere Hypothese: Spannung erzeugt Unsicherheit und gefährdet Vertrauen. Eine tragfähige, sichere Beziehungsbasis macht Defensivreaktionen überflüssig (Fight, Flight & Freeze) und lässt dich achtsam mit dir und anderen umgehen. Was ist dein Beitrag zur inneren Sicherheit? Wie erklärst du die Unterschiede zwischen deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team?" %}
                 </p>
                 <div id="rang-slider" class="swiper-container">
                     <div class="swiper-wrapper">
@@ -210,10 +214,13 @@
                     <p>
                     <br>
                     </p>
-                   <li>
+                    <p>
+                        {% trans "Hier deine Interpretationshilfe:" %}<br><br>
+                    </p>
+                   <li style="background-color: #9FE2BF; color: #626262;">
                         {% trans "Grün = Spannungsfreiheit" %}
                     </li>
-                    <li>
+                   <li style="background-color: #9FE2BF; color: #626262;">
                         {% trans "Spannungs-Werte unter 16 = deuten auf Spannungsfreiheit mit dem Team hin" %}
                     </li>
                     <li>
@@ -222,13 +229,13 @@
                     <li>
                         {% trans "Positives Vorzeichen = zu kritische Selbstwahrnehmung" %}<br>
                     </li>                    
-                    <li>
+                    <li style="background-color: #fa5252; color: white;">
                         {% trans "Rot = Selbstwahrnehmung ausserhalb Safe Zone" %}
                     </li>
-                    <li>
+                    <li style="background-color: #FAE03C; color: #626262;">
                         {% trans "Gelb = Wahrnehmung durch die anderen ausserhalb Safe Zone" %}
                     </li>
-                    <li>
+                    <li style="background-color: #3b4252; color: white;">
                         {% trans "Schwarz = Selbst- & Fremdwahrnehmung ausserhalb Safe Zone" %}
                     </li>
                 </ul>
@@ -270,10 +277,6 @@
                         <button class="button" type="button">
                             {% trans "Auf Wiedersehen sagen" %}
                         </button>
-                        </p>
-                        <p>
-                        <br> 
-                        <br> 
                         <a href="/heatmap/">
                         <button class="button" type="button">
                             {% trans "Zur Team Heatmap" %}
