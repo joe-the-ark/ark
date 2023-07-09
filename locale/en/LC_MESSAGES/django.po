@@ -197,8 +197,11 @@ msgstr "Please share your perspectives now."
 msgid "Erklärt euch bitte kurz die GEGENSATZPAARE, damit alle verstehen können, mit welchen Begriffen wir arbeiten."
 msgstr "Please briefly explain the OPPOSITE PAIRS so that everyone can understand what terms we are working with."
 
-msgid "Überprüfe nun bitte noch einmal die von dir gewählten Begriffe. Hast du wirklich ein griffiges GEGENSATZPAAR ausgewählt? Das wäre für den weiteren Verlauf der Reise entscheidend. Überarbeite deine Begriffe bei Bedarf..."
-msgstr "Now please check your chosen terms again. Have you really chosen a catchy OPPOSITE PAIR? This would be crucial for the rest of the journey. Revise your terms if necessary..."
+msgid "Überprüfe nun bitte noch einmal die von dir gewählten Begriffe."
+msgstr "Now please check your chosen terms again."
+
+msgid "Hast du wirklich ein griffiges GEGENSATZPAAR ausgewählt? Das wäre für den weiteren Verlauf der Reise entscheidend. Überarbeite deine Begriffe bei Bedarf..."
+msgstr "Have you really chosen a catchy OPPOSITE PAIR? This would be crucial for the rest of the journey. Revise your terms if necessary..."
 
 msgid "Bildet jetzt bitte Zweier- oder Dreiergruppen mit je ähnlichen Gegensatzpaaren. In diesen Gruppen reflektiert bitte zum Abschluss die Auswertung der Reise."
 msgstr "Now please form groups of two or three, each with similar pairs of opposites. In these groups, please reflect on the evaluation of the trip at the end."

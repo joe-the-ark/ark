@@ -202,8 +202,11 @@ msgstr "请现在交流你们的观点。"
 msgid "Erklärt euch bitte kurz die GEGENSATZPAARE, damit alle verstehen können, mit welchen Begriffen wir arbeiten."
 msgstr "请简要解释一下 对偶，以便大家能够理解我们正在使用的术语。"
 
-msgid "Überprüfe nun bitte noch einmal die von dir gewählten Begriffe. Hast du wirklich ein griffiges GEGENSATZPAAR ausgewählt? Das wäre für den weiteren Verlauf der Reise entscheidend. Überarbeite deine Begriffe bei Bedarf..."
-msgstr "再次检查你选择的术语。你真的选择了一个容易记住的对子吗？这将对接下来的旅程起到决定性作用。如果有必要，请修改你的术语..."
+msgid "Überprüfe nun bitte noch einmal die von dir gewählten Begriffe."
+msgstr "再次检查你选择的术语。"
+
+msgid "Hast du wirklich ein griffiges GEGENSATZPAAR ausgewählt? Das wäre für den weiteren Verlauf der Reise entscheidend. Überarbeite deine Begriffe bei Bedarf..."
+msgstr "你真的选择了一个容易记住的对子吗？这将对接下来的旅程起到决定性作用。如果有必要，请修改你的术语..."
 
 msgid "Bildet jetzt bitte Zweier- oder Dreiergruppen mit je ähnlichen Gegensatzpaaren. In diesen Gruppen reflektiert bitte zum Abschluss die Auswertung der Reise."
 msgstr "现在请用相似的对立面组成两到三组。在这些小组中，请思考对旅程的评价。"

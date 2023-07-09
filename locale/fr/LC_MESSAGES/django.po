@@ -203,8 +203,11 @@ msgstr "Veuillez échanger vos perspectives maintenant."
 msgid "Erklärt euch bitte kurz die GEGENSATZPAARE, damit alle verstehen können, mit welchen Begriffen wir arbeiten."
 msgstr "Expliquez brièvement les PARAMÈTRES CONTRACTÉS, s'il vous plaît, afin que tout le monde puisse comprendre avec quels termes nous travaillons."
 
-msgid "Überprüfe nun bitte noch einmal die von dir gewählten Begriffe. Hast du wirklich ein griffiges GEGENSATZPAAR ausgewählt? Das wäre für den weiteren Verlauf der Reise entscheidend. Überarbeite deine Begriffe bei Bedarf..."
-msgstr "Vérifie à nouveau les termes que tu as choisis. As-tu vraiment choisi une paire opposée facile à retenir ? Cela serait décisif pour la suite du voyage. Révise tes termes si nécessaire..."
+msgid "Überprüfe nun bitte noch einmal die von dir gewählten Begriffe."
+msgstr "Vérifie à nouveau les termes que tu as choisis."
+
+msgid "Hast du wirklich ein griffiges GEGENSATZPAAR ausgewählt? Das wäre für den weiteren Verlauf der Reise entscheidend. Überarbeite deine Begriffe bei Bedarf..."
+msgstr "As-tu vraiment choisi une paire opposée facile à retenir ? Cela serait décisif pour la suite du voyage. Révise tes termes si nécessaire..."
 
 msgid "Bildet jetzt bitte Zweier- oder Dreiergruppen mit je ähnlichen Gegensatzpaaren. In diesen Gruppen reflektiert bitte zum Abschluss die Auswertung der Reise."
 msgstr "Formez maintenant des groupes de deux ou trois personnes avec des paires de contraires similaires. Dans ces groupes, réfléchissez à l'évaluation du voyage."
