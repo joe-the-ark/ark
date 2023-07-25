@@ -21,10 +21,10 @@ msgstr ""
 #. onboarding
 #: loco:6071a6458d4f51635821d922
 msgid "Die Arche ist eine Online-Gruppenreise für 3 bis 9 Personen, um die innere und psychologische Sicherheit mit dem Team zu erkunden. Die Reisezeit der ersten Etappe beträgt eine halbe Stunde."
-msgstr "The Ark is an online group trip for 3 to 9 people to explore internal and psychological safety with the team. The travel time of the first stage is half an hour."
+msgstr "The Ark is an online group trip for 3 to 9 people to explore inner and psychological safety with the team. The travel time of the first stage is half an hour."
 
 msgid "Die Arche ist eine Online-Gruppenreise für 3 bis 9 Personen, um die innere und psychologische Sicherheit mit dem Team zu erkunden."
-msgstr "The Ark is an online group trip for 3 to 9 people to explore internal and psychological safety with the team."
+msgstr "The Ark is an online group trip for 3 to 9 people to explore inner and psychological safety with the team."
 
 msgid "Die Reisezeit der ersten Etappe beträgt eine halbe Stunde."
 msgstr "The travel time of the first stage is half an hour."
