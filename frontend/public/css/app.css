@@ -659,11 +659,12 @@ button,
   color: var(--ls-thin-color);
   font-size: var(--ls-font-large);
   line-height: 50px;
+  border-radius: 20px;
   background-color: var(--ls-brand-color);
   box-sizing: border-box;
   cursor: pointer;
   transition: var(--ls-transition);
-  padding: 0 22px;
+  padding: 0 30px;
   display: inline-block;
 }
 button:hover,

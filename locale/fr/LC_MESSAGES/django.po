@@ -20,8 +20,14 @@ msgstr ""
 
 #. onboarding
 #: loco:6071a6458d4f51635821d922
-msgid "Die Arche ist eine Online-Gruppenreise für 3 bis 9 Personen, um die innere und psychologische Sicherheit im Team zu erkunden. Die Reisezeit der ersten Etappe beträgt eine halbe Stunde."
-msgstr "L'Arche est un voyage de groupe en ligne pour 3 à 9 personnes, destiné à explorer la sécurité intérieure et psychologique en équipe. Le temps de voyage de la première étape est d'une demi-heure."
+msgid "Die Arche ist eine Online-Gruppenreise für 3 bis 9 Personen, um die innere und psychologische Sicherheit mit dem Team zu erkunden. Die Reisezeit der ersten Etappe beträgt eine halbe Stunde."
+msgstr "L'Arche est un voyage de groupe en ligne pour 3 à 9 personnes, afin d'explorer la sécurité intérieure et psychologique avec l'équipe. Le temps de voyage de la première étape est d'une demi-heure."
+
+msgid "Die Arche ist eine Online-Gruppenreise für 3 bis 9 Personen, um die innere und psychologische Sicherheit mit dem Team zu erkunden."
+msgstr "L'Arche est un voyage de groupe en ligne pour 3 à 9 personnes, afin d'explorer la sécurité intérieure et psychologique avec l'équipe."
+
+msgid "Die Reisezeit der ersten Etappe beträgt eine halbe Stunde."
+msgstr "Le temps de voyage de la première étape est d'une demi-heure."
 
 #. onboarding
 #: loco:6071a6458d4f51635821d922

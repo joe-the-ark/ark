@@ -20,8 +20,14 @@ msgstr ""
 
 #. onboarding
 #: loco:6071a6458d4f51635821d922
-msgid "Die Arche ist eine Online-Gruppenreise für 3 bis 9 Personen, um die innere und psychologische Sicherheit im Team zu erkunden. Die Reisezeit der ersten Etappe beträgt eine halbe Stunde."
-msgstr "方舟 是一个3至9人的在线团体旅程，在团队中探索内心和心理安全。第一阶段的旅行时间为半小时。"
+msgid "Die Arche ist eine Online-Gruppenreise für 3 bis 9 Personen, um die innere und psychologische Sicherheit mit dem Team zu erkunden. Die Reisezeit der ersten Etappe beträgt eine halbe Stunde."
+msgstr "方舟 是一个 3 到 9 人的在线团体旅行，与团队一起探索内心和心理安全。第一阶段的旅行时间为半小时。"
+
+msgid "Die Arche ist eine Online-Gruppenreise für 3 bis 9 Personen, um die innere und psychologische Sicherheit mit dem Team zu erkunden."
+msgstr "方舟 是一个 3 到 9 人的在线团体旅行，与团队一起探索内心和心理安全。"
+
+msgid "Die Reisezeit der ersten Etappe beträgt eine halbe Stunde."
+msgstr "第一阶段的旅行时间为半小时。"
 
 #. onboarding
 #: loco:6071a6458d4f51635821d922
