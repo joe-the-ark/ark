@@ -60,14 +60,14 @@
                     </h1>
                     <p>
                     <img src="http://info.arks.ch/wp-content/uploads/2022/07/Minus.png"><br>
-                    <b style="background-color: #9FE2BF; color: #626262;">
+                    <b style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
                             {% trans "Schreib bitte ein Wort in das leere Feld oder klicke auf den passenden Begriff." %}
                     </b>
                     </p>
                     <input type="text" placeholder={% trans "..." %} name="energiefresser" v-model="text_input" @keyup.enter="add_term" @keyup = "keyboard_()"/>
                     <label>*This pair of opposites has already been chosen by another fellow traveller.</label>
                     <p>
-                            {% trans "Bitte teile mit uns, was dich hier im Team negativ triggern kann oder manchmal vielleicht sogar zu einem Gefühl von Angst beiträgt:" %}
+                            {% trans "Bitte teile mit uns, was dich hier im Team NEGATIV triggern kann oder manchmal vielleicht sogar zu einem Gefühl von Angst beiträgt:" %}
                             <br/>
                     </p>
                     <div class="tags">
@@ -106,12 +106,6 @@
                     <input id="tags" type="hidden" name="tags" value="输入你要传bai递的值">
                     <div class="center">
                         {% comment %} <a href="/wartezimmer/"> {% endcomment %}
-                        
-                        <p>
-                            {% trans "Finde auch hier eine für dich stimmige Antwort, denn sie bestimmt die Reiseroute für dich und alle anderen." %}
-                            <br/>
-                            <br/>
-                        </p>
 
                         <p>
                             <button class="submit" @click="continue_()">

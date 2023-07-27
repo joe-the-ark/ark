@@ -57,7 +57,7 @@
                 <h1>
                     {% trans "Gefühlte Team-Performance-Einschätzung" %}
                 </h1>
-                <p style="background-color: #9FE2BF; color: #626262;">
+                <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
                     {% trans "Eure Einschätzung setzt sich aus den gleichberechtigten Wahrnehmungen aller Teammitglieder zusammen. Bilden diese Werte eine sichere Basis, oder gibt es Ausreisser?" %}
                     <br/>
                     <br/>
@@ -93,20 +93,6 @@
                         </button>
                         </p>
                     </div>
-
-
-
-                <div class="custom-graph-info"><br>
-                    <div class="custom-graph-info__item small" data-text="{% trans 'Sicherheit im Team' %}">
-                        {{ psy_score }}
-                    </div>
-                    <div class="custom-graph-info__item base" data-text="{% trans 'Deine innere Sicherheit' %}">
-                        ?
-                    </div>
-                    <div class="custom-graph-info__item large" data-text="{% trans 'Gefühlte Team Performance' %}">
-                        {{ median }}
-                    </div><br>
-                </div>
                 <p>
                     {% trans "Meist liegen die gefühlte Team-Performance und der psychologische Sicherheitswert nahe beisammen. Der Schlüssel zu einer Verbesserung beider Werte führt über eine Verbesserung der inneren Sicherheit aller Teammitglieder. Kennst du deinen Beitrag zur inneren Sicherheit im Team?" %}
                 </p>

@@ -132,8 +132,8 @@
 .custom-graph__item:hover.inactive .custom-graph__item-avatar {
   -webkit-animation-name: tada;
   animation-name: tada;
-  -webkit-animation-duration: 0.6s;
-  animation-duration: 0.6s;
+  -webkit-animation-duration: 1.6s;
+  animation-duration: 1.6s;
   -webkit-animation-timing-function: ease;
   animation-timing-function: ease;
 }

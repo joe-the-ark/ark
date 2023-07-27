@@ -148,8 +148,8 @@ msgstr "继续"
 msgid "Was beschreibt am besten deinen SICHERHEITSANKER, der dir im Team Sicherheit schenkt?"
 msgstr "什么最能描述你的安全锚，使团队对你来说是安全的？"
 
-msgid "Bitte teile mit uns, was massgeblich zu deiner inneren Sicherheit hier im Team beiträgt:"
-msgstr "请与我们分享什么对你在这里的团队的内在安全有重大贡献："
+msgid "Stell dir ein Kontinuum vor und wähle den POSITIVEN Endpunkt, der massgeblich zu deiner inneren Sicherheit im Team beiträgt:"
+msgstr "想象一个连续体，选择对你在团队中的内在安全感有重大贡献的积极端点："
 
 #. ubung-1
 #: loco:606b779c3639f72c8f45d892
@@ -189,7 +189,7 @@ msgstr "请在触发字段中写下一个词，或点击相应的术语。"
 
 #. ubung-3
 #: loco:606b7d7dfafd1642eb21fa72
-msgid "Bitte teile mit uns, was dich hier im Team negativ triggern kann oder manchmal vielleicht sogar zu einem Gefühl von Angst beiträgt:"
+msgid "Bitte teile mit uns, was dich hier im Team NEGATIV triggern kann oder manchmal vielleicht sogar zu einem Gefühl von Angst beiträgt:"
 msgstr "请与我们分享，在团队中，什么会引发你的负面情绪，或者有时甚至可能促成恐惧的感觉："
 
 #. ubung-3
@@ -421,8 +421,8 @@ msgstr "你的自我认知和团队对你的认知之间的紧张关系出现在
 msgid "Unsere Hypothese: Spannung erzeugt Unsicherheit und gefährdet Vertrauen. Eine tragfähige, sichere Beziehungsbasis macht Defensivreaktionen überflüssig (Fight, Flight & Freeze) und lässt dich achtsam mit dir und anderen umgehen."
 msgstr "我们的假设：紧张会产生不安全感并危及信任。一个可持续的、安全的关系基础使防御性反应变得多余（战斗、逃跑和冻结），并使你能够注意到自己和他人。"
 
-msgid "Klick bitte auf die Kacheln für eine detailierte Darstellung der verschiedenen Perspektiven:"
-msgstr "请点击瓷砖，详细查看不同的视角："
+msgid "Klick bitte auf die Kacheln oben für eine detailierte Darstellung der verschiedenen Perspektiven."
+msgstr "请点击上面的瓷砖，详细查看不同的视角。"
 
 msgid "Die grünen Bereiche sind die sichere Basis deines Teams."
 msgstr "绿色区域是你团队的安全基地。"

@@ -143,8 +143,8 @@ msgstr "Continue"
 msgid "Was beschreibt am besten deinen SICHERHEITSANKER, der dir im Team Sicherheit schenkt?"
 msgstr "What describes best your SAFETY ANCHOR that makes the team safe for you?"
 
-msgid "Bitte teile mit uns, was massgeblich zu deiner inneren Sicherheit hier im Team beiträgt:"
-msgstr "Please share with us what contributes significantly to your inner safety here in the team:"
+msgid "Stell dir ein Kontinuum vor und wähle den POSITIVEN Endpunkt, der massgeblich zu deiner inneren Sicherheit im Team beiträgt:"
+msgstr "Imagine a continuum and choose the POSITIVE endpoint that contributes most significantly to your inner safety in the team:"
 
 #. ubung-1
 #: loco:606b779c3639f72c8f45d892
@@ -184,8 +184,8 @@ msgstr "Please write a word in the TRIGGER-field or click on the appropriate ter
 
 #. ubung-3
 #: loco:606b7d7dfafd1642eb21fa72
-msgid "Bitte teile mit uns, was dich hier im Team negativ triggern kann oder manchmal vielleicht sogar zu einem Gefühl von Angst beiträgt:"
-msgstr "Please share with us what can trigger you negatively here in the team or sometimes maybe even contribute to a feeling of fear:"
+msgid "Bitte teile mit uns, was dich hier im Team NEGATIV triggern kann oder manchmal vielleicht sogar zu einem Gefühl von Angst beiträgt:"
+msgstr "Please share with us what can trigger you NEGATIVELY here in the team or sometimes maybe even contribute to a feeling of fear:"
 
 #. ubung-3
 #: loco:606b7e554fe187702f150c72
@@ -424,8 +424,8 @@ msgstr "Where do tensions arise between your self-perception and the team's perc
 msgid "Unsere Hypothese: Spannung erzeugt Unsicherheit und gefährdet Vertrauen. Eine tragfähige, sichere Beziehungsbasis macht Defensivreaktionen überflüssig (Fight, Flight & Freeze) und lässt dich achtsam mit dir und anderen umgehen."
 msgstr "Our hypothesis: Tension creates insecurity and jeopardises trust. A sustainable, secure relationship basis makes defensive reactions superfluous (Fight, Flight & Freeze) and allows you to be mindful of yourself and others."
 
-msgid "Klick bitte auf die Kacheln für eine detailierte Darstellung der verschiedenen Perspektiven:"
-msgstr "Please click on the tiles for a detailed view of the different perspectives:"
+msgid "Klick bitte auf die Kacheln oben für eine detailierte Darstellung der verschiedenen Perspektiven."
+msgstr "Please click on the tiles above for a detailed view of the different perspectives."
 
 msgid "Die grünen Bereiche sind die sichere Basis deines Teams."
 msgstr "The green areas are the safe base of your team."

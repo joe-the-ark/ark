@@ -194,7 +194,7 @@
                     </div>
                     -->
                     <div class="form__field">
-                        <p style="background-color: #9FE2BF; color: #626262;">
+                        <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
                             {% trans "Die Arche ist eine Online-Gruppenreise für 3 bis 9 Personen, um die innere und psychologische Sicherheit mit dem Team zu erkunden. Die Reisezeit der ersten Etappe beträgt eine halbe Stunde." %}
                         </p>
 
@@ -369,24 +369,23 @@
                         .post(`/api/check_player_name/`, data_)
                         .then(function(response){
                             var result = response.data.result;
-                            if (result === 1){
-                                // valid player name
-                                var input1 = $('#nutzername').val()
-                                input1 = input1.replace(/\s*/g,"")
-                                $('#nutzername').val(input1)
-                                if (input1.length > 2){
-                                    var form_submit = document.getElementById('form_');
-                                    form_submit.submit()
-                                    return
-                                }else{
-                                    alert("The user-name should contain more than 2 characters");
-                                    $('#nutzername').val('')
-                                    return 
-                                }
- 
-                            }else{
+if (result === 1) {
+    // valid player name
+    var input1 = $('#nutzername').val()
+    input1 = input1.replace(/^\s+|\s+$/g, "").replace(/[_\.]/g, "")
+    $('#nutzername').val(input1)
+    if (input1.length > 2) {
+        var form_submit = document.getElementById('form_');
+        form_submit.submit()
+        return
+    } else {
+        alert("The user-name should contain more than 2 characters");
+        $('#nutzername').val('')
+        return
+    }
+} else {
                                 // have same name
-                                alert("The game-name is already taken. Please chose another name.");
+                                alert("The name is already taken. Please chose another name.");
                                 $('#nutzername').val('');
                                 return 
                             }

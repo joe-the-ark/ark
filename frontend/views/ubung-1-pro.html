@@ -61,15 +61,15 @@
                     </h1>
                     <p>
                     <img src="http://info.arks.ch/wp-content/uploads/2022/07/Plus.png"><br>
-                    <b style="background-color: #9FE2BF; color: #626262;">
+                    <b style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
                             {% trans "Schreib bitte ein Wort in das leere Feld oder klicke auf den passenden Begriff." %}
                     </b>
                     </p>
                     <input type="text" placeholder={% trans "..." %} name="kraftquelle" v-model="text_input" @keyup.enter="add_term" @keyup = "keyboard_()"/><
-                    <label>*This pair of opposites has already been chosen by another fellow traveller.</label>
+                    <label>*This pair of opposites has already been chosen by a fellow traveller.</label>
 
                     <p>
-                        {% trans "Bitte teile mit uns, was massgeblich zu deiner inneren Sicherheit hier im Team beiträgt:" %}
+                        {% trans "Stell dir ein Kontinuum vor und wähle den POSITIVEN Endpunkt, der massgeblich zu deiner inneren Sicherheit im Team beiträgt:" %}
                         <br><br>
                     </p>
 
@@ -256,7 +256,7 @@
             continue_:function(){
                 var that = this;
                 if (that.text_input === ''){
-                    alert("Please choose a term.");
+                    alert("Please choose your SAFETY ANCHOR.");
                     return;
                 }else{
                     //if (this.keyboard_input === true){

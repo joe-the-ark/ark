@@ -60,7 +60,7 @@
                     {% trans "Bitte gib anonymes Feedback" %}
                 </h1>
                 <div class="feedback__data">
-                    <p>
+                    <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
                         {% trans "Schau dir zuerst das Spannungsprofil deines Feedbacknehmers rechts an. Und beantworte dann die drei Fragen für ein offenes, lösungsorientiertes und anonymes Feedback..." %}
                     </p>
                     <div class="fields-fill__wrapper"></div>
@@ -211,13 +211,21 @@
                 </div> -->
                 <form id="form_" action="#" method="POST" class="form">
                 {% csrf_token %}
+                    <p style="background-color: #9FE2BF; color: #626262;">
+                        {% trans "Grün = Spannungsfreiheit" %}<br>
+                        {% trans "Spannungs-Werte unter 16 = deuten auf Spannungsfreiheit mit dem Team hin" %}
+                    </p>
                     <p>
-                        {% trans "Weiss = Spannungsfreiheit" %}<br>
-                        {% trans "Werte über 16 = Spannung mit dem Team" %}<br>
                         {% trans "Negatives Vorzeichen = zu positive Selbstwahrnehmung" %}<br>
-                        {% trans "Positives Vorzeichen = zu kritische Selbstwahrnehmung" %}<br>
-                        {% trans "Rot = Selbstwahrnehmung ausserhalb Safe Zone" %}<br>
-                        {% trans "Gelb = Wahrnehmung durch die anderen ausserhalb Safe Zone" %}<br>
+                        {% trans "Positives Vorzeichen = zu kritische Selbstwahrnehmung" %}
+                    </p>
+                    <p style="background-color: #fa5252; color: white;">
+                        {% trans "Rot = Selbstwahrnehmung ausserhalb Safe Zone" %}
+                    </p>
+                    <p style="background-color: #FAE03C; color: #626262;">
+                        {% trans "Gelb = Wahrnehmung durch die anderen ausserhalb Safe Zone" %}
+                    </p>
+                    <p style="background-color: #3b4252; color: white;">
                         {% trans "Schwarz = Selbst- & Fremdwahrnehmung ausserhalb Safe Zone" %}
                     </p>
                     <p>

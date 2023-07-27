@@ -149,8 +149,8 @@ msgstr "Continuer"
 msgid "Was beschreibt am besten deinen SICHERHEITSANKER, der dir im Team Sicherheit schenkt?"
 msgstr "Qu'est-ce qui décrit le mieux ton ANCRE DE SÉCURITÉ qui rend l'équipe sûre pour toi ?"
 
-msgid "Bitte teile mit uns, was massgeblich zu deiner inneren Sicherheit hier im Team beiträgt:"
-msgstr "Merci de partager avec nous ce qui contribue de manière significative à ta sécurité intérieure au sein de l'équipe :"
+msgid "Stell dir ein Kontinuum vor und wähle den POSITIVEN Endpunkt, der massgeblich zu deiner inneren Sicherheit im Team beiträgt:"
+msgstr "Imagine un continuum et choisis le point final POSITIF qui contribue de manière déterminante à ta sécurité intérieure au sein de l'équipe :"
 
 #. ubung-1
 #: loco:606b779c3639f72c8f45d892
@@ -190,8 +190,8 @@ msgstr "Veuillez écrire un mot dans le champ de DÉCLENCHEMENT ou cliquer sur l
 
 #. ubung-3
 #: loco:606b7d7dfafd1642eb21fa72
-msgid "Bitte teile mit uns, was dich hier im Team negativ triggern kann oder manchmal vielleicht sogar zu einem Gefühl von Angst beiträgt:"
-msgstr "S'il te plaît, partage avec nous ce qui peut te déclencher négativement ici dans l'équipe ou parfois même contribuer à un sentiment de peur :"
+msgid "Bitte teile mit uns, was dich hier im Team NEGATIV triggern kann oder manchmal vielleicht sogar zu einem Gefühl von Angst beiträgt:"
+msgstr "S'il te plaît, partage avec nous ce qui peut te déclencher NÉGATIVEMENT ici dans l'équipe ou parfois même contribuer à un sentiment de peur :"
 
 #. ubung-3
 #: loco:606b7e554fe187702f150c72
@@ -429,8 +429,8 @@ msgstr "Où se situent les tensions entre la perception que tu as de toi-même e
 msgid "Unsere Hypothese: Spannung erzeugt Unsicherheit und gefährdet Vertrauen. Eine tragfähige, sichere Beziehungsbasis macht Defensivreaktionen überflüssig (Fight, Flight & Freeze) und lässt dich achtsam mit dir und anderen umgehen."
 msgstr "Notre hypothèse : la tension génère de l'insécurité et compromet la confiance. Une base relationnelle solide et sûre rend les réactions défensives superflues (Fight, Flight & Freeze) et te permet d'être attentif à toi-même et aux autres."
 
-msgid "Klick bitte auf die Kacheln für eine detailierte Darstellung der verschiedenen Perspektiven:"
-msgstr "Cliquez sur les tuiles pour une représentation détaillée des différentes perspectives :"
+msgid "Klick bitte auf die Kacheln oben für eine detailierte Darstellung der verschiedenen Perspektiven."
+msgstr "Cliquez sur les tuiles ci-dessus pour une représentation détaillée des différentes perspectives."
 
 msgid "Die grünen Bereiche sind die sichere Basis deines Teams."
 msgstr "Les zones vertes sont la base de sécurité de ton équipe."
