@@ -203,8 +203,8 @@ msgstr "déclencheur"
 
 #. waitingroom-1
 #: loco:606b7eca211f3464ed134c33
-msgid "Bitte tauscht euch jetzt aus."
-msgstr "Veuillez échanger vos perspectives maintenant."
+msgid "Tauscht euch jetzt aus."
+msgstr "Echangez maintenant."
 
 msgid "Erklärt euch bitte kurz die GEGENSATZPAARE, damit alle verstehen können, mit welchen Begriffen wir arbeiten."
 msgstr "Expliquez brièvement les PARAMÈTRES CONTRACTÉS, s'il vous plaît, afin que tout le monde puisse comprendre avec quels termes nous travaillons."
@@ -384,8 +384,8 @@ msgstr ""
 msgid "Erinnerst du dich an deine Einschätzung der gefühlten Team-Performance?"
 msgstr "Te souviens-tu de ton évaluation de la performance perçue de l'équipe ?"
 
-msgid "Hier siehst du den Durchschnitt aller abgegebenen Werte im Team (auf einer Skala von 1 bis 99). In der Regel gilt folgender Zusammenhang: je grösser eure psychologische Sicherheit, umso höher die Team-Performance. Auf der nächsten Etappe siehst Du, welches Verhalten zu eurer psychologischen Sicherheit beiträgt."
-msgstr "Tu peux voir ici la moyenne de toutes les valeurs attribuées à l'équipe (sur une échelle de 1 à 99). En règle générale, plus votre sécurité psychologique est grande, plus la performance de l'équipe est élevée. A l'étape suivante, tu peux voir quel comportement contribue à ta sécurité psychologique."
+msgid "Hier siehst du die Extremwerte, sowie den Durchschnitt aller abgegebenen Werte im Team (auf der Skala von 1 bis 99). In der Regel gilt folgender Zusammenhang: je grösser eure psychologische Sicherheit, umso höher die Team-Performance. Auf der nächsten Etappe siehst du, welches Verhalten zu eurer psychologischen Sicherheit beiträgt."
+msgstr "Tu peux voir ici les valeurs extrêmes ainsi que la moyenne de toutes les valeurs attribuées à l'équipe (sur une échelle de 1 à 99). En règle générale, plus votre sécurité psychologique est grande, plus la performance de l'équipe est élevée. A l'étape suivante, tu peux voir quel comportement contribue à ta sécurité psychologique."
 
 msgid "Auf der nächsten Etappe siehst Du, welches Verhalten zu eurer psychologischen Sicherheit beiträgt."
 msgstr "A l'étape suivante, tu verras quel comportement contribue à votre sécurité psychologique."
@@ -420,14 +420,14 @@ msgstr "La bande verte indique la base de sécurité de ton équipe :"
 msgid "Wer sieht deinen Beitrag zur inneren Sicherheit innerhalb, wer ausserhalb, dieser grünen sicheren Zone?"
 msgstr "Qui voit ta contribution à la sécurité intérieure à l'intérieur, qui à l'extérieur de cette zone verte sécurisée ?"
 
-msgid "Was ist dein Beitrag zur Stärkung der Sicherheits-Anker im Team?"
-msgstr "Quelle est ta contribution au renforcement des ancrages de sécurité dans l'équipe ?"
+msgid "Wie kannst du diese Spannungen lösen und zu einer sicheren Basis beitragen?"
+msgstr "Comment peux-tu résoudre ces tensions et contribuer à une base de sécurité ?"
 
-msgid "Wo entstehen Spannungen zwischen deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team? Kannst du diese Spannungen erklären?"
-msgstr "Où se situent les tensions entre la perception que tu as de toi-même et la perception que l'équipe a de toi ? Peux-tu expliquer ces tensions ?"
+msgid "Wo entstehen Spannungen zwischen deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team?"
+msgstr "Où se situent les tensions entre la perception que tu as de toi-même et la perception que l'équipe a de toi ?"
 
-msgid "Unsere Hypothese: Spannung erzeugt Unsicherheit und gefährdet Vertrauen. Eine tragfähige, sichere Beziehungsbasis macht Defensivreaktionen überflüssig (Fight, Flight & Freeze) und lässt dich achtsam mit dir und anderen umgehen."
-msgstr "Notre hypothèse : la tension génère de l'insécurité et compromet la confiance. Une base relationnelle solide et sûre rend les réactions défensives superflues (Fight, Flight & Freeze) et te permet d'être attentif à toi-même et aux autres."
+msgid "Unsere Hypothese: Ungeklärte Spannungen erzeugen Unsicherheit und gefährden Vertrauen. Eine tragfähige, sichere Beziehungsbasis macht Defensivreaktionen überflüssig (Fight, Flight & Freeze) und lässt dich achtsam mit dir und anderen umgehen."
+msgstr "Notre hypothèse : les tensions non résolues génèrent de l'insécurité et menacent la confiance. Une base relationnelle solide et sécurisée rend les réactions défensives superflues (Fight, Flight & Freeze) et te permet d'être attentif à toi-même et aux autres."
 
 msgid "Klick bitte auf die Kacheln oben für eine detailierte Darstellung der verschiedenen Perspektiven."
 msgstr "Cliquez sur les tuiles ci-dessus pour une représentation détaillée des différentes perspectives."
@@ -446,12 +446,24 @@ msgstr "Voici ton guide d'interprétation :"
 msgid "Die grünen Bereiche sind die sicheren Zonen Deines Teams. Unsere Hypothese: Spannungsfreiheit erzeugt Sicherheit. Eine gute innere Sicherheit macht Defensivreaktionen überflüssig (Fight, Flight & Freeze) und lässt Dich achtsam mit Dir und anderen umgehen. Was ist Dein Beitrag zur inneren Sicherheit? Wie erklärst du die Unterschiede zwischen Deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team?"
 msgstr "Les zones vertes sont les zones de sécurité de ton équipe. Notre hypothèse : l'absence de tensions engendre la sécurité. Une bonne sécurité intérieure rend les réactions défensives superflues (Fight, Flight & Freeze) et te permet d'être attentif à toi-même et aux autres. Quelle est ta contribution à la sécurité intérieure ? Comment expliques-tu les différences entre ta perception de toi-même et la perception des autres par l'équipe ?"
 
+msgid "Zum Abschluss eurer Reise empfehlen wir eine anonyme Feedbackrunde mit 3 bewährten Fragen zur Stärkung der psychologischen Sicherheit im Team: Gib anonymes 1 zu 1 Feedback, um alle in einen psychologisch sichereren Raum mitzunehmen."
+msgstr "Pour terminer votre voyage, nous vous recommandons de faire un feedback anonyme avec 3 questions qui ont fait leurs preuves pour renforcer la sécurité psychologique de l'équipe : donnez un feedback anonyme 1 à 1 pour emmener tout le monde dans un espace plus sûr psychologiquement."
+
+msgid "(Unbedingt empfohlen für Teams mit einem Performance-Wert unter 80)."
+msgstr "(Indispensable pour les équipes dont la valeur de performance est inférieure à 80)."
+
+msgid "Direkt zur Auswertung ohne Feedback"
+msgstr "Directement vers l'évaluation sans feedback"
+
+msgid "Anonymes Feedback geben"
+msgstr "Donner un feedback anonyme"
+
 #. spannungsfelder
 #: loco:606c90973e98ca2508753824
 msgid "Grün = Spannungsfreiheit"
 msgstr "Vert = absence de tension"
 
-msgid "Was ist Dein Beitrag zur inneren Sicherheit im Team?"
+msgid "Was ist dein Beitrag zur inneren Sicherheit im Team?"
 msgstr "Quelle est ta contribution au sentiment de sécurité intérieure au sein de l'équipe ?"
 
 #. spannungsfelder
@@ -607,8 +619,8 @@ msgstr "Veuillez donner un feedback anonyme"
 msgid "Feedback aussprechen"
 msgstr "Donner un feedback"
 
-msgid "Schau Dir zuerst das Spannungsprofil Deines Feedbacknehmers rechts an. Und beantworte dann die drei Fragen für ein offenes, lösungsorientiertes und anonymes Feedback. Geh ein Risiko ein und schreib mit offenem Herzen..."
-msgstr "Regarde d'abord le profil de tension de la personne qui reçoit ton feedback à droite. Et réponds ensuite aux trois questions pour un feedback ouvert, orienté vers des solutions et anonyme. Prends un risque et écris à cœur ouvert..."
+msgid "Schau dir zuerst das Spannungsprofil deines Feedbacknehmers rechts an. Und beantworte dann die drei Fragen für ein offenes, lösungsorientiertes und anonymes Feedback..."
+msgstr "Regarde d'abord le profil de tension de ton bénéficiaire de feedback à droite. Et réponds ensuite aux trois questions pour un feedback ouvert, orienté solution et anonyme..."
 
 msgid "WEITER SO: Besonders schätze ich deinen Beitrag zum gelingenden Zusammenspiel im Team, wenn WIR..."
 msgstr "CONTINUONS AINSI : j'apprécie particulièrement ta contribution à la réussite de l'interaction au sein de l'équipe, lorsque NOUS..."
@@ -636,19 +648,19 @@ msgstr "Signe positif = perception de soi trop critique"
 
 #. feedback
 #: loco:606dc7ad3343313c7723b732
-msgid "Rot = selbstwahrnehmung ausserhalb Safe Zone"
-msgstr "Rouge = perception de soi en dehors de la zone de sécurité"
+msgid "Rot = Selbstwahrnehmung ausserhalb Safe-Base"
+msgstr "Rouge = perception de soi en dehors de la base de sécurité"
 
 #. feedback
 #: loco:606dc80d510b9e203c4f6483
 msgid "Gelb = Wahrnehmung durch die anderen ausserhalb Safe Zone"
-msgstr "Jaune = perception par les autres en dehors de la zone de sécurité"
+msgstr "Jaune = perception par les autres en dehors de la base de sécurité"
 
 #. feedback
 #: loco:606dc89f27d1fe52581ee882
-msgid "Schwarz = Selbst- & Fremdwahrnehmung ausserhalb Safe Zone"
+msgid "Schwarz = Selbst- & Fremdwahrnehmung ausserhalb Safe-Base"
 msgstr ""
-"Noir = perception de soi et perception des autres en dehors de la zone de "
+"Noir = perception de soi et perception des autres en dehors de la base de "
 "sécurité"
 
 #. feedback
@@ -703,16 +715,16 @@ msgstr ""
 msgid "bereit"
 msgstr "prêt"
 
-msgid "Angstfrei aufrichtiges Feedback geben zu können, ist eine wesentliche Dimension psychologischer Sicherheit. Amy Edmondson geht sogar soweit, psychologische Sicherheit zu definieren als die gemeinsame Überzeugung aller Teammitglieder, dass es im Team sicher sei, zwischenmenschliche Risiken einzugehen."
+msgid "Angstfrei und offen kommunizieren zu können, ist eine wesentliche Dimension psychologischer Sicherheit. Amy Edmondson geht sogar soweit, psychologische Sicherheit zu definieren als die gemeinsame Überzeugung aller Teammitglieder, dass es im Team sicher sei, zwischenmenschliche Risiken einzugehen."
 msgstr "Pouvoir donner un feedback sincère sans crainte est une dimension essentielle de la sécurité psychologique. Amy Edmondson va même jusqu'à définir la sécurité psychologique comme la conviction commune de tous les membres de l'équipe qu'il n'y a aucun risque à prendre des risques interpersonnels au sein de l'équipe."
 
-msgid "Wie hast Du beim Feedback-Geben Deine psychologische Sicherheit wahrgenommen?"
+msgid "Wie hast du beim Feedback-Geben deine psychologische Sicherheit wahrgenommen?"
 msgstr "Comment as-tu perçu ta sécurité psychologique lorsque tu donnais un feedback ?"
 
-msgid "Hast Du Augenblicke von Selbstzensur wahrgenommen?"
+msgid "Hast du Augenblicke von Selbstzensur wahrgenommen?"
 msgstr "As-tu perçu des moments d'autocensure ?"
 
-msgid "Wie wie sicher fühltest Du Dich in der Lage anzusprechen, was Dich eigentlich beschäftigt, um das Team voranzubringen?"
+msgid "Wie wie sicher fühltest du dich in der Lage anzusprechen, was dich eigentlich beschäftigt, um das Team voranzubringen?"
 msgstr "Dans quelle mesure te sentais-tu en mesure d'aborder ce qui te préoccupait réellement pour faire avancer l'équipe ?"
 
 #. assessment
@@ -871,6 +883,9 @@ msgstr "Les valeurs supérieures à 16 indiquent des tensions avec l'équipe."
 #: loco:606ef28b897dc9441a675aa3
 msgid "Auf Wiedersehen sagen"
 msgstr "Adieu"
+
+msgid "Infos zur Arche"
+msgstr "Infos sur l'Arche"
 
 #. farewell
 #: loco:606efe32790d3070b02aa142

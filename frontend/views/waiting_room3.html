@@ -57,22 +57,22 @@
                     <h1>
                         {% trans "Wartezimmer" %}
                     </h1>
-                    <p>
-                        {% trans "Angstfrei aufrichtiges Feedback geben zu können, ist eine wesentliche Dimension psychologischer Sicherheit. Amy Edmondson geht sogar soweit, psychologische Sicherheit zu definieren als die gemeinsame Überzeugung aller Teammitglieder, dass es im Team sicher sei, zwischenmenschliche Risiken einzugehen." %}
+                    <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
+                        {% trans "Angstfrei und offen kommunizieren zu können, ist eine wesentliche Dimension psychologischer Sicherheit. Amy Edmondson geht sogar soweit, psychologische Sicherheit zu definieren als die gemeinsame Überzeugung aller Teammitglieder, dass es im Team sicher sei, zwischenmenschliche Risiken einzugehen." %}
                     </p>
                     <ul>
                         <li>
-                            {% trans "Wie hast Du beim Feedback-Geben Deine psychologische Sicherheit wahrgenommen?"%}
+                            {% trans "Wie hast du beim Feedback-Geben deine psychologische Sicherheit wahrgenommen?"%}
                         </li>
                         <li>
-                            {% trans "Hast Du Augenblicke von Selbstzensur wahrgenommen?" %}
+                            {% trans "Hast du Augenblicke von Selbstzensur wahrgenommen?" %}
                         </li>
                         <li>
-                            {% trans "Wie wie sicher fühltest Du Dich in der Lage anzusprechen, was Dich eigentlich beschäftigt, um das Team voranzubringen?" %}
+                            {% trans "Wie wie sicher fühltest du dich in der Lage anzusprechen, was dich eigentlich beschäftigt, um das Team voranzubringen?" %}
                         </li>
                     </ul>
                 <div class="google-slides-container">
-                <iframe src="https://docs.google.com/presentation/d/1jh6brUP1JlbzzsGmfxJhJTSHuj7BACCUJYOCP_PVGrY/embed" frameborder="0" width="850" height="400" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                <iframe style="padding: 0 10px;" src="https://docs.google.com/presentation/d/1jh6brUP1JlbzzsGmfxJhJTSHuj7BACCUJYOCP_PVGrY/embed" frameborder="0" width="850" height="400" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
                 
                 <style>
                 .google-slides-container{
@@ -80,20 +80,21 @@
                 width: 100%;
                 padding-top: 56.25%;
                 overflow: hidden;
+                background-color: #9FE2BF;
+                border-radius: 10px
                 }
                 .google-slides-container iframe{
                 position: absolute;
                 top: 0;
                 left: 0;
-                width: 70%;
-                height: 70%;
+                width: 100%;
+                height: 100%;
+                background-color: #9FE2BF;
+                border-radius: 10px
                 }
                 </style>
 
                 </div>
-                    <p>
-                            {% trans "Die Reise kann weitergehen, sobald alle Mitspieler hier im Warteraum angekommen sind." %}
-                    </p>
                 </div>
 
                 <div class="wartezimmer__addition" id="app-1">
@@ -124,6 +125,14 @@
                     <button id='main_btn' type="button" onclick="choosePopup()">
                         {% trans "Weiterspielen" %}
                     </button>
+
+                    <p>
+                        <br>
+                    </p>
+                    <p style="background-color: #52CEEC; color: #FFFFFF; border-radius: 10px; padding: 0 10px;"><br>
+                        {% trans "Die Reise kann weitergehen, sobald alle Mitspieler hier im Warteraum angekommen sind." %}<br><br>
+                    </p>
+
                 </div>
             </form>
         </div>

@@ -197,8 +197,8 @@ msgstr "trigger"
 
 #. waitingroom-1
 #: loco:606b7eca211f3464ed134c33
-msgid "Bitte tauscht euch jetzt aus."
-msgstr "Please share your perspectives now."
+msgid "Tauscht euch jetzt aus."
+msgstr "Share your perspectives now."
 
 msgid "Erklärt euch bitte kurz die GEGENSATZPAARE, damit alle verstehen können, mit welchen Begriffen wir arbeiten."
 msgstr "Please briefly explain the OPPOSITE PAIRS so that everyone can understand what terms we are working with."
@@ -376,8 +376,8 @@ msgstr ""
 msgid "Erinnerst du dich an deine Einschätzung der gefühlten Team-Performance?"
 msgstr "Do you remember your assessment of the perceived team performance?"
 
-msgid "Hier siehst du den Durchschnitt aller abgegebenen Werte im Team (auf einer Skala von 1 bis 99). In der Regel gilt folgender Zusammenhang: je grösser eure psychologische Sicherheit, umso höher die Team-Performance. Auf der nächsten Etappe siehst Du, welches Verhalten zu eurer psychologischen Sicherheit beiträgt."
-msgstr "Here you see the average of all the scores given in the team (on a scale from 1 to 99). As a rule, the following relationship applies: the greater your psychological safety, the higher your team performance. On the next stage you can see which behaviour contributes to your psychological safety."
+msgid "Hier siehst du die Extremwerte, sowie den Durchschnitt aller abgegebenen Werte im Team (auf der Skala von 1 bis 99). In der Regel gilt folgender Zusammenhang: je grösser eure psychologische Sicherheit, umso höher die Team-Performance. Auf der nächsten Etappe siehst du, welches Verhalten zu eurer psychologischen Sicherheit beiträgt."
+msgstr "Here you can see the extreme values as well as the average of all the values given in the team (on the scale from 1 to 99). As a rule, the following relationship applies: the greater your psychological safety, the higher your team performance. On the next stage you will see which behaviour contributes to your psychological safety."
 
 msgid "Notier dazu bitte den Performance-Durchschnittswert!"
 msgstr "Please note the average performance value!"
@@ -415,14 +415,14 @@ msgstr "The green band shows your team's safe base:"
 msgid "Wer sieht deinen Beitrag zur inneren Sicherheit innerhalb, wer ausserhalb, dieser grünen sicheren Zone?"
 msgstr "What is your contribution to the safety anchors and trigger issues in the team?"
 
-msgid "Was ist dein Beitrag zur Stärkung der Sicherheits-Anker im Team?"
-msgstr "What is your contribution to strengthening the safety anchors in the team?"
+msgid "Wie kannst du diese Spannungen lösen und zu einer sicheren Basis beitragen?"
+msgstr "How can you solve these tensions and contribute to a safe base?"
 
-msgid "Wo entstehen Spannungen zwischen deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team? Kannst du diese Spannungen erklären?"
-msgstr "Where do tensions arise between your self-perception and the team's perception of you? Can you explain these tensions?"
+msgid "Wo entstehen Spannungen zwischen deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team?"
+msgstr "Where do tensions arise between your self-perception and the team's perception of you?"
 
-msgid "Unsere Hypothese: Spannung erzeugt Unsicherheit und gefährdet Vertrauen. Eine tragfähige, sichere Beziehungsbasis macht Defensivreaktionen überflüssig (Fight, Flight & Freeze) und lässt dich achtsam mit dir und anderen umgehen."
-msgstr "Our hypothesis: Tension creates insecurity and jeopardises trust. A sustainable, secure relationship basis makes defensive reactions superfluous (Fight, Flight & Freeze) and allows you to be mindful of yourself and others."
+msgid "Unsere Hypothese: Ungeklärte Spannungen erzeugen Unsicherheit und gefährden Vertrauen. Eine tragfähige, sichere Beziehungsbasis macht Defensivreaktionen überflüssig (Fight, Flight & Freeze) und lässt dich achtsam mit dir und anderen umgehen."
+msgstr "Our hypothesis: Unresolved tensions create insecurity and endanger trust. A sustainable, safe base makes defensive reactions unnecessary (Fight, Flight & Freeze) and allows you to be mindful of yourself and others."
 
 msgid "Klick bitte auf die Kacheln oben für eine detailierte Darstellung der verschiedenen Perspektiven."
 msgstr "Please click on the tiles above for a detailed view of the different perspectives."
@@ -432,6 +432,18 @@ msgstr "The green areas are the safe base of your team."
 
 msgid "Unsere Hypothese: Spannung erzeugt Unsicherheit und gefährdet Vertrauen. Eine tragfähige, sichere Beziehungsbasis macht Defensivreaktionen überflüssig (Fight, Flight & Freeze) und lässt dich achtsam mit dir und anderen umgehen. Was ist dein Beitrag zur inneren Sicherheit? Wie erklärst du die Unterschiede zwischen deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team?"
 msgstr "Our hypothesis: Tension creates insecurity and jeopardises trust. A sustainable, secure relationship basis makes defensive reactions unnecessary (fight, flight & freeze) and allows you to be mindful of yourself and others. What is your contribution to inner safety? How do you explain the differences between your self-perception and the perception of others by the team?"
+
+msgid "Zum Abschluss eurer Reise empfehlen wir eine anonyme Feedbackrunde mit 3 bewährten Fragen zur Stärkung der psychologischen Sicherheit im Team: Gib anonymes 1 zu 1 Feedback, um alle in einen psychologisch sichereren Raum mitzunehmen."
+msgstr "To conclude your journey, we recommend an anonymous feedback session with 3 tried and tested questions to strengthen psychological safety in the team: Give anonymous 1 to 1 feedback to take everyone into a psychologically safer space."
+
+msgid "(Unbedingt empfohlen für Teams mit einem Performance-Wert unter 80)."
+msgstr "(Highly recommended for teams with a performance value below 80)."
+
+msgid "Direkt zur Auswertung ohne Feedback"
+msgstr "Direct to evaluation without feedback"
+
+msgid "Anonymes Feedback geben"
+msgstr "Giving anonymous feedback"
 
 #. spannungsfelder
 #: loco:606c8ee09eab385a0d6cd433
@@ -443,7 +455,7 @@ msgstr "Here is your interpretation guide:"
 msgid "Grün = Spannungsfreiheit"
 msgstr "Green = tension-free"
 
-msgid "Was ist Dein Beitrag zur inneren Sicherheit im Team?"
+msgid "Was ist dein Beitrag zur inneren Sicherheit im Team?"
 msgstr "What is your contribution to the inner safety in the team?"
 
 #. spannungsfelder
@@ -590,8 +602,8 @@ msgstr "Please provide anonymous feedback"
 msgid "Feedback aussprechen"
 msgstr "Give feedback"
 
-msgid "Schau Dir zuerst das Spannungsprofil Deines Feedbacknehmers rechts an. Und beantworte dann die drei Fragen für ein offenes, lösungsorientiertes und anonymes Feedback. Geh ein Risiko ein und schreib mit offenem Herzen..."
-msgstr "First, look at the tension profile of your feedback recipient on the right. And then answer the three questions for an open, solution-oriented and anonymous feedback. Take a risk and write with an open heart..."
+msgid "Schau dir zuerst das Spannungsprofil deines Feedbacknehmers rechts an. Und beantworte dann die drei Fragen für ein offenes, lösungsorientiertes und anonymes Feedback..."
+msgstr "First look at the tension profile of your feedback taker on the right. And then answer the three questions for an open, solution-oriented and anonymous feedback..."
 
 msgid "WEITER SO: Besonders schätze ich deinen Beitrag zum gelingenden Zusammenspiel im Team, wenn WIR..."
 msgstr "KEEP UP THE GOOD WORK: I especially appreciate your contribution to the successful interaction in the team when WE..."
@@ -619,18 +631,18 @@ msgstr "Positive sign = overly critical self-perception"
 
 #. feedback
 #: loco:606dc7ad3343313c7723b732
-msgid "Rot = Selbstwahrnehmung ausserhalb Safe Zone"
-msgstr "Red = self-perception outside safe zone"
+msgid "Rot = Selbstwahrnehmung ausserhalb Safe-Base"
+msgstr "Red = self-perception outside safe base"
 
 #. feedback
 #: loco:606dc80d510b9e203c4f6483
-msgid "Gelb = Wahrnehmung durch die anderen ausserhalb Safe Zone"
-msgstr "Yellow = perception by the others outside Safe Zone"
+msgid "Gelb = Wahrnehmung durch die anderen ausserhalb Safe-Base"
+msgstr "Yellow = perception by the others outside safe base"
 
 #. feedback
 #: loco:606dc89f27d1fe52581ee882
-msgid "Schwarz = Selbst- & Fremdwahrnehmung ausserhalb Safe Zone"
-msgstr "Black = self-perception & perception of others outside the safe zone"
+msgid "Schwarz = Selbst- & Fremdwahrnehmung ausserhalb Safe-Base"
+msgstr "Black = self-perception & perception of others outside the safe base"
 
 #. feedback
 #: loco:606dcbb5801da7547d3d60b3
@@ -679,16 +691,16 @@ msgstr ""
 
 #. waiting-3
 #: loco:606dd8f0de6e512dcf1bddc2
-msgid "Angstfrei aufrichtiges Feedback geben zu können, ist eine wesentliche Dimension psychologischer Sicherheit. Amy Edmondson geht sogar soweit, psychologische Sicherheit zu definieren als die gemeinsame Überzeugung aller Teammitglieder, dass es im Team sicher sei, zwischenmenschliche Risiken einzugehen."
+msgid "Angstfrei und offen kommunizieren zu können, ist eine wesentliche Dimension psychologischer Sicherheit. Amy Edmondson geht sogar soweit, psychologische Sicherheit zu definieren als die gemeinsame Überzeugung aller Teammitglieder, dass es im Team sicher sei, zwischenmenschliche Risiken einzugehen."
 msgstr "Being able to give candid feedback without fear is an essential dimension of psychological safety. Amy Edmondson goes so far as to define psychological safety as the shared belief among all team members that it is safe to take interpersonal risks in the team."
 
-msgid "Wie hast Du beim Feedback-Geben Deine psychologische Sicherheit wahrgenommen?"
+msgid "Wie hast du beim Feedback-Geben deine psychologische Sicherheit wahrgenommen?"
 msgstr "How did you perceive your psychological safety when giving feedback?"
 
-msgid "Hast Du Augenblicke von Selbstzensur wahrgenommen?"
+msgid "Hast du Augenblicke von Selbstzensur wahrgenommen?"
 msgstr "Did you notice moments of self-censorship?"
 
-msgid "Wie wie sicher fühltest Du Dich in der Lage anzusprechen, was Dich eigentlich beschäftigt, um das Team voranzubringen?"
+msgid "Wie wie sicher fühltest du dich in der Lage anzusprechen, was dich eigentlich beschäftigt, um das Team voranzubringen?"
 msgstr "How confident did you feel in being able to address what was actually bothering you in order to move the team forward?"
 
 #. assessment
@@ -841,6 +853,9 @@ msgstr "The inside of the heat map shows how large the deviation between self-pe
 #: loco:606ef28b897dc9441a675aa3
 msgid "Auf Wiedersehen sagen"
 msgstr "Farewell"
+
+msgid "Infos zur Arche"
+msgstr "Info about the Ark"
 
 #. farewell
 #: loco:606efe32790d3070b02aa142

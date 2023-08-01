@@ -47,6 +47,7 @@
     
     
     <div class="container">
+    <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
     	<h1>{% trans "Reflexion in einer Kleingruppe" %}<br></h1>
 		<p><br>
 			{% trans "In eurem Team besträgt der durchschnittliche Spannungswert" %} [[tension_average]]. {% trans "Als Daumenregel gilt: Werte unter 20 sind entspannt. Werte unter 40 sind meist noch ohne externe Begleitung bearbeitbar. Die Skala reicht von 1 (absolute Spannungsfreiheit) bis 99." %}<br><br>
@@ -117,6 +118,9 @@
                 {% trans "Zeitbedarf: 10 Minuten." %}<br><br> 
               </li>
     </ul>
+  </div>
+          <p style="background-color: #52CEEC; color: #FFFFFF; border-radius: 10px; padding: 0 10px;"><br>{% trans "Die Heatmap zeigt eine Zusammenfassung aller Spannungen. Beginnt eure Auswertung mit den farbigen Feldern im inneren der Matrix, deren rechte Werte grösser als 16 sind..." %}<br><br></p>
+          <p>
 	</div>
 
         <div class="container">
@@ -362,16 +366,13 @@
   </script>
 
          <div class="container">
+          <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
 
-          <h1>{% trans "Welche Spannungen im Team könnt ihr mit Feedback lösen?" %}</h1><br>
-          <p><br>{% trans "Die Heatmap zeigt eine Zusammenfassung aller Spannungen. Beginnt eure Auswertung mit den farbigen Feldern im inneren der Matrix, deren rechte Werte grösser als 16 sind..." %}<br><br></p>
+          <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;"><br>{% trans "Der Farbcode im Innern der Heatmap gilt unverändert." %} {% trans "Bei grünen Feldern liegen Fremd- und Selbstwahrnehmung im sicheren Bereich der Safe-Zone." %}<br><br></p>
+          <p>
+            <br>
+          </p>
             <ul>
-              <li>
-              {% trans "Der Farbcode im Innern der Heatmap gilt unverändert." %}
-              </li>
-              <li style="background-color: #9FE2BF; color: #626262;">
-              {% trans "Bei grünen Feldern liegen Fremd- und Selbstwahrnehmung im sicheren Bereich der Safe-Zone." %}
-              </li>
               <li>
               {% trans "Der erste Wert (in Klammern) zeigt die Fremdwahrnehmung. Je höher dieser Wert, desto grösser der Beitrag zur Spannung aus Teamsicht." %}
               </li>
@@ -379,43 +380,47 @@
               {% trans "Der zweite Werte zeigt die Abweichung von Fremd- und Selbstwahrnehmung. Werte über 16 deuten auf Spannungen mit dem Team hin." %}
               </li>
               <li>
-              {% trans "Bei negativen Vorzeichen schätzt der Spieler den eigenen Beitrag zur Teamdynamik eher zu optimistisch ein. Dadurch entstehen manchmal Spannungen mit dem Team." %} 
+              {% trans "Bei negativen Vorzeichen schätzt der Spieler den eigenen Beitrag zur Teamdynamik eher zu optimistisch ein. Dadurch entstehen manchmal Spannungen mit dem Team." %}<br><br>
               </li>
-            </ul>
-
-          <ul>
-              <br><br><br><br><br>
               <li>
-                {% trans "Vertikal: siehst Du in der oberen Reihe den Beitrag jedes Spielers zu den Sicherheitsankern; je niedriger der Wert, desto grösser ist der Beitrag des Spielers zur Sicherheit im Team." %}<br> 
+                {% trans "Vertikal: siehst Du in der oberen Reihe den Beitrag jedes Spielers zu den Sicherheitsankern; je niedriger der Wert, desto grösser ist der Beitrag des Spielers zur Sicherheit im Team." %}
               </li>
               <li>
                 {% trans "Horizontal: siehst Du die Lage der Safe-Zones und die zugehörigen Sicherheitsanker und Triggerthemen; je kleiner der Wert links, desto kleiner ist der Beitrag dieser Triggerthemen zur Unsicherheit im Team." %}
               </li>
             <li>
-              {% trans "Ganz unten sind die inneren Spannungswerte aufaddiert. Auch hier gilt: je höher der Wert mit negativem Vorzeichen, desto stärker überschätzt der Spieler den positiven Beitrag zur Sicherheit im Team." %}<br><br><br>
+              {% trans "Ganz unten sind die inneren Spannungswerte aufaddiert. Auch hier gilt: je höher der Wert mit negativem Vorzeichen, desto stärker überschätzt der Spieler den positiven Beitrag zur Sicherheit im Team." %}<br><br>
             </li>
-          </ul>
+            </ul>
+            </div>
+
+            <p>
+              <br><br>
+            </p>
+
+          <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
+                <h1 style="background-color: #52CEEC; color: #FFFFFF; border-radius: 10px; padding: 0 10px;"><br>{% trans "Welche Spannungen im Team könnt ihr mit Feedback lösen?" %}<br><br></h1>
 
           <div class="center">
 
                 <h1 class="feed-h3" style="background-color: #9FE2BF; color: #626262;">
-                    {% trans "Feedback aussprechen" %}
+                    {% trans "Feedback aussprechen" %}<br>
                 </h1>
 
                 <p class="bold feed-p-1" style="background-color: #9FE2BF; color: #626262;">
-                    {% trans "WEITER SO: Besonders schätze ich deinen Beitrag zum gelingenden Zusammenspiel im Team, wenn WIR..." %}
+                    {% trans "WEITER SO: Besonders schätze ich deinen Beitrag zum gelingenden Zusammenspiel im Team, wenn WIR..." %}<br><br>
                 </p>
                 {% for feedback in feedback1 %}
                     <p class="feedback-1"style="font-size: 20px;color: #3781EE;">{{feedback}}</p>
                 {% endfor %}
                 <p class="bold feed-p-2">
-                    {% trans "WUNSCH: Du könntest zu mehr psychologischen Sicherheit im Team beitragen, indem DU..." %}
+                    {% trans "WUNSCH: Du könntest zu mehr psychologischen Sicherheit im Team beitragen, indem DU..." %}<br><br>
                 </p>
                 {% for feedback in feedback2 %}
                     <p class="feedback-2" style="font-size: 20px;color: #3781EE;">{{feedback}}</p>
                 {% endfor %}
                 <p class="bold feed-p-3" style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
-                    {% trans "UNTERSTÜTZUNG: Ich werde dich unterstützen unser Team psychologisch sicherer zu machen, indem ICH..." %}
+                    {% trans "UNTERSTÜTZUNG: Ich werde dich unterstützen unser Team psychologisch sicherer zu machen, indem ICH..." %}<br><br>
                 </p>
 
                 <p><br><br>
@@ -428,6 +433,7 @@
                 </p>
 
           </div> 
+        </div>
         </div>
 </body>
 </html>

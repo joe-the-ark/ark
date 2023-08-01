@@ -52,6 +52,7 @@
     <div class="app__body">
         <div class="container">
             <main class="screen spannungsfelder">
+                <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
                 <h1>
                     {% trans "Bitte nimm dir 3 Minuten Zeit, um deinen Beitrag zur inneren Sicherheit der anderen Teammitglieder zu begreifen" %}
                 </h1>
@@ -63,15 +64,20 @@
                                 {% trans "Wer sieht deinen Beitrag zur inneren Sicherheit innerhalb, wer ausserhalb, dieser grünen sicheren Zone?"%}
                             </li>
                             <li>
-                                {% trans "Was ist dein Beitrag zur Stärkung der Sicherheits-Anker im Team?" %}
+                                {% trans "Wo entstehen Spannungen zwischen deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team?"%}
                             </li>
                             <li>
-                                {% trans "Wo entstehen Spannungen zwischen deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team? Kannst du diese Spannungen erklären?"%}
+                                {% trans "Wie kannst du diese Spannungen lösen und zu einer sicheren Basis beitragen?"%}
                             </li>
                         </ul>
-                <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
-                    {% trans "Unsere Hypothese: Spannung erzeugt Unsicherheit und gefährdet Vertrauen. Eine tragfähige, sichere Beziehungsbasis macht Defensivreaktionen überflüssig (Fight, Flight & Freeze) und lässt dich achtsam mit dir und anderen umgehen." %}
-                </p>
+                </div>
+                <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
+                <div class="left">
+                        <p style="background-color: #52CEEC; color: #FFFFFF; border-radius: 10px; padding: 0 10px; width: 100%;">
+                                {% trans "Unsere Hypothese: Ungeklärte Spannungen erzeugen Unsicherheit und gefährden Vertrauen. Eine tragfähige, sichere Beziehungsbasis macht Defensivreaktionen überflüssig (Fight, Flight & Freeze) und lässt dich achtsam mit dir und anderen umgehen." %}<br><br>
+                        </p>
+                </div>
+
 
                 <div id="graph-slider" class="swiper-container">
                     <div class="swiper-wrapper"></div>
@@ -96,12 +102,13 @@
                     <div class="swiper-wrapper">
                 </div>
                 </div>
-                <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
-                    {% trans "Klick bitte auf die Kacheln oben für eine detailierte Darstellung der verschiedenen Perspektiven." %}
+                <p style="background-color: #52CEEC; color: #FFFFFF; border-radius: 10px; padding: 0 10px;">
+                    {% trans "Klick bitte auf die Kacheln oben für eine detailierte Darstellung der verschiedenen Perspektiven." %}<br><br>
                 </p>
+                </div>
                 <ul style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
-                    <p>
-                    {% trans "Hier deine Interpretationshilfe:" %}
+                    <p style="color: #626262;">
+                        {% trans "Die grünen Bereiche sind die sichere Basis deines Teams."%}<br> {% trans "Hier deine Interpretationshilfe:" %}
                     </p>
                     <li style="background-color: #9FE2BF; color: #626262;">
                         {% trans "Grün = Spannungsfreiheit" %}
@@ -122,18 +129,39 @@
                         {% trans "Gelb = die Wahrnehmung deines Beitrags zur inneren Sicherheit der anderen liegt außerhalb der Safe-Base" %}
                     </li>
                     <li style="background-color: #3b4252; color: white;">
-                        {% trans "Schwarz = die Selbst- und die Fremdwahrnehmung deines Beitrags zur inneren Sicherheit liegen ausserhalb der Safe-Base" %}
+                        {% trans "Schwarz = die Selbst- und die Fremdwahrnehmung deines Beitrags zur inneren Sicherheit liegen ausserhalb der Safe-Base" %}<br><br>
                     </li>
                 </ul>
+
                 <div class="center">
-                    <p>
+                        <p class="spanun-p" style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
 
-                        <a href="/game-insights/">
-                        <button class="button" type="button">
-                            {% trans "Weiter" %}
-                        </button>
+                            <a href="/mission-2-ubung-2/">
+                            <button class="button" type="button">
+                                {% trans "Anonymes Feedback geben" %}
 
-                    </p>
+                            </button><br><br>
+
+                            {% trans "Zum Abschluss eurer Reise empfehlen wir eine anonyme Feedbackrunde mit 3 bewährten Fragen zur Stärkung der psychologischen Sicherheit im Team: Gib anonymes 1 zu 1 Feedback, um alle in einen psychologisch sichereren Raum mitzunehmen." %}
+
+
+                            <br><br>{% trans "(Unbedingt empfohlen für Teams mit einem Performance-Wert unter 80)." %}<br>
+                            <br>
+                            </p>
+
+                            <a href="/game-insights/">
+                            <button class="button" type="button">
+                                {% trans "Direkt zur Auswertung ohne Feedback" %}
+                            </button>
+
+
+                        </p>
+
+
+
+                        <p>
+                            <br><br>
+                        </p>
                 </div>
 
             </main>
@@ -505,8 +533,6 @@
 
 
 </script>
-<style>
-    
-</style>
+
 </body>
 </html>

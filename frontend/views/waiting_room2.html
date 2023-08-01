@@ -12,14 +12,17 @@
     <link rel="stylesheet" href="/static/css/app.css">
     <link rel="stylesheet" href="/static/css/wartezimmer.css">
     <link rel="stylesheet" href="/static/css/app_graph.css">
+    <link rel="stylesheet" href="/static/css/team-potential.css">
     <link rel="stylesheet" href="/static/css/assessment.css">
     <link rel="stylesheet" href="/static/css/load.css">
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <!-- <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"> -->
     <script src="/static/jspdf.umd.min.js"></script>
     <script src="/static/dom-to-image.min.js"></script>
     <script src="/static/vue.js"></script>
     <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
     <!-- <script src="/static/html2canvas.min.js"></script> -->
 
     <!-- vue cdn  -->
@@ -67,16 +70,24 @@
                     <h1>
                         {% trans "Wartezimmer" %}
                     </h1>
-                <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
+                <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;"><br>
                         {% trans "Erinnerst du dich an deine Einschätzung der gefühlten Team-Performance?" %}
                         <br><br>
                 </p>
-                        <div class="custom-graph-info__item base" data-text="">
+                <div class="custom-graph-info">
+                    <div class="custom-graph-info__item small" data-text="{% trans 'Minimal' %}">
+                        {{ team_potential_minimal }}
+                    </div>
+                    <div class="custom-graph-info__item base" data-text="{% trans 'Durchschnitt' %}">
                         {{ team_potential_median }}
-                        </div>
+                    </div>
+                    <div class="custom-graph-info__item large" data-text="{% trans 'Maximal' %}">
+                        {{ team_potential_maximal }}
+                    </div>
+                </div>
 
                 <p>
-                        {% trans "Hier siehst du den Durchschnitt aller abgegebenen Werte im Team (auf einer Skala von 1 bis 99). In der Regel gilt folgender Zusammenhang: je grösser eure psychologische Sicherheit, umso höher die Team-Performance. Auf der nächsten Etappe siehst Du, welches Verhalten zu eurer psychologischen Sicherheit beiträgt." %}
+                        {% trans "Hier siehst du die Extremwerte, sowie den Durchschnitt aller abgegebenen Werte im Team (auf der Skala von 1 bis 99). In der Regel gilt folgender Zusammenhang: je grösser eure psychologische Sicherheit, umso höher die Team-Performance. Auf der nächsten Etappe siehst du, welches Verhalten zu eurer psychologischen Sicherheit beiträgt." %}
                 </p>
                 </div> 
 
@@ -110,8 +121,11 @@
                     <button id='main_btn' type="button" onclick="choosePopup()">
                         {% trans "Weiter" %}
                     </button>
-                    <p><br>
-                        {% trans "Die Reise kann weitergehen, sobald alle Mitspieler hier im Warteraum angekommen sind." %}
+                    <p>
+                        <br>
+                    </p>
+                    <p style="background-color: #52CEEC; color: #FFFFFF; border-radius: 10px; padding: 0 10px;"><br>
+                        {% trans "Die Reise kann weitergehen, sobald alle Mitspieler hier im Warteraum angekommen sind." %}<br><br>
                     </p>
                 </div>
             </form>
@@ -250,7 +264,7 @@
     async function get_mem_list(){
         while (1){
             var waiting_post = {"player_id": "{{player_id}}","link":"{{link}}"};
-            await sleep(3000).then(() => {
+            await sleep(2000).then(() => {
                 axios
                     .post(`/api/waiting_room2_active/`,waiting_post)
                     .then(function(response){
@@ -321,12 +335,8 @@
     check_game_start()
 
 
-
-
-
-
-
 </script>
+
 <div id='popup_buttons' class="popup">
     <div class="popup_body">
         <div class="popup_content">
@@ -352,5 +362,7 @@
         </div>
     </div>
 </div>
+
+
 </body>
 </html>
