@@ -70,6 +70,7 @@
                     <h1>
                         {% trans "Wartezimmer" %}
                     </h1>
+                <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
                 <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;"><br>
                         {% trans "Erinnerst du dich an deine Einschätzung der gefühlten Team-Performance?" %}
                         <br><br>
@@ -89,7 +90,8 @@
                 <p>
                         {% trans "Hier siehst du die Extremwerte, sowie den Durchschnitt aller abgegebenen Werte im Team (auf der Skala von 1 bis 99). In der Regel gilt folgender Zusammenhang: je grösser eure psychologische Sicherheit, umso höher die Team-Performance. Auf der nächsten Etappe siehst du, welches Verhalten zu eurer psychologischen Sicherheit beiträgt." %}
                 </p>
-                </div> 
+                </div>
+            </div>
 
                 <p>
                 <div class="wartezimmer__addition" id="app-1">
@@ -99,7 +101,7 @@
                             [[ value.name ]]
                         </div>
                         <div class="user-connect__now">
-                            {% trans "bereit?" %}
+                            {% trans "bereit" %}
                         </div>
                     </div>
 
@@ -109,7 +111,7 @@
                             [[ value.name ]]
                         </div>
                         <div class="user-connect__now">
-                            {% trans "bereit?" %}
+                            {% trans "..." %}
                         </div>
                     </div>
                 </div>
@@ -122,7 +124,7 @@
                         {% trans "Weiter" %}
                     </button>
                     <p>
-                        <br>
+                        <br><br>
                     </p>
                     <p style="background-color: #52CEEC; color: #FFFFFF; border-radius: 10px; padding: 0 10px;"><br>
                         {% trans "Die Reise kann weitergehen, sobald alle Mitspieler hier im Warteraum angekommen sind." %}<br><br>
@@ -264,7 +266,7 @@
     async function get_mem_list(){
         while (1){
             var waiting_post = {"player_id": "{{player_id}}","link":"{{link}}"};
-            await sleep(2000).then(() => {
+            await sleep(3000).then(() => {
                 axios
                     .post(`/api/waiting_room2_active/`,waiting_post)
                     .then(function(response){
@@ -335,8 +337,12 @@
     check_game_start()
 
 
-</script>
 
+
+
+
+
+</script>
 <div id='popup_buttons' class="popup">
     <div class="popup_body">
         <div class="popup_content">

@@ -63,7 +63,7 @@
                 <form id="form_" action="#" method="POST" id="auth-form" class="form" onkeypress="javascript: if (event.keyCode==13){check_player_name();return false;}">
                 {% csrf_token %}
                     <div class="form__field">
-                        <input maxlength="15" minlength="2" id="nutzername" type="text" name="Nutzername" value="" required autofocus/>
+                        <input maxlength="12" minlength="2" id="nutzername" type="text" name="Nutzername" value="" required autofocus/>
                         <span class="form__placeholder">{% trans "Nutzername" %}</span>
                         <p>
                             <br><br><br><br><br>{% trans "Nutze bitte einem Firefox, Chrome oder Opera Browser." %}

@@ -157,8 +157,8 @@ msgstr "Imagine un continuum et choisis le point final POSITIF qui contribue de 
 msgid "Schreib bitte ein Wort in das leere Feld oder klicke auf den passenden Begriff."
 msgstr "Ecris un mot dans le champ vide ou clique sur le terme correspondant."
 
-msgid "Sicherheits_Anker"
-msgstr "Ancrage_de_sécurité"
+msgid "Sicherheitsanker"
+msgstr "Ancrage de sécurité"
 
 msgid "Wie gut ist eure gefühlte Team Performance?"
 msgstr "Quelle est la performance perçue de votre équipe ?"
@@ -765,8 +765,8 @@ msgstr "Veuillez maintenant former des groupes de deux ou trois avec des personn
 msgid "Zeigt euch gegenseitig eure Spannungsfelder der vorherigen Seite."
 msgstr "Montrez-vous mutuellement vos zones de tension de la page précédente."
 
-msgid "Reflektiert die Quelle dieser Spannungen: Erkennt ihr Muster? Was überrascht?"
-msgstr "Réfléchissez à la source de ces tensions : Reconnaissez-vous des modèles ? Qu'est-ce qui vous surprend ?"
+msgid "Erkennt ihr Muster? Was überrascht?"
+msgstr "Reconnaissez-vous des motifs ? Qu'est-ce qui vous surprend ?"
 
 msgid "Zeitbedarf: 10 Minuten."
 msgstr "Temps nécessaire : 10 minutes."
@@ -780,8 +780,8 @@ msgstr "La carte de chaleur montre un résumé de toutes les tensions. Commencez
 msgid "Der Farbcode im Innern der Heatmap gilt unverändert."
 msgstr "Le code couleur à l'intérieur de la heatmap reste inchangé."
 
-msgid "Bei grünen Feldern liegen Fremd- und Selbstwahrnehmung im sicheren Bereich der Safe-Zone."
-msgstr "Dans le cas des champs verts, la perception des autres et de soi-même se situe dans la zone de sécurité."
+msgid "Bei grünen Feldern liegen Fremd- und Selbstwahrnehmung im sicheren Bereich der Safe-Base."
+msgstr "Dans le cas des champs verts, la perception des autres et de soi-même se situe dans la base de sécurité."
 
 msgid "Der erste Wert (in Klammern) zeigt die Fremdwahrnehmung. Je höher dieser Wert, desto grösser der Beitrag zur Spannung aus Teamsicht."
 msgstr "La première valeur (entre parenthèses) indique la perception des autres. Plus cette valeur est élevée, plus la contribution à la tension du point de vue de l'équipe est importante."
@@ -795,8 +795,8 @@ msgstr "En cas de signes négatifs, le joueur a tendance à évaluer de manière
 msgid "Vertikal: siehst Du in der oberen Reihe den Beitrag jedes Spielers zu den Sicherheitsankern; je niedriger der Wert, desto grösser ist der Beitrag des Spielers zur Sicherheit im Team."
 msgstr "Verticalement : tu vois dans la rangée supérieure la contribution de chaque joueur aux ancrages de sécurité ; plus la valeur est basse, plus la contribution du joueur à la sécurité dans l'équipe est grande."
 
-msgid "Horizontal: siehst Du die Lage der Safe-Zones und die zugehörigen Sicherheitsanker und Triggerthemen; je kleiner der Wert links, desto kleiner ist der Beitrag dieser Triggerthemen zur Unsicherheit im Team."
-msgstr "Horizontalement : tu vois l'emplacement des safe-zones et les ancres de sécurité et thèmes déclencheurs correspondants ; plus la valeur à gauche est petite, plus la contribution de ces thèmes déclencheurs à l'insécurité dans l'équipe est faible."
+msgid "Horizontal: siehst Du die Lage der Safe-Base und die zugehörigen Sicherheitsanker und Triggerthemen; je kleiner der Wert links, desto kleiner ist der Beitrag dieser Triggerthemen zur Unsicherheit im Team."
+msgstr "Horizontalement : tu vois l'emplacement de la base de sécurité et les ancres de sécurité et thèmes déclencheurs correspondants ; plus la valeur à gauche est petite, plus la contribution de ces thèmes déclencheurs à l'insécurité dans l'équipe est faible."
 
 msgid "Ganz unten sind die inneren Spannungswerte aufaddiert. Auch hier gilt: je höher der Wert mit negativem Vorzeichen, desto stärker überschätzt der Spieler den positiven Beitrag zur Sicherheit im Team."
 msgstr "Tout en bas, les valeurs de tension interne sont additionnées. Ici aussi, plus la valeur est de signe négatif, plus le joueur surestime sa contribution positive à la sécurité de l'équipe."
@@ -810,8 +810,8 @@ msgstr "Supprimer la sélection"
 msgid "Spieler"
 msgstr "Joueurs"
 
-msgid "Spannungswert"
-msgstr "Tension"
+msgid "Spannungen"
+msgstr "Tensions"
 
 msgid "Mitspieler"
 msgstr "Joueurs"
@@ -819,8 +819,8 @@ msgstr "Joueurs"
 msgid "Ablauf: Zeigt euch gegenseitig eure Spannungsfelder der vorherigen Seite."
 msgstr "Déroulement de la séance : Montrez-vous mutuellement vos champs de tension de la page précédente."
 
-msgid "Ordnet dann diese Spannungen in der Team Heatmap weiter unten ein."
-msgstr "Classe ensuite ces tensions dans la carte de chaleur de l'équipe ci-dessous."
+msgid "Reflektiert dann diese Spannungen in der Team Heatmap unten."
+msgstr "Reflétez ensuite ces tensions dans la carte de chaleur de l'équipe ci-dessous."
 
 msgid "Schaut euch im Innern der Heatmap besonders alle farbigen Felder und alle Werte über 16 an."
 msgstr "À l'intérieur de la carte de chaleur, regardez particulièrement toutes les cases colorées et toutes les valeurs supérieures à 16."

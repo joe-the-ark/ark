@@ -62,14 +62,15 @@
                     <h1>
                         {% trans "Tauscht euch jetzt aus." %}
                     </h1>
+                    <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
                     <p>
                         {% trans "Erklärt euch bitte kurz die GEGENSATZPAARE, damit alle verstehen können, mit welchen Begriffen wir arbeiten." %}
                         <br/>
                     </p>
                     <img src="http://info.arks.ch/wp-content/uploads/2022/07/Plus_Minus.png">
                     <p>
-                    <input type="text" placeholder="Sicherheitsanker fehlt!" name="Kraftquelle" v-model="text_input_power" />
-                    <input type="text" placeholder="Trigger fehlt!" name="Energiefresser" v-model="text_input_drainer" />
+                    <input type="text" placeholder="Sicherheitsanker fehlt!" name="Kraftquelle" v-model="text_input_power" / style="border-radius: 10px">
+                    <input type="text" placeholder="Trigger fehlt!" name="Energiefresser" v-model="text_input_drainer" / style="border-radius: 10px">
 
                     <button class="glow-on-hover" type="button" @click="continue_()" onclick="alert('Updated!')">Update</button>
                     
@@ -85,6 +86,7 @@
                             {{ x }}
                         </p>                     
                 </div>
+            </div>
 
 <!--
                 <div class="heatmap">
@@ -127,7 +129,7 @@
                             [[ value.name ]]
                         </div>
                         <div class="user-connect__now">
-                            {% trans "bereit?" %}
+                            {% trans "bereit" %}
                         </div>
                     </div>
 
@@ -137,7 +139,7 @@
                             [[ value.name ]]
                         </div>
                         <div class="user-connect__now">
-                            {% trans "bereit?" %}
+                            {% trans "...?" %}
                         </div>
 
                     </div>
@@ -280,8 +282,13 @@
                     <button id='main_btn' type="button" onclick="choosePopup()">
                         {% trans "Weiter" %}
                     </button>
-                    <p><br>
-                        {% trans "Startet richtig durch, sobald alle Mitreisenden hier im Warteraum sichtbar sind. Nur wer jetzt noch mit an Bord ist, nimmt an der Reise teil!" %}
+
+                    <p>
+                        <br><br>
+                    </p>
+
+                    <p style="background-color: #52CEEC; color: #FFFFFF; border-radius: 10px; padding: 0 10px;"><br>
+                        {% trans "Startet richtig durch, sobald alle Mitreisenden hier im Warteraum sichtbar sind. Nur wer jetzt noch mit an Bord ist, nimmt an der Reise teil!" %}<br><br>
                     </p>
                 </div>
             </form>

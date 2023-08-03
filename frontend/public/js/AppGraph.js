@@ -118,9 +118,14 @@ class AppGraph {
     });
   }
 
-  buildGraph() {
-    this.render();
-    this.safeArea();
+buildGraph() {
+  // Set all data points to 50
+  this.data.forEach((item) => {
+    item.status = 50;
+  });
+
+  this.render();
+  this.safeArea();
 
     window.addEventListener('resize', () => {
       setTimeout(() => {
@@ -448,51 +453,56 @@ class AppGraph {
                     </div>
             `;
 
-    let htmlUp = `
-            <div class="custom-graph__items">  
-            <div class="custom-graph__safezone"></div>
-            ${this.data.map(({ status, statusSide, avatar, name }, i) => {
-              return `<div class="custom-graph__item"><input class="custom-graph__range" type="range" value="${
-                this.statistic && statusSide !== undefined ? statusSide : status
-              }" min="${down}" max="${up}"><div class="custom-graph__item-head">
-                        ${
-                          status !== undefined ||
-                          (statusSide !== undefined && this.statistic)
-                            ? `<div class="custom-graph__item-circle">
-                            ${
-                              this.statistic && statusSide !== undefined
-                                ? ``
-                                : `<div class="custom-graph__item-count">${status}</div>`
-                            }
+  // Update htmlUp to include the value 50 for each data point
+  let htmlUp = `
+    <div class="custom-graph__items">  
+    <div class="custom-graph__safezone"></div>
+    ${this.data.map(({ status, statusSide, avatar, name }, i) => {
+      return `<div class="custom-graph__item"><input class="custom-graph__range" type="range" value="${
+        this.statistic && statusSide !== undefined ? statusSide : status
+      }" min="${down}" max="${up}"><div class="custom-graph__item-head">
+                ${
+                  status !== undefined ||
+                  (statusSide !== undefined && this.statistic)
+                    ? `<div class="custom-graph__item-circle">
+                    ${
+                      this.statistic && statusSide !== undefined
+                        ? ``
+                        : `<div class="custom-graph__item-count">${status}</div>`
+                    }
+                 ${
+                   statusSide !== undefined
+                     ? `<div class="custom-graph__item-side">${statusSide}</div>`
+                     : `<img src="${avatar}" alt=""/>`
+                 }
+                 
+                 </div>
+                     <div class="custom-graph__item-line"></div>
+                     <div class="custom-graph__item-polygon"></div>`
+                    : ''
+                }
+                </div>
+                <div class="custom-graph__item-foot">
+                    <div class="custom-graph__item-avatar">
                          ${
-                           statusSide !== undefined
-                             ? `<div class="custom-graph__item-side">${statusSide}</div>`
-                             : `<img src="${avatar}" alt=""/>`
+                           avatar ? `<img src="${avatar}" alt=""/>` : ''
                          }
-                         
-                         </div>
-                             <div class="custom-graph__item-line"></div>
-                             <div class="custom-graph__item-polygon"></div>`
-                            : ''
-                        }
-                        </div>
-                        <div class="custom-graph__item-foot">
-                            <div class="custom-graph__item-avatar">
-                                 ${
-                                   avatar ? `<img src="${avatar}" alt=""/>` : ''
-                                 }
-                            </div>
-                           <div class="custom-graph__item-name">${
-                             name ? name : ''
-                           }</div>
-                        </div>
-                    <div class="custom-graph__item-name_mobile">${
-                      name ? name : ''
-                    }</div>
-                    <div class="custom-graph__item-trace"></div>
-                    </div>`;
-            })}
+                    </div>
+                   <div class="custom-graph__item-name">${
+                     name ? name : ''
+                   }</div>
+                </div>
+            <div class="custom-graph__item-name_mobile">${
+              name ? name : ''
+            }</div>
+            <div class="custom-graph__item-trace"></div>
             </div>`;
+    })}
+    </div>`;
+
+  // ... (rest of the code)
+
+
 
     const html =
       htmlDown +

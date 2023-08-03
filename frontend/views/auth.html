@@ -70,7 +70,7 @@
                 <form id="form_" action="#" method="POST" id="auth-form" class="form" onkeypress="javascript: if (event.keyCode==13 || event.onclick){check_game_name();return false;}">
                 {% csrf_token %}
                     <div class="form__field">
-                        <input maxlength="15" minlength="2" id="nutzername" type="text" name="Nutzername" value="" required autofocus/>
+                        <input maxlength="12" minlength="2" id="nutzername" type="text" name="Nutzername" value="" required autofocus/>
                         <span class="form__placeholder">{% trans "Nutzername" %}</span>
                     </div>
                         <p>

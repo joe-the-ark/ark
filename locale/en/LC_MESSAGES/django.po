@@ -151,8 +151,8 @@ msgstr "Imagine a continuum and choose the POSITIVE endpoint that contributes mo
 msgid "Schreib bitte ein Wort in das leere Feld oder klicke auf den passenden Begriff."
 msgstr "Please write a word in the empty field or click on the appropriate term."
 
-msgid "Sicherheits_Anker"
-msgstr "Safety_anchor"
+msgid "Sicherheitsanker"
+msgstr "Safety anchor"
 
 msgid "Wie gut ist eure gefühlte Team Performance?"
 msgstr "How good is your perceived team performance?"
@@ -741,8 +741,11 @@ msgstr "Now please form groups of two or three with people who had chosen simila
 msgid "Zeigt euch gegenseitig eure Spannungsfelder der vorherigen Seite."
 msgstr "Show each other your areas of tension from the previous page."
 
-msgid "Reflektiert die Quelle dieser Spannungen: Erkennt ihr Muster? Was überrascht?"
-msgstr "Reflect on the source of these tensions: Do you recognize patterns? Any surprises?"
+msgid "Reflektiert dann diese Spannungen in der Team Heatmap unten."
+msgstr "Then reflect these tensions in the team heat map below."
+
+msgid "Erkennt ihr Muster? Was überrascht?"
+msgstr "Do you recognize patterns? Any surprises?"
 
 msgid "Zeitbedarf: 10 Minuten."
 msgstr "Time required: 10 minutes."
@@ -756,8 +759,8 @@ msgstr "The heatmap shows a summary of all tensions. Start your evaluation with 
 msgid "Der Farbcode im Innern der Heatmap gilt unverändert."
 msgstr "The color code inside the heatmap applies unchanged."
 
-msgid "Bei grünen Feldern liegen Fremd- und Selbstwahrnehmung im sicheren Bereich der Safe-Zone."
-msgstr "In the case of green fields, foreign and self-perception lie in the safe zone."
+msgid "Bei grünen Feldern liegen Fremd- und Selbstwahrnehmung im sicheren Bereich der Safe-Base."
+msgstr "In the case of green fields, foreign and self-perception lie in the safe base."
 
 msgid "Der erste Wert (in Klammern) zeigt die Fremdwahrnehmung. Je höher dieser Wert, desto grösser der Beitrag zur Spannung aus Teamsicht."
 msgstr "The first value (in parentheses) shows the external perception. The higher this value, the greater the contribution to tension from the team perspective."
@@ -771,8 +774,8 @@ msgstr "If the signs are negative, the player tends to be too optimistic about h
 msgid "Vertikal: siehst Du in der oberen Reihe den Beitrag jedes Spielers zu den Sicherheitsankern; je niedriger der Wert, desto grösser ist der Beitrag des Spielers zur Sicherheit im Team."
 msgstr "Vertical: in the top row you see the contribution of each player to the safety anchors; the lower the value, the greater the player's contribution to team safety."
 
-msgid "Horizontal: siehst Du die Lage der Safe-Zones und die zugehörigen Sicherheitsanker und Triggerthemen; je kleiner der Wert links, desto kleiner ist der Beitrag dieser Triggerthemen zur Unsicherheit im Team."
-msgstr "Horizontal: you see the location of the safe zones and the associated safety anchors and trigger topics; the smaller the value on the left, the smaller the contribution of these trigger topics to the insecurity in the team."
+msgid "Horizontal: siehst Du die Lage der Safe-Base und die zugehörigen Sicherheitsanker und Triggerthemen; je kleiner der Wert links, desto kleiner ist der Beitrag dieser Triggerthemen zur Unsicherheit im Team."
+msgstr "Horizontal: you see the location of the safe-base and the associated safety anchors and trigger topics; the smaller the value on the left, the smaller the contribution of these trigger topics to the insecurity in the team."
 
 msgid "Ganz unten sind die inneren Spannungswerte aufaddiert. Auch hier gilt: je höher der Wert mit negativem Vorzeichen, desto stärker überschätzt der Spieler den positiven Beitrag zur Sicherheit im Team."
 msgstr "The inner tension values are added up at the bottom. Again, the higher the value with a negative sign, the more the player overestimates the positive contribution to team safety."
@@ -786,8 +789,8 @@ msgstr "Delete selection"
 msgid "Spieler"
 msgstr "Players"
 
-msgid "Spannungswert"
-msgstr "Tension"
+msgid "Spannungen"
+msgstr "Tensions"
 
 msgid "Mitspieler"
 msgstr "Teammate"

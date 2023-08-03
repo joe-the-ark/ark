@@ -50,7 +50,7 @@
     <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
     	<h1>{% trans "Reflexion in einer Kleingruppe" %}<br></h1>
 		<p><br>
-			{% trans "In eurem Team besträgt der durchschnittliche Spannungswert" %} [[tension_average]]. {% trans "Als Daumenregel gilt: Werte unter 20 sind entspannt. Werte unter 40 sind meist noch ohne externe Begleitung bearbeitbar. Die Skala reicht von 1 (absolute Spannungsfreiheit) bis 99." %}<br><br>
+			{% trans "In eurem Team besträgt der durchschnittliche Spannungswert" %} <span style="font-size: 36px; color: (--ls-alfa-color);">[[tension_average]]</span>.<br>{% trans "Als Daumenregel gilt: Werte unter 20 sind entspannt. Werte unter 40 sind meist noch ohne externe Begleitung bearbeitbar. Die Skala reicht von 1 (absolute Spannungsfreiheit) bis 99." %}<br><br>
     </p>
     <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
       {% trans "Bildet jetzt bitte Zweier- oder Dreiergruppen mit Menschen, die ähnliche Sicherheitsanker gewählt hatten. Und interpretiert zusammen die erste Etappe eurer Reise zur psychologischen Sicherheit. Ablauf:" %}
@@ -109,10 +109,10 @@
                 {% trans "Zeigt euch gegenseitig eure Spannungsfelder der vorherigen Seite." %}<br> 
               </li>
                 <li>
-                {% trans "Ordnet dann diese Spannungen in der Team Heatmap weiter unten ein." %} 
+                {% trans "Reflektiert dann diese Spannungen in der Team Heatmap unten." %} 
               </li>
               <li>
-                {% trans "Reflektiert die Quelle dieser Spannungen: Erkennt ihr Muster? Was überrascht?" %}
+                {% trans "Erkennt ihr Muster? Was überrascht?" %}
               </li>
               <li>
                 {% trans "Zeitbedarf: 10 Minuten." %}<br><br> 
@@ -125,6 +125,7 @@
 
         <div class="container">
 
+        <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
         <div class="heatmap">
 
           <div class="main-column left">
@@ -146,11 +147,10 @@
             <div class="heat_value two">[[ user[5] ]]</div>
             <div class="heat_value one">[[ user[6] ]]</div>
             <div class="heat_value three"></div> {% endcomment %}
-            <div class="heat_value average-by-player"></div>
+            <div class="heat_value over_player">[[ user[1] ]]</div>
             <div class="heat_player">
             <div class="heat_player">
             <img :src="user[2]" alt="">
-            <div class="heat_value over_player">[[ user[1] ]]</div>
             <div class="heat_value over_player">[[ user[4] ]]</div>
             </div>
             </div>
@@ -216,7 +216,7 @@
 
 
           <div class="main-column prop">
-            <div class="corner"></div>
+            <div class="corner">{% trans "Spannungen" %}</div>
             <div class="property" v-for="scale in scale_list_pro">
               <p class="property_one">[[ scale[0] ]]</p>
               <p class="property_two">[[ scale[1] ]]</p>
@@ -237,12 +237,11 @@
               <p class="property_one">Pain</p>
               <p class="property_two">Invisibility</p>
             </div> {% endcomment %}
-            <div class="corner"></div>
+            <div class="corner">{% trans "Sicherheitsanker" %}</div>
           </div>
 
           <div class="main-column right">
-            <div class="corner">
-            </div>
+            <div class="corner"></div>
             
               <div class="heat_value property_value" v-for="value in scale_value_list">[[ value -16]]&nbsp;. .&nbsp;[[ value +16]]</div>
               {% comment %} <div class="heat_value property_value">200</div>
@@ -250,10 +249,9 @@
               <div class="heat_value property_value">300</div>
               <div class="heat_value property_value">350</div> {% endcomment %}
             
-            <div class="corner"> Safe-Zone </div>
+            <div class="corner">Safe-Base</div>
           </div>
-
-
+        </div>
         </div>
     </div>
   </div>
@@ -368,7 +366,7 @@
          <div class="container">
           <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
 
-          <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;"><br>{% trans "Der Farbcode im Innern der Heatmap gilt unverändert." %} {% trans "Bei grünen Feldern liegen Fremd- und Selbstwahrnehmung im sicheren Bereich der Safe-Zone." %}<br><br></p>
+          <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;"><br>{% trans "Der Farbcode im Innern der Heatmap gilt unverändert." %} {% trans "Bei grünen Feldern liegen Fremd- und Selbstwahrnehmung in der Safe-Base." %}<br><br></p>
           <p>
             <br>
           </p>
@@ -386,7 +384,7 @@
                 {% trans "Vertikal: siehst Du in der oberen Reihe den Beitrag jedes Spielers zu den Sicherheitsankern; je niedriger der Wert, desto grösser ist der Beitrag des Spielers zur Sicherheit im Team." %}
               </li>
               <li>
-                {% trans "Horizontal: siehst Du die Lage der Safe-Zones und die zugehörigen Sicherheitsanker und Triggerthemen; je kleiner der Wert links, desto kleiner ist der Beitrag dieser Triggerthemen zur Unsicherheit im Team." %}
+                {% trans "Horizontal: siehst Du die Lage der Safe-Base und die zugehörigen Sicherheitsanker und Triggerthemen; je kleiner der Wert links, desto kleiner ist der Beitrag dieser Triggerthemen zur Unsicherheit im Team." %}
               </li>
             <li>
               {% trans "Ganz unten sind die inneren Spannungswerte aufaddiert. Auch hier gilt: je höher der Wert mit negativem Vorzeichen, desto stärker überschätzt der Spieler den positiven Beitrag zur Sicherheit im Team." %}<br><br>
@@ -425,9 +423,14 @@
 
                 <p><br><br>
                         <a href="/farewell/">
-                        <button class="button" type="button">
-                            {% trans "Zum Abschluss." %}
-                        </button>
+                            <button class="button" type="button">
+                                {% trans "Zum Abschluss." %}
+                            </button>
+                        <a href="/mission-2-ubung-2/">
+                            <button class="button" type="button">
+                                {% trans "Anonymes Feedback geben" %}
+
+                            </button>
                         <br>
                         <br>
                 </p>

@@ -58,20 +58,20 @@
                     <h1>
                         {% trans "Beschreibe nun bitte den GEGENPOL zum Sicherheitsanker, der für dich im Team für Unsicherheit sorgen kann." %}
                     </h1>
+                    <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
                     <p>
                     <img src="http://info.arks.ch/wp-content/uploads/2022/07/Minus.png"><br>
                     <b style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
                             {% trans "Schreib bitte ein Wort in das leere Feld oder klicke auf den passenden Begriff." %}
                     </b>
                     </p>
-                    <input type="text" placeholder={% trans "..." %} name="energiefresser" v-model="text_input" @keyup.enter="add_term" @keyup = "keyboard_()"/>
+                    <input type="text" placeholder={% trans "..." %} name="energiefresser" v-model="text_input" @keyup.enter="add_term" @keyup = "keyboard_()"/ style="border-radius: 10px" maxlength="15" minlength="2">
                     <label>*This pair of opposites has already been chosen by another fellow traveller.</label>
-                    <p>
-                            {% trans "Bitte teile mit uns, was dich hier im Team NEGATIV triggern kann oder manchmal vielleicht sogar zu einem Gefühl von Angst beiträgt:" %}
-                            <br/>
+                    <p style="background-color: #52CEEC; color: #FFFFFF; border-radius: 10px; padding: 0 10px;">
+                            {% trans "Bitte teile mit uns, was dich hier im Team NEGATIV triggern kann oder manchmal vielleicht sogar zu einem Gefühl von Angst beiträgt:" %}<br><br>
                     </p>
                     <div class="tags">
-                        <span :id="item.value" v-bind:class="{ tag: item.state==='tag', 'line-through': item.state !== 'tag'}" v-for="item in term_list" @click="mark( item.value )">[[ item.value ]]</span>
+                        <span :id="item.value" v-bind:class="{ tag: item.state==='tag', 'line-through': item.state !== 'tag'}" v-for="item in term_list" @click="mark( item.value )" style="border-radius: 10px">[[ item.value ]]</span>
 
                         {% comment %} <span id="Abhängigkeit" class="tag">Abhängigkeit</span>
                         <span id="Achtlosigkeit" class="tag" class="line-through">Achtlosigkeit</span>
@@ -104,6 +104,7 @@
                         <span id="Willkür" class="tag">Willkür</span> {% endcomment %}
                     </div>
                     <input id="tags" type="hidden" name="tags" value="输入你要传bai递的值">
+                </div>
                     <div class="center">
                         {% comment %} <a href="/wartezimmer/"> {% endcomment %}
 
