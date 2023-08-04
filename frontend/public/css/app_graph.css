@@ -28,6 +28,7 @@
 .statistic .custom-graph__safezone {
     content: " ";
     position: absolute;
+    border-radius: 10px;
 
     width: calc(100% - 6px);
     background-color: #9FE2BF;
@@ -358,6 +359,7 @@
         right: : 32%;
         width: min(32%);
         height: 100%;
+        border-radius: 10px;
     }
     .custom-graph__item {
         flex-direction: row;
