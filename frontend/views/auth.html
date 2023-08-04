@@ -81,11 +81,11 @@
                         <span class="form__placeholder">{% trans "Name deiner Reisegruppe" %}</span>
                     </div>
                     <div class="form__field">
-                        <div class="slider">
+                        <div class="slider" style="border-radius: 10px;">
                             <label>
                                 {% trans "Benutzerbild" %}
                             </label>
-                            <div class="swiper-container" id="app-1">
+                            <div class="swiper-container" id="app-1" style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
                                 <div class="swiper-wrapper">
                                     <div class="swiper-slide" v-for="item in avatar_list" v-bind:key="item.id">
                                         <img :src="item" alt=""/>

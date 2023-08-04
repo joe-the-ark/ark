@@ -135,6 +135,17 @@
   align-items: center;
 }
 
+.property_mirror {
+  font-size: 20px;
+  color: black;
+}
+
+.property_mirror_item .property_mirror_one::before {
+  content: '+ ';
+}
+
+
+
 .one {
   background-color: #FAE03C;
   color: white;

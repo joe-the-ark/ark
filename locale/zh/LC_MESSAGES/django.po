@@ -208,8 +208,8 @@ msgstr "现在就交流想法。"
 msgid "Erklärt euch bitte kurz die GEGENSATZPAARE, damit alle verstehen können, mit welchen Begriffen wir arbeiten."
 msgstr "请简要解释一下 对偶，以便大家能够理解我们正在使用的术语。"
 
-msgid "Überprüfe nun bitte noch einmal die von dir gewählten Begriffe."
-msgstr "再次检查你选择的术语。"
+msgid "Überprüfe nun bitte noch einmal deine Begriffe."
+msgstr "现在请再次检查您的条款。"
 
 msgid "Hast du wirklich ein griffiges GEGENSATZPAAR ausgewählt? Das wäre für den weiteren Verlauf der Reise entscheidend. Überarbeite deine Begriffe bei Bedarf..."
 msgstr "你真的选择了一个容易记住的对子吗？这将对接下来的旅程起到决定性作用。如果有必要，请修改你的术语..."
@@ -722,8 +722,11 @@ msgstr "在你的团队中，平均张力值是"
 msgid "Als Daumenregel gilt: Werte unter 20 sind entspannt. Werte unter 40 sind meist noch ohne externe Begleitung bearbeitbar. Die Skala reicht von 1 (absolute Spannungsfreiheit) bis 99."
 msgstr "作为一条经验法则，低于20的数值是放松的。低于40的数值通常在没有外部指导的情况下仍是可行的。等级范围从1（绝对没有张力）到99。"
 
-msgid "Bildet jetzt bitte Zweier- oder Dreiergruppen mit Menschen, die ähnliche Sicherheitsanker gewählt hatten. Und interpretiert zusammen die erste Etappe eurer Reise zur psychologischen Sicherheit. Ablauf:"
-msgstr "现在请与选择了类似安全锚的人组成两到三组。并一起诠释你的心理安全之旅的第一阶段。程序。"
+msgid "Bildet jetzt bitte Zweier- oder Dreiergruppen mit Menschen, die ähnliche Sicherheitsanker gewählt hatten:"
+msgstr "现在，请与选择了类似安全锚的人组成二至三人小组："
+
+msgid "Und interpretiert zusammen die erste Etappe eurer Reise zur psychologischen Sicherheit. Ablauf:"
+msgstr "并共同诠释您心理安全之旅的第一阶段。程序"
 
 msgid "Zeigt euch gegenseitig eure Spannungsfelder der vorherigen Seite."
 msgstr "互相展示你在前一页中的紧张区域。"

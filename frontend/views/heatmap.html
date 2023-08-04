@@ -53,10 +53,17 @@
 			{% trans "In eurem Team besträgt der durchschnittliche Spannungswert" %} <span style="font-size: 36px; color: (--ls-alfa-color);">[[tension_average]]</span>.<br>{% trans "Als Daumenregel gilt: Werte unter 20 sind entspannt. Werte unter 40 sind meist noch ohne externe Begleitung bearbeitbar. Die Skala reicht von 1 (absolute Spannungsfreiheit) bis 99." %}<br><br>
     </p>
     <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
-      {% trans "Bildet jetzt bitte Zweier- oder Dreiergruppen mit Menschen, die ähnliche Sicherheitsanker gewählt hatten. Und interpretiert zusammen die erste Etappe eurer Reise zur psychologischen Sicherheit. Ablauf:" %}
+      {% trans "Bildet jetzt bitte Zweier- oder Dreiergruppen mit Menschen, die ähnliche Sicherheitsanker gewählt hatten:" %}
 		</p>
-    <p>
-      <br>
+
+    <div class="property_mirror">
+          <p style="border-radius: 10px; padding: 0 10px; text-align: center;" class="property_mirror_item" v-for="(scale, index) in scale_list_pro" :key="index">
+            <span class="property_mirror_one">[[ scale[0] ]]</span>
+          </p><br>
+      </div>
+
+    <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
+      {% trans "Und interpretiert zusammen die erste Etappe eurer Reise zur psychologischen Sicherheit. Ablauf:" %}<br><br>
     </p>
 			
 		<!--<div class="dashboard">

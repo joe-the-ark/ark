@@ -203,8 +203,8 @@ msgstr "Share your perspectives now."
 msgid "Erklärt euch bitte kurz die GEGENSATZPAARE, damit alle verstehen können, mit welchen Begriffen wir arbeiten."
 msgstr "Please briefly explain the OPPOSITE PAIRS so that everyone can understand what terms we are working with."
 
-msgid "Überprüfe nun bitte noch einmal die von dir gewählten Begriffe."
-msgstr "Now please check your chosen terms again."
+msgid "Überprüfe nun bitte noch einmal deine Begriffe."
+msgstr "Now please check your terms again."
 
 msgid "Hast du wirklich ein griffiges GEGENSATZPAAR ausgewählt? Das wäre für den weiteren Verlauf der Reise entscheidend. Überarbeite deine Begriffe bei Bedarf..."
 msgstr "Have you really chosen a catchy OPPOSITE PAIR? This would be crucial for the rest of the journey. Revise your terms if necessary..."
@@ -735,8 +735,11 @@ msgstr "In your team, the average tension value is"
 msgid "Als Daumenregel gilt: Werte unter 20 sind entspannt. Werte unter 40 sind meist noch ohne externe Begleitung bearbeitbar. Die Skala reicht von 1 (absolute Spannungsfreiheit) bis 99."
 msgstr "As a rule of thumb, values below 20 are relaxed. Values below 40 are usually still workable without external guidance. The scale ranges from 1 (absolute absence of tension) to 99."
 
-msgid "Bildet jetzt bitte Zweier- oder Dreiergruppen mit Menschen, die ähnliche Sicherheitsanker gewählt hatten. Und interpretiert zusammen die erste Etappe eurer Reise zur psychologischen Sicherheit. Ablauf:"
-msgstr "Now please form groups of two or three with people who had chosen similar safety anchors. And together interpret the first stage of your journey to psychological safety. Procedure:"
+msgid "Bildet jetzt bitte Zweier- oder Dreiergruppen mit Menschen, die ähnliche Sicherheitsanker gewählt hatten:"
+msgstr "Now please form groups of two or three with people who had chosen similar safety anchors:"
+
+msgid "Und interpretiert zusammen die erste Etappe eurer Reise zur psychologischen Sicherheit. Ablauf:"
+msgstr "And together interpret the first stage of your journey to psychological safety. Procedure:"
 
 msgid "Zeigt euch gegenseitig eure Spannungsfelder der vorherigen Seite."
 msgstr "Show each other your areas of tension from the previous page."

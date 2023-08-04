@@ -209,8 +209,8 @@ msgstr "Echangez maintenant."
 msgid "Erklärt euch bitte kurz die GEGENSATZPAARE, damit alle verstehen können, mit welchen Begriffen wir arbeiten."
 msgstr "Expliquez brièvement les PARAMÈTRES CONTRACTÉS, s'il vous plaît, afin que tout le monde puisse comprendre avec quels termes nous travaillons."
 
-msgid "Überprüfe nun bitte noch einmal die von dir gewählten Begriffe."
-msgstr "Vérifie à nouveau les termes que tu as choisis."
+msgid "Überprüfe nun bitte noch einmal deine Begriffe."
+msgstr "Vérifie à nouveau tes termes."
 
 msgid "Hast du wirklich ein griffiges GEGENSATZPAAR ausgewählt? Das wäre für den weiteren Verlauf der Reise entscheidend. Überarbeite deine Begriffe bei Bedarf..."
 msgstr "As-tu vraiment choisi une paire opposée facile à retenir ? Cela serait décisif pour la suite du voyage. Révise tes termes si nécessaire..."
@@ -759,8 +759,11 @@ msgstr "Dans votre équipe, la valeur moyenne de la tension est"
 msgid "Als Daumenregel gilt: Werte unter 20 sind entspannt. Werte unter 40 sind meist noch ohne externe Begleitung bearbeitbar. Die Skala reicht von 1 (absolute Spannungsfreiheit) bis 99."
 msgstr "La règle du pouce est la suivante : les valeurs inférieures à 20 sont détendues. Les valeurs inférieures à 40 peuvent généralement encore être traitées sans accompagnement externe. L'échelle va de 1 (absence totale de tension) à 99."
 
-msgid "Bildet jetzt bitte Zweier- oder Dreiergruppen mit Menschen, die ähnliche Sicherheitsanker gewählt hatten. Und interpretiert zusammen die erste Etappe eurer Reise zur psychologischen Sicherheit. Ablauf:"
-msgstr "Veuillez maintenant former des groupes de deux ou trois avec des personnes qui ont choisi des ancrages de sécurité similaires. Et interprétez ensemble la première étape de votre voyage vers la sécurité psychologique. Déroulement :"
+msgid "Bildet jetzt bitte Zweier- oder Dreiergruppen mit Menschen, die ähnliche Sicherheitsanker gewählt hatten:"
+msgstr "Veuillez maintenant former des groupes de deux ou trois avec des personnes qui ont choisi des ancrages de sécurité similaires :"
+
+msgid "Und interpretiert zusammen die erste Etappe eurer Reise zur psychologischen Sicherheit. Ablauf:"
+msgstr "Et interprétez ensemble la première étape de votre voyage vers la sécurité psychologique. Déroulement :"
 
 msgid "Zeigt euch gegenseitig eure Spannungsfelder der vorherigen Seite."
 msgstr "Montrez-vous mutuellement vos zones de tension de la page précédente."

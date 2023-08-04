@@ -66,7 +66,7 @@
                             {% trans "Schreib bitte ein Wort in das leere Feld oder klicke auf den passenden Begriff." %}
                     </b>
                     </p>
-                    <input type="text" placeholder={% trans "..." %} name="kraftquelle" v-model="text_input" @keyup.enter="add_term" @keyup = "keyboard_()"/ style="border-radius: 10px" maxlength="15" minlength="2">
+                    <input type="text" placeholder={% trans "..." %} name="kraftquelle" v-model="text_input" @keyup.enter="add_term" @keyup = "keyboard_()"/ style="border-radius: 10px; maxlength=15; minlength=2"><
                     <label>*This pair of opposites has already been chosen by a fellow traveller.</label>
 
                     <p style="background-color: #52CEEC; color: #FFFFFF; border-radius: 10px; padding: 0 10px;">
