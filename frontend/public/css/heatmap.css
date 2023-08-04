@@ -31,6 +31,7 @@
   justify-content: center;
   align-items: center;
   padding: 15px 0 15px 0;
+  border-radius: 10px;
 }
 
 .main-column.left {
@@ -59,6 +60,7 @@
   color: black;
   padding: 0px;
   align-items: end;
+  border-radius: 10px;
 }
 .heat_player>.name {
   writing-mode: horizontal-tb;
@@ -85,6 +87,7 @@
 .heat_value.over_player {
   background-color: #e6e6e6;
   color: white;
+  border-radius: 10px;
 }
 
 .average_by_players {
