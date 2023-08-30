@@ -1,9 +1,9 @@
 # ark
 The Ark is an Online Group Journey to develop your teams sense of psychological safety. It is developed by Dr. Joachim (Joe) Maier, Sempach, Switzerland and made available under GPLv3. Frontend made in Omsk with a backend from China. German / English / French / Chinese versions are playable via https://www.arks.ch
+# 90 seconds preview video of the ARK online-journey
+https://player.vimeo.com/video/852373658
 # PDF-Intro to the ARK
 https://www.dropbox.com/s/dljejtqlyc78gaq/22_10_ARK_Intro.pdf?dl=0
-# 60 seconds preview video of the ARK challenge
-https://player.vimeo.com/video/553453877
 # The developers slidedeck on psychological safety
 https://docs.google.com/presentation/d/1m8OOxnHOAqu-uezCv3RLud7_D_JlqlxnUrDExVdjFQk/edit#slide=id.g10434ef0003_0_0
 ## Git Notes for backend and frontend developers
