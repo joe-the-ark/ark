@@ -97,6 +97,9 @@ msgstr "(or ask the initiator for the link in the cache)."
 msgid "Wie sicher ist euer Gruppenklima?"
 msgstr "How safe is your group climate?"
 
+msgid "https://player.vimeo.com/video/852158357"
+msgstr "https://player.vimeo.com/video/852373658"
+
 msgid "In psychologisch sicheren Teams gelingen Lernprozesse und die Team Performance steigt. Innere Sicherheit erlaubt es achtsam mit sich selbst und anderen umzugehen. Dadurch werden Defensivreaktionen (Fight, Flight & Freeze) überflüssig."
 msgstr "In psychologically safe teams, learning processes succeed and team performance increases. Inner safety makes it possible to deal with oneself and others in a mindful way. This makes defensive reactions (fight, flight and freeze) superfluous."
 

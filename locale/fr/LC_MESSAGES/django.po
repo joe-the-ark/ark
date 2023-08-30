@@ -103,6 +103,9 @@ msgstr "(ou demande à l'initiateur de mettre le lien en cache)."
 msgid "Wie sicher ist euer Gruppenklima?"
 msgstr "Quel est le degré de sécurité de votre climat de groupe ?"
 
+msgid "https://player.vimeo.com/video/852158357"
+msgstr "https://player.vimeo.com/video/852373658"
+
 msgid "In psychologisch sicheren Teams gelingen Lernprozesse und die Team Performance steigt. Innere Sicherheit erlaubt es achtsam mit sich selbst und anderen umzugehen. Dadurch werden Defensivreaktionen (Fight, Flight & Freeze) überflüssig."
 msgstr "Dans les équipes psychologiquement sûres, les processus d'apprentissage réussissent et la performance de l'équipe augmente. La sécurité intérieure permet d'être attentif à soi-même et aux autres. Les réactions défensives (fight, flight & freeze) deviennent ainsi superflues."
 

@@ -103,6 +103,9 @@ msgstr "(或向发起人索取缓存中的链接)。"
 msgid "Wie sicher ist euer Gruppenklima?"
 msgstr "你的团体氛围有多安全？"
 
+msgid "https://player.vimeo.com/video/852158357"
+msgstr "https://player.vimeo.com/video/852373658"
+
 msgid "In psychologisch sicheren Teams gelingen Lernprozesse und die Team Performance steigt. Innere Sicherheit erlaubt es achtsam mit sich selbst und anderen umzugehen. Dadurch werden Defensivreaktionen (Fight, Flight & Freeze) überflüssig."
 msgstr "在心理安全的团队中，学习过程会成功，团队绩效会提高。内心的安全感使人能够注意到自己和他人。这使得防御性反应（战斗、逃跑和冻结）变得多余。"
 
@@ -240,7 +243,7 @@ msgstr "我们通常可以一起很好地审视困难的话题。"
 
 #. ubung-4
 #: loco:606b8311a237a7415b52ae83
-msgid "Ich beobachte, wie du gelegentlich Menschen im Team ausschliesst."
+msgid "Ich beobachte wie du gelegentlich Menschen im Team ausschliesst."
 msgstr "我观察到你偶尔会排斥团队中的人。"
 
 #. ubung-4
