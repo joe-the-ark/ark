@@ -1,0 +1,85 @@
+from arkserver.models import *
+
+def get_n(game):
+    nplayers = WaitingRoomMember.objects.filter(game=game,state=1)
+    n = nplayers.count()
+    return n
+
+def get_u2_avg(game):
+    players = game.members.all()
+    n = get_n(game)
+
+    u2_score = 0
+    for player in players:
+        u2 = Ubung2.objects.filter(game=game, player=player).first()
+        if not u2: continue
+        
+        value = u2.value
+        u2_score += value
+
+    u2_score /= n
+    return u2_score
+
+def get_u4_avg(game):
+    n = get_n(game)
+    r0, r1, r2, r3, r4, r5 = 0, 0, 0, 0, 0, 0
+    w0, w1, w2, w3, w4, w5 = 4, 1, 3, 5, 0, 2
+    for vote in Ubung4.objects.filter(game=game):
+        r0 += vote.row0.count()
+        r1 += vote.row1.count()
+        r2 += vote.row2.count()
+        r3 += vote.row3.count()
+        r4 += vote.row4.count()
+        r5 += vote.row5.count()
+
+    u4_score = r0*w0+r1*w1+r2*w2+r3*w3+r4*w4+r5*w5
+    u4_score = u4_score * 20 / n**2
+    return u4_score
+
+def get_u5_avg(game):
+    n = get_n(game)
+    players = WaitingRoomMember.objects.filter(game=game,state=1)
+    u5_sum = 0
+    u5_cnt = 0
+    for player in players:
+        for u5_item in Ubung5.objects.filter(game=game, player=player.player):
+            u5_sum += u5_item.score
+            u5_cnt += 1
+
+    return u5_sum/u5_cnt if u5_cnt else 0
+
+def get_u5b(game):
+    n = get_n(game)
+    players = WaitingRoomMember.objects.filter(game=game,state=1)
+    result = {}
+    for player in players:
+        result[player.player.name] = 0
+        cnt = 0
+        for u5_item in Ubung5.objects.filter(game=game, player=player.player):
+            result[player.player.name] += u5_item.score
+            cnt += 1
+
+        result[player.player.name] /= cnt if cnt else 1
+    return result
+
+def get_u1_u3(game):
+    n = get_n(game)
+    players = WaitingRoomMember.objects.filter(game=game,state=1)
+
+
+    d = {}
+    for player in players:
+        u1 = Ubung1.objects.filter(game=game, player=player.player).first()
+        if not u1: continue
+
+        u3 = Ubung3.objects.filter(game=game, player=player.player).first()
+        if not u3: continue
+
+        if u1.power not in d:
+            d[u1.power] = { 'count': 0, 'opposites': {} }
+        d[u1.power]['count'] += 1
+        if u3.drainer not in d[u1.power]['opposites']:
+            d[u1.power]['opposites'][u3.drainer] = 0
+        d[u1.power]['opposites'][u3.drainer] += 1
+    return d
+

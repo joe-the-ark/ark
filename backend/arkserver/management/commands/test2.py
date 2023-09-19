@@ -7,12 +7,12 @@ class Command(BaseCommand):
             if 'test' in game.name.lower() or game.members.count() <= 2:
                 continue
 
-            if game.name != 'Logistikreise': continue
+            if game.name != 'Nisihof_09_22': continue
 
             self.handle_game(game)
 
     def handle_game(self, game):
-        #name = 'Logistikreise'
+        #name = 'NISIHOFTAKEOFF'
         #game = Game.objects.filter(name=name).first()
 
         print('='*20)
