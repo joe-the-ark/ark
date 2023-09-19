@@ -1,4 +1,6 @@
 from arkserver.models import *
+from arkserver.utils import *
+
 
 def get_n(game):
     nplayers = WaitingRoomMember.objects.filter(game=game,state=1)
@@ -66,20 +68,47 @@ def get_u1_u3(game):
     n = get_n(game)
     players = WaitingRoomMember.objects.filter(game=game,state=1)
 
+    def get_id(lookup, name):
+        for lang in lookup:
+            items = lookup[lang]
+            for item in items:
+                if item['value'].lower() == name.lower():
+                    return item['id']
+
+        return name
 
     d = {}
+    c = 0
     for player in players:
         u1 = Ubung1.objects.filter(game=game, player=player.player).first()
         if not u1: continue
+        u1_id = get_id(ubung_1_term_list_i18n, u1.power)
 
         u3 = Ubung3.objects.filter(game=game, player=player.player).first()
         if not u3: continue
+        u3_id = get_id(ubung_3_term_list_i18n, u3.drainer)
 
-        if u1.power not in d:
-            d[u1.power] = { 'count': 0, 'opposites': {} }
-        d[u1.power]['count'] += 1
-        if u3.drainer not in d[u1.power]['opposites']:
-            d[u1.power]['opposites'][u3.drainer] = 0
-        d[u1.power]['opposites'][u3.drainer] += 1
+        c += 1
+
+        u5_sum = 0
+        u5_cnt = 0
+        for u5 in Ubung5.objects.filter(game=game, player=player.player, ubung1=u1, ubung3=u3):
+            u5_sum += u5.score
+            u5_cnt += 1
+
+        if u1_id not in d:
+            d[u1_id] = { 'count': 0, 'opposites': {}, 'u5_sum': 0, 'u5_cnt': 0, 'players': [] }
+        d[u1_id]['count'] += 1
+        d[u1_id]['players'].append(player.player.name)
+        d[u1_id]['u5_sum'] += u5_sum / u5_cnt if u5_cnt else 0
+        d[u1_id]['u5_cnt'] += 1
+
+        if u3_id not in d[u1_id]['opposites']:
+            d[u1_id]['opposites'][u3_id] = { 'count': 0, 'u5_sum': 0, 'u5_cnt': 0, 'players': [] }
+        
+        d[u1_id]['opposites'][u3_id]['count'] += 1
+        d[u1_id]['opposites'][u3_id]['players'].append(player.player.name)
+        d[u1_id]['opposites'][u3_id]['u5_sum'] += u5_sum / u5_cnt if u5_cnt else 0
+        d[u1_id]['opposites'][u3_id]['u5_cnt'] += 1
     return d
 
