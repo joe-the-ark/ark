@@ -20,6 +20,9 @@ class Command(BaseCommand):
 
             n, u5b = self.handle_game(game)
             for player in u5b:
+                if u5b[player] == 0:
+                    continue
+
                 if player not in result:
                     result[player] = { 'total': 0, 'count': 0, 'games': {} }
                 result[player]['total'] += u5b[player]
