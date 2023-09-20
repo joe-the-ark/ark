@@ -92,7 +92,7 @@ def get_u1_u3(game):
 
         u5_sum = 0
         u5_cnt = 0
-        for u5 in Ubung5.objects.filter(game=game, player=player.player, ubung1=u1, ubung3=u3):
+        for u5 in Ubung5.objects.filter(game=game, ubung1=u1, ubung3=u3):
             u5_sum += u5.score
             u5_cnt += 1
 

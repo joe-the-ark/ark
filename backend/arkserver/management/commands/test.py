@@ -7,7 +7,7 @@ class Command(BaseCommand):
             if 'test' in game.name.lower() or game.members.count() <= 2:
                 continue
 
-            if game.name != 'Logistikreise': continue
+            if game.name != 'TeamC': continue
 
             self.handle_game(game)
 
