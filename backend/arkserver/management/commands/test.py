@@ -39,19 +39,25 @@ class Command(BaseCommand):
         w0, w1, w2, w3, w4, w5 = 4, 1, 3, 5, 0, 2
         print("\ttopics\texcl\tinvis\tseen\tblame\thelp\tTotal")
         for vote in Ubung4.objects.filter(game=game):
-            r0 += vote.row0.count()
-            r1 += vote.row1.count()
-            r2 += vote.row2.count()
-            r3 += vote.row3.count()
-            r4 += vote.row4.count()
-            r5 += vote.row5.count()
-            print(f'{vote.player.name[:7]}\t{vote.row0.count()}\t{vote.row1.count()}\t{vote.row2.count()}\t{vote.row3.count()}\t{vote.row4.count()}\t{vote.row5.count()}')
-
-        print(f'Total\t{r0}\t{r1}\t{r2}\t{r3}\t{r4}\t{r5}')
+            _r0 = vote.row0.count()
+            _r1 = vote.row1.count()
+            _r2 = vote.row2.count()
+            _r3 = vote.row3.count()
+            _r4 = vote.row4.count()
+            _r5 = vote.row5.count()
+            r0 += _r0
+            r1 += _r1
+            r2 += _r2
+            r3 += _r3
+            r4 += _r4
+            r5 += _r5
+            _u4 = _r0*w0+_r1*w1+_r2*w2+_r3*w3+_r4*w4+_r5*w5
+            _u4 = _u4*20/n
+            print(f'{vote.player.name[:7]}\t{vote.row0.count()}\t{vote.row1.count()}\t{vote.row2.count()}\t{vote.row3.count()}\t{vote.row4.count()}\t{vote.row5.count()}\t{_u4}')
 
         u4_score = r0*w0+r1*w1+r2*w2+r3*w3+r4*w4+r5*w5
         u4_score = u4_score * 20 / n**2
-        print(f'U4 Score: {u4_score}')
+        print(f'Total\t{r0}\t{r1}\t{r2}\t{r3}\t{r4}\t{r5}\t{u4_score}')
 
         u1_items = Ubung1.objects.filter(game=game)
         for item in u1_items:

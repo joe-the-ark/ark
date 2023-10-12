@@ -9,7 +9,8 @@ def get_n(game):
 
 def get_u2_avg(game):
     players = game.members.all()
-    n = get_n(game)
+    #n = get_n(game)
+    n = players.count()
 
     u2_score = 0
     for player in players:
@@ -37,6 +38,23 @@ def get_u4_avg(game):
     u4_score = r0*w0+r1*w1+r2*w2+r3*w3+r4*w4+r5*w5
     u4_score = u4_score * 20 / n**2
     return u4_score
+
+def get_u5(game):
+    n = get_n(game)
+    players = WaitingRoomMember.objects.filter(game=game, state=1)
+
+    votes = {}
+    for player in players:
+        p = player.player
+        pvotes = votes[p.name] = {}
+        for vote in Ubung5.objects.filter(game=game, goal=p):
+            power = vote.ubung1.power
+            if power not in pvotes:
+                pvotes[power] = {}
+            pvotes[power][vote.player.name] = vote.score
+
+    return votes
+
 
 def get_u5_avg(game):
     n = get_n(game)
