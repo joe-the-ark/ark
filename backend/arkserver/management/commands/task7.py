@@ -34,12 +34,12 @@ class Command(BaseCommand):
         qs = Ubung4.objects.filter(game=game)
         for player in players:
             u4 = qs.filter(player=player).first()
-            _r0 = u4.row0.count()
-            _r1 = u4.row1.count()
-            _r2 = u4.row2.count()
-            _r3 = u4.row3.count()
-            _r4 = u4.row4.count()
-            _r5 = u4.row5.count()
+            _r0 = u4.row0.count() if u4 else 0
+            _r1 = u4.row1.count() if u4 else 0
+            _r2 = u4.row2.count() if u4 else 0
+            _r3 = u4.row3.count() if u4 else 0
+            _r4 = u4.row4.count() if u4 else 0
+            _r5 = u4.row5.count() if u4 else 0
             r0 += _r0
             r1 += _r1
             r2 += _r2
