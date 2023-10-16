@@ -130,3 +130,53 @@ def get_u1_u3(game):
         d[u1_id]['opposites'][u3_id]['u5_cnt'] += 1
     return d
 
+
+def get_u3_u1(game):
+    n = get_n(game)
+    players = WaitingRoomMember.objects.filter(game=game,state=1)
+
+    def get_id(lookup, name):
+        for lang in lookup:
+            items = lookup[lang]
+            for item in items:
+                if item['value'].lower() == name.lower():
+                    return item['id']
+
+        return name
+
+    d = {}
+    c = 0
+    for player in players:
+        u1 = Ubung1.objects.filter(game=game, player=player.player).first()
+        if not u1: continue
+        u1_id = get_id(ubung_1_term_list_i18n, u1.power)
+
+        u3 = Ubung3.objects.filter(game=game, player=player.player).first()
+        if not u3: continue
+        u3_id = get_id(ubung_3_term_list_i18n, u3.drainer)
+
+        c += 1
+
+        u5_sum = 0
+        u5_cnt = 0
+        for u5 in Ubung5.objects.filter(game=game, ubung1=u1, ubung3=u3):
+            u5_sum += u5.score
+            u5_cnt += 1
+
+        if u3_id not in d:
+            d[u3_id] = { 'count': 0, 'opposites': {}, 'u5_sum': 0, 'u5_cnt': 0, 'players': [] }
+
+        d[u3_id]['count'] += 1
+        d[u3_id]['players'].append(player.player.name)
+        d[u3_id]['u5_sum'] += u5_sum / u5_cnt if u5_cnt else 0
+        d[u3_id]['u5_cnt'] += 1
+
+        if u1_id not in d[u3_id]['opposites']:
+            d[u3_id]['opposites'][u1_id] = { 'count': 0, 'u5_sum': 0, 'u5_cnt': 0, 'players': [] }
+
+        d[u3_id]['opposites'][u1_id]['count'] += 1
+        d[u3_id]['opposites'][u1_id]['players'].append(player.player.name)
+        d[u3_id]['opposites'][u1_id]['u5_sum'] += u5_sum / u5_cnt if u5_cnt else 0
+        d[u3_id]['opposites'][u1_id]['u5_cnt'] += 1
+
+    return d
