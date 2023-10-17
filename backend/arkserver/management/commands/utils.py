@@ -10,7 +10,7 @@ def get_n(game):
 def get_u2_avg(game):
     players = game.members.all()
     #n = get_n(game)
-    n = players.count()
+    n = 0
 
     u2_score = 0
     for player in players:
@@ -19,6 +19,7 @@ def get_u2_avg(game):
         
         value = u2.value
         u2_score += value
+        n += 1
 
     u2_score /= n
     return u2_score
@@ -48,7 +49,7 @@ def get_u5(game):
         p = player.player
         pvotes = votes[p.name] = {}
         for vote in Ubung5.objects.filter(game=game, goal=p):
-            power = vote.ubung1.power
+            power = vote.ubung1.power + vote.ubung3.drainer
             if power not in pvotes:
                 pvotes[power] = {}
             pvotes[power][vote.player.name] = vote.score
