@@ -282,6 +282,9 @@ msgstr "Please position the contribution of the players in the field of tension 
 msgid "KLICKE bitte jede Person an den Punkt (auf der Skala zwischen 1-99), der aus deiner Sicht am Besten zum Beitrag des Mitreisenden in für dich wichtigen Alltagssituationen passt."
 msgstr "CLICK each person to the point (on the scale between 1-99) that you think best matches the contribution of the fellow traveller in everyday situations that are important to you."
 
+msgid "Ja, diese Einschätzung passt"
+msgstr "Yes, this assessment fits"
+
 msgid "GRUPPE"
 msgstr "GROUP"
 

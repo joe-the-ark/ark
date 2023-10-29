@@ -288,6 +288,9 @@ msgstr "Veuillez positionner la contribution des joueurs dans la tension entre l
 msgid "KLICKE bitte jede Person an den Punkt (auf der Skala zwischen 1-99), der aus deiner Sicht am Besten zum Beitrag des Mitreisenden in für dich wichtigen Alltagssituationen passt."
 msgstr "CLIQUE sur le point (sur une échelle de 1 à 99) qui, selon toi, correspond le mieux à la contribution du compagnon de voyage dans des situations quotidiennes importantes pour toi."
 
+msgid "Ja, diese Einschätzung passt"
+msgstr "Oui, cette estimation est correcte"
+
 msgid "GRUPPE"
 msgstr "GROUPE"
 

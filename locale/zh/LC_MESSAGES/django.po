@@ -287,6 +287,9 @@ msgstr "请定位队员在团队中动力源和能量消耗者之间的张力的
 msgid "KLICKE bitte jede Person an den Punkt (auf der Skala zwischen 1-99), der aus deiner Sicht am Besten zum Beitrag des Mitreisenden in für dich wichtigen Alltagssituationen passt."
 msgstr "给每个人打分（在1-99分之间），你认为最符合同路人在对你很重要的日常情况下的贡献。"
 
+msgid "Ja, diese Einschätzung passt"
+msgstr "是的，这一估计是正确的"
+
 #. potential-result
 #: loco:606c4d8d8f567155c2283dd2
 msgid "Gefühlte Team-Performance-Einschätzung"
