@@ -726,7 +726,19 @@ msgid "In eurem Team besträgt der durchschnittliche Spannungswert"
 msgstr "在你的团队中，平均张力值是"
 
 msgid "Als Daumenregel gilt: Werte unter 20 sind entspannt. Werte unter 40 sind meist noch ohne externe Begleitung bearbeitbar. Die Skala reicht von 1 (absolute Spannungsfreiheit) bis 99."
-msgstr "作为一条经验法则，低于20的数值是放松的。低于40的数值通常在没有外部指导的情况下仍是可行的。等级范围从1（绝对没有张力）到99。"
+msgstr "这是您团队的紧张度值。根据经验，低于 20 的值为放松值。低于 40 的数值通常在没有外部支持的情况下仍可管理。"
+
+msgid "Als Faustregel gilt: Je höher die Spannungen, desto geringer die psychologische Sicherheit."
+msgstr "根据经验，紧张程度越高，心理安全感就越低。"
+
+msgid "Die Safe-Base beschreibt den Bereich der sicheren Basis für die Zusammenarbeit, in der nicht mit defensiven Reaktionen (Fight, Flight oder Freeze) zu rechnen ist."
+msgstr "Safe-Base 描述的是合作安全基地的区域，在该区域内，不会出现防御反应（战斗、逃跑或冻结）。"
+
+msgid "Der Stresswert zeigt an, wie gut es den Mitreisenden gerade im Team geht. Je höher dieser Wert, desto mehr stresst das Verhalten der anderen."
+msgstr "压力值显示团队成员目前的表现。该值越高，其他人的行为就越紧张。"
+
+msgid "In der Regel haben die Teammitglieder unterschiedliche Sicherheitsanker. Das Sicherheitsempfinden entsteht nicht im Kopf, sondern über das autonome Nervensystem – abängig davon, was in früheren Lebensabschnitten für Sicherheit gesorgt haben mag."
+msgstr "一般来说，团队成员都有不同的安全锚。安全感不是在头脑中产生的，而是通过自律神经系统产生的--这取决于在生命的早期阶段是什么提供了安全感。"
 
 msgid "Bildet jetzt bitte Zweier- oder Dreiergruppen mit Menschen, die ähnliche Sicherheitsanker gewählt hatten:"
 msgstr "现在，请与选择了类似安全锚的人组成二至三人小组："

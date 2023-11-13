@@ -50,7 +50,7 @@
     <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
     	<h1>{% trans "Reflexion in einer Kleingruppe" %}<br></h1>
 		<p><br>
-			{% trans "In eurem Team besträgt der durchschnittliche Spannungswert" %} <span style="font-size: 36px; color: (--ls-alfa-color);">[[tension_average]]</span>.<br>{% trans "Als Daumenregel gilt: Werte unter 20 sind entspannt. Werte unter 40 sind meist noch ohne externe Begleitung bearbeitbar. Die Skala reicht von 1 (absolute Spannungsfreiheit) bis 99." %}<br><br>
+			{% trans "In eurem Team besträgt der durchschnittliche Spannungswert" %} <span style="font-size: 36px; color: (--ls-alfa-color); text-decoration:underline;" id="tensionOneTooltip" data-tippy-content="{% trans "Das ist der Spannungswert für euer Team. Als Daumenregel gilt: Werte unter 20 sind entspannt. Werte unter 40 sind meist noch ohne externe Begleitung bearbeitbar." %}">[[tension_average]]</span>.<br><br>
     </p>
     <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
       {% trans "Bildet jetzt bitte Zweier- oder Dreiergruppen mit Menschen, die ähnliche Sicherheitsanker gewählt hatten:" %}
@@ -137,20 +137,21 @@
         <div class="heatmap">
 
           <div class="main-column left">
-            <div class="teamtension" style="font-size: 36px; padding: 10px; text-align: center"><span>[[tension_average]]</span></div>
+            <div class="teamtension" style="font-size: 36px; padding: 10px; text-align: center; text-decoration:underline"  id="tensionOneTooltip" data-tippy-content="{% trans "Das ist der Spannungswert für euer Team. Als Daumenregel gilt: Werte unter 20 sind entspannt. Werte unter 40 sind meist noch ohne externe Begleitung bearbeitbar." %}"><span>[[tension_average]]</span></div>
 
-              <div class="heat_value property_value" v-for="value in scale_value_list">[[ value ]]</div>
+              <div class="heat_value property_value" v-for="value in scale_value_list" id="tensionOneTooltip" data-tippy-content="{% trans "Horizontal: siehst Du die Lage der Safe-Base und die zugehörigen Sicherheitsanker und Triggerthemen; je kleiner der Wert links, desto kleiner ist der Beitrag dieser Triggerthemen zur Unsicherheit im Team." %}">[[ value ]]</div>
               {% comment %} <div class="heat_value property_value">200</div>
               <div class="heat_value property_value">250</div>
               <div class="heat_value property_value">300</div>
               <div class="heat_value property_value">350</div> {% endcomment %}
-            
-            <div class="corner"></div>
+              <div class="corner"></div>
+              <div class="corner" id="tensionOneTooltip" data-tippy-content="{% trans "Der Stresswert zeigt an, wie gut es den Mitreisenden gerade im Team geht. Je höher dieser Wert, desto mehr stresst das Verhalten der anderen." %}">{% trans "Stress" %}</div>
+
           </div>
 
           <div class="main-column player" v-for="user in main_map">
-            <div class="heat_value over_player">[[ user[0] ]]</div>
-            <div v-for="value in user[3]" v-bind:class="{ 'heat_value one': value[1]==='yellow', 'heat_value two': value[1]==='black', 'heat_value three': value[1]==='None', 'heat_value four': value[1]==='red' }">([[ keepTwoDecimal(value[2])]])&nbsp;&nbsp;[[ (value[0] >= 0 ? '+' : '') + keepTwoDecimal(value[0]) ]]</div>
+            <div class="heat_value over_player" style="background-color: rgba(81, 206, 236);" id="spannungTooltip" data-tippy-content="{% trans "Vertikal: siehst Du in der oberen Reihe den Beitrag jedes Spielers zu den Sicherheitsankern; je niedriger der Wert, desto grösser ist der Beitrag des Spielers zur Sicherheit im Team." %}">[[ user[0] ]]</div>
+            <div v-for="value in user[3]" v-bind:class="{ 'heat_value one': value[1]==='yellow', 'heat_value two': value[1]==='black', 'heat_value three': value[1]==='None', 'heat_value four': value[1]==='red' }" id="tensionOneTooltip" data-tippy-content="{% trans "Der erste Wert (in Klammern) zeigt die Fremdwahrnehmung. Je höher dieser Wert, desto grösser der Beitrag zur Spannung aus Teamsicht." %} {% trans "Der zweite Werte zeigt die Abweichung von Fremd- und Selbstwahrnehmung. Werte über 16 deuten auf Spannungen mit dem Team hin." %} {% trans "Bei negativen Vorzeichen schätzt der Spieler den eigenen Beitrag zur Teamdynamik eher zu optimistisch ein. Dadurch entstehen manchmal Spannungen mit dem Team." %}" >([[ keepTwoDecimal(value[2])]])&nbsp;&nbsp;[[ (value[0] >= 0 ? '+' : '') + keepTwoDecimal(value[0]) ]]</div>
             
             {% comment %} <div class="heat_value one">[[ user[4] ]]</div>
             <div class="heat_value two">[[ user[5] ]]</div>
@@ -162,7 +163,7 @@
             <div class="heat_player">
             <div class="heat_value over_player">[[ user[1] ]]</div> {% comment %} replace this with the players stress-value from task #3 instead of the name {% endcomment %}
             <img :src="user[2]" alt="">
-            <div class="heat_value over_player">[[ user[4] ]]</div>
+            <div class="heat_value over_player" id="stressTooltip" data-tippy-content="{% trans "Ganz unten sind die inneren Spannungswerte aufaddiert. Auch hier gilt: je höher der Wert mit negativem Vorzeichen, desto stärker überschätzt der Spieler den positiven Beitrag zur Sicherheit im Team." %}">[[ user[4] ]]</div>
             </div>
             </div>
           </div>
@@ -227,7 +228,7 @@
 
 
           <div class="main-column prop">
-            <div class="corner">{% trans "Spannungen" %}</div>
+            <div class="corner" style="background-color: rgba(81, 206, 236);" id="spannungTooltip" data-tippy-content="{% trans "Als Faustregel gilt: Je höher die Spannungen, desto geringer die psychologische Sicherheit." %}">{% trans "Spannungen" %}</div>
             <div class="property" v-for="scale in scale_list_pro">
               <p class="property_one">[[ scale[0] ]]</p>
               <p class="property_two">[[ scale[1] ]]</p>
@@ -248,20 +249,19 @@
               <p class="property_one">Pain</p>
               <p class="property_two">Invisibility</p>
             </div> {% endcomment %}
-            <div class="corner">{% trans "Sicherheitsanker" %}</div>
-            <div class="corner">{% trans "Stress" %}</div>
+            <div class="corner"id="spannungTooltip" data-tippy-content="{% trans "In der Regel haben die Teammitglieder unterschiedliche Sicherheitsanker. Das Sicherheitsempfinden entsteht nicht im Kopf, sondern über das autonome Nervensystem – abängig davon, was in früheren Lebensabschnitten für Sicherheit gesorgt haben mag." %}">{% trans "Sicherheitsanker" %}</div>
           </div>
 
           <div class="main-column right">
-            <div class="corner"></div>
+            <div class="corner" id="spannungTooltip" data-tippy-content="{% trans "Die Safe-Base beschreibt den Bereich der sicheren Basis für die Zusammenarbeit, in der nicht mit defensiven Reaktionen (Fight, Flight oder Freeze) zu rechnen ist." %}">Safe-Base</div>
             
-              <div class="heat_value property_value" v-for="value in scale_value_list">[[ value -16]]&nbsp;. .&nbsp;[[ value +16]]</div>
+              <div class="heat_value property_value" style="background-color: #9FE2BF;" v-for="value in scale_value_list" id="tensionOneTooltip" data-tippy-content="{% trans "Horizontal: siehst Du die Lage der Safe-Base und die zugehörigen Sicherheitsanker und Triggerthemen; je kleiner der Wert links, desto kleiner ist der Beitrag dieser Triggerthemen zur Unsicherheit im Team." %}">([[ value -16]]&nbsp;. .&nbsp;[[ value +16]])</div>
               {% comment %} <div class="heat_value property_value">200</div>
               <div class="heat_value property_value">250</div>
               <div class="heat_value property_value">300</div>
               <div class="heat_value property_value">350</div> {% endcomment %}
             
-            <div class="corner">Safe-Base</div>
+            <div class="corner" id="spannungTooltip" data-tippy-content="{% trans "Die Safe-Base beschreibt den Bereich der sicheren Basis für die Zusammenarbeit, in der nicht mit defensiven Reaktionen (Fight, Flight oder Freeze) zu rechnen ist." %}">Safe-Base</div>
           </div>
         </div>
         </div>
@@ -270,6 +270,8 @@
 
   <script src="/static/vue.js"></script>
   <script src="/static/axios.min.js"></script>
+  <script src="https://unpkg.com/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.min.js"></script>
   <script>
   var app_ = new Vue({
     delimiters: ['[[', ']]'],
@@ -375,12 +377,21 @@
 
   </script>
 
+  <script>
+    tippy('#stressTooltip');
+    tippy('#tensionTooltip');
+    tippy('#tensionOneTooltip');
+    tippy('#spannungTooltip');
+  </script>
+
+
          <div class="container">
           <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
 
           <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;"><br>{% trans "Der Farbcode im Innern der Heatmap gilt unverändert." %} {% trans "Bei grünen Feldern liegen Fremd- und Selbstwahrnehmung in der Safe-Base." %}<br><br></p>
           <p>
             <br>
+{% comment %} 
           </p>
             <ul>
               <li>
@@ -402,6 +413,7 @@
               {% trans "Ganz unten sind die inneren Spannungswerte aufaddiert. Auch hier gilt: je höher der Wert mit negativem Vorzeichen, desto stärker überschätzt der Spieler den positiven Beitrag zur Sicherheit im Team." %}<br><br>
             </li>
             </ul>
+{% endcomment %} 
             </div>
 
             <p>
@@ -450,5 +462,6 @@
           </div> 
         </div>
         </div>
+
 </body>
 </html>
