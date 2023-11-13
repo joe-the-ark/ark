@@ -160,6 +160,7 @@
             <div class="heat_value over_player">[[ user[1] ]]</div>
             <div class="heat_player">
             <div class="heat_player">
+            <div class="heat_value over_player">[[ user[1] ]]</div> {% comment %} replace this with the players stress-value from task #3 instead of the name {% endcomment %}
             <img :src="user[2]" alt="">
             <div class="heat_value over_player">[[ user[4] ]]</div>
             </div>
@@ -248,6 +249,7 @@
               <p class="property_two">Invisibility</p>
             </div> {% endcomment %}
             <div class="corner">{% trans "Sicherheitsanker" %}</div>
+            <div class="corner">{% trans "Stress" %}</div>
           </div>
 
           <div class="main-column right">
