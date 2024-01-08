@@ -288,6 +288,9 @@ msgstr "Veuillez positionner la contribution des joueurs dans la tension entre l
 msgid "KLICKE bitte jede Person an den Punkt (auf der Skala zwischen 1-99), der aus deiner Sicht am Besten zum Beitrag des Mitreisenden in für dich wichtigen Alltagssituationen passt."
 msgstr "CLIQUE sur le point (sur une échelle de 1 à 99) qui, selon toi, correspond le mieux à la contribution du compagnon de voyage dans des situations quotidiennes importantes pour toi."
 
+msgid "Ja, diese Einschätzung passt"
+msgstr "Oui, cette estimation est correcte"
+
 msgid "GRUPPE"
 msgstr "GROUPE"
 
@@ -760,7 +763,19 @@ msgid "In eurem Team besträgt der durchschnittliche Spannungswert"
 msgstr "Dans votre équipe, la valeur moyenne de la tension est"
 
 msgid "Als Daumenregel gilt: Werte unter 20 sind entspannt. Werte unter 40 sind meist noch ohne externe Begleitung bearbeitbar. Die Skala reicht von 1 (absolute Spannungsfreiheit) bis 99."
-msgstr "La règle du pouce est la suivante : les valeurs inférieures à 20 sont détendues. Les valeurs inférieures à 40 peuvent généralement encore être traitées sans accompagnement externe. L'échelle va de 1 (absence totale de tension) à 99."
+msgstr "C'est la valeur de tension pour votre équipe. En règle générale, les valeurs inférieures à 20 sont détendues. Les valeurs inférieures à 40 sont généralement gérables sans accompagnement externe."
+
+msgid "Als Faustregel gilt: Je höher die Spannungen, desto geringer die psychologische Sicherheit."
+msgstr "En règle générale, plus les tensions sont élevées, plus la sécurité psychologique est faible."
+
+msgid "Die Safe-Base beschreibt den Bereich der sicheren Basis für die Zusammenarbeit, in der nicht mit defensiven Reaktionen (Fight, Flight oder Freeze) zu rechnen ist."
+msgstr "La safe-base décrit la zone de la base de coopération sécurisée dans laquelle il ne faut pas s'attendre à des réactions défensives (fight, flight ou freeze)."
+
+msgid "Der Stresswert zeigt an, wie gut es den Mitreisenden gerade im Team geht. Je höher dieser Wert, desto mehr stresst das Verhalten der anderen."
+msgstr "La valeur de stress indique à quel point les autres voyageurs se sentent bien en ce moment dans l'équipe. Plus cette valeur est élevée, plus le comportement des autres est stressant."
+
+msgid "In der Regel haben die Teammitglieder unterschiedliche Sicherheitsanker. Das Sicherheitsempfinden entsteht nicht im Kopf, sondern über das autonome Nervensystem – abängig davon, was in früheren Lebensabschnitten für Sicherheit gesorgt haben mag."
+msgstr "Normalement, les membres de l'équipe ont des ancrages de sécurité différents. Le sentiment de sécurité ne naît pas dans la tête, mais par le biais du système nerveux autonome - en fonction de ce qui a pu assurer la sécurité dans des périodes de vie antérieures."
 
 msgid "Bildet jetzt bitte Zweier- oder Dreiergruppen mit Menschen, die ähnliche Sicherheitsanker gewählt hatten:"
 msgstr "Veuillez maintenant former des groupes de deux ou trois avec des personnes qui ont choisi des ancrages de sécurité similaires :"

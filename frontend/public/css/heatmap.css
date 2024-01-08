@@ -80,7 +80,7 @@
 }
 
 .heat_value.property_value {
-  background-color: #9FE2BF;
+  background-color: rgba(81, 206, 236, 0.6);
   color: white;
 }
 
