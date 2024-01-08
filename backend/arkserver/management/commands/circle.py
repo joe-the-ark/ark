@@ -8,6 +8,7 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument("games", nargs="*", type=str)
+        parser.add_argument("-bar", type=int)
 
     def get_games(self, games):
         if games: return games
@@ -15,15 +16,16 @@ class Command(BaseCommand):
 
     def handle(self, **options):
         result = {}
+        safebar = 16 if not options['bar'] else options['bar']
 
         for name in self.get_games(options['games']):
             game = Game.objects.filter(name=name).first()
             if not game: continue
 
-            result, n = self.handle_game(game)
+            result, n = self.handle_game(game, safebar)
             # print(result, n)
 
-    def handle_game(self, game):
+    def handle_game(self, game, safebar):
         votes = get_u5(game)
         n = get_n(game)
         
@@ -51,7 +53,7 @@ class Command(BaseCommand):
                 for p in result[p1][p2]:
                     score = result[p1][p2][p]
                     baseline = safezone[p]
-                    delta = abs(score-baseline)/16
+                    delta = abs(score-baseline)/safebar
                     #if delta > s:
                     #    s = delta
                     s += delta/n
