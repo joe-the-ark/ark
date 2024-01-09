@@ -85,7 +85,7 @@ class Command(BaseCommand):
                         else:
                             unsafe_given += 1/n**2
 
-                print(f'{player}\t{r3(avg[player])}\t{r3(avg_other)}\t{r3(sum_tension)}\t{p2(colors["green"])}\t{p2(colors["yellow"])}\t{p2(colors["red"])}\t{p2(colors["black"])}\t{p2(safe_got)}\t{p2(unsafe_got)}\t{p2(safe_given)}\t{p2(unsafe_given)}')
+                print(f'{player[:5]}\t{r3(avg[player])}\t{r3(avg_other)}\t{r3(sum_tension)}\t{p2(colors["green"])}\t{p2(colors["yellow"])}\t{p2(colors["red"])}\t{p2(colors["black"])}\t{p2(safe_got)}\t{p2(unsafe_got)}\t{p2(safe_given)}\t{p2(unsafe_given)}')
 
     def handle_game(self, game):
         votes = get_u5(game)
