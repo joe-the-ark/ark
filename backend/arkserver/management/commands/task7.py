@@ -32,7 +32,8 @@ class Command(BaseCommand):
         w0, w1, w2, w3, w4, w5 = 4, 1, 3, 5, 0, 2
         print("\ttopics\texcl\tinvis\tseen\tblame\thelp\tTotal")
         qs = Ubung4.objects.filter(game=game)
-        for player in players:
+        for p in nplayers:
+            player = p.player
             u4 = qs.filter(player=player).first()
             _r0 = u4.row0.count() if u4 else 0
             _r1 = u4.row1.count() if u4 else 0

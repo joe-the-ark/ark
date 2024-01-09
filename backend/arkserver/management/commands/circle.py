@@ -120,7 +120,7 @@ class Command(BaseCommand):
                     circle_count[p] = 0
                 circle_count[p] += 1
 
-        print('Circle count:')
+        print('\nCircle count:')
         for p in circle_count:
             print(f'{p}: {circle_count[p]}')
 
