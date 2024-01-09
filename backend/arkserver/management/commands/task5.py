@@ -47,8 +47,8 @@ class Command(BaseCommand):
             r5 += _r5
             _u4 = _r0*w0+_r1*w1+_r2*w2+_r3*w3+_r4*w4+_r5*w5
             _u4 = _u4*20/n
-            print(f'{player.name[:7]}\t{_r0}\t{_r1}\t{_r2}\t{_r3}\t{_r4}\t{_r5}\t{_u4}')
+            print(f'{player.name[:7]}\t{_r0}\t{_r1}\t{_r2}\t{_r3}\t{_r4}\t{_r5}\t{round(_u4)}')
 
         u4_score = r0*w0+r1*w1+r2*w2+r3*w3+r4*w4+r5*w5
         u4_score = u4_score * 20 / n**2
-        print(f'Total\t{r0}\t{r1}\t{r2}\t{r3}\t{r4}\t{r5}\t{u4_score}')
+        print(f'Total\t{r0}\t{r1}\t{r2}\t{r3}\t{r4}\t{r5}\t{round(u4_score)}')

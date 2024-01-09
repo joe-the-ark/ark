@@ -23,8 +23,8 @@ class Command(BaseCommand):
         count = 0
         print('Name\tPlayers\tU2 Avg\tU4 Avg\t100-U5\tBelow\tInside\tAbove\tBelow2\tInside2\tAbove2\tBelow3\tInside3\tAbove3')
         is_inside = lambda v, x: 0 if x-16<v<x+16 else 1 if v>=x+16 else -1
-        r2 = lambda v: f'{round(v, 2)}'
-        p2 = lambda v: f'{round(v*100, 2)}%'
+        r2 = lambda v: f'{round(v)}'
+        p2 = lambda v: f'{round(v*100)}%'
 
         for name in self.get_games(options['games']):
             game = Game.objects.filter(name=name).first()

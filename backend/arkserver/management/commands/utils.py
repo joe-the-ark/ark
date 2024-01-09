@@ -2,6 +2,10 @@ from arkserver.models import *
 from arkserver.utils import *
 
 
+r1 = lambda x: round(x)
+
+
+
 def get_n(game):
     nplayers = WaitingRoomMember.objects.filter(game=game,state=1)
     n = nplayers.count()

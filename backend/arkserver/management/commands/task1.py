@@ -45,8 +45,8 @@ class Command(BaseCommand):
             print(f'{game.name[:7]}\t{n}\t{u2}\t{u4}\t{u5}\t{u2-u4}\t{u2-(100-u5)}\t{game.create_time.strftime("%Y.%m.%d")}')
 
         print('='*20)
-        print(f'Total\t{total[0]}\t{total[1]}\t{total[2]}\t{total[3]}\t{total[1]-total[2]}\t{total[1]-(100*count-total[3])}')
-        f = lambda x: round(x/count, 1)
+        print(f'Total\t{r1(total[0])}\t{r1(total[1])}\t{r1(total[2])}\t{r1(total[3])}\t{r1(total[1]-total[2])}\t{r1(total[1]-(100*count-total[3]))}')
+        f = lambda x: round(x/count)
         print(f'Avg\t{f(total[0])}\t{f(total[1])}\t{f(total[2])}\t{f(total[3])}\t{f(total[1]-total[2])}\t{f(total[1]-(100*count-total[3]))}')
     """
     #1 Display a list of selected games that connects U2 AVG, U4 AVG and U5 AVG based on the two hypothesis

@@ -51,9 +51,9 @@ class Command(BaseCommand):
         for power in sorted(result.keys(), key=lambda x:result[x]['count'], reverse=True):
             drainers = result[power]['opposites']
             top_5 = sorted(drainers.keys(), key=lambda x:drainers[x]['count'], reverse=True)[:5]
-            print(f"[{get_names(ubung_1_term_list_i18n, power)}]: {result[power]['count']} ({','.join(result[power]['players'])}) <{round(result[power]['u5_sum']/result[power]['u5_cnt'], 1)}>")
+            print(f"[{get_names(ubung_1_term_list_i18n, power)}]: {result[power]['count']} ({','.join(result[power]['players'])}) <{round(result[power]['u5_sum']/result[power]['u5_cnt'])}>")
             for drainer in top_5:
-                print(f"\t[{get_names(ubung_3_term_list_i18n, drainer)}]: {drainers[drainer]['count']} ({','.join(drainers[drainer]['players'])}) <{round(drainers[drainer]['u5_sum']/drainers[drainer]['u5_cnt'], 1)}>")
+                print(f"\t[{get_names(ubung_3_term_list_i18n, drainer)}]: {drainers[drainer]['count']} ({','.join(drainers[drainer]['players'])}) <{round(drainers[drainer]['u5_sum']/drainers[drainer]['u5_cnt'])}>")
             print()
     """
     #2 Display the list of safety anchors, with its opposites, ranked by how often they’ve been chosen

@@ -26,8 +26,8 @@ class Command(BaseCommand):
                 names.append(id)
             return ','.join(names)
 
-        r3 = lambda x: round(x, 2)
-        p2 = lambda x: f"{round(x*100, 2)}%"
+        r3 = lambda x: round(x)
+        p2 = lambda x: f"{round(x*100)}%"
 
         for name in self.get_games(options['games']):
             game = Game.objects.filter(name=name).first()
