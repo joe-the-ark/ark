@@ -112,4 +112,16 @@ class Command(BaseCommand):
         for circle in circles:
             print(' '.join([players[_] for _ in circle]), circles[circle])
 
+        circle_count = {}
+        for circle in circles:
+            for _ in circle:
+                p = players[_]
+                if p not in circle_count:
+                    circle_count[p] = 0
+                circle_count[p] += 1
+
+        print('Circle count:')
+        for p in circle_count:
+            print(f'{p}: {circle_count[p]}')
+
         return result, n
