@@ -26,8 +26,7 @@ class Command(BaseCommand):
             # print(result, n)
 
     def handle_game(self, game, safebar):
-        votes = get_u5(game)
-        n = get_n(game)
+        votes, n = get_u5(game)
         
         result = {
             player: { player: {} for player in votes }

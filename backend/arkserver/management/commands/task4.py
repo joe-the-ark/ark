@@ -88,8 +88,7 @@ class Command(BaseCommand):
                 print(f'{player[:5]}\t{r3(avg[player])}\t{r3(avg_other)}\t{r3(sum_tension)}\t{p2(colors["green"])}\t{p2(colors["yellow"])}\t{p2(colors["red"])}\t{p2(colors["black"])}\t{p2(safe_got)}\t{p2(unsafe_got)}\t{p2(safe_given)}\t{p2(unsafe_given)}')
 
     def handle_game(self, game):
-        votes = get_u5(game)
-        n = get_n(game)
+        votes, n = get_u5(game)
         
         result = {}
         given = {}
@@ -117,9 +116,11 @@ class Command(BaseCommand):
                         o += cell[p]
                 r = result[player][power] = {}
                 total += (s+o)
+
                 r['self'] = s
                 r['other'] = o / (n-1)
                 r['diff'] = s - r['other']
+
             avg[player] = total / n**2
 
         for player in result:

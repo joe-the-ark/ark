@@ -49,16 +49,24 @@ def get_u5(game):
     players = WaitingRoomMember.objects.filter(game=game, state=1)
 
     votes = {}
+    count = 0
     for player in players:
         p = player.player
+
+        if not Ubung5.objects.filter(game=game, goal=p).exists():
+            continue
+
         pvotes = votes[p.name] = {}
+        count += 1
+
         for vote in Ubung5.objects.filter(game=game, goal=p):
             power = vote.ubung1.power + vote.ubung3.drainer
             if power not in pvotes:
                 pvotes[power] = {}
+
             pvotes[power][vote.player.name] = vote.score
 
-    return votes
+    return votes, count
 
 
 def get_u5_avg(game):
