@@ -735,8 +735,18 @@ def assessment(request, user):
     link = request.session['link']
     game = Game.objects.filter(link=link).first()
     ubung2 = Ubung2.objects.filter(game=game)
-    value_list = [int(i.value) for i in ubung2]
-    value_list = list(set(value_list))
+
+    # bug fix #105 - no need to de-dup the value-list
+    my_index = cnt = 0
+    value_list = []
+
+    for i in ubung2:
+        if i.player == user:
+            my_index = cnt
+
+        value_list.append(int(i.value))
+        cnt += 1
+
     temp = len(value_list)/2
     from .utils import mean
     median = mean(value_list)
@@ -751,8 +761,9 @@ def assessment(request, user):
     ctx['user'] = user
 
     all_result = []
+    cnt = 0
     for i in value_list:
-        if i == ubung2.filter(player=user,game=game).first().value:
+        if cnt == my_index:
             all_result.append(
                 {
                     'name': user.name,
@@ -762,6 +773,7 @@ def assessment(request, user):
             )
         else:
             all_result.append({"statusSide": i})
+        cnt += 1
     ctx['team_potential_all_result'] = all_result
 
     game_place = list(Ubung4.objects.filter(game=game))
