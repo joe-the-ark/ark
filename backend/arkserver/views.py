@@ -205,16 +205,13 @@ def ubung_2(request, user):
         link = request.session['link']
         digit_value = request.POST.get('digit_value')
         game = Game.objects.filter(link=link).first()
-        ubung2 = Ubung2.objects.filter(game=game,player=user).first()
-        if ubung2:
-            ubung2.value = digit_value
-            ubung2.save()
-        else:
-            Ubung2.objects.create(
-                game = game,
-                player = user,
-                value = digit_value,
-            )
+        Ubung2.objects.filter(game=game, player=user).delete()
+
+        Ubung2.objects.create(
+            game = game,
+            player = user,
+            value = digit_value,
+        )
         return redirect(f'/ubung-1/')
 
     return render(request, './views/ubung-2.html', ctx)
