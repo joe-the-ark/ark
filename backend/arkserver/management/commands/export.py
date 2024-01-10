@@ -1,8 +1,10 @@
 from django.core.management import BaseCommand
+from django.conf import settings
 from arkserver.models import *
 from .utils import *
 from itertools import combinations
 import math
+import os
 
 class Command(BaseCommand):
 
@@ -21,7 +23,11 @@ class Command(BaseCommand):
             if not game: continue
 
             csv_file = self.handle_game(game)
-            print(csv_file)
+            csv_path = os.path.join(settings.STATIC_ROOT, name+'.csv')
+            with open(csv_path, 'w') as f:
+                f.write(csv_file)
+
+            print(f'https://arks.ch/static/{name}.csv')
 
     def handle_game(self, game):
         votes, n = get_u5(game)
@@ -32,17 +38,17 @@ class Command(BaseCommand):
         cnt = 0
         for player in votes:
             indices[player] = cnt
-            headers.append(player)
+            name = 'Player'+str(cnt+1)
+            headers.append(name)
             cnt += 1
-            players[player] = 'Player'+cnt
+            players[player] = name
 
         txt = ',,' + ','.join(headers) + '\n'
 
         for player in votes:
             pvotes = votes[player]
-            txt += f'{players[player]},'
             for power in pvotes:
-                txt += f'{power},'
+                txt += f'{players[player]},{power},'
                 cell = pvotes[power]
 
                 scores = [0]*n
@@ -52,5 +58,6 @@ class Command(BaseCommand):
                     scores[index] = score
 
                 txt += ','.join([str(_) for _ in scores])
+                txt += '\n'
 
         return txt
