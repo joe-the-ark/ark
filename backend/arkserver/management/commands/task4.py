@@ -36,7 +36,7 @@ class Command(BaseCommand):
             result, n, votes, given, avg, safezone = self.handle_game(game)
             def get_color(player, power):
                 cell = result[player][power]
-                baseline = safezone[power]
+                baseline = round(safezone[power])
                 selfsafe = (baseline-16) <= cell['self'] <= (baseline+16)
                 othersafe = (baseline-16) <= cell['other'] <= (baseline+16)
                 if selfsafe and othersafe:
