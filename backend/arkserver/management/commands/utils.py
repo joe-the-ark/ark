@@ -60,7 +60,7 @@ def get_u5(game):
         count += 1
 
         for vote in Ubung5.objects.filter(game=game, goal=p):
-            power = vote.ubung1.power + vote.ubung3.drainer
+            power = vote.ubung1.power + ',' + vote.ubung3.drainer
             if power not in pvotes:
                 pvotes[power] = {}
 

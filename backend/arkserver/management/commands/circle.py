@@ -121,7 +121,11 @@ class Command(BaseCommand):
                 circle_count[p] += 1
 
         print('\nCircle count:')
+        total_circle_member_count = 0
         for p in circle_count:
+            total_circle_member_count += circle_count[p]
             print(f'{p}: {circle_count[p]}')
+
+        print('Total circle member count:', total_circle_member_count)
 
         return result, n
