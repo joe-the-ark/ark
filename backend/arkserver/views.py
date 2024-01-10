@@ -514,6 +514,7 @@ def spannungsfelder(request, user):
 def heatmap(request, user):
     from .utils import heatmap_cell, heatmap_color
     from .utils import mean
+    from arkserver.management.commands.utils import get_u5b
     ctx = {}
     game = Game.objects.filter(link=request.session['link']).first()
 
@@ -597,6 +598,9 @@ def heatmap(request, user):
 
         beef_table.append({ "user1" : { "name" : pair[0].name}, "user2" : {"name" : pair[1].name}, "tension" : tension })
 
+    # task #158 adding stress
+    u5b = get_u5b(game)
+    ctx['stress'] = { k: round(u5b[k]) for k in u5b }
 
     ctx['row0'] = row0
     ctx['main_map'] = main_map
