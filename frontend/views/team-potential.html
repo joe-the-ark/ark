@@ -81,6 +81,7 @@
 			First circle at Safe-Zone: <button @click="current=getValue1()">[[ getValue1() ]]</button>
 			First player solo at Safe-Zone: <button @click="current=getValue3()">[[ getValue3() ]] </button>
 			Team becomes a sect at Safe-Zone: <button @click="current=getValue2()">[[ getValue2() ]]</button> <br/>
+			Maximum circle-count at Safe-Zone: <button @click="current=getValue4()">[[ getValue4() ]]</button>
 			Default Safe-Zone: <button @click="current=16">16</button>
 			[[ getCircles().length ]] circles at Safe-Zone: <input type="number" v-model="current" :min="getValue1()-1" :max="getValue2()" style="width:130px; height: 50px; margin: 10px;" /> <br/> 
 			<span v-for="circle in getCircles()">[[ circle ]] <br/></span> <br/>
@@ -166,6 +167,22 @@
 				}
 			}
 		},
+		getValue4() {
+			let { circles, players } = this.circles;
+			let maxCircles = -1;
+			let result = -1;
+			for (const key in circles) {
+				let s = 0;
+				for(const p in circles[key].circle_count) {
+					s += circles[key].circle_count[p];
+				}
+				if (s > maxCircles) {
+					maxCircles = s;
+					result = key;
+				}
+			}
+			return result;
+		},
 		getCircles() {
 			const { players } = this.circles;
 			if (!this.circles.circles[this.current]) return [];
@@ -200,6 +217,14 @@
             const dR = 16;
             const [r1, r2] = [r0*0.4, r0*0.4+dR];
             const theta = Math.PI * 2 / n;
+
+	    let s = 0;
+            const total_circle_count = Object.values(circle_count).reduce((s, e) => s+e);
+	    ctx.font = '32px Arial';
+	    ctx.fillText('Circle Count', centerX, centerY-32);
+	    ctx.font = '60px Arial';
+	    ctx.fillText(total_circle_count, centerX, centerY+32);
+	    ctx.font = font;
 
             const x = players.map((e, i) => centerX + r2*Math.cos(theta*i));
             const y = players.map((e, i) => centerY + r2*Math.sin(theta*i));
