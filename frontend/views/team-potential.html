@@ -14,9 +14,9 @@
     <link rel="stylesheet" href="/static/css/team-potential.css">
     <script src="/static/vue.js"></script>
     <!-- 引入样式 -->
-    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/element-ui/2.15.9/theme-chalk/index.css">
     <!-- 引入组件库 -->
-    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script src="https://cdn.staticfile.org/element-ui/2.15.9/index.js"></script>
 </head>
 <body>
 <div class="app">
@@ -76,27 +76,36 @@
                 </div>
                 <div class="custom-graph-wrapper"></div>
 
+		<div class="center">
+			<p style="float:none; display: inline">
+			First circle at Safe-Zone: <button @click="current=getValue1()">[[ getValue1() ]]</button>
+			First player solo at Safe-Zone: <button @click="current=getValue3()">[[ getValue3() ]] </button>
+			Team becomes a sect at Safe-Zone: <button @click="current=getValue2()">[[ getValue2() ]]</button> <br/>
+			Default Safe-Zone: <button @click="current=16">16</button>
+			[[ getCircles().length ]] circles at Safe-Zone: <input type="number" v-model="current" :min="getValue1()-1" :max="getValue2()" style="width:130px; height: 50px; margin: 10px;" /> <br/> 
+			<span v-for="circle in getCircles()">[[ circle ]] <br/></span> <br/>
+			<canvas ref="canvas" :width="width" :height="height" :style="{ width:width+'px', height:height+'px' }"></canvas>
+			</p>
+		</div>
 
-                <div class="center">
-    
+            </div>
+
+            </main>
+
+	                    <div class="center" style="margin:10px">
+
                         <a href="/spannungsfelder/">
                         <button class="button" type="button">
                             {% trans "Weiter" %}
                         </button>
                 </div>
-            </div>
-
-
-
-
-                <div class="center">
+		                <div class="center">
                         <p style="background-color: #52CEEC; color: #FFFFFF; border-radius: 10px; padding: 0 10px; width: 100%;">
                             <br>
                             {% trans "Meist liegen die gefühlte Team-Performance und der psychologische Sicherheitswert nahe beisammen. Der Schlüssel zu einer Verbesserung beider Werte führt über eine Verbesserung der inneren Sicherheit aller Teammitglieder. Kennst du deinen Beitrag zur inneren Sicherheit im Team?" %}<br><br>
                         </p>
 
-                </div>              
-            </main>
+                </div>
         </div>
     </div>
 </div>
@@ -110,6 +119,11 @@
         data(){
             return{
                 loading: false,
+		circles: {{ circles|safe }},
+		players: {{ players|safe }},
+		current: 16,
+		    width: 800,
+		    height: 800
             } 
         },
         created(){
@@ -121,11 +135,178 @@
                 this.loading = true;
             }
         },
+	mounted() {
+		this.redraw();
+	},
         methods:{
             waiting_room(){
                 window.location.href='/waiting-room2/'
+            },
+	    getValue1() {
+		let { players, circles } = this.circles;
+		for (const key in circles) {
+			return key;
+		}
+	    },
+	    getValue2() {
+		    let { circles } = this.circles;
+		    let maxKey = -1;
+		    for (const key in circles) {
+			    if (parseInt(key) > maxKey) {
+				    maxKey = parseInt(key);
+			    }
+		    }
+		    return maxKey;
+	    },
+		getValue3() {
+			let { circles, players } = this.circles;
+			for (const key in circles) {
+				if (Object.keys(circles[key].circle_count).length == (players.length-1)) {
+					return key;
+				}
+			}
+		},
+		getCircles() {
+			const { players } = this.circles;
+			if (!this.circles.circles[this.current]) return [];
+			const { circles, circle_count } = this.circles.circles[this.current];
+		        if (!circles) return [];
+			return circles.map(e => e.map(u => players[u]).join(' '));
+		},
+		redraw() {
+			const canvas = this.$refs.canvas;
+			const ctx = canvas.getContext('2d');
+
+            const { width, height } = this;
+            const players = this.circles.players;
+            const avatars = this.players;
+			const { circles, circle_count } = this.circles.circles[this.current] || { circles: [], circle_count: {}} ;
+
+			ctx.clearStyle = 'white';
+			ctx.clearRect(0, 0, width, height);
+
+            const font = ctx.font = '18px STheiti, SimHei';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = ' middle';
+
+            ctx.strokeStyle = 'blue';
+
+            const colors = ['red', 'orange', 'green', 'blue', 'purple', 'cyan', 'black'];
+
+            const n = players.length;
+
+            const [centerX, centerY] = [width/2, height/2];
+            const r0 = Math.min(width, height);
+            const dR = 16;
+            const [r1, r2] = [r0*0.4, r0*0.4+dR];
+            const theta = Math.PI * 2 / n;
+
+            const x = players.map((e, i) => centerX + r2*Math.cos(theta*i));
+            const y = players.map((e, i) => centerY + r2*Math.sin(theta*i));
+
+            function drawPerson(i) {
+                const x = r1*Math.cos(theta*i);
+                const y = r1*Math.sin(theta*i);
+
+                const img = new Image();
+                img.src = avatars[players[i]];
+
+                const xx = centerX+x;
+                const yy = centerY+y;
+
+                img.onload = () => {
+                ctx.drawImage(img, xx-32, yy-32, 64, 64);
+
+                    ctx.fillText(players[i], xx, yy+48, 100);
+
+                    const xxx = xx + 24;
+                    const yyy = yy - 24;
+
+                    ctx.fillStyle = '#9FE2BF';
+                    ctx.beginPath();
+                    ctx.arc(xxx, yyy, 20, 0, Math.PI*2, true);
+                    ctx.fill();
+
+                    ctx.font = 'bold 32px STheiti, SimHei';
+                    ctx.fillStyle = 'black';
+
+                    ctx.fillText(`${circle_count[i] || 0}`, xxx, yyy+12);
+
+                    ctx.font = font;
+                    ctx.fillStyle = 'black';
+                }
             }
-        }
+
+            for (let i=0; i<n; ++i) {
+                drawPerson(i);
+            }
+
+            circles.forEach((circle, i) => {
+                const points = circle.map(e => e).sort();
+                
+                let [x0, y0] = [0, 0];
+                for (let i=0; i<points.length; ++i) {
+                    x0 += x[points[i]] / points.length;
+                    y0 += y[points[i]] / points.length;
+                }
+
+                const calc = (x1, y1, x2, y2) => [Math.sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2)), Math.atan2(y2-y1, x2-x1)];
+                function moveP(x0, y0, x, y) {
+                    let [d, theta] = calc(x0, y0, x, y);
+
+                    d += dR;
+                    return [x0+d*Math.cos(theta), y0+d*Math.sin(theta)];
+                }
+ 
+                const oldStyle = ctx.strokeStyle;
+                ctx.strokeStyle = colors[i % colors.length];
+ 
+                ctx.beginPath();
+                for (let i=0; i<points.length; ++i) {
+
+                    function getTheta(i) {
+                        const thisI = points[i];
+                        const prevI = i > 0 ? points[i-1] : points[points.length-1];
+                        const nextI = (i < points.length-1) ? points[i+1] : points[0];
+
+                        const [thisX, thisY] = moveP(x0, y0, x[thisI], y[thisI]);
+                        const [prevX, prevY] = moveP(x0, y0, x[prevI], y[prevI]);
+                        const [nextX, nextY] = moveP(x0, y0, x[nextI], y[nextI]);
+
+                        const theta1 = Math.atan2(nextY-thisY, nextX-thisX);
+                        const theta2 = Math.atan2(prevY-thisY, prevX-thisX);
+
+                        let theta = (theta1+theta2)/2;
+                        if (theta < theta1) theta += Math.PI;
+
+                        return [ thisX, thisY, nextX, nextY, theta, calc(x0, y0, thisX, thisY)[0]];
+                    }
+
+                    const r = 120;
+                    let [thisX, thisY, nextX, nextY, theta, r1] = getTheta(i);
+                    theta -= Math.PI/2;
+                    const c1X = thisX + r * Math.cos(theta);
+                    const c1Y = thisY + r * Math.sin(theta);
+
+                    let [nX, nY, nnX, nnY, theta2, r2] = getTheta(i < points.length-1 ? i + 1 : 0);
+                    theta2 += Math.PI/2;
+                    const c2X = nX + r * Math.cos(theta2);
+                    const c2Y = nY + r * Math.sin(theta2);
+
+                    ctx.moveTo(thisX, thisY);
+                    ctx.bezierCurveTo(c1X, c1Y, c2X, c2Y, nextX, nextY);
+                }
+
+                ctx.stroke();
+                ctx.strokeStyle = oldStyle;
+            })	
+		}
+	},
+	watch: {
+		current: function(oldValue, newValue) {
+		    this.redraw();
+		}
+	}
     })
 
     let data = {{ all_result|safe }};
@@ -185,7 +366,9 @@
             },
         ] {% endcomment %}
     });
+    console.log({{ circles|safe }});
 
+    console.log({{ players|safe }});
     console.log({{ all_result|safe }});
     {% comment %} var css_change = function(t,s){
         s = document.createElement('style');

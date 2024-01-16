@@ -35,6 +35,7 @@ urlpatterns = [
     path('auth-link/',RedirectView.as_view(url='/onboard')),
     path('link/<str:link>/',server_views.link_enter),
 
+    path('testauth/', server_views.testauth),
     path('preview/',RedirectView.as_view(url='/first-mission')),
     path('ubung-2/',RedirectView.as_view(url='/team-potential')),
     path('ubung-1/',RedirectView.as_view(url='/safety-anchor')),

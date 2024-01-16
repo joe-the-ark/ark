@@ -6,8 +6,28 @@ import json
 
 from django.utils.translation import ugettext as _
 from django.utils import translation
+from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 from .models import *
+
+
+
+@csrf_exempt
+def testauth(request):
+    if request.method == 'POST':
+        name = request.POST.get('game')
+        game = Game.objects.filter(name=name).first()
+        link = game.link
+        print(link)
+        user = game.creator
+        request.session['uid'] = user.id
+        request.session['link'] = link
+        return redirect('/potential-result')
+
+    return HttpResponse('<form action="." method="POST"><input name="game" /><input type="submit" /></form>')
+
+
 
 def result(request, name, player, game_secret, inviter):
 
@@ -402,6 +422,13 @@ def team_potential(request, user):
     ctx['game'] = Game.objects.filter(link=request.session['link']).first()
     link = request.session['link']
     game = Game.objects.filter(link=link).first()
+
+    from .circle import calc_circles
+    ctx['circles'] = circles = calc_circles(game)
+
+    players = WaitingRoomMember.objects.filter(game=game, state=1)
+    ctx['players'] = { _.player.name: _.player.avatar for _ in players }
+
     # ubung2 = Ubung2.objects.filter(game=game)
     ubung2 = []
     for i in list(Ubung2.objects.filter(game=game)):
