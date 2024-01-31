@@ -78,12 +78,12 @@
 
 		<div class="center">
 			<p style="float:none; display: inline">
-			First circle at Safe-Zone: <button @click="current=getValue1()">[[ getValue1() ]]</button>
-			First player solo at Safe-Zone: <button @click="current=getValue3()">[[ getValue3() ]] </button>
-			Team becomes a sect at Safe-Zone: <button @click="current=getValue2()">[[ getValue2() ]]</button> <br/>
-			Maximum circle-count at Safe-Zone: <button @click="current=getValue4()">[[ getValue4() ]]</button>
-			Default Safe-Zone: <button @click="current=16">16</button>
-			[[ getCircles().length ]] circles at Safe-Zone: <input type="number" v-model="current" :min="getValue1()-1" :max="getValue2()" style="width:130px; height: 50px; margin: 10px;" /> <br/> 
+			{% trans "First circle at Safe-Zone: " %}<button @click="current=getValue1()">[[ getValue1() ]]</button>
+			{% trans "First player solo at Safe-Zone: " %}<button @click="current=getValue3()">[[ getValue3() ]] </button>
+            {% trans "Default Safe-Zone: " %}<button @click="current=16">16</button>
+			{% trans "Maximum circle-count at Safe-Zone: " %}<button @click="current=getValue4()">[[ getValue4() ]]</button>
+            {% trans "Team becomes a sect at Safe-Zone: " %}<button @click="current=getValue2()">[[ getValue2() ]]</button> <br/>
+			[[ getCircles().length ]] {% trans "circles at Safe-Zone: " %}<input type="number" v-model="current" :min="getValue1()-1" :max="getValue2()" style="width:130px; height: 50px; margin: 10px;" /> <br/> 
 			<span v-for="circle in getCircles()">[[ circle ]] <br/></span> <br/>
 			<canvas ref="canvas" :width="width" :height="height" :style="{ width:width+'px', height:height+'px' }"></canvas>
 			</p>
