@@ -161,8 +161,8 @@
 	    },
 		getValue3() {
 			let { circles, players } = this.circles;
-			for (const key in circles) {
-				if (Object.keys(circles[key].circle_count).length == (players.length-1)) {
+			for (const key of Object.keys(circles).map(e=>parseInt(e)).reverse()) {
+				if (Object.keys(circles[key].circle_count).length <= (players.length-1)) {
 					return key;
 				}
 			}
@@ -219,7 +219,7 @@
             const theta = Math.PI * 2 / n;
 
 	    let s = 0;
-            const total_circle_count = Object.values(circle_count).reduce((s, e) => s+e);
+            const total_circle_count = [0, ...Object.values(circle_count)].reduce((s, e) => s+e);
 	    ctx.font = '32px Arial';
 	    ctx.fillText('Safe Circles', centerX, centerY-32);
 	    ctx.font = '60px Arial';
@@ -267,7 +267,7 @@
             }
 
             circles.forEach((circle, i) => {
-                const points = circle.map(e => e).sort();
+                const points = circle.map(e => e);
                 
                 let [x0, y0] = [0, 0];
                 for (let i=0; i<points.length; ++i) {
@@ -319,6 +319,7 @@
                     const c2Y = nY + r * Math.sin(theta2);
 
                     ctx.moveTo(thisX, thisY);
+	            //ctx.lineTo(nextX, nextY);
                     ctx.bezierCurveTo(c1X, c1Y, c2X, c2Y, nextX, nextY);
                 }
 
