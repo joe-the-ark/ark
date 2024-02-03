@@ -75,13 +75,19 @@
                     </div>
                 </div>
                 <div class="custom-graph-wrapper"></div>
+                <div class="center">
+                        <p style="background-color: #52CEEC; color: #FFFFFF; border-radius: 10px; padding: 0 10px; width: 100%;">
+                            <br>
+                            {% trans "Unleash the power of your psychological safe circles. Uncover those safely connected subsets within groups, where defensive reactions (fight, flight &freeze) become superfluous. Realise your team's safety sweet spot (at maximal safe circles count)" %}<br><br>
+                        </p>
 
+                </div>
 		<div class="center">
 			<p style="float:none; display: inline">
 			{% trans "First circle at Safe-Zone: " %}<button @click="current=getValue1()">[[ getValue1() ]]</button>
 			{% trans "First player solo at Safe-Zone: " %}<button @click="current=getValue3()">[[ getValue3() ]] </button>
             {% trans "Default Safe-Zone: " %}<button @click="current=16">16</button><br>
-			{% trans "Max SAFE-CIRCLE-COUNT at Safe-Zone: " %}<button @click="current=getValue4()">[[ getValue4() ]]</button>
+			{% trans "Max SAFE-CIRCLE-COUNT at Safe-Zone: " %}<button @click="current=getValue4()" style="background-color: #9FE2BF;">[[ getValue4() ]]</button>
             {% trans "Team becomes a sect at Safe-Zone: " %}<button @click="current=getValue2()">[[ getValue2() ]]</button> <br/>
 			[[ getCircles().length ]] {% trans "circles at Safe-Zone: " %}<input type="number" v-model="current" :min="getValue1()-1" :max="getValue2()" style="width:130px; height: 50px; margin: 10px;" /> <br/> 
 			<span v-for="circle in getCircles()">[[ circle ]] <br/></span> <br/>
@@ -99,13 +105,6 @@
                         <button class="button" type="button">
                             {% trans "Weiter" %}
                         </button>
-                </div>
-		                <div class="center">
-                        <p style="background-color: #52CEEC; color: #FFFFFF; border-radius: 10px; padding: 0 10px; width: 100%;">
-                            <br>
-                            {% trans "Meist liegen die gefühlte Team-Performance und der psychologische Sicherheitswert nahe beisammen. Der Schlüssel zu einer Verbesserung beider Werte führt über eine Verbesserung der inneren Sicherheit aller Teammitglieder. Kennst du deinen Beitrag zur inneren Sicherheit im Team?" %}<br><br>
-                        </p>
-
                 </div>
         </div>
     </div>
