@@ -169,7 +169,7 @@ table {
 html:not([theme]) {
   --ls-brand-color: #750AED;
   --ls-accent-1-color: #51CEEC;
-  --ls-accent-2-color: #3781EE;
+  --ls-accent-2-color: #75CBE8;
   --ls-bg-global-color: var(--ls-thin-color);
   --ls-thin-color: #ffffff;
   --ls-meta-color: #d7e6fc;

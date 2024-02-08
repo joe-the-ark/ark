@@ -66,7 +66,7 @@
                         <input maxlength="12" minlength="2" id="nutzername" type="text" name="Nutzername" value="" required autofocus/ style="border-radius: 10px";>
                         <span class="form__placeholder">{% trans "Nutzername" %}</span>
                         <p>
-                            <br><br><br><br><br>{% trans "Nutze bitte einem Firefox, Chrome oder Opera Browser." %}
+                            <br><br><br><br><br>{% trans "Die Reisezeit der ersten Etappe beträgt eine halbe Stunde." %}
                         </p>
                     </div>
 
@@ -195,7 +195,7 @@
                     -->
                     <div class="form__field">
                         <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
-                            {% trans "Die Arche ist eine Online-Gruppenreise für 3 bis 9 Personen, um die innere und psychologische Sicherheit mit dem Team zu erkunden. Die Reisezeit der ersten Etappe beträgt eine halbe Stunde." %}
+                            {% trans "The Ark is a free, online group journey for 3 to 15 people to explore inner and psychological safety with the team. Unlock your teams potential with maximum psychological safe circles." %}
                         </p>
 
                     </div>
@@ -373,7 +373,7 @@
 
     function defaultLoad() {
         const el = document.getElementById('title-game');
-        el.innerHTML = window.innerWidth < 768 ? "{% trans 'Komm an Bord.' %}" : "{% trans 'Erkundet eure innere und psychologische Sicherheit.' %}"
+        el.innerHTML = window.innerWidth < 768 ? "{% trans 'Komm an Bord.' %}" : "{% trans 'Expand your psychological safe-circles' %}"
     }
     
 
@@ -433,14 +433,6 @@ if (result === 1) {
             check_player_name();
         }
     })
-
-
-    // Safari 3.0+ "[object HTMLElementConstructor]" 
-    var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
-    console.log(isSafari)
-    if (isSafari){
-        alert('The ark will NOT work with Safari. Please play with Firefox, Chrome or Opera.')
-    }
 
     var lang_code = $('#select_').val()
     if (lang_code == 'zh-hans'){

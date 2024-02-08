@@ -70,7 +70,7 @@
 
             <main class="screen preview">
                 <h1>
-                    {% trans "Wie sicher ist euer Gruppenklima?" %}
+                    {% trans "Mit wem bist du (schon) SICHER verbunden?" %}
                 </h1>
 
                 <div class="preview__main">
@@ -78,10 +78,7 @@
                     <div class="preview__data">
                         <div class="preview__thumbnail">
                         <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
-                            {% trans "In psychologisch sicheren Teams gelingen Lernprozesse und die Team Performance steigt. Innere Sicherheit erlaubt es achtsam mit sich selbst und anderen umzugehen. Dadurch werden Defensivreaktionen (Fight, Flight & Freeze) überflüssig." %}
-                        </p>
-                        <p>
-                                {% trans "In den nächsten 30 Minuten erkundet ihr die Basis der inneren und psychologischen (Un-)Sicherheit im Team." %}
+                            {% trans "In psychologisch sicheren Teams gelingen Lernprozesse und die Team Performance steigt. Innere Sicherheit erlaubt es achtsam mit dir und anderen umzugehen. Dadurch werden Defensivreaktionen (Fight, Flight & Freeze) überflüssig." %}
                         </p>
                         <p>
                         <a href="/ubung-2/">
@@ -89,16 +86,15 @@
                             {% trans "Weiter" %}
                         </button>
                         </p>
-
-                        <p><br>
-                            {% trans "Psychologische Sicherheit ist laut Google’s Aristoteles-Studie stärkster Prädiktor für Team-Performance." %}<br>
-                        </p>
                     </div>
+                        <p><br><br>
+                            {% trans "In den nächsten 30 Minuten erkundet ihr die Basis eurer inneren und psychologischen Sicherheit: die Psychological Safe Circles!" %}<br>
+                        </p>
                     </div>  
 
                     <div id="qrcode" style="border-radius: 10px">
                         <h3>
-                            {% trans "Teile diesen QR-Code mit den anderen" %}
+                            {% trans "Teile diesen QR-Code, um Mitspieler einzuladen" %}
                         </h3>            
                         <p>
                             {% trans "(oder bitte den Initiator um den Link im Zwischenspeicher)." %}
@@ -108,7 +104,7 @@
                 </div>
 
                 <div class="google-slides-container">
-                <iframe style="padding: 0 10px;" src={% trans "https://docs.google.com/presentation/d/1xmsuoUm31ay2ecqG-FOb49HdyJkq9mTfcn97gMkzmdw/embed?start=true&loop=false&delayms=8000"  %} frameborder="0" width="850" height="400" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                <iframe style="padding: 0 10px;" src={% trans "https://docs.google.com/presentation/d/1snki3nXuUI8Fcb3CSlzI-h0ckSNbjDchoTj0mO648h0/embed?start=true&loop=false&delayms=8000"  %} frameborder="0" width="850" height="400" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
                 
                 <style>
                 .google-slides-container{
@@ -173,6 +169,7 @@
     colorLight : "#ffffff",
     correctLevel : QRCode.CorrectLevel.H
     });
+
 
 
     var lang_code = $('#select_').val()

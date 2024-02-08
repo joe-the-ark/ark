@@ -144,7 +144,7 @@ msgstr "Continue"
 #. ubung-1
 #: loco:606b759198a94a6cf8339672
 msgid "Was beschreibt am besten deinen SICHERHEITSANKER, der dir im Team Sicherheit schenkt?"
-msgstr "What describes best your SAFETY ANCHOR that makes the team safe for you?"
+msgstr "What describes best your SAFETY ANCHOR that makes the team feel safe for you?"
 
 msgid "Stell dir ein Kontinuum vor und wähle den POSITIVEN Endpunkt, der massgeblich zu deiner inneren Sicherheit im Team beiträgt:"
 msgstr "Imagine a continuum and choose the POSITIVE endpoint that contributes most significantly to your inner safety in the team:"

@@ -58,10 +58,10 @@
         <div class="container">
             <main class="screen auth">
                 <h1 id="title-game">
-                    {% trans "Lade Dein Team ein." %}
+                    {% trans "Expand your psychological safe-circles" %}
                 </h1>
                 <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
-                    {% trans "Die Arche ist eine Online-Gruppenreise für 3 bis 9 Personen, um die innere und psychologische Sicherheit mit dem Team zu erkunden." %}<br> {% trans "Die Reisezeit der ersten Etappe beträgt eine halbe Stunde." %}
+                    {% trans "The Ark is a free, online group journey for 3 to 15 people to explore inner and psychological safety with the team.<br> Unlock your teams potential with maximum psychological safe circles." %}<br>
                 </p>
                 <span class="terms_str">{% trans "Das sind die" %}
                   <span class="terms" style="text-decoration:underline;">{% trans "Nutzungsbedingungen" %}</span>
@@ -74,7 +74,7 @@
                         <span class="form__placeholder">{% trans "Nutzername" %}</span>
                     </div>
                         <p>
-                        {% trans "Nutze bitte einem Firefox, Chrome oder Opera Browser." %}
+                        {% trans "Die Reisezeit der ersten Etappe beträgt eine halbe Stunde." %}
                         </p>
                     <div class="form__field">
                         <input maxlength="15" minlength="2" id="name-des-spiels" type="text" name="name-des-spiels" value="" required/ style="border-radius: 10px;">
@@ -403,7 +403,7 @@
 
     function defaultLoad() {
         const el = document.getElementById('title-game');
-        el.innerHTML = window.innerWidth < 768 ? "{% trans 'Lade Dein Team ein.' %}" : "{% trans 'Lade Dein Team ein.' %}"
+        el.innerHTML = window.innerWidth < 768 ? "{% trans 'Expand your psychological safe-circles' %}" : "{% trans 'Expand your psychological safe-circles' %}"
     }
 
     function check_game_name(){
@@ -461,12 +461,6 @@
         }, 100);
     })
 
-    // Safari 3.0+ "[object HTMLElementConstructor]" 
-    var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
-    console.log(isSafari)
-    if (isSafari){
-        alert('We detect that you are using Safari. Please play with Firefox, Chrome or Opera. The ark will NOT work with Safari.')
-    }
     
     var lang_code = $('#select_').val()
     if (lang_code == 'zh-hans'){
