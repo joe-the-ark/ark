@@ -1049,49 +1049,75 @@ def waiting_room2(request, user):
 
     link = request.session['link']
     game = Game.objects.filter(link=link).first()
-    ubung2 = Ubung2.objects.filter(game=game)
 
-    # bug fix #105 - no need to de-dup the value-list
-    my_index = cnt = 0
-    value_list = []
+    from .circle import calc_circles
+    ctx['circles'] = circles = calc_circles(game)
 
-    for i in ubung2:
-        if i.player == user:
-            my_index = cnt
+    players = WaitingRoomMember.objects.filter(game=game, state=1)
 
-        value_list.append(int(i.value))
-        cnt += 1
+    ctx['players'] = { _.player.name: _.player.avatar for _ in players }
 
-
-
+    # ubung2 = Ubung2.objects.filter(game=game)
+    ubung2 = []
+    for i in list(Ubung2.objects.filter(game=game)):
+        if i.player.valid:
+            ubung2.append(i)
+    value_list = [int(i.value) for i in ubung2]
+    # print('value list111111111111111111', value_list)
+    value_list.sort()
     temp = len(value_list)/2
+    # print('-------------------------')
+    temp_ = str(temp)
+    # try:
+    #     type(int(temp)) == int
+    # except:
+    #     # print('temp1',temp)
+    #     temp = round(temp)
+    #     median = value_list[temp]
+    # else:
+    #     # print('temp2',temp)
+    #     temp = int(temp)
+    #     median = (value_list[temp-1] + value_list[temp])/2
+
+    # median = mean(value_list)
     from .utils import mean
-    median = mean(value_list)
-    # if temp.__class__ == int:
+    median = round(mean(value_list))
+    # if temp_[-1] == '0':
+    #     temp = int(temp)
+    #     median = (value_list[temp-1] + value_list[temp])/2
+    # else:
+    #     temp = int(temp)
+    #     median = value_list[temp]
+
+    # if type(temp) == int:
     #     median = (value_list[temp-1] + value_list[temp])/2
     # else:
     #     temp = round(temp)
     #     median = value_list[temp]
-    ctx['team_potential_minimal'] = round(min(value_list))
-    ctx['team_potential_maximal'] = round(max(value_list))
-    ctx['team_potential_median'] = round(median)
+    ctx['minimal'] = round(min(value_list))
+    ctx['maximal'] = round(max(value_list))
+    ctx['median'] = median
     ctx['user'] = user
 
     all_result = []
-    cnt = 0
+    flag =  0
     for i in value_list:
-        if cnt == my_index:
-            all_result.append(
-                {
-                    'name': user.name,
-                    'avatar': user.avatar,
-                    'statusSide': i
-                }
-            )
+        if i == Ubung2.objects.filter(player=user).first().value:
+            if flag == 0:
+                all_result.append(
+                    {
+                        'name': user.name,
+                        'avatar': user.avatar,
+                        'statusSide': i
+                    }
+                )
+                flag = 1
+            else:
+                all_result.append({"statusSide": i})
         else:
             all_result.append({"statusSide": i})
-        cnt += 1
-    ctx['team_potential_all_result'] = all_result
+    ctx['all_result'] = all_result
+    ctx['loading'] = 0
 
     # Waitingroom2Start
     if request.method == 'POST':
