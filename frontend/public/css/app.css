@@ -438,6 +438,7 @@ body {
   }
 }
 .progress__bar {
+  border: 1px solid #FFFFFF;
   width: min(481px, 100%);
   height: 22px;
   position: relative;
@@ -508,7 +509,7 @@ ul:not([class]):not([id]):not([style]) > li:not([class]):not([id]):not([style]) 
   list-style: none;
 }
 button {
-  border: 0;
+  border: 5px solid #75CBE8;
   box-sizing: border-box;
   cursor: pointer;
   -webkit-appearance: none;

@@ -53,36 +53,29 @@
         v-loading="loading"
         element-loading-text="Waiting for others to finish"
         element-loading-background="rgba(0, 0, 0, 0.8)">
-            <main class="screen team-potential">
+            <main class="screen auth">
                 <h1>
-                    {% trans "Gefühlte Team-Performance-Einschätzung" %}
+                    {% trans "Unleash the power of your psychological safe circles" %}
                 </h1>
                 <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
-                <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
-                    {% trans "Eure Einschätzung setzt sich aus den gleichberechtigten Wahrnehmungen aller Teammitglieder zusammen. Bilden diese Werte eine sichere Basis, oder gibt es Ausreisser?" %}
-                    <br/>
-                    <br/>
+
+                <p style="background-color: #52CEEC; color: #FFFFFF; border-radius: 10px; padding: 0 10px;">
+                            <br>
+                            {% trans "Uncover those safely connected subsets within groups, where defensive reactions (fight, flight &freeze) become superfluous. Realise your team's safety sweet spot (at maximal safe circles count)" %}<br>
+                            {% trans "Default Safe-Zone: " %}<button @click="current=16">16</button>
+                            {% trans "First circle at Safe-Zone: " %}<button @click="current=getValue1()">[[ getValue1() ]]</button>
+                            {% trans "First player solo at Safe-Zone: " %}<button @click="current=getValue3()">[[ getValue3() ]] </button><br><br>
                 </p>
-                <div class="custom-graph-info">
-                    <div class="custom-graph-info__item small" data-text="{% trans 'Minimal' %}">
-                        {{ minimal }}
-                    </div>
-                    <div class="custom-graph-info__item base" data-text="{% trans 'Durchschnitt' %}">
-                        {{ median }}
-                    </div>
-                    <div class="custom-graph-info__item large" data-text="{% trans 'Maximal' %}">
-                        {{ maximal }}
-                    </div>
-                </div>
-                <div class="custom-graph-wrapper"></div>
+                <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
+                            <br>
+                            {% trans "Uncover those safely connected subsets within groups, where defensive reactions (fight, flight &freeze) become superfluous. Realise your team's safety sweet spot (at maximal safe circles count)" %}
+                            <br/>
+                            {% trans "Max SAFE-CIRCLE-COUNT (Click here): " %}<button @click="current=getValue4()" style="background-color: #FFFFFF; border: 5px solid #75CBE8; color: black;">[[ getValue4() ]]</button>
+                            {% trans "Team becomes a sect at Safe-Zone: " %}<button @click="current=getValue2()">[[ getValue2() ]]</button> <br/><br/>
+                </p>
 		<div class="center">
-			<p style="float:none; display: inline">
-            {% trans "Default Safe-Zone: " %}<button @click="current=16">16</button>
-			{% trans "First circle at Safe-Zone: " %}<button @click="current=getValue1()">[[ getValue1() ]]</button>
-			{% trans "First player solo at Safe-Zone: " %}<button @click="current=getValue3()">[[ getValue3() ]] </button><br>
-			{% trans "Max SAFE-CIRCLE-COUNT (Click here): " %}<button @click="current=getValue4()" style="background-color: #9FE2BF; border: 5px solid #75CBE8; color: black;">[[ getValue4() ]]</button>
-            {% trans "Team becomes a sect at Safe-Zone: " %}<button @click="current=getValue2()">[[ getValue2() ]]</button> <br/>
-			[[ getCircles().length ]] {% trans "circles at Safe-Zone: " %}<input type="number" v-model="current" :min="getValue1()-1" :max="getValue2()" style="width:130px; height: 50px; margin: 10px;" /> <br/> 
+			<p style="float:none; display: inline"><br>{% trans "(low safe-zone values = high stress )" %}<br/>
+			[[ getCircles().length ]] {% trans "circles at Safe-Zone: " %}<br><input type="number" v-model="current" :min="getValue1()-1" :max="getValue2()" style="width:130px; height: 50px; margin: 10px;" /><br/>
 			<span v-for="circle in getCircles()">[[ circle ]] <br/></span> <br/>
 			<canvas ref="canvas" :width="width" :height="height" :style="{ width:width+'px', height:height+'px' }"></canvas>
 			</p>
