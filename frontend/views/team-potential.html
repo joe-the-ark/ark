@@ -77,10 +77,10 @@
                 <div class="custom-graph-wrapper"></div>
 		<div class="center">
 			<p style="float:none; display: inline">
+            {% trans "Default Safe-Zone: " %}<button @click="current=16">16</button>
 			{% trans "First circle at Safe-Zone: " %}<button @click="current=getValue1()">[[ getValue1() ]]</button>
-			{% trans "First player solo at Safe-Zone: " %}<button @click="current=getValue3()">[[ getValue3() ]] </button>
-            {% trans "Default Safe-Zone: " %}<button @click="current=16">16</button><br>
-			{% trans "Max SAFE-CIRCLE-COUNT (Click here): " %}<button @click="current=getValue4()" style="background-color: #9FE2BF; border: 1px solid #000">[[ getValue4() ]]</button>
+			{% trans "First player solo at Safe-Zone: " %}<button @click="current=getValue3()">[[ getValue3() ]] </button><br>
+			{% trans "Max SAFE-CIRCLE-COUNT (Click here): " %}<button @click="current=getValue4()" style="background-color: #9FE2BF; border: 5px solid #75CBE8; color: black;">[[ getValue4() ]]</button>
             {% trans "Team becomes a sect at Safe-Zone: " %}<button @click="current=getValue2()">[[ getValue2() ]]</button> <br/>
 			[[ getCircles().length ]] {% trans "circles at Safe-Zone: " %}<input type="number" v-model="current" :min="getValue1()-1" :max="getValue2()" style="width:130px; height: 50px; margin: 10px;" /> <br/> 
 			<span v-for="circle in getCircles()">[[ circle ]] <br/></span> <br/>
@@ -207,7 +207,7 @@
 
             ctx.strokeStyle = 'blue';
 
-            const colors = ['red', 'orange', 'green', 'blue', 'purple', 'cyan', 'black'];
+            const colors = ['red', 'orange', 'green', 'blue', 'purple', 'yellow', 'black'];
 
             const n = players.length;
 
@@ -246,6 +246,8 @@
                     const xxx = xx + 24;
                     const yyy = yy - 24;
 
+
+
                     ctx.fillStyle = '#9FE2BF';
                     ctx.beginPath();
                     ctx.arc(xxx, yyy, 20, 0, Math.PI*2, true);
@@ -258,6 +260,8 @@
 
                     ctx.font = font;
                     ctx.fillStyle = 'black';
+
+                    ctx.lineWidth = 3;
                 }
             }
 
