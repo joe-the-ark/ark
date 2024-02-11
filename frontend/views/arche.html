@@ -28,7 +28,7 @@
         <div class="container">
             <main class="screen arche">
                 <h1>
-                    {% trans "Danke für deine Reise mit der ARCHE" %}
+                    {% trans "Nach der Reise ist vor der Reise." %}
                 </h1>
                 <div class="user">
                     <img src="{{user.avatar}}" alt=""/>
@@ -48,39 +48,45 @@
                         <div class="icon-logo"></div>
                         </a>
                          <p>
-                            {% trans "Was jetzt: DEBRIEF? (15 Minuten Zeitbedarf) Nutzt die Liberating Structure 1-2-4-All und tauscht euch über die Reise mit der Arche aus. Leitfragen: Wie sicher ist euer Gruppenklima im Verhältnis zu deiner inneren Sicherheit? Wie kannst du zur Stärkung deiner inneren Sicherheit und der psychologischen Sicherheit im Team beitragen?" %}
+                            {% trans "DEBRIEF: Digest your feedback and brainstorm solution ideas in safe circles of two or three. Safe circle core members may facilitate the discussion. Focus on what already contributes to psychological safety in our team at the moment. Consider which baby steps could further enhance psychological safety. The allocated time for this activity is 20 minutes." %}
+                        </p>
+                    </div>
+                    <div class="options__item">
+                        <div class="icon-download" onclick="location='/potential-result/'"></div>
+                        <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
+                            {% trans "Re-visit your psychological safe circles" %}
                         </p>
                     </div>
                     <div class="options__item">
                         <div class="icon-logo" onclick="location='/mission-2-ubung-2/'"></div>
                         <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
-                            {% trans "Was jetzt: AUFRICHTIGES FEEDBACK? (10-20 Minuten Zeitbedarf, je nach Teamgrösse) Hilf mit die psychologische Sicherheit im Team zu verbessern: Gib anonymes 1 zu 1 Feedback, um alle in einen psychologisch sichereren Raum mitzunehmen. (Empfohlen für Teams mit einem psychologischen Sicherheitswert unter 80)." %}
+                            {% trans "AUFRICHTIGES FEEDBACK (Zeitbedarf: 15 Minuten, abhängig von der Teamgröße) Hilf mit, die psychologische Sicherheit im Team zu verbessern, indem du anonymes 1-zu-1-Feedback gibst. Dies trägt dazu bei, alle in einen psychologisch sichereren Kreis mitzunehmen. (Empfohlen für Teams mit einem psychologischen Sicherheitswert unter 80)." %}
                         </p>
                     </div>
-                    <div class="options__item">
+                    {% comment %}<div class="options__item">
                         <div class="icon-logo" onclick="location='/preview-2/'"></div>
                         <p style="background-color: #FAE03C; color: #626262; border-radius: 10px; padding: 0 10px;">
                             {% trans "Was jetzt: SOCIAL SENSITIVITY TRAINING? (Ca. 10 Minuten Zeitbedarf) Hilf mit die psychologische Sicherheit im Team zu verbessern: Trainiere dazu deine soziale Sensibilität und lerne einzuschätzen, wie dein Beitrag zur inneren Sicherheit von jedem einzelnen Teammitglied wahrgenommen wirst. (Empfohlen für Teams mit einem psychologischen Sicherheitswert unter 70)." %}
                         </p>
-                    </div>
+                    </div>{% endcomment %}
                     <div class="options__item">
                         <a href="https://calendly.com/joe-1116/kostenloses-vorgesprach?month=2021-12" target="_blank">
                         <div class="icon-money"></div>
                         </a>
                         <p style="background-color: #fa5252; color: white; border-radius: 10px; padding: 0 10px;">
-                            {% trans "COUNSELING? Nimm'für eine professionelle Interpretation eurer Reisedaten und Begleitung Kontakt mit deinem Coach oder mit Dr. Joe Maier. (Empfohlen für Teams mit einem psychologischen Sicherheitswert unter 55)." %}
+                            {% trans "COUNSELING? Für eine professionelle Intervention nimm Kontakt mit deinem Coach oder mit Dr. Joe Maier auf. Das Ziel ist die Erweiterung eurer Psychological Safe Circles. (Empfohlen für Teams mit einem psychologischen Sicherheitswert unter 55)." %}
                         </p>
                     </div>
                     <div class="options__item">
                         <div class="icon-download" onclick="location='/heatmap/'"></div>
-                        <p>
-                            {% trans "Bist du Coach oder vertraut mit gruppendynamischen Mustern? Dann ist die TEAM-HEATMAP für dich. Klicke auf das Icon um eine Karte der sicheren Basis und Spannungen im Team zu sehen." %}
+                        <p style="background-color: #FAE03C; color: #626262; border-radius: 10px; padding: 0 10px;">
+                            {% trans "Bist du ein Coach oder vertraut mit gruppendynamischen Mustern? Dann ist die HEATMAP der Spannungen im Team etwas für dich." %}
                         </p>
                     </div>
                     <div class="options__item">
                         <div class="icon-download" onclick="location='/game-insights/'"></div>
                         <p>
-                            {% trans "SPIELDATEN? Klicke auf diesen Link für die Auswertung deiner Reise mit der Arche. Speichere den Link, um die Auswertung später noch einmal anzuschauen." %}
+                            {% trans "SPIELDATEN? Klicke auf diesen Link, um die Auswertung deiner Reise mit der Arche zu sehen. Speichere den Link, um die Auswertung später erneut anzuschauen." %}
                         </p>
                     </div>
                     <div class="options__item">
@@ -88,7 +94,7 @@
                         <div class="icon-money"></div>
                         </a>
                          <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
-                            {% trans "PAYPAL? Gib dem Entwickler einen Kaffee aus – Joe Maier dankt es dir!" %}
+                            {% trans "PAYPAL? Gönn' dem Entwickler einen Kaffee – Dr. Joe wird es dir danken!" %}
                             <br><br>
                         </p>
                     </div>

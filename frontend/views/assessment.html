@@ -178,7 +178,7 @@
 
                 <div class="center">
                         <p class="spanun-p" style="background-color: #52CEEC; color: #FFFFFF; border-radius: 10px; padding: 0 10px;">
-                            {% trans "Meist liegen die gefühlte Team-Performance und der psychologische Sicherheitswert nahe beisammen. Der Schlüssel zu einer Verbesserung beider Werte führt über eine Verbesserung der inneren Sicherheit aller Teammitglieder. Kennst du deinen Beitrag zur inneren Sicherheit im Team?" %}<br><br>
+                            {% trans "Oftmals liegen die wahrgenommene Team-Performance und der psychologische Sicherheitswert eng beieinander. Der Schlüssel zur Anpassung oder Verbesserung beider Werte liegt in der Steigerung der inneren Sicherheit aller Teammitglieder." %}<br><br>
                         </p>
                         <p>
                             <br><br>
@@ -189,7 +189,7 @@
                     {% trans "Gefühlte Team-Performance-Einschätzung" %}
                 </h3>
                 <p>
-                    {% trans "Eure Einschätzung setzt sich aus den gleichberechtigten Wahrnehmungen aller Teammitglieder zusammen. Bilden diese Werte eine sichere Basis, oder gibt es Ausreisser?" %}
+                    {% trans "Eure Einschätzung setzt sich aus den gleichberechtigten Wahrnehmungen aller Teammitglieder zusammen. Bieten diese Werte eine solide Grundlage, oder gibt es Ausreißer?" %}
                 </p>
                 <div class="custom-graph-info">
                     <div class="custom-graph-info__item small" data-text="{% trans 'Minimal' %}">
@@ -210,12 +210,51 @@
 
                 <div class="center">
                     <p class="spanun-p" style="background-color: #52CEEC; color: #FFFFFF; border-radius: 10px; padding: 0 10px;">
-                        {% trans "Unsere Hypothese: Spannung erzeugt Unsicherheit und gefährdet Vertrauen. Eine tragfähige, sichere Beziehungsbasis macht Defensivreaktionen überflüssig (Fight, Flight & Freeze) und lässt dich achtsam mit dir und anderen umgehen. Was ist dein Beitrag zur inneren Sicherheit? Wie erklärst du die Unterschiede zwischen deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team?" %}<br><br>
+                        {% trans "Unsere Hypothese lautet: Spannung erzeugt Unsicherheit und gefährdet Vertrauen. Eine tragfähige, sichere Beziehungsbasis macht Defensivreaktionen (Fight, Flight & Freeze) überflüssig und ermöglicht dir, achtsam mit dir und anderen umzugehen. Welchen Beitrag leistest du zur psychologischen Sicherheit? Wie erklärst du die Unterschiede zwischen deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team?" %}<br><br>
                     </p>
                     <p>
                             <br><br><br>
                     </p>
                 </div>
+
+                <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
+                <h1 class="feed-h3">
+                    {% trans "Hier ist Platz für dein Feedback." %}
+                </h1>
+
+                <div class="left">
+
+                <p class="bold feed-p-1">
+                    {% trans "WEITER SO: Besonders schätze ich deinen Beitrag zum gelingenden Zusammenspiel im Team, wenn WIR..." %}
+                </p>
+                {% for feedback in feedback1 %}
+                    <p class="feedback-1"style="font-size: 20px; background-color: #9FE2BF; color: #626262; border: 1px solid #ccc; border-radius: 10px; padding: 10px;">{{feedback}}</p>
+                {% endfor %}
+                <p>
+                    <br>
+                </p>
+                <p class="bold feed-p-2">
+                    {% trans "WUNSCH: Du könntest zu mehr psychologischen Sicherheit im Team beitragen, indem DU..." %}
+                </p>
+                {% for feedback in feedback2 %}
+                    <p class="feedback-2" style="font-size: 20px; background-color: #fa5252; color: white; border: 1px solid #ccc; border-radius: 10px; padding: 10px;">{{feedback}}</p>
+                {% endfor %}
+                <p>
+                    <br>
+                </p>
+                <p class="bold feed-p-3">
+                    {% trans "UNTERSTÜTZUNG: Ich werde dich unterstützen unser Team psychologisch sicherer zu machen, indem ICH..." %}
+                </p>
+                {% for feedback in feedback3 %}
+                    <p class="feedback-3" style="font-size: 20px; background-color: #FAE03C; color: #626262; border: 1px solid #ccc; border-radius: 10px; padding: 10px;">{{feedback}}</p>
+                {% endfor %}
+
+                </div>
+                </div>
+
+                <p>
+                    <br>
+                </p>
 
                 <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
 
@@ -256,45 +295,6 @@
                 </div>
                 </div>
 
-                <p>
-                    <br>
-                </p>
-
-                <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
-                <h1 class="feed-h3">
-                    {% trans "Feedback aussprechen" %}
-                </h1>
-
-                <div class="left">
-
-                <p class="bold feed-p-1">
-                    {% trans "WEITER SO: Besonders schätze ich deinen Beitrag zum gelingenden Zusammenspiel im Team, wenn WIR..." %}
-                </p>
-                {% for feedback in feedback1 %}
-                    <p class="feedback-1"style="font-size: 20px; background-color: #9FE2BF; color: #626262; border: 1px solid #ccc; border-radius: 10px; padding: 10px;">{{feedback}}</p>
-                {% endfor %}
-                <p>
-                    <br>
-                </p>
-                <p class="bold feed-p-2">
-                    {% trans "WUNSCH: Du könntest zu mehr psychologischen Sicherheit im Team beitragen, indem DU..." %}
-                </p>
-                {% for feedback in feedback2 %}
-                    <p class="feedback-2" style="font-size: 20px; background-color: #fa5252; color: white; border: 1px solid #ccc; border-radius: 10px; padding: 10px;">{{feedback}}</p>
-                {% endfor %}
-                <p>
-                    <br>
-                </p>
-                <p class="bold feed-p-3">
-                    {% trans "UNTERSTÜTZUNG: Ich werde dich unterstützen unser Team psychologisch sicherer zu machen, indem ICH..." %}
-                </p>
-                {% for feedback in feedback3 %}
-                    <p class="feedback-3" style="font-size: 20px; background-color: #FAE03C; color: #626262; border: 1px solid #ccc; border-radius: 10px; padding: 10px;">{{feedback}}</p>
-                {% endfor %}
-
-                </div>
-            </div>
-
                 <div class="center">
 
                         <p>
@@ -305,7 +305,7 @@
                         <p>
                         <a href="/farewell/">
                         <button class="button" type="button">
-                            {% trans "Auf Wiedersehen sagen" %}
+                            {% trans "Zum Abschluss" %}
                         </button>
                         <a href="/heatmap/">
                         <button class="button" type="button">

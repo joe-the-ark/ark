@@ -55,31 +55,44 @@
         element-loading-background="rgba(0, 0, 0, 0.8)">
             <main class="screen auth">
                 <h1>
-                    {% trans "Unleash the power of your psychological safe circles" %}
+                    {% trans "Unleash the power of your psychological SAFE CIRCLES" %}
                 </h1>
                 <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
 
                 <p style="background-color: #52CEEC; color: #FFFFFF; border-radius: 10px; padding: 0 10px;">
                             <br>
-                            {% trans "Uncover those safely connected subsets within groups, where defensive reactions (fight, flight &freeze) become superfluous. Realise your team's safety sweet spot (at maximal safe circles count)" %}<br>
-                            {% trans "Default Safe-Zone: " %}<button @click="current=16">16</button>
-                            {% trans "First circle at Safe-Zone: " %}<button @click="current=getValue1()">[[ getValue1() ]]</button>
-                            {% trans "First player solo at Safe-Zone: " %}<button @click="current=getValue3()">[[ getValue3() ]] </button><br><br>
+                            {% trans "The journey's first key result is a snapshot of our perception of your current SAFE CIRCLES. Uncover those safely connected subsets within groups, where defensive reactions (fight, flight, and freeze) become superfluous. Can you recognize your team in the mirror?" %}<br>
+                            {% trans "Default safe zone:" %}<button @click="current=16" style="border: 5px solid #9FE2BF;">16</button>
+                            {% trans "First SAFE CIRCLE at:" %}<button @click="current=getValue1()" style="border: 5px solid #9FE2BF;">[[ getValue1() ]]</button>
+                            {% trans "First player solo at Safe-Zone:" %}<button @click="current=getValue3()" style="background-color: #FFFFFF; border: 5px solid #9FE2BF; color: black;">[[ getValue3() ]] </button>{% trans "(Click here)" %}<br><br>
                 </p>
-                <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
-                            <br>
-                            {% trans "Uncover those safely connected subsets within groups, where defensive reactions (fight, flight &freeze) become superfluous. Realise your team's safety sweet spot (at maximal safe circles count)" %}
-                            <br/>
-                            {% trans "Max SAFE-CIRCLE-COUNT (Click here): " %}<button @click="current=getValue4()" style="background-color: #FFFFFF; border: 5px solid #75CBE8; color: black;">[[ getValue4() ]]</button>
-                            {% trans "Team becomes a sect at Safe-Zone: " %}<button @click="current=getValue2()">[[ getValue2() ]]</button> <br/><br/>
+
+                <p style="background-color: #9FE2BF; color: #00000; text-align: center; border-radius: 10px; padding: 0 10px;"><br>
+                            {% trans "Focus: Ensure that everyone is part of at least one SAFE CIRCLE. Utilize the feedback in the upcoming stages to expand your psychological SAFE CIRLES." %}
+                            <br><br>
                 </p>
+
 		<div class="center">
-			<p style="float:none; display: inline"><br>{% trans "(low safe-zone values = high stress )" %}<br/>
-			[[ getCircles().length ]] {% trans "circles at Safe-Zone: " %}<br><input type="number" v-model="current" :min="getValue1()-1" :max="getValue2()" style="width:130px; height: 50px; margin: 10px;" /><br/>
+			<p style="float:none; display: inline">
+			<br>[[ getCircles().length ]] {% trans "CIRCLES at safe-zone:" %}<input type="number" v-model="current" :min="getValue1()-1" :max="getValue2()" style="width:130px; height: 50px; margin: 7px; border-radius: 10px; border: 5px solid #626262;" />{% trans "(low values = high stress)" %}<br/>
 			<span v-for="circle in getCircles()">[[ circle ]] <br/></span> <br/>
 			<canvas ref="canvas" :width="width" :height="height" :style="{ width:width+'px', height:height+'px' }"></canvas>
 			</p>
 		</div>
+
+                <p style="background-color: #52CEEC; text-align: center; color: #00000; border-radius: 10px; padding: 0 10px;"><br>
+                            {% trans "In the next step, identify teammates consistently part of multiple or all SAFE CIRCLES. These core members are well-placed to debrief your journey suggest collaborative solutions, benefiting the team and enhancing psychological safety." %}
+                            <br><br>
+                </p>
+
+                <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
+                            <br>
+                            {% trans "In your current constellation, are you committed to working towards safety and inclusion? Our algorithm suggests aiming for your safety sweet spot at" %}
+                            <br/>
+                            {% trans "max SAFE-CIRCLE-COUNT:" %}<button @click="current=getValue4()" style="background-color: #FFFFFF; border: 5px solid #75CBE8; color: black;">[[ getValue4() ]]</button>{% trans "(Click here)" %}<br>
+
+                            {% trans "If you push for undifferentiated unity, the team may transform into a sect at Safe-Zone:" %}<button @click="current=getValue2()" >[[ getValue2() ]]</button>{% trans "(Values above 35 indicate unhealthy levels of expected conformity)" %}<br/><br/>
+                </p>
 
             </div>
 
@@ -87,16 +100,12 @@
 
 	                    <div class="center" style="margin:10px">
 
-                        <a href="/spannungsfelder/">
+                        <a href="/psychologischer/">
                         <button class="button" type="button">
                             {% trans "Weiter" %}
                         </button>
                         </div>
                         <div class="center">
-                        <p style="background-color: #52CEEC; color: #FFFFFF; border-radius: 10px; padding: 0 10px; width: 100%;">
-                            <br>
-                            {% trans "Unleash the power of your psychological safe circles. Uncover those safely connected subsets within groups, where defensive reactions (fight, flight &freeze) become superfluous. Realise your team's safety sweet spot (at maximal safe circles count)" %}<br><br>
-                        </p>
 
                         </div>
         </div>
@@ -213,7 +222,7 @@
 	    let s = 0;
             const total_circle_count = [0, ...Object.values(circle_count)].reduce((s, e) => s+e);
 	    ctx.font = '32px Arial';
-	    ctx.fillText('Safe Circles', centerX, centerY-32);
+	    ctx.fillText('SAFE CIRCLES', centerX, centerY-32);
 	    ctx.font = '60px Arial';
 	    ctx.fillText(total_circle_count, centerX, centerY+32);
 	    ctx.font = font;
@@ -230,6 +239,7 @@
 
                 const xx = centerX+x;
                 const yy = centerY+y;
+                    ctx.lineWidth = 3;
 
                 img.onload = () => {
                 ctx.drawImage(img, xx-32, yy-32, 64, 64);
@@ -241,6 +251,7 @@
 
 
 
+                    ctx.lineWidth = 3;
                     ctx.fillStyle = '#9FE2BF';
                     ctx.beginPath();
                     ctx.arc(xxx, yyy, 20, 0, Math.PI*2, true);
@@ -254,7 +265,7 @@
                     ctx.font = font;
                     ctx.fillStyle = 'black';
 
-                    ctx.lineWidth = 3;
+
                 }
             }
 
