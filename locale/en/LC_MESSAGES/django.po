@@ -26,6 +26,18 @@ msgstr "The Ark is an online group trip for 3 to 9 people to explore inner and p
 msgid "Die Arche ist eine Online-Gruppenreise für 3 bis 9 Personen, um die innere und psychologische Sicherheit mit dem Team zu erkunden."
 msgstr "The Ark is an online group trip for 3 to 9 people to explore inner and psychological safety with the team."
 
+msgid "Erweitere deine psychologisch sicheren Kreise"
+msgstr "Expand your Psychological Safe Circles"
+
+msgid "Die Arche ist eine kostenlose, online Gruppenreise für 3 bis 15 Personen, um innere und psychologische Sicherheit zu erkunden."
+msgstr "The Ark is a free, online group journey for 3 to 15 people to explore inner and psychological safety with the team."
+
+msgid "Entfalte das Potenzial deines Teams mit maximalen psychologisch sicheren Kreisen."
+msgstr "Unlock your team's potential with maximum psychological safe circles."
+
+msgid "Die Arche ist eine kostenlose, online Gruppenreise für 3 bis 15 Personen, um innere und psychologische Sicherheit zu erkunden. Entfalte das Potenzial deines Teams mit maximalen psychologisch sicheren Kreisen."
+msgstr "The Ark is a free, online group journey for 3 to 15 people to explore inner and psychological safety with the team. Unlock your team's potential with maximum psychological safe circles."
+
 msgid "Die Reisezeit der ersten Etappe beträgt eine halbe Stunde."
 msgstr "The travel time of the first stage is half an hour."
 
@@ -133,6 +145,18 @@ msgid ""
 msgstr ""
 "By the way: you will see your evaluation of the challenge at the end of the game."
 
+msgid "Mit wem bist du (schon) SICHER verbunden?"
+msgstr "With whom are you (already) safely connected?"
+
+msgid "In psychologisch sicheren Teams gelingen Lernprozesse und die Team Performance steigt. Innere Sicherheit erlaubt es achtsam mit dir und anderen umzugehen. Dadurch werden Defensivreaktionen (Fight, Flight & Freeze) überflüssig."
+msgstr "In psychologically safe teams, learning processes succeed, and team performance increases. Inner safety allows for mindful interaction with yourself and others, making defensive reactions (Fight, Flight & Freeze) superfluous."
+
+msgid "In den nächsten 30 Minuten erkundet ihr die Basis eurer inneren und psychologischen Sicherheit: die Psychological Safe Circles!"
+msgstr "In the next 30 minutes, you will explore the foundation of your inner and psychological safety: the Psychological Safe Circles!"
+
+msgid "Teile diesen QR-Code, um Mitreisende einzuladen"
+msgstr "Share this QR code to invite fellow travelers"
+
 msgid "https://docs.google.com/presentation/d/1xmsuoUm31ay2ecqG-FOb49HdyJkq9mTfcn97gMkzmdw/embed?start=true&loop=false&delayms=8000"
 msgstr "https://docs.google.com/presentation/d/145ag9wNeB7N0-oWSJ_BSVY2u4A1xc4GLgkzTad99HUg/embed?start=true&loop=false&delayms=8000"
 
@@ -145,6 +169,15 @@ msgstr "Continue"
 #: loco:606b759198a94a6cf8339672
 msgid "Was beschreibt am besten deinen SICHERHEITSANKER, der dir im Team Sicherheit schenkt?"
 msgstr "What describes best your SAFETY ANCHOR that makes the team feel safe for you?"
+
+msgid "Was beschreibt am besten deinen SICHERHEITSANKER im Team?"
+msgstr "What best describes your safety anchor in the team?"
+
+msgid "Denke in einem Kontinuum und wähle den positiven Endpunkt, der dein Sicherheitsgefühl im Team stärkt..."
+msgstr "Think on a continuum and choose the positive endpoint that strengthens your sense of security in the team..."
+
+msgid "Entscheide spontan – du kannst den Begriff später noch korrigieren."
+msgstr "Decide spontaneously – you can correct the term later."
 
 msgid "Stell dir ein Kontinuum vor und wähle den POSITIVEN Endpunkt, der massgeblich zu deiner inneren Sicherheit im Team beiträgt:"
 msgstr "Imagine a continuum and choose the POSITIVE endpoint that contributes most significantly to your inner safety in the team:"
@@ -165,6 +198,9 @@ msgstr "How good is your perceived team performance?"
 msgid "Schätze anonym die aktuelle durchschnittliche Performance dieses Teams auf einer Skala von 1 (low performing) bis 99 (high performing) ein."
 msgstr "Anonymously rate the current average performance of this team on a scale from 1 (low performing) to 99 (high performing)."
 
+msgid "Wie gut nutzt ihr euer Potential in der Zusammenarbeit?"
+msgstr "How well do you use your potential when working together?"
+
 #. ubung-2
 #: loco:606b79b45a04ef17b613bf63
 msgid "Bewege bitte deinen Avatar auf den Punkt der Skala, der am besten passt. Später siehst du die ANONYMISIERTE Einschätzung aller Mitreisenden."
@@ -184,6 +220,12 @@ msgstr "Now please describe the OPPOSITE to the safety anchor that can cause ins
 
 msgid "Schreib bitte ein Wort in das TRIGGER-Feld oder klicke auf den passenden Begriff."
 msgstr "Please write a word in the TRIGGER-field or click on the appropriate term."
+
+msgid "Kannst du den GEGENPOL zum Sicherheitsanker im Team benennen, der bei dir Unsicherheit verursachen könnte?"
+msgstr "Can you name the COUNTERPART to the safety anchor in the team that could cause uncertainty for you?"
+
+msgid "Bitte teile mit uns, was dich hier im Team NEGATIV triggern kann oder manchmal vielleicht sogar zu einem Gefühl von Angst beiträgt..."
+msgstr "Please share with us what can NEGATIVELY trigger you here in the team or sometimes even contribute to a feeling of fear..."
 
 #. ubung-3
 #: loco:606b7d7dfafd1642eb21fa72
@@ -206,11 +248,17 @@ msgstr "Share your perspectives now."
 msgid "Erklärt euch bitte kurz die GEGENSATZPAARE, damit alle verstehen können, mit welchen Begriffen wir arbeiten."
 msgstr "Please briefly explain the OPPOSITE PAIRS so that everyone can understand what terms we are working with."
 
+msgid "Bitte erläutert kurz die Gegensatzpaare, damit alle verstehen können, welche unterschiedlichen Bedürfnisse zu psychologischer Sicherheit im Team beitragen können."
+msgstr "Please briefly explain the opposing pairs so that everyone can understand which different needs can contribute to psychological safety in the team."
+
 msgid "Überprüfe nun bitte noch einmal deine Begriffe."
 msgstr "Now please check your terms again."
 
 msgid "Hast du wirklich ein griffiges GEGENSATZPAAR ausgewählt? Das wäre für den weiteren Verlauf der Reise entscheidend. Überarbeite deine Begriffe bei Bedarf..."
 msgstr "Have you really chosen a catchy OPPOSITE PAIR? This would be crucial for the rest of the journey. Revise your terms if necessary..."
+
+msgid "Hast du wirklich ein treffendes GEGENSATZPAAR ausgewählt? Das ist entscheidend für den weiteren Verlauf der Reise. Überarbeite bei Bedarf deine Begriffe."
+msgstr "Have you really chosen an accurate OPPOSING PAIR? This is crucial for the further course of the journey. Revise your terms if necessary."
 
 msgid "Bildet jetzt bitte Zweier- oder Dreiergruppen mit je ähnlichen Gegensatzpaaren. In diesen Gruppen reflektiert bitte zum Abschluss die Auswertung der Reise."
 msgstr "Now please form groups of two or three, each with similar pairs of opposites. In these groups, please reflect on the evaluation of the trip at the end."
@@ -225,6 +273,9 @@ msgstr "ready?"
 #: loco:606b80f9efd09147ce142513
 msgid "Bestimme zum Abschluss eure psychologische Sicherheit"
 msgstr "Finally, determine your psychological safety"
+
+msgid "Testet zum Abschluss eure psychologische Sicherheit."
+msgstr "Finally, test your psychological safety."
 
 #. ubung-4
 #: loco:606b816a85a8752578065132
@@ -262,7 +313,7 @@ msgid "Ich habe das Gefühl du reagierst auf Fehler mit Schuldzuweisungen an Ein
 msgstr "I have the feeling that you react to mistakes by blaming individuals in the team."
 
 msgid "Einer Aussage können auch mehrere Personen zugeordnet werden."
-msgstr "Several persons can also be assigned to the same statement."
+msgstr "Multiple individuals can also be assigned to the same statement."
 
 msgid "Jeder graue Kreis steht für eine Person, die von einem Mitreisenden dorthin gewählt wurde. Was denkst du wohl, wo deine Spielfiguren stehen? Tauscht euch kurz zu dieser Frage aus und notiere, wenn du magst, deine Einschätzung. Die Auflösung erfolgt zum Schluss der Reise."
 msgstr "Each grey circle represents a person who has been chosen there by a fellow traveller. Where do you think your pawns are? Share your thoughts on this question briefly and, if you like, write down your assessment. The solution will be given at the end of the journey."
@@ -271,6 +322,9 @@ msgstr "Each grey circle represents a person who has been chosen there by a fell
 #: loco:606c350d53fac01eda5589b2
 msgid "Wie nimmst du den Beitrag zur inneren Sicherheit im Team wahr?"
 msgstr "How do you perceive the contribution to inner safety in the team?"
+
+msgid "Wie bewertest du den Beitrag jedes Teammitglieds zur psychologischen Sicherheit?"
+msgstr "How do you evaluate the contribution of each team member to psychological safety?"
 
 #. ubung-5
 #: loco:606c3588f87f8e7dd763d4e2
@@ -281,6 +335,9 @@ msgstr "Please position the contribution of the players in the field of tension 
 #: loco:606c46c40774bf65c217de22
 msgid "KLICKE bitte jede Person an den Punkt (auf der Skala zwischen 1-99), der aus deiner Sicht am Besten zum Beitrag des Mitreisenden in für dich wichtigen Alltagssituationen passt."
 msgstr "CLICK each person to the point (on the scale between 1-99) that you think best matches the contribution of the fellow traveller in everyday situations that are important to you."
+
+msgid "KLICKE auf die Skala von 1 bis 99."
+msgstr "CLICK on the scale from 1 to 99."
 
 msgid "Ja, diese Einschätzung passt"
 msgstr "Yes, this assessment fits"
@@ -314,7 +371,14 @@ msgstr "Your inner safety"
 msgid "Gefühlte Team Performance"
 msgstr "Perceived Team Performance"
 
-#. potential-result
+#. potential-result > now part of waiting_room2
+
+msgid "Erinnerst du dich an deine Einschätzung der gefühlten Team-Performance? Diese Auswertung setzt sich aus den gleichberechtigten Wahrnehmungen aller Teammitglieder zusammen – gibt es Ausreißer?"
+msgstr "Do you remember your assessment of the perceived team performance? This evaluation is composed of the equal perceptions of all team members - are there outliers?"
+
+msgid "In der Regel sind psychologische Sicherheit und Team-Performance ungefähr auf gleichem Niveau, denn psychologische Sicherheit gilt als bester Prädiktor für Team-Performance. Betrachte nun die psychologisch sicheren Kreise deines Teams. Eine Erweiterung dieser Kreise wirkt sich positiv auf eure psychologische Sicherheit aus."
+msgstr "Generally, psychological safety and team performance are approximately at the same level because psychological safety is considered the best predictor of team performance. Now, consider the psychologically safe circles of your team. Expanding these circles has a positive impact on your psychological safety."
+
 #: loco:606c4e795e2f794ae22b8e02
 msgid ""
 "Ist dein Team High oder Low Performing? Unsere und Googles Hypothese lautet: "
@@ -325,6 +389,51 @@ msgstr ""
 
 #. potential-result
 #: loco:606c4f4d5710c25c3f4f0693
+
+msgid "Entfesselt die Kraft eurer psychologischen SAFE CIRCLES"
+msgstr "Unleash the power of your psychological SAFE CIRCLES"
+
+msgid "Der erste Meilenstein unserer Reise ist ein Schnappschuss davon, wie wir eure derzeitigen sicheren Kreise wahrnehmen. Entdeckt diese sicher verbundenen Untergruppen innerhalb des Teams, in denen Verteidigungsreaktionen (Kampf, Flucht und Erstarren) überflüssig werden. Kannst du dein Team im Spiegel erkennen?"
+msgstr "The first milestone of our journey is a snapshot of how we perceive your current safe circles. Discover these securely connected subsets within groups, where defensive reactions (fight, flight, and freeze) become superfluous. Can you recognize your team in the mirror?"
+
+msgid "Standard-Sicherheitszone:"
+msgstr "Default safe zone:"
+
+msgid "Erster SAFE CIRCLE bei:"
+msgstr "First SAFE CIRCLE at:"
+
+msgid "Erster Spieler solo bei Safe-Zone-Wert:"
+msgstr "First player solo at Safe Zone value:"
+
+msgid "(Hier klicken)"
+msgstr "(Click here)"
+
+msgid "Fokus: Stellt sicher, dass jeder zu mindestens einem SAFE CIRCLE gehört. Nutzt das Feedback in den kommenden Etappen, um eure psychologischen SAFE CIRCLES zu erweitern."
+msgstr "Focus: Ensure that everyone belongs to at least one SAFE CIRCLE. Use the feedback in the upcoming stages to expand your psychological SAFE CIRCLES."
+
+msgid "CIRCLES bei Safe-Zone-Wert:"
+msgstr "CIRCLES at Safe Zone value:"
+
+msgid "(niedrige Werte = hoher Stress)"
+msgstr "(low values = high stress)"
+
+msgid "Im nächsten Schritt solltet ihr die Teammitglieder identifizieren, die durchgängig an mehreren oder allen SAFE CIRCLES teilhaben. Diese Kernmitglieder sind in der Lage Lösungen vorzuschlagen, die allen Teammitgliedern zugute kommen und die psychologische Sicherheit erhöhen."
+msgstr "In the next step, you should identify team members who consistently participate in multiple or all SAFE CIRCLES. These core members are able to propose solutions that benefit all team members and increase psychological safety."
+
+msgid "In der aktuellen Konstellation schlägt unser Algorithmus vor, den Sicherheits-Sweetspot als Entwicklungsziel anzustreben bei"
+msgstr "In the current constellation, our algorithm suggests aiming for the safety sweet spot as a development goal with"
+
+msgid "max SAFE-CIRCLE-COUNT:"
+msgstr "max SAFE-CIRCLE-COUNT:"
+
+msgid "Wenn auf undifferenzierte Einigkeit gedrängt wird, könnte sich das Team bei einem Safe-Zone-Wert von:"
+msgstr "If pressured for undifferentiated unanimity, the team could turn into a cult at a Safe Zone value of:"
+
+msgid "in eine Sekte verwandeln (Werte über 35 weisen auf ein ungesundes Maß an erwarteter Konformität hin)."
+msgstr "could turn into a cult (values above 35 indicate an unhealthy level of expected conformity)."
+
+
+
 msgid "Euren Psychologischen Sicherheit Score siehst du im nächsten Schritt."
 msgstr "You will see your Psychological Safety Score in the next step."
 
@@ -439,8 +548,8 @@ msgstr "The green areas are the safe base of your team."
 msgid "Unsere Hypothese: Spannung erzeugt Unsicherheit und gefährdet Vertrauen. Eine tragfähige, sichere Beziehungsbasis macht Defensivreaktionen überflüssig (Fight, Flight & Freeze) und lässt dich achtsam mit dir und anderen umgehen. Was ist dein Beitrag zur inneren Sicherheit? Wie erklärst du die Unterschiede zwischen deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team?"
 msgstr "Our hypothesis: Tension creates insecurity and jeopardises trust. A sustainable, secure relationship basis makes defensive reactions unnecessary (fight, flight & freeze) and allows you to be mindful of yourself and others. What is your contribution to inner safety? How do you explain the differences between your self-perception and the perception of others by the team?"
 
-msgid "Zum Abschluss eurer Reise empfehlen wir eine anonyme Feedbackrunde mit 3 bewährten Fragen zur Stärkung der psychologischen Sicherheit im Team: Gib anonymes 1 zu 1 Feedback, um alle in einen psychologisch sichereren Raum mitzunehmen."
-msgstr "To conclude your journey, we recommend an anonymous feedback session with 3 tried and tested questions to strengthen psychological safety in the team: Give anonymous 1 to 1 feedback to take everyone into a psychologically safer space."
+msgid "Zum Abschluss eurer Reise empfehlen wir eine anonyme Feedbackrunde mit 3 bewährten Fragen zur Stärkung der psychologischen Sicherheit im Team: Gib anonymes 1 zu 1 Feedback, um einen sicheren Raum für alle zu schaffen."
+msgstr "To conclude your journey, we recommend an anonymous feedback round with 3 proven questions to strengthen psychological safety in the team: Provide anonymous 1-on-1 feedback to create a safe space for everyone."
 
 msgid "(Unbedingt empfohlen für Teams mit einem Performance-Wert unter 80)."
 msgstr "(Highly recommended for teams with a performance value below 80)."
@@ -449,7 +558,10 @@ msgid "Direkt zur Auswertung ohne Feedback"
 msgstr "Direct to evaluation without feedback"
 
 msgid "Anonymes Feedback geben"
-msgstr "Giving anonymous feedback"
+msgstr "Gifting anonymous feedback"
+
+msgid "Weiter ohne Feedback"
+msgstr "Continue without feedback"
 
 #. spannungsfelder
 #: loco:606c8ee09eab385a0d6cd433
@@ -883,14 +995,25 @@ msgstr "Info about the Ark"
 
 #. farewell
 #: loco:606efe32790d3070b02aa142
+
+msgid "Nach der Reise ist vor der Reise."
+msgstr "After the journey is before the journey."
+
+msgid "DEBRIEF: Arbeiten Sie in Ihren sicheren Kreisen gemeinsam an Lösungen, wobei die Kernmitglieder die Moderation übernehmen. Schwerpunkt: 1) Bestehende Faktoren, die zur psychologischen Sicherheit im Team beitragen, und 2) Erkundung von Babyschritten zur Verbesserung der psychologischen Sicherheit. Planen Sie 20 Minuten für diese Aktivität ein."
+msgstr "DEBRIEF: Collaborate on solutions in your safe circles, with core members facilitating. Focus: 1) existing factors contributing to team psychological safety, and 2) explore baby steps to enhance it. Allocate 20 minutes for this activity."
+
+msgid "Erkundet nochmal eure Psychologischen Safe Circles."
+msgstr "Explore your Psychological Safe Circles again."
+
+
 msgid "Danke für deine Reise mit der ARCHE"
 msgstr "Thank you for your journey with the Ark"
 
 msgid "Was jetzt: SOCIAL SENSITIVITY TRAINING? (Ca. 10 Minuten Zeitbedarf) Hilf mit die psychologische Sicherheit im Team zu verbessern: Trainiere dazu deine soziale Sensibilität und lerne einzuschätzen, wie dein Beitrag zur inneren Sicherheit von jedem einzelnen Teammitglied wahrgenommen wirst. (Empfohlen für Teams mit einem psychologischen Sicherheitswert unter 70)."
 msgstr "What now: SOCIAL SENSITIVITY TRAINING (approx. 10 minutes) Help to improve the psychological safety in your team: To do this, train your social sensitivity and learn to assess how you are perceived by your team members. (Recommended for teams with a psychological safety score lower than 70)."
 
-msgid "Was jetzt: AUFRICHTIGES FEEDBACK? (10-20 Minuten Zeitbedarf, je nach Teamgrösse) Hilf mit die psychologische Sicherheit im Team zu verbessern: Gib anonymes 1 zu 1 Feedback, um alle in einen psychologisch sichereren Raum mitzunehmen. (Empfohlen für Teams mit einem psychologischen Sicherheitswert unter 80)."
-msgstr "What now: CANDID FEEDBACK? (10-20 minutes required, depending on team size) Help improve the psychological safety of the team: Give anonymous 1 to 1 feedback to take everyone into a psychologically safer space. (Recommended for teams with a psychological safety score lower than 80)."
+msgid "ANONYMES FEEDBACK (Zeitbedarf: 15 Minuten, abhängig von der Teamgröße). Wir empfehlen eine Feedbackrunde mit 3 bewährten Fragen zur Stärkung der psychologischen Sicherheit im Team. (Unbedingt empfohlen für Teams mit einem Performance-Wert unter 80)."
+msgstr "ANONYMOUS FEEDBACK (Time required: 15 minutes, depending on team size). We recommend a feedback round with 3 proven questions to strengthen psychological safety in the team. (Highly recommended for teams with a performance value below 80)."
 
 msgid "Bist du Coach oder vertraut mit gruppendynamischen Mustern? Dann ist die TEAM-HEATMAP für dich. Klicke auf das Icon um eine Karte der sicheren Basis und Spannungen im Team zu sehen."
 msgstr "Are you a coach or familiar with group dynamic patterns? Then the TEAM HEATMAP is for you. Click on the icon to see a map of safe base and tensions in the team."
@@ -901,13 +1024,14 @@ msgstr "GAME DATA? Click on this link for the evaluation of your journey with th
 msgid "Was jetzt: DEBRIEF? (15 Minuten Zeitbedarf) Nutzt die Liberating Structure 1-2-4-All und tauscht euch über die Reise mit der Arche aus. Leitfragen: Wie sicher ist euer Gruppenklima im Verhältnis zu deiner inneren Sicherheit? Wie kannst du zur Stärkung deiner inneren Sicherheit und der psychologischen Sicherheit im Team beitragen?"
 msgstr "What's next: DEBRIEF? (15 minutes) Use the Liberating Structure 1-2-4-All and share about the journey with the Ark. Guiding questions: How safe is your group climate in relation to your inner safety? How will you contribute to strengthening your inner safety and the psychological safety of the team?"
 
-msgid "COUNSELING? Nimm'für eine professionelle Interpretation eurer Reisedaten und Begleitung Kontakt mit deinem Coach oder mit Dr. Joe Maier. (Empfohlen für Teams mit einem psychologischen Sicherheitswert unter 55)."
-msgstr "COUNSELING? Contact your coach or Dr. Joe Maier for a professional interpretation of your game data and guidance. (Recommended for teams with a psychological safety score below 55)."
+msgid "COUNSELING? Für eine professionelle Intervention nimm Kontakt mit deinem Coach oder mit Dr. Joe Maier auf. Das Ziel ist die Erweiterung eurer Psychological Safe Circles. (Empfohlen für Teams mit einem psychologischen Sicherheitswert unter 55)."
+msgstr "COUNSELING? For professional intervention, contact your coach or Dr. Joe Maier. The goal is to expand your Psychological Safe Circles. (Recommended for teams with a psychological safety value below 55)."
 
-#. farewell
-#: loco:606f028e88f4536b9b769575
-msgid "SPIELDATEN? Klicke auf diesen Link für die Auswertung deiner Reise mit der Arche. Speichere den Link, um die Auswertung später noch einmal anzuschauen."
-msgstr "Game data? Click on this link for the evaluation of your journey with the Ark. Save the link to view the evaluation later."
+msgid "Bist du ein Coach oder vertraut mit gruppendynamischen Mustern? Dann ist die HEATMAP der Spannungen im Team etwas für dich."
+msgstr "Are you a coach or familiar with group dynamic patterns? Then the HEATMAP of tensions in the team is for you."
+
+msgid "SPIELDATEN? Klicke auf diesen Link, um die Auswertung deiner Reise mit der Arche zu sehen. Speichere den Link, um die Auswertung später erneut anzuschauen."
+msgstr "GAME DATA? Click on this link to view the evaluation of your journey with the Ark. Save the link to review the evaluation later."
 
 #. farewell
 #: loco:606f04b98f1a2512355b6063
@@ -918,10 +1042,8 @@ msgstr ""
 "Game interpretation? Contact Dr. Joe Maier for a professional interpretation "
 "of your game data."
 
-#. farewell
-#: loco:606f052054a2c81762569dd3
-msgid "PAYPAL? Gib dem Entwickler einen Kaffee aus – Joe Maier dankt es dir!"
-msgstr "PAYPAL? Buy the developer a coffee - Joe Maier will thank you!"
+msgid "PAYPAL? Gönn' dem Entwickler einen Kaffee – Dr. Joe wird es dir danken!"
+msgstr "PAYPAL? Treat the developer to a coffee - Dr. Joe will thank you!"
 
 #. farewell
 #: loco:606f05ee28ef4738b26ef854

@@ -40,7 +40,7 @@
             </div>
             <div class="header-main__progress">
                 <div class="progress">
-                    <label>{% trans "ANONYM" %}</label>
+                    <label>{% trans "I'LL BE YOUR MIRROR" %}</label>
                     <div class="progress__bar">
                         <div style="width: 75%">75%</div>
                     </div>
@@ -55,43 +55,43 @@
         element-loading-background="rgba(0, 0, 0, 0.8)">
             <main class="screen auth">
                 <h1>
-                    {% trans "Unleash the power of your psychological SAFE CIRCLES" %}
+                    {% trans "Entfesselt die Kraft eurer psychologischen SAFE CIRCLES" %}
                 </h1>
                 <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
 
                 <p style="background-color: #52CEEC; color: #FFFFFF; border-radius: 10px; padding: 0 10px;">
                             <br>
-                            {% trans "The journey's first key result is a snapshot of our perception of your current SAFE CIRCLES. Uncover those safely connected subsets within groups, where defensive reactions (fight, flight, and freeze) become superfluous. Can you recognize your team in the mirror?" %}<br>
-                            {% trans "Default safe zone:" %}<button @click="current=16" style="border: 5px solid #9FE2BF;">16</button>
-                            {% trans "First SAFE CIRCLE at:" %}<button @click="current=getValue1()" style="border: 5px solid #9FE2BF;">[[ getValue1() ]]</button>
-                            {% trans "First player solo at Safe-Zone:" %}<button @click="current=getValue3()" style="background-color: #FFFFFF; border: 5px solid #9FE2BF; color: black;">[[ getValue3() ]] </button>{% trans "(Click here)" %}<br><br>
+                            {% trans "Der erste Meilenstein unserer Reise ist ein Schnappschuss davon, wie wir eure derzeitigen sicheren Kreise wahrnehmen. Entdeckt diese sicher verbundenen Untergruppen innerhalb des Teams, in denen Verteidigungsreaktionen (Kampf, Flucht und Erstarren) überflüssig werden. Kannst du dein Team im Spiegel erkennen?" %}<br>
+                            {% trans "Standard-Sicherheitszone:" %}<button @click="current=16" style="border: 5px solid #9FE2BF;">16</button>
+                            {% trans "Erster SAFE CIRCLE bei:" %}<button @click="current=getValue1()" style="border: 5px solid #9FE2BF;">[[ getValue1() ]]</button>
+                            {% trans "Erster Spieler solo bei Safe-Zone-Wert:" %}<button @click="current=getValue3()" style="background-color: #FFFFFF; border: 5px solid #9FE2BF; color: black;">[[ getValue3() ]] </button>{% trans "(Hier klicken)" %}<br><br>
                 </p>
 
                 <p style="background-color: #9FE2BF; color: #00000; text-align: center; border-radius: 10px; padding: 0 10px;"><br>
-                            {% trans "Focus: Ensure that everyone is part of at least one SAFE CIRCLE. Utilize the feedback in the upcoming stages to expand your psychological SAFE CIRLES." %}
+                            {% trans "Fokus: Stellt sicher, dass jeder zu mindestens einem SAFE CIRCLE gehört. Nutzt das Feedback in den kommenden Etappen, um eure psychologischen SAFE CIRCLES zu erweitern." %}
                             <br><br>
                 </p>
 
 		<div class="center">
 			<p style="float:none; display: inline">
-			<br>[[ getCircles().length ]] {% trans "CIRCLES at safe-zone:" %}<input type="number" v-model="current" :min="getValue1()-1" :max="getValue2()" style="width:130px; height: 50px; margin: 7px; border-radius: 10px; border: 5px solid #626262;" />{% trans "(low values = high stress)" %}<br/>
+			<br>[[ getCircles().length ]] {% trans "CIRCLES bei Safe-Zone-Wert:" %}<input type="number" v-model="current" :min="getValue1()-1" :max="getValue2()" style="width:130px; height: 50px; margin: 7px; border-radius: 10px; border: 5px solid #626262;" />{% trans "(niedrige Werte = hoher Stress)" %}<br/>
 			<span v-for="circle in getCircles()">[[ circle ]] <br/></span> <br/>
 			<canvas ref="canvas" :width="width" :height="height" :style="{ width:width+'px', height:height+'px' }"></canvas>
 			</p>
 		</div>
 
                 <p style="background-color: #52CEEC; text-align: center; color: #00000; border-radius: 10px; padding: 0 10px;"><br>
-                            {% trans "In the next step, identify teammates consistently part of multiple or all SAFE CIRCLES. These core members are well-placed to debrief your journey suggest collaborative solutions, benefiting the team and enhancing psychological safety." %}
+                            {% trans "Im nächsten Schritt solltet ihr die Teammitglieder identifizieren, die durchgängig an mehreren oder allen SAFE CIRCLES teilhaben. Diese Kernmitglieder sind in der Lage Lösungen vorzuschlagen, die allen Teammitgliedern zugute kommen und die psychologische Sicherheit erhöhen." %}
                             <br><br>
                 </p>
 
                 <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
                             <br>
-                            {% trans "In your current constellation, are you committed to working towards safety and inclusion? Our algorithm suggests aiming for your safety sweet spot at" %}
+                            {% trans "In der aktuellen Konstellation schlägt unser Algorithmus vor, den Sicherheits-Sweetspot als Entwicklungsziel anzustreben bei" %}
                             <br/>
-                            {% trans "max SAFE-CIRCLE-COUNT:" %}<button @click="current=getValue4()" style="background-color: #FFFFFF; border: 5px solid #75CBE8; color: black;">[[ getValue4() ]]</button>{% trans "(Click here)" %}<br>
+                            {% trans "max SAFE-CIRCLE-COUNT:" %}<button @click="current=getValue4()" style="background-color: #FFFFFF; border: 5px solid #75CBE8; color: black;">[[ getValue4() ]]</button>{% trans "(Hier klicken)" %}<br>
 
-                            {% trans "If you push for undifferentiated unity, the team may transform into a sect at Safe-Zone:" %}<button @click="current=getValue2()" >[[ getValue2() ]]</button>{% trans "(Values above 35 indicate unhealthy levels of expected conformity)" %}<br/><br/>
+                            {% trans "Wenn auf undifferenzierte Einigkeit gedrängt wird, könnte sich das Team bei einem Safe-Zone-Wert von:" %}<button @click="current=getValue2()" >[[ getValue2() ]]</button>{% trans "in eine Sekte verwandeln (Werte über 35 weisen auf ein ungesundes Maß an erwarteter Konformität hin)." %}<br/><br/>
                 </p>
 
             </div>

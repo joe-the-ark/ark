@@ -59,7 +59,7 @@
             </div>
             <div class="header-main__progress">
                 <div class="progress">
-                    <label>WAITING</label>
+                    <label>EVERYONE HERE?</label>
                     <div class="progress__bar">
                         <div style="width: 70%">70%</div>
                     </div>
@@ -76,18 +76,14 @@
                     </h1>
                 <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
                 <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;"><br>
-                        {% trans "Erinnerst du dich an deine Einschätzung der gefühlten Team-Performance?" %}
+                        {% trans "Erinnerst du dich an deine Einschätzung der gefühlten Team-Performance? Diese Auswertung setzt sich aus den gleichberechtigten Wahrnehmungen aller Teammitglieder zusammen – gibt es Ausreißer?" %}
                         <br><br>
                 </p>
                 <h1>
                     {% trans "Gefühlte Team-Performance-Einschätzung" %}
                 </h1>
                 <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
-                <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
-                    {% trans "Eure Einschätzung setzt sich aus den gleichberechtigten Wahrnehmungen aller Teammitglieder zusammen. Bieten diese Werte eine solide Grundlage, oder gibt es Ausreißer?" %}
-                    <br/>
-                    <br/>
-                </p>
+
                 <div class="custom-graph-info">
                     <div class="custom-graph-info__item small" data-text="{% trans 'Minimal' %}">
                         {{ minimal }}
@@ -103,7 +99,7 @@
 
 
                 <p>
-                        {% trans "Hier siehst du die Extremwerte, sowie den Durchschnitt aller abgegebenen Werte im Team (auf der Skala von 1 bis 99). In der Regel gilt folgender Zusammenhang: je grösser eure psychologische Sicherheit, umso höher die Team-Performance. Auf der nächsten Etappe siehst du, welches Verhalten zu eurer psychologischen Sicherheit beiträgt." %}
+                        {% trans "In der Regel sind psychologische Sicherheit und Team-Performance ungefähr auf gleichem Niveau, denn psychologische Sicherheit gilt als bester Prädiktor für Team-Performance. Betrachte nun die psychologisch sicheren Kreise deines Teams. Eine Erweiterung dieser Kreise wirkt sich positiv auf eure psychologische Sicherheit aus." %}
                 </p>
                 </div>
             </div>
@@ -116,7 +112,7 @@
                             [[ value.name ]]
                         </div>
                         <div class="user-connect__now">
-                            {% trans "bereit" %}
+                            {% trans "bereit?" %}
                         </div>
                     </div>
 

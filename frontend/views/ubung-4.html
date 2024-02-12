@@ -52,11 +52,10 @@
         <div class="container">
             <main class="screen ubung-4">
                 <h1>
-                    {% trans "Bestimme zum Abschluss eure psychologische Sicherheit" %}
+                    {% trans "Testet zum Abschluss eure psychologische Sicherheit." %}
                 </h1>
                 <p style="background-color: #52CEEC; color: #FFFFFF; border-radius: 10px; padding: 0 10px;">
                     {% trans "Bewege jede Person zu der Aussage, die am ehesten passt! Beziehe deine Einschätzung auf alltägliche Situationen im Team, die sich bei dir eingeprägt haben." %}
-                    <br/>
                     <br/>
                 </p>
                 <div class="distribution__wrapper"></div>
@@ -73,15 +72,16 @@
                         
                     <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
                         {% trans "Einer Aussage können auch mehrere Personen zugeordnet werden." %}
-                    <br><br></p>
+                    </p>
 
-                        <p>
+                    <p>
                         <button type="button" id="button" @click="check_submit()" >
                             {% trans "Weiter" %}
                         </button>
                     </p>
                     </div>
                 </form>
+
             </main>
         </div>
     </div>

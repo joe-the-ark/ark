@@ -50,8 +50,9 @@
             {% csrf_token %}
                 <main class="screen ubung-2">
                     <h1>
-                        {% trans "Wie gut nutzt ihr euer Potential?" %}
+                        {% trans "Wie gut nutzt ihr euer Potential in der Zusammenarbeit?" %}
                     </h1>
+                    <div style="border: 1px solid #ccc; border-radius: 10px; padding: 30px;">
                     <p>
                         {% trans "Schätze anonym die aktuelle durchschnittliche Performance dieses Teams auf einer Skala von 1 (low performing) bis 99 (high performing) ein." %}
                     </p>
@@ -73,6 +74,7 @@
                         {% trans "Bewege bitte deinen Avatar auf den Punkt der Skala, der am besten passt. Später siehst du die ANONYMISIERTE Einschätzung aller Mitreisenden." %}<br><br>
                     </p>
                     <input id="digit_value" type="hidden" name="digit_value" value="0">
+                </div>
                      <div class="center">
                         <p>
                         <button class="button" type="button">

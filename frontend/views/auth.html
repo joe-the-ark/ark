@@ -58,10 +58,10 @@
         <div class="container">
             <main class="screen auth">
                 <h1 id="title-game">
-                    {% trans "Expand your psychological safe-circles" %}
+                    {% trans "Erweitere deine psychologisch sicheren Kreise" %}
                 </h1>
                 <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
-                    {% trans "The Ark is a free, online group journey for 3 to 15 people to explore inner and psychological safety with the team.<br>Unlock your teams potential with maximum psychological safe circles." %}<br>
+                    {% trans "Die Arche ist eine kostenlose, online Gruppenreise für 3 bis 15 Personen, um innere und psychologische Sicherheit zu erkunden." %}<br>{% trans "Entfalte das Potenzial deines Teams mit maximalen psychologisch sicheren Kreisen." %}<br>
                 </p>
                 <span class="terms_str">{% trans "Das sind die" %}
                   <span class="terms" style="text-decoration:underline;">{% trans "Nutzungsbedingungen" %}</span>
@@ -403,7 +403,7 @@
 
     function defaultLoad() {
         const el = document.getElementById('title-game');
-        el.innerHTML = window.innerWidth < 768 ? "{% trans 'Expand your psychological safe-circles' %}" : "{% trans 'Expand your psychological safe-circles' %}"
+        el.innerHTML = window.innerWidth < 768 ? "{% trans 'Erweitere deine psychologisch sicheren Kreise' %}" : "{% trans 'Erweitere deine psychologisch sicheren Kreise' %}"
     }
 
     function check_game_name(){

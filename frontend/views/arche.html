@@ -48,19 +48,19 @@
                         <div class="icon-logo"></div>
                         </a>
                          <p>
-                            {% trans "DEBRIEF: Digest your feedback and brainstorm solution ideas in safe circles of two or three. Safe circle core members may facilitate the discussion. Focus on what already contributes to psychological safety in our team at the moment. Consider which baby steps could further enhance psychological safety. The allocated time for this activity is 20 minutes." %}
+                            {% trans "DEBRIEF: Arbeiten Sie in Ihren sicheren Kreisen gemeinsam an Lösungen, wobei die Kernmitglieder die Moderation übernehmen. Schwerpunkt: 1) Bestehende Faktoren, die zur psychologischen Sicherheit im Team beitragen, und 2) Erkundung von Babyschritten zur Verbesserung der psychologischen Sicherheit. Planen Sie 20 Minuten für diese Aktivität ein." %}
                         </p>
                     </div>
                     <div class="options__item">
                         <div class="icon-download" onclick="location='/potential-result/'"></div>
                         <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
-                            {% trans "Re-visit your psychological safe circles" %}
+                            {% trans "Erkundet nochmal eure Psychologischen Safe Circles." %}
                         </p>
                     </div>
                     <div class="options__item">
                         <div class="icon-logo" onclick="location='/mission-2-ubung-2/'"></div>
                         <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
-                            {% trans "AUFRICHTIGES FEEDBACK (Zeitbedarf: 15 Minuten, abhängig von der Teamgröße) Hilf mit, die psychologische Sicherheit im Team zu verbessern, indem du anonymes 1-zu-1-Feedback gibst. Dies trägt dazu bei, alle in einen psychologisch sichereren Kreis mitzunehmen. (Empfohlen für Teams mit einem psychologischen Sicherheitswert unter 80)." %}
+                            {% trans "ANONYMES FEEDBACK (Zeitbedarf: 15 Minuten, abhängig von der Teamgröße). Wir empfehlen eine Feedbackrunde mit 3 bewährten Fragen zur Stärkung der psychologischen Sicherheit im Team. (Unbedingt empfohlen für Teams mit einem Performance-Wert unter 80)." %}
                         </p>
                     </div>
                     {% comment %}<div class="options__item">
@@ -104,10 +104,10 @@
                     <p>
                         <br><br>
                     </p>
-                        <a href="/heatmap/">
+                        {% comment %}<a href="/heatmap/">
                         <button class="button" type="button">
                             {% trans "Zur Team Heatmap" %}
-                        </button>
+                        </button>{% endcomment %}
 
                 <button onClick="window.open('https://info.arks.ch/');">
                     {% trans "Infos zur Arche" %}
