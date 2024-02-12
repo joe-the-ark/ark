@@ -1036,6 +1036,15 @@ msgstr "Et maintenant : SOCIAL SENSITIVITY TRAINING ? (env. 10 minutes) Aide à 
 msgid "ANONYMES FEEDBACK (Zeitbedarf: 15 Minuten, abhängig von der Teamgröße). Wir empfehlen eine Feedbackrunde mit 3 bewährten Fragen zur Stärkung der psychologischen Sicherheit im Team. (Unbedingt empfohlen für Teams mit einem Performance-Wert unter 80)."
 msgstr "FEEDBACK ANONYME (Temps requis : 15 minutes, en fonction de la taille de l'équipe). Nous recommandons une séance de feedback avec 3 questions éprouvées pour renforcer la sécurité psychologique dans l'équipe. (Vivement recommandé pour les équipes avec une valeur de performance inférieure à 80)."
 
+msgid "In der Regel liegen die wahrgenommene Team-Performance und der psychologische Sicherheitswert eng beieinander. Der Schlüssel zur Angleichung, bzw. zur Verbesserung beider Werte liegt in einer Steigerung der inneren Sicherheit aller Teammitglieder."
+msgstr "En général, la performance perçue de l'équipe et la valeur de sécurité psychologique sont étroitement liées. La clé pour aligner ou améliorer les deux valeurs réside dans l'augmentation de la sécurité intérieure de tous les membres de l'équipe."
+
+msgid "Welchen Beitrag leistest du zur psychologischen Sicherheit? Wie klärst du Unterschiede zwischen deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team?"
+msgstr "Quelle contribution apportez-vous à la sécurité psychologique ? Comment clarifiez-vous les différences entre votre perception de soi et la perception de l'équipe ?"
+
+msgid "Hier ist Platz für dein Feedback."
+msgstr "Voici de la place pour vos commentaires."
+
 msgid "Bist du Coach oder vertraut mit gruppendynamischen Mustern? Dann ist die TEAM-HEATMAP für dich. Klicke auf das Icon um eine Karte der sicheren Basis und Spannungen im Team zu sehen."
 msgstr "Tu es coach ou tu connais les modèles de dynamique de groupe ? Alors la TEAM-HEATMAP est faite pour toi. Clique sur l'icône pour voir une carte de la base de sécurité et des tensions dans l'équipe."
 
