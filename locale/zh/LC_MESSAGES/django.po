@@ -833,17 +833,17 @@ msgstr "在你的团队中，平均张力值是"
 msgid "Als Daumenregel gilt: Werte unter 20 sind entspannt. Werte unter 40 sind meist noch ohne externe Begleitung bearbeitbar. Die Skala reicht von 1 (absolute Spannungsfreiheit) bis 99."
 msgstr "这是您团队的紧张度值。根据经验，低于 20 的值为放松值。低于 40 的数值通常在没有外部支持的情况下仍可管理。"
 
-msgid "Als Faustregel gilt: Je höher die Spannungen, desto geringer die psychologische Sicherheit."
-msgstr "根据经验，紧张程度越高，心理安全感就越低。"
+msgid "Als Faustregel gilt: Mit zunehmenden Spannungen nimmt die psychologische Sicherheit ab."
+msgstr "作为经验法则：随着紧张局势的增加，心理安全会减少。"
 
-msgid "Die Safe-Base beschreibt den Bereich der sicheren Basis für die Zusammenarbeit, in der nicht mit defensiven Reaktionen (Fight, Flight oder Freeze) zu rechnen ist."
-msgstr "Safe-Base 描述的是合作安全基地的区域，在该区域内，不会出现防御反应（战斗、逃跑或冻结）。"
+msgid "Die Safe-Zone beschreibt den Bereich einer sicheren Basis für die Zusammenarbeit, in dem nicht mit defensiven Reaktionen (Fight, Flight oder Freeze) zu rechnen ist."
+msgstr "安全区域描述了合作的安全基地，其中不应期望防御性反应（Fight、Flight或Freeze）。"
 
-msgid "Der Stresswert zeigt an, wie gut es den Mitreisenden gerade im Team geht. Je höher dieser Wert, desto mehr stresst das Verhalten der anderen."
-msgstr "压力值显示团队成员目前的表现。该值越高，其他人的行为就越紧张。"
+msgid "Der Stresswert gibt darüber Aufschluss, wie es den Teammitgliedern gerade geht. Mit einem höheren Wert steigt die Wahrscheinlichkeit, dass das Verhalten der anderen als stressig empfunden wird, eine Defensivreaktion eintritt und das Window of Tolerance enger wird."
+msgstr "压力值提供了团队成员当前状况的见解。数值越高，其他人的行为被感知为压力的可能性增加，触发防御性反应，并使容忍度窗口变窄。"
 
-msgid "In der Regel haben die Teammitglieder unterschiedliche Sicherheitsanker. Das Sicherheitsempfinden entsteht nicht im Kopf, sondern über das autonome Nervensystem – abängig davon, was in früheren Lebensabschnitten für Sicherheit gesorgt haben mag."
-msgstr "一般来说，团队成员都有不同的安全锚。安全感不是在头脑中产生的，而是通过自律神经系统产生的--这取决于在生命的早期阶段是什么提供了安全感。"
+msgid "In der Regel haben Teammitglieder unterschiedliche Sicherheitsanker, da das Sicherheitsempfinden nicht allein im Kopf entsteht, sondern über das autonome Nervensystem beeinflusst wird – abhängig davon, was in früheren Lebensabschnitten für Sicherheit gesorgt hat."
+msgstr "通常情况下，团队成员有不同的安全锚，因为安全感并不仅仅产生在头脑中，而是受自主神经系统影响 - 取决于在生命早期什么为安全提供了保障。"
 
 msgid "Bildet jetzt bitte Zweier- oder Dreiergruppen mit Menschen, die ähnliche Sicherheitsanker gewählt hatten:"
 msgstr "现在，请与选择了类似安全锚的人组成二至三人小组："
@@ -863,14 +863,17 @@ msgstr "所需时间：10分钟。"
 msgid "Welche Spannungen im Team könnt ihr mit Feedback lösen?"
 msgstr "你可以通过反馈来缓解团队中的哪些紧张关系？"
 
-msgid "Die Heatmap zeigt eine Zusammenfassung aller Spannungen. Beginnt eure Auswertung mit den farbigen Feldern im inneren der Matrix, deren rechte Werte grösser als 16 sind..."
+msgid "Die Heatmap zeigt eine Zusammenfassung aller Spannungen. Beginnt eure Auswertung mit den farbigen Feldern im Inneren der Matrix, deren rechte Werte größer als 16 sind..."
 msgstr "热图显示了所有电压的汇总。从矩阵内右侧数值大于16的彩色区域开始评估..."
 
 msgid "Der Farbcode im Innern der Heatmap gilt unverändert."
 msgstr "热力图内的颜色代码适用不变。"
 
-msgid "Bei grünen Feldern liegen Fremd- und Selbstwahrnehmung im sicheren Bereich der Safe-Base."
-msgstr "就绿地而言，外部和自我感知都位于安全基地的安全区域。"
+msgid "Bei grünen Feldern liegen Fremd- und Selbstwahrnehmung in der Safe-Zone."
+msgstr "在绿色的领域里，自我认知和团队认知处于安全区域。"
+
+msgid "Der erste Wert (in Klammern) zeigt die Fremdwahrnehmung. Ein hoher Wert deutet darauf hin, dass der Beitrag des Spielers zu den Spannung aus Teamsicht groß ist. Der zweite Wert zeigt die Abweichung zwischen Fremd- und Selbstwahrnehmung. Werte über 16 deuten auf mögliche Spannungen mit dem Team hin. Bei negativen Vorzeichen schätzt der Spieler seinen eigenen Beitrag zur Teamdynamik eher optimistisch ein, was gelegentlich zu weiteren Spannungen im Team führen kann."
+msgstr "第一个值（括号中）表示团队感知。较高的值表明从团队的角度来看，玩家对紧张局势的贡献是显著的。第二个值表示团队感知与个人感知之间的偏差。值超过16表明可能与团队存在紧张关系。在负号的情况下，玩家对自己在团队动态中的贡献持更加乐观的态度，这有时可能导致团队进一步紧张。"
 
 msgid "Der erste Wert (in Klammern) zeigt die Fremdwahrnehmung. Je höher dieser Wert, desto grösser der Beitrag zur Spannung aus Teamsicht."
 msgstr "第一个值（在括号内）显示了外部感知。这个值越高，从团队的角度看，对紧张局势的贡献就越大。"
@@ -881,14 +884,14 @@ msgstr "第二个值显示了外部认知和自我认知之间的偏差。数值
 msgid "Bei negativen Vorzeichen schätzt der Spieler den eigenen Beitrag zur Teamdynamik eher zu optimistisch ein. Dadurch entstehen manchmal Spannungen mit dem Team."
 msgstr "如果征兆是负面的，该球员往往对自己对团队动态的贡献过于乐观。这有时会造成与团队的紧张关系。"
 
-msgid "Vertikal: siehst Du in der oberen Reihe den Beitrag jedes Spielers zu den Sicherheitsankern; je niedriger der Wert, desto grösser ist der Beitrag des Spielers zur Sicherheit im Team."
-msgstr "纵向：在最上面一行，你可以看到每个球员对安全锚的贡献；数值越低，球员对球队安全的贡献就越大。"
+msgid "Vertikal siehst du in der oberen Reihe den Beitrag jedes Spielers zu den Sicherheitsankern. Je niedriger der Wert, desto größer ist der Beitrag des Spielers zur Sicherheit im Team."
+msgstr "垂直地，你可以看到每个玩家对安全锚的贡献。数值越低，玩家对团队安全的贡献就越大。"
 
-msgid "Horizontal: siehst Du die Lage der Safe-Base und die zugehörigen Sicherheitsanker und Triggerthemen; je kleiner der Wert links, desto kleiner ist der Beitrag dieser Triggerthemen zur Unsicherheit im Team."
-msgstr "横向：您可以看到安全基础的位置以及相关的安全锚和触发话题；左边的数值越小，这些触发话题对团队中不安全因素的影响就越小。"
+msgid "Horizontal siehst du die Position der Safe-Zone sowie die zugehörigen Sicherheitsanker und Triggerthemen. Je kleiner der Wert auf der linken Seite, desto größer ist der Beitrag dieses Sicherheitsankers zur Team-Sicherheit."
+msgstr "水平轴上，您可以看到安全区的位置以及相关的安全锚和触发主题。左侧数值越小，该安全锚对团队安全的贡献就越大。"
 
-msgid "Ganz unten sind die inneren Spannungswerte aufaddiert. Auch hier gilt: je höher der Wert mit negativem Vorzeichen, desto stärker überschätzt der Spieler den positiven Beitrag zur Sicherheit im Team."
-msgstr "内部张力值在底部加起来。同样，带负号的数值越高，玩家越是高估了对团队安全的积极贡献。"
+msgid "Hier unten sind alle Spannungswerte pro Spieler aufaddiert. Auch hier gilt: Je höher der Wert mit negativem Vorzeichen, desto stärker überschätzt der Spieler seinen positiven Beitrag zur Sicherheit im Team."
+msgstr "在下面，将每个玩家的所有紧张值相加。同样，规则适用：负号值越高，玩家对自己在团队安全中的积极贡献越容易高估。"
 
 msgid "Je weiter oben ein Paar steht, desto integrierender für das Teamzusammenspiel wirkt diese Paarung vermutlich. Finde bitte einen Partner von weiter unten auf der Liste, um die Ergebnisse Deiner Reise mit der Arche zu verstehen und zu interpretieren..."
 msgstr "一对组合在名单上的位置越高，它对团队的整合性就越强。请从更远的地方找一个伙伴，以便理解和解释你与方舟的旅程的结果......。"
@@ -934,6 +937,9 @@ msgstr "总而言之。"
 msgid "In dieser Liste sind alle Paarkonstellationen mit ihrem Spannungswert aufgeführt. Je weiter oben ein Paar steht, desto integrierender für das Teamzusammenspiel wirkt die Konstellation vermutlich. Paare weiter unten auf der Liste produzieren höhere Spannungswerte, mehr Reibung in den gegenseitigen Wahrnehmungen und haben eventuell Beef miteinandern – sie täten zum Wohle der Gruppe gut daran, sich in den unterschiedlichen Sichtweisen abzugleichen und ihre soziale Sensibilität zu entwickeln."
 msgstr "在这个列表中，所有成对的星座都与它们的张力值一起列出。一对夫妇在名单上的位置越高，该星座对团队的整合性就越强。排名更靠后的夫妻会产生更高的紧张值，在彼此的认知中产生更多的摩擦，并可能与对方发生争执--为了团体的利益，他们会很好地调整他们的不同观点，并发展他们的社会敏感性。"
 
+msgid "Das ist der Spannungswert für euer Team. Als Daumenregel gilt: Werte unter 20 sind entspannt. Werte unter 40 sind meist noch ohne externe Begleitung bearbeitbar."
+msgstr "这是你们团队的紧张值。作为经验法则：值低于20表示轻松。值低于40通常还可以在没有外部支持的情况下处理。"
+
 #. heatmap
 #: loco:606ef181b72c7c09a00e9952
 msgid "Hinweis: Klicke auf einen Namen, damit dieser Name nur in der linken Spalte gezeigt wird."
@@ -948,11 +954,6 @@ msgstr "热图显示了对团队中所有紧张关系来源的汇总评估。"
 #: loco:606ef2252896c96569615292
 msgid "Im Innern der Heatmap steht, wie gross die Abweichung zwischen Selbst- und Fremdwahrnehmung hinsichtlich des Beitrags zu den Kraftquellen und Energiefressern im Team ist."
 msgstr "热力图的内部显示了在对团队中的能源和能源消耗者的贡献方面，自我认知和外部认知之间的偏差有多大。"
-
-#. heatmap
-#: loco:60718b2a66822624027984e2
-msgid "Auf der Vertikalen den Beitrag jedes Spielers zu den Energiequellen. Je niedriger der Wert, desto grösser ist der Beitrag zu den Energiequellen im Team."
-msgstr "在垂直方向上，每个玩家对能源来源的贡献。数值越低，对团队中的能源贡献越大。"
 
 #. heatmap
 #: loco:60718bb71d59b64092772912

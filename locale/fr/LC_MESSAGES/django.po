@@ -870,17 +870,17 @@ msgstr "Dans votre équipe, la valeur moyenne de la tension est"
 msgid "Als Daumenregel gilt: Werte unter 20 sind entspannt. Werte unter 40 sind meist noch ohne externe Begleitung bearbeitbar. Die Skala reicht von 1 (absolute Spannungsfreiheit) bis 99."
 msgstr "C'est la valeur de tension pour votre équipe. En règle générale, les valeurs inférieures à 20 sont détendues. Les valeurs inférieures à 40 sont généralement gérables sans accompagnement externe."
 
-msgid "Als Faustregel gilt: Je höher die Spannungen, desto geringer die psychologische Sicherheit."
-msgstr "En règle générale, plus les tensions sont élevées, plus la sécurité psychologique est faible."
+msgid "Als Faustregel gilt: Mit zunehmenden Spannungen nimmt die psychologische Sicherheit ab."
+msgstr "En règle générale : Avec l'augmentation des tensions, la sécurité psychologique diminue."
 
-msgid "Die Safe-Base beschreibt den Bereich der sicheren Basis für die Zusammenarbeit, in der nicht mit defensiven Reaktionen (Fight, Flight oder Freeze) zu rechnen ist."
-msgstr "La safe-base décrit la zone de la base de coopération sécurisée dans laquelle il ne faut pas s'attendre à des réactions défensives (fight, flight ou freeze)."
+msgid "Die Safe-Zone beschreibt den Bereich einer sicheren Basis für die Zusammenarbeit, in dem nicht mit defensiven Reaktionen (Fight, Flight oder Freeze) zu rechnen ist."
+msgstr "La Safe-Zone décrit la zone d'une base sécurisée pour la collaboration, où l'on ne s'attend pas à des réactions défensives (Fight, Flight ou Freeze)."
 
-msgid "Der Stresswert zeigt an, wie gut es den Mitreisenden gerade im Team geht. Je höher dieser Wert, desto mehr stresst das Verhalten der anderen."
-msgstr "La valeur de stress indique à quel point les autres voyageurs se sentent bien en ce moment dans l'équipe. Plus cette valeur est élevée, plus le comportement des autres est stressant."
+msgid "Der Stresswert gibt darüber Aufschluss, wie es den Teammitgliedern gerade geht. Mit einem höheren Wert steigt die Wahrscheinlichkeit, dass das Verhalten der anderen als stressig empfunden wird, eine Defensivreaktion eintritt und das Window of Tolerance enger wird."
+msgstr "La valeur de stress donne des indications sur l'état actuel des membres de l'équipe. Avec une valeur plus élevée, la probabilité augmente que le comportement des autres soit perçu comme stressant, déclenchant une réaction défensive et réduisant la fenêtre de tolérance."
 
-msgid "In der Regel haben die Teammitglieder unterschiedliche Sicherheitsanker. Das Sicherheitsempfinden entsteht nicht im Kopf, sondern über das autonome Nervensystem – abängig davon, was in früheren Lebensabschnitten für Sicherheit gesorgt haben mag."
-msgstr "Normalement, les membres de l'équipe ont des ancrages de sécurité différents. Le sentiment de sécurité ne naît pas dans la tête, mais par le biais du système nerveux autonome - en fonction de ce qui a pu assurer la sécurité dans des périodes de vie antérieures."
+msgid "In der Regel haben Teammitglieder unterschiedliche Sicherheitsanker, da das Sicherheitsempfinden nicht allein im Kopf entsteht, sondern über das autonome Nervensystem beeinflusst wird – abhängig davon, was in früheren Lebensabschnitten für Sicherheit gesorgt hat."
+msgstr "En règle générale, les membres de l'équipe ont des ancres de sécurité différentes, car le sentiment de sécurité ne provient pas uniquement de l'esprit mais est influencé par le système nerveux autonome – en fonction de ce qui a assuré la sécurité dans les premières étapes de la vie."
 
 msgid "Bildet jetzt bitte Zweier- oder Dreiergruppen mit Menschen, die ähnliche Sicherheitsanker gewählt hatten:"
 msgstr "Veuillez maintenant former des groupes de deux ou trois avec des personnes qui ont choisi des ancrages de sécurité similaires :"
@@ -900,14 +900,17 @@ msgstr "Temps nécessaire : 10 minutes."
 msgid "Welche Spannungen im Team könnt ihr mit Feedback lösen?"
 msgstr "Quelles sont les tensions au sein de l'équipe que vous pouvez apaiser grâce au feedback ?"
 
-msgid "Die Heatmap zeigt eine Zusammenfassung aller Spannungen. Beginnt eure Auswertung mit den farbigen Feldern im inneren der Matrix, deren rechte Werte grösser als 16 sind..."
+msgid "Die Heatmap zeigt eine Zusammenfassung aller Spannungen. Beginnt eure Auswertung mit den farbigen Feldern im Inneren der Matrix, deren rechte Werte größer als 16 sind..."
 msgstr "La carte de chaleur montre un résumé de toutes les tensions. Commencez votre évaluation par les cases colorées à l'intérieur de la matrice dont la valeur de droite est supérieure à 16..."
 
 msgid "Der Farbcode im Innern der Heatmap gilt unverändert."
 msgstr "Le code couleur à l'intérieur de la heatmap reste inchangé."
 
-msgid "Bei grünen Feldern liegen Fremd- und Selbstwahrnehmung im sicheren Bereich der Safe-Base."
-msgstr "Dans le cas des champs verts, la perception des autres et de soi-même se situe dans la base de sécurité."
+msgid "Bei grünen Feldern liegen Fremd- und Selbstwahrnehmung in der Safe-Zone."
+msgstr "Dans les champs verts, la perception de soi et la perception de l'équipe se trouvent dans la zone de sécurité."
+
+msgid "Der erste Wert (in Klammern) zeigt die Fremdwahrnehmung. Ein hoher Wert deutet darauf hin, dass der Beitrag des Spielers zu den Spannung aus Teamsicht groß ist. Der zweite Wert zeigt die Abweichung zwischen Fremd- und Selbstwahrnehmung. Werte über 16 deuten auf mögliche Spannungen mit dem Team hin. Bei negativen Vorzeichen schätzt der Spieler seinen eigenen Beitrag zur Teamdynamik eher optimistisch ein, was gelegentlich zu weiteren Spannungen im Team führen kann."
+msgstr "La première valeur (entre parenthèses) indique la perception de l'équipe. Une valeur élevée suggère que la contribution du joueur à la tension du point de vue de l'équipe est importante. La deuxième valeur indique la divergence entre la perception de l'équipe et la perception de soi. Les valeurs supérieures à 16 suggèrent des tensions possibles avec l'équipe. Avec des signes négatifs, le joueur évalue sa propre contribution à la dynamique de l'équipe de manière plus optimiste, ce qui peut parfois entraîner des tensions supplémentaires dans l'équipe."
 
 msgid "Der erste Wert (in Klammern) zeigt die Fremdwahrnehmung. Je höher dieser Wert, desto grösser der Beitrag zur Spannung aus Teamsicht."
 msgstr "La première valeur (entre parenthèses) indique la perception des autres. Plus cette valeur est élevée, plus la contribution à la tension du point de vue de l'équipe est importante."
@@ -918,14 +921,14 @@ msgstr "La deuxième valeur montre l'écart entre la perception des autres et la
 msgid "Bei negativen Vorzeichen schätzt der Spieler den eigenen Beitrag zur Teamdynamik eher zu optimistisch ein. Dadurch entstehen manchmal Spannungen mit dem Team."
 msgstr "En cas de signes négatifs, le joueur a tendance à évaluer de manière trop optimiste sa propre contribution à la dynamique de l'équipe. Cela crée parfois des tensions avec l'équipe."
 
-msgid "Vertikal: siehst Du in der oberen Reihe den Beitrag jedes Spielers zu den Sicherheitsankern; je niedriger der Wert, desto grösser ist der Beitrag des Spielers zur Sicherheit im Team."
-msgstr "Verticalement : tu vois dans la rangée supérieure la contribution de chaque joueur aux ancrages de sécurité ; plus la valeur est basse, plus la contribution du joueur à la sécurité dans l'équipe est grande."
+msgid "Vertikal siehst du in der oberen Reihe den Beitrag jedes Spielers zu den Sicherheitsankern. Je niedriger der Wert, desto größer ist der Beitrag des Spielers zur Sicherheit im Team."
+msgstr "Verticalement, dans la rangée supérieure, vous pouvez voir la contribution de chaque joueur aux ancres de sécurité. Plus la valeur est basse, plus la contribution du joueur à la sécurité de l'équipe est grande."
 
-msgid "Horizontal: siehst Du die Lage der Safe-Base und die zugehörigen Sicherheitsanker und Triggerthemen; je kleiner der Wert links, desto kleiner ist der Beitrag dieser Triggerthemen zur Unsicherheit im Team."
-msgstr "Horizontalement : tu vois l'emplacement de la base de sécurité et les ancres de sécurité et thèmes déclencheurs correspondants ; plus la valeur à gauche est petite, plus la contribution de ces thèmes déclencheurs à l'insécurité dans l'équipe est faible."
+msgid "Horizontal siehst du die Position der Safe-Zone sowie die zugehörigen Sicherheitsanker und Triggerthemen. Je kleiner der Wert auf der linken Seite, desto größer ist der Beitrag dieses Sicherheitsankers zur Team-Sicherheit."
+msgstr "Horizontalement, vous voyez la position de la zone de sécurité ainsi que les ancres de sécurité et les sujets déclencheurs associés. Plus la valeur du côté gauche est petite, plus la contribution de cette ancre de sécurité à la sécurité de l'équipe est grande."
 
-msgid "Ganz unten sind die inneren Spannungswerte aufaddiert. Auch hier gilt: je höher der Wert mit negativem Vorzeichen, desto stärker überschätzt der Spieler den positiven Beitrag zur Sicherheit im Team."
-msgstr "Tout en bas, les valeurs de tension interne sont additionnées. Ici aussi, plus la valeur est de signe négatif, plus le joueur surestime sa contribution positive à la sécurité de l'équipe."
+msgid "Hier unten sind alle Spannungswerte pro Spieler aufaddiert. Auch hier gilt: Je höher der Wert mit negativem Vorzeichen, desto stärker überschätzt der Spieler seinen positiven Beitrag zur Sicherheit im Team."
+msgstr "Ici en bas, toutes les valeurs de tension par joueur sont additionnées. Encore une fois, la règle s'applique : Plus la valeur est élevée avec un signe négatif, plus le joueur surestime sa contribution positive à la sécurité de l'équipe."
 
 msgid "Je weiter oben ein Paar steht, desto integrierender für das Teamzusammenspiel wirkt diese Paarung vermutlich. Finde bitte einen Partner von weiter unten auf der Liste, um die Ergebnisse Deiner Reise mit der Arche zu verstehen und zu interpretieren..."
 msgstr "Plus un couple se trouve en haut de la liste, plus il est susceptible d'avoir un effet intégrateur sur l'interaction de l'équipe. Veuillez trouver un partenaire plus bas dans la liste pour comprendre et interpréter les résultats de votre voyage avec l'arche..."
@@ -968,6 +971,9 @@ msgstr "Pour conclure."
 msgid "In dieser Liste sind alle Paarkonstellationen mit ihrem Spannungswert aufgeführt. Je weiter oben ein Paar steht, desto integrierender für das Teamzusammenspiel wirkt die Konstellation vermutlich. Paare weiter unten auf der Liste produzieren höhere Spannungswerte, mehr Reibung in den gegenseitigen Wahrnehmungen und haben eventuell Beef miteinandern – sie täten zum Wohle der Gruppe gut daran, sich in den unterschiedlichen Sichtweisen abzugleichen und ihre soziale Sensibilität zu entwickeln."
 msgstr "Dans cette liste, toutes les constellations de paires sont indiquées avec leur valeur de tension. Plus un couple se trouve en haut de la liste, plus il est susceptible d'intégrer l'équipe. Les couples en bas de la liste produisent des valeurs de tension plus élevées, plus de friction dans les perceptions mutuelles et ont éventuellement des différends entre eux - ils feraient bien, pour le bien du groupe, de s'harmoniser dans les différents points de vue et de développer leur sensibilité sociale."
 
+msgid "Das ist der Spannungswert für euer Team. Als Daumenregel gilt: Werte unter 20 sind entspannt. Werte unter 40 sind meist noch ohne externe Begleitung bearbeitbar."
+msgstr "C'est la valeur de tension pour votre équipe. En règle générale : Les valeurs en dessous de 20 sont détendues. Les valeurs en dessous de 40 sont généralement encore gérables sans assistance externe."
+
 #. heatmap
 #: loco:606ef181b72c7c09a00e9952
 msgid "Hinweis: Klicke auf einen Namen, damit dieser Name nur in der linken Spalte gezeigt wird."
@@ -982,11 +988,6 @@ msgstr "La carte thermique montre une évaluation agrégée des sources de toute
 #: loco:606ef2252896c96569615292
 msgid "Im Innern der Heatmap steht, wie gross die Abweichung zwischen Selbst- und Fremdwahrnehmung hinsichtlich des Beitrags zu den Kraftquellen und Energiefressern im Team ist."
 msgstr "L'intérieur de la carte thermique montre l'importance de l'écart entre l'auto-perception et la perception externe en ce qui concerne la contribution aux sources d'énergie et aux énergivores dans l'équipe."
-
-#. heatmap
-#: loco:60718b2a66822624027984e2
-msgid "Auf der Vertikalen den Beitrag jedes Spielers zu den Energiequellen. Je niedriger der Wert, desto grösser ist der Beitrag zu den Energiequellen im Team."
-msgstr "Sur la verticale, la contribution de chaque joueur aux sources d'énergie. Plus la valeur est faible, plus la contribution aux sources d'énergie de l'équipe est importante."
 
 #. heatmap
 #: loco:60718bb71d59b64092772912
