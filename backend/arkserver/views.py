@@ -1142,7 +1142,7 @@ def waiting_room2(request, user):
                     game = game,
                     status = 1,
                 )
-            return redirect('/psychologischer/')
+            return redirect('/potential-result/')
 
     return render(request, './views/waiting_room2.html', ctx)
 
