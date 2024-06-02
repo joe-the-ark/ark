@@ -12,6 +12,26 @@
     <link rel="stylesheet" href="/static/css/app.css">
     <link rel="stylesheet" href="/static/css/app_graph.css">
     <link rel="stylesheet" href="/static/css/team-potential.css">
+
+    <style>
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+
+            body {
+                margin: 0;
+                -webkit-print-color-adjust: exact; /* Chrome, Safari */
+                color-adjust: exact; /* Firefox */
+            }
+
+            .header-main__progress, .center, .container {
+                page-break-inside: auto;
+            }
+        }
+    </style>
+
     <script src="/static/vue.js"></script>
     <!-- 引入样式 -->
     <link rel="stylesheet" href="https://cdn.staticfile.org/element-ui/2.15.9/theme-chalk/index.css">
@@ -40,12 +60,16 @@
             </div>
             <div class="header-main__progress">
                 <div class="progress">
-                    <label>{% trans "I'LL BE YOUR MIRROR" %}</label>
                     <div class="progress__bar">
-                        <div style="width: 75%">75%</div>
+                        <div style="width: 75%; border-radius: 10px;">75%</div>
                     </div>
                 </div>
+                <button onclick="window.print()" title="Or safe this window as PDF">Printscreen</button> <!-- Print Button Added -->
             </div>
+
+
+
+
         </header>
     </div>
     <div class="app__body" id="app-1">
@@ -67,20 +91,26 @@
                             {% trans "Erster Spieler solo bei Safe-Zone-Wert:" %}<button @click="current=getValue3()" style="background-color: #FFFFFF; border: 5px solid #9FE2BF; color: black;">[[ getValue3() ]] </button>{% trans "(Hier klicken)" %}<br><br>
                 </p>
 
-                <p style="background-color: #9FE2BF; color: #00000; text-align: center; border-radius: 10px; padding: 0 10px;"><br>
+                <p style="background-color: #9FE2BF; color: #00000; text-align: left; border-radius: 10px; padding: 0 10px;"><br>
                             {% trans "Fokus: Stellt sicher, dass jeder zu mindestens einem SAFE CIRCLE gehört. Nutzt das Feedback in den kommenden Etappen, um eure psychologischen SAFE CIRCLES zu erweitern." %}
                             <br><br>
                 </p>
 
-		<div class="center">
-			<p style="float:none; display: inline">
-			<br>[[ getCircles().length ]] {% trans "CIRCLES bei Safe-Zone-Wert:" %}<input type="number" v-model="current" :min="getValue1()-1" :max="getValue2()" style="width:130px; height: 50px; margin: 7px; border-radius: 10px; border: 5px solid #626262;" />{% trans "(niedrige Werte = hoher Stress)" %}<br/>
-			<span v-for="circle in getCircles()">[[ circle ]] <br/></span> <br/>
-			<canvas ref="canvas" :width="width" :height="height" :style="{ width:width+'px', height:height+'px' }"></canvas>
-			</p>
-		</div>
+                <div class="center">
+                  <p style="float:none; display: inline">
+                    <br>[[ getCircles().length ]] {% trans "CIRCLES bei Safe-Zone-Wert:" %}
+                    <input type="number" v-model="current" :min="getValue1()-1" :max="getValue2()" style="width:130px; height: 50px; margin: 7px; border-radius: 10px; border: 5px solid #626262;" />
+                    {% trans "(niedrige Werte = hoher Stress)" %}
+                    <br/>
+                    <span v-for="circle in getCircles()">[[ circle ]] <br/></span>
+                    <br/>
+                    <canvas ref="canvas" :width="width" :height="height" :style="{ width:width+'px', height:height+'px' }"></canvas>
+                  </p>
+                </div>
 
-                <p style="background-color: #52CEEC; text-align: center; color: #00000; border-radius: 10px; padding: 0 10px;"><br>
+
+
+                <p style="background-color: #52CEEC; text-align: left; color: #00000; border-radius: 10px; padding: 0 10px;"><br>
                             {% trans "Im nächsten Schritt solltet ihr die Teammitglieder identifizieren, die durchgängig an mehreren oder allen SAFE CIRCLES teilhaben. Diese Kernmitglieder sind in der Lage Lösungen vorzuschlagen, die allen Teammitgliedern zugute kommen und die psychologische Sicherheit erhöhen." %}
                             <br><br>
                 </p>

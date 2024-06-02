@@ -196,6 +196,9 @@ msgstr "Ecris un mot dans le champ vide ou clique sur le terme correspondant."
 msgid "Sicherheitsanker"
 msgstr "Ancrage de sécurité"
 
+msgid "INNERE SICHERHEIT"
+msgstr "SÉCURITÉ INTÉRIEURE"
+
 msgid "Wie gut ist eure gefühlte Team Performance?"
 msgstr "Quelle est la performance perçue de votre équipe ?"
 
@@ -288,6 +291,9 @@ msgstr "Pour finir, testez votre sécurité psychologique."
 msgid "Bewege jede Person zu der Aussage, die am ehesten passt! Beziehe deine Einschätzung auf alltägliche Situationen im Team, die sich bei dir eingeprägt haben."
 msgstr "Déplace chaque personnage vers l'affirmation qui lui correspond le mieux ! Relie ton évaluation à des situations quotidiennes au sein de l'équipe qui ont été mémorisées par toi."
 
+msgid "Wähle einen Avatar und klicke auf das passende Textfeld."
+msgstr "Choisis un avatar et clique sur le champ de texte correspondant."
+
 #. ubung-4
 #: loco:606b8297a6a4e81e9d115c72
 msgid "Schwierige Themen können wir meist gut zusammen anschauen."
@@ -326,6 +332,13 @@ msgstr "Chaque cercle gris représente une personne élue par un compagnon de vo
 
 #. ubung-5
 #: loco:606c350d53fac01eda5589b2
+
+msgid "Bitte dreh dein Gerät um 90° für eine bessere Lesbarkeit."
+msgstr "Veuillez tourner ton appareil de 90° pour une meilleure lisibilité."
+
+msgid "Wie bewertest du den Beitrag jedes Teammitglieds zu diesem Sicherheitsanker?"
+msgstr "Comment évalues-tu la contribution de chaque membre de l'équipe à cette ancre de sécurité ?"
+
 msgid "Wie nimmst du den Beitrag zur inneren Sicherheit im Team wahr?"
 msgstr "Comment perçois-tu la contribution à la sécurité intérieure de l'équipe ?"
 
@@ -366,7 +379,7 @@ msgid "In der Regel sind psychologische Sicherheit und Team-Performance ungefäh
 msgstr "En général, la sécurité psychologique et la performance de l'équipe sont approximativement au même niveau car la sécurité psychologique est considérée comme le meilleur prédicteur de la performance de l'équipe. Maintenant, examinez les cercles psychologiquement sûrs de votre équipe. L'extension de ces cercles a un impact positif sur votre sécurité psychologique."
 
 
-msgid "Sicherheit im Team"
+msgid "pS"
 msgstr "Sécurité psychologique"
 
 msgid "Deine innere Sicherheit"
@@ -514,8 +527,11 @@ msgstr "Le voyage peut continuer dès que tous les joueurs sont arrivés ici, da
 
 #. ps-score
 #: loco:606c88b0ce3e5b40de0ea732
-msgid "Euer psychologischer Sicherheitswert"
+msgid "Euer pS/psychologischer Sicherheitswert"
 msgstr "Votre valeur de sécurité psychologique"
+
+msgid "TEAMKLIMA"
+msgstr "CLIMAT D'ÉQUIPE"
 
 #. ps-score
 #: loco:606c8965969b3140f152fba3
@@ -526,6 +542,9 @@ msgstr "Tu peux voir ici le score de sécurité psychologique de ton équipe sur
 #: loco:606c8c5f591f8a4a1c131eb2
 msgid "Spannungsfelder"
 msgstr "Tensions"
+
+msgid "Swipe die Graphik nach rechts für mehr Feedbacks zu deiner Wirkung."
+msgstr "Swipe le graphique vers la droite pour obtenir plus de feedbacks sur ton impact."
 
 msgid "Bitte nimm dir 3 Minuten Zeit, um deinen Beitrag zur inneren Sicherheit der anderen Teammitglieder zu begreifen"
 msgstr "Prends 3 minutes pour comprendre ta contribution à la sécurité intérieure des autres membres de l'équipe."

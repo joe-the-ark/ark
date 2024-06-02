@@ -205,3 +205,24 @@
     width: 100%;
   }
 }
+@media screen and (max-width: 1200px) {
+  p {
+    font-size: 18px;
+    line-height: 1.3;
+    text-align: left;
+  }
+  .screen.auth button {
+    font-size: 14px; /* Set the font size to 14px */
+    padding: 5px 10px; /* Reduce padding to decrease button size */
+    line-height: 1; /* Decrease line height for tighter spacing */
+  }
+  .app__body h1 {
+    font-size: 28px;
+  }
+  .header-main * {
+    font-size: 18px; /* Set the font size to 18px for all elements within the header */
+  }
+}
+}
+
+

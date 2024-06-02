@@ -195,6 +195,9 @@ msgstr "请在空栏里写一个字，或点击适当的术语。"
 msgid "Sicherheitsanker"
 msgstr "安全锚"
 
+msgid "INNERE SICHERHEIT"
+msgstr "内部安全"
+
 msgid "Wie gut ist eure gefühlte Team Performance?"
 msgstr "你认为的团队表现有多好？"
 
@@ -279,6 +282,9 @@ msgstr "最后，确定你的心理安全"
 msgid "Testet zum Abschluss eure psychologische Sicherheit."
 msgstr "最后，测试你的心理安全。"
 
+msgid "Wähle einen Avatar und klicke auf das passende Textfeld."
+msgstr "选择一个头像，然后点击相应的文本字段。"
+
 #. ubung-4
 #: loco:606b816a85a8752578065132
 msgid "Bewege jede Person zu der Aussage, die am ehesten passt! Beziehe deine Einschätzung auf alltägliche Situationen im Team, die sich bei dir eingeprägt haben."
@@ -325,6 +331,12 @@ msgstr "每一个灰色的圆圈代表一个人，他被同路人选在那里。
 msgid "Wie nimmst du den Beitrag zur inneren Sicherheit im Team wahr?"
 msgstr "您如何看待在团队中对内部安全的贡献？"
 
+msgid "Bitte dreh dein Gerät um 90° für eine bessere Lesbarkeit."
+msgstr "请将设备旋转 90°，以便更好地阅读。"
+
+msgid "Wie bewertest du den Beitrag jedes Teammitglieds zu diesem Sicherheitsanker?"
+msgstr "您如何评价每位团队成员对安全锚的贡献？"
+
 msgid "Wie bewertest du den Beitrag jedes Teammitglieds zur psychologischen Sicherheit?"
 msgstr "你如何评价每个团队成员对心理安全的贡献？"
 
@@ -349,7 +361,7 @@ msgstr "是的，这一估计是正确的"
 msgid "Gefühlte Team-Performance-Einschätzung"
 msgstr "感知的团队绩效评估"
 
-msgid "Sicherheit im Team"
+msgid "pS"
 msgstr "团队中的心理安全"
 
 msgid "Deine innere Sicherheit"
@@ -498,8 +510,11 @@ msgstr "继续进行，不提供反馈"
 
 #. ps-score
 #: loco:606c88b0ce3e5b40de0ea732
-msgid "Euer psychologischer Sicherheitswert"
+msgid "Euer pS/psychologischer Sicherheitswert"
 msgstr "你的心理安全值。"
+
+msgid "TEAMKLIMA"
+msgstr "团队气候"
 
 #. ps-score
 #: loco:606c8965969b3140f152fba3
@@ -513,6 +528,9 @@ msgstr "绿色区域是你的团队的安全区。我们的假设：免于紧张
 #: loco:606c8c5f591f8a4a1c131eb2
 msgid "Spannungsfelder"
 msgstr "紧张"
+
+msgid "Swipe die Graphik nach rechts für mehr Feedbacks zu deiner Wirkung."
+msgstr "向右滑动图形，可获得更多效果反馈。"
 
 msgid "Bitte nimm dir 3 Minuten Zeit, um deinen Beitrag zur inneren Sicherheit der anderen Teammitglieder zu begreifen"
 msgstr "请花3分钟时间了解你对其他团队成员的内部安全的贡献"

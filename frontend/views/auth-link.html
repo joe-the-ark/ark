@@ -22,7 +22,7 @@
                 <form action="{% url 'set_language' %}" method="post" style="vertical-align:middle;">{% csrf_token %}
                     <input name="next" type="hidden" value="">
                     <img id="flag" src="" style="width:20%;vertical-align:middle;padding-left:1px">
-                    <select onchange="this.form.submit()" name="language" id="select_" style="width: auto;">
+                    <select onchange="this.form.submit()" name="language" id="select_" style="width: auto; vertical-align:middle; border-radius: 10px; padding: 10px;">
                         {% get_current_language as LANGUAGE_CODE %}
                         {% get_available_languages as LANGUAGES %}
                         {% get_language_info_list for LANGUAGES as languages %}
@@ -66,8 +66,13 @@
                         <input maxlength="12" minlength="2" id="nutzername" type="text" name="Nutzername" value="" required autofocus/ style="border-radius: 10px";>
                         <span class="form__placeholder">{% trans "Nutzername" %}</span>
                         <p>
-                            <br><br><br><br><br>{% trans "Die Reisezeit der ersten Etappe beträgt eine halbe Stunde." %}
+                            <br><br><br><br><br>{% trans "Die Reisezeit der ersten Etappe beträgt eine halbe Stunde." %}<br><br>
                         </p>
+                        <span class="terms_str">The <a href="https://github.com/joe-the-ark/ark" target="_blank">ARK is published under a GPLv3 license.</a><br>
+                        {% trans "Das sind die" %}
+                      <span class="terms" style="text-decoration:underline;">{% trans "Nutzungsbedingungen" %}.</span><br>
+                      
+                    </span>
                     </div>
 
                     <div class="form__field">
@@ -200,11 +205,6 @@
 
                     </div>
 
-                    <span class="terms_str">The <a href="https://github.com/joe-the-ark/ark" target="_blank">ARK is published</a> under a GPLv3 license.<br>
-                        {% trans "Das sind die" %}
-                      <span class="terms" style="text-decoration:underline;">{% trans "Nutzungsbedingungen" %}.</span><br>
-                      
-                    </span>
                     <div class="form__field">
                         {% comment %} <button id="submit_button" type="submit">
                             {% trans "Weiter" %}

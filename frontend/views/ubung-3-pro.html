@@ -31,19 +31,18 @@
                 <div class="user">
                     <div class="user__subtitle">
                         {{game.name}}
-                        <span class="icon-link" data-clipboard-text="#link_url"></span> link
                     </div>
                     <img src="{{user.avatar}}" alt="">
                     <div class="user__title">
                         {{user.name}}
-                    </div>
+                    </div>                    
                 </div>
             </div>
             <div class="header-main__progress">
                 <div class="progress">
-                    <label>{% trans "INDIVIDUUM" %}</label>
+                    <label>{% trans "TRIGGER" %}</label>
                     <div class="progress__bar">
-                        <div style="width: 15%">15%</div>
+                        <div style="width: 15%; border-radius: 10px;">15%</div>
                     </div>
                 </div>
             </div>
@@ -51,6 +50,7 @@
     </div>
     <div class="app__body"  id="app-1">
         <div class="container"
+
         v-loading="loading"
         element-loading-text="Waiting for the server"
         element-loading-background="rgba(0, 0, 0, 0.8)">
@@ -60,7 +60,7 @@
                     </h1>
                     <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
                     <p>
-                    <img src="http://info.arks.ch/wp-content/uploads/2022/07/Minus.png"><br>
+                    <img src="http://info.arks.ch/wp-content/uploads/2022/07/Minus.png" style="border-radius: 10px;"><br>
                     <b style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
                             {% trans "Schreib bitte ein Wort in das leere Feld oder klicke auf den passenden Begriff." %}
                     </b>
@@ -103,6 +103,7 @@
                         <span id="Versagen" class="tag">Versagen</span>
                         <span id="Willkür" class="tag">Willkür</span> {% endcomment %}
                     </div>
+                    <input type="text" placeholder={% trans "..." %} name="energiefresser" v-model="text_input" @keyup.enter="add_term" @keyup = "keyboard_()"/ style="border-radius: 10px; maxlength=15; minlength=2">
                     <input id="tags" type="hidden" name="tags" value="输入你要传bai递的值">
                 </div>
                     <div class="center">
@@ -127,22 +128,6 @@
   <script src="https://unpkg.com/clipboard@2/dist/clipboard.min.js"></script>
 
 <script>
-    // Copy and tooltip
-    new ClipboardJS('.icon-link');
-    tippy('.icon-link', {
-      content: 'Copy gamelink to clipboard',
-    });
-    tippy('.icon-link', {
-      trigger: 'click',
-      content: 'Copied',
-    });
-
-    // Link creation
-    // TODO Code bellow Link must be from backend.
-    var temp_link = '{{game.link}}';
-    var url_host = window.location.host;
-    var temp_link_ = url_host + '/link/' + temp_link + '/';
-    document.querySelector('.icon-link').dataset.clipboardText = temp_link_;
 
     function sleep (time) {
         return new Promise((resolve) => setTimeout(resolve, time));

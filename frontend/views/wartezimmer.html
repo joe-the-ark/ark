@@ -11,6 +11,7 @@
     <title>Social_sensitivity</title>
     <link rel="stylesheet" href="/static/css/app.css">
     <link rel="stylesheet" href="/static/css/wartezimmer.css">
+    <link rel="stylesheet" href="/static/css/ubung-1.css">
     <link rel="stylesheet" href="/static/css/heatmap.css">
 
     <!-- vue cdn  -->
@@ -33,20 +34,18 @@
                 <div class="user">
                     <div class="user__subtitle">
                         {{game.name}}
-                        <span class="icon-link" data-clipboard-text="#link_url"></span> link
                     </div>
-                    <img src="{{avatar}}" alt="boar">
+                    <img src="{{user.avatar}}" alt="">
                     <div class="user__title">
-                        <!-- Vasilisa Kochetkova  -->
                         {{user.name}}
-                    </div>
+                    </div>                    
                 </div>
             </div>
             <div class="header-main__progress">
                 <div class="progress">
                     <label>SHARING</label>
                     <div class="progress__bar">
-                        <div style="width: 20%">20%</div>
+                        <div style="width: 20%; border-radius: 10px;">20%</div>
                     </div>
                 </div>
             </div>
@@ -67,7 +66,7 @@
                         {% trans "Bitte erläutert kurz die Gegensatzpaare, damit alle verstehen können, welche unterschiedlichen Bedürfnisse zu psychologischer Sicherheit im Team beitragen können." %}
                         <br/>
                     </p>
-                    <img src="http://info.arks.ch/wp-content/uploads/2022/07/Plus_Minus.png">
+                    <img src="http://info.arks.ch/wp-content/uploads/2022/07/Plus_Minus.png" style="border-radius: 10px;">
                     <p>
                     <input type="text" placeholder="Sicherheitsanker fehlt!" name="Kraftquelle" v-model="text_input_power" / style="border-radius: 10px">
                     <input type="text" placeholder="Trigger fehlt!" name="Energiefresser" v-model="text_input_drainer" / style="border-radius: 10px">
@@ -320,23 +319,6 @@
       }
     }
     buttonRemover();
-
-    // Copy and tooltip
-    new ClipboardJS('.icon-link');
-    tippy('.icon-link', {
-      content: 'Copy gamelink to clipboard',
-    });
-    tippy('.icon-link', {
-      trigger: 'click',
-      content: 'Copied',
-    });
-
-    // Link creation
-    // TODO Code bellow Link must be from backend.
-    var temp_link = '{{game.link}}';
-    var url_host = window.location.host;
-    var temp_link_ = url_host + '/link/' + temp_link + '/';
-    document.querySelector('.icon-link').dataset.clipboardText = temp_link_;
 
    var app2 = new Vue({
         delimiters: ['[[', ']]'],

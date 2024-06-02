@@ -1,25 +1,35 @@
+/* Existing CSS */
 .team-potential p {
   max-width: 908px;
   margin: var(--ls-paragraph-offset);
 }
+
 @media screen and (min-width: 769px) {
   .team-potential p {
     float: left;
   }
 }
+
 @media screen and (min-width: 769px) {
   .team-potential .custom-graph-info {
     float: right;
   }
 }
+
 @media screen and (max-width: 768px) {
   .team-potential .custom-graph-info {
     justify-content: center;
   }
+
+  .team-potential canvas {
+    width: 70%;
+  }
 }
+
 .team-potential .custom-graph {
   clear: both;
 }
+
 @media (max-height: 763px) and (min-width: 1200px) {
   .team-potential .custom-graph-info {
     margin-top: -40px;
@@ -31,5 +41,42 @@
   .team-potential .custom-graph__status {
     top: 20px;
     height: calc(100% - 128px);
+  }
+}
+
+/* New CSS for scaling down */
+@media screen and (max-width: 768px) {
+  .center {
+    width: 99% !important;
+    margin: auto !important;
+  }
+  .center p {
+    float: none !important;
+    display: block !important;
+    text-align: center !important;
+  }
+  .center input {
+    width: 99% !important;
+    height: 99% !important;
+  }
+  .center canvas {
+    width: 99% !important;
+    height: 99% !important;
+  }
+  .screen.auth p {
+    font-size: 18px;
+    line-height: 1.3;
+    text-align: left;
+  }
+  .screen.auth button {
+    font-size: 14px; /* Set the font size to 14px */
+    padding: 5px 10px; /* Reduce padding to decrease button size */
+    line-height: 1; /* Decrease line height for tighter spacing */
+  }
+  .screen.auth h1 {
+    font-size: 28px;
+  }
+  .header-main * {
+    font-size: 18px; /* Set the font size to 18px for all elements within the header */
   }
 }

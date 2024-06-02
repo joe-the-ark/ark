@@ -17,6 +17,20 @@
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <!-- 引入组件库 -->
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <style>
+        @media screen and (max-width: 1200px) {
+            .rotate-hint {
+                display: block !important;
+            }
+        }
+        .rotate-hint {
+            display: none;
+            background-color: #9FE2BF;
+            color: #626262;
+            border-radius: 10px;
+            padding: 0 10px;
+        }
+    </style>
 </head>
 <body>
 <div class="app">
@@ -40,9 +54,11 @@
             </div>
             <div class="header-main__progress">
                 <div class="progress">
-                    <label>{% trans "FEARLESS?" %}</label>
+                <p class="rotate-hint" style="background-color: #FFFFFF; color: #626262; border-radius: 10px; padding: 0 10px;">
+                    {% trans "Wähle einen Avatar und klicke auf das passende Textfeld." %}
+                </p>
                     <div class="progress__bar">
-                        <div style="width: 65%">65%</div>
+                        <div style="width: 65%; border-radius: 10px;">65%</div>
                     </div>
                 </div>
             </div>

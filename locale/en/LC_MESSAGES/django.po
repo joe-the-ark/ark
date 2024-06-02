@@ -190,6 +190,9 @@ msgstr "Please write a word in the empty field or click on the appropriate term.
 msgid "Sicherheitsanker"
 msgstr "Safety anchor"
 
+msgid "INNERE SICHERHEIT"
+msgstr "INNER SAFETY"
+
 msgid "Wie gut ist eure gefühlte Team Performance?"
 msgstr "How good is your perceived team performance?"
 
@@ -277,6 +280,9 @@ msgstr "Finally, determine your psychological safety"
 msgid "Testet zum Abschluss eure psychologische Sicherheit."
 msgstr "Finally, test your psychological safety."
 
+msgid "Wähle einen Avatar und klicke auf das passende Textfeld."
+msgstr "Choose an avatar and click on the matching text box."
+
 #. ubung-4
 #: loco:606b816a85a8752578065132
 msgid "Bewege jede Person zu der Aussage, die am ehesten passt! Beziehe deine Einschätzung auf alltägliche Situationen im Team, die sich bei dir eingeprägt haben."
@@ -320,6 +326,13 @@ msgstr "Each grey circle represents a person who has been chosen there by a fell
 
 #. ubung-5
 #: loco:606c350d53fac01eda5589b2
+
+msgid "Bitte dreh dein Gerät um 90° für eine bessere Lesbarkeit."
+msgstr "Please rotate your device 90° for better readability."
+
+msgid "How would you rate each team member's contribution to this safety anchor?"
+msgstr "How do you perceive the contribution to inner safety in the team?"
+
 msgid "Wie nimmst du den Beitrag zur inneren Sicherheit im Team wahr?"
 msgstr "How do you perceive the contribution to inner safety in the team?"
 
@@ -362,8 +375,8 @@ msgstr "Tension"
 msgid "Gefühlte Team-Performance-Einschätzung"
 msgstr "Perceived team performance assessment"
 
-msgid "Sicherheit im Team"
-msgstr "Safety in the team"
+msgid "pS"
+msgstr "Psychological safety"
 
 msgid "Deine innere Sicherheit"
 msgstr "Your inner safety"
@@ -502,8 +515,11 @@ msgstr "The journey can continue as soon as all the players have arrived here in
 
 #. ps-score
 #: loco:606c88b0ce3e5b40de0ea732
-msgid "Euer psychologischer Sicherheitswert"
+msgid "Euer pS/psychologischer Sicherheitswert"
 msgstr "Your psychological safety score"
+
+msgid "TEAMKLIMA"
+msgstr "TEAM CLIMATE"
 
 #. ps-score
 #: loco:606c8965969b3140f152fba3
@@ -517,6 +533,9 @@ msgstr "The green areas are the safe zones of your team. Our hypothesis: Freedom
 #: loco:606c8c5f591f8a4a1c131eb2
 msgid "Spannungsfelder"
 msgstr "Tensions"
+
+msgid "Swipe die Graphik nach rechts für mehr Feedbacks zu deiner Wirkung."
+msgstr "Swipe the graphic to the right for more feedback on your impact."
 
 msgid "Dein Beitrag zur inneren Sicherheit im Team"
 msgstr "Your contribution to the inner safety in the team"

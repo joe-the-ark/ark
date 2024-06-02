@@ -11,6 +11,24 @@
     <title>Safety-Score-RESULT</title>
     <link rel="stylesheet" href="/static/css/app.css">
     <link rel="stylesheet" href="/static/css/boxings.css">
+    <style>
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+
+            body {
+                margin: 0;
+                -webkit-print-color-adjust: exact; /* Chrome, Safari */
+                color-adjust: exact; /* Firefox */
+            }
+
+            .header-main__progress, .center, .container {
+                page-break-inside: auto;
+            }
+        }
+    </style>
 
 </head>
 <body>
@@ -35,11 +53,12 @@
             </div>
             <div class="header-main__progress">
                 <div class="progress">
-                    <label>{% trans "TEAM CLIMATE" %}</label>
+                    <label>{% trans "TEAMKLIMA" %}</label>
                     <div class="progress__bar">
-                        <div style="width: 70%">70%</div>
+                        <div style="width: 70%; border-radius: 10px;">70%</div>
                     </div>
                 </div>
+                <button onclick="window.print()" title="Or safe this window as PDF">Printscreen</button> <!-- Print Button Added -->
             </div>
         </header>
     </div>
@@ -47,7 +66,7 @@
         <div class="container">
             <main class="screen psychologischer">
                 <h1>
-                    {% trans "Euer psychologischer Sicherheitswert" %}
+                    {% trans "Euer pS/psychologischer Sicherheitswert" %}
                 </h1>
                 <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
                 <p>

@@ -10,6 +10,24 @@
     <title>Team-HEATMAP</title>
     <link rel="stylesheet" href="/static/css/app.css">
     <link rel="stylesheet" href="/static/css/heatmap.css">
+    <style>
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+
+            body {
+                margin: 0;
+                -webkit-print-color-adjust: exact; /* Chrome, Safari */
+                color-adjust: exact; /* Firefox */
+            }
+
+            .header-main__progress, .center, .container {
+                page-break-inside: auto;
+            }
+        }
+    </style>
 </head>
 <body>
   {% get_current_language as LANGUAGE_CODE %}
@@ -36,10 +54,8 @@
             <div class="header-main__progress">
                 <div class="progress">
                     <label>HEATMAP</label>
-                    <div class="progress__bar">
-                        <div style="width: 100%">100%</div>
-                  </div>
                 </div>
+                <button onclick="window.print()" title="Or safe this window as PDF">Printscreen</button> <!-- Print Button Added -->
             </div>
         </header>
     </div>

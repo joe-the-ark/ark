@@ -17,6 +17,20 @@
     <script src="/static/dom-to-image.min.js"></script>
     <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+    <style>
+        @media screen and (max-width: 1200px) {
+            .rotate-hint {
+                display: block !important;
+            }
+        }
+        .rotate-hint {
+            display: none;
+            background-color: #9FE2BF;
+            color: #626262;
+            border-radius: 10px;
+            padding: 0 10px;
+        }
+    </style>
 </head>
 <body>
   {% get_current_language as LANGUAGE_CODE %}
@@ -41,9 +55,11 @@
             </div>
             <div class="header-main__progress">
                 <div class="progress">
-                    <label>{% trans "SECURE BASE" %}</label>
+                <p class="rotate-hint" style="background-color: #FFFFFF; color: #626262; border-radius: 10px; padding: 0 10px;">
+                    {% trans "Swipe die Graphik nach rechts für mehr Feedbacks zu deiner Wirkung." %}
+                </p>
                     <div class="progress__bar">
-                        <div style="width: 80%">80%</div>
+                        <div style="width: 80%; border-radius: 10px;">80%</div>
                     </div>
                 </div>
             </div>
@@ -72,12 +88,6 @@
                         </ul>
                 </div>
                 <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
-                <div class="left">
-                        <p style="background-color: #52CEEC; color: #FFFFFF; border-radius: 10px; padding: 0 10px; width: 100%;">
-                                {% trans "Unsere Hypothese: Ungeklärte Spannungen erzeugen Unsicherheit und gefährden Vertrauen. Eine tragfähige, sichere Beziehungsbasis macht Defensivreaktionen überflüssig (Fight, Flight & Freeze) und lässt dich achtsam mit dir und anderen umgehen." %}<br><br>
-                        </p>
-                </div>
-
 
                 <div id="graph-slider" class="swiper-container">
                     <div class="swiper-wrapper"></div>
@@ -103,7 +113,7 @@
                 </div>
                 </div>
                 <p style="background-color: #52CEEC; color: #FFFFFF; border-radius: 10px; padding: 0 10px;">
-                    {% trans "Klick bitte auf die Kacheln oben für eine detailierte Darstellung der verschiedenen Perspektiven." %}<br><br>
+                    {% trans "Klick bitte auf die Kacheln oben für eine detailierte Darstellung der verschiedenen Perspektiven." %}<br><br>{% trans "Unsere Hypothese: Ungeklärte Spannungen erzeugen Unsicherheit und gefährden Vertrauen. Eine tragfähige, sichere Beziehungsbasis macht Defensivreaktionen überflüssig (Fight, Flight & Freeze) und lässt dich achtsam mit dir und anderen umgehen." %}
                 </p>
                 </div>
                 <div style="border: 1px solid #ccc; border-radius: 10px; text-align: center; padding: 10px; color: #626262;background-color: #9FE2BF;">

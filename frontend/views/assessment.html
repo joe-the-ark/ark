@@ -13,6 +13,26 @@
     <link rel="stylesheet" href="/static/css/app_graph.css">
     <link rel="stylesheet" href="/static/css/assessment.css">
     <link rel="stylesheet" href="/static/css/load.css">
+
+    <style>
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+
+            body {
+                margin: 0;
+                -webkit-print-color-adjust: exact; /* Chrome, Safari */
+                color-adjust: exact; /* Firefox */
+            }
+
+            .header-main__progress, .center, .container {
+                page-break-inside: auto;
+            }
+        }
+    </style>
+
     <!-- <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"> -->
     <script src="/static/jspdf.umd.min.js"></script>
     <script src="/static/dom-to-image.min.js"></script>
@@ -48,11 +68,11 @@
                 <div class="progress">
                     <label>SOUVENIRS</label>
                     <div class="progress__bar">
-                        <div style="width: 95%">95%</div>
+                        <div style="width: 95%; border-radius: 10px;">95%</div>
                     </div>
                 </div>
             </div>
-             
+                <button onclick="window.print()" title="Or safe this window as PDF">Printscreen</button> <!-- Print Button Added --> 
              <div id="pdf" class="save">
 
                 <div class="icon-download"></div>
@@ -88,7 +108,7 @@
                     {% trans "Wie sicher ist euer Gruppenklima?" %}
                 </h1>
                 <div class="custom-graph-info">
-                    <div class="custom-graph-info__item small" data-text="{% trans 'Sicherheit im Team' %}">
+                    <div class="custom-graph-info__item small" data-text="{% trans 'pS' %}">
                         {{ psy_score }}
                     </div>
                     <div class="custom-graph-info__item base" data-text="{% trans 'Deine innere Sicherheit' %}">
@@ -99,7 +119,7 @@
                     </div>
                 </div>
                 <h3 class="psycho-h3"><br><br>
-                    {% trans "Euer psychologischer Sicherheitswert" %}
+                    {% trans "Euer pS/psychologischer Sicherheitswert" %}
                 </h3>
                 <p class="psycho-p">
                     {% trans "Hier siehst du den psychologische Sicherheitswert für dein Team auf einer Skala zwischen 0 (sehr unsicher) bis 99 (aussergewöhnlich sicher). Welches Verhalten trägt zur psychologischen Sicherheit bei?" %}
@@ -207,16 +227,6 @@
 
                 </div>
 
-
-                <div class="center">
-                    <p class="spanun-p" style="background-color: #52CEEC; color: #FFFFFF; border-radius: 10px; padding: 0 10px;">
-                        {% trans "Unsere Hypothese: Ungeklärte Spannungen erzeugen Unsicherheit und gefährden Vertrauen. Eine tragfähige, sichere Beziehungsbasis macht Defensivreaktionen überflüssig (Fight, Flight & Freeze) und lässt dich achtsam mit dir und anderen umgehen." %} {% trans "Welchen Beitrag leistest du zur psychologischen Sicherheit? Wie klärst du Unterschiede zwischen deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team?" %}<br><br>
-                    </p>
-                    <p>
-                            <br><br><br>
-                    </p>
-                </div>
-
                 <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
                 <h1 class="feed-h3">
                     {% trans "Hier ist Platz für dein Feedback." %}
@@ -294,7 +304,14 @@
                     <div class="swiper-pagination"></div>              
                 </div>
                 </div>
-
+                <div class="center">
+                    <p class="spanun-p" style="background-color: #52CEEC; color: #FFFFFF; border-radius: 10px; padding: 0 10px;">
+                        {% trans "Unsere Hypothese: Ungeklärte Spannungen erzeugen Unsicherheit und gefährden Vertrauen. Eine tragfähige, sichere Beziehungsbasis macht Defensivreaktionen überflüssig (Fight, Flight & Freeze) und lässt dich achtsam mit dir und anderen umgehen." %} {% trans "Welchen Beitrag leistest du zur psychologischen Sicherheit? Wie klärst du Unterschiede zwischen deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team?" %}<br><br>
+                    </p>
+                    <p>
+                            <br>
+                    </p>
+                </div>
                 <div class="center">
 
                         <p>

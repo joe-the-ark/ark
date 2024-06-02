@@ -32,7 +32,6 @@
                 <div class="user">
                     <div class="user__subtitle">
                         {{game.name}}
-                        <span class="icon-link" data-clipboard-text="#link_url"></span> link
                     </div>
                     <img src="{{user.avatar}}" alt="">
                     <div class="user__title">
@@ -44,7 +43,7 @@
                 <div class="progress">
                     <label>{% trans "INDIVIDUUM" %}</label>
                     <div class="progress__bar">
-                        <div style="width: 10%">10%</div>
+                        <div style="width: 10%; border-radius: 10px;">10%</div>
                     </div>
                 </div>
             </div>
@@ -61,12 +60,12 @@
                     </h1>
                     <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
                     <p>
-                    <img src="http://info.arks.ch/wp-content/uploads/2022/07/Plus.png"><br>
+                    <img src="http://info.arks.ch/wp-content/uploads/2022/07/Plus.png" style="border-radius: 10px;"><br>
                     <b style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
                             {% trans "Schreib bitte ein Wort in das leere Feld oder klicke auf den passenden Begriff." %}
                     </b>
                     </p>
-                    <input type="text" placeholder={% trans "..." %} name="kraftquelle" v-model="text_input" @keyup.enter="add_term" @keyup = "keyboard_()"/ style="border-radius: 10px; maxlength=15; minlength=2"><
+                    <input type="text" placeholder={% trans "..." %} name="kraftquelle" v-model="text_input" @keyup.enter="add_term" @keyup = "keyboard_()"/ style="border-radius: 10px; maxlength=15; minlength=2">
                     <label>*This pair of opposites has already been chosen by a fellow traveller.</label>
 
                     <p style="background-color: #52CEEC; color: #FFFFFF; border-radius: 10px; padding: 0 10px;">
@@ -107,8 +106,11 @@
                         <span id="Würde" class="tag">Würde</span>
                         <span id="Zuverlässigkeit" class="tag">Zuverlässigkeit</span> {% endcomment %}
                     </div>
+                    <input type="text" placeholder={% trans "..." %} name="kraftquelle" v-model="text_input" @keyup.enter="add_term" @keyup = "keyboard_()"/ style="border-radius: 10px; maxlength=15; minlength=2">
+
                     <input id="tags" type="hidden" name="tags" value="输入你要传bai递的值">
                     </div>
+
                     <p>
                         {% trans "Entscheide spontan – du kannst den Begriff später noch korrigieren." %}
                     </p>
@@ -133,23 +135,6 @@
   <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
   <script src="https://unpkg.com/clipboard@2/dist/clipboard.min.js"></script>
 <script>
-
-    // Copy and tooltip
-    new ClipboardJS('.icon-link');
-    tippy('.icon-link', {
-      content: 'Copy gamelink to clipboard',
-    });
-    tippy('.icon-link', {
-      trigger: 'click',
-      content: 'Copied',
-    });
-
-    // Link creation
-    // TODO Code bellow Link must be from backend.
-    var temp_link = '{{game.link}}';
-    var url_host = window.location.host;
-    var temp_link_ = url_host + '/link/' + temp_link + '/';
-    document.querySelector('.icon-link').dataset.clipboardText = temp_link_;
 
     function sleep (time) {
         return new Promise((resolve) => setTimeout(resolve, time));

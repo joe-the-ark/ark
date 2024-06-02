@@ -2,6 +2,12 @@
   /* display: none; */
 }
 
+.icon-download {
+  width: 0;
+  height: 0;
+  overflow: hidden; /* Hides the icon by reducing its dimensions to zero */
+}
+
 .app__head #pdf { 
   font-size: 32px;
   color: var(--ls-alfa-color);

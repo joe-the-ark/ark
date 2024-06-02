@@ -19,9 +19,13 @@
   cursor: pointer;
   transition: var(--ls-transition);
 }
-@media screen and (max-width: 1200px) {
+/* Medienabfrage für Bildschirme mit weniger als 1200px Breite */
+  @media screen and (max-width: 1200px) {
   .tags span {
-    margin: 0 15px 15px 0;
+    margin: 0 15px 15px 0;  /* Anpassung des Abstands */
+    font-size: calc(var(--ls-font-large) * 0.6);  /* Reduzierung der Schriftgröße */
+    line-height: calc(48px * 0.6);  /* Reduzierung der Zeilenhöhe */
+    padding: 0 15px;  /* Anpassung des Innenabstands */
   }
 }
 .tags span:hover {

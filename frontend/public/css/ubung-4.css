@@ -237,6 +237,10 @@ button {
   margin-top: 10px; 
 }
 @media screen and (max-width: 1200px) {
+  .app__body {
+    transform: scale(0.8);
+    transform-origin: top left;
+  }
   .distribution__item > div {
     width: 100%;
   }
@@ -252,7 +256,8 @@ button {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-areas: 'problem1 problem2' 'users problem3' 'users problem4' 'problem5 problem6';
-    margin: 0 10px;
+    grid-gap: 15px;
+    margin: 0 5px;
   }
   .distry {
     display: flex;
