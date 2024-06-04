@@ -1,10 +1,10 @@
 .container {
-  max-width: 1200px;
+  max-width: 1000px;
 }
 @media screen and (max-width: 1200px) {
   .heatmap {
-    font-size: 18px;
-    max-width: 90%;
+    font-size: 18px !important;
+    max-width: 90% !important;
   }
 }
 .heatmap {
