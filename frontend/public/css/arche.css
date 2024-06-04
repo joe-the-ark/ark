@@ -1,6 +1,6 @@
 .options {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
   grid-gap: 70px;
   margin: 30px auto 40px;
   text-align: left;
@@ -22,9 +22,7 @@
 .options__item [class*="icon"]:hover {
   transition-duration: 0.5s;
   transform: scale(1.1, 1.1);
-
 }
-
 .options__item p {
   margin-left: 80px;
 }
@@ -64,4 +62,12 @@
   content: " ";
   display: table;
   clear: both;
+}
+@media screen and (max-width: 768px) { 
+  .options__item p {
+    font-size: 18px; /* Schriftgröße für Paragraphen innerhalb von .options__item */
+  }
+  .options {
+    grid-gap: 30px; /* Neuer Abstand zwischen den Grid-Elementen */
+  }
 }

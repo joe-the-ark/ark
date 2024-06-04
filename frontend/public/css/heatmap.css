@@ -1,21 +1,16 @@
 .container {
   max-width: 1000px;
 }
-@media screen and (max-width: 1200px) {
-  .heatmap {
-    font-size: 18px !important;
-    max-width: 90% !important;
-  }
-}
+
 .heatmap {
   display: grid;
 
 /*  grid-template-columns: [lft] minmax(50px, 100px) repeat(3, minmax(50px, 100px)) [prop] 150px [rght] minmax(50px, 100px) ;
 */
-  font-size: 20px;
+  font-size: 18px;
   color: black;
-  padding: 0 calc(50% - (1640px/2 + (15px)));
-  margin: 50px 0 30px 15px;
+  padding: 0 calc(50% - (1640px/2 + (12px)));
+  margin: 50px 0 150px 15px;
   gap: 2px;
 }
 .main-column {
@@ -267,5 +262,11 @@ table.beef-table th.active > span:after {
 
 .beef-table-tools a:hover {
 	text-decoration: underline;
+}
+
+@media screen and (max-width: 1024px) {
+  .heatmap {
+    font-size: 16px !important; /* Neue Schriftgröße für .heatmap */
+  }
 }
 
