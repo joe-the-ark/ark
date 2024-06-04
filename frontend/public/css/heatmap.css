@@ -1,7 +1,12 @@
 .container {
   max-width: 1000px;
 }
-
+@media screen and (max-width: 1200px) {
+  .heatmap {
+    font-size: 18px;
+    max-width: 90%;
+  }
+}
 .heatmap {
   display: grid;
 

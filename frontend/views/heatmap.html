@@ -28,6 +28,20 @@
             }
         }
     </style>
+    <style>
+        @media screen and (max-width: 1200px) {
+            .rotate-hint {
+                display: block !important;
+            }
+        }
+        .rotate-hint {
+            display: none;
+            background-color: #9FE2BF;
+            color: #626262;
+            border-radius: 10px;
+            padding: 0 10px;
+        }
+    </style>
 </head>
 <body>
   {% get_current_language as LANGUAGE_CODE %}
@@ -53,7 +67,9 @@
             </div>
             <div class="header-main__progress">
                 <div class="progress">
-                    <label>HEATMAP</label>
+                  <p class="rotate-hint" style="background-color: #FFFFFF; color: #626262; border-radius: 10px; padding: 0 10px;">
+                      {% trans "Bitte dreh dein Gerät um 90° für eine bessere Lesbarkeit." %}
+                  </p>
                 </div>
                 <button onclick="window.print()" title="Print or safe this window as PDF">Save as PDF</button> <!-- Print Button Added --> 
             </div>
