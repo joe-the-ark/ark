@@ -79,49 +79,51 @@
         element-loading-background="rgba(0, 0, 0, 0.8)">
             <main class="screen auth">
                 <h1>
-                    {% trans "Entfesselt die Kraft eurer psychologischen SAFE CIRCLES" %}
+                    {% trans "Erkunde eure psychologisch sicheren Kreise" %}
                 </h1>
                 <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
 
                 <p style="background-color: #52CEEC; color: #FFFFFF; border-radius: 10px; padding: 0 10px;">
                             <br>
-                            {% trans "Der erste Meilenstein unserer Reise ist ein Schnappschuss davon, wie wir eure derzeitigen sicheren Kreise wahrnehmen. Entdeckt diese sicher verbundenen Untergruppen innerhalb des Teams, in denen Verteidigungsreaktionen (Kampf, Flucht und Erstarren) überflüssig werden. Kannst du dein Team im Spiegel erkennen?" %}<br>
-                            {% trans "Standard-Sicherheitszone:" %}<button @click="current=16" style="border: 5px solid #9FE2BF;">16</button>
-                            {% trans "Erster SAFE CIRCLE bei:" %}<button @click="current=getValue1()" style="border: 5px solid #9FE2BF;">[[ getValue1() ]]</button>
-                            {% trans "Erster Spieler solo bei Safe-Zone-Wert:" %}<button @click="current=getValue3()" style="background-color: #FFFFFF; border: 5px solid #9FE2BF; color: black;">[[ getValue3() ]] </button>{% trans "(Hier klicken)" %}<br><br>
+                            {% trans "In sicher verbundenen Kreisen werden Schutzreaktionen (wie Fight, Flight, Freeze oder Fawn) überflüssig." %}<br>{% trans "Eine Lesehilfe: je kleiner der Zahlenwert, desto mehr Stress und negative Trigger zeigen sich, weil sich die Toleranzfenster der Teammitglieder schliessen." %}<br>
+                            {% trans "In den ersten SAFE CIRCLEs ab " %}<button @click="current=getValue1()" style="border: 5px solid #9FE2BF;">[[ getValue1() ]]</button>{% trans " (hier klicken) funktioniert die Zusammenarbeit auch bei sehr grossem Stress noch ohne Drama." %}<br>
+                            <br>
                 </p>
 
-                <p style="background-color: #9FE2BF; color: #00000; text-align: left; border-radius: 10px; padding: 0 10px;"><br>
-                            {% trans "Fokus: Stellt sicher, dass jeder zu mindestens einem SAFE CIRCLE gehört. Nutzt das Feedback in den kommenden Etappen, um eure psychologischen SAFE CIRCLES zu erweitern." %}
-                            <br><br>
+                <p style="background-color: #9FE2BF; color: #626262; text-align: left; border-radius: 10px; padding: 0 10px;"><br>
+
+                       {% trans "Beim Toleranzfenster-Wert von " %}<button @click="current=getValue3()" style="background-color: #FFFFFF; border: 5px solid #52CEEC; color: black;">[[ getValue3() ]] </button>{% trans " (hier klicken) siehst du, wer zuerst SOLO ist." %}<br>{% trans "Stelle sicher, dass alle in mindestens einem Kreis sicher verbunden sind. Erhöhe den Toleranzfenster-Wert nun um 1, um zu erkennen, wer den Solisten am einfachsten in einen sicheren Kreis mitnehmen kann..." %}
                 </p>
 
                 <div class="center">
                   <p style="float:none; display: inline">
-                    <br>[[ getCircles().length ]] {% trans "CIRCLES bei Safe-Zone-Wert:" %}
+                    <br>[[ getCircles().length ]] {% trans "CIRCLES bei der Toleranzfenster-Grösse..." %}
                     <input type="number" v-model="current" :min="getValue1()-1" :max="getValue2()" style="width:130px; height: 50px; margin: 7px; border-radius: 10px; border: 5px solid #626262;" />
                     {% trans "(niedrige Werte = hoher Stress)" %}
                     <br/>
-                    <span v-for="circle in getCircles()">[[ circle ]] <br/></span>
+                    <span v-for="circle in getCircles()">[[ circle ]]<br/></span>
                     <br/>
                     <canvas ref="canvas" :width="width" :height="height" :style="{ width:width+'px', height:height+'px' }"></canvas>
                   </p>
                 </div>
 
-
-
-                <p style="background-color: #52CEEC; text-align: left; color: #00000; border-radius: 10px; padding: 0 10px;"><br>
-                            {% trans "Im nächsten Schritt solltet ihr die Teammitglieder identifizieren, die durchgängig an mehreren oder allen SAFE CIRCLES teilhaben. Diese Kernmitglieder sind in der Lage Lösungen vorzuschlagen, die allen Teammitgliedern zugute kommen und die psychologische Sicherheit erhöhen." %}
+                <p style="background-color: #52CEEC; text-align: left; color: #FFFFFF; border-radius: 10px; padding: 0 10px;"><br>
+                            {% trans "Die Konstellation beim Standard-Toleranzfenster von " %}<button @click="current=16" style="border: 5px solid #9FE2BF;">16</button>{% trans " könnte der IST-Situation im Team nahekommen." %}<br>{% trans "Erkennst du dein Team im Spiegel dieser Auswertung? Später siehst du im Feedback, wen im Team du durch dein Verhalten beim 16-er Wert noch triggerst und mit wem du schon sicher verbunden bist. (Diese Gegenüberstellung bildet die Basis zur Berechnung aller Safe Circles.)" %}
                             <br><br>
                 </p>
 
                 <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
                             <br>
-                            {% trans "In der aktuellen Konstellation schlägt unser Algorithmus vor, den Sicherheits-Sweetspot als Entwicklungsziel anzustreben bei" %}
-                            <br/>
-                            {% trans "max SAFE-CIRCLE-COUNT:" %}<button @click="current=getValue4()" style="background-color: #FFFFFF; border: 5px solid #75CBE8; color: black;">[[ getValue4() ]]</button>{% trans "(Hier klicken)" %}<br>
+                            {% trans "Die Konstellation bei " %}<button @click="current=getValue4()" style="background-color: #FFFFFF; border: 5px solid #75CBE8; color: black;">[[ getValue4() ]]</button>{% trans " zeigt euer psychologisches Sicherheits-POTENTIAL." %}<br>{% trans "Hier ist die Anzahl der Safe Circles im Team maximal und Lernprozesse gelingen. Identifiziere nun alle Teammitglieder, die durchgängig an mehreren oder allen Safe Circle teilhaben. Diese Kernmitglieder sind erfahrungsgemäss am besten in der Lage, Babysteps vorzuschlagen, um die psychologische Sicherheit zu stärken." %}<br>
+                </p>
 
-                            {% trans "Wenn auf undifferenzierte Einigkeit gedrängt wird, könnte sich das Team bei einem Safe-Zone-Wert von:" %}<button @click="current=getValue2()" >[[ getValue2() ]]</button>{% trans "in eine Sekte verwandeln (Werte über 35 weisen auf ein ungesundes Maß an erwarteter Konformität hin)." %}<br/><br/>
+                <p style="background-color: #52CEEC; text-align: left; color: #FFFFFF; border-radius: 10px; padding: 0 10px;"><br>
+                            {% trans "Aktuell seid ihr beim Toleranzfenster von " %}<button @click="current=getValue2()" style="border: 5px solid #9FE2BF;">[[ getValue2() ]]</button>{% trans " alle in EINEM sicheren Kreis." %}<br>{% trans "Wenn Einzelne auf undifferenzierte Einigkeit drängen, zeigt sich das an einer Toleranzfenster-Grösse von über 35, bei dem die Teamdynamik schon sektenartige Züge tragen kann. Ein weiterer Indikator für ein ungesundes Mass an erwarteter Konformität zeigt sich bei Werten unter 25, die auf eine Gefahr von Groupthink deutet." %}<br>
+                </p>
+
+                <p style="background-color: #fffff; color: #00000; text-align: center; border-radius: 10px; padding: 0 10px;"><br>
+                            {% trans "Wie weiter? Nutze das wertvolle Feedback der kommenden Etappen, um deine psychologisch sicheren Kreise zu erweitern." %}
+                            <br><br>
                 </p>
 
             </div>

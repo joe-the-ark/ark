@@ -463,11 +463,62 @@ msgstr "请注意平均性能值!"
 msgid "Die Reise kann weitergehen, sobald alle Mitspieler hier im Warteraum angekommen sind."
 msgstr "一旦所有玩家都到达这里的等候室，旅程就可以继续。"
 
-msgid "Entfesselt die Kraft eurer psychologischen SAFE CIRCLES"
-msgstr "释放你们心理安全圈的力量"
+msgid "Erkunde eure psychologisch sicheren Kreise"
+msgstr "探索你的心理安全圈"
 
-msgid "Der erste Meilenstein unserer Reise ist ein Schnappschuss davon, wie wir eure derzeitigen sicheren Kreise wahrnehmen. Entdeckt diese sicher verbundenen Untergruppen innerhalb des Teams, in denen Verteidigungsreaktionen (Kampf, Flucht und Erstarren) überflüssig werden. Kannst du dein Team im Spiegel erkennen?"
-msgstr "我们旅程的第一个里程碑是我们对你们当前安全圈的一瞥。在团队内发现这些安全连接的子群，其中防御性反应（战斗、逃避和冻结）变得不必要。你能在镜子里认出你的团队吗？"
+msgid "In sicher verbundenen Kreisen werden Schutzreaktionen (wie Fight, Flight, Freeze oder Fawn) überflüssig."
+msgstr "在安全连接的圈子里，保护性反应（如 打、逃、冻 或 躲）变得多余。"
+
+msgid "Eine Lesehilfe: je kleiner der Zahlenwert, desto mehr Stress und negative Trigger zeigen sich, weil sich die Toleranzfenster der Teammitglieder schliessen."
+msgstr "阅读提示：数值越低，压力和负面触发因素就越多，因为团队成员的容忍窗口正在关闭。"
+
+msgid "In den ersten SAFE CIRCLEs ab "
+msgstr "在首届 安全社区 活动中，来自 "
+
+msgid " (hier klicken) funktioniert die Zusammenarbeit auch bei sehr grossem Stress noch ohne Drama."
+msgstr " (单击此处），即使在压力非常大的情况下，合作仍能顺利进行。"
+
+msgid "Beim Toleranzfenster-Wert von "
+msgstr "公差窗口值为 "
+
+msgid " (hier klicken) siehst du, wer zuerst SOLO ist."
+msgstr " (点击此处），看看谁是 SOLO 第一名。"
+
+msgid "Stelle sicher, dass alle in mindestens einem Kreis sicher verbunden sind. Erhöhe den Toleranzfenster-Wert nun um 1, um zu erkennen, wer den Solisten am einfachsten in einen sicheren Kreis mitnehmen kann..."
+msgstr "确保每个人都至少在一个圈内安全连接。现在将容错窗口值增加 1，看看谁最容易将独奏者带入安全圈......"
+
+msgid "CIRCLES bei der Toleranzfenster-Grösse..."
+msgstr "CIRCLES 为公差窗口大小..."
+
+msgid "Die Konstellation beim Standard-Toleranzfenster von "
+msgstr "标准公差窗口的星座 "
+
+msgid " könnte der IST-Situation im Team nahekommen."
+msgstr " 能接近球队的实际情况。"
+
+msgid "Erkennst du dein Team im Spiegel dieser Auswertung? Später siehst du im Feedback, wen im Team du durch dein Verhalten beim 16-er Wert noch triggerst und mit wem du schon sicher verbunden bist. (Diese Gegenüberstellung bildet die Basis zur Berechnung aller Safe Circles.)"
+msgstr "你能从这面评估镜子中认出你的团队吗？在稍后的反馈中，您将看到团队中哪些人还在通过您的行为触发 16 值，哪些人已经与您建立了安全联系。(这种比较是计算所有安全圈的基础）。"
+
+msgid "Die Konstellation bei "
+msgstr "星座在 "
+
+msgid " zeigt euer psychologisches Sicherheits-POTENTIAL."
+msgstr " 显示您的心理安全潜能。"
+
+msgid "Hier ist die Anzahl der Safe Circles im Team maximal und Lernprozesse gelingen. Identifiziere nun alle Teammitglieder, die durchgängig an mehreren oder allen Safe Circle teilhaben. Diese Kernmitglieder sind erfahrungsgemäss am besten in der Lage, Babysteps vorzuschlagen, um die psychologische Sicherheit zu stärken."
+msgstr "在这里，团队中安全圈的数量达到了最大化，学习过程也取得了成功。现在，找出所有坚持参加几个或所有安全圈的团队成员。经验表明，这些核心成员最适合提出加强心理安全的小步骤。"
+
+msgid "Aktuell seid ihr beim Toleranzfenster von "
+msgstr "您目前正处于 "
+
+msgid " alle in EINEM sicheren Kreis."
+msgstr " 都在一个安全的圈子里。"
+
+msgid "Wenn Einzelne auf undifferenzierte Einigkeit drängen, zeigt sich das an einer Toleranzfenster-Grösse von über 35, bei dem die Teamdynamik schon sektenartige Züge tragen kann. Ein weiterer Indikator für ein ungesundes Mass an erwarteter Konformität zeigt sich bei Werten unter 25, die auf eine Gefahr von Groupthink deutet."
+msgstr "如果个人追求无差别的统一，则表现为容忍度窗口值超过 35，此时团队动态已带有宗派特征。另一个表明预期一致性水平不健康的指标是数值低于 25，这表明存在群体思维的风险。"
+
+msgid "Wie weiter? Nutze das wertvolle Feedback der kommenden Etappen, um deine psychologisch sicheren Kreise zu erweitern."
+msgstr "接下来怎么办？利用接下来各阶段的宝贵反馈，扩大你的心理安全圈。"
 
 msgid "Standard-Sicherheitszone:"
 msgstr "默认安全区域："

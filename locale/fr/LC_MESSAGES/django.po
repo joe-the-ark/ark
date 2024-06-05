@@ -391,11 +391,62 @@ msgstr "Performance ressentie de l'équipe"
 #. potential-result
 #: loco:606c4e795e2f794ae22b8e02
 
-msgid "Entfesselt die Kraft eurer psychologischen SAFE CIRCLES"
-msgstr "Libérez la puissance de vos cercles psychologiques SAFE"
+msgid "Erkunde eure psychologisch sicheren Kreise"
+msgstr "Explorer vos cercles psychologiques sécurisés"
 
-msgid "Der erste Meilenstein unserer Reise ist ein Schnappschuss davon, wie wir eure derzeitigen sicheren Kreise wahrnehmen. Entdeckt diese sicher verbundenen Untergruppen innerhalb des Teams, in denen Verteidigungsreaktionen (Kampf, Flucht und Erstarren) überflüssig werden. Kannst du dein Team im Spiegel erkennen?"
-msgstr "Le premier jalon de notre voyage est un instantané de la façon dont nous percevons vos cercles de sécurité actuels. Découvrez ces sous-groupes sécurisés au sein de l'équipe où les réactions défensives (combat, fuite et immobilisation) deviennent superflues. Pouvez-vous reconnaître votre équipe dans le miroir ?"
+msgid "In sicher verbundenen Kreisen werden Schutzreaktionen (wie Fight, Flight, Freeze oder Fawn) überflüssig."
+msgstr "Dans les cercles connectés de manière sûre, les réactions de protection (comme Fight, Flight, Freeze ou Fawn) deviennent superflues."
+
+msgid "Eine Lesehilfe: je kleiner der Zahlenwert, desto mehr Stress und negative Trigger zeigen sich, weil sich die Toleranzfenster der Teammitglieder schliessen."
+msgstr "Une aide à la lecture : plus la valeur numérique est petite, plus le stress et les déclencheurs négatifs se manifestent, car les fenêtres de tolérance des membres de l'équipe se ferment."
+
+msgid "In den ersten SAFE CIRCLEs ab "
+msgstr "Dans les premiers SAFE CIRCLE à partir de "
+
+msgid " (hier klicken) funktioniert die Zusammenarbeit auch bei sehr grossem Stress noch ohne Drama."
+msgstr " (cliquez ici), la collaboration fonctionne encore sans drame, même en cas de très grand stress."
+
+msgid "Beim Toleranzfenster-Wert von "
+msgstr "Pour la valeur de la fenêtre de tolérance de "
+
+msgid " (hier klicken) siehst du, wer zuerst SOLO ist."
+msgstr " (cliquer ici), tu peux voir qui est SOLO en premier."
+
+msgid "Stelle sicher, dass alle in mindestens einem Kreis sicher verbunden sind. Erhöhe den Toleranzfenster-Wert nun um 1, um zu erkennen, wer den Solisten am einfachsten in einen sicheren Kreis mitnehmen kann..."
+msgstr "Assure-toi que tout le monde est connecté en toute sécurité dans au moins un cercle. Augmente maintenant la valeur de la fenêtre de tolérance par 1 pour savoir qui peut le plus facilement emmener le soliste dans un cercle sécurisé..."
+
+msgid "CIRCLES bei der Toleranzfenster-Grösse..."
+msgstr "CIRCLES pour la taille de la fenêtre de tolérance..."
+
+msgid "Die Konstellation beim Standard-Toleranzfenster von "
+msgstr "La constellation pour la fenêtre de tolérance standard de "
+
+msgid " könnte der IST-Situation im Team nahekommen."
+msgstr " pourrait se rapprocher de la situation réelle de l'équipe."
+
+msgid "Erkennst du dein Team im Spiegel dieser Auswertung? Später siehst du im Feedback, wen im Team du durch dein Verhalten beim 16-er Wert noch triggerst und mit wem du schon sicher verbunden bist. (Diese Gegenüberstellung bildet die Basis zur Berechnung aller Safe Circles.)"
+msgstr "Reconnais-tu ton équipe dans le miroir de cette évaluation ? Plus tard, tu verras dans le feedback qui, dans l'équipe, tu déclenches encore par ton comportement à la valeur 16 et avec qui tu es déjà connecté en toute sécurité. (Cette confrontation constitue la base du calcul de tous les Safe Circles)."
+
+msgid "Die Konstellation bei "
+msgstr "La constellation à "
+
+msgid " zeigt euer psychologisches Sicherheits-POTENTIAL."
+msgstr " montre votre POTENTIEL DE SÉCURITÉ psychologique."
+
+msgid "Hier ist die Anzahl der Safe Circles im Team maximal und Lernprozesse gelingen. Identifiziere nun alle Teammitglieder, die durchgängig an mehreren oder allen Safe Circle teilhaben. Diese Kernmitglieder sind erfahrungsgemäss am besten in der Lage, Babysteps vorzuschlagen, um die psychologische Sicherheit zu stärken."
+msgstr "Ici, le nombre de cercles de sécurité dans l'équipe est maximal et les processus d'apprentissage réussissent. Identifie maintenant tous les membres de l'équipe qui participent en permanence à plusieurs ou à tous les cercles de sécurité. L'expérience montre que ces membres clés sont les mieux placés pour proposer des babysteps afin de renforcer la sécurité psychologique."
+
+msgid "Aktuell seid ihr beim Toleranzfenster von "
+msgstr "Actuellement, vous êtes à la fenêtre de tolérance de "
+
+msgid " alle in EINEM sicheren Kreis."
+msgstr " tous dans UN cercle de sécurité."
+
+msgid "Wenn Einzelne auf undifferenzierte Einigkeit drängen, zeigt sich das an einer Toleranzfenster-Grösse von über 35, bei dem die Teamdynamik schon sektenartige Züge tragen kann. Ein weiterer Indikator für ein ungesundes Mass an erwarteter Konformität zeigt sich bei Werten unter 25, die auf eine Gefahr von Groupthink deutet."
+msgstr "Lorsque des individus poussent à l'unité indifférenciée, cela se traduit par une fenêtre de tolérance de plus de 35, à partir de laquelle la dynamique d'équipe peut déjà prendre des allures de secte. Un autre indicateur d'un degré malsain de conformité attendue apparaît lorsque les valeurs sont inférieures à 25, ce qui indique un risque de groupthink."
+
+msgid "Wie weiter? Nutze das wertvolle Feedback der kommenden Etappen, um deine psychologisch sicheren Kreise zu erweitern."
+msgstr "Comment continuer ? Utilise le précieux feedback des étapes à venir pour élargir tes cercles de sécurité psychologique."
 
 msgid "Standard-Sicherheitszone:"
 msgstr "Zone de sécurité par défaut :"
