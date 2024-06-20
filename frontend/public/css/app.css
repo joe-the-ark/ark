@@ -167,7 +167,7 @@ table {
   border-spacing: 0;
 }
 html:not([theme]) {
-  --ls-brand-color: #750AED;
+  --ls-brand-color: #999966;
   --ls-accent-1-color: #51CEEC;
   --ls-accent-2-color: #75CBE8;
   --ls-bg-global-color: var(--ls-thin-color);
@@ -509,7 +509,7 @@ ul:not([class]):not([id]):not([style]) > li:not([class]):not([id]):not([style]) 
   list-style: none;
 }
 button {
-  border: 5px solid #75CBE8;
+  border: 5px solid #9FE2BF;
   box-sizing: border-box;
   cursor: pointer;
   -webkit-appearance: none;

@@ -355,6 +355,9 @@ msgstr "CLICK on the scale from 1 to 99."
 msgid "Ja, diese Einschätzung passt"
 msgstr "Yes, this assessment fits"
 
+msgid "Eingaben können nachträglich nicht geändert werden"
+msgstr "Entries cannot be changed retrospectively"
+
 msgid "GRUPPE"
 msgstr "GROUP"
 

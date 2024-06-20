@@ -361,6 +361,9 @@ msgstr "CLIQUEZ sur l'échelle de 1 à 99."
 msgid "Ja, diese Einschätzung passt"
 msgstr "Oui, cette estimation est correcte"
 
+msgid "Eingaben können nachträglich nicht geändert werden"
+msgstr "Les inscriptions ne peuvent pas être modifiées a posteriori"
+
 msgid "GRUPPE"
 msgstr "GROUPE"
 
