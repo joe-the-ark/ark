@@ -177,7 +177,7 @@
                 'link': '{{game.link}}',
             }
             {% comment %} axios
-                .post(`/api/check_ubung_3/`, data_)
+                .post('/api/check_ubung_3/', data_)
                 .then(function(response){
                     var result = response.data.result;
                     if (String(result) === "0"){
@@ -189,7 +189,7 @@
                         //console.log(this.term_list);
                         //console.log(data_)
                         axios
-                            .post(`/api/ubung_3_api/`, data_)
+                            .post('/api/ubung_3_api/', data_)
                             .then(function(response){
                                 var result = response.data.result;
                                 console.log(result);
@@ -221,7 +221,7 @@
                 }
 
                 axios
-                    .post(`/api/ubung_3_get_data/`, data_)
+                    .post('/api/ubung_3_get_data/', data_)
                     .then(function(response){
                         var result = response.data.result;
                         that.term_list.splice(0);
@@ -244,7 +244,7 @@
                     //if (that.keyboard_input === true){
                         app.add_term();
                     //}else{
-                        window.location.href = '/wartezimmer/'
+                        window.location.href = "/wartezimmer/";
                     //}
                 }
             },
@@ -297,7 +297,7 @@
                     'lang_code': '{{LANGUAGE_CODE}}'
                 };
                 axios
-                    .post(`/api/ubung_3_api_pro/`, data_)
+                    .post('/api/ubung_3_api_pro/', data_)
                     .then(function(response){
                         var result = response.data.result;
                         if (result == '0'){
@@ -385,7 +385,7 @@
                     'lang_code': '{{LANGUAGE_CODE}}'
                 };
                 axios
-                    .post(`/api/ubung_3_api_pro/`, data_)
+                    .post('/api/ubung_3_api_pro/', data_)
                     .then(function(response){
                         var result = response.data.result;
                         if (result == '0'){

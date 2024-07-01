@@ -225,7 +225,7 @@
                     'link': '{{game.link}}',
                 }
                 axios
-                    .post(`/api/ubung_1_get_data/`, data_)
+                    .post('/api/ubung_1_get_data/', data_)
                     .then(function(response){
                         var result = response.data.result;
                         //console.log(result);
@@ -302,7 +302,7 @@
                     'lang_code': '{{LANGUAGE_CODE}}'
                 };
                 axios
-                    .post(`/api/ubung_1_api_pro/`, data_)
+                    .post('/api/ubung_1_api_pro/', data_)
                     .then(function(response){
                         var result = response.data.result;
                         //console.log(result);
@@ -390,7 +390,7 @@
                 //console.log(that.term_list);
                 //console.log(data_)
                 axios
-                    .post(`/api/ubung_1_api_pro/`, data_)
+                    .post('/api/ubung_1_api_pro/', data_)
                     .then(function(response){
                         var result = response.data.result;
                         //console.log('result',result[0].value);
