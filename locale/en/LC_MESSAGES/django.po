@@ -160,6 +160,9 @@ msgstr "Share this QR code to invite fellow travelers"
 msgid "https://docs.google.com/presentation/d/1xmsuoUm31ay2ecqG-FOb49HdyJkq9mTfcn97gMkzmdw/embed?start=true&loop=false&delayms=8000"
 msgstr "https://docs.google.com/presentation/d/145ag9wNeB7N0-oWSJ_BSVY2u4A1xc4GLgkzTad99HUg/embed?start=true&loop=false&delayms=8000"
 
+msgid "https://docs.google.com/presentation/d/1GhGPSmqc36pZpvmnP57p-4lx0R9c0De-qJd3CtYHcU0/"
+msgstr "https://docs.google.com/presentation/d/10MUoFzON5a2jCPXFmuxVzhtYe1opDjFB3Rbzi9MdoEs/"
+
 #. preview.html
 #: loco:606888e4b1ed7b49ac1acb02
 msgid "Weiter"
