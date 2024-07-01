@@ -14,14 +14,33 @@
     <link rel="stylesheet" href="/static/css/team-potential.css">
 
     <style>
+          .google-slides-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            overflow: hidden;
+            border-radius: 10px;
+            background-color: #9FE2BF;
+        }
+
+        .google-slides-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
         @media print {
             @page {
-                size: A4;
+                size: A4 landscape; /* Use landscape orientation for better fit */
                 margin: 0;
             }
 
             body {
                 margin: 0;
+                background-color: #ffffff; /* Change background color for print */
                 -webkit-print-color-adjust: exact; /* Chrome, Safari */
                 color-adjust: exact; /* Firefox */
             }
@@ -29,7 +48,23 @@
             .header-main__progress, .center, .container {
                 page-break-inside: auto;
             }
+
+            .google-slides-container {
+                width: 100%;
+                height: 100vh; /* Fill the viewport height for printing */
+                padding-top: 0; /* Remove padding-top to fit print size */
+                background-color: #ffffff; /* Change background color for print */
+                border-radius: 0; /* Remove border radius for printing */
+            }
+
+            .google-slides-container iframe {
+                position: static;
+                width: 100%;
+                height: 100vh; /* Fill the viewport height for printing */
+            }
         }
+
+        
     </style>
 
     <script src="/static/vue.js"></script>
@@ -84,24 +119,6 @@
                                         width: 100%;
                                         height: 100%;
                                         border: none;
-                                    }
-
-                                            @media print {
-                                        body {
-                                            background-color: #ffffff; /* Change background color for print */
-                                        }
-                                        .google-slides-container {
-                                            width: 100%;
-                                            height: 100%;
-                                            padding-top: 0; /* Remove padding-top to fit print size */
-                                            background-color: #ffffff; /* Change background color for print */
-                                            border: none; /* Remove border radius for printing */
-                                        }
-                                        .google-slides-container iframe {
-                                            position: static;
-                                            width: 100%;
-                                            height: 100%;
-                                        }
                                     }
                                 </style>
 
