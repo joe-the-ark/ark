@@ -85,7 +85,26 @@
                                         height: 100%;
                                         border: none;
                                     }
+
+                                            @media print {
+                                        body {
+                                            background-color: #ffffff; /* Change background color for print */
+                                        }
+                                        .google-slides-container {
+                                            width: 100%;
+                                            height: auto;
+                                            padding-top: 0; /* Remove padding-top to fit print size */
+                                            background-color: #ffffff; /* Change background color for print */
+                                            border: none; /* Remove border radius for printing */
+                                        }
+                                        .google-slides-container iframe {
+                                            position: static;
+                                            width: 100%;
+                                            height: 100vh; /* Fill the viewport height for printing */
+                                        }
+                                    }
                                 </style>
+
 
 
         </header>
