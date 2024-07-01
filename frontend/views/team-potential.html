@@ -59,8 +59,8 @@
 
             .google-slides-container iframe {
                 position: static;
-                width: 100%;
-                height: 100%; /* Fill the viewport height for printing */
+                width: auto;
+                height: auto; /* Fill the viewport height for printing */
             }
         }
 
@@ -171,7 +171,7 @@
                             {% trans "Die Konstellation bei " %}<button @click="current=getValue4()" style="background-color: #FFFFFF; border: 5px solid #75CBE8; color: black;">[[ getValue4() ]]</button>{% trans " zeigt euer psychologisches Sicherheits-POTENTIAL." %}<br>{% trans "Hier ist die Anzahl der Safe Circles im Team maximal und Lernprozesse gelingen. Identifiziere nun alle Teammitglieder, die durchgängig an mehreren oder allen Safe Circle teilhaben. Diese Kernmitglieder sind erfahrungsgemäss am besten in der Lage, Babysteps vorzuschlagen, um die psychologische Sicherheit zu stärken." %}<br>
                 </p>
 
-                <p style="background-color: #52CEEC; text-align: left; color: #FFFFFF; border-radius: 10px; padding: 0 10px;"><br>
+                <p style="background-color: #fffff; text-align: left; color: #FFFFFF; border-radius: 10px; padding: 0 10px;"><br>
                             {% trans "Aktuell seid ihr beim Toleranzfenster von " %}<button @click="current=getValue2()" style="border: 5px solid #9FE2BF;">[[ getValue2() ]]</button>{% trans " alle in EINEM sicheren Kreis." %}<br>{% trans "Wenn Einzelne auf undifferenzierte Einigkeit drängen, zeigt sich das an einer Toleranzfenster-Grösse von über 35, bei dem die Teamdynamik schon sektenartige Züge tragen kann. Ein weiterer Indikator für ein ungesundes Mass an erwarteter Konformität zeigt sich bei Werten unter 25, die auf eine Gefahr von Groupthink deutet." %}<br><br>
                 </p><br>
 
