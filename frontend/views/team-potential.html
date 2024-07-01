@@ -102,26 +102,38 @@
                 <button onclick="window.print()" title="Print or safe this window as PDF">Save as PDF</button> <!-- Print Button Added --> 
             </div>
 
-                                <style>
-                                    .google-slides-container {
-                                        position: relative;
-                                        width: 100%;
-                                        padding-top: 56.25%; /* 16:9 Aspect Ratio */
-                                        overflow: hidden;
-                                        border-radius: 10px;
-                                        background-color: #9FE2BF;
-                                    }
+                <style>
+                    .google-slides-container {
+                        position: relative;
+                        width: 100%;
+                        padding-top: 56.25%; /* 16:9 Aspect Ratio */
+                        overflow: hidden;
+                        border-radius: 10px;
+                        background-color: #9FE2BF;
+                    }
 
-                                    .google-slides-container iframe {
-                                        position: absolute;
-                                        top: 0;
-                                        left: 0;
-                                        width: 80vd;
-                                        height: 100%;
-                                        border: none;
-                                    }
-                                </style>
+                    .google-slides-container iframe {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%; /* Ensure the iframe takes the full width */
+                        height: 100%;
+                        border: none;
+                    }
 
+                    @media print {
+                        .google-slides-container {
+                            width: 100%;
+                            height: auto;
+                            padding-top: 0; /* Remove padding for print */
+                        }
+
+                        .google-slides-container iframe {
+                            width: 100%; /* Ensure full width */
+                            height: auto; /* Adjust height */
+                        }
+                    }
+                </style>
 
 
         </header>
