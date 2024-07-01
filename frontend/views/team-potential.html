@@ -123,14 +123,24 @@
 
                     @media print {
                         .google-slides-container {
+                            position: relative;
                             width: 100%;
-                            height: auto;
-                            padding-top: 0; /* Remove padding for print */
+                            height: 0;
+                            padding-top: 75%; /* Adjust to fit within print area */
+                            overflow: visible; /* Ensure the content is not hidden */
+                            border-radius: 0;
+                            background-color: #fff;
                         }
 
                         .google-slides-container iframe {
-                            width: 100%; /* Ensure full width */
-                            height: auto; /* Adjust height */
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            transform: scale(0.75); /* Adjust scale to fit the print area */
+                            transform-origin: top left;
+                            border: none;
                         }
                     }
                 </style>
