@@ -641,8 +641,8 @@ msgstr "Les zones vertes sont les zones de sécurité de ton équipe. Notre hypo
 msgid "Zum Abschluss eurer Reise empfehlen wir eine anonyme Feedbackrunde mit 3 bewährten Fragen zur Stärkung der psychologischen Sicherheit im Team: Gib anonymes 1 zu 1 Feedback, um einen sicheren Raum für alle zu schaffen."
 msgstr "Pour conclure votre voyage, nous recommandons une séance de feedback anonyme avec 3 questions éprouvées pour renforcer la sécurité psychologique dans l'équipe : Fournissez un feedback anonyme en tête-à-tête pour créer un espace sûr pour tous."
 
-msgid "(Unbedingt empfohlen für Teams mit einem Performance-Wert unter 80)."
-msgstr "(Indispensable pour les équipes dont la valeur de performance est inférieure à 80)."
+msgid "(Unbedingt empfohlen für Teams mit einem Performance-Wert unter 80. Dieser Feedbackprozess ist ausserdem Voraussetzung, damit die hier noch anonymen Einschätzungen offengelegt werden können)."
+msgstr "(Ce processus de feedback est en outre une condition préalable à la publication des évaluations encore anonymes)."
 
 msgid "Direkt zur Auswertung ohne Feedback"
 msgstr "Directement vers l'évaluation sans feedback"

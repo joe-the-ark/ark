@@ -619,8 +619,8 @@ msgstr "我们的假设：紧张会产生不安全感并危及信任。一个可
 msgid "Zum Abschluss eurer Reise empfehlen wir eine anonyme Feedbackrunde mit 3 bewährten Fragen zur Stärkung der psychologischen Sicherheit im Team: Gib anonymes 1 zu 1 Feedback, um einen sicheren Raum für alle zu schaffen."
 msgstr "在结束你们的旅程时，我们建议进行一轮匿名反馈，提出3个经过验证的问题，以增强团队的心理安全性：提供匿名的1对1反馈，为所有人创造一个安全的空间。"
 
-msgid "(Unbedingt empfohlen für Teams mit einem Performance-Wert unter 80)."
-msgstr "(强烈建议绩效值低于 80 的团队使用）。"
+msgid "(Unbedingt empfohlen für Teams mit einem Performance-Wert unter 80. Dieser Feedbackprozess ist ausserdem Voraussetzung, damit die hier noch anonymen Einschätzungen offengelegt werden können)."
+msgstr "(强烈建议绩效得分低于 80 分的团队采用该反馈程序，这也是匿名评估得以公开的前提条件）。"
 
 msgid "Anonymes Feedback geben"
 msgstr "匿名反馈"

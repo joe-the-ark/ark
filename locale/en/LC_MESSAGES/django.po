@@ -621,8 +621,8 @@ msgstr "Our hypothesis: Tension creates insecurity and jeopardises trust. A sust
 msgid "Zum Abschluss eurer Reise empfehlen wir eine anonyme Feedbackrunde mit 3 bewährten Fragen zur Stärkung der psychologischen Sicherheit im Team: Gib anonymes 1 zu 1 Feedback, um einen sicheren Raum für alle zu schaffen."
 msgstr "To conclude your journey, we recommend an anonymous feedback round with 3 proven questions to strengthen psychological safety in the team: Provide anonymous 1-on-1 feedback to create a safe space for everyone."
 
-msgid "(Unbedingt empfohlen für Teams mit einem Performance-Wert unter 80)."
-msgstr "(Highly recommended for teams with a performance value below 80)."
+msgid "(Unbedingt empfohlen für Teams mit einem Performance-Wert unter 80. Dieser Feedbackprozess ist ausserdem Voraussetzung, damit die hier noch anonymen Einschätzungen offengelegt werden können)."
+msgstr "(Highly recommended for teams with a performance score below 80. This feedback process is also a prerequisite so that the anonymous assessments can be disclosed)."
 
 msgid "Direkt zur Auswertung ohne Feedback"
 msgstr "Direct to evaluation without feedback"
