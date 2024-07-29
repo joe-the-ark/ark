@@ -339,14 +339,14 @@ msgstr "Chaque cercle gris représente une personne élue par un compagnon de vo
 msgid "Bitte dreh dein Gerät um 90° für eine bessere Lesbarkeit."
 msgstr "Veuillez tourner ton appareil de 90° pour une meilleure lisibilité."
 
+msgid "Wie bewertest du den Beitrag jedes Teammitglieds zur psychologischen Sicherheit?"
+msgstr "Comment évalues-tu la contribution de chaque membre de l'équipe à cette ancre de sécurité ?"
+
 msgid "Wie bewertest du den Beitrag jedes Teammitglieds zu diesem Sicherheitsanker?"
 msgstr "Comment évalues-tu la contribution de chaque membre de l'équipe à cette ancre de sécurité ?"
 
 msgid "Wie nimmst du den Beitrag zur inneren Sicherheit im Team wahr?"
 msgstr "Comment perçois-tu la contribution à la sécurité intérieure de l'équipe ?"
-
-msgid "Wie bewertest du den Beitrag jedes Teammitglieds zur psychologischen Sicherheit?"
-msgstr "Comment évaluez-vous la contribution de chaque membre de l'équipe à la sécurité psychologique ?"
 
 #. ubung-5
 #: loco:606c3588f87f8e7dd763d4e2

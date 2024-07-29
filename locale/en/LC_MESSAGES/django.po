@@ -342,6 +342,9 @@ msgstr "How do you perceive the contribution to inner safety in the team?"
 msgid "Wie bewertest du den Beitrag jedes Teammitglieds zur psychologischen Sicherheit?"
 msgstr "How do you evaluate the contribution of each team member to psychological safety?"
 
+msgid "Wie bewertest du den Beitrag jedes Teammitglieds zu diesem Sicherheitsanker?"
+msgstr "How would you rate each team member's contribution to this safety anchor?"
+
 #. ubung-5
 #: loco:606c3588f87f8e7dd763d4e2
 msgid "Positioniere bitte den Beitrag der Spieler im Spannungsfeld von Kraftquelle und Energiefresser im Team."
