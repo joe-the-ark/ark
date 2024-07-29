@@ -84,7 +84,7 @@
                         <a href="/ubung-2/">
                         <button class="button" type="button">
                             {% trans "Weiter" %}
-                        </button>
+                        </button></a>
                         </p>
                     </div>
                         <p><br><br>
@@ -104,7 +104,7 @@
                 </div>
 
                 <div class="google-slides-container">
-                <iframe style="padding: 0 10px;" src={% trans "https://docs.google.com/presentation/d/1snki3nXuUI8Fcb3CSlzI-h0ckSNbjDchoTj0mO648h0/embed?start=true&loop=false&delayms=8000"  %} frameborder="0" width="850" height="400" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                <iframe style="padding: 0 10px;" src={% trans "https://docs.google.com/presentation/d/14hcRQt-E93ktspFjld9c1i17E36XBe64YiVfa-3-s5M/embed?start=true&loop=true&delayms=8000"  %} frameborder="0" width="850" height="400" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
                 
                 <style>
                 .google-slides-container{
@@ -124,10 +124,29 @@
                 background-color: #9FE2BF;
                 border-radius: 10px
                 }
+                .controls {
+                position: absolute;
+                top: 10px;
+                left: 50%;
+                transform: translateX(-50%);
+                display: flex;
+                gap: 10px;
+                }
+                .control-button {
+                padding: 10px 20px;
+                background-color: #007BFF;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                }
                 </style>
 
                 </div>
-
+                <p style="text-align: center;">
+                    <a href="https://github.com/joe-the-ark/ark" target="_blank">ARKS is published under a GPLv3</a> license by 
+                    <a href="https://www.linkedin.com/in/dr-joe-maier/" target="_blank">Dr. Joe Maier</a>.
+                </p>
             </main>
         </div>
     </div>
