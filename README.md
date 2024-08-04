@@ -5,7 +5,7 @@ https://player.vimeo.com/video/852373658
 # PDF-Intro to the ARK
 https://www.dropbox.com/s/dljejtqlyc78gaq/22_10_ARK_Intro.pdf?dl=0
 # The developers slidedeck on psychological safety
-[https://docs.google.com/presentation/d/1m8OOxnHOAqu-uezCv3RLud7_D_JlqlxnUrDExVdjFQk/edit#slide=id.g10434ef0003_0_0](https://docs.google.com/presentation/d/1ab-Y4RQJv_cYfwQIWMKjrs2eE2F24dFQjP2tZk1F4cc/edit?usp=sharing)
+https://docs.google.com/presentation/d/1L-ZLyGT9G0aHv0Umj2poay6UOFBbWTpspAK0px_2DBQ/edit?usp=sharing
 ## Git Notes for backend and frontend developers
 If you work on your local branches, make sure to do a `git pull origin master` before you merge your changes into the master branch or before you do a Pull-Request. This is very important to avoid merge conflicts.
 ## How to run the project 
