@@ -345,83 +345,57 @@ buildGraph() {
   }
 
   showSliderValue(inputSlider, thumb, index) {
-    const { value, max } = inputSlider;
-    const innerWidthSlider = inputSlider.clientWidth - 40;
-    const bulletPosition = value / max;
-    const count = bulletPosition * innerWidthSlider;
-    let filter = 0;
-    if (window.innerWidth <= this.mobile) {
-      thumb.style.left = `${count}px`;
-      thumb.style.bottom = 'auto';
-    } else {
-      thumb.style.bottom = `${count}px`;
-      thumb.style.left = '50%';
-    }
-
-    const countDot = this.find(thumb, `.custom-graph__item-count`);
-    if (countDot) {
-      let hueRotate = 0;
-      if (this.guess.length) {
-        let circle = thumb.querySelector('.custom-graph__item-circle');
-        console.log('circle', circle);
-        let right = this.guess[index].statusSide;
-        //console.log('right', right)
-        console.log('worked');
-        var diff = Math.abs(+value - right);
-        if (diff <= 4) {
-          circle.classList.remove('missed');
-          filter = 90;
-        } else {
-          console.log('circle', circle);
-          circle.querySelector('.value__missed').innerText = value;
-          circle.classList.add('missed');
-          filter = 180;
-        }
-        //if (value < right) {
-        //    filter = 180 - +value*(100/right);
-        //}
-        //if (value >= right) {
-        //    filter = 80 + (+value-right)*(100/(100-right));
-        //}
+      const { value, max } = inputSlider;
+      const innerWidthSlider = inputSlider.clientWidth - 40;
+      const bulletPosition = value / max;
+      const count = bulletPosition * innerWidthSlider;
+      let filter = 0;
+      if (window.innerWidth <= this.mobile) {
+          thumb.style.left = `${count}px`;
+          thumb.style.bottom = 'auto';
       } else {
-        filter = 81 + +value;
+          thumb.style.bottom = `${count}px`;
+          thumb.style.left = '50%';
       }
 
-      // console.log('inputslider', inputSlider);
-      // console.log('thumb', thumb);
-      // console.log('index', index);
-      // console.log(this.data);
-      //console.log('guess', this.guess[index].statusSide);
-      //console.log('value', value)
-      //console.log('index', index)
+      const countDot = this.find(thumb, `.custom-graph__item-count`);
+      if (countDot) {
+          let hueRotate = 0;
+          if (this.guess.length) {
+              let circle = thumb.querySelector('.custom-graph__item-circle');
+              let right = this.guess[index].statusSide;
+              var diff = Math.abs(+value - right);
+              if (diff <= 4) {
+                  circle.classList.remove('missed');
+                  filter = 90;
+              } else {
+                  circle.querySelector('.value__missed').innerText = value;
+                  circle.classList.add('missed');
+                  filter = 180;
+              }
+          } else {
+              filter = 81 + +value;
+          }
 
-      // For guess part, showing the difference of the guess and the value
-      countDot.innerHTML = value;
-      if (this.guess.length) {
-        countDot.innerHTML =
-          '±' + Math.abs(value - this.guess[index].statusSide).toString();
-        if (Math.abs(value - this.guess[index].statusSide) === 0) {
-          countDot.innerHTML = 'Perfect';
-        }
+          // Subtract 50 from the displayed value
+          countDot.innerHTML = value - 50;
+          countDot.style.filter = `hue-rotate(-${filter}deg)  saturate(200%)`;
+          index !== undefined && this.setDataStatus(index, value);
       }
-
-      // console.log(filter);
-      countDot.style.filter = `hue-rotate(-${filter}deg)  saturate(200%)`;
-      index !== undefined && this.setDataStatus(index, value);
-    }
-    if (this.statistic) {
-      const countSide = this.find(thumb, `.custom-graph__item-side`);
-      if (countSide) {
-        countSide.innerHTML = value;
-        countSide.style.filter = `hue-rotate(-${
-          180 - +value
-        }deg)  saturate(200%)`;
-        index !== undefined && this.setDataStatus(index, value);
+      if (this.statistic) {
+          const countSide = this.find(thumb, `.custom-graph__item-side`);
+          if (countSide) {
+              countSide.innerHTML = value;
+              countSide.style.filter = `hue-rotate(-${
+                  180 - +value
+              }deg)  saturate(200%)`;
+              index !== undefined && this.setDataStatus(index, value);
+          }
       }
-    }
-    this.getDependency(inputSlider, thumb, index, value);
-    this.update();
+      this.getDependency(inputSlider, thumb, index, value);
+      this.update();
   }
+
 
   getDependency(inputSlider, thumb, index, value) {
     if (this.dependency) {
@@ -438,20 +412,26 @@ buildGraph() {
     }
   }
 
-  render() {
-    const [down, up] = this.range;
+render() {
+    const [down, up] = this.range;  // This is [1, 99]
     const [labelDown, labelUp, labelMiddle] = this.labelRange;
+
+    // Transform the display range for labels
+    const transformedDown = down - 50;  // Transforms 1 to -49
+    const transformedUp = up - 50;      // Transforms 99 to +49
+    const transformedMiddle = 0;        // Middle value (50) should display as 0
+
     let htmlDown = `
-                    <div class="custom-graph__status">
-                        <div class="custom-graph__status-down">${labelDown}</div>
-                        <div class="custom-graph__status-up">${labelUp}</div>
-                        ${
-                          labelMiddle
-                            ? `<div class="custom-graph__status-middle">${labelMiddle}</div>`
-                            : ''
-                        }
-                    </div>
-            `;
+        <div class="custom-graph__status">
+            <div class="custom-graph__status-down">${labelUp}</div>
+            <div class="custom-graph__status-up">${labelDown}</div>
+            ${
+                labelMiddle
+                ? `<div class="custom-graph__status-middle">${labelMiddle} (${transformedMiddle})</div>`
+                : ''
+            }
+        </div>
+    `;
 
   // Update htmlUp to include the value 50 for each data point
   let htmlUp = `

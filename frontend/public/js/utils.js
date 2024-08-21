@@ -125,7 +125,7 @@ function dataForGraph(json_list, user, modify=true) {
     temp = {
   		'data':datas,
   		'labelRange':value.split(' '),
-  		'range':[1,99],
+  		'range':[0,100],
   	}
     result.push(temp);
   }

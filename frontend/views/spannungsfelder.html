@@ -113,7 +113,7 @@
                 </div>
                 </div>
                 <p style="background-color: #52CEEC; color: #FFFFFF; border-radius: 10px; padding: 0 10px;">
-                    {% trans "Klick bitte auf die Kacheln oben für eine detailierte Darstellung der verschiedenen Perspektiven." %}<br><br>{% trans "Unsere Hypothese: Ungeklärte Spannungen erzeugen Unsicherheit und gefährden Vertrauen. Eine tragfähige, sichere Beziehungsbasis macht Defensivreaktionen überflüssig (Fight, Flight & Freeze) und lässt dich achtsam mit dir und anderen umgehen." %}
+                    {% trans "Klick bitte auf die Kacheln oben für eine detailierte Darstellung der verschiedenen Perspektiven." %}<br><br>{% trans "Unsere Hypothese: Ungeklärte Spannungen erzeugen Unsicherheit und gefährden Vertrauen. Eine tragfähige, sichere Beziehungsbasis macht Defensivreaktionen überflüssig (Fight, Flight, Freeze & Fawn) und lässt dich achtsam mit dir und anderen umgehen." %}
                 </p>
                 </div>
                 <div style="border: 1px solid #ccc; border-radius: 10px; text-align: center; padding: 10px; color: #626262;background-color: #9FE2BF;">
@@ -125,10 +125,10 @@
                         {% trans "Grün = Spannungsfreiheit" %}. {% trans "Spannungs-Werte unter 16 = deuten auf Spannungsfreiheit mit dem Team hin" %}<br><br>
                     </li>
                     <li style="background-color: #ffff; color: #626262; border-radius: 10px;">
-                        {% trans "Negatives Spannungs-Vorzeichen = hier schätzt du deinen Beitrag zur inneren Sicherheit im Team eher zu positiv ein" %}
+                        {% trans "Positives Spannungs-Vorzeichen = hier schätzt du deinen Beitrag zur inneren Sicherheit im Team eher zu positiv ein" %}
                     </li>
                     <li style="background-color: #ffff; color: #626262; border-radius: 10px;">
-                        {% trans "Positives Spannungs-Vorzeichen = hier schätzt du deinen Beitrag zur inneren Sicherheit im Team eher zu kritisch ein" %}<br><br>
+                        {% trans "Negatives Spannungs-Vorzeichen = hier schätzt du deinen Beitrag zur inneren Sicherheit im Team eher zu kritisch ein" %}<br><br>
                     </li>                    
                     <li style="background-color: #fa5252; color: white; border-radius: 10px;">
                         {% trans "Rot = deine Selbstwahrnehmung liegt ausserhalb der Safe-Base" %}<br><br>
@@ -143,7 +143,7 @@
                 </div>
 
                 <p class="spanun-p" style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
-                            {% trans "Zum Abschluss eurer Reise empfehlen wir eine anonyme Feedbackrunde mit 3 bewährten Fragen zur Stärkung der psychologischen Sicherheit im Team: Gib anonymes 1 zu 1 Feedback, um einen sicheren Raum für alle zu schaffen." %}
+                            {% trans "Zum Abschluss empfehlen wir eine anonyme Feedbackrunde mit 3 bewährten Fragen zur Stärkung der psychologischen Sicherheit im Team: Dieser Feedbackprozess ist Voraussetzung, damit die hier noch anonym dargestellten Einschätzungen der anderen Teammitglieder offengelegt werden können." %}
                 </p>
 
                 <div class="center">
@@ -417,7 +417,7 @@
     dataForGraph(jsonAll, curentUser).forEach((item, i) => {
         appgraph = new AppGraph({
             container: `.swiper-slide.slide-${i}`,
-            range: item.range,
+            range: [0, 100],
             labelRange: item.labelRange,
             mobile: 1200,
             statistic: true,

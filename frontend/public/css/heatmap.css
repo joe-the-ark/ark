@@ -144,7 +144,13 @@
   content: '+ ';
 }
 
+.property_mirror_item .property_mirror_two::before {
+  content: '- ';
+}
 
+.propertyproperty_mirror_item .property_mirror_two {
+  color: #e0bfbf;
+}
 
 .one {
   background-color: #FAE03C;

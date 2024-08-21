@@ -140,8 +140,8 @@
                             <div class="team-average__range" v-bind:style="{width: widthCalc}">
                                 <div class="team-average__circle">[[ score ]]</div>
                             </div>
-                            <div class="team-average__down">99</div>
-                            <div class="team-average__up">1</div>
+                            <div class="team-average__down">100</div>
+                            <div class="team-average__up">0</div>
                         </div>
                     </div>
                     <div class="distry">
@@ -268,6 +268,10 @@
 
                 <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
 
+                <div id="rang-slider" class="swiper-container">
+                    <div class="swiper-wrapper">
+                    </div>
+                </div>
                 <h3 class="spanun-h3">
                     {% trans "Was ist dein Beitrag zur inneren Sicherheit im Team?" %}<br>{% trans "Hier deine Interpretationshilfe:" %}<br>
                 </h3>
@@ -276,10 +280,10 @@
                         {% trans "Grün = Spannungsfreiheit" %}.<br>{% trans "Spannungs-Werte unter 16 = deuten auf Spannungsfreiheit mit dem Team hin" %}<br><br>
                     </li>
                     <li style="background-color: #ffff; color: #626262; border-radius: 10px;">
-                        {% trans "Negatives Spannungs-Vorzeichen = hier schätzt du deinen Beitrag zur inneren Sicherheit im Team eher zu positiv ein" %}
+                        {% trans "Positives Spannungs-Vorzeichen = hier schätzt du deinen Beitrag zur inneren Sicherheit im Team eher zu positiv ein" %}
                     </li>
                     <li style="background-color: #ffff; color: #626262; border-radius: 10px;">
-                        {% trans "Positives Spannungs-Vorzeichen = hier schätzt du deinen Beitrag zur inneren Sicherheit im Team eher zu kritisch ein" %}<br><br>
+                        {% trans "Negatives Spannungs-Vorzeichen = hier schätzt du deinen Beitrag zur inneren Sicherheit im Team eher zu kritisch ein" %}<br><br>
                     </li>                    
                     <li style="background-color: #fa5252; color: white; border-radius: 10px;">
                         {% trans "Rot = deine Selbstwahrnehmung liegt ausserhalb der Safe-Base" %}<br><br>
@@ -291,11 +295,6 @@
                         {% trans "Schwarz = die Selbst- und die Fremdwahrnehmung deines Beitrags zur inneren Sicherheit liegen ausserhalb der Safe-Base" %}<br><br>
                     </li>
                 </ul>
-
-                <div id="rang-slider" class="swiper-container">
-                    <div class="swiper-wrapper">
-                    </div>
-                </div>
                 <div id="graph-slider" class="swiper-container">
                     <div class="swiper-wrapper">
                     </div>
@@ -397,7 +396,7 @@
         var uu = 0;
         while (uu < num){
             var temp = {
-                range: [1, 99],
+                range: [0, 100],
                 labelRange: ['Low', 'High'],
                 data: deal_json(json_list, uu)
             };
@@ -617,8 +616,8 @@
     }
     new AppGraph({
         container: '.custom-graph-wrapper.user',
-        range: [1, 99],
-        labelRange: ['Low', 'High'],
+        range: [0, 100],
+        labelRange: ['High', 'Low'],
         mobile: 1200,
         statistic: true,
         data: dataTeam,

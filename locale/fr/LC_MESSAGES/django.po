@@ -26,8 +26,8 @@ msgstr "L'Arche est un voyage de groupe en ligne pour 3 à 9 personnes, afin d'e
 msgid "Die Arche ist eine Online-Gruppenreise für 3 bis 9 Personen, um die innere und psychologische Sicherheit mit dem Team zu erkunden."
 msgstr "L'Arche est un voyage de groupe en ligne pour 3 à 9 personnes, afin d'explorer la sécurité intérieure et psychologique avec l'équipe."
 
-msgid "Erweitere deine psychologisch sicheren Kreise"
-msgstr "Élargissez vos cercles de sécurité psychologique"
+msgid "Arbeiten in psychologischen #safecircles?"
+msgstr "Travailler dans des #cercles de sécurité psychologique ?"
 
 msgid "Die Arche ist eine kostenlose, online Gruppenreise für 3 bis 15 Personen, um innere und psychologische Sicherheit zu erkunden."
 msgstr "L'Arche est un voyage de groupe en ligne gratuit pour 3 à 15 personnes afin d'explorer la sécurité intérieure et psychologique avec l'équipe."
@@ -111,8 +111,8 @@ msgstr "Avec qui es-tu connecté (déjà) en toute sécurité ?"
 msgid "In psychologisch sicheren Teams gelingen Lernprozesse und die Team Performance steigt. Innere Sicherheit erlaubt es achtsam mit dir und anderen umzugehen. Dadurch werden Defensivreaktionen (Fight, Flight & Freeze) überflüssig."
 msgstr "Dans les équipes psychologiquement sûres, les processus d'apprentissage réussissent et la performance de l'équipe augmente. La sécurité intérieure permet une interaction attentionnée avec vous-même et les autres, rendant inutiles les réactions défensives (Fight, Flight & Freeze)."
 
-msgid "In den nächsten 30 Minuten erkundet ihr die Basis eurer inneren und psychologischen Sicherheit: die Psychological Safe Circles!"
-msgstr "Au cours des 30 prochaines minutes, vous explorerez la base de votre sécurité intérieure et psychologique : les Psychological Safe Circles !"
+msgid "In den nächsten 30 Minuten erkundet ihr die Basis eurer inneren und psychologischen Sicherheit: in welchen psychologischen #safecircles arbeitet ihr schon?"
+msgstr "Au cours des 30 prochaines minutes, vous explorerez la base de votre sécurité intérieure et psychologique : dans quels #safecircles psychologiques travaillez-vous déjà ?"
 
 msgid "Teile diesen QR-Code, um Mitreisende einzuladen"
 msgstr "Partagez ce code QR pour inviter des compagnons de voyage"
@@ -169,6 +169,9 @@ msgstr "https://docs.google.com/presentation/d/1crpAHkZuX4KtJmvNcK-ZCdjhMaJ3s8zP
 msgid "https://docs.google.com/presentation/d/1GhGPSmqc36pZpvmnP57p-4lx0R9c0De-qJd3CtYHcU0/embed?start=true&loop=false&delayms=8000"
 msgstr "https://docs.google.com/presentation/d/10MUoFzON5a2jCPXFmuxVzhtYe1opDjFB3Rbzi9MdoEs/embed?start=true&loop=false&delayms=8000"
 
+msgid "https://docs.google.com/presentation/d/1EpJZJ2s9-yRomfkPbBYcCbgwEWeYZI_7JIeW_3gwLL4/embed?start=true&loop=true&delayms=8000"
+msgstr "https://docs.google.com/presentation/d/14hcRQt-E93ktspFjld9c1i17E36XBe64YiVfa-3-s5M/embed?start=true&loop=true&delayms=8000"
+
 #. preview.html
 #: loco:606888e4b1ed7b49ac1acb02
 msgid "Weiter"
@@ -198,6 +201,9 @@ msgstr "Ecris un mot dans le champ vide ou clique sur le terme correspondant."
 
 msgid "Sicherheitsanker"
 msgstr "Ancrage de sécurité"
+
+msgid "SICHERHEITSANKER"
+msgstr "ANCRE DE SÉCURITÉ"
 
 msgid "INNERE SICHERHEIT"
 msgstr "SÉCURITÉ INTÉRIEURE"
@@ -618,8 +624,8 @@ msgstr "Comment peux-tu résoudre ces tensions et contribuer à une base de séc
 msgid "Wo entstehen Spannungen zwischen deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team?"
 msgstr "Où se situent les tensions entre la perception que tu as de toi-même et la perception que l'équipe a de toi ?"
 
-msgid "Unsere Hypothese: Ungeklärte Spannungen erzeugen Unsicherheit und gefährden Vertrauen. Eine tragfähige, sichere Beziehungsbasis macht Defensivreaktionen überflüssig (Fight, Flight & Freeze) und lässt dich achtsam mit dir und anderen umgehen."
-msgstr "Notre hypothèse : les tensions non résolues génèrent de l'insécurité et menacent la confiance. Une base relationnelle solide et sécurisée rend les réactions défensives superflues (Fight, Flight & Freeze) et te permet d'être attentif à toi-même et aux autres."
+msgid "Unsere Hypothese: Ungeklärte Spannungen erzeugen Unsicherheit und gefährden Vertrauen. Eine tragfähige, sichere Beziehungsbasis macht Defensivreaktionen überflüssig (Fight, Flight, Freeze & Fawn) und lässt dich achtsam mit dir und anderen umgehen."
+msgstr "Notre hypothèse : les tensions non résolues génèrent de l'insécurité et mettent en péril la confiance. Une base relationnelle solide et sûre rend les réactions défensives superflues (Fight, Flight, Freeze & Fawn) et te permet d'être attentif à toi-même et aux autres."
 
 msgid "Klick bitte auf die Kacheln oben für eine detailierte Darstellung der verschiedenen Perspektiven."
 msgstr "Cliquez sur les tuiles ci-dessus pour une représentation détaillée des différentes perspectives."
@@ -638,8 +644,8 @@ msgstr "Voici ton guide d'interprétation :"
 msgid "Die grünen Bereiche sind die sicheren Zonen Deines Teams. Unsere Hypothese: Spannungsfreiheit erzeugt Sicherheit. Eine gute innere Sicherheit macht Defensivreaktionen überflüssig (Fight, Flight & Freeze) und lässt Dich achtsam mit Dir und anderen umgehen. Was ist Dein Beitrag zur inneren Sicherheit? Wie erklärst du die Unterschiede zwischen Deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team?"
 msgstr "Les zones vertes sont les zones de sécurité de ton équipe. Notre hypothèse : l'absence de tensions engendre la sécurité. Une bonne sécurité intérieure rend les réactions défensives superflues (Fight, Flight & Freeze) et te permet d'être attentif à toi-même et aux autres. Quelle est ta contribution à la sécurité intérieure ? Comment expliques-tu les différences entre ta perception de toi-même et la perception des autres par l'équipe ?"
 
-msgid "Zum Abschluss eurer Reise empfehlen wir eine anonyme Feedbackrunde mit 3 bewährten Fragen zur Stärkung der psychologischen Sicherheit im Team: Gib anonymes 1 zu 1 Feedback, um einen sicheren Raum für alle zu schaffen."
-msgstr "Pour conclure votre voyage, nous recommandons une séance de feedback anonyme avec 3 questions éprouvées pour renforcer la sécurité psychologique dans l'équipe : Fournissez un feedback anonyme en tête-à-tête pour créer un espace sûr pour tous."
+msgid "Zum Abschluss empfehlen wir eine anonyme Feedbackrunde mit 3 bewährten Fragen zur Stärkung der psychologischen Sicherheit im Team: Dieser Feedbackprozess ist Voraussetzung, damit die hier noch anonym dargestellten Einschätzungen der anderen Teammitglieder offengelegt werden können."
+msgstr "Pour finir, nous recommandons une séance de feedback anonyme avec 3 questions éprouvées pour renforcer la sécurité psychologique de l'équipe : ce processus de feedback est une condition préalable pour que les évaluations des autres membres de l'équipe, présentées ici de manière encore anonyme, puissent être révélées."
 
 msgid "(Unbedingt empfohlen für Teams mit einem Performance-Wert unter 80. Dieser Feedbackprozess ist ausserdem Voraussetzung, damit die hier noch anonymen Einschätzungen offengelegt werden können)."
 msgstr "(Ce processus de feedback est en outre une condition préalable à la publication des évaluations encore anonymes)."
@@ -660,13 +666,13 @@ msgstr "Quelle est ta contribution au sentiment de sécurité intérieure au sei
 
 #. spannungsfelder
 #: loco:606c91a533e17862a45e96f2
-msgid "Negatives Spannungs-Vorzeichen = hier schätzt du deinen Beitrag zur inneren Sicherheit im Team eher zu positiv ein"
-msgstr "Signe de tension négatif = ici, tu considères que ta contribution à la sécurité intérieure dans l'équipe est plutôt trop positive."
+msgid "Positives Spannungs-Vorzeichen = hier schätzt du deinen Beitrag zur inneren Sicherheit im Team eher zu positiv ein"
+msgstr "Signe de tension positif = ici, tu considères que ta contribution à la sécurité intérieure dans l'équipe est plutôt trop positive."
 
 #. spannungsfelder
 #: loco:606c933a22f3ef591a5fe833
-msgid "Positives Spannungs-Vorzeichen = hier schätzt du deinen Beitrag zur inneren Sicherheit im Team eher zu kritisch ein"
-msgstr "Signe de tension positif = ici, tu es plutôt trop critique à l'égard de ta contribution à la sécurité intérieure dans l'équipe."
+msgid "Negatives Spannungs-Vorzeichen = hier schätzt du deinen Beitrag zur inneren Sicherheit im Team eher zu kritisch ein"
+msgstr "Signe de tension négatif = ici, tu es plutôt trop critique à l'égard de ta contribution à la sécurité intérieure dans l'équipe."
 
 #. spannungsfelder
 #: loco:606c9436f97c426ad140e022
@@ -830,13 +836,13 @@ msgstr "Les champs de tension de"
 
 #. feedback
 #: loco:606dc60150315a793c47f302
-msgid "Negatives Vorzeichen = zu positive Selbstwahrnehmung"
-msgstr "Signe négatif = perception trop positive de soi"
+msgid "Negatives Vorzeichen = zu kritische Selbstwahrnehmung"
+msgstr "Signe négatif = perception trop critique de soi"
 
 #. feedback
 #: loco:606dc732d0511c1cc87ef382
-msgid "Positives Vorzeichen = zu kritische Selbstwahrnehmung"
-msgstr "Signe positif = perception de soi trop critique"
+msgid "Positives Vorzeichen = zu positive Selbstwahrnehmung"
+msgstr "Signe positif = perception trop positive de soi"
 
 #. feedback
 #: loco:606dc7ad3343313c7723b732
@@ -940,23 +946,23 @@ msgstr "Who do you like to evaluate your trip with?"
 msgid "Reflexion in einer Kleingruppe"
 msgstr "Réflexion en petit groupe"
 
-msgid "In eurem Team besträgt der durchschnittliche Spannungswert"
-msgstr "Dans votre équipe, la valeur moyenne de la tension est"
+msgid "In eurem Team beträgt der durchschnittliche Spannungsfreiheitswert"
+msgstr "Dans votre équipe, la valeur moyenne de liberté de tension est"
 
 msgid "Als Daumenregel gilt: Werte unter 20 sind entspannt. Werte unter 40 sind meist noch ohne externe Begleitung bearbeitbar. Die Skala reicht von 1 (absolute Spannungsfreiheit) bis 99."
 msgstr "C'est la valeur de tension pour votre équipe. En règle générale, les valeurs inférieures à 20 sont détendues. Les valeurs inférieures à 40 sont généralement gérables sans accompagnement externe."
 
-msgid "Als Faustregel gilt: Mit zunehmenden Spannungen nimmt die psychologische Sicherheit ab."
-msgstr "En règle générale : Avec l'augmentation des tensions, la sécurité psychologique diminue."
+msgid "Als Faustregel gilt: Mit zunehmender Spannungsfreiheit steigt die psychologische Sicherheit."
+msgstr "En règle générale, plus l'absence de tension est importante, plus la sécurité psychologique augmente."
 
-msgid "Die Safe-Zone beschreibt den Bereich einer sicheren Basis für die Zusammenarbeit, in dem nicht mit defensiven Reaktionen (Fight, Flight oder Freeze) zu rechnen ist."
-msgstr "La Safe-Zone décrit la zone d'une base sécurisée pour la collaboration, où l'on ne s'attend pas à des réactions défensives (Fight, Flight ou Freeze)."
+msgid "Die Safe-Zone beschreibt den Bereich einer sicheren Basis für die Zusammenarbeit, in dem nicht mit defensiven Reaktionen (Fight, Flight, Freeze oder Fawn) zu rechnen ist."
+msgstr "La Safe-Zone décrit la zone d'une base sécurisée pour la collaboration, où l'on ne s'attend pas à des réactions défensives (Fight, Flight, Freeze ou Fawn)."
 
-msgid "Der Stresswert gibt darüber Aufschluss, wie es den Teammitgliedern gerade geht. Mit einem höheren Wert steigt die Wahrscheinlichkeit, dass das Verhalten der anderen als stressig empfunden wird, eine Defensivreaktion eintritt und das Window of Tolerance enger wird."
-msgstr "La valeur de stress donne des indications sur l'état actuel des membres de l'équipe. Avec une valeur plus élevée, la probabilité augmente que le comportement des autres soit perçu comme stressant, déclenchant une réaction défensive et réduisant la fenêtre de tolérance."
+msgid "Je niedriger der Stresswert, desto eher wird dass das Verhalten anderer als stressig empfunden und desto enger das Window of Tolerance."
+msgstr "Plus le niveau de stress est bas, plus le comportement des autres est perçu comme stressant et plus la fenêtre de tolérance est étroite."
 
-msgid "In der Regel haben Teammitglieder unterschiedliche Sicherheitsanker, da das Sicherheitsempfinden nicht allein im Kopf entsteht, sondern über das autonome Nervensystem beeinflusst wird – abhängig davon, was in früheren Lebensabschnitten für Sicherheit gesorgt hat."
-msgstr "En règle générale, les membres de l'équipe ont des ancres de sécurité différentes, car le sentiment de sécurité ne provient pas uniquement de l'esprit mais est influencé par le système nerveux autonome – en fonction de ce qui a assuré la sécurité dans les premières étapes de la vie."
+msgid "In der Regel haben Teammitglieder unterschiedliche Sicherheitsanker, da innere Sicherheit nicht allein im Kopf entsteht, sondern über das autonome Nervensystem beeinflusst wird – abhängig davon, was in früheren Lebensabschnitten für Sicherheit gesorgt hat."
+msgstr "En règle générale, les membres de l'équipe ont des ancrages de sécurité différents, car la sécurité intérieure ne naît pas uniquement dans la tête, mais est influencée par le système nerveux autonome - en fonction de ce qui a assuré la sécurité dans des périodes de vie antérieures."
 
 msgid "Bildet jetzt bitte Zweier- oder Dreiergruppen mit Menschen, die ähnliche Sicherheitsanker gewählt hatten:"
 msgstr "Veuillez maintenant former des groupes de deux ou trois avec des personnes qui ont choisi des ancrages de sécurité similaires :"
@@ -985,8 +991,8 @@ msgstr "Le code couleur à l'intérieur de la heatmap reste inchangé."
 msgid "Bei grünen Feldern liegen Fremd- und Selbstwahrnehmung in der Safe-Zone."
 msgstr "Dans les champs verts, la perception de soi et la perception de l'équipe se trouvent dans la zone de sécurité."
 
-msgid "Der erste Wert (in Klammern) zeigt die Fremdwahrnehmung. Ein hoher Wert deutet darauf hin, dass der Beitrag des Spielers zu den Spannung aus Teamsicht groß ist. Der zweite Wert zeigt die Abweichung zwischen Fremd- und Selbstwahrnehmung. Werte über 16 deuten auf mögliche Spannungen mit dem Team hin. Bei negativen Vorzeichen schätzt der Spieler seinen eigenen Beitrag zur Teamdynamik eher optimistisch ein, was gelegentlich zu weiteren Spannungen im Team führen kann."
-msgstr "La première valeur (entre parenthèses) indique la perception de l'équipe. Une valeur élevée suggère que la contribution du joueur à la tension du point de vue de l'équipe est importante. La deuxième valeur indique la divergence entre la perception de l'équipe et la perception de soi. Les valeurs supérieures à 16 suggèrent des tensions possibles avec l'équipe. Avec des signes négatifs, le joueur évalue sa propre contribution à la dynamique de l'équipe de manière plus optimiste, ce qui peut parfois entraîner des tensions supplémentaires dans l'équipe."
+msgid "Der erste Wert (in Klammern) zeigt die Fremdwahrnehmung. Ein hoher Wert deutet darauf hin, dass der Beitrag des Spielers zur spannungsfreien Zusammenarbeit aus Teamsicht groß ist. Der zweite Wert zeigt die Abweichung zwischen Fremd- und Selbstwahrnehmung. Werte über 16 deuten auf mögliche Spannungen mit dem Team hin. Bei positiven Vorzeichen schätzt der Spieler seinen eigenen Beitrag zur Teamdynamik eher zu optimistisch ein, was gelegentlich zu weiteren Spannungen im Team führen kann."
+msgstr "La première valeur (entre parenthèses) indique la perception externe. Une valeur élevée indique que la contribution du joueur à une collaboration sans tension est importante du point de vue de l'équipe. La deuxième valeur indique l'écart entre la perception des autres et la perception de soi. Les valeurs supérieures à 16 indiquent de possibles tensions avec l'équipe. Si le signe est positif, le joueur a tendance à considérer sa propre contribution à la dynamique de l'équipe de manière trop optimiste, ce qui peut occasionnellement entraîner de nouvelles tensions au sein de l'équipe."
 
 msgid "Der erste Wert (in Klammern) zeigt die Fremdwahrnehmung. Je höher dieser Wert, desto grösser der Beitrag zur Spannung aus Teamsicht."
 msgstr "La première valeur (entre parenthèses) indique la perception des autres. Plus cette valeur est élevée, plus la contribution à la tension du point de vue de l'équipe est importante."
@@ -997,14 +1003,14 @@ msgstr "La deuxième valeur montre l'écart entre la perception des autres et la
 msgid "Bei negativen Vorzeichen schätzt der Spieler den eigenen Beitrag zur Teamdynamik eher zu optimistisch ein. Dadurch entstehen manchmal Spannungen mit dem Team."
 msgstr "En cas de signes négatifs, le joueur a tendance à évaluer de manière trop optimiste sa propre contribution à la dynamique de l'équipe. Cela crée parfois des tensions avec l'équipe."
 
-msgid "Vertikal siehst du in der oberen Reihe den Beitrag jedes Spielers zu den Sicherheitsankern. Je niedriger der Wert, desto größer ist der Beitrag des Spielers zur Sicherheit im Team."
-msgstr "Verticalement, dans la rangée supérieure, vous pouvez voir la contribution de chaque joueur aux ancres de sécurité. Plus la valeur est basse, plus la contribution du joueur à la sécurité de l'équipe est grande."
+msgid "Vertikal siehst du in der oberen Reihe den Beitrag jedes Spielers zu den Sicherheitsankern. Je höher der Wert, desto größer ist der wahrgenommene Beitrag des Spielers zur Sicherheit im Team."
+msgstr "Verticalement, tu peux voir dans la rangée supérieure la contribution de chaque joueur aux ancrages de sécurité. Plus la valeur est élevée, plus la contribution perçue du joueur à la sécurité de l'équipe est importante."
 
-msgid "Horizontal siehst du die Position der Safe-Zone sowie die zugehörigen Sicherheitsanker und Triggerthemen. Je kleiner der Wert auf der linken Seite, desto größer ist der Beitrag dieses Sicherheitsankers zur Team-Sicherheit."
-msgstr "Horizontalement, vous voyez la position de la zone de sécurité ainsi que les ancres de sécurité et les sujets déclencheurs associés. Plus la valeur du côté gauche est petite, plus la contribution de cette ancre de sécurité à la sécurité de l'équipe est grande."
+msgid "Horizontal siehst du die Position der Safe-Zone sowie die zugehörigen Sicherheitsanker und Triggerthemen. Je grösser der Wert auf der linken Seite, desto größer ist der Beitrag dieses Sicherheitsankers zur Team-Sicherheit."
+msgstr "Horizontalement, vous voyez la position de la zone de sécurité ainsi que les ancres de sécurité et les sujets déclencheurs associés. Plus la valeur à gauche est grande, plus la contribution de cette ancre de sécurité à la sécurité de l'équipe est importante."
 
-msgid "Hier unten sind alle Spannungswerte pro Spieler aufaddiert. Auch hier gilt: Je höher der Wert mit negativem Vorzeichen, desto stärker überschätzt der Spieler seinen positiven Beitrag zur Sicherheit im Team."
-msgstr "Ici en bas, toutes les valeurs de tension par joueur sont additionnées. Encore une fois, la règle s'applique : Plus la valeur est élevée avec un signe négatif, plus le joueur surestime sa contribution positive à la sécurité de l'équipe."
+msgid "Hier unten sind alle Spannungswerte pro Spieler aufaddiert. Auch hier gilt: Je höher der Wert mit positivem Vorzeichen, desto stärker überschätzt der Spieler seinen positiven Beitrag zur Sicherheit im Team."
+msgstr "Ici en bas, toutes les valeurs de tension par joueur sont additionnées. Encore une fois, la règle s'applique : Plus la valeur est élevée avec un signe positif, plus le joueur surestime sa contribution positive à la sécurité de l'équipe."
 
 msgid "Je weiter oben ein Paar steht, desto integrierender für das Teamzusammenspiel wirkt diese Paarung vermutlich. Finde bitte einen Partner von weiter unten auf der Liste, um die Ergebnisse Deiner Reise mit der Arche zu verstehen und zu interpretieren..."
 msgstr "Plus un couple se trouve en haut de la liste, plus il est susceptible d'avoir un effet intégrateur sur l'interaction de l'équipe. Veuillez trouver un partenaire plus bas dans la liste pour comprendre et interpréter les résultats de votre voyage avec l'arche..."
@@ -1017,6 +1023,12 @@ msgstr "Joueurs"
 
 msgid "Spannungen"
 msgstr "Tensions"
+
+msgid "Spannungsfrei"
+msgstr "Sans tension"
+
+msgid "Stressfrei"
+msgstr "Sans stress"
 
 msgid "Mitspieler"
 msgstr "Joueurs"
@@ -1047,8 +1059,8 @@ msgstr "Pour conclure."
 msgid "In dieser Liste sind alle Paarkonstellationen mit ihrem Spannungswert aufgeführt. Je weiter oben ein Paar steht, desto integrierender für das Teamzusammenspiel wirkt die Konstellation vermutlich. Paare weiter unten auf der Liste produzieren höhere Spannungswerte, mehr Reibung in den gegenseitigen Wahrnehmungen und haben eventuell Beef miteinandern – sie täten zum Wohle der Gruppe gut daran, sich in den unterschiedlichen Sichtweisen abzugleichen und ihre soziale Sensibilität zu entwickeln."
 msgstr "Dans cette liste, toutes les constellations de paires sont indiquées avec leur valeur de tension. Plus un couple se trouve en haut de la liste, plus il est susceptible d'intégrer l'équipe. Les couples en bas de la liste produisent des valeurs de tension plus élevées, plus de friction dans les perceptions mutuelles et ont éventuellement des différends entre eux - ils feraient bien, pour le bien du groupe, de s'harmoniser dans les différents points de vue et de développer leur sensibilité sociale."
 
-msgid "Das ist der Spannungswert für euer Team. Als Daumenregel gilt: Werte unter 20 sind entspannt. Werte unter 40 sind meist noch ohne externe Begleitung bearbeitbar."
-msgstr "C'est la valeur de tension pour votre équipe. En règle générale : Les valeurs en dessous de 20 sont détendues. Les valeurs en dessous de 40 sont généralement encore gérables sans assistance externe."
+msgid "Das ist der Wert der Spannungsfreiheit für euer Team. Als Daumenregel gilt: Werte über 80 sind entspannt. Spannungswerte über 60 sind meist noch ohne externe Begleitung bearbeitbar."
+msgstr "C'est la valeur de la liberté de tension pour votre équipe. En règle générale, les valeurs supérieures à 80 sont considérées comme détendues. Les valeurs de tension supérieures à 60 peuvent généralement encore être traitées sans accompagnement externe."
 
 #. heatmap
 #: loco:606ef181b72c7c09a00e9952
@@ -1131,8 +1143,8 @@ msgstr "DONNÉES DU JEU ? Clique sur ce lien pour voir l'évaluation de ton voya
 msgid "Was jetzt: DEBRIEF? (15 Minuten Zeitbedarf) Nutzt die Liberating Structure 1-2-4-All und tauscht euch über die Reise mit der Arche aus. Leitfragen: Wie sicher ist euer Gruppenklima im Verhältnis zu deiner inneren Sicherheit? Wie kannst du zur Stärkung deiner inneren Sicherheit und der psychologischen Sicherheit im Team beitragen?"
 msgstr "Et maintenant : DEBRIEF ? (15 minutes) Utilisez la structure de consultation 1-2-4-All et échangez sur le voyage avec l'arche. Questions directrices : Qu'est-ce qui t'a touché, irrité et encouragé à apporter une contribution à la sécurité psychologique ? En quoi consistera exactement ta contribution ?"
 
-msgid "COUNSELING? Für eine professionelle Intervention nimm Kontakt mit deinem Coach oder mit Dr. Joe Maier auf. Das Ziel ist die Erweiterung eurer Psychological Safe Circles. (Empfohlen für Teams mit einem psychologischen Sicherheitswert unter 55)."
-msgstr "COUNSELING ? Pour une intervention professionnelle, contactez votre coach ou le Dr Joe Maier. L'objectif est d'élargir vos Psychological Safe Circles. (Recommandé pour les équipes avec une valeur de sécurité psychologique inférieure à 55)."
+msgid "COUNSELING? Für eine professionelle Intervention nimm Kontakt mit deinem Coach oder mit Dr. Joe Maier auf. Das Ziel ist die Erweiterung eurer Psychological Safe Circles. (Empfohlen für Teams mit einem psychologischen Sicherheitswert unter 60)."
+msgstr "COUNSELING ? Pour une intervention professionnelle, contactez votre coach ou le Dr Joe Maier. L'objectif est d'élargir vos Psychological Safe Circles. (Recommandé pour les équipes avec une valeur de sécurité psychologique inférieure à 60)."
 
 msgid "Bist du ein Coach oder vertraut mit gruppendynamischen Mustern? Dann ist die HEATMAP der Spannungen im Team etwas für dich."
 msgstr "Êtes-vous coach ou familiarisé avec les schémas dynamiques de groupe ? Alors la HEATMAP des tensions dans l'équipe est faite pour vous."
