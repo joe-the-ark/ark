@@ -319,7 +319,7 @@
                 alert("Connection time-out. If you want to continue waiting, please click the button.")
             }
             var data_ = {'link': '{{link}}'};
-            await sleep(50000).then(() => {
+            await sleep(10000).then(() => {
                 axios
                     .post(`/api/waiting_room3_game_start/`, data_)
                     .then(function(response){

@@ -108,8 +108,8 @@ msgstr "copier le lien & afficher le code QR"
 msgid "Mit wem bist du (schon) SICHER verbunden?"
 msgstr "Avec qui es-tu connecté (déjà) en toute sécurité ?"
 
-msgid "In psychologisch sicheren Teams gelingen Lernprozesse und die Team Performance steigt. Innere Sicherheit erlaubt es achtsam mit dir und anderen umzugehen. Dadurch werden Defensivreaktionen (Fight, Flight & Freeze) überflüssig."
-msgstr "Dans les équipes psychologiquement sûres, les processus d'apprentissage réussissent et la performance de l'équipe augmente. La sécurité intérieure permet une interaction attentionnée avec vous-même et les autres, rendant inutiles les réactions défensives (Fight, Flight & Freeze)."
+msgid "In psychologisch sicheren Teams gelingen Lernprozesse und die Team Performance steigt. Innere Sicherheit erlaubt es achtsam mit dir und anderen umzugehen. Dadurch werden Defensivreaktionen (Fight, Flight, Freeze & Fawn) überflüssig."
+msgstr "Dans les équipes psychologiquement sûres, les processus d'apprentissage réussissent et la performance de l'équipe augmente. La sécurité intérieure permet une interaction attentionnée avec vous-même et les autres, rendant inutiles les réactions défensives (Fight, Flight, Freeze & Fawn)."
 
 msgid "In den nächsten 30 Minuten erkundet ihr die Basis eurer inneren und psychologischen Sicherheit: in welchen psychologischen #safecircles arbeitet ihr schon?"
 msgstr "Au cours des 30 prochaines minutes, vous explorerez la base de votre sécurité intérieure et psychologique : dans quels #safecircles psychologiques travaillez-vous déjà ?"
@@ -130,8 +130,8 @@ msgstr "Quel est le degré de sécurité de votre climat de groupe ?"
 msgid "https://player.vimeo.com/video/852158357"
 msgstr "https://player.vimeo.com/video/852373658"
 
-msgid "In psychologisch sicheren Teams gelingen Lernprozesse und die Team Performance steigt. Innere Sicherheit erlaubt es achtsam mit sich selbst und anderen umzugehen. Dadurch werden Defensivreaktionen (Fight, Flight & Freeze) überflüssig."
-msgstr "Dans les équipes psychologiquement sûres, les processus d'apprentissage réussissent et la performance de l'équipe augmente. La sécurité intérieure permet d'être attentif à soi-même et aux autres. Les réactions défensives (fight, flight & freeze) deviennent ainsi superflues."
+msgid "In psychologisch sicheren Teams gelingen Lernprozesse und die Team Performance steigt. Innere Sicherheit erlaubt es achtsam mit sich selbst und anderen umzugehen. Dadurch werden Defensivreaktionen (Fight, Flight, Freeze & Fawn) überflüssig."
+msgstr "Dans les équipes psychologiquement sûres, les processus d'apprentissage réussissent et la performance de l'équipe augmente. La sécurité intérieure permet d'être attentif à soi-même et aux autres. Les réactions défensives (fight, flight, freeze & fawn) deviennent ainsi superflues."
 
 msgid "In den nächsten 30 Minuten erkundet ihr die Basis der inneren und psychologischen (Un-)Sicherheit im Team."
 msgstr "Au cours des 30 prochaines minutes, vous explorerez la base de l'(in)sécurité intérieure et psychologique au sein de l'équipe."
@@ -171,6 +171,9 @@ msgstr "https://docs.google.com/presentation/d/10MUoFzON5a2jCPXFmuxVzhtYe1opDjFB
 
 msgid "https://docs.google.com/presentation/d/1EpJZJ2s9-yRomfkPbBYcCbgwEWeYZI_7JIeW_3gwLL4/embed?start=true&loop=true&delayms=8000"
 msgstr "https://docs.google.com/presentation/d/14hcRQt-E93ktspFjld9c1i17E36XBe64YiVfa-3-s5M/embed?start=true&loop=true&delayms=8000"
+
+msgid "https://docs.google.com/presentation/d/1CKkukI8Ird-FdK_xz3vWhiN998u5nJkiF1mR_A_wy5k/embed?start=true&loop=false&delayms=8000"
+msgstr "https://docs.google.com/presentation/d/10MUoFzON5a2jCPXFmuxVzhtYe1opDjFB3Rbzi9MdoEs/embed?start=true&loop=false&delayms=8000"
 
 #. preview.html
 #: loco:606888e4b1ed7b49ac1acb02
@@ -266,17 +269,20 @@ msgstr "Echangez maintenant."
 msgid "Erklärt euch bitte kurz die GEGENSATZPAARE, damit alle verstehen können, mit welchen Begriffen wir arbeiten."
 msgstr "Expliquez brièvement les PARAMÈTRES CONTRACTÉS, s'il vous plaît, afin que tout le monde puisse comprendre avec quels termes nous travaillons."
 
-msgid "Bitte erläutert kurz die Gegensatzpaare, damit alle verstehen können, welche unterschiedlichen Bedürfnisse zu psychologischer Sicherheit im Team beitragen können."
-msgstr "Veuillez expliquer brièvement les paires opposées afin que chacun puisse comprendre quels besoins différents peuvent contribuer à la sécurité psychologique de l'équipe."
+msgid "Erläutert reihum eure Gegensatzpaare, damit alle verstehen, welche verschiedenen Sicherheitsanker zu den psychologisch sicheren Kreisen im Team beitragen. (Dauer: 5 Minuten)"
+msgstr "Expliquez à tour de rôle vos paires d'opposés afin que tous comprennent quels sont les différents ancrages de sécurité qui contribuent aux cercles de sécurité psychologique dans l'équipe. (Durée : 5 minutes)"
 
-msgid "Überprüfe nun bitte noch einmal deine Begriffe."
-msgstr "Vérifie à nouveau tes termes."
+msgid "Überprüfe und überarbeite bei Bedarf dein Gegensatzpaar."
+msgstr "Vérifie et révise ta paire d'opposés si nécessaire."
+
+msgid "Klicke erst hier weiter, wenn ALLE ein passendes GEGENSATZPAAR benannt haben!"
+msgstr "Ne clique pas ici tant que TOUS n'ont pas désigné une paire complémentaire appropriée !"
 
 msgid "Hast du wirklich ein griffiges GEGENSATZPAAR ausgewählt? Das wäre für den weiteren Verlauf der Reise entscheidend. Überarbeite deine Begriffe bei Bedarf..."
 msgstr "As-tu vraiment choisi une paire opposée facile à retenir ? Cela serait décisif pour la suite du voyage. Révise tes termes si nécessaire..."
 
-msgid "Hast du wirklich ein treffendes GEGENSATZPAAR ausgewählt? Das ist entscheidend für den weiteren Verlauf der Reise. Überarbeite bei Bedarf deine Begriffe."
-msgstr "As-tu vraiment choisi une PAIRE D'OPPOSÉS précise ? C'est crucial pour la suite du voyage. Révisez vos termes si nécessaire."
+msgid "Hast du wirklich ein treffendes GEGENSATZPAAR ausgewählt? Fällt dir die Aufgabe schwer, dann finde einfach das passende Gegenteil zu deinem Sicherheitsanker. Du darfst bitte erst weitergehen, wenn du ein Gegensatzpaar benannt hast."
+msgstr "As-tu vraiment choisi une paire d'Opposants pertinente ? Si tu as du mal à réaliser cette tâche, trouve simplement le contraire qui correspond à ton ancre de sécurité. Ne continue pas tant que tu n'as pas trouvé de paire d'opposés."
 
 msgid "Bildet jetzt bitte Zweier- oder Dreiergruppen mit je ähnlichen Gegensatzpaaren. In diesen Gruppen reflektiert bitte zum Abschluss die Auswertung der Reise."
 msgstr "Formez maintenant des groupes de deux ou trois personnes avec des paires de contraires similaires. Dans ces groupes, réfléchissez à l'évaluation du voyage."
@@ -348,8 +354,8 @@ msgstr "Veuillez tourner ton appareil de 90° pour une meilleure lisibilité."
 msgid "Wie bewertest du den Beitrag jedes Teammitglieds zur psychologischen Sicherheit?"
 msgstr "Comment évalues-tu la contribution de chaque membre de l'équipe à cette ancre de sécurité ?"
 
-msgid "Wie bewertest du den Beitrag jedes Teammitglieds zu diesem Sicherheitsanker?"
-msgstr "Comment évalues-tu la contribution de chaque membre de l'équipe à cette ancre de sécurité ?"
+msgid "Wie schätzt du den Beitrag jedes Teammitglieds zu diesem Sicherheitsanker in der täglichen Zusammenarbeit ein?"
+msgstr "Comment évalues-tu la contribution de chaque membre de l'équipe à cet ancrage de sécurité dans la collaboration quotidienne ?"
 
 msgid "Wie nimmst du den Beitrag zur inneren Sicherheit im Team wahr?"
 msgstr "Comment perçois-tu la contribution à la sécurité intérieure de l'équipe ?"
@@ -364,8 +370,8 @@ msgstr "Veuillez positionner la contribution des joueurs dans la tension entre l
 msgid "KLICKE bitte jede Person an den Punkt (auf der Skala zwischen 1-99), der aus deiner Sicht am Besten zum Beitrag des Mitreisenden in für dich wichtigen Alltagssituationen passt."
 msgstr "CLIQUE sur le point (sur une échelle de 1 à 99) qui, selon toi, correspond le mieux à la contribution du compagnon de voyage dans des situations quotidiennes importantes pour toi."
 
-msgid "KLICKE auf die Skala von 1 bis 99."
-msgstr "CLIQUEZ sur l'échelle de 1 à 99."
+msgid "KLICKE auf die Skala von +50 bis -50."
+msgstr "CLIQUE sur l'échelle de +50 à -50."
 
 msgid "Ja, diese Einschätzung passt"
 msgstr "Oui, cette estimation est correcte"
@@ -612,6 +618,9 @@ msgstr "Swipe le graphique vers la droite pour obtenir plus de feedbacks sur ton
 msgid "Bitte nimm dir 3 Minuten Zeit, um deinen Beitrag zur inneren Sicherheit der anderen Teammitglieder zu begreifen"
 msgstr "Prends 3 minutes pour comprendre ta contribution à la sécurité intérieure des autres membres de l'équipe."
 
+msgid "Hier kannst du dein Selbstbild mit dem Fremdbild vergleichen und sehen, wie du und die anderen deinen Beitrag zum Sicherheitsanker im Team einschätzen:"
+msgstr "Ici, tu peux comparer l'image que tu as de toi-même avec celle des autres et voir comment toi et les autres considérez ta contribution à l'ancrage de la sécurité dans l'équipe :"
+
 msgid "Das grüne Band zeigt die sichere Basis deines Teams:"
 msgstr "La bande verte indique la base de sécurité de ton équipe :"
 
@@ -655,6 +664,9 @@ msgstr "Directement vers l'évaluation sans feedback"
 
 msgid "Anonymes Feedback geben"
 msgstr "Donner un feedback anonyme"
+
+msgid "Falls euer Wert für psychologische Sicherheit unter 80 liegt, beginnt bitte mit einem Debriefing zu den drei Fragen über eure sicheren Kreise"
+msgstr "Si votre score de sécurité psychologique est inférieur à 80, veuillez commencer par un débriefing sur les trois questions relatives à vos cercles de sécurité"
 
 #. spannungsfelder
 #: loco:606c90973e98ca2508753824

@@ -63,27 +63,25 @@
                     </h1>
                     <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
                     <p>
-                        {% trans "Bitte erläutert kurz die Gegensatzpaare, damit alle verstehen können, welche unterschiedlichen Bedürfnisse zu psychologischer Sicherheit im Team beitragen können." %}
+                        {% trans "Erläutert reihum eure Gegensatzpaare, damit alle verstehen, welche verschiedenen Sicherheitsanker zu den psychologisch sicheren Kreisen im Team beitragen. (Dauer: 5 Minuten)" %}
                         <br/>
                     </p>
                     <img src="http://info.arks.ch/wp-content/uploads/2022/07/Plus_Minus.png" style="border-radius: 10px;">
                     <p>
                     <input type="text" placeholder="Sicherheitsanker fehlt!" name="Kraftquelle" v-model="text_input_power" / style="border-radius: 10px">
-                    <input type="text" placeholder="Trigger fehlt!" name="Energiefresser" v-model="text_input_drainer" / style="border-radius: 10px">
-
+                    <input type="text" placeholder="Trigger fehlt!" name="Energiefresser" v-model="text_input_drainer" / style="border-radius: 10px"></br></br>
                     <button class="glow-on-hover" type="button" @click="continue_()" onclick="alert('Updated!')">Update</button>
                     
                     <b style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
-                        {% trans "Überprüfe nun bitte noch einmal deine Begriffe." %} 
-                    </b><br>
+                        {% trans "Überprüfe und überarbeite bei Bedarf dein Gegensatzpaar." %} 
+                    </b></br></br>
                     <b style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
-                        {% trans "Hast du wirklich ein treffendes GEGENSATZPAAR ausgewählt? Das ist entscheidend für den weiteren Verlauf der Reise. Überarbeite bei Bedarf deine Begriffe." %}
-                    </b>
-
+                        {% trans "Hast du wirklich ein treffendes GEGENSATZPAAR ausgewählt? Fällt dir die Aufgabe schwer, dann finde einfach das passende Gegenteil zu deinem Sicherheitsanker. Du darfst bitte erst weitergehen, wenn du ein Gegensatzpaar benannt hast." %}
+                    </b></br></br>
                     </p>
 
                     <!-- Message placeholder added here -->
-                    <div id="message-placeholder" style="background-color: #9FE2BF; border: 1px solid #ccc; border-radius: 10px; padding: 10px; margin-top: 10px;"></div>
+
 
                         <p v-for='(value, index) in 10' :key="index">
                             {{ x }}
@@ -278,12 +276,14 @@
                     </div>  {% endcomment %}
                 </div>
             </main>
-
+                    <p>
+                        <br><br>
+                    </p>
             <form action="#" method="POST" class="form">
             {% csrf_token %}
                 <div class="center">
                     <button id='main_btn' type="button" onclick="choosePopup()">
-                        {% trans "Weiter" %}
+                        {% trans "Klicke erst hier weiter, wenn ALLE ein passendes GEGENSATZPAAR benannt haben!" %}
                     </button>
 
                     <p>
@@ -539,7 +539,7 @@
         }
         var data_ = { 'link': '{{link}}' };
         var user_ = { 'user_id': '{{user.id}}' };
-        await sleep(30000).then(() => {
+        await sleep(10000).then(() => {
             axios
                 .post(`/api/check_ubung1_ubung3_blank/`, user_)
                 .then(function(response) {

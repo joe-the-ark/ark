@@ -89,6 +89,10 @@
                 </div>
                 <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
 
+                <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
+                    {% trans "Hier kannst du dein Selbstbild mit dem Fremdbild vergleichen und sehen, wie du und die anderen deinen Beitrag zum Sicherheitsanker im Team einschätzen:" %}
+                </p>
+
                 <div id="graph-slider" class="swiper-container">
                     <div class="swiper-wrapper"></div>
                     <div class="swiper-button-prev"></div>
@@ -148,12 +152,21 @@
 
                 <div class="center">
 
+
+                        <span>
+                            <a href="/potential-result/">
+                            <button class="button" type="button">
+                                {% trans "Falls euer Wert für psychologische Sicherheit unter 80 liegt, beginnt bitte mit einem Debriefing zu den drei Fragen über eure sicheren Kreise" %}
+                            </button></a>
+                        </span>
+
                         <span>
                             <a href="/mission-2-ubung-2/">
                             <button class="button" type="button">
                                 {% trans "Anonymes Feedback geben" %}
                             </button></a>
                         </span>
+
 
                         <p style="text-align: center; font-size: 10px;">
                             <a href="https://github.com/joe-the-ark/ark" target="_blank">ARKS is published under a GPLv3</a> license by 

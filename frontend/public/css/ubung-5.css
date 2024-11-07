@@ -297,7 +297,7 @@
     position: relative;
     width: 100%;
     height: 8px;
-    background: linear-gradient(to bottom, #00FF00 0%, #9FE2BF 33.33%, #FF0000 66.66%);
+    background: linear-gradient(to bottom, #FF0000 0%, #9FE2BF 33.33%, #00FF00 66.66%);
     top: 0;
     left: 0;
   }
