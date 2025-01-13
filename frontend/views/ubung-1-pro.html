@@ -59,17 +59,18 @@
                         {% trans "Was beschreibt am besten deinen SICHERHEITSANKER im Team?" %}
                     </h1>
                     <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
+
+                    <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
+                            {% trans "Indem wir unseren Anker bewusst erkennen und pflegen, schaffen wir eine solide Basis, die es uns erlaubt, auch in unsicheren oder konfliktreichen Situationen gelassen und souverän zu bleiben." %}
+                    </p>                    
+
                     <p>
                     <img src="http://info.arks.ch/wp-content/uploads/2022/07/Plus.png" style="border-radius: 10px;"><br>
-                    <b style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
-                            {% trans "Schreib bitte ein Wort in das leere Feld oder klicke auf den passenden Begriff." %}
-                    </b>
+
                     </p>
-                    <input type="text" placeholder={% trans "..." %} name="kraftquelle" v-model="text_input" @keyup.enter="add_term" @keyup = "keyboard_()"/ style="border-radius: 10px; maxlength=15; minlength=2">
-                    <label>*This pair of opposites has already been chosen by a fellow traveller.</label>
 
                     <p style="background-color: #52CEEC; color: #FFFFFF; border-radius: 10px; padding: 0 10px;">
-                        {% trans "Denke in einem Kontinuum und wähle den positiven Endpunkt, der dein Sicherheitsgefühl im Team stärkt..." %}
+                        {% trans "Wähle den positiven Endpunkt, der dein Sicherheitsgefühl im Team stärkt..." %}
                         <br><br>
                     </p>
 
@@ -107,6 +108,7 @@
                         <span id="Zuverlässigkeit" class="tag">Zuverlässigkeit</span> {% endcomment %}
                     </div>
                     <input type="text" placeholder={% trans "..." %} name="kraftquelle" v-model="text_input" @keyup.enter="add_term" @keyup = "keyboard_()"/ style="border-radius: 10px; maxlength=15; minlength=2">
+                    <label>*This pair of opposites has already been chosen by a fellow traveller.</label>
 
                     <input id="tags" type="hidden" name="tags" value="输入你要传bai递的值">
                     </div>

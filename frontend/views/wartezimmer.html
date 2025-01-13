@@ -59,26 +59,25 @@
             <main class="screen wartezimmer">
                 <div class="wartezimmer__data" id="app-2">
                     <h1>
-                        {% trans "Tauscht euch jetzt aus." %}
+                        {% trans "Erläutert reihum eure Gegensatzpaare" %}
                     </h1>
                     <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
                     <p>
-                        {% trans "Erläutert reihum eure Gegensatzpaare, damit alle verstehen, welche verschiedenen Sicherheitsanker zu den psychologisch sicheren Kreisen im Team beitragen. (Dauer: 5 Minuten)" %}
+                        {% trans "Damit alle verstehen, welche Bedürfnisse zu euren psychologisch sicheren Kreisen beitragen. (Dauer: 1 Minute pro Person)" %}
                         <br/>
                     </p>
                     <img src="http://info.arks.ch/wp-content/uploads/2022/07/Plus_Minus.png" style="border-radius: 10px;">
-                    <p>
                     <input type="text" placeholder="Sicherheitsanker fehlt!" name="Kraftquelle" v-model="text_input_power" / style="border-radius: 10px">
-                    <input type="text" placeholder="Trigger fehlt!" name="Energiefresser" v-model="text_input_drainer" / style="border-radius: 10px"></br></br>
-                    <button class="glow-on-hover" type="button" @click="continue_()" onclick="alert('Updated!')">Update</button>
-                    
-                    <b style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
-                        {% trans "Überprüfe und überarbeite bei Bedarf dein Gegensatzpaar." %} 
-                    </b></br></br>
-                    <b style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
-                        {% trans "Hast du wirklich ein treffendes GEGENSATZPAAR ausgewählt? Fällt dir die Aufgabe schwer, dann finde einfach das passende Gegenteil zu deinem Sicherheitsanker. Du darfst bitte erst weitergehen, wenn du ein Gegensatzpaar benannt hast." %}
-                    </b></br></br>
+                    <input type="text" placeholder="Trigger fehlt!" name="Energiefresser" v-model="text_input_drainer" / style="border-radius: 10px"><br><br>
+                    <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
+                        {% trans "Überarbeite bei Bedarf dein Gegensatzpaar – du kannst gerne auch EIGENE Begriffe im Textfeld eingeben." %} 
+                    </br></br><button class="glow-on-hover" type="button" @click="continue_()" onclick="alert('Updated!')">Update</button><br><br><br>
                     </p>
+
+                    
+                    <br><br><p style="background-color: #52CEEC; color: #FFFFFF; border-radius: 10px; padding: 0 10px;">
+                        {% trans "Hast du wirklich ein treffendes GEGENSATZPAAR ausgewählt? Fällt dir die Aufgabe schwer, dann finde einfach das passende Gegenteil zu deinem Sicherheitsanker. Du darfst bitte erst weitergehen, wenn du ein Gegensatzpaar benannt hast." %}
+                    </p><br><br>
 
                     <!-- Message placeholder added here -->
 
@@ -539,7 +538,7 @@
         }
         var data_ = { 'link': '{{link}}' };
         var user_ = { 'user_id': '{{user.id}}' };
-        await sleep(10000).then(() => {
+        await sleep(20000).then(() => {
             axios
                 .post(`/api/check_ubung1_ubung3_blank/`, user_)
                 .then(function(response) {

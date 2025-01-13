@@ -56,19 +56,18 @@
         element-loading-background="rgba(0, 0, 0, 0.8)">
                 <main class="screen ubung-1">
                     <h1>
-                        {% trans "Kannst du den GEGENPOL zum Sicherheitsanker im Team benennen, der bei dir Unsicherheit verursachen könnte?" %}
+                        {% trans "Benenne den GEGENPOL zum Sicherheitsanker" %}
                     </h1>
                     <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
+                    <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
+                            {% trans "Bitte teile mit uns, was dich hier im Team NEGATIV triggern kann oder manchmal vielleicht sogar zu einem Gefühl von Angst beiträgt..." %}
+                    </p>
                     <p>
                     <img src="http://info.arks.ch/wp-content/uploads/2022/07/Minus.png" style="border-radius: 10px;"><br>
-                    <b style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
-                            {% trans "Schreib bitte ein Wort in das leere Feld oder klicke auf den passenden Begriff." %}
-                    </b>
                     </p>
-                    <input type="text" placeholder={% trans "..." %} name="energiefresser" v-model="text_input" @keyup.enter="add_term" @keyup = "keyboard_()"/ style="border-radius: 10px; maxlength=15; minlength=2">
-                    <label>*This pair of opposites has already been chosen by another fellow traveller.</label>
+
                     <p style="background-color: #52CEEC; color: #FFFFFF; border-radius: 10px; padding: 0 10px;">
-                            {% trans "Bitte teile mit uns, was dich hier im Team NEGATIV triggern kann oder manchmal vielleicht sogar zu einem Gefühl von Angst beiträgt..." %}<br><br>
+                            {% trans "Wähle den negativen Endpunkt, der dein Sicherheitsgefühl im Team bedrohen kann…" %}<br><br>
                     </p>
                     <div class="tags">
                         <span :id="item.value" v-bind:class="{ tag: item.state==='tag', 'line-through': item.state !== 'tag'}" v-for="item in term_list" @click="mark( item.value )" style="border-radius: 10px">[[ item.value ]]</span>
@@ -105,6 +104,8 @@
                     </div>
                     <input type="text" placeholder={% trans "..." %} name="energiefresser" v-model="text_input" @keyup.enter="add_term" @keyup = "keyboard_()"/ style="border-radius: 10px; maxlength=15; minlength=2">
                     <input id="tags" type="hidden" name="tags" value="输入你要传bai递的值">
+
+                    <label>*This pair of opposites has already been chosen by another fellow traveller.</label>
                 </div>
                     <div class="center">
                         {% comment %} <a href="/wartezimmer/"> {% endcomment %}

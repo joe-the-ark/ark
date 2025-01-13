@@ -176,14 +176,14 @@ msgstr "Continue"
 
 #. ubung-1
 #: loco:606b759198a94a6cf8339672
-msgid "Was beschreibt am besten deinen SICHERHEITSANKER, der dir im Team Sicherheit schenkt?"
-msgstr "What describes best your SAFETY ANCHOR that makes the team feel safe for you?"
+msgid "Indem wir unseren Anker bewusst erkennen und pflegen, schaffen wir eine solide Basis, die es uns erlaubt, auch in unsicheren oder konfliktreichen Situationen gelassen und souverän zu bleiben."
+msgstr "By consciously recognizing and caring for our anchor, we create a solid foundation that allows us to remain calm and confident even in uncertain or conflict-laden situations."
 
 msgid "Was beschreibt am besten deinen SICHERHEITSANKER im Team?"
 msgstr "What best describes your safety anchor in the team?"
 
-msgid "Denke in einem Kontinuum und wähle den positiven Endpunkt, der dein Sicherheitsgefühl im Team stärkt..."
-msgstr "Think on a continuum and choose the positive endpoint that strengthens your sense of security in the team..."
+msgid "Wähle den positiven Endpunkt, der dein Sicherheitsgefühl im Team stärkt..."
+msgstr "Choose the positive endpoint that strengthens your sense of safety in the team..."
 
 msgid "Entscheide spontan – du kannst den Begriff später noch korrigieren."
 msgstr "Decide spontaneously – you can correct the term later."
@@ -230,11 +230,11 @@ msgstr "Psychological safety is the strongest predictor of team performance - ho
 
 #. ubung-3
 #: loco:606b7d13d2174c4ebc3e3762
-msgid "Beschreibe nun bitte den GEGENPOL zum Sicherheitsanker, der für dich im Team für Unsicherheit sorgen kann."
-msgstr "Now please describe the OPPOSITE to the safety anchor that can cause insecurity for you in the team."
+msgid "Benenne den GEGENPOL zum Sicherheitsanker"
+msgstr "Name the antipole to the safety anchor"
 
-msgid "Schreib bitte ein Wort in das TRIGGER-Feld oder klicke auf den passenden Begriff."
-msgstr "Please write a word in the TRIGGER-field or click on the appropriate term."
+msgid "Wähle den negativen Endpunkt, der dein Sicherheitsgefühl im Team bedrohen kann…"
+msgstr "Choose the negative endpoint that can threaten your sense of safety in the team..."
 
 msgid "Kannst du den GEGENPOL zum Sicherheitsanker im Team benennen, der bei dir Unsicherheit verursachen könnte?"
 msgstr "Can you name the COUNTERPART to the safety anchor in the team that could cause uncertainty for you?"
@@ -257,17 +257,17 @@ msgstr "trigger"
 
 #. waitingroom-1
 #: loco:606b7eca211f3464ed134c33
-msgid "Tauscht euch jetzt aus."
-msgstr "Share your perspectives now."
+msgid "Erläutert reihum eure Gegensatzpaare"
+msgstr "Take turns explaining your pairs of opposites"
 
 msgid "Erklärt euch bitte kurz die GEGENSATZPAARE, damit alle verstehen können, mit welchen Begriffen wir arbeiten."
 msgstr "Please briefly explain the OPPOSITE PAIRS so that everyone can understand what terms we are working with."
 
-msgid "Erläutert reihum eure Gegensatzpaare, damit alle verstehen, welche verschiedenen Sicherheitsanker zu den psychologisch sicheren Kreisen im Team beitragen. (Dauer: 5 Minuten)"
-msgstr "Take it in turns to explain your complementary pairs so that everyone understands which different safety anchors contribute to the psychologically safe circles in the team. (Duration: 5 minutes)"
+msgid "Damit alle verstehen, welche Bedürfnisse zu euren psychologisch sicheren Kreisen beitragen. (Dauer: 1 Minute pro Person)"
+msgstr "So that everyone understands which needs contribute to your psychologically safe circles. (Duration: 1 minute per person)"
 
-msgid "Überprüfe und überarbeite bei Bedarf dein Gegensatzpaar."
-msgstr "Check and revise your complementary pair if necessary."
+msgid "Überarbeite bei Bedarf dein Gegensatzpaar – du kannst gerne auch EIGENE Begriffe im Textfeld eingeben."
+msgstr "Revise your pair of opposites if necessary - you can also enter your OWN terms in the text field."
 
 msgid "Klicke erst hier weiter, wenn ALLE ein passendes GEGENSATZPAAR benannt haben!"
 msgstr "Don't click here until EVERYONE has designated a suitable complementary pair!"
