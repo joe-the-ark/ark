@@ -29,14 +29,17 @@ msgstr "The Ark is an online group trip for 3 to 9 people to explore inner and p
 msgid "Arbeiten in psychologischen #safecircles?"
 msgstr "Working in psychological #safecircles?"
 
-msgid "Die Arche ist eine kostenlose, online Gruppenreise für 3 bis 15 Personen, um innere und psychologische Sicherheit zu erkunden."
-msgstr "The Ark is a free, online group journey for 3 to 15 people to explore inner and psychological safety with the team."
+msgid "Psychologisch sicher genug für Höchstleistung?"
+msgstr "Psychologically safe enough for high performance?"
+
+msgid "Bist du bereit für die aufrichtigste Team-Challenge deiner Karriere mit der Arche (für 3 bis 15 Personen)?"
+msgstr "Are you ready for the most candid team challenge of your career with the Ark (for 3 to 15 people)?"
 
 msgid "Entfalte das Potenzial deines Teams mit maximalen psychologisch sicheren Kreisen."
 msgstr "Unlock your team's potential with maximum psychological safe circles."
 
-msgid "Die Arche ist eine kostenlose, online Gruppenreise für 3 bis 15 Personen, um innere und psychologische Sicherheit zu erkunden. Entfalte das Potenzial deines Teams mit maximalen psychologisch sicheren Kreisen."
-msgstr "The Ark is a free, online group journey for 3 to 15 people to explore inner and psychological safety with the team. Unlock your team's potential with maximum psychological safe circles."
+msgid "Bist du bereit für die aufrichtigste Team-Challenge deiner Karriere mit der Arche (für 3 bis 15 Personen)? Entfalte das Potenzial deines Teams mit maximalen psychologisch sicheren Kreisen."
+msgstr "Are you ready for the most candid team challenge of your career with the Ark (for 3 to 15 people)? Unlock your team's potential with maximum psychological safe circles."
 
 msgid "Die Reisezeit der ersten Etappe beträgt eine halbe Stunde."
 msgstr "The travel time of the first stage is half an hour."
@@ -94,8 +97,8 @@ msgstr "Share this link to take your team with you:"
 msgid "Diesen Link teilen:"
 msgstr "Share this link:"
 
-msgid "Reise starten"
-msgstr "Start journey"
+msgid "Challenge starten"
+msgstr "Start challenge"
 
 msgid "Link kopieren & QR-Code anzeigen"
 msgstr "copy link & show QR code"
@@ -424,8 +427,8 @@ msgstr ""
 #. potential-result
 #: loco:606c4f4d5710c25c3f4f0693
 
-msgid "Erkunde eure psychologisch sicheren Kreise"
-msgstr "Explore your psychological safe circles"
+msgid "Reality Check: eure psychologisch sicheren Kreise"
+msgstr "Reality Check: your psychologically safe circles"
 
 msgid "In sicher verbundenen Kreisen werden Schutzreaktionen (wie Fight, Flight, Freeze oder Fawn) überflüssig."
 msgstr "In safely connected circles, defensive reactions (such as Fight, Flight, Freeze or Fawn) become superfluous."
@@ -457,8 +460,8 @@ msgstr "The constellation for the standard tolerance window of "
 msgid " könnte der IST-Situation im Team nahekommen."
 msgstr " could come close to the actual situation in the team."
 
-msgid "Erkennst du dein Team im Spiegel dieser Auswertung? Später siehst du im Feedback, wen im Team du durch dein Verhalten beim 16-er Wert noch triggerst und mit wem du schon sicher verbunden bist. (Diese Gegenüberstellung bildet die Basis zur Berechnung aller Safe Circles.)"
-msgstr "Do you recognize your team in the mirror of this evaluation? Later, you will see in the feedback who in the team you are still triggering through your behavior at the 16-value and with whom you are already safely connected. (This comparison forms the basis for calculating all safe circles)."
+msgid "Erkennst du dein Team im Spiegel dieser Auswertung? Auf der letzten Seite hast du bereits gesehen, wo dein Verhalten beim 16-er Toleranzfenster-Wert andere noch triggert und wo du schon im grünen Bereich sicher verbunden bist. (Diese Gegenüberstellung bildet die Basis zur Berechnung aller Safe Circles.)"
+msgstr "Do you recognize your team in the mirror of this evaluation? On the previous page, you already saw where your behavior regarding the 16-point tolerance window value still triggers others, and where you are already securely connected in the green zone. (This comparison forms the basis for calculating all Safe Circles.)"
 
 msgid "Die Konstellation bei "
 msgstr "The constellation at "
@@ -581,8 +584,8 @@ msgstr "The journey can continue as soon as all the players have arrived here in
 
 #. ps-score
 #: loco:606c88b0ce3e5b40de0ea732
-msgid "Euer pS/psychologischer Sicherheitswert"
-msgstr "Your psychological safety score"
+msgid "Reality Check: Safe oder Unsafe Team – wo steht ihr wirklich?"
+msgstr "Reality Check: Safe or Unsafe Team – where do you really stand?"
 
 msgid "TEAMKLIMA"
 msgstr "TEAM CLIMATE"
@@ -606,8 +609,8 @@ msgstr "Swipe the graphic to the right for more feedback on your impact."
 msgid "Dein Beitrag zur inneren Sicherheit im Team"
 msgstr "Your contribution to the inner safety in the team"
 
-msgid "Bitte nimm dir 3 Minuten Zeit, um deinen Beitrag zur inneren Sicherheit der anderen Teammitglieder zu begreifen"
-msgstr "Please take 3 minutes to understand your contribution to the inner safety of the other team members"
+msgid "Reality Check: Safe oder Unsafe Team – warum steht ihr wirklich da?"
+msgstr "Reality Check: Safe or Unsafe Team – why are you really there?"
 
 msgid "Hier kannst du dein Selbstbild mit dem Fremdbild vergleichen und sehen, wie du und die anderen deinen Beitrag zum Sicherheitsanker im Team einschätzen:"
 msgstr "Here you can compare your self-image with the image of others and see how you and the others assess your contribution to the safety anchor in the team:"

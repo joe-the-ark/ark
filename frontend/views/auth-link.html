@@ -200,19 +200,19 @@
                     -->
                     <div class="form__field">
                         <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
-                            {% trans "Die Arche ist eine kostenlose, online Gruppenreise für 3 bis 15 Personen, um innere und psychologische Sicherheit zu erkunden. Entfalte das Potenzial deines Teams mit maximalen psychologisch sicheren Kreisen." %}
+                            {% trans "Bist du bereit für die aufrichtigste Team-Challenge deiner Karriere mit der Arche (für 3 bis 15 Personen)? Entfalte das Potenzial deines Teams mit maximalen psychologisch sicheren Kreisen." %}
                         </p>
 
                     </div>
 
                     <div class="form__field">
                         {% comment %} <button id="submit_button" type="submit">
-                            {% trans "Weiter" %}
+                            {% trans "Challenge starten" %}
                         </button> {% endcomment %}
                     </div>
                 </form>
                     <button id="submit_button" type="button">
-                        {% trans "Weiter" %}
+                        {% trans "Challenge starten" %}
                     </button>
                 <p>
                     <br>
@@ -373,7 +373,7 @@
 
     function defaultLoad() {
         const el = document.getElementById('title-game');
-        el.innerHTML = window.innerWidth < 768 ? "{% trans 'Komm an Bord.' %}" : "{% trans 'Erweitere deine psychologisch sicheren Kreise' %}"
+        el.innerHTML = window.innerWidth < 768 ? "{% trans 'Psychologisch sicher genug für Höchstleistung?' %}" : "{% trans 'Psychologisch sicher genug für Höchstleistung?' %}"
     }
     
 

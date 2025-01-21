@@ -184,7 +184,7 @@
                 </div>
 
                 <p style="background-color: #52CEEC; text-align: left; color: #FFFFFF; border-radius: 10px; padding: 0 10px;"><br>
-                            {% trans "Die Konstellation beim Standard-Toleranzfenster von " %}<button @click="current=16" style="border: 5px solid #9FE2BF;">16</button>{% trans " könnte der IST-Situation im Team nahekommen." %}<br>{% trans "Erkennst du dein Team im Spiegel dieser Auswertung? Später siehst du im Feedback, wen im Team du durch dein Verhalten beim 16-er Wert noch triggerst und mit wem du schon sicher verbunden bist. (Diese Gegenüberstellung bildet die Basis zur Berechnung aller Safe Circles.)" %}
+                            {% trans "Die Konstellation beim Standard-Toleranzfenster von " %}<button @click="current=16" style="border: 5px solid #9FE2BF;">16</button>{% trans " könnte der IST-Situation im Team nahekommen." %}<br>{% trans "Erkennst du dein Team im Spiegel dieser Auswertung? Auf der letzten Seite hast du bereits gesehen, wo dein Verhalten beim 16-er Toleranzfenster-Wert andere noch triggert und wo du schon im grünen Bereich sicher verbunden bist. (Diese Gegenüberstellung bildet die Basis zur Berechnung aller Safe Circles.)" %}
                             <br><br>
                 </p>
 
@@ -201,28 +201,29 @@
                     <iframe src={% trans "https://docs.google.com/presentation/d/1CKkukI8Ird-FdK_xz3vWhiN998u5nJkiF1mR_A_wy5k/embed?start=true&loop=false&delayms=8000"  %} frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
                 </div>
 
-                <p style="background-color: #fffff; color: #00000; text-align: center; border-radius: 10px; padding: 0 10px;"><br>
-                            {% trans "Wie weiter? Nutze das wertvolle Feedback der kommenden Etappen, um deine psychologisch sicheren Kreise zu erweitern." %}
-                            <br><br>
-                </p>
-
             </div>
 
             </main>
 
-	                    <div class="center" style="margin:10px">
+                <p class="spanun-p" style="background-color: #FFFFFF; color: #626262; border-radius: 10px; padding: 0 10px;">
+                            {% trans "Zum Abschluss empfehlen wir eine anonyme Feedbackrunde mit 3 bewährten Fragen zur Stärkung der psychologischen Sicherheit im Team: Dieser Feedbackprozess ist Voraussetzung, damit die hier noch anonym dargestellten Einschätzungen der anderen Teammitglieder offengelegt werden können." %}
+                <br><br><br></p>
 
-                        <a href="/psychologischer/">
-                        <button class="button" type="button">
-                            {% trans "Weiter" %}
-                        </button></a>
-                        </div>
+                <div class="center">
+
+                        <span>
+                            <a href="/mission-2-ubung-2/">
+                            <button class="button" type="button">
+                                {% trans "Anonymes Feedback geben" %}
+                            </button></a>
+                        </span>
+
+
                         <p style="text-align: center; font-size: 10px;">
                             <a href="https://github.com/joe-the-ark/ark" target="_blank">ARKS is published under a GPLv3</a> license by 
                             <a href="https://www.linkedin.com/in/dr-joe-maier/" target="_blank">Dr. Joe Maier</a>.
                         </p>
-
-
+                </div>
         </div>
 
     </div>
