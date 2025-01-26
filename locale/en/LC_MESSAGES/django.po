@@ -26,8 +26,8 @@ msgstr "The Ark is an online group trip for 3 to 9 people to explore inner and p
 msgid "Die Arche ist eine Online-Gruppenreise für 3 bis 9 Personen, um die innere und psychologische Sicherheit mit dem Team zu erkunden."
 msgstr "The Ark is an online group trip for 3 to 9 people to explore inner and psychological safety with the team."
 
-msgid "Arbeiten in psychologischen #safecircles?"
-msgstr "Working in psychological #safecircles?"
+msgid "Dramafreie Zusammenarbeit in psychologisch sicheren Kreisen schaffen."
+msgstr "Creating drama-free collaboration in psychologically safe circles."
 
 msgid "Psychologisch sicher genug für Höchstleistung?"
 msgstr "Psychologically safe enough for high performance?"
@@ -38,8 +38,8 @@ msgstr "Are you ready for the most candid team challenge of your career with the
 msgid "Entfalte das Potenzial deines Teams mit maximalen psychologisch sicheren Kreisen."
 msgstr "Unlock your team's potential with maximum psychological safe circles."
 
-msgid "Bist du bereit für die aufrichtigste Team-Challenge deiner Karriere mit der Arche (für 3 bis 15 Personen)? Entfalte das Potenzial deines Teams mit maximalen psychologisch sicheren Kreisen."
-msgstr "Are you ready for the most candid team challenge of your career with the Ark (for 3 to 15 people)? Unlock your team's potential with maximum psychological safe circles."
+msgid "Bist du bereit für die aufrichtigste Team-Challenge deiner Karriere mit der Arche (für 3 bis 15 Personen)? Dramafreie Zusammenarbeit in psychologisch sicheren Kreisen schaffen."
+msgstr "Are you ready for the most genuine team challenge of your career with the Arche (for 3 to 15 people)? Create drama-free collaboration in psychologically safe circles."
 
 msgid "Die Reisezeit der ersten Etappe beträgt eine halbe Stunde."
 msgstr "The travel time of the first stage is half an hour."
@@ -115,8 +115,8 @@ msgstr "How safe is your group climate?"
 msgid "https://player.vimeo.com/video/852158357"
 msgstr "https://player.vimeo.com/video/852373658"
 
-msgid "In psychologisch sicheren Teams gelingen Lernprozesse und die Team Performance steigt. Innere Sicherheit erlaubt es achtsam mit sich selbst und anderen umzugehen. Dadurch werden Defensivreaktionen (Fight, Flight, Freeze & Fawn) überflüssig."
-msgstr "In psychologically safe teams, learning processes succeed and team performance increases. Inner safety makes it possible to deal with oneself and others in a mindful way. This makes defensive reactions (fight, flight, freeze & fawn) superfluous."
+msgid "In psychologisch sicheren Teams gelingen Lernprozesse und die Team Performance stimmt. Innere Sicherheit erlaubt es achtsam mit dir und anderen in Beziehung zu gehen. Dadurch werden Defensivreaktionen (Fight, Flight, Freeze & Fawn) überflüssig."
+msgstr "In psychologically safe teams, learning processes succeed and team performance is on point. Inner security enables you to relate mindfully to yourself and others. As a result, defensive reactions (fight, flight, freeze, and fawn) become unnecessary."
 
 msgid "In den nächsten 30 Minuten erkundet ihr die Basis der inneren und psychologischen (Un-)Sicherheit im Team."
 msgstr "In the next 30 minutes you will explore the basis of inner and psychological (un)safety in the team."
@@ -269,8 +269,8 @@ msgstr "Please briefly explain the OPPOSITE PAIRS so that everyone can understan
 msgid "Damit alle verstehen, welche Bedürfnisse zu euren psychologisch sicheren Kreisen beitragen. (Dauer: 1 Minute pro Person)"
 msgstr "So that everyone understands which needs contribute to your psychologically safe circles. (Duration: 1 minute per person)"
 
-msgid "Überarbeite bei Bedarf dein Gegensatzpaar – du kannst gerne auch EIGENE Begriffe im Textfeld eingeben."
-msgstr "Revise your pair of opposites if necessary - you can also enter your OWN terms in the text field."
+msgid "Überarbeite bei Bedarf dein Gegensatzpaar – du kannst gerne auch EIGENE Begriffe ins Textfeld schreiben."
+msgstr "Revise your pair of opposites as needed – feel free to write your OWN terms in the text field."
 
 msgid "Klicke erst hier weiter, wenn ALLE ein passendes GEGENSATZPAAR benannt haben!"
 msgstr "Don't click here until EVERYONE has designated a suitable complementary pair!"

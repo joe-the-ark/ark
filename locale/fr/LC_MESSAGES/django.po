@@ -26,8 +26,8 @@ msgstr "L'Arche est un voyage de groupe en ligne pour 3 à 9 personnes, afin d'e
 msgid "Die Arche ist eine Online-Gruppenreise für 3 bis 9 Personen, um die innere und psychologische Sicherheit mit dem Team zu erkunden."
 msgstr "L'Arche est un voyage de groupe en ligne pour 3 à 9 personnes, afin d'explorer la sécurité intérieure et psychologique avec l'équipe."
 
-msgid "Arbeiten in psychologischen #safecircles?"
-msgstr "Travailler dans des #cercles de sécurité psychologique ?"
+msgid "Dramafreie Zusammenarbeit in psychologisch sicheren Kreisen schaffen."
+msgstr "Créer une collaboration sans drame dans des cercles psychologiquement sûrs."
 
 msgid "Psychologisch sicher genug für Höchstleistung?"
 msgstr "Suffisamment de sécurité psychologique pour une performance optimale ?"
@@ -38,8 +38,8 @@ msgstr "Es-tu prêt pour le défi d'équipe le plus sincère de ta carrière ave
 msgid "Entfalte das Potenzial deines Teams mit maximalen psychologisch sicheren Kreisen."
 msgstr "Libérez le potentiel de votre équipe avec des cercles psychologiquement sûrs au maximum."
 
-msgid "Bist du bereit für die aufrichtigste Team-Challenge deiner Karriere mit der Arche (für 3 bis 15 Personen)? Entfalte das Potenzial deines Teams mit maximalen psychologisch sicheren Kreisen."
-msgstr "Es-tu prêt pour le défi d'équipe le plus sincère de ta carrière avec l'Arche (pour 3 à 15 personnes) ? Unlock your team's potential with maximum psychological safe circles."
+msgid "Bist du bereit für die aufrichtigste Team-Challenge deiner Karriere mit der Arche (für 3 bis 15 Personen)? Dramafreie Zusammenarbeit in psychologisch sicheren Kreisen schaffen."
+msgstr "Es-tu prêt(e) à relever le défi d’équipe le plus sincère de ta carrière avec l’Arche (pour 3 à 15 personnes) ? Créez une collaboration sans drame dans des cercles psychologiquement sûrs."
 
 msgid "Die Reisezeit der ersten Etappe beträgt eine halbe Stunde."
 msgstr "Le temps de voyage de la première étape est d'une demi-heure."
@@ -111,8 +111,8 @@ msgstr "copier le lien & afficher le code QR"
 msgid "Mit wem bist du (schon) SICHER verbunden?"
 msgstr "Avec qui es-tu connecté (déjà) en toute sécurité ?"
 
-msgid "In psychologisch sicheren Teams gelingen Lernprozesse und die Team Performance steigt. Innere Sicherheit erlaubt es achtsam mit dir und anderen umzugehen. Dadurch werden Defensivreaktionen (Fight, Flight, Freeze & Fawn) überflüssig."
-msgstr "Dans les équipes psychologiquement sûres, les processus d'apprentissage réussissent et la performance de l'équipe augmente. La sécurité intérieure permet une interaction attentionnée avec vous-même et les autres, rendant inutiles les réactions défensives (Fight, Flight, Freeze & Fawn)."
+msgid "In psychologisch sicheren Teams gelingen Lernprozesse und die Team Performance stimmt. Innere Sicherheit erlaubt es achtsam mit dir und anderen in Beziehung zu gehen. Dadurch werden Defensivreaktionen (Fight, Flight, Freeze & Fawn) überflüssig."
+msgstr "Dans des équipes psychologiquement sûres, les processus d’apprentissage réussissent et la performance de l’équipe est au rendez-vous. La sécurité intérieure permet d’entrer en relation de manière attentive avec vous-même et avec les autres. Ainsi, les réactions défensives (lutte, fuite, sidération et soumission) deviennent superflues."
 
 msgid "In den nächsten 30 Minuten erkundet ihr die Basis eurer inneren und psychologischen Sicherheit: in welchen psychologischen #safecircles arbeitet ihr schon?"
 msgstr "Au cours des 30 prochaines minutes, vous explorerez la base de votre sécurité intérieure et psychologique : dans quels #safecircles psychologiques travaillez-vous déjà ?"
@@ -275,8 +275,8 @@ msgstr "Expliquez brièvement les PARAMÈTRES CONTRACTÉS, s'il vous plaît, afi
 msgid "Damit alle verstehen, welche Bedürfnisse zu euren psychologisch sicheren Kreisen beitragen. (Dauer: 1 Minute pro Person)"
 msgstr "Pour que tous comprennent quels besoins contribuent à vos cercles de sécurité psychologique. (Durée : 1 minute par personne)"
 
-msgid "Überarbeite bei Bedarf dein Gegensatzpaar – du kannst gerne auch EIGENE Begriffe im Textfeld eingeben."
-msgstr "Révise ta paire d'opposés si nécessaire - n'hésite pas à saisir tes PROPRES termes dans le champ de texte."
+msgid "Überarbeite bei Bedarf dein Gegensatzpaar – du kannst gerne auch EIGENE Begriffe ins Textfeld schreiben."
+msgstr "Modifie ton couple d’opposés si nécessaire – n’hésite pas à écrire tes propres termes dans le champ de texte."
 
 msgid "Klicke erst hier weiter, wenn ALLE ein passendes GEGENSATZPAAR benannt haben!"
 msgstr "Ne clique pas ici tant que TOUS n'ont pas désigné une paire complémentaire appropriée !"
