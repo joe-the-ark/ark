@@ -116,7 +116,7 @@ msgid "https://player.vimeo.com/video/852158357"
 msgstr "https://player.vimeo.com/video/852373658"
 
 msgid "In psychologisch sicheren Teams gelingen Lernprozesse und die Team Performance stimmt. Innere Sicherheit erlaubt es achtsam mit dir und anderen in Beziehung zu gehen. Dadurch werden Defensivreaktionen (Fight, Flight, Freeze & Fawn) überflüssig."
-msgstr "In psychologically safe teams, learning processes succeed and team performance is on point. Inner security enables you to relate mindfully to yourself and others. As a result, defensive reactions (fight, flight, freeze, and fawn) become unnecessary."
+msgstr "In psychologically safe teams, learning processes succeed and team performance is on point. Inner safety enables you to relate mindfully to yourself and others. As a result, defensive reactions (fight, flight, freeze, and fawn) become unnecessary."
 
 msgid "In den nächsten 30 Minuten erkundet ihr die Basis der inneren und psychologischen (Un-)Sicherheit im Team."
 msgstr "In the next 30 minutes you will explore the basis of inner and psychological (un)safety in the team."
@@ -159,6 +159,9 @@ msgstr "In the next 30 minutes, you will explore the basis of your inner and psy
 
 msgid "Teile diesen QR-Code, um Mitreisende einzuladen"
 msgstr "Share this QR code to invite fellow travelers"
+
+msgid "https://docs.google.com/presentation/d/1EnXkRYGm6M0Rbkkt6iFkhZ-kjo7jDjI23eDUntHLRN0/embed?start=true&loop=false&delayms=8000"
+msgstr "https://docs.google.com/presentation/d/1i7y_0XsBEW_1z-khV-DgY1PivWfgsQv8ZXqO9h0tS8w/embed?start=true&loop=false&delayms=8000"
 
 msgid "https://docs.google.com/presentation/d/1xmsuoUm31ay2ecqG-FOb49HdyJkq9mTfcn97gMkzmdw/embed?start=true&loop=false&delayms=8000"
 msgstr "https://docs.google.com/presentation/d/145ag9wNeB7N0-oWSJ_BSVY2u4A1xc4GLgkzTad99HUg/embed?start=true&loop=false&delayms=8000"

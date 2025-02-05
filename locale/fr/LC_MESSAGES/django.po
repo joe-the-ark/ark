@@ -166,6 +166,9 @@ msgid ""
 msgstr ""
 "D'ailleurs, vous verrez votre évaluation du défi à la fin du jeu."
 
+msgid "https://docs.google.com/presentation/d/1EnXkRYGm6M0Rbkkt6iFkhZ-kjo7jDjI23eDUntHLRN0/embed?start=true&loop=false&delayms=8000"
+msgstr "https://docs.google.com/presentation/d/1i7y_0XsBEW_1z-khV-DgY1PivWfgsQv8ZXqO9h0tS8w/embed?start=true&loop=false&delayms=8000"
+
 msgid "https://docs.google.com/presentation/d/1xmsuoUm31ay2ecqG-FOb49HdyJkq9mTfcn97gMkzmdw/embed?start=true&loop=false&delayms=8000"
 msgstr "https://docs.google.com/presentation/d/1crpAHkZuX4KtJmvNcK-ZCdjhMaJ3s8zP_Qy8a5mkMik/embed?start=true&loop=false&delayms=8000"
 
