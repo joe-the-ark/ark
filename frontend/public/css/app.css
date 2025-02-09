@@ -220,7 +220,7 @@ body {
   box-shadow: 0 12px 20px rgba(117, 10, 237, 0.4);
 }
 .icon-logo:before {
-  content: "\e905";
+  content: url("../images/general/circleLogo.png");
 }
 .icon-logo:hover {
   box-shadow: 0 12px 20px rgba(117, 10, 237, 0.4);

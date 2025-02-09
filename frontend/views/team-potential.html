@@ -80,7 +80,7 @@
             <div class="header-main__title">
                 <icon classs="icon" onClick="window.open('https://info.arks.ch/');">
                 <span class="icon-logo"></span>
-                <span>ARK</span>
+                <span>ARKS</span>
             </div>
             <div class="header-main__user">
                 <div class="user">
@@ -96,7 +96,7 @@
             <div class="header-main__progress">
                 <div class="progress">
                     <div class="progress__bar">
-                        <div style="width: 85%; border-radius: 10px;">75%</div>
+                        <div style="width: 85%; border-radius: 10px;">85%</div>
                     </div>
                 </div>
                 <button onclick="window.print()" title="Print or safe this window as PDF">Save as PDF</button> <!-- Print Button Added --> 
@@ -155,13 +155,18 @@
         element-loading-background="rgba(0, 0, 0, 0.8)">
             <main class="screen auth">
                 <h1>
-                    {% trans "In sicher verbundenen Kreisen werden Schutzreaktionen (Fight, Flight, Freeze oder Fawn) überflüssig." %}
+                    {% trans "Schafft sicher verbundene Kreise, in denen Defensivreaktionen überflüssig werden." %}
                 </h1>
+
+                <div class="google-slides-container">
+                    <iframe src={% trans "https://docs.google.com/presentation/d/1qi3wNhpRU3FEoatghY7Ca0iNwtGPQGvHqLRXCvbKKJ8/embed?start=true&loop=false&delayms=8000"  %} frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                </div>
+
                 <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
 
                 <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
                             <br>
-                            {% trans "Diese Konstellation zeigt euer" %}<button @click="current=getValue4()" style="background-color: #FFFFFF; border: 5px solid #75CBE8; color: black;">{% trans "psychologisches Sicherheits-POTENTIAL beim Toleranzfenster" %} [[ getValue4() ]]</button><br>{% trans "Hier ist die Anzahl der Safe Circles im Team maximal und Lernprozesse gelingen. Identifiziere nun alle Teammitglieder, die durchgängig an mehreren oder allen Safe Circle teilhaben. Diese Kernmitglieder sind erfahrungsgemäss am besten in der Lage, Babysteps vorzuschlagen, um die psychologische Sicherheit zu stärken." %}<br><br>
+                            {% trans "PRIO 1: Diese Konstellation ermöglicht euch ein " %}<button @click="current=getValue4()" style="background-color: #FFFFFF; border: 5px solid #75CBE8; color: black;">{% trans "maximales Mass an psychologischer Sicherheit beim Toleranzfenster" %} [[ getValue4() ]]</button><br>{% trans "Wer ist in mehreren sicheren Kreisen und wirkt integrierend? Lasst diese Integratoren Babysteps vorschlagen, die für gleichberechtigte Redeanteile sorgen, euren Sicherheitsankern gerecht werden und Triggersituationen entspannen können." %}<br><br>
                 </p>
 
                 <div class="center">
@@ -178,27 +183,28 @@
 
                 <p style="background-color: #9FE2BF; color: #626262; text-align: left; border-radius: 10px; padding: 0 10px;"><br>
 
-                       {% trans "Beim Toleranzfenster-Wert von " %}<button @click="current=getValue3()" style="background-color: #FFFFFF; border: 5px solid #52CEEC; color: black;">[[ getValue3() ]] </button>{% trans " (hier klicken) siehst du, wer zuerst SOLO ist." %}<br>{% trans "Stelle sicher, dass alle in mindestens einem Kreis sicher verbunden sind. Erhöhe den Toleranzfenster-Wert nun um 1, um zu erkennen, wer den Solisten am einfachsten in einen sicheren Kreis mitnehmen kann..." %}<button @click="current=getValue3()+1" style="background-color: #FFFFFF; border: 5px solid #52CEEC; color: black;">{% trans "boost satellite" %}</button>
+                       {% trans "PRIO 2: Beim Toleranzfenster-Wert von " %}<button @click="current=getValue3()" style="background-color: #FFFFFF; border: 5px solid #52CEEC; color: black;">[[ getValue3() ]] </button>{% trans " (hier klicken) siehst du, wer zuerst SOLO ist. " %}<button @click="current=getValue3()+1" style="background-color: #FFFFFF; border: 5px solid #52CEEC; color: black;">{% trans "Booste Satelliten" %}</button> {% trans " und erkenne, wer Hand in einen sicheren Kreis bieten kann. Lasst die Personen im ersten sicheren Kreis Vorschläge machen, wie eine Integration, sofern gewünscht, noch besser gelingen kann." %}<br><br>
                 </p>
 
                 <p style="background-color: #52CEEC; text-align: left; color: #FFFFFF; border-radius: 10px; padding: 0 10px;"><br>
-                            {% trans "Die Konstellation beim Standard-Toleranzfenster von " %}<button @click="current=16" style="border: 5px solid #9FE2BF;">16</button>{% trans " könnte der IST-Situation im Team nahekommen." %}<br>{% trans "Erkennst du dein Team im Spiegel dieser Auswertung? Auf der letzten Seite hast du bereits gesehen, wo dein Verhalten beim 16-er Toleranzfenster-Wert andere noch triggert und wo du schon im grünen Bereich sicher verbunden bist. (Diese Gegenüberstellung bildet die Basis zur Berechnung aller Safe Circles.)" %}
+                            {% trans "PRIO 3: Die Konstellation beim " %}<button  @click="current=16" style="border: 5px solid #9FE2BF;">{% trans "Standard-Toleranzfenster von 16" %}</button>{% trans " könnte der IST-Situation im Team nahekommen. Wie sicher verbunden ist der Boss? Welchen Einsatz kann die Führungskraft leisten, um das Team vom Ist-Wert zur optimalen Konstellation aus Prio 1 zu entwickeln?" %}
                             <br><br>
                 </p>
 
-                <div class="google-slides-container">
-                    <iframe src={% trans "https://docs.google.com/presentation/d/1CKkukI8Ird-FdK_xz3vWhiN998u5nJkiF1mR_A_wy5k/embed?start=true&loop=false&delayms=8000"  %} frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-                </div>
+
+                <p style="background-color: #fffff; text-align: left; color: #00000; border-radius: 10px; padding: 0 10px;"><br>
+                            {% trans "" %}<br><br>
+                </p>
 
                 <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
                             <br>
                             {% trans "Eine Lesehilfe: je kleiner der Zahlenwert, desto mehr Stress und negative Trigger zeigen sich, weil sich die Toleranzfenster der Teammitglieder schliessen." %}<br>
-                            {% trans "In den ersten SAFE CIRCLEs ab " %}<button @click="current=getValue1()" style="border: 5px solid #9FE2BF;">[[ getValue1() ]]</button>{% trans " (hier klicken) funktioniert die Zusammenarbeit auch bei sehr grossem Stress noch ohne Drama." %}<br>
+                            <button @click="current=getValue1()" style="border: 5px solid #9FE2BF;">{% trans "Im ersten sicheren Kreise bei" %} [[ getValue1() ]]</button>{% trans " (hier klicken) funktioniert die Zusammenarbeit auch bei sehr grossem Stress noch ohne Drama." %}<br>
                             <br>
                 </p>
 
                 <p style="background-color: #fffff; text-align: left; color: #00000; border-radius: 10px; padding: 0 10px;"><br>
-                            {% trans "Aktuell seid ihr beim Toleranzfenster von " %}<button @click="current=getValue2()" style="border: 5px solid #9FE2BF;">[[ getValue2() ]]</button>{% trans " alle in EINEM sicheren Kreis." %}<br>{% trans "Wenn Einzelne auf undifferenzierte Einigkeit drängen, zeigt sich das an einer Toleranzfenster-Grösse von über 35, bei dem die Teamdynamik schon sektenartige Züge tragen kann. Ein weiterer Indikator für ein ungesundes Mass an erwarteter Konformität zeigt sich bei Werten unter 25, die auf eine Gefahr von Groupthink deutet." %}<br><br>
+                            {% trans "Aktuell seid ihr beim Toleranzfenster von " %}<button @click="current=getValue2()" style="border: 5px solid #9FE2BF;">[[ getValue2() ]] {% trans " alle in EINEM sicheren Kreis." %}</button><br>{% trans "Wenn Einzelne auf undifferenzierte Einigkeit drängen, zeigt sich das an einer Toleranzfenster-Grösse von über 35, bei dem die Teamdynamik schon sektenartige Züge tragen kann. Ein weiterer Indikator für ein ungesundes Mass an erwarteter Konformität zeigt sich bei Werten unter 25, die auf eine Gefahr von Groupthink deutet." %}<br><br>
                 </p><br>
 
             </div>

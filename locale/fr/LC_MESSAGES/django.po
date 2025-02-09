@@ -166,6 +166,10 @@ msgid ""
 msgstr ""
 "D'ailleurs, vous verrez votre évaluation du défi à la fin du jeu."
 
+
+msgid "https://docs.google.com/presentation/d/1qi3wNhpRU3FEoatghY7Ca0iNwtGPQGvHqLRXCvbKKJ8/embed?start=true&loop=false&delayms=8000"
+msgstr "https://docs.google.com/presentation/d/1i0O8xnzoa5vJmOcv9kSaKuBn-LvMcGWzE32icZN8jy8/embed?start=true&loop=false&delayms=8000"
+
 msgid "https://docs.google.com/presentation/d/1N-mOfePoj33-14mRFWnxuee-ODTfOBAUky6Zop1nTIk/embed?start=true&loop=false&delayms=8000"
 msgstr "https://docs.google.com/presentation/d/1rNXwL5lm9EPR6idKkl7vWtDAeYghPvH-E_7Gt-9Tr3c/embed?start=true&loop=false&delayms=8000"
 
@@ -430,14 +434,14 @@ msgstr "Performance ressentie de l'équipe"
 msgid "Reality Check: eure psychologisch sicheren Kreise"
 msgstr "Reality Check : vos cercles psychologiquement sûrs"
 
-msgid "In sicher verbundenen Kreisen werden Schutzreaktionen (Fight, Flight, Freeze oder Fawn) überflüssig."
-msgstr "Dans les cercles connectés de manière sûre, les réactions de protection (fight, flight, freeze ou fawn) deviennent superflues."
+msgid "Schafft sicher verbundene Kreise, in denen Defensivreaktionen überflüssig werden."
+msgstr "Crée des cercles de connexion sécurisés où les réactions défensives deviennent superflues."
 
 msgid "Eine Lesehilfe: je kleiner der Zahlenwert, desto mehr Stress und negative Trigger zeigen sich, weil sich die Toleranzfenster der Teammitglieder schliessen."
 msgstr "Une aide à la lecture : plus la valeur numérique est petite, plus le stress et les déclencheurs négatifs se manifestent, car les fenêtres de tolérance des membres de l'équipe se ferment."
 
-msgid "In den ersten SAFE CIRCLEs ab "
-msgstr "Dans les premiers SAFE CIRCLE à partir de "
+msgid "Im ersten sicheren Kreise bei"
+msgstr "Dans le premier cercle sécurisé avec"
 
 msgid " (hier klicken) funktioniert die Zusammenarbeit auch bei sehr grossem Stress noch ohne Drama."
 msgstr " (cliquez ici), la collaboration fonctionne encore sans drame, même en cas de très grand stress."
@@ -445,32 +449,29 @@ msgstr " (cliquez ici), la collaboration fonctionne encore sans drame, même en 
 msgid "Beim Toleranzfenster-Wert von "
 msgstr "Pour la valeur de la fenêtre de tolérance de "
 
-msgid " (hier klicken) siehst du, wer zuerst SOLO ist."
-msgstr " (cliquer ici), tu peux voir qui est SOLO en premier."
-
 msgid "Stelle sicher, dass alle in mindestens einem Kreis sicher verbunden sind. Erhöhe den Toleranzfenster-Wert nun um 1, um zu erkennen, wer den Solisten am einfachsten in einen sicheren Kreis mitnehmen kann..."
 msgstr "Assure-toi que tout le monde est connecté en toute sécurité dans au moins un cercle. Augmente maintenant la valeur de la fenêtre de tolérance par 1 pour savoir qui peut le plus facilement emmener le soliste dans un cercle sécurisé..."
 
 msgid "CIRCLES bei der Toleranzfenster-Grösse..."
 msgstr "CIRCLES pour la taille de la fenêtre de tolérance..."
 
-msgid "Die Konstellation beim Standard-Toleranzfenster von "
-msgstr "La constellation pour la fenêtre de tolérance standard de "
+msgid "PRIO 3: Die Konstellation beim "
+msgstr "PRIORITÉ 3 : La configuration avec "
 
-msgid " könnte der IST-Situation im Team nahekommen."
-msgstr " pourrait se rapprocher de la situation réelle de l'équipe."
+msgid "Standard-Toleranzfenster von 16"
+msgstr "la fenêtre de tolérance standard de 16"
 
-msgid "Erkennst du dein Team im Spiegel dieser Auswertung? Auf der letzten Seite hast du bereits gesehen, wo dein Verhalten beim 16-er Toleranzfenster-Wert andere noch triggert und wo du schon im grünen Bereich sicher verbunden bist. (Diese Gegenüberstellung bildet die Basis zur Berechnung aller Safe Circles.)"
-msgstr "Reconnais-tu ton équipe dans le reflet de cette analyse ? À la page précédente, tu as déjà vu où ton comportement lié à la valeur de la fenêtre de tolérance à 16 déclenche encore les autres et où tu es déjà solidement relié dans la zone verte. (Cette comparaison constitue la base pour le calcul de tous les Safe Circles.)"
+msgid " könnte der IST-Situation im Team nahekommen. Wie sicher verbunden ist der Boss? Welchen Einsatz kann die Führungskraft leisten, um das Team vom Ist-Wert zur optimalen Konstellation aus Prio 1 zu entwickeln?"
+msgstr " pourrait refléter la situation actuelle de l'équipe. À quel point le boss est-il solidement connecté ? Quel effort la direction peut-elle fournir pour faire évoluer l'équipe de son état actuel vers la configuration optimale définie dans la priorité 1 ?"
 
-msgid "Die Konstellation bei "
-msgstr "La constellation à "
+msgid "PRIO 1: Diese Konstellation ermöglicht euch ein "
+msgstr "PRIO 1 : Cette configuration vous offre un "
 
-msgid " zeigt euer psychologisches Sicherheits-POTENTIAL."
-msgstr " montre votre POTENTIEL DE SÉCURITÉ psychologique."
+msgid "maximales Mass an psychologischer Sicherheit beim Toleranzfenster"
+msgstr "niveau maximal de sécurité psychologique dans la plage de tolérance"
 
-msgid "Hier ist die Anzahl der Safe Circles im Team maximal und Lernprozesse gelingen. Identifiziere nun alle Teammitglieder, die durchgängig an mehreren oder allen Safe Circle teilhaben. Diese Kernmitglieder sind erfahrungsgemäss am besten in der Lage, Babysteps vorzuschlagen, um die psychologische Sicherheit zu stärken."
-msgstr "Ici, le nombre de cercles de sécurité dans l'équipe est maximal et les processus d'apprentissage réussissent. Identifie maintenant tous les membres de l'équipe qui participent en permanence à plusieurs ou à tous les cercles de sécurité. L'expérience montre que ces membres clés sont les mieux placés pour proposer des babysteps afin de renforcer la sécurité psychologique."
+msgid "Wer ist in mehreren sicheren Kreisen und wirkt integrierend? Lasst diese Integratoren Babysteps vorschlagen, die für gleichberechtigte Redeanteile sorgen, euren Sicherheitsankern gerecht werden und Triggersituationen entspannen können."
+msgstr "Qui se trouve dans plusieurs cercles de sécurité et a un effet intégrateur ? Laissez ces intégrateurs proposer des babysteps qui garantissent des parts de parole égales, répondent à vos ancrages de sécurité et peuvent apaiser les situations de déclenchement."
 
 msgid "Aktuell seid ihr beim Toleranzfenster von "
 msgstr "Actuellement, vous êtes à la fenêtre de tolérance de "
@@ -490,14 +491,17 @@ msgstr "Zone de sécurité par défaut :"
 msgid "Erster SAFE CIRCLE bei:"
 msgstr "Premier SAFE CIRCLE à :"
 
-msgid "Erster Spieler solo bei Safe-Zone-Wert:"
-msgstr "Premier joueur en solo à la valeur de la zone de sécurité :"
+msgid "PRIO 2: Beim Toleranzfenster-Wert von "
+msgstr "PRIO 2 : Avec la valeur de la fenêtre de tolérance "
 
-msgid "(Hier klicken)"
-msgstr "(Cliquez ici)"
+msgid " (hier klicken) siehst du, wer zuerst SOLO ist. "
+msgstr " (cliquez ici), vous voyez qui est en solo en premier. "
 
-msgid "Fokus: Stellt sicher, dass jeder zu mindestens einem SAFE CIRCLE gehört. Nutzt das Feedback in den kommenden Etappen, um eure psychologischen SAFE CIRCLES zu erweitern."
-msgstr "Focus : Assurez-vous que chacun appartient à au moins un SAFE CIRCLE. Utilisez les retours d'information dans les étapes à venir pour élargir vos cercles psychologiques sécurisés."
+msgid "Booste Satelliten"
+msgstr "Boostez les satellites"
+
+msgid " und erkenne, wer Hand in einen sicheren Kreis bieten kann. Lasst die Personen im ersten sicheren Kreis Vorschläge machen, wie eine Integration, sofern gewünscht, noch besser gelingen kann."
+msgstr " et identifiez qui peut tendre la main à un cercle sécurisé. Laissez les personnes du premier cercle sécurisé faire des suggestions pour améliorer davantage l'intégration, si souhaité."
 
 msgid "CIRCLES bei Safe-Zone-Wert:"
 msgstr "CIRCLES à la valeur de la zone de sécurité :"
