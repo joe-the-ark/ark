@@ -96,7 +96,7 @@
             <div class="header-main__progress">
                 <div class="progress">
                     <div class="progress__bar">
-                        <div style="width: 75%; border-radius: 10px;">75%</div>
+                        <div style="width: 85%; border-radius: 10px;">75%</div>
                     </div>
                 </div>
                 <button onclick="window.print()" title="Print or safe this window as PDF">Save as PDF</button> <!-- Print Button Added --> 
@@ -155,20 +155,13 @@
         element-loading-background="rgba(0, 0, 0, 0.8)">
             <main class="screen auth">
                 <h1>
-                    {% trans "Erkunde eure psychologisch sicheren Kreise" %}
+                    {% trans "In sicher verbundenen Kreisen werden Schutzreaktionen (Fight, Flight, Freeze oder Fawn) überflüssig." %}
                 </h1>
                 <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
 
-                <p style="background-color: #52CEEC; color: #FFFFFF; border-radius: 10px; padding: 0 10px;">
+                <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
                             <br>
-                            {% trans "In sicher verbundenen Kreisen werden Schutzreaktionen (wie Fight, Flight, Freeze oder Fawn) überflüssig." %}<br>{% trans "Eine Lesehilfe: je kleiner der Zahlenwert, desto mehr Stress und negative Trigger zeigen sich, weil sich die Toleranzfenster der Teammitglieder schliessen." %}<br>
-                            {% trans "In den ersten SAFE CIRCLEs ab " %}<button @click="current=getValue1()" style="border: 5px solid #9FE2BF;">[[ getValue1() ]]</button>{% trans " (hier klicken) funktioniert die Zusammenarbeit auch bei sehr grossem Stress noch ohne Drama." %}<br>
-                            <br>
-                </p>
-
-                <p style="background-color: #9FE2BF; color: #626262; text-align: left; border-radius: 10px; padding: 0 10px;"><br>
-
-                       {% trans "Beim Toleranzfenster-Wert von " %}<button @click="current=getValue3()" style="background-color: #FFFFFF; border: 5px solid #52CEEC; color: black;">[[ getValue3() ]] </button>{% trans " (hier klicken) siehst du, wer zuerst SOLO ist." %}<br>{% trans "Stelle sicher, dass alle in mindestens einem Kreis sicher verbunden sind. Erhöhe den Toleranzfenster-Wert nun um 1, um zu erkennen, wer den Solisten am einfachsten in einen sicheren Kreis mitnehmen kann..." %}
+                            {% trans "Diese Konstellation zeigt euer" %}<button @click="current=getValue4()" style="background-color: #FFFFFF; border: 5px solid #75CBE8; color: black;">{% trans "psychologisches Sicherheits-POTENTIAL beim Toleranzfenster" %} [[ getValue4() ]]</button><br>{% trans "Hier ist die Anzahl der Safe Circles im Team maximal und Lernprozesse gelingen. Identifiziere nun alle Teammitglieder, die durchgängig an mehreren oder allen Safe Circle teilhaben. Diese Kernmitglieder sind erfahrungsgemäss am besten in der Lage, Babysteps vorzuschlagen, um die psychologische Sicherheit zu stärken." %}<br><br>
                 </p>
 
                 <div class="center">
@@ -183,38 +176,41 @@
                   </p>
                 </div>
 
+                <p style="background-color: #9FE2BF; color: #626262; text-align: left; border-radius: 10px; padding: 0 10px;"><br>
+
+                       {% trans "Beim Toleranzfenster-Wert von " %}<button @click="current=getValue3()" style="background-color: #FFFFFF; border: 5px solid #52CEEC; color: black;">[[ getValue3() ]] </button>{% trans " (hier klicken) siehst du, wer zuerst SOLO ist." %}<br>{% trans "Stelle sicher, dass alle in mindestens einem Kreis sicher verbunden sind. Erhöhe den Toleranzfenster-Wert nun um 1, um zu erkennen, wer den Solisten am einfachsten in einen sicheren Kreis mitnehmen kann..." %}<button @click="current=getValue3()+1" style="background-color: #FFFFFF; border: 5px solid #52CEEC; color: black;">{% trans "boost satellite" %}</button>
+                </p>
+
                 <p style="background-color: #52CEEC; text-align: left; color: #FFFFFF; border-radius: 10px; padding: 0 10px;"><br>
                             {% trans "Die Konstellation beim Standard-Toleranzfenster von " %}<button @click="current=16" style="border: 5px solid #9FE2BF;">16</button>{% trans " könnte der IST-Situation im Team nahekommen." %}<br>{% trans "Erkennst du dein Team im Spiegel dieser Auswertung? Auf der letzten Seite hast du bereits gesehen, wo dein Verhalten beim 16-er Toleranzfenster-Wert andere noch triggert und wo du schon im grünen Bereich sicher verbunden bist. (Diese Gegenüberstellung bildet die Basis zur Berechnung aller Safe Circles.)" %}
                             <br><br>
                 </p>
 
+                <div class="google-slides-container">
+                    <iframe src={% trans "https://docs.google.com/presentation/d/1CKkukI8Ird-FdK_xz3vWhiN998u5nJkiF1mR_A_wy5k/embed?start=true&loop=false&delayms=8000"  %} frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                </div>
+
                 <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
                             <br>
-                            {% trans "Die Konstellation bei " %}<button @click="current=getValue4()" style="background-color: #FFFFFF; border: 5px solid #75CBE8; color: black;">[[ getValue4() ]]</button>{% trans " zeigt euer psychologisches Sicherheits-POTENTIAL." %}<br>{% trans "Hier ist die Anzahl der Safe Circles im Team maximal und Lernprozesse gelingen. Identifiziere nun alle Teammitglieder, die durchgängig an mehreren oder allen Safe Circle teilhaben. Diese Kernmitglieder sind erfahrungsgemäss am besten in der Lage, Babysteps vorzuschlagen, um die psychologische Sicherheit zu stärken." %}<br>
+                            {% trans "Eine Lesehilfe: je kleiner der Zahlenwert, desto mehr Stress und negative Trigger zeigen sich, weil sich die Toleranzfenster der Teammitglieder schliessen." %}<br>
+                            {% trans "In den ersten SAFE CIRCLEs ab " %}<button @click="current=getValue1()" style="border: 5px solid #9FE2BF;">[[ getValue1() ]]</button>{% trans " (hier klicken) funktioniert die Zusammenarbeit auch bei sehr grossem Stress noch ohne Drama." %}<br>
+                            <br>
                 </p>
 
                 <p style="background-color: #fffff; text-align: left; color: #00000; border-radius: 10px; padding: 0 10px;"><br>
                             {% trans "Aktuell seid ihr beim Toleranzfenster von " %}<button @click="current=getValue2()" style="border: 5px solid #9FE2BF;">[[ getValue2() ]]</button>{% trans " alle in EINEM sicheren Kreis." %}<br>{% trans "Wenn Einzelne auf undifferenzierte Einigkeit drängen, zeigt sich das an einer Toleranzfenster-Grösse von über 35, bei dem die Teamdynamik schon sektenartige Züge tragen kann. Ein weiterer Indikator für ein ungesundes Mass an erwarteter Konformität zeigt sich bei Werten unter 25, die auf eine Gefahr von Groupthink deutet." %}<br><br>
                 </p><br>
 
-                <div class="google-slides-container">
-                    <iframe src={% trans "https://docs.google.com/presentation/d/1CKkukI8Ird-FdK_xz3vWhiN998u5nJkiF1mR_A_wy5k/embed?start=true&loop=false&delayms=8000"  %} frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-                </div>
-
             </div>
 
             </main>
 
-                <p class="spanun-p" style="background-color: #FFFFFF; color: #626262; border-radius: 10px; padding: 0 10px;">
-                            {% trans "Zum Abschluss empfehlen wir eine anonyme Feedbackrunde mit 3 bewährten Fragen zur Stärkung der psychologischen Sicherheit im Team: Dieser Feedbackprozess ist Voraussetzung, damit die hier noch anonym dargestellten Einschätzungen der anderen Teammitglieder offengelegt werden können." %}
-                <br><br><br></p>
-
                 <div class="center">
 
                         <span>
-                            <a href="/mission-2-ubung-2/">
+                            <a href="/arche/">
                             <button class="button" type="button">
-                                {% trans "Anonymes Feedback geben" %}
+                                {% trans "Aftercare" %}
                             </button></a>
                         </span>
 
@@ -224,6 +220,11 @@
                             <a href="https://www.linkedin.com/in/dr-joe-maier/" target="_blank">Dr. Joe Maier</a>.
                         </p>
                 </div>
+
+                {% comment %}<p class="spanun-p" style="background-color: #FFFFFF; color: #626262; border-radius: 10px; padding: 0 10px;">
+                            {% trans "Zum Abschluss empfehlen wir eine anonyme Feedbackrunde mit 3 bewährten Fragen zur Stärkung der psychologischen Sicherheit im Team: Dieser Feedbackprozess ist Voraussetzung, damit die hier noch anonym dargestellten Einschätzungen der anderen Teammitglieder offengelegt werden können." %}
+                <br><br><br></p>{% endcomment %}
+
         </div>
 
     </div>
@@ -232,97 +233,97 @@
 <script src="/static/axios.min.js"></script>
 <script>
 
-    var app1 = new Vue({
-        delimiters: ['[[', ']]'],
-        el: '#app-1',
-        data(){
-            return{
-                loading: false,
-		circles: {{ circles|safe }},
-		players: {{ players|safe }},
-		current: 16,
-		    width: 800,
-		    height: 800
-            } 
+var app1 = new Vue({
+    delimiters: ['[[', ']]'],
+    el: '#app-1',
+    data() {
+        return {
+            loading: false,
+            circles: {{ circles|safe }},
+            players: {{ players|safe }},
+            current: 16, // Default value, will be overridden in created()
+            width: 800,
+            height: 800
+        };
+    },
+    created() {
+        // Set the default value of `current` to the result of `getValue4()`
+        this.current = this.getValue4();
+
+        // Handle loading state
+        var loading_ = '{{ loading }}';
+        console.log('loading', loading_);
+        this.loading = loading_ !== '0';
+    },
+    mounted() {
+        this.redraw();
+    },
+    methods: {
+        waiting_room() {
+            window.location.href = '/waiting-room2/';
         },
-        created(){
-            var loading_ = '{{ loading }}';
-            console.log('loading', loading_)
-            if (loading_ === '0'){
-                this.loading = false;
-            }else{
-                this.loading = true;
+        getValue1() {
+            let { players, circles } = this.circles;
+            for (const key in circles) {
+                return key;
             }
         },
-	mounted() {
-		this.redraw();
-	},
-        methods:{
-            waiting_room(){
-                window.location.href='/waiting-room2/'
-            },
-	    getValue1() {
-		let { players, circles } = this.circles;
-		for (const key in circles) {
-			return key;
-		}
-	    },
-	    getValue2() {
-		    let { circles } = this.circles;
-		    let maxKey = -1;
-		    for (const key in circles) {
-			    if (parseInt(key) > maxKey) {
-				    maxKey = parseInt(key);
-			    }
-		    }
-		    return maxKey;
-	    },
-		getValue3() {
-			let { circles, players } = this.circles;
-			for (const key of Object.keys(circles).map(e=>parseInt(e)).reverse()) {
-				if (Object.keys(circles[key].circle_count).length <= (players.length-1)) {
-					return key;
-				}
-			}
-		},
-		getValue4() {
-			let { circles, players } = this.circles;
-			let maxCircles = -1;
-			let result = -1;
-			for (const key in circles) {
-				let s = 0;
-				for(const p in circles[key].circle_count) {
-					s += circles[key].circle_count[p];
-				}
-				if (s > maxCircles) {
-					maxCircles = s;
-					result = key;
-				}
-			}
-			return result;
-		},
-		getCircles() {
-			const { players } = this.circles;
-			if (!this.circles.circles[this.current]) return [];
-			const { circles, circle_count } = this.circles.circles[this.current];
-		        if (!circles) return [];
-			return circles.map(e => e.map(u => players[u]).join(' '));
-		},
-		redraw() {
-			const canvas = this.$refs.canvas;
-			const ctx = canvas.getContext('2d');
+        getValue2() {
+            let { circles } = this.circles;
+            let maxKey = -1;
+            for (const key in circles) {
+                if (parseInt(key) > maxKey) {
+                    maxKey = parseInt(key);
+                }
+            }
+            return maxKey;
+        },
+        getValue3() {
+            let { circles, players } = this.circles;
+            for (const key of Object.keys(circles).map(e => parseInt(e)).reverse()) {
+                if (Object.keys(circles[key].circle_count).length <= (players.length - 1)) {
+                    return key;
+                }
+            }
+        },
+        getValue4() {
+            let { circles, players } = this.circles;
+            let maxCircles = -1;
+            let result = -1;
+            for (const key in circles) {
+                let s = 0;
+                for (const p in circles[key].circle_count) {
+                    s += circles[key].circle_count[p];
+                }
+                if (s > maxCircles) {
+                    maxCircles = s;
+                    result = key;
+                }
+            }
+            return result;
+        },
+        getCircles() {
+            const { players } = this.circles;
+            if (!this.circles.circles[this.current]) return [];
+            const { circles, circle_count } = this.circles.circles[this.current];
+            if (!circles) return [];
+            return circles.map(e => e.map(u => players[u]).join(' '));
+        },
+        redraw() {
+            const canvas = this.$refs.canvas;
+            const ctx = canvas.getContext('2d');
 
             const { width, height } = this;
             const players = this.circles.players;
             const avatars = this.players;
-			const { circles, circle_count } = this.circles.circles[this.current] || { circles: [], circle_count: {}} ;
+            const { circles, circle_count } = this.circles.circles[this.current] || { circles: [], circle_count: {} };
 
-			ctx.clearStyle = 'white';
-			ctx.clearRect(0, 0, width, height);
+            ctx.clearStyle = 'white';
+            ctx.clearRect(0, 0, width, height);
 
             const font = ctx.font = '18px STheiti, SimHei';
             ctx.textAlign = 'center';
-            ctx.textBaseline = ' middle';
+            ctx.textBaseline = 'middle';
 
             ctx.strokeStyle = 'blue';
 
@@ -330,134 +331,129 @@
 
             const n = players.length;
 
-            const [centerX, centerY] = [width/2, height/2];
+            const [centerX, centerY] = [width / 2, height / 2];
             const r0 = Math.min(width, height);
             const dR = 16;
-            const [r1, r2] = [r0*0.4, r0*0.4+dR];
+            const [r1, r2] = [r0 * 0.4, r0 * 0.4 + dR];
             const theta = Math.PI * 2 / n;
 
-	    let s = 0;
-            const total_circle_count = [0, ...Object.values(circle_count)].reduce((s, e) => s+e);
-	    ctx.font = '32px Arial';
-	    ctx.fillText('SAFE CIRCLES', centerX, centerY-32);
-	    ctx.font = '60px Arial';
-	    ctx.fillText(total_circle_count, centerX, centerY+32);
-	    ctx.font = font;
+            let s = 0;
+            const total_circle_count = [0, ...Object.values(circle_count)].reduce((s, e) => s + e);
+            ctx.font = '32px Arial';
+            ctx.fillText('SAFE CIRCLES', centerX, centerY - 32);
+            ctx.font = '60px Arial';
+            ctx.fillText(total_circle_count, centerX, centerY + 32);
+            ctx.font = font;
 
-            const x = players.map((e, i) => centerX + r2*Math.cos(theta*i));
-            const y = players.map((e, i) => centerY + r2*Math.sin(theta*i));
+            const x = players.map((e, i) => centerX + r2 * Math.cos(theta * i));
+            const y = players.map((e, i) => centerY + r2 * Math.sin(theta * i));
 
             function drawPerson(i) {
-                const x = r1*Math.cos(theta*i);
-                const y = r1*Math.sin(theta*i);
+                const x = r1 * Math.cos(theta * i);
+                const y = r1 * Math.sin(theta * i);
 
                 const img = new Image();
                 img.src = avatars[players[i]];
 
-                const xx = centerX+x;
-                const yy = centerY+y;
-                    ctx.lineWidth = 3;
+                const xx = centerX + x;
+                const yy = centerY + y;
+                ctx.lineWidth = 3;
 
                 img.onload = () => {
-                ctx.drawImage(img, xx-32, yy-32, 64, 64);
+                    ctx.drawImage(img, xx - 32, yy - 32, 64, 64);
 
-                    ctx.fillText(players[i], xx, yy+48, 100);
+                    ctx.fillText(players[i], xx, yy + 48, 100);
 
                     const xxx = xx + 24;
                     const yyy = yy - 24;
 
-
-
                     ctx.lineWidth = 3;
                     ctx.fillStyle = '#9FE2BF';
                     ctx.beginPath();
-                    ctx.arc(xxx, yyy, 20, 0, Math.PI*2, true);
+                    ctx.arc(xxx, yyy, 20, 0, Math.PI * 2, true);
                     ctx.fill();
 
                     ctx.font = 'bold 32px STheiti, SimHei';
                     ctx.fillStyle = 'black';
 
-                    ctx.fillText(`${circle_count[i] || 0}`, xxx, yyy+12);
+                    ctx.fillText(`${circle_count[i] || 0}`, xxx, yyy + 12);
 
                     ctx.font = font;
                     ctx.fillStyle = 'black';
-
-
-                }
+                };
             }
 
-            for (let i=0; i<n; ++i) {
+            for (let i = 0; i < n; ++i) {
                 drawPerson(i);
             }
 
             circles.forEach((circle, i) => {
                 const points = circle.map(e => e);
-                
+
                 let [x0, y0] = [0, 0];
-                for (let i=0; i<points.length; ++i) {
+                for (let i = 0; i < points.length; ++i) {
                     x0 += x[points[i]] / points.length;
                     y0 += y[points[i]] / points.length;
                 }
 
-                const calc = (x1, y1, x2, y2) => [Math.sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2)), Math.atan2(y2-y1, x2-x1)];
+                const calc = (x1, y1, x2, y2) => [Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)), Math.atan2(y2 - y1, x2 - x1)];
                 function moveP(x0, y0, x, y) {
                     let [d, theta] = calc(x0, y0, x, y);
 
                     d += dR;
-                    return [x0+d*Math.cos(theta), y0+d*Math.sin(theta)];
+                    return [x0 + d * Math.cos(theta), y0 + d * Math.sin(theta)];
                 }
- 
+
                 const oldStyle = ctx.strokeStyle;
                 ctx.strokeStyle = colors[i % colors.length];
- 
-                ctx.beginPath();
-                for (let i=0; i<points.length; ++i) {
 
+                ctx.beginPath();
+                for (let i = 0; i < points.length; ++i) {
                     function getTheta(i) {
                         const thisI = points[i];
-                        const prevI = i > 0 ? points[i-1] : points[points.length-1];
-                        const nextI = (i < points.length-1) ? points[i+1] : points[0];
+                        const prevI = i > 0 ? points[i - 1] : points[points.length - 1];
+                        const nextI = (i < points.length - 1) ? points[i + 1] : points[0];
 
                         const [thisX, thisY] = moveP(x0, y0, x[thisI], y[thisI]);
                         const [prevX, prevY] = moveP(x0, y0, x[prevI], y[prevI]);
                         const [nextX, nextY] = moveP(x0, y0, x[nextI], y[nextI]);
 
-                        const theta1 = Math.atan2(nextY-thisY, nextX-thisX);
-                        const theta2 = Math.atan2(prevY-thisY, prevX-thisX);
+                        const theta1 = Math.atan2(nextY - thisY, nextX - thisX);
+                        const theta2 = Math.atan2(prevY - thisY, prevX - thisX);
 
-                        let theta = (theta1+theta2)/2;
+                        let theta = (theta1 + theta2) / 2;
                         if (theta < theta1) theta += Math.PI;
 
-                        return [ thisX, thisY, nextX, nextY, theta, calc(x0, y0, thisX, thisY)[0]];
+                        return [thisX, thisY, nextX, nextY, theta, calc(x0, y0, thisX, thisY)[0]];
                     }
 
                     const r = 120;
                     let [thisX, thisY, nextX, nextY, theta, r1] = getTheta(i);
-                    theta -= Math.PI/2;
+                    theta -= Math.PI / 2;
                     const c1X = thisX + r * Math.cos(theta);
                     const c1Y = thisY + r * Math.sin(theta);
 
-                    let [nX, nY, nnX, nnY, theta2, r2] = getTheta(i < points.length-1 ? i + 1 : 0);
-                    theta2 += Math.PI/2;
+                    let [nX, nY, nnX, nnY, theta2, r2] = getTheta(i < points.length - 1 ? i + 1 : 0);
+                    theta2 += Math.PI / 2;
                     const c2X = nX + r * Math.cos(theta2);
                     const c2Y = nY + r * Math.sin(theta2);
 
                     ctx.moveTo(thisX, thisY);
-	            //ctx.lineTo(nextX, nextY);
                     ctx.bezierCurveTo(c1X, c1Y, c2X, c2Y, nextX, nextY);
                 }
 
                 ctx.stroke();
                 ctx.strokeStyle = oldStyle;
-            })	
-		}
-	},
-	watch: {
-		current: function(oldValue, newValue) {
-		    this.redraw();
-		}
-	}
-    })
+            });
+        }
+    },
+    watch: {
+        current: function (oldValue, newValue) {
+            this.redraw();
+        }
+    }
+});
+
 
     let data = {{ all_result|safe }};
     let safezoneData = () => {

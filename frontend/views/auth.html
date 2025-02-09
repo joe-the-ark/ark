@@ -58,10 +58,10 @@
         <div class="container">
             <main class="screen auth">
                 <h1 id="title-game">
-                    {% trans "Psychologisch sicher genug für Höchstleistung?" %}
+                    {% trans "Schafft eine dramafreie Zusammenarbeit durch psychologisch sichere Kreise." %}
                 </h1>
                 <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
-                    {% trans "Bist du bereit für die aufrichtigste Team-Challenge deiner Karriere mit der Arche (für 3 bis 15 Personen)?" %}<br>{% trans "Dramafreie Zusammenarbeit in psychologisch sicheren Kreisen schaffen." %}<br>
+                    {% trans "Bist du bereit für die aufrichtigste Team-Challenge deiner Karriere mit der Arche (für 3 bis 15 Personen)?" %}<br>
                 </p>
                 <span class="terms_str">{% trans "Das sind die" %}
                   <span class="terms" style="text-decoration:underline;">{% trans "Nutzungsbedingungen" %}</span>
@@ -225,27 +225,43 @@
                     <br>
                 </p>
                 <div class="google-slides-container">
-                <iframe style="padding: 0 10px;" src={% trans "https://player.vimeo.com/video/852158357"  %} frameborder="0" width="850" height="400" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-                
-                <style>
-                .google-slides-container{
-                position: relative;
-                width: 100%;
-                padding-top: 56.25%;
-                overflow: hidden;
-                background-color: #9FE2BF;
-                border-radius: 10px
-                }
-                .google-slides-container iframe{
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: #9FE2BF;
-                border-radius: 10px
-                }
-                </style>
+                        <iframe style="padding: 0 10px;" src={% trans "https://docs.google.com/presentation/d/1l1yXJjfM3PRuzWHs2YqvKRKgAApEj-provI2ONmmqS4/embed?start=true&loop=false&delayms=8000"  %} frameborder="0" width="850" height="400" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                        
+                        <style>
+                        .google-slides-container{
+                        position: relative;
+                        width: 100%;
+                        padding-top: 56.25%;
+                        overflow: hidden;
+                        background-color: #9FE2BF;
+                        border-radius: 10px
+                        }
+                        .google-slides-container iframe{
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background-color: #9FE2BF;
+                        border-radius: 10px
+                        }
+                        .controls {
+                        position: absolute;
+                        top: 10px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        display: flex;
+                        gap: 10px;
+                        }
+                        .control-button {
+                        padding: 10px 20px;
+                        background-color: #007BFF;
+                        color: white;
+                        border: none;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        }
+                        </style>
 
                 </div>
             </main>

@@ -84,7 +84,7 @@
 		<p><br>
 			{% trans "In eurem Team beträgt der durchschnittliche Spannungsfreiheitswert" %} <span style="font-size: 36px; color: (--ls-alfa-color); text-decoration:underline;" id="tensionOneTooltip" data-tippy-content="{% trans "Das ist der Wert der Spannungsfreiheit für euer Team. Als Daumenregel gilt: Werte über 80 sind entspannt. Spannungswerte über 60 sind meist noch ohne externe Begleitung bearbeitbar." %}">[[tension_average]]</span>.<br><br>
     </p>
-    <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;"><br>
+    {% comment %}<p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;"><br>
       {% trans "Bildet jetzt bitte Zweier- oder Dreiergruppen mit Menschen, die ähnliche Sicherheitsanker gewählt hatten:" %}
 		</p>
 
@@ -92,7 +92,7 @@
           <p style="border-radius: 10px; padding: 0 10px; text-align: center;" class="property_mirror_item" v-for="(scale, index) in scale_list_pro" :key="index">
             <span class="property_mirror_one">[[ scale[0] ]]</span> / <span class="property_mirror_two">[[ scale[1] ]]</span>
           </p><br>
-      </div>
+      </div>{% endcomment %}
 
 			
 		<!--
@@ -144,20 +144,20 @@
   </div>
           <p style="background-color: #52CEEC; color: #FFFFFF; border-radius: 10px; padding: 0 10px;"><br>{% trans "Die Heatmap zeigt eine Zusammenfassung aller Spannungen. Beginnt eure Auswertung mit den farbigen Feldern im Inneren der Matrix, deren rechte Werte größer als 16 sind..." %}<br><br></p>
           <p>
-          <ul style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
-{% comment %} <li>
+          {% comment %}<ul style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
+             <li>
                 {% trans "Zeigt euch gegenseitig eure Spannungsfelder der vorherigen Seite." %}<br> 
               </li>
                 <li>
                 {% trans "Reflektiert dann diese Spannungen in der Team Heatmap unten." %} 
-              </li>{% endcomment %} 
+              </li> 
               <li>
                 {% trans "Erkennt ihr Muster? Was überrascht?" %}
               </li>
               <li>
                 {% trans "Zeitbedarf: 10 Minuten." %} 
               </li>
-          </ul>
+          </ul>{% endcomment %}
 	</div>
         <div class="container">
 
@@ -422,7 +422,7 @@
          <div class="container">
           <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
 
-          <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;"><br>{% trans "Der Farbcode im Innern der Heatmap gilt unverändert." %} {% trans "Bei grünen Feldern liegen Fremd- und Selbstwahrnehmung in der Safe-Zone." %}<br><br></p>
+          <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">{% trans "Der Farbcode im Innern der Heatmap gilt unverändert." %}<br><br></p>
           <p>
 {% comment %} 
           </p>
@@ -446,7 +446,7 @@
               {% trans "Ganz unten sind die inneren Spannungswerte aufaddiert. Auch hier gilt: je höher der Wert mit negativem Vorzeichen, desto stärker überschätzt der Spieler den positiven Beitrag zur Sicherheit im Team." %}<br><br>
             </li>
             </ul>
-{% endcomment %} 
+
             </div>
 
             <p>
@@ -477,7 +477,54 @@
                     {% trans "UNTERSTÜTZUNG: Ich werde dich unterstützen unser Team psychologisch sicherer zu machen, indem ICH..." %}<br>
                 </p>
 
-                <p><br><br>
+          </div>
+        </div>{% endcomment %} 
+
+                        <div class="google-slides-container">
+                        <iframe style="padding: 0 10px;" src={% trans "https://docs.google.com/presentation/d/1N-mOfePoj33-14mRFWnxuee-ODTfOBAUky6Zop1nTIk/embed?start=true&loop=false&delayms=8000"  %} frameborder="0" width="850" height="400" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                        
+                        <style>
+                        .google-slides-container{
+                        position: relative;
+                        width: 100%;
+                        padding-top: 56.25%;
+                        overflow: hidden;
+                        background-color: #9FE2BF;
+                        border-radius: 10px
+                        }
+                        .google-slides-container iframe{
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background-color: #9FE2BF;
+                        border-radius: 10px
+                        }
+                        .controls {
+                        position: absolute;
+                        top: 10px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        display: flex;
+                        gap: 10px;
+                        }
+                        .control-button {
+                        padding: 10px 20px;
+                        background-color: #007BFF;
+                        color: white;
+                        border: none;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        }
+                        </style>
+
+                        </div>
+
+        </div>
+
+
+                        <p><br><br>
                         <a href="/farewell/">
                             <button class="button" type="button">
                                 {% trans "Zum Abschluss." %}
@@ -487,10 +534,6 @@
                             <a href="https://github.com/joe-the-ark/ark" target="_blank">ARKS is published under a GPLv3</a> license by 
                             <a href="https://www.linkedin.com/in/dr-joe-maier/" target="_blank">Dr. Joe Maier</a>.
                         </p>
-
-          </div> 
-        </div>
-        </div>
 
 </body>
 </html>

@@ -26,8 +26,8 @@ msgstr "L'Arche est un voyage de groupe en ligne pour 3 à 9 personnes, afin d'e
 msgid "Die Arche ist eine Online-Gruppenreise für 3 bis 9 Personen, um die innere und psychologische Sicherheit mit dem Team zu erkunden."
 msgstr "L'Arche est un voyage de groupe en ligne pour 3 à 9 personnes, afin d'explorer la sécurité intérieure et psychologique avec l'équipe."
 
-msgid "Dramafreie Zusammenarbeit in psychologisch sicheren Kreisen schaffen."
-msgstr "Créer une collaboration sans drame dans des cercles psychologiquement sûrs."
+msgid "Schafft eine dramafreie Zusammenarbeit durch psychologisch sichere Kreise."
+msgstr "Créer une collaboration sans drame grâce à des cercles psychologiquement sûrs."
 
 msgid "Psychologisch sicher genug für Höchstleistung?"
 msgstr "Suffisamment de sécurité psychologique pour une performance optimale ?"
@@ -114,8 +114,8 @@ msgstr "Avec qui es-tu connecté (déjà) en toute sécurité ?"
 msgid "In psychologisch sicheren Teams gelingen Lernprozesse und die Team Performance stimmt. Innere Sicherheit erlaubt es achtsam mit dir und anderen in Beziehung zu gehen. Dadurch werden Defensivreaktionen (Fight, Flight, Freeze & Fawn) überflüssig."
 msgstr "Dans des équipes psychologiquement sûres, les processus d’apprentissage réussissent et la performance de l’équipe est au rendez-vous. La sécurité intérieure permet d’entrer en relation de manière attentive avec vous-même et avec les autres. Ainsi, les réactions défensives (lutte, fuite, sidération et soumission) deviennent superflues."
 
-msgid "In den nächsten 30 Minuten erkundet ihr die Basis eurer inneren und psychologischen Sicherheit: in welchen psychologischen #safecircles arbeitet ihr schon?"
-msgstr "Au cours des 30 prochaines minutes, vous explorerez la base de votre sécurité intérieure et psychologique : dans quels #safecircles psychologiques travaillez-vous déjà ?"
+msgid "In den nächsten 30 Minuten erkundet ihr die Basis eurer inneren und psychologischen Sicherheit: in welchen psychologischen safecircles arbeitet ihr schon?"
+msgstr "Au cours des 30 prochaines minutes, vous explorerez la base de votre sécurité intérieure et psychologique : dans quels safecircles psychologiques travaillez-vous déjà ?"
 
 msgid "Teile diesen QR-Code, um Mitreisende einzuladen"
 msgstr "Partagez ce code QR pour inviter des compagnons de voyage"
@@ -165,6 +165,18 @@ msgid ""
 "Übrigens: deine Auswertung der Challenge siehst du zum Spielabschluss."
 msgstr ""
 "D'ailleurs, vous verrez votre évaluation du défi à la fin du jeu."
+
+msgid "https://docs.google.com/presentation/d/1N-mOfePoj33-14mRFWnxuee-ODTfOBAUky6Zop1nTIk/embed?start=true&loop=false&delayms=8000"
+msgstr "https://docs.google.com/presentation/d/1rNXwL5lm9EPR6idKkl7vWtDAeYghPvH-E_7Gt-9Tr3c/embed?start=true&loop=false&delayms=8000"
+
+msgid "https://docs.google.com/presentation/d/1l1yXJjfM3PRuzWHs2YqvKRKgAApEj-provI2ONmmqS4/embed?start=true&loop=false&delayms=8000"
+msgstr "https://docs.google.com/presentation/d/1eYtU4UPSVjBvCh4AuJsECuK-o6CvrzMhVMpK8WcxW60/embed?start=true&loop=false&delayms=8000"
+
+msgid "https://docs.google.com/presentation/d/1kgXdYDUcddeDLANKHrsWY8rkwLqaYN86oCrdpaLlod4/embed?start=true&loop=false&delayms=8000"
+msgstr "https://docs.google.com/presentation/d/1A1LZYI6TKEtg_b9YkKTc4cfP04s6P6mUPquuz6xMeLA/embed?start=true&loop=false&delayms=8000"
+
+msgid "https://docs.google.com/presentation/d/1Cz-fav1DISq2siHi5-RW2uggyQU2ecbI1S3wxs--dng/embed?start=true&loop=false&delayms=8000"
+msgstr "https://docs.google.com/presentation/d/15HXYyGipKwrt5RHOvwcrFV2rl2AgdFYUuBhgm012Un8/embed?start=true&loop=false&delayms=8000"
 
 msgid "https://docs.google.com/presentation/d/1EnXkRYGm6M0Rbkkt6iFkhZ-kjo7jDjI23eDUntHLRN0/embed?start=true&loop=false&delayms=8000"
 msgstr "https://docs.google.com/presentation/d/15ejRVzl0oOFUP9Nn3vV-v0WNM_Tle8FI5X6I-hMyusU/embed?start=true&loop=false&delayms=8000"
@@ -275,7 +287,7 @@ msgstr "Expliquez à votre tour vos paires d'opposés"
 msgid "Erklärt euch bitte kurz die GEGENSATZPAARE, damit alle verstehen können, mit welchen Begriffen wir arbeiten."
 msgstr "Expliquez brièvement les PARAMÈTRES CONTRACTÉS, s'il vous plaît, afin que tout le monde puisse comprendre avec quels termes nous travaillons."
 
-msgid "Damit alle verstehen, welche Bedürfnisse zu euren psychologisch sicheren Kreisen beitragen. (Dauer: 1 Minute pro Person)"
+msgid "Damit alle verstehen, welche Spannungsfelder zu euren psychologisch sicheren Kreisen beitragen. (Dauer: 1 Minute pro Person)"
 msgstr "Pour que tous comprennent quels besoins contribuent à vos cercles de sécurité psychologique. (Durée : 1 minute par personne)"
 
 msgid "Überarbeite bei Bedarf dein Gegensatzpaar – du kannst gerne auch EIGENE Begriffe ins Textfeld schreiben."
@@ -348,8 +360,8 @@ msgstr "J'ai l'impression que tu réagis aux erreurs en rejetant la faute sur ce
 msgid "Einer Aussage können auch mehrere Personen zugeordnet werden."
 msgstr "Il est également possible d'attribuer plusieurs personnes à une même affirmation."
 
-msgid "Jeder graue Kreis steht für eine Person, die von einem Mitreisenden dorthin gewählt wurde. Was denkst du wohl, wo deine Spielfiguren stehen? Tauscht euch kurz zu dieser Frage aus und notiere, wenn du magst, deine Einschätzung. Die Auflösung erfolgt zum Schluss der Reise."
-msgstr "Chaque cercle gris représente une personne élue par un compagnon de voyage. À ton avis, où se trouvent tes personnages ? Echangez brièvement sur cette question et, si vous le souhaitez, notez votre appréciation. La résolution aura lieu à la fin du voyage."
+msgid "Jeder graue Kreis steht für eine Person, die von einem anderen dorthin gewählt wurde. Was denkst du wohl, wo deine Figuren stehen? Tauscht euch kurz reihum zu dieser Frage aus."
+msgstr "Chaque cercle gris représente une personne qui a été choisie par quelqu'un d'autre pour être là. Que penses-tu : où se trouvent tes figures ? Faites un tour de table pour échanger brièvement sur cette question."
 
 #. ubung-5
 #: loco:606c350d53fac01eda5589b2
@@ -396,8 +408,8 @@ msgstr "INDIVIDU"
 msgid "Gefühlte Team-Performance-Einschätzung"
 msgstr "Évaluation ressentie de la performance de l'équipe"
 
-msgid "Erinnerst du dich an deine Einschätzung der gefühlten Team-Performance? Diese Auswertung setzt sich aus den gleichberechtigten Wahrnehmungen aller Teammitglieder zusammen – gibt es Ausreißer?"
-msgstr "Te souviens-tu de ton évaluation de la performance de l'équipe perçue ? Cette évaluation est composée des perceptions égales de tous les membres de l'équipe - y a-t-il des valeurs aberrantes ?"
+msgid "Erinnerst du dich an deine Einschätzung der Team-Performance? Hier siehst du euer Ergebnis:"
+msgstr "Te souviens-tu de ton évaluation de la performance de l'équipe ? Voici votre résultat :"
 
 msgid "In der Regel sind psychologische Sicherheit und Team-Performance ungefähr auf gleichem Niveau, denn psychologische Sicherheit gilt als bester Prädiktor für Team-Performance. Betrachte nun die psychologisch sicheren Kreise deines Teams. Eine Erweiterung dieser Kreise wirkt sich positiv auf eure psychologische Sicherheit aus."
 msgstr "En général, la sécurité psychologique et la performance de l'équipe sont approximativement au même niveau car la sécurité psychologique est considérée comme le meilleur prédicteur de la performance de l'équipe. Maintenant, examinez les cercles psychologiquement sûrs de votre équipe. L'extension de ces cercles a un impact positif sur votre sécurité psychologique."
@@ -418,8 +430,8 @@ msgstr "Performance ressentie de l'équipe"
 msgid "Reality Check: eure psychologisch sicheren Kreise"
 msgstr "Reality Check : vos cercles psychologiquement sûrs"
 
-msgid "In sicher verbundenen Kreisen werden Schutzreaktionen (wie Fight, Flight, Freeze oder Fawn) überflüssig."
-msgstr "Dans les cercles connectés de manière sûre, les réactions de protection (comme Fight, Flight, Freeze ou Fawn) deviennent superflues."
+msgid "In sicher verbundenen Kreisen werden Schutzreaktionen (Fight, Flight, Freeze oder Fawn) überflüssig."
+msgstr "Dans les cercles connectés de manière sûre, les réactions de protection (fight, flight, freeze ou fawn) deviennent superflues."
 
 msgid "Eine Lesehilfe: je kleiner der Zahlenwert, desto mehr Stress und negative Trigger zeigen sich, weil sich die Toleranzfenster der Teammitglieder schliessen."
 msgstr "Une aide à la lecture : plus la valeur numérique est petite, plus le stress et les déclencheurs négatifs se manifestent, car les fenêtres de tolérance des membres de l'équipe se ferment."
@@ -602,16 +614,16 @@ msgstr "Le voyage peut continuer dès que tous les joueurs sont arrivés ici, da
 
 #. ps-score
 #: loco:606c88b0ce3e5b40de0ea732
-msgid "Reality Check: Safe oder Unsafe Team – wo steht ihr wirklich?"
-msgstr "Reality Check : Équipe sûre ou à risque – où en êtes-vous vraiment ?"
+msgid "Safe oder Unsafe Team – wo steht ihr wirklich?"
+msgstr "Équipe sûre ou à risque – où en êtes-vous vraiment ?"
 
 msgid "TEAMKLIMA"
 msgstr "CLIMAT D'ÉQUIPE"
 
 #. ps-score
 #: loco:606c8965969b3140f152fba3
-msgid "Hier siehst du den psychologische Sicherheitswert für dein Team auf einer Skala zwischen 0 (sehr unsicher) bis 99 (aussergewöhnlich sicher). Welches Verhalten trägt zur psychologischen Sicherheit bei?"
-msgstr "Tu peux voir ici le score de sécurité psychologique de ton équipe sur une échelle allant de 0 (très peu sûr) à 99 (exceptionnellement sûr). Quel comportement contribue à la sécurité psychologique ?"
+msgid "Werte unter 55 gelten als unsicher, 68 ist Durchschnitt und Werte über 78 liegen eher auf der psychologisch sicheren Seite."
+msgstr "Les valeurs inférieures à 55 sont considérées comme peu sûres, 68 est la moyenne, et les valeurs supérieures à 78 se situent plutôt du côté psychologiquement sûr."
 
 #. spannungsfelder
 #: loco:606c8c5f591f8a4a1c131eb2
@@ -630,14 +642,14 @@ msgstr "Ici, tu peux comparer l'image que tu as de toi-même avec celle des autr
 msgid "Das grüne Band zeigt die sichere Basis deines Teams:"
 msgstr "La bande verte indique la base de sécurité de ton équipe :"
 
-msgid "Wer sieht deinen Beitrag zur inneren Sicherheit innerhalb, wer ausserhalb, dieser grünen sicheren Zone?"
-msgstr "Qui voit ta contribution à la sécurité intérieure à l'intérieur, qui à l'extérieur de cette zone verte sécurisée ?"
+msgid "Wer sieht deinen Beitrag zur psychologischen Sicherheit im Team innerhalb, wer ausserhalb des grünen sicheren Bereichs?"
+msgstr "Qui voit ta contribution à la sécurité psychologique de l'équipe à l'intérieur, qui à l'extérieur de la zone verte de sécurité ?"
 
 msgid "Wie kannst du diese Spannungen lösen und zu einer sicheren Basis beitragen?"
 msgstr "Comment peux-tu résoudre ces tensions et contribuer à une base de sécurité ?"
 
-msgid "Wo entstehen Spannungen zwischen deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team?"
-msgstr "Où se situent les tensions entre la perception que tu as de toi-même et la perception que l'équipe a de toi ?"
+msgid "Erläutert reihum, bei welchem Sicherheitsanker Spannungen zwischen deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team entstehen. (Dauer: 1 Minute pro Person)"
+msgstr "Explique à tour de rôle quelle ancre de sécurité provoque des tensions entre ta perception de toi-même et la perception des autres par l'équipe. (Durée : 1 minute par personne)"
 
 msgid "Unsere Hypothese: Ungeklärte Spannungen erzeugen Unsicherheit und gefährden Vertrauen. Eine tragfähige, sichere Beziehungsbasis macht Defensivreaktionen überflüssig (Fight, Flight, Freeze & Fawn) und lässt dich achtsam mit dir und anderen umgehen."
 msgstr "Notre hypothèse : les tensions non résolues génèrent de l'insécurité et mettent en péril la confiance. Une base relationnelle solide et sûre rend les réactions défensives superflues (Fight, Flight, Freeze & Fawn) et te permet d'être attentif à toi-même et aux autres."
@@ -659,8 +671,8 @@ msgstr "Voici ton guide d'interprétation :"
 msgid "Die grünen Bereiche sind die sicheren Zonen Deines Teams. Unsere Hypothese: Spannungsfreiheit erzeugt Sicherheit. Eine gute innere Sicherheit macht Defensivreaktionen überflüssig (Fight, Flight & Freeze) und lässt Dich achtsam mit Dir und anderen umgehen. Was ist Dein Beitrag zur inneren Sicherheit? Wie erklärst du die Unterschiede zwischen Deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team?"
 msgstr "Les zones vertes sont les zones de sécurité de ton équipe. Notre hypothèse : l'absence de tensions engendre la sécurité. Une bonne sécurité intérieure rend les réactions défensives superflues (Fight, Flight & Freeze) et te permet d'être attentif à toi-même et aux autres. Quelle est ta contribution à la sécurité intérieure ? Comment expliques-tu les différences entre ta perception de toi-même et la perception des autres par l'équipe ?"
 
-msgid "Zum Abschluss empfehlen wir eine anonyme Feedbackrunde mit 3 bewährten Fragen zur Stärkung der psychologischen Sicherheit im Team: Dieser Feedbackprozess ist Voraussetzung, damit die hier noch anonym dargestellten Einschätzungen der anderen Teammitglieder offengelegt werden können."
-msgstr "Pour finir, nous recommandons une séance de feedback anonyme avec 3 questions éprouvées pour renforcer la sécurité psychologique de l'équipe : ce processus de feedback est une condition préalable pour que les évaluations des autres membres de l'équipe, présentées ici de manière encore anonyme, puissent être révélées."
+msgid "ANONYMES FEEDBACK (Zeitbedarf: 3 Minuten pro Person). Mit 3 bewährten Fragen zur Stärkung der psychologischen Sicherheit im Team. ACHTUNG: Nach diesem Feedbackprozess werden alle Daten der Arche offengelegt."
+msgstr "FEEDBACK ANONYME (Durée: 3 minutes par personne). Avec 3 questions éprouvées pour renforcer la sécurité psychologique au sein de l'équipe. ATTENTION: Après ce processus de feedback, toutes les données de l’Arche seront divulguées."
 
 msgid "(Unbedingt empfohlen für Teams mit einem Performance-Wert unter 80. Dieser Feedbackprozess ist ausserdem Voraussetzung, damit die hier noch anonymen Einschätzungen offengelegt werden können)."
 msgstr "(Ce processus de feedback est en outre une condition préalable à la publication des évaluations encore anonymes)."
@@ -1114,8 +1126,8 @@ msgstr "Les valeurs supérieures à 16 indiquent des tensions avec l'équipe."
 
 #. heatmap
 #: loco:606ef28b897dc9441a675aa3
-msgid "Auf Wiedersehen sagen"
-msgstr "Adieu"
+msgid "Aftercare"
+msgstr "Aftercare"
 
 msgid "Infos zur Arche"
 msgstr "Infos sur l'Arche"

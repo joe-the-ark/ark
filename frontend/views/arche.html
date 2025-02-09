@@ -28,7 +28,7 @@
         <div class="container">
             <main class="screen arche">
                 <h1>
-                    {% trans "Nach der Reise ist vor der Reise." %}
+                    {% trans "Aftercare" %}
                 </h1>
                 <div class="user">
                     <img src="{{user.avatar}}" alt=""/>
@@ -42,31 +42,38 @@
                     </div>
                 </div>
                 <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
+
+
                 <div class="options">
+
+
                     <div class="options__item">
+                        <div class="icon-logo" onclick="location='/mission-2-ubung-2/'"></div>
+                        <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
+                            {% trans "ANONYMES FEEDBACK (Zeitbedarf: 3 Minuten pro Person). Mit 3 bewährten Fragen zur Stärkung der psychologischen Sicherheit im Team. ACHTUNG: Nach diesem Feedbackprozess werden alle Daten der Arche offengelegt." %}<br><br>
+                        </p>
+                    </div>
+
+
+                    {% comment %}<div class="options__item">
                         <a href="https://www.liberatingstructures.com/1-1-2-4-all/" target="_blank">
                         <div class="icon-logo"></div>
                         </a>
                          <p>
-                            {% trans "DEBRIEF: Arbeiten Sie in Ihren sicheren Kreisen gemeinsam an Lösungen, wobei die Kernmitglieder die Moderation übernehmen. Schwerpunkt: 1) Bestehende Faktoren, die zur psychologischen Sicherheit im Team beitragen, und 2) Erkundung von Babyschritten zur Verbesserung der psychologischen Sicherheit. Planen Sie 20 Minuten für diese Aktivität ein." %}
+                            {% trans "DEBRIEF: Arbeiten Sie in Ihren sicheren Kreisen gemeinsam an Lösungen, wobei die Kernmitglieder die Moderation übernehmen. Schwerpunkt: 1) Bestehende Faktoren, die zur psychologischen Sicherheit im Team beitragen, und 2) Erkundung von Babyschritten zur Verbesserung der psychologischen Sicherheit. Planen Sie 20 Minuten für diese Aktivität ein." %}<br><br>
                         </p>
-                    </div>
+                    </div>{% endcomment %}
                     <div class="options__item">
                         <div class="icon-download" onclick="location='/potential-result/'"></div>
                         <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
-                            {% trans "Erkundet nochmal eure Psychologischen Safe Circles." %}
+                            {% trans "Erkundet nochmal eure Psychologischen Safe Circles." %}<br><br>
                         </p>
                     </div>
-                    {% comment %}<div class="options__item">
-                        <div class="icon-logo" onclick="location='/mission-2-ubung-2/'"></div>
-                        <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
-                            {% trans "ANONYMES FEEDBACK (Zeitbedarf: 15 Minuten, abhängig von der Teamgröße). Wir empfehlen eine Feedbackrunde mit 3 bewährten Fragen zur Stärkung der psychologischen Sicherheit im Team. (Unbedingt empfohlen für Teams mit einem Performance-Wert unter 80)." %}
-                        </p>
-                    </div>{% endcomment %}
+
                     {% comment %}<div class="options__item">
                         <div class="icon-logo" onclick="location='/preview-2/'"></div>
                         <p style="background-color: #FAE03C; color: #626262; border-radius: 10px; padding: 0 10px;">
-                            {% trans "Was jetzt: SOCIAL SENSITIVITY TRAINING? (Ca. 10 Minuten Zeitbedarf) Hilf mit die psychologische Sicherheit im Team zu verbessern: Trainiere dazu deine soziale Sensibilität und lerne einzuschätzen, wie dein Beitrag zur inneren Sicherheit von jedem einzelnen Teammitglied wahrgenommen wirst. (Empfohlen für Teams mit einem psychologischen Sicherheitswert unter 70)." %}
+                            {% trans "Was jetzt: SOCIAL SENSITIVITY TRAINING? (Ca. 10 Minuten Zeitbedarf) Hilf mit die psychologische Sicherheit im Team zu verbessern: Trainiere dazu deine soziale Sensibilität und lerne einzuschätzen, wie dein Beitrag zur inneren Sicherheit von jedem einzelnen Teammitglied wahrgenommen wirst. (Empfohlen für Teams mit einem psychologischen Sicherheitswert unter 70)." %}<br><br>
                         </p>
                     </div>{% endcomment %}
                     <div class="options__item">
@@ -74,13 +81,13 @@
                         <div class="icon-money"></div>
                         </a>
                         <p style="background-color: #fa5252; color: white; border-radius: 10px; padding: 0 10px;">
-                            {% trans "COUNSELING? Für eine professionelle Intervention nimm Kontakt mit deinem Coach oder mit Dr. Joe Maier auf. Das Ziel ist die Erweiterung eurer Psychological Safe Circles. (Empfohlen für Teams mit einem psychologischen Sicherheitswert unter 60)." %}
+                            {% trans "COUNSELING? Für eine professionelle Intervention nimm Kontakt mit deinem Coach oder mit Dr. Joe Maier auf. Das Ziel ist die Erweiterung eurer Psychological Safe Circles. (Empfohlen für Teams mit einem psychologischen Sicherheitswert unter 60)." %}<br><br>
                         </p>
                     </div>
                     <div class="options__item">
                         <div class="icon-download" onclick="location='/heatmap/'"></div>
                         <p style="background-color: #FAE03C; color: #626262; border-radius: 10px; padding: 0 10px;">
-                            {% trans "Bist du ein Coach oder vertraut mit gruppendynamischen Mustern? Dann ist die HEATMAP der Spannungen im Team etwas für dich." %}
+                            {% trans "Bist du ein Coach oder vertraut mit gruppendynamischen Mustern? Dann ist die HEATMAP der Spannungen im Team etwas für dich." %}<br><br>
                         </p>
                     </div>
                     <!-- 

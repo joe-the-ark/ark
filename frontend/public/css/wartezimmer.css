@@ -238,3 +238,7 @@ body > .user-connect .user-connect__name {
   transition: all 0.8s ease 0s;
   transform: translate(0px, -100%);
 }
+.google-slides-container {
+    background-color: white;
+    border: 1px solid black;
+}

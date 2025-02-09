@@ -60,6 +60,14 @@
         <div class="container">
             <main class="screen auth-link">
                 <h1 id="title-game"></h1>
+
+                    <div class="form__field">
+                        <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;"><br>
+                            {% trans "Bist du bereit für die aufrichtigste Team-Challenge deiner Karriere mit der Arche (für 3 bis 15 Personen)?" %}<br><br>
+                        </p>
+
+                    </div>
+
                 <form id="form_" action="#" method="POST" id="auth-form" class="form" onkeypress="javascript: if (event.keyCode==13){check_player_name();return false;}">
                 {% csrf_token %}
                     <div class="form__field">
@@ -185,7 +193,7 @@
 
 
                         <p>
-                            <br><br>{% trans "Die Reisezeit der ersten Etappe beträgt eine halbe Stunde." %}<br>{% trans "Das sind die" %}
+                            <br><br>{% trans "Die Reisezeit der ersten Etappe beträgt eine halbe Stunde." %} {% trans "Das sind die" %}
                       <span class="terms" style="text-decoration:underline;">{% trans "Nutzungsbedingungen" %}.</span><br><br>
                         </p>
 
@@ -200,12 +208,6 @@
                         <span class="form__placeholder">Name des Spiels</span>
                     </div>
                     -->
-                    <div class="form__field">
-                        <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
-                            {% trans "Bist du bereit für die aufrichtigste Team-Challenge deiner Karriere mit der Arche (für 3 bis 15 Personen)? Dramafreie Zusammenarbeit in psychologisch sicheren Kreisen schaffen." %}
-                        </p>
-
-                    </div>
 
                     <div class="form__field">
                         {% comment %} <button id="submit_button" type="submit">
@@ -220,27 +222,43 @@
                     <br>
                 </p>
                 <div class="google-slides-container">
-                <iframe style="padding: 0 10px;" src={% trans "https://player.vimeo.com/video/852158357"  %} frameborder="0" width="850" height="400" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-                
-                <style>
-                .google-slides-container{
-                position: relative;
-                width: 100%;
-                padding-top: 56.25%;
-                overflow: hidden;
-                background-color: #9FE2BF;
-                border-radius: 10px
-                }
-                .google-slides-container iframe{
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: #9FE2BF;
-                border-radius: 10px
-                }
-                </style>
+                        <iframe style="padding: 0 10px;" src={% trans "https://docs.google.com/presentation/d/1l1yXJjfM3PRuzWHs2YqvKRKgAApEj-provI2ONmmqS4/embed?start=true&loop=false&delayms=8000"  %} frameborder="0" width="850" height="400" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                        
+                        <style>
+                        .google-slides-container{
+                        position: relative;
+                        width: 100%;
+                        padding-top: 56.25%;
+                        overflow: hidden;
+                        background-color: #9FE2BF;
+                        border-radius: 10px
+                        }
+                        .google-slides-container iframe{
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background-color: #9FE2BF;
+                        border-radius: 10px
+                        }
+                        .controls {
+                        position: absolute;
+                        top: 10px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        display: flex;
+                        gap: 10px;
+                        }
+                        .control-button {
+                        padding: 10px 20px;
+                        background-color: #007BFF;
+                        color: white;
+                        border: none;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        }
+                        </style>
 
                 </div>
 
@@ -380,7 +398,7 @@
 
     function defaultLoad() {
         const el = document.getElementById('title-game');
-        el.innerHTML = window.innerWidth < 768 ? "{% trans 'Psychologisch sicher genug für Höchstleistung?' %}" : "{% trans 'Psychologisch sicher genug für Höchstleistung?' %}"
+        el.innerHTML = window.innerWidth < 768 ? "{% trans 'Schafft eine dramafreie Zusammenarbeit durch psychologisch sichere Kreise.' %}" : "{% trans 'Schafft eine dramafreie Zusammenarbeit durch psychologisch sichere Kreise.' %}"
     }
     
 

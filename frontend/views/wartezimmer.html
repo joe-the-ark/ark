@@ -63,21 +63,19 @@
                     </h1>
                     <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
                     <p>
-                        {% trans "Damit alle verstehen, welche Bedürfnisse zu euren psychologisch sicheren Kreisen beitragen. (Dauer: 1 Minute pro Person)" %}
+                        {% trans "Damit alle verstehen, welche Spannungsfelder zu euren psychologisch sicheren Kreisen beitragen. (Dauer: 1 Minute pro Person)" %}
                         <br/>
                     </p>
                     <img src="http://info.arks.ch/wp-content/uploads/2022/07/Plus_Minus.png" style="border-radius: 10px;">
                     <input type="text" placeholder="Sicherheitsanker fehlt!" name="Kraftquelle" v-model="text_input_power" / style="border-radius: 10px">
                     <input type="text" placeholder="Trigger fehlt!" name="Energiefresser" v-model="text_input_drainer" / style="border-radius: 10px"><br><br>
-                    <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
+                    <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px; padding: 0 10px; text-align: center; margin: 0 auto; max-width: 60%;">
                         {% trans "Überarbeite bei Bedarf dein Gegensatzpaar – du kannst gerne auch EIGENE Begriffe ins Textfeld schreiben." %} 
                     </br></br><button class="glow-on-hover" type="button" @click="continue_()" onclick="alert('Updated!')">Update</button><br><br><br>
                     </p>
 
                     
-                    <br><br><p style="background-color: #52CEEC; color: #FFFFFF; border-radius: 10px; padding: 0 10px;">
-                        {% trans "Hast du wirklich ein treffendes GEGENSATZPAAR ausgewählt? Fällt dir die Aufgabe schwer, dann finde einfach das passende Gegenteil zu deinem Sicherheitsanker. Du darfst bitte erst weitergehen, wenn du ein Gegensatzpaar benannt hast." %}
-                    </p><br><br>
+
 
                     <!-- Message placeholder added here -->
 
@@ -87,6 +85,47 @@
                         </p>                     
                 </div>
             </div>
+
+                        <div class="google-slides-container">
+                        <iframe style="padding: 0 10px;" src={% trans "https://docs.google.com/presentation/d/1Cz-fav1DISq2siHi5-RW2uggyQU2ecbI1S3wxs--dng/embed?start=true&loop=false&delayms=8000"  %} frameborder="0" width="850" height="400" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                        
+                        <style>
+                        .google-slides-container{
+                        position: relative;
+                        width: 100%;
+                        padding-top: 56.25%;
+                        overflow: hidden;
+                        background-color: #9FE2BF;
+                        border-radius: 10px
+                        }
+                        .google-slides-container iframe{
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background-color: #9FE2BF;
+                        border-radius: 10px
+                        }
+                        .controls {
+                        position: absolute;
+                        top: 10px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        display: flex;
+                        gap: 10px;
+                        }
+                        .control-button {
+                        padding: 10px 20px;
+                        background-color: #007BFF;
+                        color: white;
+                        border: none;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        }
+                        </style>
+
+                        </div>
 
 <!--
                 <div class="heatmap">

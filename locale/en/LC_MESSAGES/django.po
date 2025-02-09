@@ -26,8 +26,8 @@ msgstr "The Ark is an online group trip for 3 to 9 people to explore inner and p
 msgid "Die Arche ist eine Online-Gruppenreise für 3 bis 9 Personen, um die innere und psychologische Sicherheit mit dem Team zu erkunden."
 msgstr "The Ark is an online group trip for 3 to 9 people to explore inner and psychological safety with the team."
 
-msgid "Dramafreie Zusammenarbeit in psychologisch sicheren Kreisen schaffen."
-msgstr "Creating drama-free collaboration in psychologically safe circles."
+msgid "Schafft eine dramafreie Zusammenarbeit durch psychologisch sichere Kreise."
+msgstr "Creating drama-free collaboration through psychologically safe circles."
 
 msgid "Psychologisch sicher genug für Höchstleistung?"
 msgstr "Psychologically safe enough for high performance?"
@@ -154,11 +154,23 @@ msgstr "With whom are you (already) safely connected?"
 msgid "In psychologisch sicheren Teams gelingen Lernprozesse und die Team Performance steigt. Innere Sicherheit erlaubt es achtsam mit dir und anderen umzugehen. Dadurch werden Defensivreaktionen (Fight, Flight, Freeze & Fawn) überflüssig."
 msgstr "In psychologically safe teams, learning processes succeed, and team performance increases. Inner safety allows for mindful interaction with yourself and others, making defensive reactions (Fight, Flight, Freeze & Fawn) superfluous."
 
-msgid "In den nächsten 30 Minuten erkundet ihr die Basis eurer inneren und psychologischen Sicherheit: in welchen psychologischen #safecircles arbeitet ihr schon?"
-msgstr "In the next 30 minutes, you will explore the basis of your inner and psychological safety: in which psychological #safecircles are you already working?"
+msgid "In den nächsten 30 Minuten erkundet ihr die Basis eurer inneren und psychologischen Sicherheit: in welchen psychologischen safecircles arbeitet ihr schon?"
+msgstr "In the next 30 minutes, you will explore the basis of your inner and psychological safety: in which psychological safecircles are you already working?"
 
 msgid "Teile diesen QR-Code, um Mitreisende einzuladen"
 msgstr "Share this QR code to invite fellow travelers"
+
+msgid "https://docs.google.com/presentation/d/1N-mOfePoj33-14mRFWnxuee-ODTfOBAUky6Zop1nTIk/embed?start=true&loop=false&delayms=8000"
+msgstr "https://docs.google.com/presentation/d/1HTfrgLcW35HBXQGh-brFa7CEvutIGUt-xKEjSLaXCAs/embed?start=true&loop=false&delayms=8000"
+
+msgid "https://docs.google.com/presentation/d/1l1yXJjfM3PRuzWHs2YqvKRKgAApEj-provI2ONmmqS4/embed?start=true&loop=false&delayms=8000"
+msgstr "https://docs.google.com/presentation/d/1aR9bgDUpZ7cIAJUB8DMhpvUkPb4lLZqiWsrxE4LITas/embed?start=true&loop=false&delayms=8000"
+
+msgid "https://docs.google.com/presentation/d/1kgXdYDUcddeDLANKHrsWY8rkwLqaYN86oCrdpaLlod4/embed?start=true&loop=false&delayms=8000"
+msgstr "https://docs.google.com/presentation/d/1iEAnwrYnZvjvgbCablEnbeFjgFxv5_CwGdoSXC5byv8/embed?start=true&loop=false&delayms=8000"
+
+msgid "https://docs.google.com/presentation/d/1Cz-fav1DISq2siHi5-RW2uggyQU2ecbI1S3wxs--dng/embed?start=true&loop=false&delayms=8000"
+msgstr "https://docs.google.com/presentation/d/1AMIkBpRtYlCv3hxoS36ovJbb-mcJhiktfZwrQusqRIU/embed?start=true&loop=false&delayms=8000"
 
 msgid "https://docs.google.com/presentation/d/1EnXkRYGm6M0Rbkkt6iFkhZ-kjo7jDjI23eDUntHLRN0/embed?start=true&loop=false&delayms=8000"
 msgstr "https://docs.google.com/presentation/d/1i7y_0XsBEW_1z-khV-DgY1PivWfgsQv8ZXqO9h0tS8w/embed?start=true&loop=false&delayms=8000"
@@ -269,7 +281,7 @@ msgstr "Take turns explaining your pairs of opposites"
 msgid "Erklärt euch bitte kurz die GEGENSATZPAARE, damit alle verstehen können, mit welchen Begriffen wir arbeiten."
 msgstr "Please briefly explain the OPPOSITE PAIRS so that everyone can understand what terms we are working with."
 
-msgid "Damit alle verstehen, welche Bedürfnisse zu euren psychologisch sicheren Kreisen beitragen. (Dauer: 1 Minute pro Person)"
+msgid "Damit alle verstehen, welche Spannungsfelder zu euren psychologisch sicheren Kreisen beitragen. (Dauer: 1 Minute pro Person)"
 msgstr "So that everyone understands which needs contribute to your psychologically safe circles. (Duration: 1 minute per person)"
 
 msgid "Überarbeite bei Bedarf dein Gegensatzpaar – du kannst gerne auch EIGENE Begriffe ins Textfeld schreiben."
@@ -342,8 +354,8 @@ msgstr "I have the feeling that you react to mistakes by blaming individuals in 
 msgid "Einer Aussage können auch mehrere Personen zugeordnet werden."
 msgstr "Multiple individuals can also be assigned to the same statement."
 
-msgid "Jeder graue Kreis steht für eine Person, die von einem Mitreisenden dorthin gewählt wurde. Was denkst du wohl, wo deine Spielfiguren stehen? Tauscht euch kurz zu dieser Frage aus und notiere, wenn du magst, deine Einschätzung. Die Auflösung erfolgt zum Schluss der Reise."
-msgstr "Each grey circle represents a person who has been chosen there by a fellow traveller. Where do you think your pawns are? Share your thoughts on this question briefly and, if you like, write down your assessment. The solution will be given at the end of the journey."
+msgid "Jeder graue Kreis steht für eine Person, die von einem anderen dorthin gewählt wurde. Was denkst du wohl, wo deine Figuren stehen? Tauscht euch kurz reihum zu dieser Frage aus."
+msgstr "Each grey circle represents a person who was chosen by someone else to be there. What do you think—where are your figures positioned? Take a moment to discuss this question in a round with your group."
 
 #. ubung-5
 #: loco:606c350d53fac01eda5589b2
@@ -413,8 +425,8 @@ msgstr "Perceived Team Performance"
 
 #. potential-result > now part of waiting_room2
 
-msgid "Erinnerst du dich an deine Einschätzung der gefühlten Team-Performance? Diese Auswertung setzt sich aus den gleichberechtigten Wahrnehmungen aller Teammitglieder zusammen – gibt es Ausreißer?"
-msgstr "Do you remember your assessment of the perceived team performance? This evaluation is composed of the equal perceptions of all team members - are there outliers?"
+msgid "Erinnerst du dich an deine Einschätzung der Team-Performance? Hier siehst du euer Ergebnis:"
+msgstr "Do you remember your assessment of the team performance? Here you can see your result:"
 
 msgid "In der Regel sind psychologische Sicherheit und Team-Performance ungefähr auf gleichem Niveau, denn psychologische Sicherheit gilt als bester Prädiktor für Team-Performance. Betrachte nun die psychologisch sicheren Kreise deines Teams. Eine Erweiterung dieser Kreise wirkt sich positiv auf eure psychologische Sicherheit aus."
 msgstr "Generally, psychological safety and team performance are approximately at the same level because psychological safety is considered the best predictor of team performance. Now, consider the psychologically safe circles of your team. Expanding these circles has a positive impact on your psychological safety."
@@ -433,8 +445,8 @@ msgstr ""
 msgid "Reality Check: eure psychologisch sicheren Kreise"
 msgstr "Reality Check: your psychologically safe circles"
 
-msgid "In sicher verbundenen Kreisen werden Schutzreaktionen (wie Fight, Flight, Freeze oder Fawn) überflüssig."
-msgstr "In safely connected circles, defensive reactions (such as Fight, Flight, Freeze or Fawn) become superfluous."
+msgid "In sicher verbundenen Kreisen werden Schutzreaktionen (Fight, Flight, Freeze oder Fawn) überflüssig."
+msgstr "In safely connected circles, defensive reactions (fight, flight, freeze or fawn) become superfluous."
 
 msgid "Eine Lesehilfe: je kleiner der Zahlenwert, desto mehr Stress und negative Trigger zeigen sich, weil sich die Toleranzfenster der Teammitglieder schliessen."
 msgstr "A reading aid: the lower the numerical value, the more stress and negative triggers appear because the tolerance windows of the team members are closing."
@@ -587,16 +599,16 @@ msgstr "The journey can continue as soon as all the players have arrived here in
 
 #. ps-score
 #: loco:606c88b0ce3e5b40de0ea732
-msgid "Reality Check: Safe oder Unsafe Team – wo steht ihr wirklich?"
-msgstr "Reality Check: Safe or Unsafe Team – where do you really stand?"
+msgid "Safe oder Unsafe Team – wo steht ihr wirklich?"
+msgstr "Safe or Unsafe Team – where do you really stand?"
 
 msgid "TEAMKLIMA"
 msgstr "TEAM CLIMATE"
 
 #. ps-score
 #: loco:606c8965969b3140f152fba3
-msgid "Hier siehst du den psychologische Sicherheitswert für dein Team auf einer Skala zwischen 0 (sehr unsicher) bis 99 (aussergewöhnlich sicher). Welches Verhalten trägt zur psychologischen Sicherheit bei?"
-msgstr "Here you can see the psychological safety score for your team on a scale from 0 (very unsafe) to 99 (exceptionally safe). Which behaviour contributes to psychological safety?"
+msgid "Werte unter 55 gelten als unsicher, 68 ist Durchschnitt und Werte über 78 liegen eher auf der psychologisch sicheren Seite."
+msgstr "Values below 55 are considered unsafe, 68 is the average, and values above 78 are on the psychologically safer side."
 
 msgid "Die grünen Bereiche sind die sicheren Zonen Deines Teams. Unsere Hypothese: Spannungsfreiheit erzeugt Sicherheit. Eine gute innere Sicherheit macht Defensivreaktionen überflüssig (Fight, Flight & Freeze) und lässt Dich achtsam mit Dir und anderen umgehen. Was ist Dein Beitrag zur inneren Sicherheit? Wie erklärst du die Unterschiede zwischen Deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team?"
 msgstr "The green areas are the safe zones of your team. Our hypothesis: Freedom from tension creates safety. Good inner safety makes defensive reactions unnecessary (Fight, Flight & Freeze) and allows you to be mindful of yourself and others. What is your contribution to inner safety? How do you explain the differences between your self-perception and the perception of others by the team?"
@@ -621,14 +633,14 @@ msgstr "Here you can compare your self-image with the image of others and see ho
 msgid "Das grüne Band zeigt die sichere Basis deines Teams:"
 msgstr "The green band shows your team's safe base:"
 
-msgid "Wer sieht deinen Beitrag zur inneren Sicherheit innerhalb, wer ausserhalb, dieser grünen sicheren Zone?"
-msgstr "What is your contribution to the safety anchors and trigger issues in the team?"
+msgid "Wer sieht deinen Beitrag zur psychologischen Sicherheit im Team innerhalb, wer ausserhalb des grünen sicheren Bereichs?"
+msgstr "Who sees your contribution to psychological safety in the team within the green safe zone, and who outside it?"
 
 msgid "Wie kannst du diese Spannungen lösen und zu einer sicheren Basis beitragen?"
 msgstr "How can you solve these tensions and contribute to a safe base?"
 
-msgid "Wo entstehen Spannungen zwischen deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team?"
-msgstr "Where do tensions arise between your self-perception and the team's perception of you?"
+msgid "Erläutert reihum, bei welchem Sicherheitsanker Spannungen zwischen deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team entstehen. (Dauer: 1 Minute pro Person)"
+msgstr "Take it in turns to explain which safety anchor creates tension between your self-perception and the team's perception of you. (Duration: 1 minute per person)"
 
 msgid "Unsere Hypothese: Ungeklärte Spannungen erzeugen Unsicherheit und gefährden Vertrauen. Eine tragfähige, sichere Beziehungsbasis macht Defensivreaktionen überflüssig (Fight, Flight, Freeze & Fawn) und lässt dich achtsam mit dir und anderen umgehen."
 msgstr "Our hypothesis: Unresolved tensions create insecurity and jeopardise trust. A sustainable, secure relationship basis makes defensive reactions superfluous (Fight, Flight, Freeze & Fawn) and allows you to treat yourself and others with respect."
@@ -642,8 +654,8 @@ msgstr "The green areas are the safe base of your team."
 msgid "Unsere Hypothese: Spannung erzeugt Unsicherheit und gefährdet Vertrauen. Eine tragfähige, sichere Beziehungsbasis macht Defensivreaktionen überflüssig (Fight, Flight & Freeze) und lässt dich achtsam mit dir und anderen umgehen. Was ist dein Beitrag zur inneren Sicherheit? Wie erklärst du die Unterschiede zwischen deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team?"
 msgstr "Our hypothesis: Tension creates insecurity and jeopardises trust. A sustainable, secure relationship basis makes defensive reactions unnecessary (fight, flight & freeze) and allows you to be mindful of yourself and others. What is your contribution to inner safety? How do you explain the differences between your self-perception and the perception of others by the team?"
 
-msgid "Zum Abschluss empfehlen wir eine anonyme Feedbackrunde mit 3 bewährten Fragen zur Stärkung der psychologischen Sicherheit im Team: Dieser Feedbackprozess ist Voraussetzung, damit die hier noch anonym dargestellten Einschätzungen der anderen Teammitglieder offengelegt werden können."
-msgstr "Finally, we recommend an anonymous feedback round with 3 well-established questions to strengthen psychological safety in the team: This feedback process is a prerequisite for the other team members' assessments, which are still presented anonymously here, to be disclosed."
+msgid "ANONYMES FEEDBACK (Zeitbedarf: 3 Minuten pro Person). Mit 3 bewährten Fragen zur Stärkung der psychologischen Sicherheit im Team. ACHTUNG: Nach diesem Feedbackprozess werden alle Daten der Arche offengelegt."
+msgstr "ANONYMOUS FEEDBACK (Time required: 3 minutes per person). With 3 proven questions to strengthen psychological safety within the team. ATTENTION: After this feedback process, all data of the Ark will be disclosed."
 
 msgid "(Unbedingt empfohlen für Teams mit einem Performance-Wert unter 80. Dieser Feedbackprozess ist ausserdem Voraussetzung, damit die hier noch anonymen Einschätzungen offengelegt werden können)."
 msgstr "(Highly recommended for teams with a performance score below 80. This feedback process is also a prerequisite so that the anonymous assessments can be disclosed)."
@@ -1088,8 +1100,8 @@ msgstr "The inside of the heat map shows how large the deviation between self-pe
 
 #. heatmap
 #: loco:606ef28b897dc9441a675aa3
-msgid "Auf Wiedersehen sagen"
-msgstr "Farewell"
+msgid "Aftercare"
+msgstr "Aftercare"
 
 msgid "Infos zur Arche"
 msgstr "Info about the Ark"
