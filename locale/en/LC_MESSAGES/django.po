@@ -161,6 +161,9 @@ msgid "Teile diesen QR-Code, um Mitreisende einzuladen"
 msgstr "Share this QR code to invite fellow travelers"
 
 
+msgid "https://docs.google.com/presentation/d/1gyEYqnALw4y9yLPUTb1VYQO9IADDD4r-1-yf0sgkvo4/embed?start=true&loop=false&delayms=8000"
+msgstr "https://docs.google.com/presentation/d/1y6v3ggjzWm6SQjr1RMW8uhLeBhfnWC3SBYX_FASm10o/embed?start=true&loop=false&delayms=8000"
+
 msgid "https://docs.google.com/presentation/d/1qi3wNhpRU3FEoatghY7Ca0iNwtGPQGvHqLRXCvbKKJ8/embed?start=true&loop=false&delayms=8000"
 msgstr "https://docs.google.com/presentation/d/1pJHjHIKguSqrKjPR2aq76t7Mob0vQSJu0aed0mbuY3w/embed?start=true&loop=false&delayms=8000"
 
@@ -389,8 +392,8 @@ msgstr "Please position the contribution of the players in the field of tension 
 msgid "KLICKE bitte jede Person an den Punkt (auf der Skala zwischen 1-99), der aus deiner Sicht am Besten zum Beitrag des Mitreisenden in für dich wichtigen Alltagssituationen passt."
 msgstr "CLICK each person to the point (on the scale between 1-99) that you think best matches the contribution of the fellow traveller in everyday situations that are important to you."
 
-msgid "KLICKE auf die Skala von +50 bis -50."
-msgstr "CLICK on the scale from +50 to -50."
+msgid "Deine Einschätzung ist ANONYM – KLICKE auf die Skala von +50 bis -50."
+msgstr "Your assessment is ANONYMOUS – CLICK on the scale from +50 to -50."
 
 msgid "Ja, diese Einschätzung passt"
 msgstr "Yes, this assessment fits"

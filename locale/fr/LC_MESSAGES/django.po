@@ -166,6 +166,8 @@ msgid ""
 msgstr ""
 "D'ailleurs, vous verrez votre évaluation du défi à la fin du jeu."
 
+msgid "https://docs.google.com/presentation/d/1gyEYqnALw4y9yLPUTb1VYQO9IADDD4r-1-yf0sgkvo4/embed?start=true&loop=false&delayms=8000"
+msgstr "https://docs.google.com/presentation/d/1rqEuOH0ZzcrcBMnEp3T9euiXvfGtx4Gk6Y8IxGidnO0/embed?start=true&loop=false&delayms=8000"
 
 msgid "https://docs.google.com/presentation/d/1qi3wNhpRU3FEoatghY7Ca0iNwtGPQGvHqLRXCvbKKJ8/embed?start=true&loop=false&delayms=8000"
 msgstr "https://docs.google.com/presentation/d/1i0O8xnzoa5vJmOcv9kSaKuBn-LvMcGWzE32icZN8jy8/embed?start=true&loop=false&delayms=8000"
@@ -392,8 +394,8 @@ msgstr "Veuillez positionner la contribution des joueurs dans la tension entre l
 msgid "KLICKE bitte jede Person an den Punkt (auf der Skala zwischen 1-99), der aus deiner Sicht am Besten zum Beitrag des Mitreisenden in für dich wichtigen Alltagssituationen passt."
 msgstr "CLIQUE sur le point (sur une échelle de 1 à 99) qui, selon toi, correspond le mieux à la contribution du compagnon de voyage dans des situations quotidiennes importantes pour toi."
 
-msgid "KLICKE auf die Skala von +50 bis -50."
-msgstr "CLIQUE sur l'échelle de +50 à -50."
+msgid "Deine Einschätzung ist ANONYM – KLICKE auf die Skala von +50 bis -50."
+msgstr "Votre évaluation est ANONYME – CLIQUEZ sur l'échelle de +50 à -50."
 
 msgid "Ja, diese Einschätzung passt"
 msgstr "Oui, cette estimation est correcte"

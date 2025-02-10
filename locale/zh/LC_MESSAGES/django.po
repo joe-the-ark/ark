@@ -165,6 +165,8 @@ msgid ""
 "Übrigens: deine Auswertung der Challenge siehst du zum Spielabschluss."
 msgstr "顺便说一下，你会在游戏结束时看到你对挑战的评价。"
 
+msgid "https://docs.google.com/presentation/d/1gyEYqnALw4y9yLPUTb1VYQO9IADDD4r-1-yf0sgkvo4/embed?start=true&loop=false&delayms=8000"
+msgstr "https://docs.google.com/presentation/d/1c9Ia81ATlBk_XKiudF5F7lO7eSfyoNjddxK72InbLb0/embed?start=true&loop=false&delayms=8000"
 
 msgid "https://docs.google.com/presentation/d/1qi3wNhpRU3FEoatghY7Ca0iNwtGPQGvHqLRXCvbKKJ8/embed?start=true&loop=false&delayms=8000"
 msgstr "https://docs.google.com/presentation/d/1RdTxE_HgllO4Khx1jfgxFDHjf4Uu7sX5Tov_CZCn1J8/embed?start=true&loop=false&delayms=8000"
@@ -387,8 +389,8 @@ msgstr "请定位队员在团队中动力源和能量消耗者之间的张力的
 msgid "KLICKE bitte jede Person an den Punkt (auf der Skala zwischen 1-99), der aus deiner Sicht am Besten zum Beitrag des Mitreisenden in für dich wichtigen Alltagssituationen passt."
 msgstr "给每个人打分（在1-99分之间），你认为最符合同路人在对你很重要的日常情况下的贡献。"
 
-msgid "KLICKE auf die Skala von +50 bis -50."
-msgstr "在 +50 到 -50 的刻度上点击。"
+msgid "Deine Einschätzung ist ANONYM – KLICKE auf die Skala von +50 bis -50."
+msgstr "您的评估是匿名的 – 点击+50到-50的评分范围。"
 
 msgid "Ja, diese Einschätzung passt"
 msgstr "是的，这一估计是正确的"
