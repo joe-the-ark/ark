@@ -114,8 +114,8 @@ msgstr "Avec qui es-tu connecté (déjà) en toute sécurité ?"
 msgid "In psychologisch sicheren Teams gelingen Lernprozesse und die Team Performance stimmt. Innere Sicherheit erlaubt es achtsam mit dir und anderen in Beziehung zu gehen. Dadurch werden Defensivreaktionen (Fight, Flight, Freeze & Fawn) überflüssig."
 msgstr "Dans des équipes psychologiquement sûres, les processus d’apprentissage réussissent et la performance de l’équipe est au rendez-vous. La sécurité intérieure permet d’entrer en relation de manière attentive avec vous-même et avec les autres. Ainsi, les réactions défensives (lutte, fuite, sidération et soumission) deviennent superflues."
 
-msgid "In den nächsten 30 Minuten erkundet ihr die Basis eurer inneren und psychologischen Sicherheit: in welchen psychologischen safecircles arbeitet ihr schon?"
-msgstr "Au cours des 30 prochaines minutes, vous explorerez la base de votre sécurité intérieure et psychologique : dans quels safecircles psychologiques travaillez-vous déjà ?"
+msgid "In den nächsten 60 Minuten erkundet ihr die Basis eurer inneren und psychologischen Sicherheit: in welchen psychologischen safecircles arbeitet ihr schon?"
+msgstr "Au cours des 60 prochaines minutes, vous explorerez la base de votre sécurité intérieure et psychologique : dans quels safecircles psychologiques travaillez-vous déjà ?"
 
 msgid "Teile diesen QR-Code, um Mitreisende einzuladen"
 msgstr "Partagez ce code QR pour inviter des compagnons de voyage"

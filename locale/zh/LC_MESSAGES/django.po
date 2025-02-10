@@ -114,8 +114,8 @@ msgstr "你已经与谁建立了安全连接？"
 msgid "In psychologisch sicheren Teams gelingen Lernprozesse und die Team Performance stimmt. Innere Sicherheit erlaubt es achtsam mit dir und anderen in Beziehung zu gehen. Dadurch werden Defensivreaktionen (Fight, Flight, Freeze & Fawn) überflüssig."
 msgstr "在心理安全的团队中，学习过程更顺利，团队绩效也能得到保证。内在的安全感使你能够与自己和他人保持觉知并建立良好关系，从而使防御反应（战斗、逃跑、僵住和讨好）变得多余。"
 
-msgid "In den nächsten 30 Minuten erkundet ihr die Basis eurer inneren und psychologischen Sicherheit: in welchen psychologischen safecircles arbeitet ihr schon?"
-msgstr "在接下来的 30 分钟里，你将探索内心和心理安全的基础：你已经在哪些心理 安全圈中工作？"
+msgid "In den nächsten 60 Minuten erkundet ihr die Basis eurer inneren und psychologischen Sicherheit: in welchen psychologischen safecircles arbeitet ihr schon?"
+msgstr "在接下来的 60 分钟里，你将探索内心和心理安全的基础：你已经在哪些心理 安全圈中工作？"
 
 msgid "Teile diesen QR-Code, um Mitreisende einzuladen"
 msgstr "分享此二维码以邀请同行者"
