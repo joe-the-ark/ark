@@ -254,7 +254,7 @@ body {
 .app.started .app__head:before {
   content: " ";
   position: absolute;
-  top: 100%;
+  top: 70%;
   right: 0;
   width: min(32%, 1053px);
   height: min(200%, 609px);
