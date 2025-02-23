@@ -41,8 +41,8 @@ msgstr "用最大程度的心理安全圈释放团队的潜力。"
 msgid "Bist du bereit für die aufrichtigste Team-Challenge deiner Karriere mit der Arche (für 3 bis 15 Personen)? Dramafreie Zusammenarbeit in psychologisch sicheren Kreisen schaffen."
 msgstr "你准备好迎接你职业生涯中最真诚的团队挑战（3 至 15 人参加的 Arche）吗？在心理安全的圈子里创造无戏剧冲突的协作。"
 
-msgid "Die Reisezeit der ersten Etappe beträgt eine halbe Stunde."
-msgstr "第一阶段的旅行时间为半小时。"
+msgid "Die Reisezeit der ersten Etappe beträgt eine Stunde."
+msgstr "第一阶段的行程时间为一小时。"
 
 #. onboarding
 #: loco:6071a6458d4f51635821d922

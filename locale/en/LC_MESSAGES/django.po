@@ -41,8 +41,8 @@ msgstr "Unlock your team's potential with maximum psychological safe circles."
 msgid "Bist du bereit für die aufrichtigste Team-Challenge deiner Karriere mit der Arche (für 3 bis 15 Personen)? Dramafreie Zusammenarbeit in psychologisch sicheren Kreisen schaffen."
 msgstr "Are you ready for the most genuine team challenge of your career with the Arche (for 3 to 15 people)? Create drama-free collaboration in psychologically safe circles."
 
-msgid "Die Reisezeit der ersten Etappe beträgt eine halbe Stunde."
-msgstr "The travel time of the first stage is half an hour."
+msgid "Die Reisezeit der ersten Etappe beträgt eine Stunde."
+msgstr "The travel time of the first stage is an hour."
 
 #. onboarding
 #: loco:6071a6458d4f51635821d922
