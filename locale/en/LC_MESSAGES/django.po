@@ -384,8 +384,8 @@ msgstr "How would you rate each team member's contribution to this safety anchor
 
 #. ubung-5
 #: loco:606c3588f87f8e7dd763d4e2
-msgid "Positioniere bitte den Beitrag der Spieler im Spannungsfeld von Kraftquelle und Energiefresser im Team."
-msgstr "Please position the contribution of the players in the field of tension between power source and energy drainer in the team."
+msgid "Nimm deine Einschätzungen bitte spontan, intuitiv und für jeden Mitspieler vor. Folge dem ersten Eindruck oder Bauchgefühl, wenn ihr euch noch nicht so gut kennt."
+msgstr "Please make your assessments spontaneously, intuitively and for each player. Follow your first impression or gut feeling if you don't know each other that well yet."
 
 #. ubung-5
 #: loco:606c46c40774bf65c217de22

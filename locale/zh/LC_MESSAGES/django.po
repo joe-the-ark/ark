@@ -379,10 +379,8 @@ msgstr "您如何评价每位团队成员在日常合作中对安全锚的贡献
 msgid "Wie bewertest du den Beitrag jedes Teammitglieds zur psychologischen Sicherheit?"
 msgstr "你如何评价每个团队成员对心理安全的贡献？"
 
-#. ubung-5
-#: loco:606c3588f87f8e7dd763d4e2
-msgid "Positioniere bitte den Beitrag der Spieler im Spannungsfeld von Kraftquelle und Energiefresser im Team."
-msgstr "请定位队员在团队中动力源和能量消耗者之间的张力的贡献。"
+msgid "Nimm deine Einschätzungen bitte spontan, intuitiv und für jeden Mitspieler vor. Folge dem ersten Eindruck oder Bauchgefühl, wenn ihr euch noch nicht so gut kennt."
+msgstr "請自發、直覺地針對每位玩家做出判斷。如果您還不是很瞭解對方，請遵循您的第一印象或直覺。"
 
 #. ubung-5
 #: loco:606c46c40774bf65c217de22

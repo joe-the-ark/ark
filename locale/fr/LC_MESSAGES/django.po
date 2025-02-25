@@ -384,10 +384,8 @@ msgstr "Comment évalues-tu la contribution de chaque membre de l'équipe à cet
 msgid "Wie nimmst du den Beitrag zur inneren Sicherheit im Team wahr?"
 msgstr "Comment perçois-tu la contribution à la sécurité intérieure de l'équipe ?"
 
-#. ubung-5
-#: loco:606c3588f87f8e7dd763d4e2
-msgid "Positioniere bitte den Beitrag der Spieler im Spannungsfeld von Kraftquelle und Energiefresser im Team."
-msgstr "Veuillez positionner la contribution des joueurs dans la tension entre la source d'énergie et le consommateur d'énergie dans l'équipe."
+msgid "Nimm deine Einschätzungen bitte spontan, intuitiv und für jeden Mitspieler vor. Folge dem ersten Eindruck oder Bauchgefühl, wenn ihr euch noch nicht so gut kennt."
+msgstr "Fais tes estimations spontanément, intuitivement et pour chaque joueur. Suis ta première impression ou ton intuition si tu ne te connais pas encore très bien."
 
 #. ubung-5
 #: loco:606c46c40774bf65c217de22
