@@ -677,6 +677,7 @@ input {
   line-height: 72px;
   font-family: var(--ls-lato-regular);
   padding: 0 20px;
+  background-color: #fffb00;
   border: 2px solid var(--ls-between-color);
   transition: all 0.2s ease;
   width: 100%;
