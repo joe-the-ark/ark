@@ -147,11 +147,21 @@
   }
 }
 
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
   .auth-link .form__field:nth-last-child(3) {
     display: none;
   }
+} */
+
+@media screen and (max-width: 768px) {
+  .auth-link .form {
+    display: block;
+  }
+  .auth-link .form__field {
+    margin-bottom: 1rem;
+  }
 }
+
 .auth-link .form__field p + button {
   display: none;
 }
