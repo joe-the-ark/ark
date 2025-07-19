@@ -327,28 +327,6 @@ var app1 = new Vue({
             const maxCount = Math.max(0, ...Object.values(circle_count));
             const baseSize = 64;
 
-            // draw players
-            players.forEach((name,i)=>{
-                const count = circle_count[i]||0;
-                const isTop = count===maxCount && maxCount>0;
-                const size = isTop?Math.floor(baseSize*1.3):baseSize;
-                const radius = isTop? r1 : r1;
-                const px = cx + radius*Math.cos(theta*i);
-                const py = cy + radius*Math.sin(theta*i);
-                const img = new Image(); img.src = avatars[name];
-                const drawPerson = ()=>{
-                    ctx.drawImage(img, px-size/2, py-size/2, size, size);
-                    ctx.fillStyle='black'; ctx.font='18px STheiti, SimHei';
-                    ctx.fillText(name, px, py+size/2+20, size+40);
-                    const bubbleOffset=27, bx=px+bubbleOffset, by=py-bubbleOffset;
-                    ctx.beginPath(); ctx.fillStyle='#9FE2BF'; ctx.strokeStyle='white'; ctx.lineWidth=2;
-                    ctx.arc(bx,by,20,0,2*Math.PI); ctx.fill(); ctx.stroke();
-                    ctx.fillStyle='black'; ctx.font=`bold ${isTop?36:32}px STheiti, SimHei`;
-                    ctx.textBaseline='middle'; ctx.fillText(count,bx,by); ctx.textBaseline='alphabetic';
-                };
-                if(img.complete) drawPerson(); else img.onload=drawPerson;
-            });
-
             // helpers
             const calc=(x1,y1,x2,y2)=>[Math.hypot(x2-x1,y2-y1),Math.atan2(y2-y1,x2-x1)];
             const moveP=(xo,yo,xp,yp)=>{let [d,a]=calc(xo,yo,xp,yp);d+=dR;return[xo+d*Math.cos(a),yo+d*Math.sin(a)];};
@@ -404,6 +382,40 @@ var app1 = new Vue({
                     ctx.bezierCurveTo(c1x,c1y,c2x,c2y,nx,ny);
                 });
                 ctx.stroke(); ctx.setLineDash([]); ctx.lineWidth=3;
+            });
+
+                        // draw players
+            players.forEach((name,i)=>{
+                const count = circle_count[i]||0;
+                const isTop = count===maxCount && maxCount>0;
+                const size = isTop?Math.floor(baseSize*1.3):baseSize;
+                const radius = isTop? r1*0.75 : r1;
+                const px = cx + radius*Math.cos(theta*i);
+                const py = cy + radius*Math.sin(theta*i);
+
+                    // green filled dot for top players
+            if (isTop) {
+                const midX = px * 0.6 + cx * 0.4;
+                const midY = py * 0.6 + cy * 0.4;
+                const dotRadius = size / 4; 
+                ctx.beginPath();
+                ctx.fillStyle = '#9FE2BF';
+                ctx.arc(midX, midY, dotRadius, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+                const img = new Image(); img.src = avatars[name];
+                const drawPerson = ()=>{
+                    ctx.drawImage(img, px-size/2, py-size/2, size, size);
+                    ctx.fillStyle='black'; ctx.font='18px STheiti, SimHei';
+                    ctx.fillText(name, px, py+size/2+20, size+40);
+                    const bubbleOffset=27, bx=px+bubbleOffset, by=py-bubbleOffset;
+                    ctx.beginPath(); ctx.fillStyle='#9FE2BF'; ctx.strokeStyle='white'; ctx.lineWidth=2;
+                    ctx.arc(bx,by,20,0,2*Math.PI); ctx.fill(); ctx.stroke();
+                    ctx.fillStyle='black'; ctx.font=`bold ${isTop?36:32}px STheiti, SimHei`;
+                    ctx.textBaseline='middle'; ctx.fillText(count,bx,by); ctx.textBaseline='alphabetic';
+                };
+                if(img.complete) drawPerson(); else img.onload=drawPerson;
             });
 
             // helper for edges
