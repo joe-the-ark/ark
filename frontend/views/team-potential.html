@@ -370,7 +370,7 @@ var app1 = new Vue({
 
             activeGolden.forEach(members=>{
                 let x0=0,y0=0; members.forEach(i=>(x0+=boundaryX[i],y0+=boundaryY[i])); x0/=members.length; y0/=members.length;
-                ctx.strokeStyle='gold'; ctx.lineWidth=4; ctx.setLineDash([10,5]); ctx.beginPath();
+                ctx.strokeStyle='gold'; ctx.lineWidth=2; ctx.setLineDash([10,5]); ctx.beginPath();
                 members.forEach((pt,j)=>{
                     const [tx,ty,,,th1]=calcEdge(j,members,x0,y0,boundaryX,boundaryY,moveP);
                     const idx2=(j+1)%members.length;

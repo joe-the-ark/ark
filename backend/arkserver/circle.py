@@ -75,15 +75,36 @@ def calc_single(players, votes, n, safezone, safebar):
             row.append(f'{round(result[players[i]][players[j]], 2)}')
         print(player[:5],'\t', '\t'.join(row))
 
-    print('\nEdges:')
-    edges = []
-    for i in range(n):
-        for j in range(i+1, n):
-            s1 = result[players[i]][players[j]]
-            s2 = result[players[j]][players[i]]
-            if s1 <= 1 and s2 <= 1:
-                edges.append((players[i], players[j], max(s1, s2)))
-                print(players[i], players[j], round(max(s1, s2), 3))
+        print('\nEdges:')
+        edges = []
+        for i in range(n):
+            for j in range(i+1, n):
+                s1 = result[players[i]][players[j]]
+                s2 = result[players[j]][players[i]]
+                if s1 <= 1 and s2 <= 1:
+                    print(players[i], players[j], round(max(s1, s2), 3))
+
+                    # Safely fetch the raw‐scores dicts (avoid KeyError)
+                    cell_ij = votes[players[i]].get(players[j], {})
+                    cell_ji = votes[players[j]].get(players[i], {})
+
+                    # Compute averages only if the cell exists
+                    raw1 = sum(cell_ij.values()) / len(cell_ij) if cell_ij else 0
+                    raw2 = sum(cell_ji.values()) / len(cell_ji) if cell_ji else 0
+
+                    edges.append({
+                        'i':          i,
+                        'j':          j,
+                        'normDist':   max(s1, s2),
+                        'raw1':       raw1,
+                        'raw2':       raw2,
+                        # use .get() with default 0 to avoid KeyError
+                        'baseline1':  safezone.get(players[j], 0),
+                        'baseline2':  safezone.get(players[i], 0),
+                    })
+
+
+
 
     print('\nCircles:')
     circles = {}
@@ -132,5 +153,11 @@ def calc_single(players, votes, n, safezone, safebar):
 
     print('Total circle member count:', total_circle_member_count)
 
-    return { 'circles': [[k for k in _] for _ in circles], 'circle_count': circle_count }
+    
+    return {
+        "circles":      [[idx for idx in c] for c in circles],
+        "circle_count": circle_count,
+        "edges":        edges,
+    }
+
 
