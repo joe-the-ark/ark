@@ -242,3 +242,19 @@ body > .user-connect .user-connect__name {
     background-color: white;
     border: 1px solid black;
 }
+.user-connect__now {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.user-connect__now .now-terms {
+  text-transform: uppercase;
+  margin-left: auto;
+  text-align: right;
+  white-space: nowrap;
+}
+/* erhöht die Spezifität und erzwingt Uppercase */
+.user-connect__now > .now-terms {
+  text-transform: uppercase !important;
+}

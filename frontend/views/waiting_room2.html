@@ -74,30 +74,31 @@
                     <h1>
                         {% trans "Wartezimmer" %}
                     </h1>
-                <div style="background-color: #FFFFFF; border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
-                <p style="background-color: #9FE2BF; border-radius: 10px; padding: 0 10px;"><br>
+                    <div style="background-color: #FFFFFF; border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
+                      <p style="background-color: #9FE2BF; border-radius: 10px; padding: 0 10px;"><br>
                         {% trans "Erinnerst du dich an deine Einschätzung der Team-Performance? Hier siehst du euer Ergebnis:" %}
                         <br><br>
 
-                <div class="custom-graph-info">
-                    <div class="custom-graph-info__item small" data-text="{% trans 'Minimal' %}">
-                        {{ minimal }}
+                        <div class="custom-graph-info">
+                          <div class="custom-graph-info__item small" data-text="{% trans 'Minimal' %}">
+                            {{ minimal }}
+                          </div>
+                          <div class="custom-graph-info__item base" data-text="{% trans 'Durchschnitt' %}">
+                            {{ median }}
+                          </div>
+                          <div class="custom-graph-info__item large" data-text="{% trans 'Maximal' %}">
+                            {{ maximal }}
+                          </div>
+                        </div>
+                      </p>
+
+                      <!-- BEGIN: Assessment‑identische Wrapper -->
+                      <div class="custom-graph-wrapper"></div>
+                      <!-- END: Assessment‑identische Wrapper -->
+
                     </div>
-                    <div class="custom-graph-info__item base" data-text="{% trans 'Durchschnitt' %}">
-                        {{ median }}
-                    </div>
-                    <div class="custom-graph-info__item large" data-text="{% trans 'Maximal' %}">
-                        {{ maximal }}
-                    </div>
-                </div>
-                </p>
-                <div style="background-color: #FFFFFF; border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
 
 
-                <div class="custom-graph-wrapper"></div>
-
-                </div>
-            </div>
 
 
                 <div class="google-slides-container">
@@ -141,6 +142,10 @@
 
                 </div>
 
+                <div style="background-color: #FFFFFF; border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
+
+                </div>
+
                 <p>
                 <div class="wartezimmer__addition" id="app-1">
                     <div class="user-connect active" v-for='(value, index) in waiting_list_active'>
@@ -148,10 +153,13 @@
                         <div class="user-connect__name">
                             [[ value.name ]]
                         </div>
-                        <div class="user-connect__now">
-                            {% trans "bereit?" %}
+                            <div class="user-connect__now">
+                                    <span class="now-terms" style="text-transform: uppercase;">
+                                      [[ value.item_power ]] / [[ value.item_drainer ]]
+                                    </span>
+                            </div>
                         </div>
-                    </div>
+
 
                     <div class="user-connect" v-for='(value, index) in waiting_list_yet'>
                         <img :src="value.avatar" alt=""/>
@@ -195,6 +203,8 @@
 <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
 <script src="https://unpkg.com/clipboard@2/dist/clipboard.min.js"></script>
 <script src="/static/js/utils.js"></script>
+
+
 <script>
 
     //Button remover
@@ -397,322 +407,50 @@
 
 </script>
 
-<script src="/static/js/AppGraph.js"></script>
-<script src="/static/axios.min.js"></script>
-<script>
+  <!-- Externe JS‑Bibliotheken (jeweils nur einmal einbinden) -->
+  <script src="/static/js/AppGraph.js"></script>
+  <script src="/static/axios.min.js"></script>
+  <script src="/static/js/AppRange.js"></script>
+  <script src="/static/js/AppFeedback.js"></script>
 
-    var app1 = new Vue({
-        delimiters: ['[[', ']]'],
-        el: '#app-1',
-        data(){
-            return{
-                loading: false,
-        circles: {{ circles|safe }},
-        players: {{ players|safe }},
-        current: 16,
-            width: 800,
-            height: 800
-            } 
-        },
-        created(){
-            var loading_ = '{{ loading }}';
-            console.log('loading', loading_)
-            if (loading_ === '0'){
-                this.loading = false;
-            }else{
-                this.loading = true;
-            }
-        },
-    mounted() {
-        this.redraw();
-    },
-        methods:{
-            waiting_room(){
-                window.location.href='/waiting-room2/'
-            },
-        getValue1() {
-        let { players, circles } = this.circles;
-        for (const key in circles) {
-            return key;
-        }
-        },
-        getValue2() {
-            let { circles } = this.circles;
-            let maxKey = -1;
-            for (const key in circles) {
-                if (parseInt(key) > maxKey) {
-                    maxKey = parseInt(key);
-                }
-            }
-            return maxKey;
-        },
-        getValue3() {
-            let { circles, players } = this.circles;
-            for (const key of Object.keys(circles).map(e=>parseInt(e)).reverse()) {
-                if (Object.keys(circles[key].circle_count).length <= (players.length-1)) {
-                    return key;
-                }
-            }
-        },
-        getValue4() {
-            let { circles, players } = this.circles;
-            let maxCircles = -1;
-            let result = -1;
-            for (const key in circles) {
-                let s = 0;
-                for(const p in circles[key].circle_count) {
-                    s += circles[key].circle_count[p];
-                }
-                if (s > maxCircles) {
-                    maxCircles = s;
-                    result = key;
-                }
-            }
-            return result;
-        },
-        getCircles() {
-            const { players } = this.circles;
-            if (!this.circles.circles[this.current]) return [];
-            const { circles, circle_count } = this.circles.circles[this.current];
-                if (!circles) return [];
-            return circles.map(e => e.map(u => players[u]).join(' '));
-        },
-        redraw() {
-            const canvas = this.$refs.canvas;
-            const ctx = canvas.getContext('2d');
-
-            const { width, height } = this;
-            const players = this.circles.players;
-            const avatars = this.players;
-            const { circles, circle_count } = this.circles.circles[this.current] || { circles: [], circle_count: {}} ;
-
-            ctx.clearStyle = 'white';
-            ctx.clearRect(0, 0, width, height);
-
-            const font = ctx.font = '18px STheiti, SimHei';
-            ctx.textAlign = 'center';
-            ctx.textBaseline = ' middle';
-
-            ctx.strokeStyle = 'blue';
-
-            const colors = ['red', 'orange', 'green', 'blue', 'purple', 'cyan', 'black'];
-
-            const n = players.length;
-
-            const [centerX, centerY] = [width/2, height/2];
-            const r0 = Math.min(width, height);
-            const dR = 16;
-            const [r1, r2] = [r0*0.4, r0*0.4+dR];
-            const theta = Math.PI * 2 / n;
-
-        let s = 0;
-            const total_circle_count = [0, ...Object.values(circle_count)].reduce((s, e) => s+e);
-        ctx.font = '32px Arial';
-        ctx.fillText('Safe Circles', centerX, centerY-32);
-        ctx.font = '60px Arial';
-        ctx.fillText(total_circle_count, centerX, centerY+32);
-        ctx.font = font;
-
-            const x = players.map((e, i) => centerX + r2*Math.cos(theta*i));
-            const y = players.map((e, i) => centerY + r2*Math.sin(theta*i));
-
-            function drawPerson(i) {
-                const x = r1*Math.cos(theta*i);
-                const y = r1*Math.sin(theta*i);
-
-                const img = new Image();
-                img.src = avatars[players[i]];
-
-                const xx = centerX+x;
-                const yy = centerY+y;
-
-                img.onload = () => {
-                ctx.drawImage(img, xx-32, yy-32, 64, 64);
-
-                    ctx.fillText(players[i], xx, yy+48, 100);
-
-                    const xxx = xx + 24;
-                    const yyy = yy - 24;
-
-                    ctx.fillStyle = '#9FE2BF';
-                    ctx.beginPath();
-                    ctx.arc(xxx, yyy, 20, 0, Math.PI*2, true);
-                    ctx.fill();
-
-                    ctx.font = 'bold 32px STheiti, SimHei';
-                    ctx.fillStyle = 'black';
-
-                    ctx.fillText(`${circle_count[i] || 0}`, xxx, yyy+12);
-
-                    ctx.font = font;
-                    ctx.fillStyle = 'black';
-                }
-            }
-
-            for (let i=0; i<n; ++i) {
-                drawPerson(i);
-            }
-
-            circles.forEach((circle, i) => {
-                const points = circle.map(e => e);
-                
-                let [x0, y0] = [0, 0];
-                for (let i=0; i<points.length; ++i) {
-                    x0 += x[points[i]] / points.length;
-                    y0 += y[points[i]] / points.length;
-                }
-
-                const calc = (x1, y1, x2, y2) => [Math.sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2)), Math.atan2(y2-y1, x2-x1)];
-                function moveP(x0, y0, x, y) {
-                    let [d, theta] = calc(x0, y0, x, y);
-
-                    d += dR;
-                    return [x0+d*Math.cos(theta), y0+d*Math.sin(theta)];
-                }
- 
-                const oldStyle = ctx.strokeStyle;
-                ctx.strokeStyle = colors[i % colors.length];
- 
-                ctx.beginPath();
-                for (let i=0; i<points.length; ++i) {
-
-                    function getTheta(i) {
-                        const thisI = points[i];
-                        const prevI = i > 0 ? points[i-1] : points[points.length-1];
-                        const nextI = (i < points.length-1) ? points[i+1] : points[0];
-
-                        const [thisX, thisY] = moveP(x0, y0, x[thisI], y[thisI]);
-                        const [prevX, prevY] = moveP(x0, y0, x[prevI], y[prevI]);
-                        const [nextX, nextY] = moveP(x0, y0, x[nextI], y[nextI]);
-
-                        const theta1 = Math.atan2(nextY-thisY, nextX-thisX);
-                        const theta2 = Math.atan2(prevY-thisY, prevX-thisX);
-
-                        let theta = (theta1+theta2)/2;
-                        if (theta < theta1) theta += Math.PI;
-
-                        return [ thisX, thisY, nextX, nextY, theta, calc(x0, y0, thisX, thisY)[0]];
-                    }
-
-                    const r = 120;
-                    let [thisX, thisY, nextX, nextY, theta, r1] = getTheta(i);
-                    theta -= Math.PI/2;
-                    const c1X = thisX + r * Math.cos(theta);
-                    const c1Y = thisY + r * Math.sin(theta);
-
-                    let [nX, nY, nnX, nnY, theta2, r2] = getTheta(i < points.length-1 ? i + 1 : 0);
-                    theta2 += Math.PI/2;
-                    const c2X = nX + r * Math.cos(theta2);
-                    const c2Y = nY + r * Math.sin(theta2);
-
-                    ctx.moveTo(thisX, thisY);
-                //ctx.lineTo(nextX, nextY);
-                    ctx.bezierCurveTo(c1X, c1Y, c2X, c2Y, nextX, nextY);
-                }
-
-                ctx.stroke();
-                ctx.strokeStyle = oldStyle;
-            })  
-        }
-    },
-    watch: {
-        current: function(oldValue, newValue) {
-            this.redraw();
-        }
-    }
-    })
-
-    let data = {{ all_result|safe }};
-    let safezoneData = () => {
+  <!-- Graph & Feedback initialisieren -->
+  <script>
+    // Haupt‑Graph
+    new AppGraph({
+      container: ".custom-graph-wrapper",
+      data: {{ all_result|safe }},
+      safezoneData: (()=>{
         let arr = [];
-        for(let item of data) {
-            arr.push(item.statusSide);
-        }
-        return arr
-    }
-
-    const {log} = console;
-
-    const app = new AppGraph({
-        container: ".custom-graph-wrapper",
-        range: [1, 99],
-        labelRange: ['Low', 'High'],
-        statistic: true,
-        mobile: 1200,
-        data: data,
-        safezoneData: safezoneData(),
-        {% comment %} [
-            {
-               statusSide: 10
-            },
-            {
-               statusSide: 20
-            },
-            {
-               statusSide: 45
-            },
-            {
-               statusSide: 49
-            },
-            {
-                name: 'Vasilisa Kochetkova',
-                avatar: '/static/images/avatars/boar.svg',
-               statusSide: 49
-            },
-            {
-               statusSide: 49
-            },
-            {
-               statusSide: 49
-            },
-            {
-               statusSide: 49
-            },
-            {
-               statusSide: 60
-            },
-            {
-               statusSide: 70
-            },
-            {
-               statusSide: 99
-            },
-        ] {% endcomment %}
+        for(let item of {{ all_result|safe }}) arr.push(item.statusSide);
+        return arr;
+      })(),
+      range: [1,99],
+      labelRange: ['High','Low'],
+      statistic: true,
+      mobile: 1200
     });
-    console.log({{ circles|safe }});
 
-    console.log({{ players|safe }});
-    console.log({{ all_result|safe }});
-    {% comment %} var css_change = function(t,s){
-        s = document.createElement('style');
-        s.innerText = t;
-        document.body.appendChild(s);
-    };
+      // Mini‑Graph für User (wie in assessment.html)
+      let dataTeam = {{ team_potential_all_result|safe }};
+      let safezoneDataTeam = () => {
+        let arr = [];
+        for (let item of dataTeam) {
+          arr.push(item.statusSide);
+        }
+        return arr;
+      };
+      new AppGraph({
+        container: ".custom-graph-wrapper.user",
+        range: [0, 100],
+        labelRange: ['High', 'Low'],
+        mobile: 1200,
+        statistic: true,
+        data: dataTeam,
+        safezoneData: safezoneDataTeam()
+      });
+      document.querySelector(".custom-graph.statistic").style['margin'] = '0 70px';
 
-    var median = {{ median }};
-    var low = median - 16;
-    var high = median + 16;
-    if (low < 0){
-        low = 0;
-    }
-    if (high > 100){
-        high = 100;
-    }
-    var blue_range = high - low;
-    console.log('median',median,low,high);
-    css_change(`.statistic .custom-graph__items:before{left:${low}%;width:min(${blue_range}%);}`); {% endcomment %}
-
-
-    //document.getElementById('button').addEventListener('click', function (e) {
-    //    e.preventDefault();
-    //    log(app.getData())
-    //});
-
-</script>
-
-
-</script>
-
+  </script>
 
 <div id='popup_buttons' class="popup">
     <div class="popup_body">
@@ -739,7 +477,6 @@
         </div>
     </div>
 </div>
-
 
 </body>
 </html>

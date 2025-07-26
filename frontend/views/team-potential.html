@@ -320,8 +320,10 @@ var app1 = new Vue({
             ctx.font = '18px STheiti, SimHei';
 
             // positions
-            const boundaryX = players.map((_,i)=>cx + (r1+dR)*Math.cos(theta*i));
-            const boundaryY = players.map((_,i)=>cy + (r1+dR)*Math.sin(theta*i));
+            const round = v => Math.round(v * 1e5) / 1e5;
+            const boundaryX = players.map((_, i) => cx + (r1 + dR) * round(Math.cos(theta * i)));
+            const boundaryY = players.map((_, i) => cy + (r1 + dR) * round(Math.sin(theta * i)));
+
 
             // top sizing
             const maxCount = Math.max(0, ...Object.values(circle_count));
@@ -329,7 +331,14 @@ var app1 = new Vue({
 
             // helpers
             const calc=(x1,y1,x2,y2)=>[Math.hypot(x2-x1,y2-y1),Math.atan2(y2-y1,x2-x1)];
-            const moveP=(xo,yo,xp,yp)=>{let [d,a]=calc(xo,yo,xp,yp);d+=dR;return[xo+d*Math.cos(a),yo+d*Math.sin(a)];};
+            const moveP=(xo,yo,xp,yp)=>{
+            let [d,a]=calc(xo,yo,xp,yp);
+            d+=dR;
+            return [
+                round(xo + d * Math.cos(a)),
+                round(yo + d * Math.sin(a))
+            ];
+            };
 
             // draw safe circles
             const colors=['red','orange','green','blue','purple','yellow','black'];
@@ -341,8 +350,10 @@ var app1 = new Vue({
                     const [tx,ty,,,th1]=calcEdge(j,members,x0,y0,boundaryX,boundaryY,moveP);
                     const [nx,ny,,,th2]=calcEdge((j+1)%members.length,members,x0,y0,boundaryX,boundaryY,moveP);
                     const hr=120;
-                    const c1x=tx+hr*Math.cos(th1-Math.PI/2), c1y=ty+hr*Math.sin(th1-Math.PI/2);
-                    const c2x=nx+hr*Math.cos(th2+Math.PI/2), c2y=ny+hr*Math.sin(th2+Math.PI/2);
+                    const c1x = round(tx + hr * Math.cos(th1 - Math.PI / 2));
+                    const c1y = round(ty + hr * Math.sin(th1 - Math.PI / 2));
+                    const c2x = round(nx + hr * Math.cos(th2 + Math.PI / 2));
+                    const c2y = round(ny + hr * Math.sin(th2 + Math.PI / 2));
                     if(!j)ctx.moveTo(tx,ty);
                     ctx.bezierCurveTo(c1x,c1y,c2x,c2y,nx,ny);
                 }); ctx.stroke();
@@ -355,17 +366,23 @@ var app1 = new Vue({
                   return entry ? entry.statusSide : this.allResult[idx].statusSide;
                 });
                 const goldenCandidates = [];
+                const threshold = Math.round(this.current);
+
                 for (let i = 0; i < n; i++) {
                   for (let j = i + 1; j < n; j++) {
-                    if (Math.abs(statusSides[i] - statusSides[j]) <= this.current) {
+                    const diff = Math.abs(statusSides[i] - statusSides[j]);
+                    if (diff - threshold <= 1e-6) {
                       goldenCandidates.push([i, j]);
                     }
                   }
                 }
-                // exclude those already in a safe circle
+
                 const activeGolden = goldenCandidates.filter(pair =>
                   !circles.some(rc => pair.every(idx => rc.includes(idx)))
                 );
+
+                // 🔒 Stabilisiere Reihenfolge
+                activeGolden.sort((a, b) => a[0] - b[0] || a[1] - b[1]);
                 // draw golden dotted
 
             activeGolden.forEach(members=>{
@@ -415,7 +432,7 @@ var app1 = new Vue({
                     ctx.fillStyle='black'; ctx.font=`bold ${isTop?36:32}px STheiti, SimHei`;
                     ctx.textBaseline='middle'; ctx.fillText(count,bx,by); ctx.textBaseline='alphabetic';
                 };
-                if(img.complete) drawPerson(); else img.onload=drawPerson;
+                img.onload = drawPerson;
             });
 
             // helper for edges

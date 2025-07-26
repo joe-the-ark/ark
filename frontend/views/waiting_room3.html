@@ -103,9 +103,11 @@
                         <div class="user-connect__name">
                             [[ value.name ]]
                         </div>
-                        <div class="user-connect__now">
-                            {% trans "bereit?" %}
-                        </div>
+                            <div class="user-connect__now">
+                                    <span class="now-terms" style="text-transform: uppercase;">
+                                      [[ value.item_power ]] / [[ value.item_drainer ]]
+                                    </span>
+                            </div>
                     </div>
 
                     <div class="user-connect" v-for='(value, index) in waiting_list_yet'>

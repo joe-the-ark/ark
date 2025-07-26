@@ -488,19 +488,10 @@ def team_potential(request, user):
                 all_result.append({"statusSide": i})
         else:
             all_result.append({"statusSide": i})
+   
+     # … dein Code bis hierher, der ctx['all_result'] und ctx['loading'] gesetzt hat …
     ctx['all_result'] = all_result
-    ctx['loading'] = 0
-
-    # if request.method == 'POST':
-        # from .utils import span_choose
-        # ubung1, ubung3 = span_choose(user.id, link)
-        # if not ubung1:
-        #     print(111111111111111)
-
-        # ctx['loading'] = 1
-        # return render(request, './views/team-potential.html', ctx)
-        # return redirect('/waiting-room2/')
-
+    ctx['loading']    = 0
 
     return render(request, './views/team-potential.html', ctx)
 
@@ -1118,6 +1109,16 @@ def waiting_room2(request, user):
             all_result.append({"statusSide": i})
     ctx['all_result'] = all_result
     ctx['loading'] = 0
+    # damit das Mini‑Graph‑Script in waiting_room2.html funktioniert
+    ctx['team_potential_all_result'] = all_result
+
+    ctx['team_potential_minimal'] = ctx['minimal']
+    ctx['team_potential_median']  = ctx['median']
+    ctx['team_potential_maximal'] = ctx['maximal']
+
+    # --- BEGIN: provide graph‑ and feedback‑data for waiting_room2.html ---
+    # safezoneData → an array of all statusSide values (for the blue “safe zone” overlay).
+    ctx['safezoneData'] = [item['statusSide'] for item in ctx['all_result']]
 
     # Waitingroom2Start
     if request.method == 'POST':
@@ -1146,13 +1147,37 @@ def waiting_room2(request, user):
 
     return render(request, './views/waiting_room2.html', ctx)
 
+import json
+from django.utils.translation import get_language
+from .models import Game, Waitingroom2, Ubung1, Ubung3, Player
+from meta.decorators import api
+
 @api
 def waiting_room2_active(player_id, link):
-    from .models import Player, Game, Waitingroom2
-    game = Game.objects.filter(link=link).first()
+    game         = Game.objects.filter(link=link).first()
     waiting_room = Waitingroom2.objects.filter(game=game)
-    members_list = [i.player.player_json for i in waiting_room]
-    return members_list
+    lang         = get_language()  # z.B. 'de', 'en', …
+
+    members = []
+    for wr in waiting_room:
+        p   = wr.player
+        ub1 = Ubung1.objects.filter(game=game, player=p).order_by('-create_time').first()
+        ub3 = Ubung3.objects.filter(game=game, player=p).order_by('-create_time').first()
+
+        power_dict = (json.loads(ub1.power_i18n)   if isinstance(ub1.power_i18n, str)   else ub1.power_i18n)   if ub1 else {}
+        drain_dict = (json.loads(ub3.drainer_i18n) if isinstance(ub3.drainer_i18n, str) else ub3.drainer_i18n) if ub3 else {}
+
+        power   = power_dict.get(lang, power_dict.get('en', ''))
+        drainer = drain_dict.get(lang, drain_dict.get('en', ''))
+
+        members.append({
+            'id'           : p.id,
+            'name'         : p.name,
+            'avatar'       : p.avatar,
+            'item_power'   : power,
+            'item_drainer' : drainer,
+        })
+    return members
 
 
 @api
@@ -1217,15 +1242,37 @@ def waiting_room3(request, user):
 
     return render(request, './views/waiting_room3.html', ctx)
 
+import json
+from django.utils.translation import get_language
+from .models import Game, Waitingroom3, Ubung1, Ubung3, Player
+from meta.decorators import api
 
 @api
 def waiting_room3_active(player_id, link):
-    from .models import Player, Game, Waitingroom2
-    game = Game.objects.filter(link=link).first()
+    game         = Game.objects.filter(link=link).first()
     waiting_room = Waitingroom3.objects.filter(game=game)
-    members_list = [i.player.player_json for i in waiting_room]
-    return members_list
+    lang         = get_language()  # e.g. 'de', 'en', …
 
+    members = []
+    for wr in waiting_room:
+        p   = wr.player
+        ub1 = Ubung1.objects.filter(game=game, player=p).order_by('-create_time').first()
+        ub3 = Ubung3.objects.filter(game=game, player=p).order_by('-create_time').first()
+
+        power_dict = (json.loads(ub1.power_i18n)   if isinstance(ub1.power_i18n, str)   else ub1.power_i18n)   if ub1 else {}
+        drain_dict = (json.loads(ub3.drainer_i18n) if isinstance(ub3.drainer_i18n, str) else ub3.drainer_i18n) if ub3 else {}
+
+        power   = power_dict.get(lang, power_dict.get('en', ''))
+        drainer = drain_dict.get(lang, drain_dict.get('en', ''))
+
+        members.append({
+            'id'           : p.id,
+            'name'         : p.name,
+            'avatar'       : p.avatar,
+            'item_power'   : power,
+            'item_drainer' : drainer,
+        })
+    return members
 
 @api
 def waiting_room3_yet(player_id, link):
@@ -1331,18 +1378,49 @@ def waiting_room_game_start(link):
     else:
         return 0
 
+from .models import Ubung1, Ubung3
+import json
+from django.utils.translation import get_language
 
 @api
 def waiting_room_active(player_id, link):
-    from .models import Player, Game
+    from .models import Player, Game, WaitingRoomMember, Ubung1, Ubung3
 
-    # player = Player.objects.filter(id=player_id).first()
-    game = Game.objects.filter(link=link).first()
-    waiting_room = list(WaitingRoomMember.objects.filter(game=game,state=1))
+    game         = Game.objects.filter(link=link).first()
+    waiting_room = WaitingRoomMember.objects.filter(game=game, state=1)
+    lang         = get_language()  # z.B. 'de', 'en', 'fr', 'it'
 
-    members_list = [i.player.player_json for i in waiting_room]
+    members = []
+    for wr in waiting_room:
+        p   = wr.player
 
-    return members_list
+        # hole die zuletzt gespeicherten Begriffe
+        ub1 = Ubung1.objects.filter(game=game, player=p).order_by('-create_time').first()
+        ub3 = Ubung3.objects.filter(game=game, player=p).order_by('-create_time').first()
+
+        # power_i18n und drainer_i18n sind Dicts oder JSON‑Strings
+        power_dict = (
+            json.loads(ub1.power_i18n) if isinstance(ub1.power_i18n, str)
+            else ub1.power_i18n
+        ) if ub1 else {}
+        drainer_dict = (
+            json.loads(ub3.drainer_i18n) if isinstance(ub3.drainer_i18n, str)
+            else ub3.drainer_i18n
+        ) if ub3 else {}
+
+        # nur das aktuelle Sprach‑Feld nehmen, ansonsten Fallback auf 'en'
+        power   = power_dict.get(lang,   power_dict.get('en', ''))
+        drainer = drainer_dict.get(lang, drainer_dict.get('en', ''))
+
+        members.append({
+            'id'           : p.id,
+            'name'         : p.name,
+            'avatar'       : p.avatar,
+            'item_power'   : power,
+            'item_drainer' : drainer,
+        })
+
+    return members
 
 
 @api
