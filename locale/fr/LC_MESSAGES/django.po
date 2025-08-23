@@ -296,8 +296,11 @@ msgstr "Expliquez brièvement les PARAMÈTRES CONTRACTÉS, s'il vous plaît, afi
 msgid "Damit alle verstehen, welche Spannungsfelder zu euren psychologisch sicheren Kreisen beitragen. (Dauer: 1 Minute pro Person)"
 msgstr "Pour que tous comprennent quels besoins contribuent à vos cercles de sécurité psychologique. (Durée : 1 minute par personne)"
 
-msgid "Überarbeite bei Bedarf dein Gegensatzpaar – du kannst gerne auch EIGENE Begriffe ins Textfeld schreiben."
-msgstr "Modifie ton couple d’opposés si nécessaire – n’hésite pas à écrire tes propres termes dans le champ de texte."
+msgid "Schreibe gerne auch EIGENE Begriffe ins Textfeld."
+msgstr "Tu peux également inscrire ton PROPRE terme dans le champ de texte."
+
+msgid "Überarbeite bei Bedarf dein Gegensatzpaar."
+msgstr "Si nécessaire, révise ta paire de contraires."
 
 msgid "Klicke erst hier weiter, wenn ALLE ein passendes GEGENSATZPAAR benannt haben!"
 msgstr "Ne clique pas ici tant que TOUS n'ont pas désigné une paire complémentaire appropriée !"
@@ -1132,6 +1135,9 @@ msgstr "Les valeurs supérieures à 16 indiquent des tensions avec l'équipe."
 #: loco:606ef28b897dc9441a675aa3
 msgid "Aftercare"
 msgstr "Aftercare"
+
+msgid "TUTORIAL: In diesem Video erklären wir, wie die Safecircles berechnet werden. Eure Safecircles sind eine Selbstbeschreibung durch das Team mit Hilfe eines soziometrischen Verfahrens und KEIN Test."
+msgstr "TUTORIEL : dans cette vidéo, nous expliquons comment sont calculés les cercles de sécurité. Vos cercles de sécurité sont une auto-description réalisée par l'équipe à l'aide d'un procédé sociométrique et ne constituent PAS un test."
 
 msgid "Infos zur Arche"
 msgstr "Infos sur l'Arche"

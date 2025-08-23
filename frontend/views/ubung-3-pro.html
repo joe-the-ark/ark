@@ -151,6 +151,9 @@
     if ('{{LANGUAGE_CODE}}' == 'en'){
         var term_list_i18n = eval({{term_list|safe}})['English']
     }
+    if ('{{LANGUAGE_CODE}}' == 'tr'){
+        var term_list_i18n = eval({{term_list|safe}})['Turkish']
+    }
 
     var app = new Vue({
         delimiters: ['[[', ']]'],

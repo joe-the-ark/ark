@@ -878,6 +878,37 @@ ubung_1_term_list_i18n = {
             'player_id': -1,
         },
     ],
+    'Turkish': [
+        {'id': 0,  'state': 'tag', 'value': 'özerklik',            'player_id': -1},
+        {'id': 1,  'state': 'tag', 'value': 'baskınlık',           'player_id': -1},
+        {'id': 2,  'state': 'tag', 'value': 'verimlilik',          'player_id': -1},
+        {'id': 3,  'state': 'tag', 'value': 'hırs',                'player_id': -1},
+        {'id': 4,  'state': 'tag', 'value': 'benzersizlik',        'player_id': -1},
+        {'id': 5,  'state': 'tag', 'value': 'başarı',              'player_id': -1},
+        {'id': 6,  'state': 'tag', 'value': 'esneklik',            'player_id': -1},
+        {'id': 7,  'state': 'tag', 'value': 'arkadaşlık',          'player_id': -1},
+        {'id': 8,  'state': 'tag', 'value': 'sakinlik',            'player_id': -1},
+        {'id': 9,  'state': 'tag', 'value': 'adalet',              'player_id': -1},
+        {'id': 10, 'state': 'tag', 'value': 'sosyallik',           'player_id': -1},
+        {'id': 11, 'state': 'tag', 'value': 'eşitlik',             'player_id': -1},
+        {'id': 12, 'state': 'tag', 'value': 'cömertlik',           'player_id': -1},
+        {'id': 13, 'state': 'tag', 'value': 'mizah',               'player_id': -1},
+        {'id': 14, 'state': 'tag', 'value': 'hayalgücü',          'player_id': -1},
+        {'id': 15, 'state': 'tag', 'value': 'tutku',               'player_id': -1},
+        {'id': 16, 'state': 'tag', 'value': 'sadakat',             'player_id': -1},
+        {'id': 17, 'state': 'tag', 'value': 'cesaret',             'player_id': -1},
+        {'id': 18, 'state': 'tag', 'value': 'sürdürülebilirlik',   'player_id': -1},
+        {'id': 19, 'state': 'tag', 'value': 'merak',               'player_id': -1},
+        {'id': 20, 'state': 'tag', 'value': 'açıklık',             'player_id': -1},
+        {'id': 21, 'state': 'tag', 'value': 'güvenlik',            'player_id': -1},
+        {'id': 22, 'state': 'tag', 'value': 'anlamlılık',          'player_id': -1},
+        {'id': 23, 'state': 'tag', 'value': 'dayanışma',           'player_id': -1},
+        {'id': 24, 'state': 'tag', 'value': 'özen',                'player_id': -1},
+        {'id': 25, 'state': 'tag', 'value': 'keyif',               'player_id': -1},
+        {'id': 26, 'state': 'tag', 'value': 'aşinalık',            'player_id': -1},
+        {'id': 27, 'state': 'tag', 'value': 'onur',                'player_id': -1},
+        {'id': 28, 'state': 'tag', 'value': 'güvenilirlik',        'player_id': -1},
+    ],
     'English': [
         {
             'id': 0,
@@ -1409,6 +1440,37 @@ ubung_3_term_list_i18n = {
             'value': 'incrédibilité',
             'player_id': -1,
         },
+    ],
+    'Turkish': [
+    {'id': 0,  'state': 'tag', 'value': 'bağımlılık',            'player_id': -1},
+    {'id': 1,  'state': 'tag', 'value': 'boyuneğme',            'player_id': -1},  # veya itaatkârlık
+    {'id': 2,  'state': 'tag', 'value': 'performansdüşüklüğü',  'player_id': -1},
+    {'id': 3,  'state': 'tag', 'value': 'aylaklık',              'player_id': -1},  # tembellik
+    {'id': 4,  'state': 'tag', 'value': 'uyumculuk',             'player_id': -1},  # aşırı uyum
+    {'id': 5,  'state': 'tag', 'value': 'başarısızlık',          'player_id': -1},
+    {'id': 6,  'state': 'tag', 'value': 'katılık',               'player_id': -1},
+    {'id': 7,  'state': 'tag', 'value': 'düşmanlık',             'player_id': -1},
+    {'id': 8,  'state': 'tag', 'value': 'huzursuzluk',           'player_id': -1},  # aşırı heyecan/telaş
+    {'id': 9,  'state': 'tag', 'value': 'keyfîlik',              'player_id': -1},
+    {'id': 10, 'state': 'tag', 'value': 'gerginlik',             'player_id': -1},  # verkrampftheit
+    {'id': 11, 'state': 'tag', 'value': 'hiyerarşi',             'player_id': -1},
+    {'id': 12, 'state': 'tag', 'value': 'haset',                 'player_id': -1},  # kıskançlık/haset
+    {'id': 13, 'state': 'tag', 'value': 'keder',                 'player_id': -1},
+    {'id': 14, 'state': 'tag', 'value': 'yaratıcılıkyoksunluğu','player_id': -1},
+    {'id': 15, 'state': 'tag', 'value': 'ilgisizlik',            'player_id': -1},
+    {'id': 16, 'state': 'tag', 'value': 'sadakatsizlik',         'player_id': -1},  # vefasızlık
+    {'id': 17, 'state': 'tag', 'value': 'korku',                 'player_id': -1},
+    {'id': 18, 'state': 'tag', 'value': 'özensizlik',            'player_id': -1},  # achtlosigkeit
+    {'id': 19, 'state': 'tag', 'value': 'kayıtsızlık',           'player_id': -1},
+    {'id': 20, 'state': 'tag', 'value': 'haklılıktaslama',      'player_id': -1},  # rechthaberei
+    {'id': 21, 'state': 'tag', 'value': 'risk',                  'player_id': -1},
+    {'id': 22, 'state': 'tag', 'value': 'anlamsızlık',           'player_id': -1},
+    {'id': 23, 'state': 'tag', 'value': 'bencillik',             'player_id': -1},
+    {'id': 24, 'state': 'tag', 'value': 'dikkatsizlik',          'player_id': -1},
+    {'id': 25, 'state': 'tag', 'value': 'yasak',                 'player_id': -1},
+    {'id': 26, 'state': 'tag', 'value': 'mesafe',                'player_id': -1},
+    {'id': 27, 'state': 'tag', 'value': 'onursuzluk',            'player_id': -1},
+    {'id': 28, 'state': 'tag', 'value': 'güvenilmezlik',         'player_id': -1},
     ],
     'Chinese': [
         {

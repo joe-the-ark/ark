@@ -181,6 +181,7 @@ class Ubung1(models.Model):
             result['de'] = self.power
             result['fr'] = self.power
             result['zh-hans'] = self.power
+            result['tr'] = self.power  # Add Turkish fallback
             return result
         
         for i in ubung_1_term_list_i18n['Deutsch']:
@@ -194,6 +195,10 @@ class Ubung1(models.Model):
         for i in ubung_1_term_list_i18n['Chinese']:
             if i['id'] == item_id:
                 result['zh-hans'] = i['value']
+                break
+        for i in ubung_1_term_list_i18n['Turkish']:  # Add Turkish translation
+            if i['id'] == item_id:
+                result['tr'] = i['value']
                 break
     
         return result
@@ -298,6 +303,7 @@ class Ubung3(models.Model):
             result['de'] = self.drainer
             result['fr'] = self.drainer
             result['zh-hans'] = self.drainer
+            result['tr'] = self.drainer  # Add Turkish fallback
             return result
         
         for i in ubung_3_term_list_i18n['Deutsch']:
@@ -311,6 +317,10 @@ class Ubung3(models.Model):
         for i in ubung_3_term_list_i18n['Chinese']:
             if i['id'] == item_id:
                 result['zh-hans'] = i['value']
+                break
+        for i in ubung_3_term_list_i18n['Turkish']:  # Add Turkish translation
+            if i['id'] == item_id:
+                result['tr'] = i['value']
                 break
 
         return result

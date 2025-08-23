@@ -359,6 +359,28 @@ var app1 = new Vue({
                 }); ctx.stroke();
             });
 
+                        // ✅ draw dyads (real safe dyads from backend)
+            const dyads = entry.dyads || [];
+            dyads.forEach(pair => {
+                const [i, j] = pair;
+                const x1 = boundaryX[i];
+                const y1 = boundaryY[i];
+                const x2 = boundaryX[j];
+                const y2 = boundaryY[j];
+
+                ctx.beginPath();
+                ctx.setLineDash([6, 4]); // dotted style for dyads
+                ctx.strokeStyle = 'gold';
+                ctx.lineWidth = 2;
+                ctx.moveTo(x1, y1);
+                ctx.lineTo(x2, y2);
+                ctx.stroke();
+                ctx.setLineDash([]);
+            });
+
+
+
+/*
                 // dynamic golden pairs: aligned to players order
                 const statusSides = players.map((name, idx) => {
                   // find the matching entry by name, or fall back by index
@@ -400,6 +422,8 @@ var app1 = new Vue({
                 });
                 ctx.stroke(); ctx.setLineDash([]); ctx.lineWidth=3;
             });
+*/
+
 
                         // draw players
             players.forEach((name,i)=>{

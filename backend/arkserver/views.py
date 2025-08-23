@@ -1503,6 +1503,8 @@ def ubung_1_api(player_id, link, data):
     return result_data
 
 
+# Add Turkish language support to all your API functions
+
 @api
 def ubung_1_api_pro(player_id, link, item, lang_code):
     from .models import Player, Game, Ubung1
@@ -1518,6 +1520,10 @@ def ubung_1_api_pro(player_id, link, item, lang_code):
         lang_name = 'Chinese'
     elif lang_code == 'fr':
         lang_name = 'French'
+    elif lang_code == 'tr':  # Add Turkish support
+        lang_name = 'Turkish'
+    else:
+        lang_name = 'English'  # Default to English
 
     item_id = -1
     for i in ubung_1_term_list_i18n[lang_name]:
@@ -1555,6 +1561,10 @@ def warteimmer_api_pro(player_id, link, item_power, item_drainer, lang_code):
         lang_name = 'Chinese'
     elif lang_code == 'fr':
         lang_name = 'French'
+    elif lang_code == 'tr':  # Add Turkish support
+        lang_name = 'Turkish'
+    else:
+        lang_name = 'English'  # Default to English
 
     item_id = -1
     for i in ubung_1_term_list_i18n[lang_name]:
@@ -1590,75 +1600,9 @@ def warteimmer_api_pro(player_id, link, item_power, item_drainer, lang_code):
         Ubung3.objects.create(game=game,player=player,drainer=item_drainer,state='line-through')
 
 
-    # result_data = [i.api_json for i in list(Ubung1.objects.filter(game=game,player=player))]
     result_data = ''
     print('result_data', result_data)
     return result_data
-
-@api
-def check_ubung_3(player_id, link):
-    from .models import Player, Game, Ubung3
-    game = Game.objects.filter(link=link).first()
-    player = Player.objects.filter(id=player_id).first()
-    temp = Ubung3.objects.filter(game=game).first()
-    if temp:
-        return 1
-    else:
-        return 0
-
-
-@api
-def ubung_3_get_data(player_id, link):
-    from .models import Player, Game, Ubung3
-    game = Game.objects.filter(link=link).first()
-    player = Player.objects.filter(id=player_id).first()
-    result = [i.api_json for i in Ubung3.objects.filter(game=game)]
-    return result
-
-
-@api
-def ubung_3_api(player_id, link, data):
-    from .models import Player, Game, Ubung3
-    game = Game.objects.filter(link=link).first()
-    player = Player.objects.filter(id=player_id).first()
-
-    already = Ubung3.objects.filter(game=game)
-    already_term_list = [i.drainer for i in already]
-    for i in data:
-        if i['value'] not in already_term_list:
-            if i['player_id'] == -1:
-                # Ubung3.objects.create(
-                #     game=game,
-                #     player=None,
-                #     drainer=i['value'],
-                #     state=i['state'],
-                # )
-                continue
-            else:
-                Ubung3.objects.create(
-                    game=game,
-                    player=player,
-                    drainer=i['value'],
-                    state=i['state'],
-                )
-                continue
-        else:
-            temp = Ubung3.objects.filter(game=game,drainer=i['value']).first()
-            if temp.state == i['state']:
-                continue
-            else:
-                if i['state'] == 'tag':
-                    temp.state = i['state']
-                    temp.player = None
-                    temp.save()
-                elif i['state'] == 'line-through':
-                    temp.state = i['state']
-                    temp.player = player
-                    temp.save()
-
-    result_data = [i.api_json for i in list(Ubung3.objects.filter(game=game))]
-    return result_data
-
 
 @api
 def ubung_3_api_pro(player_id, link, item, lang_code):
@@ -1675,6 +1619,10 @@ def ubung_3_api_pro(player_id, link, item, lang_code):
         lang_name = 'Chinese'
     elif lang_code == 'fr':
         lang_name = 'French'
+    elif lang_code == 'tr':  # Add Turkish support
+        lang_name = 'Turkish'
+    else:
+        lang_name = 'English'  # Default to English
 
     item_id = -1
     for i in ubung_3_term_list_i18n[lang_name]:
@@ -1699,7 +1647,6 @@ def ubung_3_api_pro(player_id, link, item, lang_code):
     result_data = [i.api_json for i in list(Ubung3.objects.filter(game=game,player=player))]
     print('result_data', result_data)
     return result_data
-
 
 @api
 def check_ubung5_finish(link):

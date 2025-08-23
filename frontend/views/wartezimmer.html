@@ -166,11 +166,11 @@
                 <div class="wartezimmer__addition" id="app-1">
 
                     <div class="user-connect active" v-for='(value, index) in waiting_list_active'>
-                        <img :src="value.avatar" alt=""/>
                         <div class="user-connect__name">
                             [[ value.name ]]
                         </div>
                             <div class="user-connect__now">
+                                    <img :src="value.avatar" alt=""/>
                                     <span class="now-terms" style="text-transform: uppercase;">
                                       [[ value.item_power ]] / [[ value.item_drainer ]]
                                     </span>

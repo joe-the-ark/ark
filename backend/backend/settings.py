@@ -117,7 +117,8 @@ LANGUAGES = [
   ('de', 'German'),
   ('en', 'English'),
   ('fr', 'French'),
-  ('zh-hans', 'Chinese'), 
+  ('zh-hans', 'Chinese'),
+  ('tr', 'Turkish'),  
 ]
 
 LOCALE_PATHS = [
