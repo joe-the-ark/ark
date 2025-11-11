@@ -477,6 +477,17 @@ def team_potential(request, user):
     players = WaitingRoomMember.objects.filter(game=game, state=1)
     ctx['players'] = { _.player.name: _.player.avatar for _ in players }
 
+    anchors = {}
+    current_lang = translation.get_language() or 'en'
+    for member in players:
+        anchor_entry = Ubung1.objects.filter(game=game, player=member.player).order_by('-create_time').first()
+        if anchor_entry:
+            localized = anchor_entry.power_i18n.get(current_lang, anchor_entry.power)
+            anchors[member.player.name] = localized
+        else:
+            anchors[member.player.name] = ''
+    ctx['anchors'] = anchors
+
     # ubung2 = Ubung2.objects.filter(game=game)
     ubung2 = []
     for i in list(Ubung2.objects.filter(game=game)):
@@ -570,6 +581,16 @@ def spannungsfelder(request, user):
     ctx['json_list'] = json_list
     ctx['user'] = user
 
+    players_qs = WaitingRoomMember.objects.filter(game=game, state=1)
+    current_lang = translation.get_language() or 'en'
+    anchor_map = {}
+    for member in players_qs:
+        anchor_entry = Ubung1.objects.filter(game=game, player=member.player).order_by('-create_time').first()
+        if anchor_entry:
+            label = anchor_entry.power_i18n.get(current_lang, anchor_entry.power)
+            anchor_map.setdefault(label, []).append(member.player.name)
+    ctx['anchor_map'] = json.dumps(anchor_map)
+ 
     return render(request, './views/spannungsfelder.html', ctx)
 
 

@@ -113,6 +113,18 @@
   max-width: 1200px;
   margin: 42px 0 20px;
 }
+
+.spannungsfelder p.spannungsfelder-callout {
+  display: block;
+  max-width: 100%;
+  width: 100%;
+  background-color: #9FE2BF;
+  color: #626262;
+  border-radius: 10px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  margin: 42px 0 20px;
+}
 .spannungsfelder .rang {
   margin: 70px 0;
 }

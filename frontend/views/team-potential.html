@@ -249,6 +249,7 @@ var app1 = new Vue({
             loading: false,
             circles: {{ circles|safe }},
             players: {{ players|safe }},
+            anchors: {{ anchors|safe }},
             allResult: {{ all_result|safe }},       // raw statusSide data for each player
             current: 16,
             width: 800,
@@ -308,6 +309,7 @@ var app1 = new Vue({
             // core data
             const players = this.circles.players;
             const avatars = this.players;
+            const anchors = this.anchors || {};
             const entry = this.circles.circles[this.current] || { circles: [], circle_count: {} };
             const { circles, circle_count } = entry;
             const n = players.length;
@@ -319,6 +321,7 @@ var app1 = new Vue({
 
             // header
             const total = Object.values(circle_count).reduce((s,v) => s + v, 0);
+            ctx.fillStyle = '#000000';
             ctx.font = '32px Arial'; ctx.fillText('SAFE CIRCLES', cx, cy-32);
             ctx.font = '60px Arial'; ctx.fillText(total, cx, cy+32);
             ctx.font = '18px STheiti, SimHei';
@@ -442,7 +445,7 @@ var app1 = new Vue({
             if (isTop) {
                 const midX = px * 0.6 + cx * 0.4;
                 const midY = py * 0.6 + cy * 0.4;
-                const dotRadius = size / 4; 
+                const dotRadius = size / 2; 
                 ctx.beginPath();
                 ctx.fillStyle = '#9FE2BF';
                 ctx.arc(midX, midY, dotRadius, 0, Math.PI * 2);
@@ -452,28 +455,15 @@ var app1 = new Vue({
                 const img = new Image(); img.src = avatars[name];
                 const drawPerson = () => {
                     if (this._drawToken !== drawToken) return;
-
-                    const ringRadius = size / 2;
-                    const ringPadding = 4;
-
-                    ctx.beginPath();
-                    ctx.fillStyle = '#FFFFFF';
-                    ctx.strokeStyle = isTop ? '#2ecc71' : '#FFFFFF';
-                    ctx.lineWidth = 4;
-                    ctx.arc(px, py, ringRadius + ringPadding, 0, Math.PI * 2);
-                    ctx.fill();
-                    ctx.stroke();
-
-                    ctx.save();
-                    ctx.beginPath();
-                    ctx.arc(px, py, ringRadius, 0, Math.PI * 2);
-                    ctx.closePath();
-                    ctx.clip();
-                    ctx.drawImage(img, px - size / 2, py - size / 2, size, size);
-                    ctx.restore();
-
+                    ctx.drawImage(img, px-size/2, py-size/2, size, size);
                     ctx.fillStyle='black'; ctx.font='18px STheiti, SimHei';
                     ctx.fillText(name, px, py+size/2+20, size+40);
+                    const safetyAnchor = anchors[name];
+                    if (safetyAnchor) {
+                        ctx.fillStyle = '#555555';
+                        ctx.font = '16px STheiti, SimHei';
+                        ctx.fillText(safetyAnchor, px, py+size/2+40, size+80);
+                    }
                     const bubbleOffset=27, bx=px+bubbleOffset, by=py-bubbleOffset;
                     ctx.beginPath(); ctx.fillStyle='#9FE2BF'; ctx.strokeStyle='white'; ctx.lineWidth=2;
                     ctx.arc(bx,by,20,0,2*Math.PI); ctx.fill(); ctx.stroke();

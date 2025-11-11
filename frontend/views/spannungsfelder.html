@@ -73,7 +73,7 @@
                 <h1>
                     {% trans "Wer sieht deinen Beitrag zur psychologischen Sicherheit im Team innerhalb, wer ausserhalb des grünen sicheren Bereichs?" %}
                 </h1>
-                <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;"><br>
+                <p class="spannungsfelder-callout"><br>
                     {% trans "Erläutert reihum, bei welchem Sicherheitsanker Spannungen zwischen deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team entstehen. (Dauer: 1 Minute pro Person)" %}<br><br>
                 </p>
                 </div>
@@ -171,8 +171,15 @@
     var jsonAll = {{ json_list|safe }};
     var lang_code = '{{LANGUAGE_CODE}}'
     //console.log('jsonall', jsonAll)
+    const anchorOwnersMap = {{ anchor_map|safe }};
     jsonAll.forEach((item)=>{
-        item['value'] = item['ubung1_power_i18n'][lang_code] + ' ' + item['ubung3_drainer_i18n'][lang_code]
+        const anchorRaw = item['ubung1_power_i18n'][lang_code] || item['ubung1_power_i18n']['en'] || '';
+        const drainerRaw = item['ubung3_drainer_i18n'][lang_code] || item['ubung3_drainer_i18n']['en'] || '';
+        const anchorLabel = String(anchorRaw).trim();
+        const drainerLabel = String(drainerRaw).trim();
+        item['anchor_label'] = anchorLabel;
+        item['drainer_label'] = drainerLabel;
+        item['value'] = anchorLabel + ' ' + drainerLabel;
     })
     //var value_i18n = jsonAll.value
     let curentUser = "{{ user }}";
@@ -413,10 +420,17 @@
     });
 
     dataForGraph(jsonAll, curentUser).forEach((item, i) => {
+        const anchorLabel = item.data.find(d => d.anchor)?.anchor || '';
+        const drainerLabel = item.data.find(d => d.drainer)?.drainer || '';
+        const ownersForAnchor = (anchorOwnersMap[anchorLabel] || []).slice().sort();
+
         appgraph = new AppGraph({
             container: `.swiper-slide.slide-${i}`,
             range: [0, 100],
-            labelRange: item.labelRange,
+            labelRange: [
+                { text: anchorLabel, subtext: ownersForAnchor.join(', ') },
+                { text: drainerLabel, subtext: '' },
+            ],
             mobile: 1200,
             statistic: true,
             data: item.data,

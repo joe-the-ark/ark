@@ -317,6 +317,18 @@
     top: 0px;
 }
 
+.custom-graph__status-up{
+     margin-bottom: 30px;
+ }
+
+.custom-graph__status-sub {
+    font-size: 12px;
+    line-height: 1.3;
+    color: #626262;
+    margin-top: 4px;
+    word-break: break-word;
+}
+
 @media screen and (max-width: 1200px) {
     .custom-graph {
         padding-left: 0;
