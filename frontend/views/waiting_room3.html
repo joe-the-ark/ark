@@ -12,11 +12,6 @@
     <link rel="stylesheet" href="/static/css/app.css">
     <link rel="stylesheet" href="/static/css/wartezimmer.css">
 
-    <!-- vue cdn  -->
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <!-- axios cdn -->
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
 </head>
 <body>
 <div class="app">
@@ -100,10 +95,10 @@
                 <div class="wartezimmer__addition" id="app-1">
                     <div class="user-connect active" v-for='(value, index) in waiting_list_active'>
                         <img :src="value.avatar" alt=""/>
-                        <div class="user-connect__name">
+                        <div class="user-connect__now">
+                            <span class="user-connect__now-name">
                             [[ value.name ]]
-                        </div>
-                            <div class="user-connect__now">
+                            </span>
                                     <span class="now-terms" style="text-transform: uppercase;">
                                       [[ value.item_power ]] / [[ value.item_drainer ]]
                                     </span>
@@ -112,11 +107,13 @@
 
                     <div class="user-connect" v-for='(value, index) in waiting_list_yet'>
                         <img :src="value.avatar" alt=""/>
-                        <div class="user-connect__name">
-                            [[ value.name ]]
-                        </div>
                         <div class="user-connect__now">
+                            <span class="user-connect__now-name">
+                                [[ value.name ]]
+                            </span>
+                            <span class="now-terms">
                             {% trans "..." %}
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -146,9 +143,12 @@
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
 <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
 <script src="https://unpkg.com/clipboard@2/dist/clipboard.min.js"></script>
+<script src="/static/js/waitingRoomHelpers.js"></script>
 <script>
 
     //Button remover
@@ -266,22 +266,21 @@
       document.forms[0].submit();
     }
 
-    function sleep (time) {
+    function sleep(time) {
         return new Promise((resolve) => setTimeout(resolve, time));
     }
 
-    async function get_mem_list(){
-        while (1){
+    async function get_mem_list() {
+        while (1) {
             var waiting_post = {"player_id": "{{player_id}}","link":"{{link}}"};
-            await sleep(3000).then(() => {
+            await sleep(4000).then(() => {
                 axios
                     .post(`/api/waiting_room3_active/`,waiting_post)
-                    .then(function(response){
+                    .then(function(response) {
                         var result = response.data.result;
-                        //console.log('result', result);
                         app.waiting_list_active.splice(0);
                         var uu = 0;
-                        while (uu < result.length){
+                        while (uu < result.length) {
                             app.waiting_list_active.push((result)[uu]);
                             uu += 1;
                         }
@@ -289,12 +288,11 @@
 
                         axios
                             .post(`/api/waiting_room3_yet/`,waiting_post)
-                            .then(function(response){
+                            .then(function(response) {
                                 var result = response.data.result;
-                                //console.log('result', result);
                                 app.waiting_list_yet.splice(0);
                                 var uu = 0;
-                                while (uu < result.length){
+                                while (uu < result.length) {
                                     app.waiting_list_yet.push((result)[uu]);
                                     uu += 1;
                                 }
@@ -314,29 +312,33 @@
         }
     }
 
-    async function check_game_start(){
-        var uu = 0
-        while (1){
-            if (uu%10 === 9){
-                alert("Connection time-out. If you want to continue waiting, please click the button.")
-            }
+    async function check_game_start() {
+        const reminderMessage = "{% trans 'Kein Stress – klick auf „Weiterspielen“, sobald alle bereit sind.' %}";
+        const reminder = WaitingRoomHelpers.createReminder({
+            message: reminderMessage,
+            firstDelayMs: 120000,
+            repeatDelayMs: 210000,
+            maxCount: 2
+        });
+
+        while (1) {
             var data_ = {'link': '{{link}}'};
-            await sleep(10000).then(() => {
+            await sleep(12000).then(() => {
                 axios
                     .post(`/api/waiting_room3_game_start/`, data_)
-                    .then(function(response){
+                    .then(function(response) {
                         var result = response.data.result;
-                            if (result === 1){
+                        if (result === 1) {
+                            reminder.stop();
                                 window.location.href="/assessment/";
-                            }else{
-                                uu += 1
-                                console.log(uu)
+                        } else {
+                            reminder.touch();
                             }
                         })
-                    .catch(function(error){
+                    .catch(function(error) {
                         console.log(error);
                     });
-            })
+            });
         }
     }  
 

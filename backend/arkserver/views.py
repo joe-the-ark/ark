@@ -3,6 +3,7 @@ from .utils import *
 from .decorators import user_required, after_waitingroom
 from meta.decorators import api, APIError
 import json
+from collections import defaultdict
 
 from django.utils.translation import ugettext as _
 from django.utils import translation
@@ -128,6 +129,9 @@ def auth(request):
 def auth_link(request):
     ctx = {}
     ctx['link'] = ''
+    ctx['used_avatars'] = []
+    ctx['avatar_error'] = 0
+    ctx['avatars_full'] = False
 
     if request.method == 'POST':
         username = request.POST.get('Nutzername')
@@ -140,27 +144,41 @@ def auth_link(request):
         print('link', link)
         request.session['link'] = link
 
-        if not Game.objects.filter(link=link).first().members.filter(name=username).first():
-            # avatar = get_avatar_link(avatar)
-            new_player = Player.objects.create(
-                name = username,
-                avatar = avatar,
-            )
-            request.session['uid'] = new_player.id
-            game = Game.objects.filter(link=link).first()
-            game.members.add([new_player])
-            WaitingRoomMember.objects.create(
-                game = game,
-                player = new_player,
-                state = 0,
-            )
-            return redirect(f'/preview/')
-            # return redirect(f'/wartezimmer/{link}/')
+        game = Game.objects.filter(link=link).first()
+        if not game:
+            ctx['error'] = 1
+            return render(request,'./views/auth-link.html', ctx)
 
-        else:
+        used_avatars = [i for i in list(game.members.values_list('avatar', flat=True)) if i]
+        ctx['used_avatars'] = used_avatars
+        ctx['avatars_full'] = len(set(used_avatars)) >= len(avatar_dict)
+
+        if game.members.filter(name=username).first():
             # detect same name in this game
             ctx['error'] = 1
             return render(request,'./views/auth-link.html', ctx)
+
+        if avatar in used_avatars:
+            ctx['avatar_error'] = 1
+            return render(request,'./views/auth-link.html', ctx)
+
+        if ctx['avatars_full']:
+            ctx['avatar_error'] = 1
+            return render(request,'./views/auth-link.html', ctx)
+
+        new_player = Player.objects.create(
+            name = username,
+            avatar = avatar,
+        )
+        request.session['uid'] = new_player.id
+        game.members.add(new_player)
+        WaitingRoomMember.objects.create(
+            game = game,
+            player = new_player,
+            state = 0,
+        )
+        return redirect(f'/preview/')
+            # return redirect(f'/wartezimmer/{link}/')
 
     return render(request,'./views/auth-link.html', ctx)
 
@@ -174,6 +192,13 @@ def link_enter(request, link):
         # invalid game link
         return redirect('/')
 
+    used_avatars = []
+    if game:
+        used_avatars = [i for i in list(game.members.values_list('avatar', flat=True)) if i]
+    ctx['used_avatars'] = used_avatars
+    ctx['avatars_full'] = len(set(used_avatars)) >= len(avatar_dict)
+    ctx['avatar_error'] = 0
+
     if request.method == 'POST':
         username = request.POST.get('Nutzername')
         avatar = request.POST.get('avatar')
@@ -185,27 +210,37 @@ def link_enter(request, link):
         print('link', link)
         request.session['link'] = link
 
-        if not Game.objects.filter(link=link).first().members.filter(name=username).first():
-            # avatar = get_avatar_link(avatar)
-            new_player = Player.objects.create(
-                name = username,
-                avatar = avatar,
-            )
-            request.session['uid'] = new_player.id
-            game = Game.objects.filter(link=link).first()
-            game.members.add(new_player)
-            WaitingRoomMember.objects.create(
-                game = game,
-                player = new_player,
-                state = 0,
-            )
-            return redirect(f'/preview/')
-            # return redirect(f'/wartezimmer/{link}/')
+        game = Game.objects.filter(link=link).first()
+        if not game:
+            ctx['error'] = 1
+            return render(request,'./views/auth-link.html', ctx)
 
-        else:
+        used_avatars = [i for i in list(game.members.values_list('avatar', flat=True)) if i]
+        ctx['used_avatars'] = used_avatars
+        ctx['avatars_full'] = len(set(used_avatars)) >= len(avatar_dict)
+
+        if game.members.filter(name=username).first():
             # detect same name in this game
             ctx['error'] = 1
             return render(request,'./views/auth-link.html', ctx)
+
+        if avatar in used_avatars or ctx['avatars_full']:
+            ctx['avatar_error'] = 1
+            return render(request,'./views/auth-link.html', ctx)
+
+        new_player = Player.objects.create(
+            name = username,
+            avatar = avatar,
+        )
+        request.session['uid'] = new_player.id
+        game.members.add(new_player)
+        WaitingRoomMember.objects.create(
+            game = game,
+            player = new_player,
+            state = 0,
+        )
+        return redirect(f'/preview/')
+            # return redirect(f'/wartezimmer/{link}/')
 
     return render(request,'./views/auth-link.html', ctx)
 
@@ -386,30 +421,43 @@ def ubung_4(request, user):
                 game = game,
                 player = user,
             )
+        # reset previous selections so subsequent submissions replace earlier votes
+        ubung4.row0.clear()
+        ubung4.row1.clear()
+        ubung4.row2.clear()
+        ubung4.row3.clear()
+        ubung4.row4.clear()
+        ubung4.row5.clear()
         print(row0)
         print(row1)
         print(row2)
         print(row3)
         print(row4)
         print(row5)
-        for i in row0:
+        for i in set(row0):
             mem = Player.objects.filter(id=i).first()
-            ubung4.row0.add(mem)
-        for i in row1:
+            if mem:
+                ubung4.row0.add(mem)
+        for i in set(row1):
             mem = Player.objects.filter(id=i).first()
-            ubung4.row1.add(mem)
-        for i in row2:
+            if mem:
+                ubung4.row1.add(mem)
+        for i in set(row2):
             mem = Player.objects.filter(id=i).first()
-            ubung4.row2.add(mem)
-        for i in row3:
+            if mem:
+                ubung4.row2.add(mem)
+        for i in set(row3):
             mem = Player.objects.filter(id=i).first()
-            ubung4.row3.add(mem)
-        for i in row4:
+            if mem:
+                ubung4.row3.add(mem)
+        for i in set(row4):
             mem = Player.objects.filter(id=i).first()
-            ubung4.row4.add(mem)
-        for i in row5:
+            if mem:
+                ubung4.row4.add(mem)
+        for i in set(row5):
             mem = Player.objects.filter(id=i).first()
-            ubung4.row5.add(mem)
+            if mem:
+                ubung4.row5.add(mem)
         return redirect('/waiting-room2/')
 
     return render(request, './views/ubung-4.html', ctx)
@@ -527,112 +575,155 @@ def spannungsfelder(request, user):
 
 @user_required
 def heatmap(request, user):
-    from .utils import heatmap_cell, heatmap_color
     from .utils import mean
     from arkserver.management.commands.utils import get_u5b
     ctx = {}
     game = Game.objects.filter(link=request.session['link']).first()
 
-    user_list = game.ubung5_player_order
-    # print('user_list', user_list)
+    if not game:
+        return render(request, './views/heatmap.html', ctx)
+
+    user_list = list(game.ubung5_player_order)
     user_number = len(user_list)
     ctx['user_number'] = user_number
-    avg_list = [i.ubung5_avg for i in game.ubung5_scale_order]
+    player_ids = [player.id for player in user_list]
+
+    scale_order = list(game.ubung5_scale_order)
+
+    ubung5_entries = list(
+        Ubung5.objects.filter(game=game).select_related('player', 'goal', 'ubung1', 'ubung3')
+    )
+
+    score_lookup = {}
+    goal_axis_counts = defaultdict(int)
+    scale_axis_map = {}
+    scale_drainer_map = {}
+
+    for entry in ubung5_entries:
+        axis_key = (entry.ubung1_id, entry.ubung3_id)
+        score_lookup[(entry.player_id, entry.goal_id, axis_key)] = entry.score
+        goal_axis_counts[(entry.goal_id, axis_key)] += 1
+        if entry.ubung1_id not in scale_axis_map:
+            scale_axis_map[entry.ubung1_id] = axis_key
+        if entry.ubung1_id not in scale_drainer_map:
+            scale_drainer_map[entry.ubung1_id] = entry.ubung3.drainer_i18n
+
+    axis_keys = [
+        scale_axis_map.get(scale.id, (scale.id, None))
+        for scale in scale_order
+    ]
+
+    user_number_sq = user_number ** 2 if user_number else 1
+
+    def classify_color(user_self_score, others_average, scale_avg):
+        low_bound = scale_avg - 16
+        high_bound = scale_avg + 16
+        in_self = low_bound <= user_self_score <= high_bound
+        in_others = low_bound <= others_average <= high_bound
+
+        if not in_self and not in_others:
+            return 'black'
+        if not in_self and in_others:
+            return 'red'
+        if in_self and not in_others:
+            return 'yellow'
+        return 'None'
 
     main_map = []
-    for i in user_list:
-        temp = []
-        temp.append(round(i.ubung5_sum/(user_number ** 2), ))
-        temp.append(i.name)
-        temp.append(i.avatar)
-        iknow = []
-        for u in game.ubung5_scale_order:
-            iknow.append(
-                # [round(heatmap_cell(i, game, u)/(user_number ** 2), 2), heatmap_color(i, game, u)]
-                [round(heatmap_cell(i, game, u)/(user_number ** 2), 1), heatmap_color(i, game, u), round(heatmap_cell_other(i, game, u)/(user_number ** 2), 1)]
-            )
-        temp.append(iknow)
-        temp_ = [i[0] for i in iknow]
-        temp.append(round(sum(temp_)))
-        main_map.append(temp)
-    # print('main_map',main_map)
+    for player in user_list:
+        player_id = player.id
+        player_columns = []
+        diff_values = []
+
+        for index, scale in enumerate(scale_order):
+            axis_key = axis_keys[index]
+            entry_count = goal_axis_counts.get((player_id, axis_key), len(player_ids)) or (len(player_ids) or 1)
+
+            user_self_score = score_lookup.get((player_id, player_id, axis_key), 0)
+            others_scores = [
+                score_lookup.get((other_id, player_id, axis_key), 0)
+                for other_id in player_ids
+                if other_id != player_id
+            ]
+            others_average = mean(others_scores)
+
+            diff_sum = (user_self_score - others_average) * entry_count
+            others_sum = others_average * entry_count
+
+            diff_value = round(diff_sum / user_number_sq, 1) if user_number else 0
+            others_value = round(others_sum / user_number_sq, 1) if user_number else 0
+            color = classify_color(user_self_score, others_average, scale.ubung5_avg)
+
+            player_columns.append([diff_value, color, others_value])
+            diff_values.append(diff_value)
+
+        total_diff = round(sum(diff_values))
+
+        main_map.append([
+            round(player.ubung5_sum / user_number_sq) if user_number else 0,
+            player.name,
+            player.avatar,
+            player_columns,
+            total_diff,
+        ])
 
     row0 = []
-    uu = 0
-    while uu < len(main_map[0][3]):
-        temp = []
-        for i in main_map:
-            temp.append(i[3][uu])
-        temp_ = [i[0] for i in temp]
-        row0.append(round(mean(temp_)))
-        uu += 1
-
-    # print('row0',row0)
+    if main_map:
+        column_count = len(main_map[0][3])
+        for column_index in range(column_count):
+            values = [player_data[3][column_index][0] for player_data in main_map]
+            row0.append(round(mean(values)))
 
     pair_table = []
-    for i in range(0, len(user_list)):
-        for j in range(i+1, len(user_list)):
-            temp = [ user_list[i], user_list[j] ]
-            pair_table.append(temp)
+    for i in range(len(user_list)):
+        for j in range(i + 1, len(user_list)):
+            pair_table.append((user_list[i], user_list[j]))
 
-    all_items = [ {"score": i.score, "player": i.player.id, "goal": i.goal.id, "axis": (str(i.ubung1.id) + "." + str(i.ubung3.id)) }
-                  for i in list(Ubung5.objects.filter(game=game))]
-
-    def find_item(user_playing, user_goal, axis, list):
-        for item in list:
-            if item["player"] == user_playing and item["goal"] == user_goal and item["axis"] == axis:
-                return item['score']
-        return 0
+    def fetch_score(player_id, goal_id, axis_key):
+        return score_lookup.get((player_id, goal_id, axis_key), 0)
 
     beef_table = []
-    debug = []
-
-    axis_table = []
-    for item in all_items:
-        axis_table.append(item["axis"])
-
-    axis_table = list(set(axis_table))
-
-    for pair in pair_table:
-
-        u1 = pair[0].id
-        u2 = pair[1].id
+    for user1, user2 in pair_table:
+        u1_id = user1.id
+        u2_id = user2.id
         tension = 0
 
-        for axis in axis_table:
+        for axis_key in axis_keys:
+            u1_self = fetch_score(u1_id, u1_id, axis_key)
+            u1_foreign = fetch_score(u2_id, u1_id, axis_key)
+            u2_self = fetch_score(u2_id, u2_id, axis_key)
+            u2_foreign = fetch_score(u1_id, u2_id, axis_key)
 
-            u1Self = find_item(u1, u1, axis, all_items)
-            u1Foreign = find_item(u2, u1, axis, all_items)
-            u2Self = find_item(u2, u2, axis, all_items)
-            u2Foreign = find_item(u1, u2, axis, all_items)
+            tension += abs(u1_self - u1_foreign) + abs(u2_self - u2_foreign)
 
-            t = abs(u1Self - u1Foreign) + abs(u2Self - u2Foreign)
+        beef_table.append({
+            "user1": {"name": user1.name},
+            "user2": {"name": user2.name},
+            "tension": tension
+        })
 
-            tension += t
-            debug.append([ u1Self, u1Foreign, u2Self, u2Foreign, t, tension ])
-
-        beef_table.append({ "user1" : { "name" : pair[0].name}, "user2" : {"name" : pair[1].name}, "tension" : tension })
-
-    # task #158 adding stress
     u5b = get_u5b(game)
-    ctx['stress'] = { k: round(u5b[k]) for k in u5b }
+    ctx['stress'] = {key: round(value) for key, value in u5b.items()}
 
     ctx['row0'] = row0
     ctx['main_map'] = main_map
-    # ctx['scale_list'] = scale_list = [ [i.power, i.connect_ubung3.drainer] for i in game.ubung5_scale_order]
-    ctx['scale_list'] = scale_list = [ [i.power_i18n, i.connect_ubung3.drainer_i18n] for i in game.ubung5_scale_order]
-    ctx['scale_value_list'] = scale_value_list = [round(i.ubung5_sum/(user_number ** 2) ) for i in game.ubung5_scale_order]
-    # ubung5 = Ubung5.objects.filter(game=game)
-    # player_list = []
-    # for player in Player.objects.filter(game=game):
-    #     if player.valid:
-    #         player_list.append(player)
 
+    def translate_drainer(scale):
+        if scale.id in scale_drainer_map:
+            return scale_drainer_map[scale.id]
+        related = Ubung5.objects.filter(game=game, ubung1=scale).select_related('ubung3').first()
+        return related.ubung3.drainer_i18n if related else {}
+
+    ctx['scale_list'] = [
+        [scale.power_i18n, translate_drainer(scale)]
+        for scale in scale_order
+    ]
+    ctx['scale_value_list'] = [
+        round(scale.ubung5_sum / user_number_sq) if user_number else 0
+        for scale in scale_order
+    ]
     ctx['beef_table'] = beef_table
-#    ctx['debug'] = [i.ubung5_avg for i in game.ubung5_scale_order]
-#    ctx['debug'] = all_items
-#    ctx['debug2'] = debug
-#    ctx['debug3'] = axis_table
+
     return render(request, './views/heatmap.html', ctx)
 
 

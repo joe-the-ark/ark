@@ -61,7 +61,11 @@ class AppFeedback {
                                 <p class="bold">
                                    ${title}
                                 </p>
-                                a<textarea class="textarea_" minlength="25" placeholder="...">${text}</textarea>
+                                <div class="word-count word-count--invalid" data-word-indicator data-required-words="25">
+                                    <span class="word-count__dot"></span>
+                                    <span class="word-count__text">0 / 25</span>
+                                </div>
+                                <textarea class="textarea_" data-word-input minlength="25" placeholder="...">${text}</textarea>
                             </div>
         `).join('')}</div>`).join('')}</div>`;
 

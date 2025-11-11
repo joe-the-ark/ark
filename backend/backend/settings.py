@@ -14,6 +14,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+FRONTEND_DIR = os.path.normpath(os.path.join(BASE_DIR, '..', 'frontend'))
 
 
 # Quick-start development settings - unsuitable for production
@@ -45,6 +46,8 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django.middleware.gzip.GZipMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -59,7 +62,7 @@ ROOT_URLCONF = 'backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['../frontend'],
+        'DIRS': [FRONTEND_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -147,8 +150,14 @@ CORS_ORIGIN_ALLOW_ALL = True  # 需要注释
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, '../frontend/public'),
+    os.path.join(FRONTEND_DIR, 'public'),
 ]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+
+# Cache static assets aggressively in production while keeping quick refresh in development.
+WHITENOISE_MAX_AGE = 0 if DEBUG else 60 * 60 * 24 * 7  # 7 days in production
+WHITENOISE_USE_FINDERS = DEBUG
 
 MEDIA_URL = "/media/"   # 媒体文件别名(相对路径) 和 绝对路径
 MEDIA_ROOT = (

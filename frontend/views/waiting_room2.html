@@ -17,23 +17,6 @@
     <link rel="stylesheet" href="/static/css/load.css">
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <!-- <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"> -->
-    <script src="/static/jspdf.umd.min.js"></script>
-    <script src="/static/dom-to-image.min.js"></script>
-    <script src="/static/vue.js"></script>
-        <!-- 引入样式 -->
-    <link rel="stylesheet" href="https://cdn.staticfile.org/element-ui/2.15.9/theme-chalk/index.css">
-    <!-- 引入组件库 -->
-    <script src="https://cdn.staticfile.org/element-ui/2.15.9/index.js"></script>
-    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
-    <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
-    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
-    <!-- <script src="/static/html2canvas.min.js"></script> -->
-
-    <!-- vue cdn  -->
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <!-- axios cdn -->
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
 </head>
 <body>
 <div class="app">
@@ -150,24 +133,26 @@
                 <div class="wartezimmer__addition" id="app-1">
                     <div class="user-connect active" v-for='(value, index) in waiting_list_active'>
                         <img :src="value.avatar" alt=""/>
-                        <div class="user-connect__name">
-                            [[ value.name ]]
+                        <div class="user-connect__now">
+                            <span class="user-connect__now-name">
+                                [[ value.name ]]
+                            </span>
+                            <span class="now-terms" style="text-transform: uppercase;">
+                              [[ value.item_power ]] / [[ value.item_drainer ]]
+                            </span>
                         </div>
-                            <div class="user-connect__now">
-                                    <span class="now-terms" style="text-transform: uppercase;">
-                                      [[ value.item_power ]] / [[ value.item_drainer ]]
-                                    </span>
-                            </div>
-                        </div>
+                    </div>
 
 
                     <div class="user-connect" v-for='(value, index) in waiting_list_yet'>
                         <img :src="value.avatar" alt=""/>
-                        <div class="user-connect__name">
-                            [[ value.name ]]
-                        </div>
                         <div class="user-connect__now">
-                            {% trans "..." %}
+                            <span class="user-connect__now-name">
+                                [[ value.name ]]
+                            </span>
+                            <span class="now-terms">
+                                {% trans "..." %}
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -199,10 +184,18 @@
 
 
 
+<script src="/static/jspdf.umd.min.js"></script>
+<script src="/static/dom-to-image.min.js"></script>
+<script src="/static/vue.js"></script>
+<script src="https://cdn.staticfile.org/element-ui/2.15.9/index.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
 <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
 <script src="https://unpkg.com/clipboard@2/dist/clipboard.min.js"></script>
 <script src="/static/js/utils.js"></script>
+<script src="/static/js/waitingRoomHelpers.js"></script>
 
 
 <script>
@@ -322,22 +315,21 @@
       document.forms[0].submit();
     }
 
-    function sleep (time) {
+    function sleep(time) {
         return new Promise((resolve) => setTimeout(resolve, time));
     }
 
-    async function get_mem_list(){
-        while (1){
+    async function get_mem_list() {
+        while (1) {
             var waiting_post = {"player_id": "{{player_id}}","link":"{{link}}"};
-            await sleep(3000).then(() => {
+            await sleep(4000).then(() => {
                 axios
                     .post(`/api/waiting_room2_active/`,waiting_post)
-                    .then(function(response){
+                    .then(function(response) {
                         var result = response.data.result;
-                        //console.log('result', result);
                         app.waiting_list_active.splice(0);
                         var uu = 0;
-                        while (uu < result.length){
+                        while (uu < result.length) {
                             app.waiting_list_active.push((result)[uu]);
                             uu += 1;
                         }
@@ -345,12 +337,11 @@
 
                         axios
                             .post(`/api/waiting_room2_yet/`,waiting_post)
-                            .then(function(response){
+                            .then(function(response) {
                                 var result = response.data.result;
-                                //console.log('result', result);
                                 app.waiting_list_yet.splice(0);
                                 var uu = 0;
-                                while (uu < result.length){
+                                while (uu < result.length) {
                                     app.waiting_list_yet.push((result)[uu]);
                                     uu += 1;
                                 }
@@ -370,29 +361,33 @@
         }
     }
 
-    async function check_game_start(){
-        var uu = 0
-        while (1){
-            if (uu%10 === 9){
-                alert("Time-out. Please click, if you are ready to continue.")
-            }
+    async function check_game_start() {
+        const reminderMessage = "{% trans 'Alles gut – klick einfach erneut auf „Weiter“, wenn ihr startklar seid.' %}";
+        const reminder = WaitingRoomHelpers.createReminder({
+            message: reminderMessage,
+            firstDelayMs: 120000,
+            repeatDelayMs: 210000,
+            maxCount: 2
+        });
+
+        while (1) {
             var data_ = {'link': '{{link}}'};
-            await sleep(10000).then(() => {
+            await sleep(12000).then(() => {
                 axios
                     .post(`/api/waiting_room2_game_start/`, data_)
-                    .then(function(response){
+                    .then(function(response) {
                         var result = response.data.result;
-                            if (result === 1){
-                                window.location.href="/psychologischer/";
-                            }else{
-                                uu += 1
-                                console.log(uu)
-                            }
-                        })
-                    .catch(function(error){
+                        if (result === 1) {
+                            reminder.stop();
+                            window.location.href="/psychologischer/";
+                        } else {
+                            reminder.touch();
+                        }
+                    })
+                    .catch(function(error) {
                         console.log(error);
                     });
-            })
+            });
         }
     }  
 

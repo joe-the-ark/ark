@@ -20,7 +20,8 @@
             body {
                 margin: 0;
                 -webkit-print-color-adjust: exact; /* Chrome, Safari */
-                color-adjust: exact; /* Firefox */
+            print-color-adjust: exact;
+            color-adjust: exact; /* Firefox */
             }
 
             .header-main__progress, .center, .container {
@@ -100,7 +101,7 @@
 			
 			<div v-bind:class="['beef-table-tools', (user_to_group ? '' : 'hide')]">
 				<p>
-					<a href="" v-on:click.stop.prevent="clearUserToGroup()">
+					<a href="#" v-on:click.stop.prevent="clearUserToGroup()" role="button">
 						{% trans "Auswahl löschen" %} &nbsp;&nbsp;&times;
 					</a>
 				</p>
@@ -122,7 +123,7 @@
 				<tbody>
 				<tr v-for="(item, index) in sorted_beef_table">
 					<td v-bind:class="user_to_group == item.user1.name ? 'active' : ''">
-						<a v-on:click.stop.prevent="setUserToGroup(item.user1)" href="">
+						<a v-on:click.stop.prevent="setUserToGroup(item.user1)" href="#" role="button">
 							[[ item.user1.name ]]
 						</a>
 					</td>
@@ -130,7 +131,7 @@
 						[[ item.tension ]]
 					</td>
 					<td v-bind:class="user_to_group == item.user2.name ? 'active' : ''"> 
-						<a v-on:click.stop.prevent="setUserToGroup(item.user2)" href="">
+						<a v-on:click.stop.prevent="setUserToGroup(item.user2)" href="#" role="button">
 							[[ item.user2.name ]]
 						</a>
 					</td>
@@ -163,6 +164,7 @@
 
 
         <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
+        <div class="heatmap-wrapper">
         <div class="heatmap">
 
           <div class="main-column left">
@@ -295,6 +297,7 @@
           </div>
         </div>
         </div>
+        </div>
     </div>
   </div>
 
@@ -324,24 +327,25 @@
     },
     computed:{
       tension_average: function() {
-        debugger;
-        var sum = 0;
-        var length = this.$data.main_map.length;
-        for (var i=0; i < length; i++) {
-          var row = this.$data.main_map[i];
-          sum += row[0];
+        const rows = this.$data.main_map;
+        if (!rows.length) {
+          return 0;
         }
-        var avg = sum / length;
-        return Math.round(avg);
+        const sum = rows.reduce((acc, row) => acc + (row[0] || 0), 0);
+        return Math.round(sum / rows.length);
       },
       scale_list_pro:function(){
-        var result = []
-        this.scale_list.forEach((item)=>{
-          result.push(
-            [item[0][this.lang_code], item[1][this.lang_code]]
-          )
-        })
-        return result
+        const self = this;
+        const translate = function(dictionary) {
+          if (!dictionary || typeof dictionary !== 'object') {
+            return '';
+          }
+          return dictionary[self.lang_code] || dictionary.en || dictionary.de || Object.values(dictionary)[0] || '';
+        };
+        return this.scale_list.map(item => [
+          translate(item[0]),
+          translate(item[1])
+        ]);
       },
       sorted_beef_table:function() {
       	var sorted = [];
@@ -354,7 +358,7 @@
       			if (row['user1'].name == userToGroup) {
       				sorted.push(row);
       			} else if (row['user2'].name == userToGroup) {
-      				finalRow = { 'user1' : row['user2'], 'tension' : row['tension'], 'user2' : row['user1'] }
+      				const finalRow = { 'user1' : row['user2'], 'tension' : row['tension'], 'user2' : row['user1'] };
 		      		sorted.push(finalRow);
       			} else {
       				sorted.push(row);
@@ -386,16 +390,15 @@
     },
     methods:{
       stress(username) {
-        return this.stress_table[username];
+        const value = this.stress_table[username];
+        return typeof value === 'number' ? value : 0;
       },
       keepTwoDecimal(num) {  
-        var result = parseFloat(num);  
-        if (isNaN(result)) {  
-          alert('error, please check！');  
-            return false;  
-          }  
-          result = Math.round(num * 100) / 100;  
-          return result;  
+        const result = Number(num);
+        if (!Number.isFinite(result)) {
+          return 0;
+        }
+        return Math.round(result * 100) / 100;
        },
        setUserToGroup(user) {
        	this.$data.user_to_group = user.name;
@@ -405,10 +408,6 @@
        }
     }
   })
-  let playersCount = {{user_number}};; 
-  let heatmapEl = document.querySelector('.heatmap');
-  heatmapEl.style.gridTemplateColumns = `[lft] minmax(50px, 100px) repeat(${playersCount}, minmax(50px, 100px)) [prop] 180px [rght] minmax(50px, 100px) `
-
   </script>
 
   <script>

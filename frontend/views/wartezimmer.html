@@ -14,11 +14,6 @@
     <link rel="stylesheet" href="/static/css/ubung-1.css">
     <link rel="stylesheet" href="/static/css/heatmap.css">
 
-    <!-- vue cdn  -->
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <!-- axios cdn -->
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
 </head>
 <body>
  {% get_current_language as LANGUAGE_CODE %}
@@ -166,11 +161,11 @@
                 <div class="wartezimmer__addition" id="app-1">
 
                     <div class="user-connect active" v-for='(value, index) in waiting_list_active'>
-                        <div class="user-connect__name">
+                        <img :src="value.avatar" alt=""/>
+                        <div class="user-connect__now">
+                            <span class="user-connect__now-name">
                             [[ value.name ]]
-                        </div>
-                            <div class="user-connect__now">
-                                    <img :src="value.avatar" alt=""/>
+                            </span>
                                     <span class="now-terms" style="text-transform: uppercase;">
                                       [[ value.item_power ]] / [[ value.item_drainer ]]
                                     </span>
@@ -179,11 +174,13 @@
 
                     <div class="user-connect" v-for='(value, index) in waiting_list_yet'>
                         <img :src="value.avatar" alt=""/>
-                        <div class="user-connect__name">
-                            [[ value.name ]]
-                        </div>
                         <div class="user-connect__now">
-                                {% trans "bereit?" %}
+                                <span class="user-connect__now-name">
+                                  [[ value.name ]]
+                                </span>
+                                <span class="now-terms">
+                                    {% trans "bereit?" %}
+                                </span>
                         </div>
 
                     </div>
@@ -347,9 +344,12 @@
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
 <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
 <script src="https://unpkg.com/clipboard@2/dist/clipboard.min.js"></script>
+<script src="/static/js/waitingRoomHelpers.js"></script>
 <script>
 
     var scaleI18n = {{scale|safe}} ;
@@ -527,22 +527,21 @@
       document.forms[0].submit();
     }
 
-    function sleep (time) {
+    function sleep(time) {
         return new Promise((resolve) => setTimeout(resolve, time));
     }
 
-    async function get_mem_list(){
-        while (1){
+    async function get_mem_list() {
+        while (1) {
             var waiting_post = {"player_id": "{{player_id}}","link":"{{link}}"};
-            await sleep(3000).then(() => {
+            await sleep(4000).then(() => {
                 axios
                     .post(`/api/waiting_room_active/`,waiting_post)
-                    .then(function(response){
+                    .then(function(response) {
                         var result = response.data.result;
-                        //console.log('result', result);
                         app.waiting_list_active.splice(0);
                         var uu = 0;
-                        while (uu < result.length){
+                        while (uu < result.length) {
                             app.waiting_list_active.push((result)[uu]);
                             uu += 1;
                         }
@@ -550,12 +549,11 @@
 
                         axios
                             .post(`/api/waiting_room_yet/`,waiting_post)
-                            .then(function(response){
+                            .then(function(response) {
                                 var result = response.data.result;
-                                //console.log('result', result);
                                 app.waiting_list_yet.splice(0);
                                 var uu = 0;
-                                while (uu < result.length){
+                                while (uu < result.length) {
                                     app.waiting_list_yet.push((result)[uu]);
                                     uu += 1;
                                 }
@@ -576,25 +574,31 @@
     }
 
     async function check_game_start() {
-    var uu = 0;
+    const reminderMessage = "{% trans 'Bleibt gern im Gespräch – klickt auf Weiter, sobald alle ihr Gegensatzpaar ergänzt haben.' %}";
+    const reminder = WaitingRoomHelpers.createReminder({
+        message: reminderMessage,
+        firstDelayMs: 120000,
+        repeatDelayMs: 210000,
+        maxCount: 2
+    });
+
     while (1) {
-        if (uu % 10 === 9) {
-            alert("Time-out. Please click, if you are ready to continue.");
-        }
         var data_ = { 'link': '{{link}}' };
         var user_ = { 'user_id': '{{user.id}}' };
-        await sleep(20000).then(() => {
+        await sleep(15000).then(() => {
             axios
                 .post(`/api/check_ubung1_ubung3_blank/`, user_)
                 .then(function(response) {
                     var result = response.data.result;
                     if (result === '1') {
+                        reminder.stop();
                         document.getElementById('message-placeholder').innerText = "Please choose a term from the list, you may change it later in the waiting-room.";
                         // You can add a delay before the redirection if needed
                         setTimeout(() => {
                             window.location.href = '/ubung-1/';
                         }, 3000); // Redirects after 3 seconds
                     } else if (result === '3') {
+                        reminder.stop();
                         window.location.href = '/ubung-3/';
                     }
 
@@ -603,10 +607,10 @@
                         .then(function(response) {
                             var result = response.data.result;
                             if (result === 1) {
+                                reminder.stop();
                                 window.location.href = "/ubung-5/";
                             } else {
-                                uu += 1;
-                                console.log(uu);
+                                reminder.touch();
                             }
                         })
                         .catch(function(error) {

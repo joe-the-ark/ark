@@ -117,17 +117,27 @@ body > .user-connect .user-connect__name {
 .user-connect__now {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
   width: 100%;
   color: var(--ls-alfa-color);
   font-size: var(--ls-font-base);
-  line-height: 24px;
   background: linear-gradient(90deg, #fffb00 0%, rgba(255, 255, 255, 0) 100%);
-  line-height: 66px;
   margin-left: -15px;
-  padding: 0 35px;
+  padding: 12px 35px;
   box-sizing: border-box;
   position: relative;
   z-index: -1;
+  line-height: 1.35;
+  min-height: 66px;
+}
+
+.user-connect__now-name {
+  font-weight: 600;
+  color: #2b2b2b;
+  flex: 0 1 auto;
+  min-width: 0;
+  text-transform: none;
 }
 
 .property .property_one:after {
@@ -261,4 +271,8 @@ body > .user-connect .user-connect__name {
 /* erhöht die Spezifität und erzwingt Uppercase */
 .user-connect__now > .now-terms {
   text-transform: uppercase !important;
+}
+
+.wartezimmer .user-connect__name {
+  display: none;
 }
