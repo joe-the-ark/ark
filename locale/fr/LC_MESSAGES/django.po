@@ -455,8 +455,8 @@ msgstr "Pour la valeur de la fenêtre de tolérance de "
 msgid "Stelle sicher, dass alle in mindestens einem Kreis sicher verbunden sind. Erhöhe den Toleranzfenster-Wert nun um 1, um zu erkennen, wer den Solisten am einfachsten in einen sicheren Kreis mitnehmen kann..."
 msgstr "Assure-toi que tout le monde est connecté en toute sécurité dans au moins un cercle. Augmente maintenant la valeur de la fenêtre de tolérance par 1 pour savoir qui peut le plus facilement emmener le soliste dans un cercle sécurisé..."
 
-msgid "CIRCLES bei der Toleranzfenster-Grösse..."
-msgstr "CIRCLES pour la taille de la fenêtre de tolérance..."
+msgid "SICHERE KREISE bei der Toleranzfenster-Grösse..."
+msgstr "CERCLES SÛRS pour la taille de la fenêtre de tolérance..."
 
 msgid "PRIO 3: Die Konstellation beim "
 msgstr "PRIORITÉ 3 : La configuration avec "
@@ -467,14 +467,47 @@ msgstr "la fenêtre de tolérance standard de 16"
 msgid " könnte der IST-Situation im Team nahekommen. Wie sicher verbunden ist der Boss? Welchen Einsatz kann die Führungskraft leisten, um das Team vom Ist-Wert zur optimalen Konstellation aus Prio 1 zu entwickeln?"
 msgstr " pourrait refléter la situation actuelle de l'équipe. À quel point le boss est-il solidement connecté ? Quel effort la direction peut-elle fournir pour faire évoluer l'équipe de son état actuel vers la configuration optimale définie dans la priorité 1 ?"
 
+msgid " könnte der IST-Situation im Team nahekommen. Wie sicher verbunden ist der Boss?"
+msgstr " pourrait refléter la situation actuelle de l'équipe. À quel point le boss est-il solidement connecté ?"
+
 msgid "PRIO 1: Diese Konstellation ermöglicht euch ein "
 msgstr "PRIO 1 : Cette configuration vous offre un "
 
 msgid "maximales Mass an psychologischer Sicherheit beim Toleranzfenster"
 msgstr "niveau maximal de sécurité psychologique dans la plage de tolérance"
 
-msgid "Wer ist in mehreren sicheren Kreisen und wirkt integrierend? Lasst diese Integratoren Babysteps vorschlagen, die für gleichberechtigte Redeanteile sorgen, euren Sicherheitsankern gerecht werden und Triggersituationen entspannen können."
-msgstr "Qui se trouve dans plusieurs cercles de sécurité et a un effet intégrateur ? Laissez ces intégrateurs proposer des babysteps qui garantissent des parts de parole égales, répondent à vos ancrages de sécurité et peuvent apaiser les situations de déclenchement."
+msgid "Wer ist in mehreren sicheren Kreisen und wirkt integrierend?"
+msgstr "Qui se trouve dans plusieurs cercles de sécurité et a un effet intégrateur ?"
+
+msgid "Lasst diese Integratoren Babysteps vorschlagen, die für gleichberechtigte Redeanteile sorgen, euren Sicherheitsankern gerecht werden und Triggersituationen entspannen können."
+msgstr "Laissez ces intégrateurs proposer des babysteps qui garantissent des parts de parole égales, répondent à vos ancrages de sécurité et peuvent apaiser les situations de déclenchement."
+
+msgid "Integratoren-Erklärung"
+msgstr "Explication des intégrateurs"
+
+msgid "Wie weiter"
+msgstr "Et ensuite"
+
+msgid "Lasst die Personen im ersten sicheren Kreis Vorschläge machen, wie eine Integration, sofern gewünscht, noch besser gelingen kann."
+msgstr "Laissez les personnes du premier cercle sûr faire des suggestions sur la façon dont l'intégration, si souhaitée, peut mieux réussir."
+
+msgid "PRIO 2-Erklärung"
+msgstr "Explication PRIO 2"
+
+msgid "Welchen Einsatz kann die Führungskraft leisten, um das Team vom Ist-Wert zur optimalen Konstellation aus Prio 1 zu entwickeln?"
+msgstr "Quel engagement le leadership peut-il apporter pour développer l'équipe de la valeur actuelle vers la constellation optimale de PRIO 1 ?"
+
+msgid "PRIO 3-Erklärung"
+msgstr "Explication PRIO 3"
+
+msgid "Lesehilfe anzeigen"
+msgstr "Afficher l'aide à la lecture"
+
+msgid "Eine Lesehilfe: je kleiner der Zahlenwert, desto mehr Stress und negative Trigger zeigen sich, weil sich die Toleranzfenster der Teammitglieder schliessen. Im ersten sicheren Kreise funktioniert die Zusammenarbeit auch bei sehr grossem Stress noch ohne Drama."
+msgstr "Une aide à la lecture : plus la valeur numérique est petite, plus le stress et les déclencheurs négatifs apparaissent, car les fenêtres de tolérance des membres de l'équipe se ferment. Dans le premier cercle sûr, la collaboration fonctionne encore sans drame même sous un stress très élevé."
+
+msgid "Maximalwert-Erklärung"
+msgstr "Explication de la valeur maximale"
 
 msgid "Aktuell seid ihr beim Toleranzfenster von "
 msgstr "Actuellement, vous êtes à la fenêtre de tolérance de "
@@ -506,11 +539,17 @@ msgstr "Boostez les satellites"
 msgid " und erkenne, wer Hand in einen sicheren Kreis bieten kann. Lasst die Personen im ersten sicheren Kreis Vorschläge machen, wie eine Integration, sofern gewünscht, noch besser gelingen kann."
 msgstr " et identifiez qui peut tendre la main à un cercle sécurisé. Laissez les personnes du premier cercle sécurisé faire des suggestions pour améliorer davantage l'intégration, si souhaité."
 
+msgid " und erkenne, wer Hand in einen sicheren Kreis bieten kann."
+msgstr " et identifiez qui peut tendre la main à un cercle sécurisé."
+
 msgid "CIRCLES bei Safe-Zone-Wert:"
 msgstr "CIRCLES à la valeur de la zone de sécurité :"
 
 msgid "(niedrige Werte = hoher Stress)"
 msgstr "(faibles valeurs = stress élevé)"
+
+msgid "Das Toleranzfenster ist in der Arche der zentrale Mechanismus zur Visualisierung psychologischer Sicherheit. Es wird als grüner Bereich um den Team-Mittelwert herum definiert, dessen Breite ein festgelegtes Sicherheitsintervall (z.B. ±16 Punkte) vorgibt. Dieser Bereich markiert, welche Unterschiede in der gegenseitigen Wahrnehmung als sicher und akzeptabel gelten. Der erstrebenswerte Team-Sweetspot ist jenes Intervall, in dem die maximale Anzahl psychologisch sicherer Kreise entsteht – also stabile Verbindungen, in denen auch schwierige Themen offen besprochen werden können. Ein zu enges Fenster führt zu Stress und defensiven Reaktionen, da bereits kleine Abweichungen als Bedrohung wahrgenommen werden. Ein zu weites Toleranzfenster hingegen kann auf problematische Uniformität hindeuten: Es fehlt an notwendigen, herausfordernden Perspektiven, was zu Groupthink und erstarrenden Dynamiken führen kann. Das Ziel ist somit die Balance – ein Gruppen-Toleranzfenster, das Sicherheit gewährt, ohne Lernprozesse zu ersticken."
+msgstr "La fenêtre de tolérance est le mécanisme central dans l'Arche pour visualiser la sécurité psychologique. Elle est définie comme une zone verte autour de la moyenne de l'équipe, dont la largeur est déterminée par un intervalle de sécurité fixe (par exemple, ±16 points). Cette zone marque quelles différences dans la perception mutuelle sont considérées comme sûres et acceptables. Le point idéal de l'équipe est cet intervalle dans lequel le nombre maximum de cercles psychologiquement sûrs émerge – c'est-à-dire des connexions stables dans lesquelles même des sujets difficiles peuvent être discutés ouvertement. Une fenêtre trop étroite entraîne du stress et des réactions défensives, car même de petites déviations sont perçues comme des menaces. Une fenêtre de tolérance trop large, en revanche, peut indiquer une uniformité problématique : il manque des perspectives nécessaires et stimulantes, ce qui peut conduire à la pensée de groupe et à des dynamiques figées. L'objectif est donc l'équilibre – une fenêtre de tolérance de groupe qui offre la sécurité sans étouffer les processus d'apprentissage."
 
 msgid "Im nächsten Schritt solltet ihr die Teammitglieder identifizieren, die durchgängig an mehreren oder allen SAFE CIRCLES teilhaben. Diese Kernmitglieder sind in der Lage Lösungen vorzuschlagen, die allen Teammitgliedern zugute kommen und die psychologische Sicherheit erhöhen."
 msgstr "Dans la prochaine étape, vous devriez identifier les membres de l'équipe qui participent régulièrement à plusieurs ou à tous les cercles psychologiquement sûrs. Ces membres essentiels sont capables de proposer des solutions bénéfiques à tous les membres de l'équipe et d'accroître la sécurité psychologique."
@@ -1213,3 +1252,87 @@ msgstr "Voici le lien vers toutes les vidéos qui étaient visibles dans le jeu.
 #: loco:606f064fe8c7130d64722224
 msgid "Zurück"
 msgstr "Retour"
+
+msgid "Bitte bewerte alle Teammitglieder. Noch nicht bewertet:"
+msgstr "Veuillez évaluer tous les membres de l'équipe. Pas encore évalué :"
+
+msgid "Bitte verschiebe alle Avatare. Noch"
+msgstr "Veuillez déplacer tous les avatars. Encore"
+
+msgid "verbleibend."
+msgstr "restant(s)."
+
+msgid "Fortschritt:"
+msgstr "Progrès :"
+
+msgid "Noch"
+msgstr "Encore"
+
+msgid "Personen zuordnen"
+msgstr "personnes à assigner"
+
+msgid "Alle Personen zugeordnet!"
+msgstr "Toutes les personnes assignées !"
+
+msgid "deine Wirkung auf andere"
+msgstr "ton impact sur les autres"
+
+msgid "Spannungen entstehen aus der Differenz zwischen Selbst- und Fremdbild"
+msgstr "Les tensions naissent de la différence entre l'image de soi et l'image perçue par les autres"
+
+msgid "meine Selbstwahrnehmung im Team"
+msgstr "ma perception de moi-même dans l'équipe"
+
+msgid "So hast du deinen Beitrag zur Teamdynamik eingeschätzt."
+msgstr "C'est ainsi que tu as évalué ta contribution à la dynamique d'équipe."
+
+msgid "Grüne Punkte = Integratoren"
+msgstr "Points verts = Intégrateurs"
+
+msgid "Zahlen in Blasen = Anzahl Safecircle des Spielers"
+msgstr "Chiffres dans les bulles = Nombre de safecircles du joueur"
+
+msgid "Zentrum = alle Safecircle im Team (je mehr, desto sicherer und vielfältiger wird die Zusammenarbeit)"
+msgstr "Centre = tous les safecircles de l'équipe (plus il y en a, plus la collaboration devient sûre et diversifiée)"
+
+msgid "Goldene Linie = In-Group"
+msgstr "Ligne dorée = Groupe interne"
+
+msgid "Sichere Kreise beim Toleranzfenster"
+msgstr "Cercles sûrs à la fenêtre de tolérance"
+
+msgid "Kreis"
+msgstr "Cercle"
+
+msgid "Personen"
+msgstr "personnes"
+
+msgid "Keine sicheren Kreise bei diesem Toleranzfenster-Wert"
+msgstr "Aucun cercle sûr à cette valeur de fenêtre de tolérance"
+
+msgid "Übersichtsansicht"
+msgstr "Vue d'ensemble"
+
+msgid "Drücke Leertaste, um zur Canvas-Ansicht zurückzukehren"
+msgstr "Appuyez sur la barre d'espace pour revenir à la vue canvas"
+
+msgid "Safecircle-Anzahl:"
+msgstr "Nombre de cercles sûrs:"
+
+msgid "In Kreisen:"
+msgstr "Dans les cercles:"
+
+msgid "Sichere Kreise:"
+msgstr "Cercles sûrs:"
+
+msgid "Ähnlichkeit:"
+msgstr "Similarité:"
+
+msgid "Integrator"
+msgstr "Intégrateur"
+
+msgid "Toleranzfenster:"
+msgstr "Fenêtre de tolérance:"
+
+msgid "Klicke für weitere Informationen"
+msgstr "Cliquez pour plus d'informations"

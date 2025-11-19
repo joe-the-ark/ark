@@ -476,8 +476,8 @@ msgstr " (click here) to see who is SOLO first. "
 msgid "Stelle sicher, dass alle in mindestens einem Kreis sicher verbunden sind. Erhöhe den Toleranzfenster-Wert nun um 1, um zu erkennen, wer den Solisten am einfachsten in einen sicheren Kreis mitnehmen kann..."
 msgstr "Make sure that everyone is safely connected in at least one circle. Now increase the tolerance window value by 1 to see who can most easily take the soloist into a safe circle..."
 
-msgid "CIRCLES bei der Toleranzfenster-Grösse..."
-msgstr "CIRCLES for the tolerance window size..."
+msgid "SICHERE KREISE bei der Toleranzfenster-Grösse..."
+msgstr "SAFE CIRCLES for the tolerance window size..."
 
 msgid "PRIO 3: Die Konstellation beim "
 msgstr "PRIORITY 3: The constellation at the "
@@ -488,14 +488,47 @@ msgstr "standard tolerance window of 16"
 msgid " könnte der IST-Situation im Team nahekommen. Wie sicher verbunden ist der Boss? Welchen Einsatz kann die Führungskraft leisten, um das Team vom Ist-Wert zur optimalen Konstellation aus Prio 1 zu entwickeln?"
 msgstr " could reflect the current situation in the team. How securely connected is the boss? What effort can the leader make to develop the team from its current state to the optimal constellation described in Priority 1?"
 
+msgid " könnte der IST-Situation im Team nahekommen. Wie sicher verbunden ist der Boss?"
+msgstr " could reflect the current situation in the team. How securely connected is the boss?"
+
 msgid "PRIO 1: Diese Konstellation ermöglicht euch ein "
 msgstr "PRIO 1: This constellation offers you the "
 
 msgid "maximales Mass an psychologischer Sicherheit beim Toleranzfenster"
 msgstr "maximum level of psychological safety within the tolerance window"
 
-msgid "Wer ist in mehreren sicheren Kreisen und wirkt integrierend? Lasst diese Integratoren Babysteps vorschlagen, die für gleichberechtigte Redeanteile sorgen, euren Sicherheitsankern gerecht werden und Triggersituationen entspannen können."
-msgstr "Who is in several safe circles and has an integrating effect? Let these integrators suggest baby steps that ensure equal shares of speech, do justice to your safety anchors and can calm trigger situations."
+msgid "Wer ist in mehreren sicheren Kreisen und wirkt integrierend?"
+msgstr "Who is in several safe circles and has an integrating effect?"
+
+msgid "Lasst diese Integratoren Babysteps vorschlagen, die für gleichberechtigte Redeanteile sorgen, euren Sicherheitsankern gerecht werden und Triggersituationen entspannen können."
+msgstr "Let these integrators suggest baby steps that ensure equal shares of speech, do justice to your safety anchors and can calm trigger situations."
+
+msgid "Integratoren-Erklärung"
+msgstr "Integrator explanation"
+
+msgid "Wie weiter"
+msgstr "What next"
+
+msgid "Lasst die Personen im ersten sicheren Kreis Vorschläge machen, wie eine Integration, sofern gewünscht, noch besser gelingen kann."
+msgstr "Let the people in the first safe circle make suggestions on how integration, if desired, can succeed even better."
+
+msgid "PRIO 2-Erklärung"
+msgstr "PRIO 2 explanation"
+
+msgid "Welchen Einsatz kann die Führungskraft leisten, um das Team vom Ist-Wert zur optimalen Konstellation aus Prio 1 zu entwickeln?"
+msgstr "What commitment can the leadership make to develop the team from the current value to the optimal constellation from PRIO 1?"
+
+msgid "PRIO 3-Erklärung"
+msgstr "PRIO 3 explanation"
+
+msgid "Lesehilfe anzeigen"
+msgstr "Show reading help"
+
+msgid "Eine Lesehilfe: je kleiner der Zahlenwert, desto mehr Stress und negative Trigger zeigen sich, weil sich die Toleranzfenster der Teammitglieder schliessen. Im ersten sicheren Kreise funktioniert die Zusammenarbeit auch bei sehr grossem Stress noch ohne Drama."
+msgstr "A reading aid: the smaller the numerical value, the more stress and negative triggers appear, because the tolerance windows of team members close. In the first safe circle, collaboration still works without drama even under very high stress."
+
+msgid "Maximalwert-Erklärung"
+msgstr "Maximum value explanation"
 
 msgid "Aktuell seid ihr beim Toleranzfenster von "
 msgstr "Currently you are at the tolerance window of "
@@ -518,11 +551,17 @@ msgstr "Boost satellites"
 msgid " und erkenne, wer Hand in einen sicheren Kreis bieten kann. Lasst die Personen im ersten sicheren Kreis Vorschläge machen, wie eine Integration, sofern gewünscht, noch besser gelingen kann."
 msgstr " and identify who can offer a hand to a safe circle. Let the people in the first safe circle suggest how integration, if desired, can be further improved."
 
+msgid " und erkenne, wer Hand in einen sicheren Kreis bieten kann."
+msgstr " and identify who can offer a hand to a safe circle."
+
 msgid "CIRCLES bei Safe-Zone-Wert:"
 msgstr "CIRCLES at Safe Zone value:"
 
 msgid "(niedrige Werte = hoher Stress)"
 msgstr "(low values = high stress)"
+
+msgid "Das Toleranzfenster ist in der Arche der zentrale Mechanismus zur Visualisierung psychologischer Sicherheit. Es wird als grüner Bereich um den Team-Mittelwert herum definiert, dessen Breite ein festgelegtes Sicherheitsintervall (z.B. ±16 Punkte) vorgibt. Dieser Bereich markiert, welche Unterschiede in der gegenseitigen Wahrnehmung als sicher und akzeptabel gelten. Der erstrebenswerte Team-Sweetspot ist jenes Intervall, in dem die maximale Anzahl psychologisch sicherer Kreise entsteht – also stabile Verbindungen, in denen auch schwierige Themen offen besprochen werden können. Ein zu enges Fenster führt zu Stress und defensiven Reaktionen, da bereits kleine Abweichungen als Bedrohung wahrgenommen werden. Ein zu weites Toleranzfenster hingegen kann auf problematische Uniformität hindeuten: Es fehlt an notwendigen, herausfordernden Perspektiven, was zu Groupthink und erstarrenden Dynamiken führen kann. Das Ziel ist somit die Balance – ein Gruppen-Toleranzfenster, das Sicherheit gewährt, ohne Lernprozesse zu ersticken."
+msgstr "The tolerance window is the central mechanism in the Ark for visualizing psychological safety. It is defined as a green zone around the team mean, whose width is determined by a fixed safety interval (e.g., ±16 points). This zone marks which differences in mutual perception are considered safe and acceptable. The desirable team sweet spot is that interval in which the maximum number of psychologically safe circles emerges – i.e., stable connections in which even difficult topics can be discussed openly. A window that is too narrow leads to stress and defensive reactions, as even small deviations are perceived as threats. A tolerance window that is too wide, on the other hand, can indicate problematic uniformity: there is a lack of necessary, challenging perspectives, which can lead to groupthink and stagnant dynamics. The goal is thus balance – a group tolerance window that provides security without stifling learning processes."
 
 msgid "Im nächsten Schritt solltet ihr die Teammitglieder identifizieren, die durchgängig an mehreren oder allen SAFE CIRCLES teilhaben. Diese Kernmitglieder sind in der Lage Lösungen vorzuschlagen, die allen Teammitgliedern zugute kommen und die psychologische Sicherheit erhöhen."
 msgstr "In the next step, you should identify team members who consistently participate in multiple or all SAFE CIRCLES. These core members are able to propose solutions that benefit all team members and increase psychological safety."
@@ -1189,3 +1228,87 @@ msgstr "Here is the link to all the videos that were visible in the game."
 #: loco:606f064fe8c7130d64722224
 msgid "Zurück"
 msgstr "Back"
+
+msgid "Bitte bewerte alle Teammitglieder. Noch nicht bewertet:"
+msgstr "Please rate all team members. Not yet rated:"
+
+msgid "Bitte verschiebe alle Avatare. Noch"
+msgstr "Please move all avatars. Still"
+
+msgid "verbleibend."
+msgstr "remaining."
+
+msgid "Fortschritt:"
+msgstr "Progress:"
+
+msgid "Noch"
+msgstr "Still"
+
+msgid "Personen zuordnen"
+msgstr "persons to assign"
+
+msgid "Alle Personen zugeordnet!"
+msgstr "All persons assigned!"
+
+msgid "deine Wirkung auf andere"
+msgstr "your impact on others"
+
+msgid "Spannungen entstehen aus der Differenz zwischen Selbst- und Fremdbild"
+msgstr "Tensions arise from the difference between self-perception and external perception"
+
+msgid "meine Selbstwahrnehmung im Team"
+msgstr "my self-perception in the team"
+
+msgid "So hast du deinen Beitrag zur Teamdynamik eingeschätzt."
+msgstr "This is how you assessed your contribution to team dynamics."
+
+msgid "Grüne Punkte = Integratoren"
+msgstr "Green dots = Integrators"
+
+msgid "Zahlen in Blasen = Anzahl Safecircle des Spielers"
+msgstr "Numbers in bubbles = Number of safecircles of the player"
+
+msgid "Zentrum = alle Safecircle im Team (je mehr, desto sicherer und vielfältiger wird die Zusammenarbeit)"
+msgstr "Center = all safecircles in the team (the more, the safer and more diverse the collaboration becomes)"
+
+msgid "Goldene Linie = In-Group"
+msgstr "Golden line = In-Group"
+
+msgid "Sichere Kreise beim Toleranzfenster"
+msgstr "Safe circles at tolerance window"
+
+msgid "Kreis"
+msgstr "Circle"
+
+msgid "Personen"
+msgstr "persons"
+
+msgid "Keine sicheren Kreise bei diesem Toleranzfenster-Wert"
+msgstr "No safe circles at this tolerance window value"
+
+msgid "Übersichtsansicht"
+msgstr "Overview"
+
+msgid "Drücke Leertaste, um zur Canvas-Ansicht zurückzukehren"
+msgstr "Press space to return to canvas view"
+
+msgid "Safecircle-Anzahl:"
+msgstr "Safecircle count:"
+
+msgid "In Kreisen:"
+msgstr "In circles:"
+
+msgid "Sichere Kreise:"
+msgstr "Safe circles:"
+
+msgid "Ähnlichkeit:"
+msgstr "Similarity:"
+
+msgid "Integrator"
+msgstr "Integrator"
+
+msgid "Toleranzfenster:"
+msgstr "Tolerance window:"
+
+msgid "Klicke für weitere Informationen"
+msgstr "Click for more information"

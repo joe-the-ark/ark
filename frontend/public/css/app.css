@@ -688,4 +688,143 @@ input {
   text-align: center;
 }
 
+/* Mobile responsive adjustments for consistent adaptive resizing across all pages */
+@media screen and (max-width: 768px) {
+  /* Container width adjustments for smooth fitting */
+  .container {
+    padding: 0 10px !important;
+    margin: 0 auto !important;
+    width: 99% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  .center {
+    width: 99% !important;
+    margin: auto !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Font size adjustments for mobile readability */
+  h1 {
+    font-size: 28px !important;
+    line-height: 1.2 !important;
+  }
+  
+  h3 {
+    font-size: 22px !important;
+    line-height: 1.2 !important;
+  }
+  
+  p {
+    font-size: 18px !important;
+    line-height: 1.3 !important;
+  }
+  
+  /* Button and input size adjustments for mobile */
+  button,
+  .button {
+    font-size: 14px !important;
+    padding: 5px 10px !important;
+    line-height: 1.2 !important;
+    min-height: 40px !important;
+  }
+  
+  input[type="text"],
+  input[type="number"],
+  input[type="email"],
+  input[type="password"],
+  textarea {
+    font-size: 16px !important;
+    padding: 8px 12px !important;
+    min-height: 44px !important;
+  }
+  
+  /* Header adjustments for mobile */
+  .header-main * {
+    font-size: 18px !important;
+  }
+  
+  .header-main__title span:first-child {
+    font-size: 28px !important;
+  }
+  
+  .header-main__title span:last-child {
+    font-size: 22px !important;
+  }
+  
+  /* Ensure images scale properly */
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  
+  /* Canvas and media elements */
+  canvas {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  
+  /* Screen content adjustments */
+  .screen {
+    padding: 10px !important;
+  }
+  
+  .screen p {
+    text-align: left !important;
+  }
+  
+  /* Progress bar adjustments */
+  .progress__bar {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+/* Unified Tooltip Question Mark Icon */
+.tooltip-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #52CEEC;
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  cursor: help;
+  font-size: 16px;
+  flex-shrink: 0;
+  vertical-align: middle;
+  margin-left: 6px;
+  transition: all 0.2s ease;
+}
+
+.tooltip-icon:hover {
+  background-color: #3bb5d4;
+  transform: scale(1.1);
+}
+
+.tooltip-icon.tooltip-icon-green {
+  background-color: #9FE2BF;
+  color: #626262;
+}
+
+.tooltip-icon.tooltip-icon-green:hover {
+  background-color: #7dd4a8;
+}
+
+/* Tooltip icon for inline elements */
+.tooltip-trigger {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: help;
+}
+
+.tooltip-trigger .tooltip-icon {
+  margin-left: 4px;
+  margin-right: 0;
+}
+
 

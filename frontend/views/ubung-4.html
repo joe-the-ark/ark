@@ -86,9 +86,23 @@
                         <input id="row4" type="hidden" name="row-4" value=""/>
                         <input id="row5" type="hidden" name="row-5" value=""/>
                         
+
+                    <div style="background-color: #FFFFFF; color: #626262; border-radius: 10px; padding: 10px; margin: 20px 0;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                            <span>{% trans "Fortschritt:" %}</span>
+                            <span><strong>[[ assignedCount ]] / [[ totalCount ]]</strong></span>
+                        </div>
+                        <div style="width: 100%; background-color: #e0e0e0; border-radius: 10px; height: 20px; overflow: hidden;">
+                            <div :style="{ width: progressPercentage + '%', backgroundColor: progressPercentage === 100 ? '#9FE2BF' : '#52CEEC', height: '100%', transition: 'width 0.3s ease' }"></div>
+                        </div>
+                        <p style="margin-top: 10px; font-size: 12px; text-align: center;">
+                            <span v-if="assignedCount < totalCount">{% trans "Noch" %} [[ remainingMessage ]] {% trans "Personen zuordnen" %}</span>
+                            <span v-else style="color: #9FE2BF; font-weight: bold;">{% trans "Alle Personen zugeordnet!" %}</span>
+                        </p>
                     <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;"><br>
                         {% trans "Einer Aussage können auch mehrere Personen zugeordnet werden." %}<br><br>
                     </p>
+                    </div>
 
                     <p>
                         <button type="button" id="button" @click="check_submit()" >
@@ -140,12 +154,31 @@
             let name = '';
             let whichContainer = 0;
             let player = {};
+            
+            // Keyboard navigation state
+            let keyboardSelectedAvatar = null;
+            let keyboardSelectedAvatarIndex = -1;
+            let keyboardSelectedStatement = null;
+            let keyboardSelectedStatementIndex = -1;
+            
+            console.log('Handlers called - usersFrom:', usersFrom.length, 'usersDistr:', usersDistr.length);
 
 
             if (window.innerWidth > 1200) {
+                // Add click-to-select functionality for desktop
                 usersFrom.forEach((item, i) => {
-                    if (item.closest('.active')) {
+                    // Check if item itself has 'active' class
+                    if (item.classList.contains('active')) {
+                        // Track if this was a click or drag
+                        let hasDragged = false;
+                        let mouseDownPos = {x: 0, y: 0};
+                        
+                        // Restore original drag functionality
                         item.addEventListener('mousedown', function (e) {
+                            mouseDownPos = {x: e.clientX, y: e.clientY};
+                            hasDragged = false;
+                            
+                            // Start drag immediately (original behavior)
                             $self.saveDndItem = item;
                             $self.cloned = item.cloneNode(true);
                             body.appendChild($self.cloned);
@@ -155,8 +188,47 @@
                             $self.cloned.style.zIndex = 1000;
                             $self.saveX = e.offsetX;
                             $self.saveY = e.offsetY;
-                            $self.saveDndItemIndex = i;
+                            const originalIndex = item.getAttribute('data-original-index');
+                            $self.saveDndItemIndex = originalIndex !== null ? parseInt(originalIndex, 10) : i;
                             start = true;
+                            
+                            // Track if user actually drags
+                            const handleMouseMove = function(moveEvent) {
+                                const moved = Math.abs(moveEvent.clientX - mouseDownPos.x) > 5 || 
+                                             Math.abs(moveEvent.clientY - mouseDownPos.y) > 5;
+                                if (moved) {
+                                    hasDragged = true; // User is dragging
+                                }
+                            };
+                            
+                            document.addEventListener('mousemove', handleMouseMove);
+                            
+                            // On mouseup, if it was just a click (no drag), convert to click-to-select
+                            const handleMouseUp = function(upEvent) {
+                                document.removeEventListener('mousemove', handleMouseMove);
+                                document.removeEventListener('mouseup', handleMouseUp);
+                                
+                                // If user didn't drag, treat as click-to-select
+                                if (!hasDragged && $self.cloned) {
+                                    // Remove the cloned element
+                                    $self.cloned.remove();
+                                    $self.cloned = null;
+                                    start = false;
+                                    
+                                    // Restore active class
+                                    item.classList.add('active');
+                                    
+                                    // Remove outline from other items
+                                    document.querySelectorAll('.user-connect').forEach(u => u.classList.remove('outline', 'click-selected'));
+                                    // Add outline to selected item
+                                    item.classList.add('outline', 'click-selected');
+                                    $self.saveDndItem = item;
+                                    $self.saveDndItemIndex = originalIndex !== null ? parseInt(originalIndex, 10) : i;
+                                    start = true;
+                                    console.log('Avatar selected via click:', item, 'index:', $self.saveDndItemIndex);
+                                }
+                            };
+                            document.addEventListener('mouseup', handleMouseUp, {once: true});
                         });
                     }
                 });
@@ -183,7 +255,8 @@
                 }
 
                 document.onmousemove = event => {
-                    if (start) {
+                    // Only handle drag operations (when cloned exists)
+                    if (start && $self.cloned) {
                         const distry = event.target.closest('.distry');
                         if (distry) {
                             distry.classList.add('active')
@@ -197,7 +270,7 @@
                         $self.cloned.style.top = event.clientY - $self.saveY + 'px';
                         $self.cloned.style.left = event.pageX - $self.saveX + 'px';
                     }
-                    if (replace) {
+                    if (replace && $self.cloned) {
                         const distry = event.target.closest('.distry');
                         if (distry) {
                             distry.classList.add('active')
@@ -215,12 +288,14 @@
                 };
 
                 document.addEventListener('mouseup', function (e) {
-                    if (start) {
+                    // Only handle drag operations (when cloned exists)
+                    if (start && $self.cloned) {
                         const toElemnet = e.target;
                         const toElementId = toElemnet.parentNode.getAttribute('data-id');
                         $self.saveX = 0;
                         $self.saveY = 0;
                         $self.cloned.remove();
+                        $self.cloned = null;
                         start = false;
                         if (toElementId) {
                             const testItem = $self.data[$self.saveDndItemIndex]
@@ -230,6 +305,11 @@
                             };
                             $self.containersTo[toElementId].items.push(testItem);
                             $self.render();
+                            
+                            // Update progress if Vue app exists
+                            if (window.app1) {
+                                window.app1.updateProgress();
+                            }
                         } else {
                             $self.saveDndItem.classList.add('active')
                         }
@@ -279,80 +359,307 @@
             }
 
             if (window.innerWidth <= 1200) {
+                console.log('Mobile mode: Setting up handlers, usersFrom:', usersFrom.length);
+                
+                // Mobile: Click avatar to select, then click statement to assign
                 usersFrom.forEach((item, i) => {
-                    if (item.closest('.active')) {
-                        // add event listener to every active user banner
+                    // Check if item itself has 'active' class
+                    if (item.classList.contains('active')) {
+                        console.log('Mobile: Adding click handler to avatar', i);
+                        // Click avatar to select it
                         item.addEventListener('click', function (e) {
+                            e.stopPropagation();
+                            console.log('Mobile: Avatar clicked', item);
+                            // Remove selection from other avatars
+                            document.querySelectorAll('.user-connect').forEach(u => u.classList.remove('outline'));
+                            // Select this avatar
                             item.classList.add('outline');
-                            // item = <div class="user-connect active user-connect--to">
                             $self.saveDndItem = item;
+                            const originalIndex = item.getAttribute('data-original-index');
+                            $self.saveDndItemIndex = originalIndex !== null ? parseInt(originalIndex, 10) : i;
                             start = true;
-                            $self.saveDndItemIndex = i;
+                            console.log('Mobile: Avatar selected, index:', $self.saveDndItemIndex, 'start:', start, 'saveDndItem:', $self.saveDndItem);
                         });
                     }
                 });
 
-                document.querySelectorAll('.distry').forEach((item) => {
-                    item.addEventListener('click', function (e) {
-                        if (start) {
-                            const toElementId = this.getAttribute('data-id');
-                            $self.saveDndItem.classList.remove('outline')
-                            start = false;
-                            if (this.getAttribute('data-id')) {
-                                const testItem = $self.data[$self.saveDndItemIndex]
-                                $self.data[$self.saveDndItemIndex] = {
+                // Mobile: Click statement box to assign selected avatar
+                // Attach handlers immediately, they'll be re-attached after each render
+                const attachStatementHandlers = () => {
+                    const statementBoxes = document.querySelectorAll('.distry');
+                    console.log('Mobile: Found', statementBoxes.length, 'statement boxes');
+                    statementBoxes.forEach((statementBox) => {
+                        // Remove any existing handler to avoid duplicates
+                        const newHandler = function (e) {
+                            e.stopPropagation();
+                            console.log('Mobile: Statement box clicked!');
+                            console.log('  - start:', start);
+                            console.log('  - saveDndItem:', $self.saveDndItem);
+                            console.log('  - has outline:', $self.saveDndItem && $self.saveDndItem.classList.contains('outline'));
+                            console.log('  - cloned:', $self.cloned);
+                            
+                            // Only assign if we have a selected avatar (with outline class) and not dragging
+                            // Check if cloned is null/undefined or an empty object (not a DOM element)
+                            // DOM elements have nodeType property, empty objects don't
+                            const isNotDragging = !$self.cloned || (typeof $self.cloned === 'object' && !$self.cloned.nodeType && Object.keys($self.cloned).length === 0);
+                            console.log('Mobile: isNotDragging:', isNotDragging, 'cloned type:', typeof $self.cloned, 'has nodeType:', $self.cloned && $self.cloned.nodeType);
+                            if (start && $self.saveDndItem && $self.saveDndItem.classList.contains('outline') && isNotDragging) {
+                                const toElementId = statementBox.getAttribute('data-id');
+                                console.log('Mobile: Attempting assignment, toElementId:', toElementId, 'avatarIndex:', $self.saveDndItemIndex);
+                                
+                                if (toElementId !== null && toElementId !== '') {
+                                    const avatarIndex = $self.saveDndItemIndex;
+                                    if (avatarIndex >= 0 && avatarIndex < $self.data.length) {
+                                        const testItem = $self.data[avatarIndex];
+                                        console.log('Mobile: testItem:', testItem, 'hidden:', testItem ? testItem.hidden : 'N/A');
+                                        
+                                        if (testItem && !testItem.hidden) {
+                                            // Mark item as hidden
+                                            $self.data[avatarIndex] = {
                                     ...testItem,
                                     hidden: true
                                 };
+                                            // Add to target container
                                 $self.containersTo[toElementId].items.push(testItem);
+                                            
+                                            console.log('Mobile: Item assigned successfully');
+                                            
+                                            // Re-render
                                 $self.render();
+                                            
+                                            // Update progress if Vue app exists
+                                            if (window.app1) {
+                                                window.app1.updateProgress();
+                                            }
+                                            
+                                            // Clear selection
+                                            $self.saveDndItem.classList.remove('outline');
+                                            $self.saveDndItem = null;
+                                            start = false;
+                                        } else {
+                                            console.log('Mobile: Assignment failed - item hidden or invalid');
+                                        }
+                                    } else {
+                                        console.log('Mobile: Assignment failed - invalid avatarIndex:', avatarIndex);
+                                    }
+                                } else {
+                                    console.log('Mobile: Assignment failed - no toElementId');
+                                }
                             } else {
-                                $self.saveDndItem.classList.add('active')
+                                console.log('Mobile: Assignment conditions not met');
                             }
+                        };
+                        
+                        // Store handler reference to remove it later if needed
+                        if (statementBox._mobileClickHandler) {
+                            statementBox.removeEventListener('click', statementBox._mobileClickHandler);
                         }
-                        if (replace) {
-                            const toElemnet = e.target;
-                            console.log(e.target)
-                            const toElementId = toElemnet.parentNode.getAttribute('data-id');
-                            replace = false;
-                            if (toElementId) {
-                                $self.containersTo[toElementId].items.push(player);
-                                let contItems = $self.containersTo[whichContainer].items.filter(item => item.name != name);
-                                $self.containersTo[whichContainer].items = contItems;
-                                $self.render();
-
-                            }
-                            else {
-                                let contItems = $self.containersTo[whichContainer].items.filter(item => item.name != name);
-                                $self.containersTo[whichContainer].items = contItems;
-                                $self.data.forEach((item, i) => {
-                                    if (item.name == name) {item.hidden = false}
-                                });
-                                $self.render();
-                            }
-                        }
+                        statementBox._mobileClickHandler = newHandler;
+                        statementBox.addEventListener('click', newHandler);
                     });
-                })
-                //Replace player
+                };
+                
+                // Attach immediately and also after a short delay
+                attachStatementHandlers();
+                setTimeout(attachStatementHandlers, 100);
+                
+                //Replace player (click on already assigned player to remove)
                 if (usersDistr) {
                   usersDistr.forEach((item, i) => {
                     item.addEventListener('click', function (e) {
-                        item.classList.add('outline');
-                        console.log(event.target);
                         name = event.target.parentNode.getAttribute('data-tippy-content');
-                        $self.saveDndItem = item;
-                        $self.saveDndItemIndex = i;
                         whichContainer = event.target.parentNode.parentNode.parentNode.getAttribute('data-id');
-                        player = $self.containersTo[whichContainer].items.find(item => item.name == name);
-                        replace = true;
-                        console.log(name, $self.saveDndItem, $self.saveDndItemIndex, whichContainer, player)
+                        let contItems = $self.containersTo[whichContainer].items.filter(item => item.name != name);
+                        $self.containersTo[whichContainer].items = contItems;
+                        $self.data.forEach((item, i) => {
+                            if (item.name == name) {item.hidden = false}
+                        });
+                        $self.render();
                     });
                   });
                 }
-                
-
             }
+            
+            // Desktop: Add hover effects for click-selected avatars
+            if (window.innerWidth > 1200) {
+                const statements = document.querySelectorAll('.distry');
+                statements.forEach((item) => {
+                    // Add hover effect when avatar is selected
+                    item.addEventListener('mouseenter', function() {
+                        const clickSelected = document.querySelector('.user-connect.click-selected');
+                        if (clickSelected && !$self.cloned) {
+                            this.classList.add('ready-to-assign');
+                        }
+                    });
+                    item.addEventListener('mouseleave', function() {
+                        this.classList.remove('ready-to-assign');
+                    });
+                    
+                    // Desktop: Click statement box to assign click-selected avatar
+                    item.addEventListener('click', function (e) {
+                        const clickSelected = document.querySelector('.user-connect.click-selected');
+                        if (clickSelected && !$self.cloned) {
+                            const toElementId = item.getAttribute('data-id');
+                            if (toElementId !== null && toElementId !== '') {
+                                const originalIndex = clickSelected.getAttribute('data-original-index');
+                                const avatarIndex = originalIndex !== null ? parseInt(originalIndex, 10) : $self.saveDndItemIndex;
+                                
+                                if (avatarIndex >= 0 && avatarIndex < $self.data.length) {
+                                    const testItem = $self.data[avatarIndex];
+                                    if (testItem && !testItem.hidden) {
+                                        // Mark item as hidden
+                                        $self.data[avatarIndex] = {
+                                            ...testItem,
+                                            hidden: true
+                                        };
+                                        // Add to target container
+                                        $self.containersTo[toElementId].items.push(testItem);
+                                        
+                                        // Re-render
+                                        $self.render();
+                                        
+                                        // Update progress if Vue app exists
+                                        if (window.app1) {
+                                            window.app1.updateProgress();
+                                        }
+                                        
+                                        // Clear selection
+                                        clickSelected.classList.remove('outline', 'click-selected');
+                                        $self.saveDndItem = null;
+                                        start = false;
+                                    }
+                                }
+                            }
+                        }
+                    });
+                });
+            }
+            
+            // Add keyboard navigation support
+            this.addKeyboardNavigation($self);
 
+        }
+        
+        addKeyboardNavigation($self) {
+            let keyboardSelectedAvatar = null;
+            let keyboardSelectedAvatarIndex = -1;
+            let keyboardSelectedStatement = null;
+            let keyboardSelectedStatementIndex = -1;
+            
+            // Make avatars and statements focusable
+            const makeFocusable = () => {
+                const avatars = document.querySelectorAll('.user-connect--to.active');
+                const statements = document.querySelectorAll('.distry');
+                
+                avatars.forEach((avatar, i) => {
+                    if (!avatar.hasAttribute('tabindex')) {
+                        avatar.setAttribute('tabindex', '0');
+                        avatar.setAttribute('role', 'button');
+                        avatar.setAttribute('aria-label', avatar.querySelector('.user-connect__name')?.textContent || 'Avatar');
+                    }
+                });
+                
+                statements.forEach((statement, i) => {
+                    if (!statement.hasAttribute('tabindex')) {
+                        statement.setAttribute('tabindex', '0');
+                        statement.setAttribute('role', 'button');
+                        const description = statement.querySelector('.distry__description')?.textContent || '';
+                        statement.setAttribute('aria-label', description);
+                    }
+                });
+            };
+            
+            // Handle keyboard events
+            document.addEventListener('keydown', (e) => {
+                const avatars = Array.from(document.querySelectorAll('.user-connect--to.active'));
+                const statements = Array.from(document.querySelectorAll('.distry'));
+                const allFocusable = [...avatars, ...statements];
+                
+                // Find current focus
+                const currentFocus = document.activeElement;
+                const currentIndex = allFocusable.indexOf(currentFocus);
+                
+                // Handle Tab navigation
+                if (e.key === 'Tab') {
+                    // Let default Tab behavior work, but ensure elements are focusable
+                    makeFocusable();
+                    return; // Don't prevent default
+                }
+                
+                // Handle Enter/Space to select/assign
+                if ((e.key === 'Enter' || e.key === ' ') && currentFocus) {
+                    e.preventDefault();
+                    makeFocusable();
+                    
+                    if (avatars.includes(currentFocus)) {
+                        // Avatar selected - highlight it
+                        avatars.forEach(a => a.classList.remove('keyboard-selected'));
+                        currentFocus.classList.add('keyboard-selected');
+                        keyboardSelectedAvatar = currentFocus;
+                        keyboardSelectedAvatarIndex = avatars.indexOf(currentFocus);
+                        
+                        // Focus first statement
+                        if (statements.length > 0) {
+                            statements[0].focus();
+                        }
+                    } else if (statements.includes(currentFocus) && keyboardSelectedAvatar) {
+                        // Statement selected with avatar ready - assign it
+                        const statementId = currentFocus.getAttribute('data-id');
+                        if (statementId !== null) {
+                            const avatarIndex = keyboardSelectedAvatarIndex;
+                            if (avatarIndex >= 0 && avatarIndex < $self.data.length) {
+                                const testItem = $self.data[avatarIndex];
+                                $self.data[avatarIndex] = {
+                                    ...testItem,
+                                    hidden: true
+                                };
+                                $self.containersTo[statementId].items.push(testItem);
+                                $self.render();
+                                
+                                // Update progress if Vue app exists
+                                if (window.app1) {
+                                    window.app1.updateProgress();
+                                }
+                                
+                                // Clear selection
+                                keyboardSelectedAvatar = null;
+                                keyboardSelectedAvatarIndex = -1;
+                                avatars.forEach(a => a.classList.remove('keyboard-selected'));
+                            }
+                        }
+                    }
+                }
+                
+                // Handle Escape to cancel selection
+                if (e.key === 'Escape') {
+                    avatars.forEach(a => a.classList.remove('keyboard-selected'));
+                    statements.forEach(s => s.classList.remove('keyboard-selected'));
+                    keyboardSelectedAvatar = null;
+                    keyboardSelectedAvatarIndex = -1;
+                    keyboardSelectedStatement = null;
+                    keyboardSelectedStatementIndex = -1;
+                }
+                
+                // Handle Arrow keys for navigation
+                if (e.key.startsWith('Arrow') && currentIndex >= 0) {
+                    e.preventDefault();
+                    makeFocusable();
+                    
+                    let nextIndex = currentIndex;
+                    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                        nextIndex = (currentIndex + 1) % allFocusable.length;
+                    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                        nextIndex = (currentIndex - 1 + allFocusable.length) % allFocusable.length;
+                    }
+                    
+                    if (allFocusable[nextIndex]) {
+                        allFocusable[nextIndex].focus();
+                    }
+                }
+            });
+            
+            // Make elements focusable on render
+            setTimeout(makeFocusable, 100);
         }
 
         renderContainersTo(item, i) {
@@ -373,18 +680,45 @@
         }
 
         renderDataItems() {
-
+            // Organize players in columns of max 7
+            const maxPerColumn = 7;
+            // Create array with original indices preserved
+            const activePlayersWithIndex = this.data.map((item, index) => ({...item, originalIndex: index}))
+                .filter(({hidden}) => !hidden);
+            
+            const columns = [];
+            
+            for (let i = 0; i < activePlayersWithIndex.length; i += maxPerColumn) {
+                columns.push(activePlayersWithIndex.slice(i, i + maxPerColumn));
+            }
+            
+            // If no columns, return empty
+            if (columns.length === 0) {
             return `<div class="distribution__item">
                    <div class="distribution__users">
-                            ${this.data.map(({name, avatar, hidden}, i) => {
+                   </div>
+                </div>`;
+            }
+            
+            const columnsHtml = columns.map((column, colIdx) => {
+                return `<div class="distribution__users-column" style="display: flex; flex-direction: column; gap: 20px; min-width: 210px; max-width: 210px;">
+                    ${column.map(({name, avatar, hidden, originalIndex}) => {
                 const isActive = hidden ? '' : 'active';
-                return `<div class="user-connect ${isActive} user-connect--to">
+                        return `<div class="user-connect ${isActive} user-connect--to" data-original-index="${originalIndex}">
                                 <img src="${avatar}" alt=""/>
                                 <div class="user-connect__name">
                                     ${name}
                                 </div>
                             </div>`
-            })}
+                    }).join('')}
+                </div>`;
+            }).join('');
+            
+            console.log('Columns created:', columns.length, 'Total players:', activePlayersWithIndex.length);
+
+            return `<div class="distribution__item">
+                   <div class="distribution__users">
+                        ${columnsHtml}
                         </div>
                 </div>`;
 
@@ -406,7 +740,10 @@
 
             this.container.innerHTML = renderHtml.split(`,`).join('');
             // console.log(renderHtml.__proto__);
+            // Use setTimeout to ensure DOM is fully updated before attaching handlers
+            setTimeout(() => {
             this.handlers();
+            }, 0);
             // With the above scripts loaded, you can call `tippy()` with a CSS
             // selector and a `content` prop:
             tippy('[data-tippy-content]');
@@ -512,9 +849,29 @@
     var app1 = new Vue({
         delimiters: ['[[', ']]'],
         el: '#app-1',
+        data() {
+            return {
+                totalCount: {{member_list|safe}}.length,
+                assignedCount: 0
+            }
+        },
+        computed: {
+            progressPercentage() {
+                if (this.totalCount === 0) return 0;
+                return Math.round((this.assignedCount / this.totalCount) * 100);
+            },
+            remainingMessage() {
+                if (this.assignedCount >= this.totalCount) {
+                    return '';
+                }
+                var remaining = this.totalCount - this.assignedCount;
+                // Construct message: "Noch X Personen zuordnen"
+                // Translations are handled by Django template tags, so we just insert the number
+                return remaining;
+            }
+        },
         methods:{
-            check_submit(){
-                var member_num = {{member_list|safe}}.length
+            updateProgress() {
                 var done_list = app.getData()
                 var done_num = 0
                 var uu = 0
@@ -522,19 +879,37 @@
                     done_num = done_num + done_list[uu].items.length
                     uu += 1
                 }
+                this.assignedCount = done_num;
+            },
+            check_submit(){
+                var member_num = this.totalCount;
+                var done_num = this.assignedCount;
                 if (member_num === done_num){
                     var form_submit = document.getElementById('form_');
                     form_submit.submit()
                 }else{
+                    var remaining = member_num - done_num;
+                    var errorMessage = "{% trans 'Bitte verschiebe alle Avatare. Noch'|escapejs %} " + remaining + " {% trans 'verbleibend.'|escapejs %}";
                     this.$message({
                         showClose: true,
-                        message: 'Please move all avatars',
+                        message: errorMessage,
                         type: 'error',
                         center: true
                     })
                     
                 }
             }
+        },
+        mounted() {
+            // Make Vue app globally accessible for keyboard navigation
+            window.app1 = this;
+            
+            // Update progress every second
+            setInterval(() => {
+                this.updateProgress();
+            }, 1000);
+            // Initial update
+            this.updateProgress();
         }
     })
 

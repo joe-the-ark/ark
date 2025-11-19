@@ -58,7 +58,7 @@
                     {% trans "Bitte dreh dein Gerät um 90° für eine bessere Lesbarkeit." %}
                 </p>
                     <div class="progress__bar">
-                        <div style="width: 40%; border-radius: 10px;">40%</div>
+                        <div id="ubung5-progress-bar" style="width: 40%; border-radius: 10px;">40%</div>
                     </div>
                 </div>
             </div>
@@ -121,8 +121,159 @@
 
 <script>
 
+    // Translated messages
+    var ALERT_MESSAGE_PREFIX = "{% trans 'Bitte bewerte alle Teammitglieder. Noch nicht bewertet:'|escapejs %}";
+    var PLAYER_LABEL = "{% trans 'Spieler'|escapejs %}";
+
+    // Track total votes cast across all tension pairs using localStorage
+    // Key format: 'ubung5_votes_' + gameLink + '_' + userId
+    var storageKey = 'ubung5_votes_{{game.link|escapejs}}_{{user.id}}';
+    
+    // Initialize or retrieve total votes from localStorage
+    function getTotalVotesCast() {
+        var stored = localStorage.getItem(storageKey);
+        return stored ? parseInt(stored, 10) : 0;
+    }
+    
+    function setTotalVotesCast(count) {
+        localStorage.setItem(storageKey, count.toString());
+    }
+    
+    function calculateVotingProgress() {
+        // In ubung-5:
+        // - Number of scales = number of players (10 players = 10 scales)
+        // - Each player votes on all scales for each tension pair
+        // - In a 10-player game: 10 scales × 10 tension pairs = 100 votes per player
+        // - Progress reflects total votes cast by current user (0 to 100 votes)
+        
+        // Get total number of players (scales) from current page
+        var allSliders = document.querySelectorAll('.custom-graph__range');
+        var totalPlayers = allSliders.length; // Number of players = number of scales
+        
+        // Count votes on current page (current tension pair)
+        var votesOnCurrentPage = 0;
+        var defaultValue = 50; // Default slider value when no vote has been made
+        
+        allSliders.forEach(function(slider) {
+            var currentValue = parseInt(slider.value);
+            // If slider has been moved from default (50), this is a vote
+            if (!isNaN(currentValue) && currentValue !== defaultValue) {
+                votesOnCurrentPage++;
+            }
+        });
+        
+        // Get total votes cast across all tension pairs from localStorage
+        var totalVotesCast = getTotalVotesCast();
+        
+        // Calculate total votes needed: number of players × number of players
+        // (assuming one tension pair per player, or adjust based on actual number of tension pairs)
+        // For now, we'll use: totalPlayers × totalPlayers = totalVotesNeeded
+        // In a 10-player game: 10 × 10 = 100 votes
+        var totalVotesNeeded = totalPlayers * totalPlayers;
+        
+        // Calculate progress: 40% (start) to 60% (end) = 20% range
+        // Each vote contributes: 20% / totalVotesNeeded
+        // Example with 100 votes needed: each vote = 0.2% (20% / 100 = 0.2%)
+        var baseProgress = 40; // Start of ubung-5
+        var targetProgress = 60; // End of ubung-5
+        var progressRange = targetProgress - baseProgress; // 20%
+        
+        // Calculate progress based on total votes cast
+        // Example with 100 votes needed (10 players):
+        // - 0 votes: 40%
+        // - 1 vote: 40% + (1/100) * 20% = 40% + 0.2% = 40.2%
+        // - 10 votes: 40% + (10/100) * 20% = 40% + 2% = 42%
+        // - 50 votes: 40% + (50/100) * 20% = 40% + 10% = 50%
+        // - 100 votes: 40% + (100/100) * 20% = 40% + 20% = 60%
+        var progressPerVote = totalVotesNeeded > 0 ? progressRange / totalVotesNeeded : 0;
+        var progress = baseProgress + (totalVotesCast * progressPerVote);
+        progress = Math.round(progress * 10) / 10; // Round to 1 decimal place for precision
+        
+        // Ensure progress stays within bounds
+        if (progress < baseProgress) progress = baseProgress;
+        if (progress > targetProgress) progress = targetProgress;
+        
+        return progress;
+    }
+    
+    // Update total votes when sliders change
+    function updateTotalVotesCount() {
+        var allSliders = document.querySelectorAll('.custom-graph__range');
+        var votesOnCurrentPage = 0;
+        var defaultValue = 50;
+        
+        allSliders.forEach(function(slider) {
+            var currentValue = parseInt(slider.value);
+            if (!isNaN(currentValue) && currentValue !== defaultValue) {
+                votesOnCurrentPage++;
+            }
+        });
+        
+        // Get previous total and current page votes
+        var previousTotal = getTotalVotesCast();
+        var currentTensionPairKey = storageKey + '_current_{{ubung1.id}}_{{ubung3.id}}';
+        var previousPageVotes = parseInt(localStorage.getItem(currentTensionPairKey) || '0', 10);
+        
+        // Calculate new total: previous total - previous votes on this page + current votes on this page
+        var newTotal = previousTotal - previousPageVotes + votesOnCurrentPage;
+        
+        // Update storage
+        setTotalVotesCast(newTotal);
+        localStorage.setItem(currentTensionPairKey, votesOnCurrentPage.toString());
+    }
+    
+    function updateUbung5ProgressBar() {
+        // Update total votes count first
+        updateTotalVotesCount();
+        
+        // Calculate and display progress
+        var progress = calculateVotingProgress();
+        var progressBar = document.getElementById('ubung5-progress-bar');
+        if (progressBar) {
+            progressBar.style.width = progress + '%';
+            progressBar.textContent = Math.round(progress) + '%';
+        }
+    }
+
+    function validateAllPlayersVoted() {
+        var allItems = document.querySelectorAll('.custom-graph__item');
+        var missingVotes = [];
+        var defaultValue = 50; // Default value when no interaction has occurred
+        
+        allItems.forEach(function(item, index) {
+            // Get the range input slider
+            var slider = item.querySelector('.custom-graph__range');
+            if (slider) {
+                var currentValue = parseInt(slider.value);
+                // Check if slider is still at default value (hasn't been moved)
+                if (currentValue === defaultValue) {
+                    // Get the player's name
+                    var nameElement = item.querySelector('.custom-graph__item-name');
+                    var name = nameElement ? nameElement.textContent.trim() : PLAYER_LABEL + ' ' + (index + 1);
+                    if (!name) {
+                        // Try mobile name element
+                        nameElement = item.querySelector('.custom-graph__item-name_mobile');
+                        name = nameElement ? nameElement.textContent.trim() : PLAYER_LABEL + ' ' + (index + 1);
+                    }
+                    missingVotes.push(name);
+                }
+            }
+        });
+        
+        if (missingVotes.length > 0) {
+            var message = ALERT_MESSAGE_PREFIX + "\n\n" + missingVotes.join('\n');
+            alert(message);
+            return false;
+        }
+        return true;
+    }
 
     function data_submit(){
+        // Validate that all players have been voted on
+        if (!validateAllPlayersVoted()) {
+            return;
+        }
+        
         var data_ = {
             'link': '{{game.link}}',
             'user_id': '{{user.id}}',
@@ -178,9 +329,60 @@
         var result = app.getData();
         var st = JSON.stringify(result);
         $('#data').val(st);
+        // Update progress bar when data refreshes
+        updateUbung5ProgressBar();
         //console.log(st);
     }
     setInterval("refresh()", 100);
+    
+    // Update progress bar immediately when any slider changes
+    // Use event delegation to catch all slider changes, even dynamically added ones
+    document.addEventListener('input', function(e) {
+        if (e.target && e.target.classList && e.target.classList.contains('custom-graph__range')) {
+            // Immediately update progress when a scale is voted
+            updateUbung5ProgressBar();
+        }
+    });
+    
+    // Also listen for change events (when slider is released)
+    document.addEventListener('change', function(e) {
+        if (e.target && e.target.classList && e.target.classList.contains('custom-graph__range')) {
+            updateUbung5ProgressBar();
+        }
+    });
+    
+    // Initialize vote tracking on page load
+    // Count votes on current page and update total if this is the first time seeing this tension pair
+    setTimeout(function() {
+        var currentTensionPairKey = storageKey + '_current_{{ubung1.id}}_{{ubung3.id}}';
+        var previousPageVotes = parseInt(localStorage.getItem(currentTensionPairKey) || '0', 10);
+        
+        // If we haven't tracked votes for this tension pair yet, count them now
+        if (previousPageVotes === 0) {
+            var allSliders = document.querySelectorAll('.custom-graph__range');
+            var votesOnCurrentPage = 0;
+            var defaultValue = 50;
+            
+            allSliders.forEach(function(slider) {
+                var currentValue = parseInt(slider.value);
+                if (!isNaN(currentValue) && currentValue !== defaultValue) {
+                    votesOnCurrentPage++;
+                }
+            });
+            
+            // If there are votes on this page, add them to the total
+            if (votesOnCurrentPage > 0) {
+                var currentTotal = getTotalVotesCast();
+                setTotalVotesCast(currentTotal + votesOnCurrentPage);
+                localStorage.setItem(currentTensionPairKey, votesOnCurrentPage.toString());
+            }
+        }
+        
+        updateUbung5ProgressBar();
+    }, 500);
+    
+    // Also update periodically to catch any missed updates
+    setInterval(updateUbung5ProgressBar, 300);
     // window.addEventListener('resize', () => {
     //         console.log("resize");
             
@@ -188,6 +390,37 @@
 
     //     });
 
-</script>
+    </script>
+    
+    <script>
+    // Reload page on window resize to fix graph connection lines
+    let resizeTimeout;
+    let lastWindowWidth = window.innerWidth;
+    let lastWindowHeight = window.innerHeight;
+    
+    window.addEventListener('resize', function() {
+        // Clear existing timeout
+        if (resizeTimeout) {
+            clearTimeout(resizeTimeout);
+        }
+        
+        // Debounce resize event - wait 500ms after last resize before reloading
+        resizeTimeout = setTimeout(function() {
+            const currentWidth = window.innerWidth;
+            const currentHeight = window.innerHeight;
+            
+            // Only reload if there's a significant size change (more than 50px difference)
+            // This prevents unnecessary reloads during continuous resizing
+            const widthDiff = Math.abs(currentWidth - lastWindowWidth);
+            const heightDiff = Math.abs(currentHeight - lastWindowHeight);
+            
+            if (widthDiff > 50 || heightDiff > 50) {
+                lastWindowWidth = currentWidth;
+                lastWindowHeight = currentHeight;
+                location.reload();
+            }
+        }, 500);
+    });
+    </script>
 </body>
 </html>

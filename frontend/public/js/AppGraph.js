@@ -163,6 +163,135 @@ buildGraph() {
     input.addEventListener('change', () =>
       this.addDot(this.templates[index], index)
     );
+    
+    // Add keyboard input support for typing numbers
+    // Store buffer and timeout on the input element itself to persist across events
+    if (!input._keyboardBuffer) {
+      input._keyboardBuffer = '';
+      input._keyboardTimeout = null;
+    }
+    
+    input.addEventListener('keydown', (e) => {
+      // Don't interfere with Tab and Arrow keys - let them work normally for navigation
+      if (e.key === 'Tab' || e.key.startsWith('Arrow')) {
+        return; // Allow default behavior
+      }
+      
+      // Handle number input and related keys
+      const isNumber = e.key >= '0' && e.key <= '9';
+      const isNumberInputKey = isNumber || 
+          e.key === 'Enter' || 
+          e.key === 'Backspace' || 
+          e.key === 'Delete' ||
+          e.key === '-' ||
+          e.key === '+';
+      
+      if (isNumberInputKey) {
+        // Clear any existing timeout
+        if (input._keyboardTimeout) {
+          clearTimeout(input._keyboardTimeout);
+          input._keyboardTimeout = null;
+        }
+        
+        // Handle Enter to apply the value immediately
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          if (input._keyboardBuffer) {
+            this.applyKeyboardValue(input, head, index, input._keyboardBuffer);
+            input._keyboardBuffer = '';
+          }
+          return;
+        }
+        
+        // Handle minus at the start of input
+        if (e.key === '-' && input._keyboardBuffer === '') {
+          e.preventDefault();
+          input._keyboardBuffer = '-';
+          return;
+        }
+        
+        // Handle plus at the start (optional, for clarity)
+        if (e.key === '+' && input._keyboardBuffer === '') {
+          e.preventDefault();
+          // Just start with empty buffer, + is implicit
+          return;
+        }
+        
+        // Handle number input
+        if (isNumber) {
+          e.preventDefault();
+          input._keyboardBuffer += e.key;
+          
+          // Auto-apply after a short delay or if buffer gets too long (3 digits)
+          if (input._keyboardBuffer.replace('-', '').length >= 3) {
+            this.applyKeyboardValue(input, head, index, input._keyboardBuffer);
+            input._keyboardBuffer = '';
+          } else {
+            // Set timeout to apply value after user stops typing (800ms)
+            input._keyboardTimeout = setTimeout(() => {
+              if (input._keyboardBuffer) {
+                this.applyKeyboardValue(input, head, index, input._keyboardBuffer);
+                input._keyboardBuffer = '';
+              }
+            }, 800);
+          }
+        }
+        
+        // Handle Backspace/Delete to clear buffer
+        if (e.key === 'Backspace' || e.key === 'Delete') {
+          e.preventDefault();
+          input._keyboardBuffer = '';
+          if (input._keyboardTimeout) {
+            clearTimeout(input._keyboardTimeout);
+            input._keyboardTimeout = null;
+          }
+          return;
+        }
+      }
+    });
+    
+    // Handle focus to prepare for keyboard input
+    input.addEventListener('focus', () => {
+      input._keyboardBuffer = '';
+      if (input._keyboardTimeout) {
+        clearTimeout(input._keyboardTimeout);
+        input._keyboardTimeout = null;
+      }
+    });
+  }
+  
+  applyKeyboardValue(input, head, index, valueStr) {
+    if (!valueStr || valueStr === '' || valueStr === '-') {
+      return;
+    }
+    
+    let value = parseInt(valueStr, 10);
+    
+    // Check if value is NaN
+    if (isNaN(value)) {
+      return;
+    }
+    
+    // The range is 0-100, but displayed as -50 to +50
+    // Allow users to type either:
+    // 1. Displayed value (-50 to +50) - convert to 0-100
+    // 2. Actual slider value (0-100) - use directly
+    
+    // If value is in -50 to +50 range, convert to 0-100 range
+    if (value >= -50 && value <= 50) {
+      value = 50 + value; // Convert -50 to 0, 0 to 50, +50 to 100
+    }
+    
+    // Clamp value to valid range
+    const [min, max] = this.range;
+    value = Math.max(min, Math.min(max, value));
+    
+    // Update the slider value
+    input.value = value;
+    
+    // Trigger the update
+    this.showSliderValue(input, head, index);
+    this.addDot(this.templates[index], index);
   }
 
   handlersItem() {
@@ -421,13 +550,26 @@ render() {
     const transformedUp = up - 50;      // Transforms 99 to +49
     const transformedMiddle = 0;        // Middle value (50) should display as 0
 
+    // Helper function to render label (handles both string and object with text/subtext)
+    const renderLabel = (label) => {
+        if (typeof label === 'object' && label !== null) {
+            const text = label.text || '';
+            const subtext = label.subtext || '';
+            if (subtext) {
+                return `<div>${text}<div class="custom-graph__status-sub">${subtext}</div></div>`;
+            }
+            return text;
+        }
+        return label || '';
+    };
+
     let htmlDown = `
         <div class="custom-graph__status">
-            <div class="custom-graph__status-down">${labelUp}</div>
-            <div class="custom-graph__status-up">${labelDown}</div>
+            <div class="custom-graph__status-down">${renderLabel(labelUp)}</div>
+            <div class="custom-graph__status-up">${renderLabel(labelDown)}</div>
             ${
                 labelMiddle
-                ? `<div class="custom-graph__status-middle">${labelMiddle} (${transformedMiddle})</div>`
+                ? `<div class="custom-graph__status-middle">${renderLabel(labelMiddle)} (${transformedMiddle})</div>`
                 : ''
             }
         </div>

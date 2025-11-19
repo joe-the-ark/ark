@@ -454,8 +454,8 @@ msgstr "(buraya tıkla) önce kimin TEK başına kaldığını gör."
 msgid "Stelle sicher, dass alle in mindestens einem Kreis sicher verbunden sind. Erhöhe den Toleranzfenster-Wert nun um 1, um zu erkennen, wer den Solisten am einfachsten in einen sicheren Kreis mitnehmen kann..."
 msgstr "Herkesin en az bir dairede güvenli bir şekilde bağlı olduğundan emin olun. Tolerans penceresi değerini şimdi 1 artırarak, solisti en kolay kim güvenli bir daireye dahil edebilir görün..."
 
-msgid "CIRCLES bei der Toleranzfenster-Grösse..."
-msgstr "Tolerans penceresi boyutunda DAİRELER..."
+msgid "SICHERE KREISE bei der Toleranzfenster-Grösse..."
+msgstr "Tolerans penceresi boyutunda GÜVENLİ DAİRELER..."
 
 msgid "PRIO 3: Die Konstellation beim "
 msgstr "ÖNCELİK 3: Konstelasyon "
@@ -464,7 +464,10 @@ msgid "Standard-Toleranzfenster von 16"
 msgstr "Standart tolerans penceresi 16"
 
 msgid " könnte der IST-Situation im Team nahekommen. Wie sicher verbunden ist der Boss? Welchen Einsatz kann die Führungskraft leisten, um das Team vom Ist-Wert zur optimalen Konstellation aus Prio 1 zu entwickeln?"
-msgstr "ekibin mevcut durumuna yakın olabilir. Lider ne kadar güvenli bir şekilde bağlı? Lider, ekibi mevcut durumdan Öncelik 1’deki en uygun konstelasyona geliştirmek için ne yapabilir?"
+msgstr "ekibin mevcut durumuna yakın olabilir. Lider ne kadar güvenli bir şekilde bağlı? Lider, ekibi mevcut durumdan Öncelik 1'deki en uygun konstelasyona geliştirmek için ne yapabilir?"
+
+msgid " könnte der IST-Situation im Team nahekommen. Wie sicher verbunden ist der Boss?"
+msgstr "ekibin mevcut durumuna yakın olabilir. Lider ne kadar güvenli bir şekilde bağlı?"
 
 msgid "PRIO 1: Diese Konstellation ermöglicht euch ein "
 msgstr "ÖNCELİK 1: Bu konstelasyon size sağlar "
@@ -472,8 +475,38 @@ msgstr "ÖNCELİK 1: Bu konstelasyon size sağlar "
 msgid "maximales Mass an psychologischer Sicherheit beim Toleranzfenster"
 msgstr "tolerans penceresinde maksimum düzeyde psikolojik güvenlik"
 
-msgid "Wer ist in mehreren sicheren Kreisen und wirkt integrierend? Lasst diese Integratoren Babysteps vorschlagen, die für gleichberechtigte Redeanteile sorgen, euren Sicherheitsankern gerecht werden und Triggersituationen entspannen können."
-msgstr "Kim birden fazla güvenli dairede bulunuyor ve bütünleştirici bir etkiye sahip? Bu bütünleştiricilerin eşit konuşma paylarını sağlayacak, güvenlik çapalarınıza uygun ve tetikleyici durumları yatıştırabilecek küçük adımlar önermelerine izin verin."
+msgid "Wer ist in mehreren sicheren Kreisen und wirkt integrierend?"
+msgstr "Kim birden fazla güvenli dairede bulunuyor ve bütünleştirici bir etkiye sahip?"
+
+msgid "Lasst diese Integratoren Babysteps vorschlagen, die für gleichberechtigte Redeanteile sorgen, euren Sicherheitsankern gerecht werden und Triggersituationen entspannen können."
+msgstr "Bu bütünleştiricilerin eşit konuşma paylarını sağlayacak, güvenlik çapalarınıza uygun ve tetikleyici durumları yatıştırabilecek küçük adımlar önermelerine izin verin."
+
+msgid "Integratoren-Erklärung"
+msgstr "Entegratör açıklaması"
+
+msgid "Wie weiter"
+msgstr "Sırada ne var"
+
+msgid "Lasst die Personen im ersten sicheren Kreis Vorschläge machen, wie eine Integration, sofern gewünscht, noch besser gelingen kann."
+msgstr "İlk güvenli dairedeki kişilerin, istenirse entegrasyonun daha da iyi başarılı olması için öneriler yapmasına izin verin."
+
+msgid "PRIO 2-Erklärung"
+msgstr "ÖNCELİK 2 açıklaması"
+
+msgid "Welchen Einsatz kann die Führungskraft leisten, um das Team vom Ist-Wert zur optimalen Konstellation aus Prio 1 zu entwickeln?"
+msgstr "Liderlik, ekibi mevcut değerden ÖNCELİK 1'deki optimal konstelasyona geliştirmek için ne tür bir taahhütte bulunabilir?"
+
+msgid "PRIO 3-Erklärung"
+msgstr "ÖNCELİK 3 açıklaması"
+
+msgid "Lesehilfe anzeigen"
+msgstr "Okuma yardımını göster"
+
+msgid "Eine Lesehilfe: je kleiner der Zahlenwert, desto mehr Stress und negative Trigger zeigen sich, weil sich die Toleranzfenster der Teammitglieder schliessen. Im ersten sicheren Kreise funktioniert die Zusammenarbeit auch bei sehr grossem Stress noch ohne Drama."
+msgstr "Bir okuma yardımı: sayısal değer ne kadar küçükse, o kadar fazla stres ve olumsuz tetikleyici ortaya çıkar, çünkü ekip üyelerinin tolerans pencereleri kapanır. İlk güvenli dairede, çok yüksek stres altında bile işbirliği hala drama olmadan çalışır."
+
+msgid "Maximalwert-Erklärung"
+msgstr "Maksimum değer açıklaması"
 
 msgid "Aktuell seid ihr beim Toleranzfenster von "
 msgstr "Şu anda tolerans penceresi değeriniz "
@@ -496,11 +529,17 @@ msgstr "Uyduları güçlendir"
 msgid " und erkenne, wer Hand in einen sicheren Kreis bieten kann. Lasst die Personen im ersten sicheren Kreis Vorschläge machen, wie eine Integration, sofern gewünscht, noch besser gelingen kann."
 msgstr "ve kim güvenli bir daireye el uzatabilir görün. İlk güvenli dairedeki kişilerin, entegrasyonun istenirse nasıl daha iyi başarılabileceğine dair önerilerde bulunmasına izin verin."
 
+msgid " und erkenne, wer Hand in einen sicheren Kreis bieten kann."
+msgstr "ve kim güvenli bir daireye el uzatabilir görün."
+
 msgid "CIRCLES bei Safe-Zone-Wert:"
 msgstr "Güvenli Bölge değerinde DAİRELER:"
 
 msgid "(niedrige Werte = hoher Stress)"
 msgstr "(düşük değerler = yüksek stres)"
+
+msgid "Das Toleranzfenster ist in der Arche der zentrale Mechanismus zur Visualisierung psychologischer Sicherheit. Es wird als grüner Bereich um den Team-Mittelwert herum definiert, dessen Breite ein festgelegtes Sicherheitsintervall (z.B. ±16 Punkte) vorgibt. Dieser Bereich markiert, welche Unterschiede in der gegenseitigen Wahrnehmung als sicher und akzeptabel gelten. Der erstrebenswerte Team-Sweetspot ist jenes Intervall, in dem die maximale Anzahl psychologisch sicherer Kreise entsteht – also stabile Verbindungen, in denen auch schwierige Themen offen besprochen werden können. Ein zu enges Fenster führt zu Stress und defensiven Reaktionen, da bereits kleine Abweichungen als Bedrohung wahrgenommen werden. Ein zu weites Toleranzfenster hingegen kann auf problematische Uniformität hindeuten: Es fehlt an notwendigen, herausfordernden Perspektiven, was zu Groupthink und erstarrenden Dynamiken führen kann. Das Ziel ist somit die Balance – ein Gruppen-Toleranzfenster, das Sicherheit gewährt, ohne Lernprozesse zu ersticken."
+msgstr "Tolerans penceresi, Nuh'un Gemisi'nde psikolojik güvenliği görselleştirmek için merkezi mekanizmadır. Takım ortalamasının etrafında yeşil bölge olarak tanımlanır ve genişliği sabit bir güvenlik aralığı (örneğin ±16 puan) tarafından belirlenir. Bu bölge, karşılıklı algılamadaki hangi farklılıkların güvenli ve kabul edilebilir olduğunu işaretler. Arzu edilen takım tatlı noktası, maksimum sayıda psikolojik olarak güvenli dairenin ortaya çıktığı aralıktır – yani zor konuların bile açıkça tartışılabileceği istikrarlı bağlantılar. Çok dar bir pencere, küçük sapmalar bile tehdit olarak algılandığı için strese ve savunmacı tepkilere yol açar. Öte yandan çok geniş bir tolerans penceresi, sorunlu bir tekdüzeliğe işaret edebilir: Gerekli, zorlayıcı perspektifler eksiktir, bu da grup düşüncesine ve donmuş dinamiklere yol açabilir. Hedef bu nedenle denge – öğrenme süreçlerini boğmadan güvenlik sağlayan bir grup tolerans penceresi."
 
 msgid "Im nächsten Schritt solltet ihr die Teammitglieder identifizieren, die durchgängig an mehreren oder allen SAFE CIRCLES teilhaben. Diese Kernmitglieder sind in der Lage Lösungen vorzuschlagen, die allen Teammitgliedern zugute kommen und die psychologische Sicherheit erhöhen."
 msgstr "Bir sonraki adımda, sürekli olarak birden fazla veya tüm GÜVENLİ DAİRELERE katılan ekip üyelerini belirlemelisiniz. Bu çekirdek üyeler, tüm ekip üyelerine fayda sağlayacak ve psikolojik güvenliği artıracak çözümler önerebilirler."
@@ -1101,3 +1140,87 @@ msgstr "Oyunda görülebilen tüm videoların bağlantısı burada."
 
 msgid "Zurück"
 msgstr "Geri"
+
+msgid "Bitte bewerte alle Teammitglieder. Noch nicht bewertet:"
+msgstr "Lütfen tüm takım üyelerini değerlendirin. Henüz değerlendirilmedi:"
+
+msgid "Bitte verschiebe alle Avatare. Noch"
+msgstr "Lütfen tüm avatarları taşıyın. Hala"
+
+msgid "verbleibend."
+msgstr "kalan."
+
+msgid "Fortschritt:"
+msgstr "İlerleme:"
+
+msgid "Noch"
+msgstr "Hala"
+
+msgid "Personen zuordnen"
+msgstr "atanacak kişi"
+
+msgid "Alle Personen zugeordnet!"
+msgstr "Tüm kişiler atandı!"
+
+msgid "deine Wirkung auf andere"
+msgstr "diğerleri üzerindeki etkin"
+
+msgid "Spannungen entstehen aus der Differenz zwischen Selbst- und Fremdbild"
+msgstr "Gerilimler, öz algı ile dış algı arasındaki farktan kaynaklanır"
+
+msgid "meine Selbstwahrnehmung im Team"
+msgstr "takımdaki öz algım"
+
+msgid "So hast du deinen Beitrag zur Teamdynamik eingeschätzt."
+msgstr "Takım dinamiklerine katkınızı böyle değerlendirdiniz."
+
+msgid "Grüne Punkte = Integratoren"
+msgstr "Yeşil noktalar = Entegratörler"
+
+msgid "Zahlen in Blasen = Anzahl Safecircle des Spielers"
+msgstr "Baloncuklardaki sayılar = Oyuncunun Safecircle sayısı"
+
+msgid "Zentrum = alle Safecircle im Team (je mehr, desto sicherer und vielfältiger wird die Zusammenarbeit)"
+msgstr "Merkez = takımdaki tüm Safecircle'lar (ne kadar çok olursa, işbirliği o kadar güvenli ve çeşitli olur)"
+
+msgid "Goldene Linie = In-Group"
+msgstr "Altın çizgi = İç Grup"
+
+msgid "Sichere Kreise beim Toleranzfenster"
+msgstr "Tolerans penceresinde güvenli daireler"
+
+msgid "Kreis"
+msgstr "Daire"
+
+msgid "Personen"
+msgstr "kişi"
+
+msgid "Keine sicheren Kreise bei diesem Toleranzfenster-Wert"
+msgstr "Bu tolerans penceresi değerinde güvenli daire yok"
+
+msgid "Übersichtsansicht"
+msgstr "Genel bakış"
+
+msgid "Drücke Leertaste, um zur Canvas-Ansicht zurückzukehren"
+msgstr "Tuval görünümüne dönmek için boşluk tuşuna basın"
+
+msgid "Safecircle-Anzahl:"
+msgstr "Güvenli daire sayısı:"
+
+msgid "In Kreisen:"
+msgstr "Dairelerde:"
+
+msgid "Sichere Kreise:"
+msgstr "Güvenli daireler:"
+
+msgid "Ähnlichkeit:"
+msgstr "Benzerlik:"
+
+msgid "Integrator"
+msgstr "Entegratör"
+
+msgid "Toleranzfenster:"
+msgstr "Tolerans penceresi:"
+
+msgid "Klicke für weitere Informationen"
+msgstr "Daha fazla bilgi için tıklayın"

@@ -1,22 +1,38 @@
+/* Container for heatmap - allow full width on desktop */
 .container {
-  max-width: 1000px;
+  max-width: 100%;
+  width: 100%;
+  overflow-x: auto;
+  padding: 0;
+  margin: 0 auto;
+}
+
+/* Wrapper div around heatmap - ensure it doesn't constrain */
+.container > div[style*="border: 1px solid #ccc"] {
+  overflow-x: auto;
+  width: 100%;
+  max-width: 100%;
 }
 
 .heatmap {
   display: grid;
-
 /*  grid-template-columns: [lft] minmax(50px, 100px) repeat(3, minmax(50px, 100px)) [prop] 150px [rght] minmax(50px, 100px) ;
 */
   font-size: 18px;
   color: black;
-  padding: 0 calc(50% - (1640px/2 + (12px)));
-  margin: 50px 0 150px 15px;
+  padding: 0;
+  margin: 50px auto 150px auto;
   gap: 2px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: auto;
 }
 .main-column {
   display: grid;
-  grid-template-rows: 50px 50px 50px 50px 50px 50px 50px 50px;
   grid-gap: 3px;
+  grid-auto-rows: 50px; /* All rows have consistent height - let grid auto-generate rows */
+  align-items: stretch; /* Stretch all items to fill their grid cell */
 }
 
 .teamtension {
@@ -32,6 +48,10 @@
   align-items: center;
   padding: 15px 0 15px 0;
   border-radius: 10px;
+  min-height: 0; /* Prevent grid items from growing beyond their row */
+  max-height: 100%; /* Constrain to row height */
+  overflow: hidden; /* Prevent content overflow */
+  box-sizing: border-box;
 }
 
 .main-column.left {
@@ -54,13 +74,18 @@
 }
 
 .heat_player {
-  display:grid;
+  display: grid;
   justify-items: center;
+  align-items: center;
   background-color: #e6e6e6;
   color: black;
-  padding: 0px;
-  align-items: end;
+  padding: 5px;
   border-radius: 10px;
+  min-height: 0; /* Prevent grid items from growing beyond their row */
+  max-height: 50px; /* Strictly constrain to row height (50px - gap) */
+  height: 100%; /* Fill the grid cell */
+  overflow: hidden; /* Prevent content overflow */
+  box-sizing: border-box;
 }
 .heat_player>.name {
   writing-mode: horizontal-tb;
@@ -68,16 +93,27 @@
   max-height: 150px;
 }
 .heat_player>img {
-  padding-top: 10px;
-  max-width: 70%;
-  max-height: none;
+  max-width: 80%;
+  max-height: 45px; /* Constrain image height to fit in 50px row */
+  height: auto;
+  width: auto;
+  object-fit: contain;
+  display: block;
 }
 .heat_value {
   display: grid;
   justify-content: center;
   align-items: center;
-  padding: 15px 0 15px 0;
+  padding: 8px 0 8px 0; /* Reduced padding to prevent overflow but maintain readability */
+  min-height: 0; /* Prevent grid items from growing beyond their row */
+  max-height: 100%; /* Constrain to row height */
+  overflow: hidden; /* Prevent content overflow */
+  box-sizing: border-box;
+  line-height: 1.2; /* Tighter line height */
+  word-wrap: break-word; /* Break long words */
 }
+
+/* No special handling needed - heat_value is now separate from heat_player */
 
 .heat_value.property_value {
   background-color: rgba(81, 206, 236, 0.6);
@@ -110,6 +146,10 @@
 .property{
   padding-left: 15px;
   background-color: none;
+  min-height: 0; /* Prevent grid items from growing beyond their row */
+  max-height: 100%; /* Constrain to row height */
+  overflow: hidden; /* Prevent content overflow */
+  box-sizing: border-box;
 }
 .property>p {
   font-size: 20px;
@@ -270,9 +310,57 @@ table.beef-table th.active > span:after {
 	text-decoration: underline;
 }
 
-@media screen and (max-width: 1024px) {
+/* Mobile responsive styles */
+@media screen and (max-width: 768px) {
   .heatmap {
-    font-size: 16px !important; /* Neue Schriftgröße für .heatmap */
+    font-size: 14px !important;
+    margin: 20px auto 50px auto;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .container {
+    padding: 0 10px;
+    overflow-x: auto;
+  }
+  
+  .heat_value {
+    padding: 8px 0 8px 0;
+    font-size: 12px;
+  }
+  
+  .property > p {
+    font-size: 14px;
+  }
+  
+  .corner {
+    padding: 8px 0 8px 0;
+    font-size: 12px;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  .heatmap {
+    font-size: 16px !important;
+  }
+}
+
+/* Desktop: ensure container can extend flexibly */
+@media screen and (min-width: 1201px) {
+  .container {
+    max-width: 100%;
+    padding: 0 20px;
+    overflow-x: visible;
+  }
+  
+  .container > div[style*="border: 1px solid #ccc"] {
+    overflow-x: visible;
+  }
+  
+  .heatmap {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: visible;
   }
 }
 

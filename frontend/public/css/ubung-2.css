@@ -129,7 +129,7 @@
 }
 .ubung-2 p {
   max-width: 908px;
-  margin: 42px 0 20px;
+  margin: var(--ls-paragraph-offset);
 }
 .ubung-2 .ui-slider {
   margin-bottom: 20px;

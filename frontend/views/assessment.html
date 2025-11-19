@@ -1147,6 +1147,37 @@
     })
 
 
-</script>
+    </script>
+    
+    <script>
+    // Reload page on window resize to fix graph connection lines
+    let resizeTimeout;
+    let lastWindowWidth = window.innerWidth;
+    let lastWindowHeight = window.innerHeight;
+    
+    window.addEventListener('resize', function() {
+        // Clear existing timeout
+        if (resizeTimeout) {
+            clearTimeout(resizeTimeout);
+        }
+        
+        // Debounce resize event - wait 500ms after last resize before reloading
+        resizeTimeout = setTimeout(function() {
+            const currentWidth = window.innerWidth;
+            const currentHeight = window.innerHeight;
+            
+            // Only reload if there's a significant size change (more than 50px difference)
+            // This prevents unnecessary reloads during continuous resizing
+            const widthDiff = Math.abs(currentWidth - lastWindowWidth);
+            const heightDiff = Math.abs(currentHeight - lastWindowHeight);
+            
+            if (widthDiff > 50 || heightDiff > 50) {
+                lastWindowWidth = currentWidth;
+                lastWindowHeight = currentHeight;
+                location.reload();
+            }
+        }, 500);
+    });
+    </script>
 </body>
 </html>

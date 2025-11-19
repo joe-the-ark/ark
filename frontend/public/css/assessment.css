@@ -503,14 +503,14 @@
   }
 }
 .assessment > p {
-  max-width: 660px;
-  margin: 20px 0 40px;
+  max-width: 908px;
+  margin: var(--ls-paragraph-offset);
 }
 .assessment h1 {
   margin-bottom: 40px;
 }
 .assessment ul {
-  max-width: 842px;
+  max-width: 908px;
 }
 .assessment ul + .swiper-container {
   margin: 70px 0;

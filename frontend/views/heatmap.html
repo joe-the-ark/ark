@@ -189,13 +189,11 @@
             <div class="heat_value three"></div> {% endcomment %}
 
             <div class="heat_value over_player">[[ user[1] ]]</div>
-            <div class="heat_player"> 
+            <div class="heat_value over_player" style="background-color: #FF6347; color: #FFFFFF;" id="tensionOneTooltip" data-tippy-content="{% trans "Je niedriger der Stresswert, desto eher wird dass das Verhalten anderer als stressig empfunden und desto enger das Window of Tolerance." %}">[[ stress(user[1]) ]]</div>
             <div class="heat_player">
-            <div class="heat_value over_player" style="background-color: #FF6347; color: #FFFFFF; padding: 15px;" id="tensionOneTooltip" data-tippy-content="{% trans "Je niedriger der Stresswert, desto eher wird dass das Verhalten anderer als stressig empfunden und desto enger das Window of Tolerance." %}">[[ stress(user[1]) ]]</div> 
-            <img :src="user[2]" alt="">
+              <img :src="user[2]" alt="">
+            </div>
             <div class="heat_value over_player" id="stressTooltip" data-tippy-content="{% trans "Hier unten sind alle Spannungswerte pro Spieler aufaddiert. Auch hier gilt: Je höher der Wert mit positivem Vorzeichen, desto stärker überschätzt der Spieler seinen positiven Beitrag zur Sicherheit im Team." %}">[[ user[4] ]]</div>
-            </div>
-            </div>
           </div>
 
 {% comment %} 
@@ -407,7 +405,42 @@
   })
   let playersCount = {{user_number}};; 
   let heatmapEl = document.querySelector('.heatmap');
-  heatmapEl.style.gridTemplateColumns = `[lft] minmax(50px, 100px) repeat(${playersCount}, minmax(50px, 100px)) [prop] 180px [rght] minmax(50px, 100px) `
+  // Calculate column width based on available space and number of players
+  // For desktop: allow columns to grow flexibly, minimum 80px, preferred 120px, maximum 150px
+  // For mobile: use smaller fixed sizes
+  let isMobile = window.innerWidth <= 768;
+  let leftColWidth = isMobile ? 'minmax(60px, 80px)' : 'minmax(80px, 120px)';
+  let playerColWidth = isMobile ? 'minmax(60px, 80px)' : 'minmax(80px, 150px)';
+  let propColWidth = isMobile ? '140px' : '180px';
+  let rightColWidth = isMobile ? 'minmax(60px, 80px)' : 'minmax(80px, 120px)';
+  
+  heatmapEl.style.gridTemplateColumns = `[lft] ${leftColWidth} repeat(${playersCount}, ${playerColWidth}) [prop] ${propColWidth} [rght] ${rightColWidth} `;
+  
+  // Calculate number of matrix rows (from first player's data)
+  let matrixRows = 0;
+  if (app_.$data.main_map && app_.$data.main_map.length > 0 && app_.$data.main_map[0][3]) {
+    matrixRows = app_.$data.main_map[0][3].length;
+  }
+  // Total rows: 1 (top value) + matrixRows + 1 (name) + 1 (stress) + 1 (avatar) + 1 (tension) = 4 + matrixRows
+  let totalRows = 4 + matrixRows;
+  
+  // Set grid-template-rows for all player columns
+  document.querySelectorAll('.main-column.player').forEach(function(col) {
+    col.style.gridTemplateRows = `repeat(${totalRows}, 50px)`;
+  });
+  
+  // Update on window resize
+  window.addEventListener('resize', function() {
+    let isMobileNow = window.innerWidth <= 768;
+    if (isMobileNow !== isMobile) {
+      isMobile = isMobileNow;
+      leftColWidth = isMobile ? 'minmax(60px, 80px)' : 'minmax(80px, 120px)';
+      playerColWidth = isMobile ? 'minmax(60px, 80px)' : 'minmax(80px, 150px)';
+      propColWidth = isMobile ? '140px' : '180px';
+      rightColWidth = isMobile ? 'minmax(60px, 80px)' : 'minmax(80px, 120px)';
+      heatmapEl.style.gridTemplateColumns = `[lft] ${leftColWidth} repeat(${playersCount}, ${playerColWidth}) [prop] ${propColWidth} [rght] ${rightColWidth} `;
+    }
+  });
 
   </script>
 

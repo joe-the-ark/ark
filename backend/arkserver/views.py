@@ -471,8 +471,9 @@ def team_potential(request, user):
     link = request.session['link']
     game = Game.objects.filter(link=link).first()
 
-    from .circle import calc_circles
+    from .circle import calc_circles, calc_in_groups
     ctx['circles'] = circles = calc_circles(game)
+    ctx['in_groups'] = calc_in_groups(game, min_tolerance=4, max_tolerance=20)
 
     players = WaitingRoomMember.objects.filter(game=game, state=1)
     ctx['players'] = { _.player.name: _.player.avatar for _ in players }

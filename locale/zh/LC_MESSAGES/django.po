@@ -527,8 +527,8 @@ msgstr "公差窗口值为 "
 msgid " (hier klicken) siehst du, wer zuerst SOLO ist. "
 msgstr " (点击此处），看看谁是 SOLO 第一名。 "
 
-msgid "CIRCLES bei der Toleranzfenster-Grösse..."
-msgstr "CIRCLES 为公差窗口大小..."
+msgid "SICHERE KREISE bei der Toleranzfenster-Grösse..."
+msgstr "安全圈 为公差窗口大小..."
 
 msgid "PRIO 3: Die Konstellation beim "
 msgstr "优先级 3： 在 "
@@ -539,14 +539,47 @@ msgstr "标准容忍窗口 16 的情况下，"
 msgid " könnte der IST-Situation im Team nahekommen. Wie sicher verbunden ist der Boss? Welchen Einsatz kann die Führungskraft leisten, um das Team vom Ist-Wert zur optimalen Konstellation aus Prio 1 zu entwickeln?"
 msgstr " 该配置可能接近团队的当前状况。老板的安全连接程度如何？领导者能做出哪些努力，将团队从当前状态发展到优先级 1 中描述的最佳配置？"
 
+msgid " könnte der IST-Situation im Team nahekommen. Wie sicher verbunden ist der Boss?"
+msgstr " 该配置可能接近团队的当前状况。老板的安全连接程度如何？"
+
 msgid "PRIO 1: Diese Konstellation ermöglicht euch ein "
 msgstr "PRIO 1：这个星座给你一个 "
 
 msgid "maximales Mass an psychologischer Sicherheit beim Toleranzfenster"
 msgstr "容忍窗口中的最大心理安全度"
 
-msgid "Wer ist in mehreren sicheren Kreisen und wirkt integrierend? Lasst diese Integratoren Babysteps vorschlagen, die für gleichberechtigte Redeanteile sorgen, euren Sicherheitsankern gerecht werden und Triggersituationen entspannen können."
-msgstr "谁在几个安全圈中并具有整合效应？让这些 整合者 建议一些小步骤，以确保平等的发言权，公正地对待您的安全锚，并能放松触发情况。"
+msgid "Wer ist in mehreren sicheren Kreisen und wirkt integrierend?"
+msgstr "谁在多个安全圈中并具有整合作用？"
+
+msgid "Lasst diese Integratoren Babysteps vorschlagen, die für gleichberechtigte Redeanteile sorgen, euren Sicherheitsankern gerecht werden und Triggersituationen entspannen können."
+msgstr "让这些整合者提出小步骤，确保平等的发言份额，尊重你们的安全锚点，并能够缓解触发情况。"
+
+msgid "Integratoren-Erklärung"
+msgstr "整合者说明"
+
+msgid "Wie weiter"
+msgstr "接下来"
+
+msgid "Lasst die Personen im ersten sicheren Kreis Vorschläge machen, wie eine Integration, sofern gewünscht, noch besser gelingen kann."
+msgstr "让第一个安全圈中的人员提出建议，说明如何（如果需要）使整合能够更好地成功。"
+
+msgid "PRIO 2-Erklärung"
+msgstr "优先级2说明"
+
+msgid "Welchen Einsatz kann die Führungskraft leisten, um das Team vom Ist-Wert zur optimalen Konstellation aus Prio 1 zu entwickeln?"
+msgstr "领导层可以做出什么承诺，将团队从当前值发展到优先级1中的最佳配置？"
+
+msgid "PRIO 3-Erklärung"
+msgstr "优先级3说明"
+
+msgid "Lesehilfe anzeigen"
+msgstr "显示阅读帮助"
+
+msgid "Eine Lesehilfe: je kleiner der Zahlenwert, desto mehr Stress und negative Trigger zeigen sich, weil sich die Toleranzfenster der Teammitglieder schliessen. Im ersten sicheren Kreise funktioniert die Zusammenarbeit auch bei sehr grossem Stress noch ohne Drama."
+msgstr "阅读帮助：数值越小，压力和负面触发因素就越多，因为团队成员的容忍窗口会关闭。在第一个安全圈中，即使在非常大的压力下，协作仍然可以在没有戏剧性的情况下进行。"
+
+msgid "Maximalwert-Erklärung"
+msgstr "最大值说明"
 
 msgid "Aktuell seid ihr beim Toleranzfenster von "
 msgstr "您目前正处于 "
@@ -575,11 +608,17 @@ msgstr "提升卫星"
 msgid " und erkenne, wer Hand in einen sicheren Kreis bieten kann. Lasst die Personen im ersten sicheren Kreis Vorschläge machen, wie eine Integration, sofern gewünscht, noch besser gelingen kann."
 msgstr "  并认识到谁可以在安全圈中伸出援手。如果需要，让第一个安全圈中的人就如何使整合更加成功提出建议。"
 
+msgid " und erkenne, wer Hand in einen sicheren Kreis bieten kann."
+msgstr "  并认识到谁可以在安全圈中伸出援手。"
+
 msgid "CIRCLES bei Safe-Zone-Wert:"
 msgstr "安全区值下的 CIRCLES："
 
 msgid "(niedrige Werte = hoher Stress)"
 msgstr "(低值 = 高压力)"
+
+msgid "Das Toleranzfenster ist in der Arche der zentrale Mechanismus zur Visualisierung psychologischer Sicherheit. Es wird als grüner Bereich um den Team-Mittelwert herum definiert, dessen Breite ein festgelegtes Sicherheitsintervall (z.B. ±16 Punkte) vorgibt. Dieser Bereich markiert, welche Unterschiede in der gegenseitigen Wahrnehmung als sicher und akzeptabel gelten. Der erstrebenswerte Team-Sweetspot ist jenes Intervall, in dem die maximale Anzahl psychologisch sicherer Kreise entsteht – also stabile Verbindungen, in denen auch schwierige Themen offen besprochen werden können. Ein zu enges Fenster führt zu Stress und defensiven Reaktionen, da bereits kleine Abweichungen als Bedrohung wahrgenommen werden. Ein zu weites Toleranzfenster hingegen kann auf problematische Uniformität hindeuten: Es fehlt an notwendigen, herausfordernden Perspektiven, was zu Groupthink und erstarrenden Dynamiken führen kann. Das Ziel ist somit die Balance – ein Gruppen-Toleranzfenster, das Sicherheit gewährt, ohne Lernprozesse zu ersticken."
+msgstr "容忍窗口是方舟中可视化心理安全的核心机制。它被定义为团队平均值周围的绿色区域，其宽度由固定的安全区间（例如 ±16 点）决定。该区域标记了相互感知中的哪些差异被认为是安全和可接受的。理想的团队最佳点是产生最大数量心理安全圈的那个区间——即稳定的连接，即使困难的话题也可以公开讨论。窗口太窄会导致压力和防御性反应，因为即使小的偏差也被视为威胁。另一方面，窗口太宽可能表明存在问题的统一性：缺乏必要的、具有挑战性的观点，这可能导致群体思维和僵化的动态。因此，目标是平衡——一个提供安全而不会扼杀学习过程的团队容忍窗口。"
 
 msgid "Im nächsten Schritt solltet ihr die Teammitglieder identifizieren, die durchgängig an mehreren oder allen SAFE CIRCLES teilhaben. Diese Kernmitglieder sind in der Lage Lösungen vorzuschlagen, die allen Teammitgliedern zugute kommen und die psychologische Sicherheit erhöhen."
 msgstr "在下一步中，你应该识别那些持续参与多个或所有 SAFE CIRCLES 的团队成员。这些核心成员能够提出有益于所有团队成员并增加心理安全的解决方案。"
@@ -1169,3 +1208,87 @@ msgstr "以下是游戏中可见的所有视频的链接。"
 #: loco:606f064fe8c7130d64722224
 msgid "Zurück"
 msgstr "返回"
+
+msgid "Bitte bewerte alle Teammitglieder. Noch nicht bewertet:"
+msgstr "请评价所有团队成员。尚未评价："
+
+msgid "Bitte verschiebe alle Avatare. Noch"
+msgstr "请移动所有头像。还有"
+
+msgid "verbleibend."
+msgstr "剩余。"
+
+msgid "Fortschritt:"
+msgstr "进度："
+
+msgid "Noch"
+msgstr "还有"
+
+msgid "Personen zuordnen"
+msgstr "人待分配"
+
+msgid "Alle Personen zugeordnet!"
+msgstr "所有人已分配！"
+
+msgid "deine Wirkung auf andere"
+msgstr "你对其他人的影响"
+
+msgid "Spannungen entstehen aus der Differenz zwischen Selbst- und Fremdbild"
+msgstr "紧张关系源于自我认知与他人认知之间的差异"
+
+msgid "meine Selbstwahrnehmung im Team"
+msgstr "我在团队中的自我认知"
+
+msgid "So hast du deinen Beitrag zur Teamdynamik eingeschätzt."
+msgstr "这就是你对自己在团队动态中贡献的评估。"
+
+msgid "Grüne Punkte = Integratoren"
+msgstr "绿点 = 整合者"
+
+msgid "Zahlen in Blasen = Anzahl Safecircle des Spielers"
+msgstr "气泡中的数字 = 玩家的安全圈数量"
+
+msgid "Zentrum = alle Safecircle im Team (je mehr, desto sicherer und vielfältiger wird die Zusammenarbeit)"
+msgstr "中心 = 团队中所有安全圈（越多，合作越安全、越多样化）"
+
+msgid "Goldene Linie = In-Group"
+msgstr "金线 = 内部群体"
+
+msgid "Sichere Kreise beim Toleranzfenster"
+msgstr "公差窗口处的安全圈"
+
+msgid "Kreis"
+msgstr "圈子"
+
+msgid "Personen"
+msgstr "人"
+
+msgid "Keine sicheren Kreise bei diesem Toleranzfenster-Wert"
+msgstr "在此公差窗口值下没有安全圈"
+
+msgid "Übersichtsansicht"
+msgstr "概览"
+
+msgid "Drücke Leertaste, um zur Canvas-Ansicht zurückzukehren"
+msgstr "按空格键返回画布视图"
+
+msgid "Safecircle-Anzahl:"
+msgstr "安全圈数量:"
+
+msgid "In Kreisen:"
+msgstr "在圈子中:"
+
+msgid "Sichere Kreise:"
+msgstr "安全圈:"
+
+msgid "Ähnlichkeit:"
+msgstr "相似度:"
+
+msgid "Integrator"
+msgstr "整合者"
+
+msgid "Toleranzfenster:"
+msgstr "容差窗口:"
+
+msgid "Klicke für weitere Informationen"
+msgstr "点击了解更多信息"

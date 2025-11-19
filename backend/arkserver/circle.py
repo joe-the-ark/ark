@@ -122,3 +122,122 @@ def calc_single(players, votes, n, safezone, safebar):
         "circle_count": circle_count,
         "edges": edges,
     }
+
+def calc_in_groups(game, min_tolerance=4, max_tolerance=20):
+    """
+    Detect in-groups: player pairs that vote similarly for each other,
+    with high mutual votes (above team average), but are NOT in safecircles
+    because their votes are outside the current tolerance window.
+    
+    Tests for tolerance window range [min_tolerance, max_tolerance].
+    """
+    from .management.commands.utils import get_u5
+    import statistics
+    
+    votes, n = get_u5(game)
+    players = list(votes.keys())
+    
+    # Calculate safezone (same as in calc_circles)
+    safezone = {}
+    for player in votes:
+        pvotes = votes[player]
+        for power in pvotes:
+            if power not in safezone:
+                safezone[power] = 0
+            cell = pvotes[power]
+            for p in cell:
+                score = cell[p]
+                safezone[power] += score / (n * n)
+    
+    # Calculate team average for all votes
+    all_votes = []
+    for player in votes:
+        for power_pair in votes[player]:
+            for target in votes[player][power_pair]:
+                all_votes.append(votes[player][power_pair][target])
+    team_avg = statistics.mean(all_votes) if all_votes else 0
+    
+    # Get all safecircles for the tolerance range to exclude pairs already in circles
+    # Only exclude if they are in safecircles at MULTIPLE tolerance values (stable safecircle)
+    # This allows pairs that are only in safecircles at high tolerance to still be in-groups
+    pair_circle_count = {}  # Track how many tolerance values each pair appears in circles
+    for tolerance in range(min_tolerance, max_tolerance + 1):
+        circles_data = calc_single(players, votes, n, safezone, tolerance)
+        # Collect all pairs that are in circles at this tolerance
+        pairs_at_tolerance = set()
+        for circle in circles_data['circles']:
+            for idx1 in circle:
+                for idx2 in circle:
+                    if idx1 < idx2:
+                        pairs_at_tolerance.add((idx1, idx2))
+        # Also check dyads
+        for dyad in circles_data['dyads']:
+            if len(dyad) == 2:
+                i, j = sorted(dyad)
+                pairs_at_tolerance.add((i, j))
+        
+        # Count occurrences
+        for pair in pairs_at_tolerance:
+            pair_circle_count[pair] = pair_circle_count.get(pair, 0) + 1
+    
+    # Exclude pairs that are in safecircles at more than half the tolerance range
+    # (i.e., stable safecircles, not just appearing at high tolerance)
+    threshold_count = (max_tolerance - min_tolerance + 1) // 2
+    stable_circle_pairs = {pair for pair, count in pair_circle_count.items() 
+                          if count > threshold_count}
+    
+    in_groups = []
+    
+    # Check each player pair
+    for i in range(n):
+        for j in range(i + 1, n):
+            p1, p2 = players[i], players[j]
+            
+            # Skip if in stable safecircle (appears in more than half the tolerance range)
+            if (i, j) in stable_circle_pairs:
+                continue
+            
+            # Get all votes from p1 to p2 and p2 to p1
+            votes_p1_to_p2 = []
+            votes_p2_to_p1 = []
+            
+            for power_pair in votes[p1]:
+                if power_pair in votes[p1] and p2 in votes[p1][power_pair]:
+                    votes_p1_to_p2.append(votes[p1][power_pair][p2])
+            for power_pair in votes[p2]:
+                if power_pair in votes[p2] and p1 in votes[p2][power_pair]:
+                    votes_p2_to_p1.append(votes[p2][power_pair][p1])
+            
+            if not votes_p1_to_p2 or not votes_p2_to_p1:
+                continue
+            
+            # Calculate average votes
+            avg_p1_to_p2 = statistics.mean(votes_p1_to_p2)
+            avg_p2_to_p1 = statistics.mean(votes_p2_to_p1)
+            
+            # Check similarity (how close are the votes?)
+            similarity_diff = abs(avg_p1_to_p2 - avg_p2_to_p1)
+            
+            # Average of both votes must be above team average
+            avg_of_both = (avg_p1_to_p2 + avg_p2_to_p1) / 2
+            avg_above_team = avg_of_both > team_avg
+            
+            # Check if they are similar (difference < threshold, e.g., 5 points)
+            similarity_threshold = 5  # Adjust as needed
+            is_similar = similarity_diff <= similarity_threshold
+            
+            # In-group criteria:
+            # 1. Similar voting (low difference)
+            # 2. Average of both votes above team average
+            # 3. NOT in safecircle (already checked above)
+            if is_similar and avg_above_team:
+                in_groups.append({
+                    'i': i,
+                    'j': j,
+                    'avg_p1_to_p2': round(avg_p1_to_p2, 1),
+                    'avg_p2_to_p1': round(avg_p2_to_p1, 1),
+                    'similarity': round(similarity_diff, 1),
+                    'team_avg': round(team_avg, 1)
+                })
+    
+    return in_groups

@@ -40,7 +40,7 @@
   margin: var(--ls-paragraph-offset);
 }
 .ubung-1 p:first-of-type {
-  max-width: 842px;
+  max-width: 908px;
 }
 .ubung-1 p:last-of-type {
   letter-spacing: 0.2px;

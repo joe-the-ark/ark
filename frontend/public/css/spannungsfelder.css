@@ -56,6 +56,56 @@
   box-sizing: border-box;
   margin: 20px auto;
 }
+/* Tension values over 16 should be dark red and bold */
+.rang__item-count.tension-high {
+  color: #fa5252 !important;
+  font-weight: bold !important;
+}
+.min .rang__item-count.tension-high {
+  color: #fa5252 !important;
+  font-weight: bold !important;
+}
+/* Override color card styles for tension-high */
+.white__card .rang__item-count.tension-high,
+.yellow__card .rang__item-count.tension-high,
+.red__card .rang__item-count.tension-high,
+.black__card .rang__item-count.tension-high {
+  color: #fa5252 !important;
+  font-weight: bold !important;
+}
+/* Ensure tension-high applies regardless of sign (positive, negative, neutral) */
+.rang__item-count.tension-positive.tension-high,
+.rang__item-count.tension-negative.tension-high,
+.rang__item-count.tension-neutral.tension-high {
+  color: #fa5252 !important;
+  font-weight: bold !important;
+}
+.min .rang__item-count.tension-positive.tension-high,
+.min .rang__item-count.tension-negative.tension-high,
+.min .rang__item-count.tension-neutral.tension-high {
+  color: #fa5252 !important;
+  font-weight: bold !important;
+}
+/* Override color card styles for all tension sign combinations with tension-high */
+.white__card .rang__item-count.tension-positive.tension-high,
+.white__card .rang__item-count.tension-negative.tension-high,
+.white__card .rang__item-count.tension-neutral.tension-high,
+.yellow__card .rang__item-count.tension-positive.tension-high,
+.yellow__card .rang__item-count.tension-negative.tension-high,
+.yellow__card .rang__item-count.tension-neutral.tension-high,
+.red__card .rang__item-count.tension-positive.tension-high,
+.red__card .rang__item-count.tension-negative.tension-high,
+.red__card .rang__item-count.tension-neutral.tension-high,
+.black__card .rang__item-count.tension-positive.tension-high,
+.black__card .rang__item-count.tension-negative.tension-high,
+.black__card .rang__item-count.tension-neutral.tension-high {
+  color: #fa5252 !important;
+  font-weight: bold !important;
+}
+/* Tension sign indicators - CSS classes are added via JavaScript for potential styling */
+/* .rang__item-count.tension-positive - positive tension (self > others) */
+/* .rang__item-count.tension-negative - negative tension (self < others) */
+/* .rang__item-count.tension-neutral - neutral tension (self == others) */
 .min .rang__item-count {
   font-size: 24px;
   margin: 10px auto;
@@ -110,8 +160,8 @@
   }
 }
 .spannungsfelder p {
-  max-width: 1200px;
-  margin: 42px 0 20px;
+  max-width: 908px;
+  margin: var(--ls-paragraph-offset);
 }
 
 .spannungsfelder p.spannungsfelder-callout {
@@ -133,8 +183,93 @@
     margin: 0 70px;
   }
 }
+/* Harmonized navigation buttons - unified style for all sliders */
+.spannungsfelder .swiper-button-prev,
+.spannungsfelder .swiper-button-next,
+.spannungsfelder .rang-button-prev,
+.spannungsfelder .rang-button-next {
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  background-color: var(--ls-accent-2-color);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  text-align: center;
+  margin-top: 0;
+  cursor: pointer;
+}
+
+.spannungsfelder .swiper-button-prev:after,
+.spannungsfelder .swiper-button-next:after {
+  display: none;
+}
+
+.spannungsfelder .swiper-button-prev:before,
+.spannungsfelder .swiper-button-next:before,
+.spannungsfelder .rang-button-prev:before,
+.spannungsfelder .rang-button-next:before {
+  content: " ";
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid var(--ls-thin-color);
+  border-left: 2px solid var(--ls-thin-color);
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.spannungsfelder .swiper-button-prev,
+.spannungsfelder .rang-button-prev {
+  left: calc(30% - 50px);
+}
+
+.spannungsfelder .swiper-button-prev:before,
+.spannungsfelder .rang-button-prev:before {
+  transform: translateX(2px) rotate(-45deg);
+}
+
+.spannungsfelder .swiper-button-next,
+.spannungsfelder .rang-button-next {
+  right: calc(30% - 50px);
+}
+
+.spannungsfelder .swiper-button-next:before,
+.spannungsfelder .rang-button-next:before {
+  transform: translateX(-2px) rotate(135deg);
+}
+
+.spannungsfelder .swiper-button-prev.swiper-button-disabled,
+.spannungsfelder .swiper-button-next.swiper-button-disabled {
+  opacity: 0.35;
+  cursor: auto;
+  pointer-events: none;
+}
+
+/* Hide graph-slider buttons on mobile */
 @media screen and (max-width: 768px) {
-  .spannungsfelder [class*="swiper-button"] {
+  .spannungsfelder #graph-slider .swiper-button-prev,
+  .spannungsfelder #graph-slider .swiper-button-next {
+    display: none;
+  }
+}
+
+/* Show graph-slider buttons on desktop */
+@media screen and (min-width: 769px) {
+  .spannungsfelder #graph-slider {
+    position: relative;
+  }
+  .spannungsfelder #graph-slider .swiper-button-prev,
+  .spannungsfelder #graph-slider .swiper-button-next {
+    display: block;
+  }
+}
+
+/* Show rang-button only on mobile */
+@media screen and (min-width: 1201px) {
+  .spannungsfelder .rang-button-prev,
+  .spannungsfelder .rang-button-next {
     display: none;
   }
 }

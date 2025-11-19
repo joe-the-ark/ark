@@ -118,7 +118,7 @@
                             >
                                 {% trans "Wie weiter" %}
                                 <span 
-                                    class="tooltip-icon"
+                                    style="width: 24px; height: 24px; border-radius: 50%; background-color: #52CEEC; color: white; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; cursor: help; font-size: 16px;"
                                     title="{% trans 'Integratoren-Erklärung' %}"
                                 >
                                     ?
@@ -213,7 +213,7 @@
                                 <!-- Tooltip Icon -->
                                 <span 
                                     id="tolerance-window-tooltip-icon"
-                                    class="tooltip-icon"
+                                    style="width: 24px; height: 24px; border-radius: 50%; background-color: #52CEEC; color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; cursor: help; font-size: 16px; flex-shrink: 0;"
                                     title="{% trans 'Toleranzfenster-Erklärung' %}"
                                 >
                                     ?
@@ -242,135 +242,8 @@
                     </div>
                     
                     <br/>
-                    <div style="position: relative; display: inline-block;">
-                        <canvas 
-                            ref="canvas" 
-                            :width="width" 
-                            :height="height" 
-                            :style="{ width:width+'px', height:height+'px', display: viewMode === 'canvas' ? 'block' : 'none', transition: 'opacity 0.3s ease' }" 
-                            id="team-potential-canvas"
-                        ></canvas>
-                    </div>
-                    <div v-if="viewMode === 'overview'" style="min-height: 400px; padding: 20px; background-color: #f5f5f5; border-radius: 10px; text-align: center;">
-                        <h3 style="color: #626262; margin-bottom: 20px;">{% trans "Übersichtsansicht" %}</h3>
-                        <p style="color: #999;">{% trans "Drücke Leertaste, um zur Canvas-Ansicht zurückzukehren" %}</p>
-                    </div>
+                    <canvas ref="canvas" :width="width" :height="height" :style="{ width:width+'px', height:height+'px' }" id="team-potential-canvas"></canvas>
                   </p>
-                </div>
-                
-                <!-- Player Detail Modal -->
-                <div 
-                    v-if="showPlayerDetail && selectedPlayer !== null" 
-                    class="player-detail-modal"
-                    @click.self="closePlayerDetail()"
-                >
-                    <div class="player-detail-content" v-if="getPlayerDetails(selectedPlayer)">
-                        <div class="player-detail-header">
-                            <button class="player-detail-close" @click="closePlayerDetail()">×</button>
-                            <h2>[[ getPlayerDetails(selectedPlayer).name ]]</h2>
-                        </div>
-                        <div class="player-detail-body">
-                            <div class="player-detail-avatar-section">
-                                <img 
-                                    :src="getPlayerDetails(selectedPlayer).avatar" 
-                                    :alt="getPlayerDetails(selectedPlayer).name"
-                                    class="player-detail-avatar"
-                                />
-                                <div class="player-detail-role" :class="{ 'integrator': getPlayerDetails(selectedPlayer).isIntegrator }">
-                                    [[ getPlayerDetails(selectedPlayer).role ]]
-                                </div>
-                                <div v-if="getPlayerDetails(selectedPlayer).safetyAnchor" class="player-detail-anchor">
-                                    <strong>{% trans "Sicherheitsanker:" %}</strong> [[ getPlayerDetails(selectedPlayer).safetyAnchor ]]
-                                </div>
-                            </div>
-                            
-                            <div class="player-detail-stats">
-                                <div class="player-detail-stat">
-                                    <span class="stat-label">{% trans "Safecircle-Anzahl:" %}</span>
-                                    <span class="stat-value">[[ getPlayerDetails(selectedPlayer).circleCount ]]</span>
-                                </div>
-                                <div class="player-detail-stat" v-if="getPlayerDetails(selectedPlayer).inGroups.length > 0">
-                                    <span class="stat-label">{% trans "In-Groups:" %}</span>
-                                    <span class="stat-value">[[ getPlayerDetails(selectedPlayer).inGroups.length ]]</span>
-                                </div>
-                            </div>
-                            
-                            <div v-if="getPlayerDetails(selectedPlayer).circles.length > 0" class="player-detail-section">
-                                <h3 class="player-detail-section-title-circles">{% trans "Sichere Kreise:" %}</h3>
-                                <div 
-                                    v-for="(circle, idx) in getPlayerDetails(selectedPlayer).circles" 
-                                    :key="idx"
-                                    class="player-detail-circle"
-                                    :style="{ borderLeftColor: circle.color }"
-                                >
-                                    <div class="player-detail-circle-header">
-                                        <span class="player-detail-circle-color-indicator" :style="{ backgroundColor: circle.color }"></span>
-                                        <strong>{% trans "Kreis" %} [[ circle.index + 1 ]]:</strong>
-                                        <span class="player-detail-circle-tolerance">
-                                            {% trans "Toleranzfenster:" %} [[ current ]]
-                                        </span>
-                                    </div>
-                                    <div class="player-detail-circle-members">
-                                        <span 
-                                            v-for="(member, memberIdx) in circle.members" 
-                                            :key="memberIdx"
-                                            class="player-detail-circle-member"
-                                            :class="{ 'integrator': member.isIntegrator, 'current-player': member.isCurrentPlayer }"
-                                        >
-                                            <img 
-                                                v-if="member.avatar"
-                                                :src="member.avatar" 
-                                                :alt="member.name"
-                                                class="player-detail-circle-member-avatar"
-                                            />
-                                            <span v-else class="player-detail-circle-member-avatar-placeholder">👤</span>
-                                            <div class="player-detail-circle-member-info">
-                                                <span class="player-detail-circle-member-name">[[ member.name ]]</span>
-                                                <span v-if="member.safetyAnchor" class="player-detail-circle-member-anchor">[[ member.safetyAnchor ]]</span>
-                                            </div>
-                                            <span v-if="member.isIntegrator" class="player-detail-circle-member-badge">{% trans "Integrator" %}</span>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div v-if="getPlayerDetails(selectedPlayer).inGroups.length > 0" class="player-detail-section">
-                                <h3>{% trans "In-Groups:" %}</h3>
-                                <div 
-                                    v-for="(group, idx) in getPlayerDetails(selectedPlayer).inGroups" 
-                                    :key="idx"
-                                    class="player-detail-in-group"
-                                >
-                                    <div class="player-detail-in-group-header">
-                                        <span class="player-detail-in-group-tolerance">
-                                            {% trans "Toleranzfenster:" %} [[ current ]]
-                                        </span>
-                                    </div>
-                                    <div class="player-detail-circle-members">
-                                        <span 
-                                            v-for="(member, memberIdx) in group.members" 
-                                            :key="memberIdx"
-                                            class="player-detail-circle-member"
-                                            :class="{ 'integrator': member.isIntegrator, 'current-player': member.isCurrentPlayer }"
-                                        >
-                                            <img 
-                                                v-if="member.avatar"
-                                                :src="member.avatar" 
-                                                :alt="member.name"
-                                                class="player-detail-circle-member-avatar"
-                                            />
-                                            <span v-else class="player-detail-circle-member-avatar-placeholder">👤</span>
-                                            <div class="player-detail-circle-member-info">
-                                                <span class="player-detail-circle-member-name">[[ member.name ]]</span>
-                                                <span v-if="member.safetyAnchor" class="player-detail-circle-member-anchor">[[ member.safetyAnchor ]]</span>
-                                            </div>
-                                            <span v-if="member.isIntegrator" class="player-detail-circle-member-badge">{% trans "Integrator" %}</span>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <p style="background-color: #9FE2BF; color: #626262; text-align: left; border-radius: 10px; padding: 0 10px;"><br>
@@ -382,7 +255,7 @@
                        >
                            {% trans "Wie weiter" %}
                            <span 
-                               class="tooltip-icon"
+                               style="width: 24px; height: 24px; border-radius: 50%; background-color: #52CEEC; color: white; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; cursor: help; font-size: 16px;"
                                title="{% trans 'PRIO 2-Erklärung' %}"
                            >
                                ?
@@ -399,7 +272,7 @@
                             >
                                 {% trans "Wie weiter" %}
                                 <span 
-                                    class="tooltip-icon tooltip-icon-green"
+                                    style="width: 24px; height: 24px; border-radius: 50%; background-color: #9FE2BF; color: #626262; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; cursor: help; font-size: 16px;"
                                     title="{% trans 'PRIO 3-Erklärung' %}"
                                 >
                                     ?
@@ -525,20 +398,9 @@ var app1 = new Vue({
             players: {{ players|safe }},
             anchors: {{ anchors|safe }},
             allResult: {{ all_result|safe }},       // raw statusSide data for each player
-            inGroups: {{ in_groups|safe }},         // in-groups data
             current: 16,
             width: 800,
-            height: 800,
-            // Animation state
-            animationFrame: null,
-            isAnimating: false,
-            // Player detail view
-            selectedPlayer: null,
-            playerPositions: {}, // Store player positions for click detection
-            playerPositionsArray: [], // Array version for Vue reactivity
-            showPlayerDetail: false,
-            // View toggle
-            viewMode: 'canvas' // 'canvas' or 'overview'
+            height: 800
         };
     },
     created() {
@@ -547,19 +409,6 @@ var app1 = new Vue({
     },
     mounted() {
         this.redraw();
-        this.setupKeyboardShortcuts();
-        this.setupCanvasClickHandlers();
-        // Make app1 globally accessible for keyboard handlers
-        window.app1 = this;
-    },
-    watch: {
-        current(newVal, oldVal) {
-            if (oldVal !== undefined && !this.isAnimating) {
-                this.animateTransition(oldVal, newVal);
-            } else {
-                this.redraw();
-            }
-        }
     },
     methods: {
         waiting_room() {
@@ -586,10 +435,10 @@ var app1 = new Vue({
             }
             return best;
         },
-        getCircles() {
-            const entry = this.circles.circles[this.current] || {};
-            return (entry.circles || []).map(group => group.map(i => this.circles.players[i]).join(' '));
-        },
+           getCircles() {
+               const entry = this.circles.circles[this.current] || {};
+               return (entry.circles || []).map(group => group.map(i => this.circles.players[i]).join(' '));
+           },
            getCirclesDetailed() {
                const entry = this.circles.circles[this.current] || {};
                const circles = entry.circles || [];
@@ -655,289 +504,6 @@ var app1 = new Vue({
                // Set current to highest tolerance window value to display it
                this.current = this.getValue2();
            },
-           // Animation methods
-           animateTransition(fromVal, toVal) {
-               if (this.isAnimating) return;
-               this.isAnimating = true;
-               
-               const steps = 20; // Number of animation frames
-               const duration = 300; // Animation duration in ms
-               const stepTime = duration / steps;
-               let currentStep = 0;
-               const self = this;
-               
-               const animate = function() {
-                   if (currentStep >= steps) {
-                       self.current = toVal;
-                       self.isAnimating = false;
-                       self.animationFrame = null;
-                       return;
-                   }
-                   
-                   // Interpolate between fromVal and toVal
-                   const progress = currentStep / steps;
-                   // Use easing function for smoother animation
-                   const eased = self.easeInOutCubic(progress);
-                   const interpolated = Math.round(fromVal + (toVal - fromVal) * eased);
-                   
-                   self.current = interpolated;
-                   currentStep++;
-                   self.redraw();
-                   self.animationFrame = setTimeout(function() {
-                       requestAnimationFrame(animate);
-                   }, stepTime);
-               };
-               
-               animate();
-           },
-           easeInOutCubic(t) {
-               return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-           },
-           // Keyboard shortcuts
-           setupKeyboardShortcuts() {
-               document.addEventListener('keydown', (e) => {
-                   // Don't trigger if user is typing in an input field
-                   if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
-                       return;
-                   }
-                   
-                   const min = this.getValue1() - 1;
-                   const max = this.getValue2();
-                   
-                   switch(e.key) {
-                       case 'ArrowLeft':
-                           e.preventDefault();
-                           if (this.current > min) {
-                               this.current = Math.max(min, this.current - 1);
-                           }
-                           break;
-                       case 'ArrowRight':
-                           e.preventDefault();
-                           if (this.current < max) {
-                               this.current = Math.min(max, this.current + 1);
-                           }
-                           break;
-                       case ' ':
-                           e.preventDefault();
-                           this.toggleView();
-                           break;
-                   }
-               });
-           },
-           toggleView() {
-               this.viewMode = this.viewMode === 'canvas' ? 'overview' : 'canvas';
-               // Close player detail when toggling
-               if (this.showPlayerDetail) {
-                   this.closePlayerDetail();
-               }
-           },
-           // Player detail view methods
-           setupCanvasClickHandlers() {
-               const canvas = this.$refs.canvas;
-               if (!canvas) return;
-               
-               canvas.addEventListener('click', (e) => {
-                   const rect = canvas.getBoundingClientRect();
-                   const x = e.clientX - rect.left;
-                   const y = e.clientY - rect.top;
-                   
-                   // Check if click is on a player avatar
-                   const clickedPlayer = this.getPlayerAtPosition(x, y);
-                   if (clickedPlayer !== null) {
-                       this.showPlayerDetailView(clickedPlayer);
-                   }
-               });
-               
-               // Add cursor and visual feedback on hover over players
-               let hoveredPlayer = null;
-               
-               canvas.addEventListener('mousemove', (e) => {
-                   const rect = canvas.getBoundingClientRect();
-                   const x = e.clientX - rect.left;
-                   const y = e.clientY - rect.top;
-                   
-                   const player = this.getPlayerAtPosition(x, y);
-                   
-                   if (player !== null) {
-                       // Show question mark cursor
-                       canvas.style.cursor = 'help';
-                       
-                       // Show visual question mark if not already shown
-                       if (hoveredPlayer !== player) {
-                           hoveredPlayer = player;
-                           this.showQuestionMarkOverPlayer(player, x, y);
-                       }
-                   } else {
-                       // Reset cursor
-                       canvas.style.cursor = 'default';
-                       
-                       // Hide question mark
-                       if (hoveredPlayer !== null) {
-                           hoveredPlayer = null;
-                           this.hideQuestionMark();
-                       }
-                   }
-               });
-               
-               canvas.addEventListener('mouseleave', () => {
-                   canvas.style.cursor = 'default';
-                   if (hoveredPlayer !== null) {
-                       hoveredPlayer = null;
-                       this.hideQuestionMark();
-                   }
-               });
-           },
-           getPlayerAtPosition(x, y) {
-               // Check each stored player position
-               for (const [playerIndex, pos] of Object.entries(this.playerPositions)) {
-                   const distance = Math.hypot(x - pos.x, y - pos.y);
-                   // Clickable area: avatar size / 2 + some padding
-                   const clickRadius = (pos.size / 2) + 10;
-                   if (distance <= clickRadius) {
-                       return parseInt(playerIndex);
-                   }
-               }
-               return null;
-           },
-           showPlayerDetailView(playerIndex) {
-               this.selectedPlayer = playerIndex;
-               this.showPlayerDetail = true;
-           },
-           closePlayerDetail() {
-               this.showPlayerDetail = false;
-               this.selectedPlayer = null;
-           },
-           getPlayerDetails(playerIndex) {
-               if (playerIndex === null || playerIndex === undefined) return null;
-               
-               const playerName = this.circles.players[playerIndex];
-               const entry = this.circles.circles[this.current] || {};
-               const circles = entry.circles || [];
-               const circle_count = entry.circle_count || {};
-               const maxCount = Math.max(0, ...Object.values(circle_count));
-               
-               // Find all circles this player is in
-               const colors = ['#fa5252', '#ff8c00', '#9FE2BF', '#52CEEC', '#9b59b6', '#FAE03C', '#3b4252'];
-               const playerCircles = circles
-                   .map((circle, idx) => {
-                       const memberDetails = circle.map(i => {
-                           const memberName = this.circles.players[i];
-                           const memberCount = circle_count[i] || 0;
-                           const isMemberIntegrator = memberCount === maxCount && maxCount > 0;
-                           return {
-                               name: memberName,
-                               avatar: this.players[memberName] || '',
-                               safetyAnchor: this.anchors[memberName] || '',
-                               isIntegrator: isMemberIntegrator,
-                               isCurrentPlayer: i === playerIndex
-                           };
-                       });
-                       return {
-                           index: idx,
-                           members: memberDetails,
-                           includesPlayer: circle.includes(playerIndex),
-                           color: colors[idx % colors.length]
-                       };
-                   })
-                   .filter(c => c.includesPlayer);
-               
-               // Find in-groups this player is part of
-               // First, create a set of pairs that are in safecircles at current tolerance
-               const pairsInCurrentCircle = new Set();
-               const currentCircles = circles || [];
-               const currentDyads = entry.dyads || [];
-               
-               currentCircles.forEach(circle => {
-                   for (let idx1 = 0; idx1 < circle.length; idx1++) {
-                       for (let idx2 = idx1 + 1; idx2 < circle.length; idx2++) {
-                           const pair = [Math.min(circle[idx1], circle[idx2]), Math.max(circle[idx1], circle[idx2])];
-                           pairsInCurrentCircle.add(pair.join(','));
-                       }
-                   }
-               });
-               currentDyads.forEach(dyad => {
-                   if (dyad.length === 2) {
-                       const pair = [Math.min(dyad[0], dyad[1]), Math.max(dyad[0], dyad[1])];
-                       pairsInCurrentCircle.add(pair.join(','));
-                   }
-               });
-               
-               // Filter in-groups: only show those NOT in safecircles at current tolerance
-               const playerInGroups = (this.inGroups || [])
-                   .filter(group => {
-                       // Check if this player is part of the in-group
-                       if (group.i !== playerIndex && group.j !== playerIndex) {
-                           return false;
-                       }
-                       
-                       // Check if this pair is in a safecircle at current tolerance
-                       const pairKey = [Math.min(group.i, group.j), Math.max(group.i, group.j)].join(',');
-                       if (pairsInCurrentCircle.has(pairKey)) {
-                           return false; // Don't show - they're in a safecircle now
-                       }
-                       
-                       return true; // Show this in-group
-                   })
-                   .map(group => {
-                       const otherIndex = group.i === playerIndex ? group.j : group.i;
-                       const otherPlayerName = this.circles.players[otherIndex];
-                       const currentPlayerName = this.circles.players[playerIndex];
-                       
-                       // Get integrator status for both players
-                       const otherCount = circle_count[otherIndex] || 0;
-                       const currentCount = circle_count[playerIndex] || 0;
-                       const isOtherIntegrator = otherCount === maxCount && maxCount > 0;
-                       const isCurrentIntegrator = currentCount === maxCount && maxCount > 0;
-                       
-                       // Create member details for both players in the in-group
-                       const members = [
-                           {
-                               name: currentPlayerName,
-                               avatar: this.players[currentPlayerName] || '',
-                               safetyAnchor: this.anchors[currentPlayerName] || '',
-                               isIntegrator: isCurrentIntegrator,
-                               isCurrentPlayer: true
-                           },
-                           {
-                               name: otherPlayerName,
-                               avatar: this.players[otherPlayerName] || '',
-                               safetyAnchor: this.anchors[otherPlayerName] || '',
-                               isIntegrator: isOtherIntegrator,
-                               isCurrentPlayer: false
-                           }
-                       ];
-                       
-                       return {
-                           members: members,
-                           otherPlayer: otherPlayerName,
-                           avg_p1_to_p2: group.avg_p1_to_p2,
-                           avg_p2_to_p1: group.avg_p2_to_p1,
-                           similarity: group.similarity
-                       };
-                   });
-               
-               // Determine role
-               const count = circle_count[playerIndex] || 0;
-               const isIntegrator = count === maxCount && maxCount > 0;
-               const isSolo = playerCircles.length === 0;
-               const isInMultipleCircles = playerCircles.length > 1;
-               
-               let role = 'Team Member';
-               if (isIntegrator) role = 'Integrator';
-               else if (isSolo) role = 'Solo';
-               else if (isInMultipleCircles) role = 'Bridge';
-               
-               return {
-                   name: playerName,
-                   avatar: this.players[playerName] || '',
-                   safetyAnchor: this.anchors[playerName] || '',
-                   circleCount: count,
-                   role: role,
-                   circles: playerCircles,
-                   inGroups: playerInGroups,
-                   isIntegrator: isIntegrator
-               };
-        },
         redraw() {
             const canvas = this.$refs.canvas;
             const ctx    = canvas.getContext('2d');
@@ -1034,55 +600,6 @@ var app1 = new Vue({
                 ctx.setLineDash([]);
             });
 
-            // ✅ draw in-groups (dotted golden lines for similar high-voting pairs not in safecircles)
-            // Only draw if the pair is NOT in a safecircle at the current tolerance window value
-            const inGroups = this.inGroups || [];
-            const currentEntry = this.circles.circles[this.current] || { circles: [], dyads: [] };
-            const currentCircles = currentEntry.circles || [];
-            const currentDyads = currentEntry.dyads || [];
-            
-            // Create a set of pairs that are in safecircles at current tolerance
-            const pairsInCurrentCircle = new Set();
-            currentCircles.forEach(circle => {
-                for (let idx1 = 0; idx1 < circle.length; idx1++) {
-                    for (let idx2 = idx1 + 1; idx2 < circle.length; idx2++) {
-                        const pair = [Math.min(circle[idx1], circle[idx2]), Math.max(circle[idx1], circle[idx2])];
-                        pairsInCurrentCircle.add(pair.join(','));
-                    }
-                }
-            });
-            currentDyads.forEach(dyad => {
-                if (dyad.length === 2) {
-                    const pair = [Math.min(dyad[0], dyad[1]), Math.max(dyad[0], dyad[1])];
-                    pairsInCurrentCircle.add(pair.join(','));
-                }
-            });
-            
-            inGroups.forEach(group => {
-                const i = group.i;
-                const j = group.j;
-                const pairKey = [Math.min(i, j), Math.max(i, j)].join(',');
-                
-                // Skip if this pair is in a safecircle at the current tolerance window
-                if (pairsInCurrentCircle.has(pairKey)) {
-                    return; // Don't draw - they're in a safecircle now
-                }
-                
-                const x1 = boundaryX[i];
-                const y1 = boundaryY[i];
-                const x2 = boundaryX[j];
-                const y2 = boundaryY[j];
-
-                ctx.beginPath();
-                ctx.setLineDash([8, 4]); // dotted style for in-groups (slightly longer dashes)
-                ctx.strokeStyle = '#FFD700'; // golden color
-                ctx.lineWidth = 2;
-                ctx.moveTo(x1, y1);
-                ctx.lineTo(x2, y2);
-                ctx.stroke();
-                ctx.setLineDash([]);
-            });
-
 
 
 /*
@@ -1131,8 +648,6 @@ var app1 = new Vue({
 
 
                         // draw players
-            // Clear player positions for click detection
-            this.playerPositions = {};
             players.forEach((name,i)=>{
                 const count = circle_count[i]||0;
                 const isTop = count===maxCount && maxCount>0;
@@ -1141,13 +656,10 @@ var app1 = new Vue({
                 const px = cx + radius*Math.cos(theta*i);
                 const py = cy + radius*Math.sin(theta*i);
 
-                // Store player position for click detection
-                this.playerPositions[i] = { x: px, y: py, size: size };
-
                     // green filled dot for top players (Integratoren)
                     // Position dot on line from center to player, touching the player's avatar at one point
             if (isTop) {
-                const dotRadius = size / 2; 
+                const dotRadius = size / 2;
                 
                 // Calculate direction from center to player
                 const dx = px - cx;
@@ -1166,10 +678,10 @@ var app1 = new Vue({
                     const dotX = cx + (dx / dist) * dotDistFromCenter;
                     const dotY = cy + (dy / dist) * dotDistFromCenter;
                     
-                ctx.beginPath();
-                ctx.fillStyle = '#9FE2BF';
+                    ctx.beginPath();
+                    ctx.fillStyle = '#9FE2BF';
                     ctx.arc(dotX, dotY, dotRadius, 0, Math.PI * 2);
-                ctx.fill();
+                    ctx.fill();
                 }
             }
 
@@ -1208,56 +720,6 @@ var app1 = new Vue({
                 const a1=Math.atan2(ny-ty,nx-tx), a2=Math.atan2(py-ty,px-tx);
                 let th=(a1+a2)/2; if(th<a1)th+=Math.PI; return [tx,ty,nx,ny,th];
             }
-        },
-        showQuestionMarkOverPlayer(playerIndex, mouseX, mouseY) {
-            // Remove existing question mark
-            this.hideQuestionMark();
-            
-            // Get player position
-            const pos = this.playerPositions[playerIndex];
-            if (!pos) return;
-            
-            // Create question mark element
-            const questionMark = document.createElement('div');
-            questionMark.id = 'player-question-mark';
-            questionMark.textContent = '?';
-            questionMark.style.cssText = `
-                position: absolute;
-                left: ${pos.x}px;
-                top: ${pos.y - pos.size/2 - 35}px;
-                font-size: 28px;
-                font-weight: bold;
-                color: #52CEEC;
-                pointer-events: none;
-                z-index: 1000;
-                text-align: center;
-                width: 36px;
-                height: 36px;
-                line-height: 36px;
-                background-color: rgba(255, 255, 255, 0.95);
-                border-radius: 50%;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-                transform: translateX(-50%);
-            `;
-            
-            // Add to canvas container (parent div)
-            const canvas = this.$refs.canvas;
-            if (canvas && canvas.parentElement) {
-                canvas.parentElement.style.position = 'relative';
-                canvas.parentElement.appendChild(questionMark);
-                this._questionMarkElement = questionMark;
-            }
-        },
-        hideQuestionMark() {
-            if (this._questionMarkElement) {
-                this._questionMarkElement.remove();
-                this._questionMarkElement = null;
-            } else {
-                const existing = document.getElementById('player-question-mark');
-                if (existing) {
-                    existing.remove();
-                }
-            }
         }
     },
     watch:{ 
@@ -1280,8 +742,7 @@ function initCanvasTooltips() {
     const tooltipTexts = {
         integrators: "{% trans 'Grüne Punkte = Integratoren'|escapejs %}",
         bubbleNumbers: "{% trans 'Zahlen in Blasen = Anzahl Safecircle des Spielers'|escapejs %}",
-        centerCount: "{% trans 'Zentrum = alle Safecircle im Team (je mehr, desto sicherer und vielfältiger wird die Zusammenarbeit)'|escapejs %}",
-        goldenLine: "{% trans 'Goldene Linie = In-Group'|escapejs %}"
+        centerCount: "{% trans 'Zentrum = alle Safecircle im Team (je mehr, desto sicherer und vielfältiger wird die Zusammenarbeit)'|escapejs %}"
     };
     
     // Remove existing tooltip if any
@@ -1292,7 +753,7 @@ function initCanvasTooltips() {
     // Create a comprehensive tooltip for the canvas
     // Since we can't add tooltips to individual canvas elements easily,
     // we'll add a tooltip to the canvas itself that explains all elements
-    const combinedTooltip = tooltipTexts.integrators + '<br>' + tooltipTexts.bubbleNumbers + '<br>' + tooltipTexts.centerCount + '<br>' + tooltipTexts.goldenLine;
+    const combinedTooltip = tooltipTexts.integrators + '<br>' + tooltipTexts.bubbleNumbers + '<br>' + tooltipTexts.centerCount;
     
     try {
         tippy(canvas, {

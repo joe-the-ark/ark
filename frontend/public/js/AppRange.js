@@ -49,23 +49,39 @@ class AppRange {
         this.load && this.load(this.container.children)
         this.getItems((item, i) => {
             const count = item.querySelector('.rang__item-count');
-            count.style.filter = `hue-rotate(-${180 - +count.innerHTML}deg)  saturate(200%)`;
+            // Only apply filter if element doesn't have tension-high class
+            // (tension-high elements should be dark red, not color-shifted)
+            if (!count.classList.contains('tension-high')) {
+                count.style.filter = `hue-rotate(-${180 - +count.innerHTML}deg)  saturate(200%)`;
+            }
             window.innerWidth > 1200 && i === 0 && item.classList.add('active')
         })
     }
 
     render() {
+        // Helper function to format tension with sign
+        const formatTension = (tension) => {
+            if (tension > 0) {
+                return `+${tension}`;
+            } else if (tension < 0) {
+                return `${tension}`; // Already has minus sign
+            } else {
+                return `0`; // Neutral
+            }
+        };
+        
         let html = `
             <div class="${this.innerWrapper}">${this.data.map(({value, tension}, i) => {
             // console.log(value)
             const [firstName, lastName] = value.split(' ');
-            return `<div class="rang__item swiper-slide">
+            const formattedTension = formatTension(tension);
+            return `<div class="rang__item swiper-slide" data-tension="${tension}" data-tension-sign="${tension > 0 ? 'positive' : tension < 0 ? 'negative' : 'neutral'}">
                         <div class="rang__item-wrapper">
                             <div class="rang__item-name">
                                 ${firstName}
                             </div>
-                            <div class="rang__item-count">
-                                ${tension}
+                            <div class="rang__item-count" data-tension="${tension}">
+                                ${formattedTension}
                             </div>
                             <div class="rang__item-name">
                                 ${lastName}
