@@ -440,6 +440,9 @@ msgstr "Reality Check : vos cercles psychologiquement sûrs"
 msgid "Schafft sicher verbundene Kreise, in denen Defensivreaktionen überflüssig werden."
 msgstr "Crée des cercles de connexion sécurisés où les réactions défensives deviennent superflues."
 
+msgid "Sichere Kreise im Team boosten"
+msgstr "Renforcer les cercles sûrs dans l'équipe"
+
 msgid "Eine Lesehilfe: je kleiner der Zahlenwert, desto mehr Stress und negative Trigger zeigen sich, weil sich die Toleranzfenster der Teammitglieder schliessen."
 msgstr "Une aide à la lecture : plus la valeur numérique est petite, plus le stress et les déclencheurs négatifs se manifestent, car les fenêtres de tolérance des membres de l'équipe se ferment."
 

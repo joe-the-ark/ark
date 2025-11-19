@@ -512,6 +512,9 @@ msgstr "Reality Check：你们的心理安全圈"
 msgid "Schafft sicher verbundene Kreise, in denen Defensivreaktionen überflüssig werden."
 msgstr "建立安全连接的圈子，使防御性反应变得多余。"
 
+msgid "Sichere Kreise im Team boosten"
+msgstr "提升团队中的安全圈"
+
 msgid "Eine Lesehilfe: je kleiner der Zahlenwert, desto mehr Stress und negative Trigger zeigen sich, weil sich die Toleranzfenster der Teammitglieder schliessen."
 msgstr "阅读提示：数值越低，压力和负面触发因素就越多，因为团队成员的容忍窗口正在关闭。"
 

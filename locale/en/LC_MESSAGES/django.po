@@ -458,6 +458,9 @@ msgstr "Reality Check: your psychologically safe circles"
 msgid "Schafft sicher verbundene Kreise, in denen Defensivreaktionen überflüssig werden."
 msgstr "Create safely connected circles where defensive reactions become superfluous."
 
+msgid "Sichere Kreise im Team boosten"
+msgstr "Boost safe circles in the team"
+
 msgid "Eine Lesehilfe: je kleiner der Zahlenwert, desto mehr Stress und negative Trigger zeigen sich, weil sich die Toleranzfenster der Teammitglieder schliessen."
 msgstr "A reading aid: the lower the numerical value, the more stress and negative triggers appear because the tolerance windows of the team members are closing."
 

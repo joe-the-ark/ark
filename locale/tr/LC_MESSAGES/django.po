@@ -436,6 +436,9 @@ msgstr "Gerçeklik Kontrolü: psikolojik olarak güvenli daireleriniz"
 msgid "Schafft sicher verbundene Kreise, in denen Defensivreaktionen überflüssig werden."
 msgstr "Savunma tepkilerinin gereksiz hale geldiği güvenli bağlanmış daireler oluşturun."
 
+msgid "Sichere Kreise im Team boosten"
+msgstr "Ekipteki güvenli daireleri güçlendirin"
+
 msgid "Eine Lesehilfe: je kleiner der Zahlenwert, desto mehr Stress und negative Trigger zeigen sich, weil sich die Toleranzfenster der Teammitglieder schliessen."
 msgstr "Okuma ipucu: sayı değeri ne kadar küçükse, o kadar çok stres ve olumsuz tetikleyici ortaya çıkar, çünkü ekip üyelerinin tolerans pencereleri kapanır."
 
