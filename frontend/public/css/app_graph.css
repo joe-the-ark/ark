@@ -481,15 +481,41 @@
 }
 
 .custom-graph-info__item.small {
-    color: #00000f;
+    color: #ee6331;
 }
 
 .custom-graph-info__item.base {
+    color: #d4f131;
     margin: 0 60px;
 }
 
 .custom-graph-info__item.large {
-    color: #00000f;
+    color: #45fe39;
+}
+
+/* Tooltip icon positioned outside the circle */
+.custom-graph-info__tooltip-icon {
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #52CEEC;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: help;
+    font-size: 16px;
+    z-index: 10;
+    transition: all 0.2s ease;
+}
+
+.custom-graph-info__tooltip-icon:hover {
+    background-color: #3bb5d4;
+    transform: scale(1.1);
 }
 
 .custom-graph-info__item:before {
