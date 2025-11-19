@@ -1025,52 +1025,45 @@ var app1 = new Vue({
 
             // positions
             const round = v => Math.round(v * 1e5) / 1e5;
-            
+
             // top sizing
             const maxCount = Math.max(0, ...Object.values(circle_count));
             const baseSize = 64;
 
-            // Calculate actual avatar positions and sizes (before drawing, so we can use them for safecircles and in-group lines)
+            // Calculate actual avatar positions (before drawing, so we can use them for safecircles and in-group lines)
             const avatarPositions = {};
-            const avatarSizes = {};
             players.forEach((name, i) => {
                 const count = circle_count[i] || 0;
                 const isTop = count === maxCount && maxCount > 0;
-                const size = isTop ? Math.floor(baseSize * 1.3) : baseSize;
                 const radius = isTop ? r1 * 0.75 : r1;
                 const px = cx + radius * Math.cos(theta * i);
                 const py = cy + radius * Math.sin(theta * i);
                 avatarPositions[i] = { x: px, y: py };
-                avatarSizes[i] = size;
             });
             
             // Create boundary arrays from actual avatar positions (for safecircle drawing)
-            // Position the circle edge at the avatar's edge (avatar center + avatar radius) plus dR offset
+            // Add dR offset to position the circle edge outside the avatar
             const boundaryX = players.map((_, i) => {
                 const pos = avatarPositions[i];
-                const size = avatarSizes[i];
-                const avatarRadius = size / 2; // Avatar radius (half of avatar size)
                 const dx = pos.x - cx;
                 const dy = pos.y - cy;
                 const dist = Math.hypot(dx, dy);
                 if (dist > 0) {
-                    // Move to avatar edge (avatar center + avatar radius) plus dR offset
-                    return cx + (dx / dist) * (dist + avatarRadius + dR);
+                    // Move dR pixels further out from the avatar center
+                    return cx + (dx / dist) * (dist + dR);
                 }
-                return pos.x + avatarRadius + dR;
+                return pos.x + dR;
             });
             const boundaryY = players.map((_, i) => {
                 const pos = avatarPositions[i];
-                const size = avatarSizes[i];
-                const avatarRadius = size / 2; // Avatar radius (half of avatar size)
                 const dx = pos.x - cx;
                 const dy = pos.y - cy;
                 const dist = Math.hypot(dx, dy);
                 if (dist > 0) {
-                    // Move to avatar edge (avatar center + avatar radius) plus dR offset
-                    return cy + (dy / dist) * (dist + avatarRadius + dR);
+                    // Move dR pixels further out from the avatar center
+                    return cy + (dy / dist) * (dist + dR);
                 }
-                return pos.y + avatarRadius + dR;
+                return pos.y + dR;
             });
 
             // helpers
