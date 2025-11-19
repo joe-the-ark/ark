@@ -240,11 +240,24 @@ def calc_in_groups(game, min_tolerance=4, max_tolerance=20):
             
             # Check for each tolerance value if this pair qualifies as in-group
             # The similarity_threshold equals the tolerance value
+            # Find the lowest tolerance where it qualifies, and the highest tolerance where it still qualifies
+            # An in-group stops existing when it enters a safecircle
+            min_qualifying_tolerance = None
+            max_qualifying_tolerance = None
+            
             for tolerance in range(min_tolerance, max_tolerance + 1):
                 similarity_threshold = tolerance  # Threshold equals tolerance value
                 
-                # Skip if pair is in safecircle at this tolerance
-                if (i, j) in safecircles_per_tolerance[tolerance]:
+                # Check if pair is in safecircle at this tolerance
+                is_in_safecircle = (i, j) in safecircles_per_tolerance[tolerance]
+                
+                # If in safecircle, this is where the in-group stops (if it existed before)
+                if is_in_safecircle:
+                    if min_qualifying_tolerance is not None:
+                        # We found the end of the in-group range
+                        max_qualifying_tolerance = tolerance - 1
+                        break
+                    # If not in qualifying range yet, continue
                     continue
                 
                 is_similar = similarity_diff <= similarity_threshold
@@ -252,19 +265,30 @@ def calc_in_groups(game, min_tolerance=4, max_tolerance=20):
                 # In-group criteria:
                 # 1. Similar voting (difference <= tolerance value)
                 # 2. Average of both votes above team average
-                # 3. NOT in safecircle at this tolerance
+                # 3. NOT in safecircle at this tolerance (already checked above)
                 if is_similar and avg_above_team:
-                    in_groups.append({
-                        'i': i,
-                        'j': j,
-                        'avg_p1_to_p2': round(avg_p1_to_p2, 1),
-                        'avg_p2_to_p1': round(avg_p2_to_p1, 1),
-                        'similarity': round(similarity_diff, 1),
-                        'team_avg': round(team_avg, 1),
-                        'similarity_threshold': similarity_threshold,
-                        'tolerance': tolerance  # Store which tolerance value this applies to
-                    })
-                    # Only add once per pair (use first tolerance where it qualifies)
-                    break
+                    if min_qualifying_tolerance is None:
+                        min_qualifying_tolerance = tolerance
+                    # Continue to find the highest tolerance where it still qualifies
+                    # (until it enters a safecircle, which we check above)
+                    max_qualifying_tolerance = tolerance
+            
+            # If we found a qualifying range, add the in-group
+            if min_qualifying_tolerance is not None:
+                # If max is None, it means it qualifies up to max_tolerance (never entered a safecircle)
+                if max_qualifying_tolerance is None:
+                    max_qualifying_tolerance = max_tolerance
+                
+                in_groups.append({
+                    'i': i,
+                    'j': j,
+                    'avg_p1_to_p2': round(avg_p1_to_p2, 1),
+                    'avg_p2_to_p1': round(avg_p2_to_p1, 1),
+                    'similarity': round(similarity_diff, 1),
+                    'team_avg': round(team_avg, 1),
+                    'similarity_threshold': min_qualifying_tolerance,  # Use the lowest threshold where it qualifies
+                    'tolerance': min_qualifying_tolerance,  # Store the lowest tolerance where it was detected
+                    'max_tolerance': max_qualifying_tolerance  # Store the highest tolerance where it still qualifies (before entering safecircle)
+                })
     
     return in_groups

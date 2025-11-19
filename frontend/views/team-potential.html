@@ -883,10 +883,21 @@ var app1 = new Vue({
                            return false;
                        }
                        
-                       // Only show in-groups if current tolerance >= the tolerance where this in-group was detected
-                       // The similarity_threshold equals the tolerance value, so we need current >= group.tolerance
-                       if (group.tolerance && this.current < group.tolerance) {
-                           return false; // Don't show - current tolerance is too low for this in-group
+                       // Show in-groups if current tolerance is within the range where this in-group exists
+                       // In-groups exist from group.tolerance (min) to group.max_tolerance (max, if defined)
+                       // Also show if current is the lowest available tolerance value (even if lower than group.tolerance)
+                       // This allows in-groups detected below the first safecircle to still be visible
+                       const minAvailableTolerance = this.getValue1(); // Lowest tolerance with safecircles
+                       const isLowestTolerance = this.current === minAvailableTolerance;
+                       
+                       if (group.tolerance) {
+                           // Check if current is within the valid range
+                           const maxTolerance = group.max_tolerance || 999; // If no max, assume it continues
+                           const isWithinRange = this.current >= group.tolerance && this.current <= maxTolerance;
+                           
+                           if (!isWithinRange && !isLowestTolerance) {
+                               return false; // Don't show - current tolerance is outside the valid range for this in-group
+                           }
                        }
                        
                        // Check if this pair is in a safecircle at current tolerance
@@ -1001,6 +1012,17 @@ var app1 = new Vue({
             const maxCount = Math.max(0, ...Object.values(circle_count));
             const baseSize = 64;
 
+            // Calculate actual avatar positions (before drawing, so we can use them for in-group lines)
+            const avatarPositions = {};
+            players.forEach((name, i) => {
+                const count = circle_count[i] || 0;
+                const isTop = count === maxCount && maxCount > 0;
+                const radius = isTop ? r1 * 0.75 : r1;
+                const px = cx + radius * Math.cos(theta * i);
+                const py = cy + radius * Math.sin(theta * i);
+                avatarPositions[i] = { x: px, y: py };
+            });
+
             // helpers
             const calc=(x1,y1,x2,y2)=>[Math.hypot(x2-x1,y2-y1),Math.atan2(y2-y1,x2-x1)];
             const moveP=(xo,yo,xp,yp)=>{
@@ -1038,10 +1060,20 @@ var app1 = new Vue({
             const dyads = entry.dyads || [];
             dyads.forEach(pair => {
                 const [i, j] = pair;
-                const x1 = boundaryX[i];
-                const y1 = boundaryY[i];
-                const x2 = boundaryX[j];
-                const y2 = boundaryY[j];
+                
+                // Use actual avatar positions (not boundary positions)
+                // This accounts for integrators being larger and closer to center
+                const pos1 = avatarPositions[i];
+                const pos2 = avatarPositions[j];
+                
+                if (!pos1 || !pos2) {
+                    return; // Skip if positions not calculated yet
+                }
+                
+                const x1 = pos1.x;
+                const y1 = pos1.y;
+                const x2 = pos2.x;
+                const y2 = pos2.y;
 
                 ctx.beginPath();
                 ctx.setLineDash([6, 4]); // dotted style for dyads
@@ -1082,10 +1114,21 @@ var app1 = new Vue({
                 const j = group.j;
                 const pairKey = [Math.min(i, j), Math.max(i, j)].join(',');
                 
-                // Only show in-groups if current tolerance >= the tolerance where this in-group was detected
-                // The similarity_threshold equals the tolerance value, so we need current >= group.tolerance
-                if (group.tolerance && this.current < group.tolerance) {
-                    return; // Don't draw - current tolerance is too low for this in-group
+                // Show in-groups if current tolerance is within the range where this in-group exists
+                // In-groups exist from group.tolerance (min) to group.max_tolerance (max, if defined)
+                // Also show if current is the lowest available tolerance value (even if lower than group.tolerance)
+                // This allows in-groups detected below the first safecircle to still be visible
+                const minAvailableTolerance = this.getValue1(); // Lowest tolerance with safecircles
+                const isLowestTolerance = this.current === minAvailableTolerance;
+                
+                if (group.tolerance) {
+                    // Check if current is within the valid range
+                    const maxTolerance = group.max_tolerance || 999; // If no max, assume it continues
+                    const isWithinRange = this.current >= group.tolerance && this.current <= maxTolerance;
+                    
+                    if (!isWithinRange && !isLowestTolerance) {
+                        return; // Don't draw - current tolerance is outside the valid range for this in-group
+                    }
                 }
                 
                 // Skip if this pair is in a safecircle at the current tolerance window
@@ -1093,10 +1136,19 @@ var app1 = new Vue({
                     return; // Don't draw - they're in a safecircle now
                 }
                 
-                const x1 = boundaryX[i];
-                const y1 = boundaryY[i];
-                const x2 = boundaryX[j];
-                const y2 = boundaryY[j];
+                // Use actual avatar positions (not boundary positions)
+                // This accounts for integrators being larger and closer to center
+                const pos1 = avatarPositions[i];
+                const pos2 = avatarPositions[j];
+                
+                if (!pos1 || !pos2) {
+                    return; // Skip if positions not calculated yet
+                }
+                
+                const x1 = pos1.x;
+                const y1 = pos1.y;
+                const x2 = pos2.x;
+                const y2 = pos2.y;
 
                 ctx.beginPath();
                 ctx.setLineDash([8, 4]); // dotted style for in-groups (slightly longer dashes)
