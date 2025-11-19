@@ -883,6 +883,12 @@ var app1 = new Vue({
                            return false;
                        }
                        
+                       // Only show in-groups if current tolerance >= the tolerance where this in-group was detected
+                       // The similarity_threshold equals the tolerance value, so we need current >= group.tolerance
+                       if (group.tolerance && this.current < group.tolerance) {
+                           return false; // Don't show - current tolerance is too low for this in-group
+                       }
+                       
                        // Check if this pair is in a safecircle at current tolerance
                        const pairKey = [Math.min(group.i, group.j), Math.max(group.i, group.j)].join(',');
                        if (pairsInCurrentCircle.has(pairKey)) {
@@ -1075,6 +1081,12 @@ var app1 = new Vue({
                 const i = group.i;
                 const j = group.j;
                 const pairKey = [Math.min(i, j), Math.max(i, j)].join(',');
+                
+                // Only show in-groups if current tolerance >= the tolerance where this in-group was detected
+                // The similarity_threshold equals the tolerance value, so we need current >= group.tolerance
+                if (group.tolerance && this.current < group.tolerance) {
+                    return; // Don't draw - current tolerance is too low for this in-group
+                }
                 
                 // Skip if this pair is in a safecircle at the current tolerance window
                 if (pairsInCurrentCircle.has(pairKey)) {

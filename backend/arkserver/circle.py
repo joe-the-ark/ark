@@ -186,9 +186,25 @@ def calc_in_groups(game, min_tolerance=4, max_tolerance=20):
     stable_circle_pairs = {pair for pair, count in pair_circle_count.items() 
                           if count > threshold_count}
     
+    # Store safecircles per tolerance for filtering
+    safecircles_per_tolerance = {}
+    for tolerance in range(min_tolerance, max_tolerance + 1):
+        circles_data = calc_single(players, votes, n, safezone, tolerance)
+        pairs_at_tolerance = set()
+        for circle in circles_data['circles']:
+            for idx1 in circle:
+                for idx2 in circle:
+                    if idx1 < idx2:
+                        pairs_at_tolerance.add((idx1, idx2))
+        for dyad in circles_data['dyads']:
+            if len(dyad) == 2:
+                i, j = sorted(dyad)
+                pairs_at_tolerance.add((i, j))
+        safecircles_per_tolerance[tolerance] = pairs_at_tolerance
+    
     in_groups = []
     
-    # Check each player pair
+    # Check each player pair for each tolerance value
     for i in range(n):
         for j in range(i + 1, n):
             p1, p2 = players[i], players[j]
@@ -222,22 +238,33 @@ def calc_in_groups(game, min_tolerance=4, max_tolerance=20):
             avg_of_both = (avg_p1_to_p2 + avg_p2_to_p1) / 2
             avg_above_team = avg_of_both > team_avg
             
-            # Check if they are similar (difference < threshold, e.g., 5 points)
-            similarity_threshold = 5  # Adjust as needed
-            is_similar = similarity_diff <= similarity_threshold
-            
-            # In-group criteria:
-            # 1. Similar voting (low difference)
-            # 2. Average of both votes above team average
-            # 3. NOT in safecircle (already checked above)
-            if is_similar and avg_above_team:
-                in_groups.append({
-                    'i': i,
-                    'j': j,
-                    'avg_p1_to_p2': round(avg_p1_to_p2, 1),
-                    'avg_p2_to_p1': round(avg_p2_to_p1, 1),
-                    'similarity': round(similarity_diff, 1),
-                    'team_avg': round(team_avg, 1)
-                })
+            # Check for each tolerance value if this pair qualifies as in-group
+            # The similarity_threshold equals the tolerance value
+            for tolerance in range(min_tolerance, max_tolerance + 1):
+                similarity_threshold = tolerance  # Threshold equals tolerance value
+                
+                # Skip if pair is in safecircle at this tolerance
+                if (i, j) in safecircles_per_tolerance[tolerance]:
+                    continue
+                
+                is_similar = similarity_diff <= similarity_threshold
+                
+                # In-group criteria:
+                # 1. Similar voting (difference <= tolerance value)
+                # 2. Average of both votes above team average
+                # 3. NOT in safecircle at this tolerance
+                if is_similar and avg_above_team:
+                    in_groups.append({
+                        'i': i,
+                        'j': j,
+                        'avg_p1_to_p2': round(avg_p1_to_p2, 1),
+                        'avg_p2_to_p1': round(avg_p2_to_p1, 1),
+                        'similarity': round(similarity_diff, 1),
+                        'team_avg': round(team_avg, 1),
+                        'similarity_threshold': similarity_threshold,
+                        'tolerance': tolerance  # Store which tolerance value this applies to
+                    })
+                    # Only add once per pair (use first tolerance where it qualifies)
+                    break
     
     return in_groups
