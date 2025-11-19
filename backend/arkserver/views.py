@@ -18,15 +18,45 @@ from .models import *
 def testauth(request):
     if request.method == 'POST':
         name = request.POST.get('game')
+        player_name = request.POST.get('player')  # Optional: player name or ID
         game = Game.objects.filter(name=name).first()
+        if not game:
+            return HttpResponse('Game not found')
+        
         link = game.link
         print(link)
-        user = game.creator
+        
+        # If player is specified, use that player; otherwise use game creator
+        if player_name:
+            # Try to find player by name first
+            user = game.members.filter(name=player_name).first()
+            # If not found by name, try by ID
+            if not user:
+                try:
+                    player_id = int(player_name)
+                    user = game.members.filter(id=player_id).first()
+                except ValueError:
+                    pass
+            # If still not found, fall back to creator
+            if not user:
+                user = game.creator
+        else:
+            user = game.creator
+        
         request.session['uid'] = user.id
         request.session['link'] = link
         return redirect('/potential-result')
 
-    return HttpResponse('<form action="." method="POST"><input name="game" /><input type="submit" /></form>')
+    # Show form with game and optional player input
+    return HttpResponse('''
+        <form action="." method="POST">
+            <label>Game name:</label><br>
+            <input name="game" required /><br><br>
+            <label>Player name or ID (optional, leave empty for creator):</label><br>
+            <input name="player" placeholder="Player name or ID" /><br><br>
+            <input type="submit" value="View Results" />
+        </form>
+    ''')
 
 
 
