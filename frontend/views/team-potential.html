@@ -1025,15 +1025,12 @@ var app1 = new Vue({
 
             // positions
             const round = v => Math.round(v * 1e5) / 1e5;
-            const boundaryX = players.map((_, i) => cx + (r1 + dR) * round(Math.cos(theta * i)));
-            const boundaryY = players.map((_, i) => cy + (r1 + dR) * round(Math.sin(theta * i)));
-
-
+            
             // top sizing
             const maxCount = Math.max(0, ...Object.values(circle_count));
             const baseSize = 64;
 
-            // Calculate actual avatar positions (before drawing, so we can use them for in-group lines)
+            // Calculate actual avatar positions (before drawing, so we can use them for safecircles and in-group lines)
             const avatarPositions = {};
             players.forEach((name, i) => {
                 const count = circle_count[i] || 0;
@@ -1042,6 +1039,31 @@ var app1 = new Vue({
                 const px = cx + radius * Math.cos(theta * i);
                 const py = cy + radius * Math.sin(theta * i);
                 avatarPositions[i] = { x: px, y: py };
+            });
+            
+            // Create boundary arrays from actual avatar positions (for safecircle drawing)
+            // Add dR offset to position the circle edge outside the avatar
+            const boundaryX = players.map((_, i) => {
+                const pos = avatarPositions[i];
+                const dx = pos.x - cx;
+                const dy = pos.y - cy;
+                const dist = Math.hypot(dx, dy);
+                if (dist > 0) {
+                    // Move dR pixels further out from the avatar center
+                    return cx + (dx / dist) * (dist + dR);
+                }
+                return pos.x + dR;
+            });
+            const boundaryY = players.map((_, i) => {
+                const pos = avatarPositions[i];
+                const dx = pos.x - cx;
+                const dy = pos.y - cy;
+                const dist = Math.hypot(dx, dy);
+                if (dist > 0) {
+                    // Move dR pixels further out from the avatar center
+                    return cy + (dy / dist) * (dist + dR);
+                }
+                return pos.y + dR;
             });
 
             // helpers
