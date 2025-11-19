@@ -207,7 +207,7 @@
                                         type="range" 
                                         id="tolerance-window-slider"
                                         v-model.number="current" 
-                                        :min="getValue1()-1" 
+                                        :min="getMinTolerance()" 
                                         :max="getValue2()" 
                                         step="1"
                                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; margin: 0; padding: 0; background: transparent; outline: none; cursor: pointer; z-index: 1;"
@@ -219,7 +219,7 @@
                                     type="number" 
                                     id="tolerance-window-input"
                                     v-model.number="current" 
-                                    :min="getValue1()-1" 
+                                    :min="getMinTolerance()" 
                                     :max="getValue2()" 
                                     style="width: 100px; height: 50px; padding: 10px; border-radius: 10px; border: 3px solid #9FE2BF; font-size: 20px; font-weight: bold; text-align: center; background-color: #FAE03C; color: #626262; box-shadow: 0 2px 5px rgba(0,0,0,0.1);" 
                                 />
@@ -240,7 +240,7 @@
                                 style="font-weight: bold; font-size: 42px; color: #626262; background: none; border: none; cursor: pointer; padding: 0; margin: 0; text-decoration: underline;"
                                 title="{% trans 'Lesehilfe anzeigen' %}"
                             >
-                                [[ getValue1()-1 ]]
+                                [[ getMinTolerance() ]]
                             </button>
                             <span style="flex: 1; text-align: center; font-style: italic;">{% trans "(niedrige Werte = hoher Stress)" %}</span>
                             <button 
@@ -584,6 +584,27 @@ var app1 = new Vue({
             for (const key in this.circles.circles) maxKey = Math.max(maxKey, parseInt(key));
             return maxKey;
         },
+        getMinTolerance() {
+            // Find the lowest tolerance value where in-groups exist
+            // If no in-groups exist, return getValue1()-1 (lowest safecircle value - 1)
+            const inGroups = this.inGroups || [];
+            if (inGroups.length === 0) {
+                return this.getValue1() - 1;
+            }
+            
+            // Find the minimum tolerance value from all in-groups
+            let minTolerance = Infinity;
+            inGroups.forEach(group => {
+                if (group.tolerance !== undefined && group.tolerance < minTolerance) {
+                    minTolerance = group.tolerance;
+                }
+            });
+            
+            // If we found a lower value than getValue1()-1, use it
+            // Otherwise, use getValue1()-1 as the minimum
+            const safecircleMin = this.getValue1() - 1;
+            return Math.min(minTolerance, safecircleMin);
+        },
         getValue3() {
             const pCount = this.circles.players.length;
             return Object.keys(this.circles.circles)
@@ -632,7 +653,7 @@ var app1 = new Vue({
                });
            },
            getSliderGradientBackgroundStyle() {
-               const min = this.getValue1() - 1;
+               const min = this.getMinTolerance();
                const max = this.getValue2();
                const threshold = 16; // Value below which it transitions to red
                
@@ -714,7 +735,7 @@ var app1 = new Vue({
                        return;
                    }
                    
-                   const min = this.getValue1() - 1;
+                   const min = this.getMinTolerance(); // Use minimum tolerance (including in-groups)
                    const max = this.getValue2();
                    
                    switch(e.key) {
