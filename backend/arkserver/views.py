@@ -689,7 +689,6 @@ def heatmap(request, user):
 
         for index, scale in enumerate(scale_order):
             axis_key = axis_keys[index]
-            entry_count = goal_axis_counts.get((player_id, axis_key), len(player_ids)) or (len(player_ids) or 1)
 
             user_self_score = score_lookup.get((player_id, player_id, axis_key), 0)
             others_scores = [
@@ -697,13 +696,11 @@ def heatmap(request, user):
                 for other_id in player_ids
                 if other_id != player_id
             ]
-            others_average = mean(others_scores)
+            others_average = mean(others_scores) if others_scores else 0
 
-            diff_sum = (user_self_score - others_average) * entry_count
-            others_sum = others_average * entry_count
-
-            diff_value = round(diff_sum / user_number_sq, 1) if user_number else 0
-            others_value = round(others_sum / user_number_sq, 1) if user_number else 0
+            # Original calculation logic: direct difference and others average (no normalization)
+            diff_value = round(user_self_score - others_average, 1)
+            others_value = round(others_average, 1)
             color = classify_color(user_self_score, others_average, scale.ubung5_avg)
 
             player_columns.append([diff_value, color, others_value])
