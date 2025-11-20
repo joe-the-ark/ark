@@ -1083,20 +1083,69 @@ var app1 = new Vue({
             const playersInCircles = new Set();
             circles.forEach((members,idx)=>{
                 members.forEach(i => playersInCircles.add(i));
-                let x0=0,y0=0; members.forEach(i=>(x0+=boundaryX[i],y0+=boundaryY[i])); x0/=members.length; y0/=members.length;
-                ctx.strokeStyle=colors[idx%colors.length]; ctx.lineWidth=3; ctx.setLineDash([]); ctx.beginPath();
-                members.forEach((pt,j)=>{
-                    const nextIdx=members[(j+1)%members.length];
-                    const [tx,ty,,,th1]=calcEdge(j,members,x0,y0,boundaryX,boundaryY,moveP);
-                    const [nx,ny,,,th2]=calcEdge((j+1)%members.length,members,x0,y0,boundaryX,boundaryY,moveP);
-                    const hr=120;
-                    const c1x = round(tx + hr * Math.cos(th1 - Math.PI / 2));
-                    const c1y = round(ty + hr * Math.sin(th1 - Math.PI / 2));
-                    const c2x = round(nx + hr * Math.cos(th2 + Math.PI / 2));
-                    const c2y = round(ny + hr * Math.sin(th2 + Math.PI / 2));
-                    if(!j)ctx.moveTo(tx,ty);
-                    ctx.bezierCurveTo(c1x,c1y,c2x,c2y,nx,ny);
-                }); ctx.stroke();
+                
+                // Check if all players are in this single circle (perfect circle case)
+                const isAllPlayersCircle = circles.length === 1 && members.length === n;
+                
+                if (isAllPlayersCircle) {
+                    // Draw a perfect circle that encompasses all players
+                    // Calculate center as average of all boundary positions
+                    let x0=0,y0=0; members.forEach(i=>(x0+=boundaryX[i],y0+=boundaryY[i])); x0/=members.length; y0/=members.length;
+                    
+                    // Calculate radius: distance from center to farthest boundary point + dR
+                    let maxRadius = 0;
+                    members.forEach(i => {
+                        const dist = Math.hypot(boundaryX[i] - x0, boundaryY[i] - y0);
+                        maxRadius = Math.max(maxRadius, dist);
+                    });
+                    const circleRadius = maxRadius + dR;
+                    
+                    // Draw perfect circle
+                    ctx.strokeStyle=colors[idx%colors.length]; 
+                    ctx.lineWidth=3; 
+                    ctx.setLineDash([]); 
+                    ctx.beginPath();
+                    ctx.arc(x0, y0, circleRadius, 0, 2 * Math.PI);
+                    ctx.stroke();
+                } else {
+                    // Draw using Bezier curves (existing logic)
+                    let x0=0,y0=0; members.forEach(i=>(x0+=boundaryX[i],y0+=boundaryY[i])); x0/=members.length; y0/=members.length;
+                    
+                    // Calculate average distance between points for dynamic hr adjustment
+                    let totalDistance = 0;
+                    let distanceCount = 0;
+                    members.forEach((pt,j)=>{
+                        const nextIdx=members[(j+1)%members.length];
+                        const [tx,ty]=moveP(x0,y0,boundaryX[members[j]],boundaryY[members[j]]);
+                        const [nx,ny]=moveP(x0,y0,boundaryX[nextIdx],boundaryY[nextIdx]);
+                        const dist = Math.hypot(nx - tx, ny - ty);
+                        totalDistance += dist;
+                        distanceCount++;
+                    });
+                    const avgDistance = distanceCount > 0 ? totalDistance / distanceCount : 200;
+                    
+                    // Base handle radius (increased from 120 to 180 for rounder appearance)
+                    const baseHr = 180;
+                    
+                    ctx.strokeStyle=colors[idx%colors.length]; ctx.lineWidth=3; ctx.setLineDash([]); ctx.beginPath();
+                    members.forEach((pt,j)=>{
+                        const nextIdx=members[(j+1)%members.length];
+                        const [tx,ty,,,th1]=calcEdge(j,members,x0,y0,boundaryX,boundaryY,moveP);
+                        const [nx,ny,,,th2]=calcEdge((j+1)%members.length,members,x0,y0,boundaryX,boundaryY,moveP);
+                        
+                        // Dynamic hr: adjust based on distance between points
+                        // For larger distances, use larger hr; for smaller distances, use smaller hr
+                        const segmentDistance = Math.hypot(nx - tx, ny - ty);
+                        const hr = baseHr * (segmentDistance / avgDistance);
+                        
+                        const c1x = round(tx + hr * Math.cos(th1 - Math.PI / 2));
+                        const c1y = round(ty + hr * Math.sin(th1 - Math.PI / 2));
+                        const c2x = round(nx + hr * Math.cos(th2 + Math.PI / 2));
+                        const c2y = round(ny + hr * Math.sin(th2 + Math.PI / 2));
+                        if(!j)ctx.moveTo(tx,ty);
+                        ctx.bezierCurveTo(c1x,c1y,c2x,c2y,nx,ny);
+                    }); ctx.stroke();
+                }
             });
 
                         // ✅ draw dyads (real safe dyads from backend)
