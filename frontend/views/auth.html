@@ -69,14 +69,14 @@
     <div class="app__body">
         <div class="container">
             <main class="screen auth">
-                <h1 id="title-game">
-                    {% trans "Schafft eine dramafreie Zusammenarbeit durch psychologisch sichere Kreise." %}
-                </h1>
-                <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
-                    {% trans "Bist du bereit für die aufrichtigste Team-Challenge deiner Karriere mit der Arche (für 3 bis 15 Personen)?" %}<br>
-                </p>
+                <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 20px;">
+                    <span class="info-tooltip-icon" id="info-tooltip-icon" aria-label="{% trans 'Info' %}">?</span>
+                    <h1 id="title-game" style="margin: 0;">
+                        {% trans "Schafft eine dramafreie Zusammenarbeit durch psychologisch sichere Kreise." %}
+                    </h1>
+                </div>
                 <span class="terms_str">{% trans "Das sind die" %}
-                  <button type="button" class="terms" id="terms-button" style="text-decoration:underline; background: none; border: none; color: inherit; cursor: pointer; font-size: inherit;" aria-label="{% trans 'Nutzungsbedingungen anzeigen' %}">{% trans "Nutzungsbedingungen" %}</button>
+                  <button type="button" class="terms" id="terms-button" aria-label="{% trans 'Nutzungsbedingungen anzeigen' %}">{% trans "Nutzungsbedingungen" %}</button>
                 </span>
                 
                 <!-- Terms of Use Modal -->
@@ -242,8 +242,11 @@
                         </span>
                     </div>
                     <div class="form__field">
-                        <button id="submit_button" type="button" style="margin-top: 50px;line-height: 38px; padding: 26px 26px; width:100%; font-size: 30px" aria-label="{% trans 'Challenge starten' %}">
-                            <span id="submit-button-text">{% trans "Challenge starten" %} <br> <span style='font-size:24px;'>{% trans "Link kopieren & QR-Code anzeigen" %}</span></span>
+                        <button id="submit_button" class="button button-primary" type="button" style="margin-top: 50px; width:100%; font-size: 30px" aria-label="{% trans 'Challenge starten' %}">
+                            <span id="submit-button-text">
+                                <span class="button-text">{% trans "Challenge starten" %} <br> <span style='font-size:24px;'>{% trans "Link kopieren & QR-Code anzeigen" %}</span></span>
+                                <span class="button-arrow">→</span>
+                            </span>
                             <span id="submit-button-loading" style="display: none;">
                                 <span class="loading-spinner"></span> {% trans "Wird verarbeitet..." %}
                             </span>
@@ -305,6 +308,20 @@
         // Initialize Tippy.js tooltip for the question mark
         tippy(arksLogoTooltipIcon, {
             content: "{% trans 'Info zu safecircles.ch'|escapejs %}",
+            placement: 'bottom',
+            theme: 'light',
+            delay: [200, 0],
+            allowHTML: false,
+            interactive: false,
+            trigger: 'mouseenter focus',
+        });
+    }
+    
+    // Info Tooltip for title
+    const infoTooltipIcon = document.getElementById('info-tooltip-icon');
+    if (infoTooltipIcon) {
+        tippy(infoTooltipIcon, {
+            content: "{% trans 'Bist du bereit für die aufrichtigste Team-Challenge deiner Karriere mit der Arche (für 3 bis 15 Personen)?'|escapejs %}",
             placement: 'bottom',
             theme: 'light',
             delay: [200, 0],

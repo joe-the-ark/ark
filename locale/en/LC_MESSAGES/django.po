@@ -130,8 +130,8 @@ msgstr "equal turn taking of speech"
 msgid "offen und ohne Angst kommunizieren"
 msgstr "communicate openly and without fear"
 
-msgid "Psychologische Sicherheit ist laut Google’s Aristoteles-Studie stärkster Prädiktor für Team-Performance."
-msgstr "Psychological safety is the strongest predictor of team performance, according to Google's Aristotle study."
+msgid "Psychologische Sicherheit ist laut Google's Aristoteles-Studie stärkster Prädiktor für Team-Performance. Wie nahe liegen diese Werte in deinem Team zusammen?"
+msgstr "Psychological safety is the strongest predictor of team performance, according to Google's Aristotle study. How close are these values in your team?"
 
 #. preview.html
 #: loco:60688694be899e32216f1b02
@@ -163,6 +163,9 @@ msgstr "Share this QR code to invite fellow travelers"
 
 msgid "https://docs.google.com/presentation/d/1gyEYqnALw4y9yLPUTb1VYQO9IADDD4r-1-yf0sgkvo4/embed?start=true&loop=false&delayms=8000"
 msgstr "https://docs.google.com/presentation/d/1y6v3ggjzWm6SQjr1RMW8uhLeBhfnWC3SBYX_FASm10o/embed?start=true&loop=false&delayms=8000"
+
+msgid "https://docs.google.com/presentation/d/1gyEYqnALw4y9yLPUTb1VYQO9IADDD4r-1-yf0sgkvo4/embed?start=true&loop=false&delayms=8000&rm=minimal"
+msgstr "https://docs.google.com/presentation/d/1y6v3ggjzWm6SQjr1RMW8uhLeBhfnWC3SBYX_FASm10o/embed?start=true&loop=false&delayms=8000&rm=minimal"
 
 msgid "https://docs.google.com/presentation/d/1qi3wNhpRU3FEoatghY7Ca0iNwtGPQGvHqLRXCvbKKJ8/embed?start=true&loop=false&delayms=8000"
 msgstr "https://docs.google.com/presentation/d/1pJHjHIKguSqrKjPR2aq76t7Mob0vQSJu0aed0mbuY3w/embed?start=true&loop=false&delayms=8000&rm=minimal"
@@ -450,6 +453,42 @@ msgstr "Your inner safety"
 
 msgid "Gefühlte Team Performance"
 msgstr "Perceived Team Performance"
+
+msgid "Psychologischer Sicherheitswert:"
+msgstr "Psychological Safety Score:"
+
+msgid "Fall 1: Hohe Performance + Niedrige psychologische Sicherheit"
+msgstr "Case 1: High Performance + Low Psychological Safety"
+
+msgid "Das Team liefert trotz unsicherem Klima – oft durch informelle Netzwerke oder Einzelpersonen. Die Performance ist fragil, da sie \"trotz\" und nicht \"wegen\" des Systems entsteht. Langfristig riskant, da bei Ausfall der Integratoren die Leistung einbricht."
+msgstr "The team delivers despite an unsafe climate – often through informal networks or individuals. Performance is fragile because it emerges \"despite\" rather than \"because\" of the system. Long-term risky, as performance breaks down when integrators fail."
+
+msgid "Fall 2: Niedrige Performance + Hohe psychologische Sicherheit"
+msgstr "Case 2: Low Performance + High Psychological Safety"
+
+msgid "Es herrscht Sicherheit, aber die Leistung bleibt aus. Meist fehlen Klarheit, Struktur oder Kompetenz. Das Team hat großes ungenutztes Potenzial. Die Basis ist gut – jetzt braucht es Führung, Ziele und passende Rahmenbedingungen. Manchmal treffen wir Menschen mit besonderen psychologischen Bedürfnissen im Team an, die von besonderer Aufmerksamkeit und professioneller Betreuung profitieren könnten."
+msgstr "There is safety, but performance is lacking. Usually missing clarity, structure, or competence. The team has great untapped potential. The foundation is good – now it needs leadership, goals, and appropriate framework conditions. Sometimes we encounter people with special psychological needs in the team who could benefit from particular attention and professional support."
+
+msgid "Normalfall: Übereinstimmende Werte"
+msgstr "Normal Case: Aligned Values"
+
+msgid "Hohe Werte in beiden Bereichen kennzeichnen gesunde, lernstarke Teams. Niedrige Werte deuten auf grundlegende Dysfunktion hin. In beiden Fällen ist die Dynamik konsistent – Interventionen können gezielt am Gesamtsystem ansetzen."
+msgstr "High values in both areas characterize healthy, learning-strong teams. Low values indicate fundamental dysfunction. In both cases, the dynamics are consistent – interventions can target the overall system specifically."
+
+msgid "Zur Orientierung:"
+msgstr "For orientation:"
+
+msgid "Deutlich höhere Performance als psychologische Sicherheit"
+msgstr "Significantly higher performance than psychological safety"
+
+msgid "Deutlich höhere psychologische Sicherheit als Performance"
+msgstr "Significantly higher psychological safety than performance"
+
+msgid "Die Werte liegen nah beieinander"
+msgstr "The values are close together"
+
+msgid "Punkte Unterschied"
+msgstr "points difference"
 
 #. potential-result > now part of waiting_room2
 
@@ -1477,8 +1516,8 @@ msgstr "You must select a term or enter your own before you can continue."
 msgid "Dieser Begriff wurde bereits von einem anderen Mitreisenden gewählt."
 msgstr "*This term has already been chosen by another fellow traveller."
 
-msgid "Eigenen Begriff eingeben..."
-msgstr "Enter your own term..."
+msgid "...oder einen eigenen Begriff eingeben"
+msgstr "...or enter your own term"
 
 msgid "Sicherheitsanker eingeben"
 msgstr "Enter safety anchor"

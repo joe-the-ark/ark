@@ -3,7 +3,16 @@
 /* Google Slides Container */
 .google-slides-container-wrapper {
     position: relative;
-    margin: 20px 0;
+    margin: var(--ls-paragraph-offset);
+}
+
+/* Tooltip icon over Google Slides */
+.google-slides-tooltip-icon {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    z-index: 10;
+    pointer-events: auto;
 }
 
 .google-slides-container {
@@ -122,6 +131,41 @@
 
 .modal_button.button:active {
     transform: translateY(0);
+}
+
+/* ARKS logo clickable */
+.arks-logo-clickable {
+  cursor: pointer;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+
+/* Wartezimmer list */
+.wartezimmer-list {
+  margin: var(--ls-paragraph-offset);
+  max-width: 908px;
+}
+
+.wartezimmer-list li {
+  margin-bottom: 15px;
+}
+
+/* Button container with standard margins */
+.wartezimmer-button-container {
+  margin: var(--ls-paragraph-offset);
+}
+
+/* Progress bar fill */
+.progress__bar-fill {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* Now terms uppercase */
+.now-terms-uppercase {
+  text-transform: uppercase;
 }
 
 /* Mobile Optimizations */

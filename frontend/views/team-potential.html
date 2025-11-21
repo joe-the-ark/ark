@@ -19,6 +19,12 @@
     <link rel="stylesheet" href="https://cdn.staticfile.org/element-ui/2.15.9/theme-chalk/index.css">
     <!-- 引入组件库 -->
     <script src="https://cdn.staticfile.org/element-ui/2.15.9/index.js"></script>
+    <script>
+        // Initialize Element UI with Vue
+        if (typeof Vue !== 'undefined' && typeof ELEMENT !== 'undefined') {
+            Vue.use(ELEMENT);
+        }
+    </script>
     <!-- Tippy.js for tooltips -->
     <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
@@ -221,7 +227,7 @@
                                 @click="hideReadingHelp()"
                                 id="min-value-button"
                                 style="font-weight: bold; font-size: 42px; color: #626262; background: none; border: none; cursor: pointer; padding: 0; margin: 0; text-decoration: underline;"
-                                :aria-label="'{% trans 'Lesehilfe anzeigen' %}: ' + getMinTolerance()"
+                                :aria-label="'{% trans 'Lesehilfe anzeigen'|escapejs %}: ' + getMinTolerance()"
                                 title="{% trans 'Lesehilfe anzeigen' %}"
                                 tabindex="0"
                             >
@@ -460,8 +466,9 @@
 
                         <span>
                             <a href="/arche/">
-                            <button class="button" type="button">
-                                {% trans "Aftercare" %}
+                            <button class="button button-primary" type="button">
+                                <span class="button-text">{% trans "Aftercare" %}</span>
+                                <span class="button-arrow">→</span>
                             </button></a>
                         </span>
 
@@ -494,6 +501,11 @@
 {{ prio1_tooltip_text|json_script:"prio1-tooltip-text" }}
 {{ prio2_tooltip_text|json_script:"prio2-tooltip-text" }}
 {{ prio3_tooltip_text|json_script:"prio3-tooltip-text" }}
+{{ circles|json_script:"circles-data" }}
+{{ players|json_script:"players-data" }}
+{{ anchors|json_script:"anchors-data" }}
+{{ all_result|json_script:"all-result-data" }}
+{{ in_groups|json_script:"in-groups-data" }}
 <script src="/static/js/AppGraph.js"></script>
 <script src="/static/axios.min.js"></script>
 <script>
@@ -509,17 +521,58 @@
  * - Smooth animations
  */
 
+// Parse JSON data from json_script tags - this ensures proper Unicode handling for Firefox
+function parseJsonScript(id, defaultValue) {
+    var element = document.getElementById(id);
+    if (!element) {
+        console.error('JSON script element not found:', id);
+        return defaultValue;
+    }
+    try {
+        return JSON.parse(element.textContent);
+    } catch(e) {
+        console.error('Error parsing JSON from', id, ':', e);
+        console.error('Element textContent:', element.textContent.substring(0, 200));
+        return defaultValue;
+    }
+}
+
+// Ensure DOM is ready before parsing
+function initTeamPotential() {
+    // Prevent multiple initializations
+    if (window.teamPotentialInitialized) {
+        console.warn('Team potential already initialized, skipping...');
+        return;
+    }
+    
+    // Also check if Vue instance already exists
+    if (window.app1 && window.app1.$el) {
+        console.warn('Vue app already exists, skipping initialization...');
+        return;
+    }
+    
+    window.teamPotentialInitialized = true;
+    
+    var circlesData = parseJsonScript('circles-data', {});
+    var playersData = parseJsonScript('players-data', {});
+    var anchorsData = parseJsonScript('anchors-data', {});
+    var allResultData = parseJsonScript('all-result-data', []);
+    var inGroupsData = parseJsonScript('in-groups-data', []);
+    
+    // Store allResultData globally for later use
+    window.allResultData = allResultData;
+
 var app1 = new Vue({
     delimiters: ['[[', ']]'],
     el: '#app-1',
     data() {
         return {
             loading: false,
-            circles: {{ circles|safe }},
-            players: {{ players|safe }},
-            anchors: {{ anchors|safe }},
-            allResult: {{ all_result|safe }},       // raw statusSide data for each player
-            inGroups: {{ in_groups|safe }},         // in-groups data
+            circles: circlesData,
+            players: playersData,
+            anchors: anchorsData,
+            allResult: allResultData,       // raw statusSide data for each player
+            inGroups: inGroupsData,         // in-groups data
             current: 16,
             width: 800,
             height: 800,
@@ -536,22 +589,48 @@ var app1 = new Vue({
         };
     },
     created() {
+        // Ensure isAnimating is false from the start
+        this.isAnimating = false;
+        this._animationStartTime = 0;
         this.current = this.getValue4();
         this.loading = '{{ loading }}' !== '0';
     },
     mounted() {
-        this.redraw();
-        this.setupKeyboardShortcuts();
-        this.setupCanvasClickHandlers();
+        // Ensure isAnimating is false on mount
+        this.isAnimating = false;
+        this._animationStartTime = 0;
+        
+        // Use $nextTick to ensure DOM refs are available
+        this.$nextTick(() => {
+            if (this.$refs.canvas) {
+                this.redraw();
+            }
+            this.setupKeyboardShortcuts();
+            this.setupCanvasClickHandlers();
+        });
         // Make app1 globally accessible for keyboard handlers
         window.app1 = this;
     },
+    beforeDestroy() {
+        // Clean up event listeners
+        if (this._keyboardHandler) {
+            document.removeEventListener('keydown', this._keyboardHandler, true);
+            this._keyboardHandler = null;
+        }
+    },
     watch: {
         current(newVal, oldVal) {
-            if (oldVal !== undefined && !this.isAnimating) {
+            // Only animate if values actually changed and oldVal is defined (not initial load)
+            if (oldVal !== undefined && oldVal !== newVal && !this.isAnimating) {
+                console.log('Watch triggered: animating from', oldVal, 'to', newVal);
                 this.animateTransition(oldVal, newVal);
             } else {
-                this.redraw();
+                // Ensure canvas ref is available before redraw
+                this.$nextTick(() => {
+                    if (this.$refs.canvas) {
+                        this.redraw();
+                    }
+                });
             }
         }
     },
@@ -716,8 +795,19 @@ var app1 = new Vue({
             * Provides smooth transitions when tolerance window changes
             */
            animateTransition(fromVal, toVal) {
-               if (this.isAnimating) return;
+               // Don't animate if values are the same
+               if (fromVal === toVal) {
+                   console.log('Skipping animation: fromVal === toVal (', fromVal, ')');
+                   return;
+               }
+               
+               if (this.isAnimating) {
+                   console.log('Animation already in progress, skipping');
+                   return;
+               }
                this.isAnimating = true;
+               this._animationStartTime = Date.now();
+               console.log('Starting animation from', fromVal, 'to', toVal);
                
                const steps = 20; // Number of animation frames
                const duration = 300; // Animation duration in ms
@@ -726,10 +816,24 @@ var app1 = new Vue({
                const self = this;
                
                const animate = function() {
+                   // Check if animation was cancelled
+                   if (!self.isAnimating || !self.animationFrame) {
+                       console.log('Animation cancelled, stopping');
+                       return;
+                   }
+                   
                    if (currentStep >= steps) {
                        self.current = toVal;
                        self.isAnimating = false;
+                       self._animationStartTime = 0;
                        self.animationFrame = null;
+                       console.log('Animation completed, final value:', toVal);
+                       // Ensure canvas is redrawn after animation completes
+                       self.$nextTick(() => {
+                           if (self.$refs.canvas) {
+                               self.redraw();
+                           }
+                       });
                        return;
                    }
                    
@@ -757,36 +861,137 @@ var app1 = new Vue({
             * Arrow keys: Change tolerance window
             * Space: Toggle between canvas and overview view
             */
-           setupKeyboardShortcuts() {
-               document.addEventListener('keydown', (e) => {
-                   // Don't trigger if user is typing in an input field
-                   if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
-                       return;
-                   }
-                   
-                   const min = this.getMinTolerance(); // Use minimum tolerance (including in-groups)
-                   const max = this.getValue2();
-                   
-                   switch(e.key) {
-                       case 'ArrowLeft':
-                           e.preventDefault();
-                           if (this.current > min) {
-                               this.current = Math.max(min, this.current - 1);
-                           }
-                           break;
-                       case 'ArrowRight':
-                           e.preventDefault();
-                           if (this.current < max) {
-                               this.current = Math.min(max, this.current + 1);
-                           }
-                           break;
-                       case ' ':
-                           e.preventDefault();
-                           this.toggleView();
-                           break;
-                   }
-               });
-           },
+          setupKeyboardShortcuts() {
+              // Remove existing listener if any to prevent duplicates
+              if (this._keyboardHandler) {
+                  document.removeEventListener('keydown', this._keyboardHandler, true);
+                  this._keyboardHandler = null;
+              }
+              
+              // Create a bound handler function with debouncing to prevent multiple rapid calls
+              const self = this;
+              let lastKeyTime = 0;
+              const DEBOUNCE_MS = 50; // Prevent rapid-fire key events
+              
+              this._keyboardHandler = function(e) {
+                  // Debounce rapid key presses
+                  const now = Date.now();
+                  if (e.key && (e.key.startsWith('Arrow') || e.key === ' ')) {
+                      if (now - lastKeyTime < DEBOUNCE_MS) {
+                          console.log('Debouncing key press:', e.key);
+                          return;
+                      }
+                      lastKeyTime = now;
+                  }
+                  
+                  // Debug: Log all arrow key presses
+                  if (e.key && (e.key.startsWith('Arrow') || e.key === ' ')) {
+                      console.log('Key pressed:', e.key, 'Target:', e.target.tagName, 'Current value:', self.current);
+                  }
+                  
+                  // Don't trigger if user is typing in an input field
+                  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+                      console.log('Ignoring key press in input/textarea');
+                      return;
+                  }
+                  
+                  // Always allow keyboard navigation - animation will be cancelled in switch statement if needed
+                  
+                  const min = self.getMinTolerance(); // Use minimum tolerance (including in-groups)
+                  const max = self.getValue2();
+                  
+                  switch(e.key) {
+                      case 'ArrowLeft':
+                      case 'ArrowUp':
+                          e.preventDefault();
+                          e.stopPropagation();
+                          
+                          // Cancel any ongoing animation immediately
+                          if (self.isAnimating && self.animationFrame) {
+                              clearTimeout(self.animationFrame);
+                              self.animationFrame = null;
+                              console.log('Cancelled ongoing animation');
+                          }
+                          // Temporarily disable animation for immediate response
+                          const wasAnimating = self.isAnimating;
+                          self.isAnimating = true; // Temporarily set to true to prevent watch from triggering animation
+                          self._animationStartTime = 0;
+                          
+                          const currentBeforeLeft = self.current;
+                          console.log('Arrow left/up pressed, current:', currentBeforeLeft, 'min:', min);
+                          if (currentBeforeLeft > min) {
+                              const newValue = Math.max(min, currentBeforeLeft - 1);
+                              console.log('Setting current to:', newValue, 'from:', currentBeforeLeft);
+                              
+                              // Set value directly without animation for immediate response
+                              self.current = newValue;
+                              
+                              // Immediately redraw to prevent flickering
+                              self.$nextTick(() => {
+                                  if (self.$refs.canvas) {
+                                      self.redraw();
+                                  }
+                                  // Re-enable animation flag after redraw
+                                  self.isAnimating = false;
+                                  console.log('Current after Vue update and redraw:', self.current);
+                              });
+                          } else {
+                              // Re-enable animation if no change
+                              self.isAnimating = wasAnimating;
+                          }
+                          break;
+                      case 'ArrowRight':
+                      case 'ArrowDown':
+                          e.preventDefault();
+                          e.stopPropagation();
+                          
+                          // Cancel any ongoing animation immediately
+                          if (self.isAnimating && self.animationFrame) {
+                              clearTimeout(self.animationFrame);
+                              self.animationFrame = null;
+                              console.log('Cancelled ongoing animation');
+                          }
+                          // Temporarily disable animation for immediate response
+                          self.isAnimating = true; // Temporarily set to true to prevent watch from triggering animation
+                          self._animationStartTime = 0;
+                          
+                          const currentBeforeRight = self.current;
+                          console.log('Arrow right/down pressed, current:', currentBeforeRight, 'max:', max);
+                          if (currentBeforeRight < max) {
+                              const newValue = Math.min(max, currentBeforeRight + 1);
+                              console.log('Setting current to:', newValue, 'from:', currentBeforeRight);
+                              
+                              // Set value directly without animation for immediate response
+                              self.current = newValue;
+                              
+                              // Immediately redraw to prevent flickering
+                              self.$nextTick(() => {
+                                  if (self.$refs.canvas) {
+                                      self.redraw();
+                                  }
+                                  // Re-enable animation flag after redraw
+                                  self.isAnimating = false;
+                                  console.log('Current after Vue update and redraw:', self.current);
+                              });
+                          } else {
+                              // Re-enable animation if no change
+                              self.isAnimating = false;
+                          }
+                          break;
+                      case ' ':
+                          e.preventDefault();
+                          e.stopPropagation();
+                          console.log('Space pressed, toggling view');
+                          self.toggleView();
+                          break;
+                  }
+              };
+              
+              // Add the event listener with capture phase to ensure it runs early
+              document.addEventListener('keydown', this._keyboardHandler, true);
+              
+              console.log('Keyboard shortcuts initialized, handler bound to:', this._keyboardHandler);
+          },
            toggleView() {
                this.viewMode = this.viewMode === 'canvas' ? 'overview' : 'canvas';
                // Close player detail when toggling
@@ -1020,6 +1225,10 @@ var app1 = new Vue({
         },
         redraw() {
             const canvas = this.$refs.canvas;
+            if (!canvas) {
+                console.warn('Canvas ref not available yet');
+                return;
+            }
             const ctx    = canvas.getContext('2d');
             const { width, height } = this;
 
@@ -1458,16 +1667,28 @@ var app1 = new Vue({
             }
         }
     },
-    watch:{ 
-        current(){ 
-            this.redraw();
-            // Re-initialize tooltips after redraw
-            setTimeout(() => {
-                initCanvasTooltips();
-            }, 100);
-        } 
-    }
 });
+
+    // Close initTeamPotential function
+}
+
+// Initialize when DOM is ready - this ensures json_script elements are loaded
+// Prevent multiple initializations
+if (!window.teamPotentialInitStarted) {
+    window.teamPotentialInitStarted = true;
+    
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+            initTeamPotential();
+            // Try to initialize AppGraph only if container exists (optional)
+            setTimeout(initAppGraphInstance, 500);
+        });
+    } else {
+        initTeamPotential();
+        // Try to initialize AppGraph only if container exists (optional)
+        setTimeout(initAppGraphInstance, 500);
+    }
+}
 
 // Initialize tooltips for canvas elements
 function initCanvasTooltips() {
@@ -1961,7 +2182,8 @@ function initMaxValueButtonTooltip() {
 }
 
 
-    let data = {{ all_result|safe }};
+    // Use the already parsed all_resultData from above (parsed from json_script tag)
+    let data = window.allResultData || [];
     let safezoneData = () => {
         let arr = [];
         for(let item of data) {
@@ -1970,16 +2192,27 @@ function initMaxValueButtonTooltip() {
         return arr
     }
 
-    const {log} = console;
+    // Initialize AppGraph only after DOM is ready
+    // Only initialize if the container exists (it may not exist on team-potential page)
+    function initAppGraphInstance() {
+        // Check if container exists - if not, skip AppGraph initialization
+        const container = document.querySelector('.custom-graph-wrapper');
+        if (!container) {
+            // Container doesn't exist on this page - this is normal for team-potential page
+            // No need to retry or log warnings
+            return;
+        }
 
-    const app = new AppGraph({
-        container: ".custom-graph-wrapper",
-        range: [1, 99],
-        labelRange: ['Low', 'High'],
-        statistic: true,
-        mobile: 1200,
-        data: data,
-        safezoneData: safezoneData(),
+        const {log} = console;
+
+        const app = new AppGraph({
+            container: ".custom-graph-wrapper",
+            range: [1, 99],
+            labelRange: ['Low', 'High'],
+            statistic: true,
+            mobile: 1200,
+            data: data,
+            safezoneData: safezoneData(),
         {% comment %} [
             {
                statusSide: 10
@@ -2017,7 +2250,8 @@ function initMaxValueButtonTooltip() {
                statusSide: 99
             },
         ] {% endcomment %}
-    });
+        });
+    }
     {% comment %} var css_change = function(t,s){
         s = document.createElement('style');
         s.innerText = t;

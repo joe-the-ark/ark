@@ -130,8 +130,8 @@ msgstr "eşit söz hakkı"
 msgid "offen und ohne Angst kommunizieren"
 msgstr "açık ve korkusuz iletişim kurmak"
 
-msgid "Psychologische Sicherheit ist laut Google’s Aristoteles-Studie stärkster Prädiktor für Team-Performance."
-msgstr "Google'ın Aristoteles çalışmasına göre psikolojik güvenlik, ekip performansının en güçlü göstergesidir."
+msgid "Psychologische Sicherheit ist laut Google's Aristoteles-Studie stärkster Prädiktor für Team-Performance. Wie nahe liegen diese Werte in deinem Team zusammen?"
+msgstr "Google'ın Aristoteles çalışmasına göre psikolojik güvenlik, ekip performansının en güçlü göstergesidir. Bu değerler ekibinizde ne kadar yakın?"
 
 #. preview.html
 #: loco:60688694be899e32216f1b02
@@ -160,6 +160,9 @@ msgstr "Yol arkadaşlarını davet etmek için bu QR kodunu paylaşın"
 
 msgid "https://docs.google.com/presentation/d/1gyEYqnALw4y9yLPUTb1VYQO9IADDD4r-1-yf0sgkvo4/embed?start=true&loop=false&delayms=8000"
 msgstr "https://docs.google.com/presentation/d/1_DDImtzbaGkkLwyITIWIG0oSNfK18gzcDlfctM0S6Tw/embed?start=true&loop=false&delayms=8000"
+
+msgid "https://docs.google.com/presentation/d/1gyEYqnALw4y9yLPUTb1VYQO9IADDD4r-1-yf0sgkvo4/embed?start=true&loop=false&delayms=8000&rm=minimal"
+msgstr "https://docs.google.com/presentation/d/1_DDImtzbaGkkLwyITIWIG0oSNfK18gzcDlfctM0S6Tw/embed?start=true&loop=false&delayms=8000&rm=minimal"
 
 msgid "https://docs.google.com/presentation/d/1qi3wNhpRU3FEoatghY7Ca0iNwtGPQGvHqLRXCvbKKJ8/embed?start=true&loop=false&delayms=8000"
 msgstr "https://docs.google.com/presentation/d/17QkK1SF-QOIx3SeCj-dXXjLVaI58YcV6K6-NIF9EId4/embed?start=true&loop=false&delayms=8000&rm=minimal"
@@ -434,6 +437,42 @@ msgstr "Senin içsel güvenliğin"
 
 msgid "Gefühlte Team Performance"
 msgstr "Algılanan takım performansı"
+
+msgid "Psychologischer Sicherheitswert:"
+msgstr "Psikolojik güvenlik skoru:"
+
+msgid "Fall 1: Hohe Performance + Niedrige psychologische Sicherheit"
+msgstr "Durum 1: Yüksek Performans + Düşük Psikolojik Güvenlik"
+
+msgid "Das Team liefert trotz unsicherem Klima – oft durch informelle Netzwerke oder Einzelpersonen. Die Performance ist fragil, da sie \"trotz\" und nicht \"wegen\" des Systems entsteht. Langfristig riskant, da bei Ausfall der Integratoren die Leistung einbricht."
+msgstr "Ekip güvensiz bir iklime rağmen teslim ediyor – genellikle gayri resmi ağlar veya bireyler aracılığıyla. Performans kırılgandır çünkü sistemin \"rağmen\" ve \"sayesinde\" değil ortaya çıkar. Uzun vadede risklidir çünkü entegratörlerin başarısız olması durumunda performans çöker."
+
+msgid "Fall 2: Niedrige Performance + Hohe psychologische Sicherheit"
+msgstr "Durum 2: Düşük Performans + Yüksek Psikolojik Güvenlik"
+
+msgid "Es herrscht Sicherheit, aber die Leistung bleibt aus. Meist fehlen Klarheit, Struktur oder Kompetenz. Das Team hat großes ungenutztes Potenzial. Die Basis ist gut – jetzt braucht es Führung, Ziele und passende Rahmenbedingungen. Manchmal treffen wir Menschen mit besonderen psychologischen Bedürfnissen im Team an, die von besonderer Aufmerksamkeit und professioneller Betreuung profitieren könnten."
+msgstr "Güvenlik var, ancak performans eksik. Genellikle netlik, yapı veya yetkinlik eksiktir. Ekibin büyük kullanılmamış potansiyeli var. Temel iyi – şimdi liderlik, hedefler ve uygun çerçeve koşulları gerekiyor. Bazen ekipte özel psikolojik ihtiyaçları olan insanlarla karşılaşırız, bunlar özel ilgi ve profesyonel bakımdan yararlanabilir."
+
+msgid "Normalfall: Übereinstimmende Werte"
+msgstr "Normal Durum: Uyumlu Değerler"
+
+msgid "Hohe Werte in beiden Bereichen kennzeichnen gesunde, lernstarke Teams. Niedrige Werte deuten auf grundlegende Dysfunktion hin. In beiden Fällen ist die Dynamik konsistent – Interventionen können gezielt am Gesamtsystem ansetzen."
+msgstr "Her iki alanda da yüksek değerler sağlıklı, öğrenme güçlü ekipleri karakterize eder. Düşük değerler temel bir işlev bozukluğunu gösterir. Her iki durumda da dinamik tutarlıdır – müdahaleler genel sisteme hedefli olarak odaklanabilir."
+
+msgid "Zur Orientierung:"
+msgstr "Yönlendirme için:"
+
+msgid "Deutlich höhere Performance als psychologische Sicherheit"
+msgstr "Psikolojik güvenlikten önemli ölçüde daha yüksek performans"
+
+msgid "Deutlich höhere psychologische Sicherheit als Performance"
+msgstr "Performanstan önemli ölçüde daha yüksek psikolojik güvenlik"
+
+msgid "Die Werte liegen nah beieinander"
+msgstr "Değerler birbirine yakın"
+
+msgid "Punkte Unterschied"
+msgstr "puan farkı"
 
 #. potential-result > now part of waiting_room2
 msgid "Erinnerst du dich an deine Einschätzung der Team-Performance? Hier siehst du euer Ergebnis:"
@@ -1389,8 +1428,8 @@ msgstr "Devam etmeden önce bir terim seçmeli veya kendi teriminizi girmelisini
 msgid "Dieser Begriff wurde bereits von einem anderen Mitreisenden gewählt."
 msgstr "*Bu terim zaten başka bir yolcu tarafından seçilmiş."
 
-msgid "Eigenen Begriff eingeben..."
-msgstr "Kendi teriminizi girin..."
+msgid "...oder einen eigenen Begriff eingeben"
+msgstr "...veya kendi teriminizi girin"
 
 msgid "Sicherheitsanker eingeben"
 msgstr "Güvenlik çapası girin"

@@ -28,20 +28,6 @@
             }
         }
     </style>
-    <style>
-        @media screen and (max-width: 1200px) {
-            .rotate-hint {
-                display: block !important;
-            }
-        }
-        .rotate-hint {
-            display: none;
-            background-color: #9FE2BF;
-            color: #626262;
-            border-radius: 10px;
-            padding: 0 10px;
-        }
-    </style>
 </head>
 <body>
   {% get_current_language as LANGUAGE_CODE %}
@@ -49,9 +35,10 @@
     <div class="app__head">
         <header class="header-main container">
             <div class="header-main__title">
-                <icon classs="icon" onClick="window.open('https://info.arks.ch/');">
+                <icon class="icon" onClick="window.open('https://info.arks.ch/');" style="cursor: pointer;">
                 <span class="icon-logo"></span>
                 <span>ARKS</span>
+                <span id="arks-logo-tooltip-icon" class="tooltip-icon" style="display: none;">{% trans "Info zu safecircles.ch" %}</span>
             </div>
             <div class="header-main__user">
                 <div class="user">
@@ -67,11 +54,11 @@
             </div>
             <div class="header-main__progress">
                 <div class="progress">
-                  <p class="rotate-hint" style="background-color: #FFFFFF; color: #626262; border-radius: 10px; padding: 0 10px;">
+                  <p class="rotate-hint rotate-hint-white">
                       {% trans "Bitte dreh dein Gerät um 90° für eine bessere Lesbarkeit." %}
                   </p>
                 </div>
-                <button onclick="window.print()" title="Print or safe this window as PDF">Save as PDF</button> <!-- Print Button Added --> 
+                <button class="button" onclick="window.print()" aria-label="{% trans 'Als PDF speichern' %}" title="{% trans 'Als PDF speichern' %}">{% trans "Als PDF speichern" %}</button> 
             </div>
         </header>
     </div>
@@ -79,220 +66,53 @@
     
     
     <div class="container">
-    {% comment %}      
-    <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
-
-    <p>
-			{% trans "In eurem Team beträgt der durchschnittliche Spannungsfreiheitswert" %} <span style="font-size: 36px; color: (--ls-alfa-color); text-decoration:underline;" id="tensionOneTooltip" data-tippy-content="{% trans "Team-Spannungsfreiheit. Werte über 80 = entspannt, über 60 = bearbeitbar." %}">[[tension_average]]</span>.<br><br>
-    </p>
-    <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;"><br>
-      {% trans "Bildet jetzt bitte Zweier- oder Dreiergruppen mit Menschen, die ähnliche Sicherheitsanker gewählt hatten:" %}
-		</p>
-
-    <div class="property_mirror">
-          <p style="border-radius: 10px; padding: 0 10px; text-align: center;" class="property_mirror_item" v-for="(scale, index) in scale_list_pro" :key="index">
-            <span class="property_mirror_one">[[ scale[0] ]]</span> / <span class="property_mirror_two">[[ scale[1] ]]</span>
-          </p><br>
-      </div>
-
-			
-		<!--
-    <div class="dashboard">
-			
-			<div v-bind:class="['beef-table-tools', (user_to_group ? '' : 'hide')]">
-				<p>
-					<a href="" v-on:click.stop.prevent="clearUserToGroup()">
-						{% trans "Auswahl löschen" %} &nbsp;&nbsp;&times;
-					</a>
-				</p>
-			</div>
-			<table class="beef-table">
-				<thead>
-					<tr>
-						<th v-bind:class="current_sort_column == 'user1' ? 'active' : ''">
-							<span>{% trans "Spieler" %}</span>
-						</th>
-						<th v-bind:class="current_sort_column == 'tension' ? 'active' : ''">
-							<span>{% trans "Spannungswert" %}</span>
-						</th>
-						<th v-bind:class="current_sort_column == 'user2' ? 'active' : ''">
-							<span>{% trans "Mitspieler" %}</span>
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-				<tr v-for="(item, index) in sorted_beef_table">
-					<td v-bind:class="user_to_group == item.user1.name ? 'active' : ''">
-						<a v-on:click.stop.prevent="setUserToGroup(item.user1)" href="">
-							[[ item.user1.name ]]
-						</a>
-					</td>
-					<td>
-						[[ item.tension ]]
-					</td>
-					<td v-bind:class="user_to_group == item.user2.name ? 'active' : ''"> 
-						<a v-on:click.stop.prevent="setUserToGroup(item.user2)" href="">
-							[[ item.user2.name ]]
-						</a>
-					</td>
-				</tbody>
-			</table>
-
-			<p class="font-size-small">{% trans "Hinweis: Klicke auf einen Namen, damit dieser Name nur in der linken Spalte gezeigt wird." %}</p>
-
-		</div>
-    -->
-  </div>{% endcomment %}
   
-          <h1 style="background-color: #52CEEC; color: #FFFFFF; border-radius: 10px; padding: 10px; text-align: center;"><br>{% trans "Die Heatmap zeigt eine Zusammenfassung aller Spannungen." %}<br><br></h1>
-          <p style="background-color: #52CEEC; color: #FFFFFF; border-radius: 10px; padding: 0 10px;"><br>{% trans "In eurem Team beträgt der durchschnittliche Spannungsfreiheitswert" %} <span style="font-size: 36px; color: (--ls-alfa-color); text-decoration:underline;" id="tensionOneTooltip" data-tippy-content="{% trans "Team-Spannungsfreiheit. Werte über 80 = entspannt, über 60 = bearbeitbar." %}">[[tension_average]]</span>.<br> {% trans "Beginnt eure Auswertung mit den farbigen Feldern im Inneren der Matrix, deren rechte Werte größer als 16 sind..." %}<br><br></p>
-          <p>
-          {% comment %}<ul style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
-             <li>
-                {% trans "Zeigt euch gegenseitig eure Spannungsfelder der vorherigen Seite." %}<br> 
-              </li>
-                <li>
-                {% trans "Reflektiert dann diese Spannungen in der Team Heatmap unten." %} 
-              </li> 
-              <li>
-                {% trans "Erkennt ihr Muster? Was überrascht?" %}
-              </li>
-              <li>
-                {% trans "Zeitbedarf: 10 Minuten." %} 
-              </li>
-          </ul>{% endcomment %}
+          <h1 class="heatmap-heading"><br>{% trans "Die Heatmap zeigt eine Zusammenfassung aller Spannungen." %}<br><br></h1>
+          <p class="heatmap-intro"><br>{% trans "In eurem Team beträgt der durchschnittliche Spannungsfreiheitswert" %} <span class="tension-average-value" data-tippy-content="{% trans "Team-Spannungsfreiheit. Werte über 80 = entspannt, über 60 = bearbeitbar." %}">[[tension_average]]</span>.<br> {% trans "Beginnt eure Auswertung mit den farbigen Feldern im Inneren der Matrix, deren rechte Werte größer als 16 sind..." %}<br><br></p>
 	</div>
         <div class="container">
 
 
-        <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
+        <div class="heatmap-wrapper">
         <div class="heatmap">
 
           <div class="main-column left">
-            <div class="teamtension" style="font-size: 36px; padding: 10px; text-align: center; text-decoration:underline"  id="tensionOneTooltip" data-tippy-content="{% trans "Team-Spannungsfreiheit. Werte über 80 = entspannt, über 60 = bearbeitbar." %}"><span>[[tension_average]]</span></div>
+            <div class="teamtension teamtension-large" data-tippy-content="{% trans "Team-Spannungsfreiheit. Werte über 80 = entspannt, über 60 = bearbeitbar." %}"><span>[[tension_average]]</span></div>
 
-              <div class="heat_value property_value" v-for="value in scale_value_list" id="tensionOneTooltip" data-tippy-content="{% trans "Beitrag des Sicherheitsankers zur Team-Sicherheit." %}">[[ value ]]</div>
-              {% comment %} <div class="heat_value property_value">200</div>
-              <div class="heat_value property_value">250</div>
-              <div class="heat_value property_value">300</div>
-              <div class="heat_value property_value">350</div> {% endcomment %}
+              <div class="heat_value property_value" v-for="value in scale_value_list" data-tippy-content="{% trans "Beitrag des Sicherheitsankers zur Team-Sicherheit." %}">[[ value ]]</div>
               <div class="corner"></div>
-              <div class="corner" style="background-color: #FF6347; color: #FFFFFF;" id="tensionOneTooltip" data-tippy-content="{% trans "Niedrige Werte = hoher Stress, enges Toleranzfenster." %}">{% trans "Stressfrei" %}</div>
+              <div class="corner corner-stress" data-tippy-content="{% trans "Niedrige Werte = hoher Stress, enges Toleranzfenster." %}">{% trans "Stressfrei" %}</div>
 
           </div>
 
 
           <div class="main-column player" v-for="user in main_map">
-            <div class="heat_value over_player" style="background-color: rgba(81, 206, 236);" id="spannungTooltip" data-tippy-content="{% trans "Beitrag des Spielers zur Team-Sicherheit." %}">[[ user[0] ]]</div>
-            <div v-for="value in user[3]" v-bind:class="{ 'heat_value one': value[1]==='yellow', 'heat_value two': value[1]==='black', 'heat_value three': value[1]==='None', 'heat_value four': value[1]==='red' }" id="tensionOneTooltip" data-tippy-content="{% trans "Fremdwahrnehmung (in Klammern) und Spannung (Selbst- minus Fremdwahrnehmung). Werte über 16 = mögliche Spannungen." %}" >([[ keepTwoDecimal(value[2])]])&nbsp;&nbsp;[[ (value[0] >= 0 ? '+' : '') + keepTwoDecimal(value[0]) ]]</div>
-            
-            {% comment %} <div class="heat_value one">[[ user[4] ]]</div>
-            <div class="heat_value two">[[ user[5] ]]</div>
-            <div class="heat_value one">[[ user[6] ]]</div>
-            <div class="heat_value three"></div> {% endcomment %}
+            <div class="heat_value over_player over-player-cyan" data-tippy-content="{% trans "Beitrag des Spielers zur Team-Sicherheit." %}">[[ user[0] ]]</div>
+            <div v-for="value in user[3]" v-bind:class="{ 'heat_value one': value[1]==='yellow', 'heat_value two': value[1]==='black', 'heat_value three': value[1]==='None', 'heat_value four': value[1]==='red' }" data-tippy-content="{% trans "Fremdwahrnehmung (in Klammern) und Spannung (Selbst- minus Fremdwahrnehmung). Werte über 16 = mögliche Spannungen." %}" >([[ keepTwoDecimal(value[2])]])&nbsp;&nbsp;[[ (value[0] >= 0 ? '+' : '') + keepTwoDecimal(value[0]) ]]</div>
 
             <div class="heat_value over_player">[[ user[1] ]]</div>
-            <div class="heat_value over_player" style="background-color: #FF6347; color: #FFFFFF;" id="tensionOneTooltip" data-tippy-content="{% trans "Niedrige Werte = hoher Stress, enges Toleranzfenster." %}">[[ stress(user[1]) ]]</div>
+            <div class="heat_value over_player over-player-stress" data-tippy-content="{% trans "Niedrige Werte = hoher Stress, enges Toleranzfenster." %}">[[ stress(user[1]) ]]</div>
             <div class="heat_player">
-              <img :src="user[2]" alt="">
+              <img :src="user[2]" :alt="user[1]">
             </div>
-            <div class="heat_value over_player" id="stressTooltip" data-tippy-content="{% trans "Summe aller Spannungswerte. Positives Vorzeichen = mögliche Überschätzung des eigenen Beitrags." %}">[[ user[4] ]]</div>
+            <div class="heat_value over_player" data-tippy-content="{% trans "Summe aller Spannungswerte. Positives Vorzeichen = mögliche Überschätzung des eigenen Beitrags." %}">[[ user[4] ]]</div>
           </div>
-
-{% comment %} 
-          <div class="main-column player">
-            <div class="heat_value over_player">300</div>
-            <div class="heat_value four">103</div>
-            <div class="heat_value two">58</div>
-            <div class="heat_value one">95</div>
-            <div class="heat_value three">73</div>
-            <div class="heat_value one">50</div>
-            <div class="heat_value average-by-player">100</div>
-            <div class="heat_player">
-            <div class="name">Paula Fernandes</div>
-            <img src="/static/images/avatars/bear.svg" alt="">
-            </div>
-          </div>
-
-          <div class="main-column player">
-            <div class="heat_value over_player">250</div>
-            <div class="heat_value one">114</div>
-            <div class="heat_value three">113</div>
-            <div class="heat_value one">125</div>
-            <div class="heat_value four">37</div>
-            <div class="heat_value two">76</div>
-            <div class="heat_value average-by-player">99</div>
-            <div class="heat_player">
-            <div class="name">Paula Fernandes</div>
-            <img src="/static/images/avatars/bear.svg" alt="">
-            </div>
-          </div>
-
-          <div class="main-column player">
-            <div class="heat_value over_player">150</div>
-            <div class="heat_value four">90</div>
-            <div class="heat_value one">99</div>
-            <div class="heat_value three">78</div>
-            <div class="heat_value two">70</div>
-            <div class="heat_value one">67</div>
-            <div class="heat_value average-by-player">64</div>
-            <div class="heat_player">
-            <div class="name">Paula Fernandes</div>
-            <img src="/static/images/avatars/bear.svg" alt="">
-            </div>
-          </div>
-
-          <div class="main-column player">
-            <div class="heat_value over_player">100</div>
-            <div class="heat_value one">183</div>
-            <div class="heat_value two">149</div>
-            <div class="heat_value one">127</div>
-            <div class="heat_value four">68</div>
-            <div class="heat_value three">101</div>
-            <div class="heat_value average-by-player">65</div>
-            <div class="heat_player">
-            <div class="name">Paula Fernandes</div>
-            <img src="/static/images/avatars/bear.svg" alt="">
-            </div>
-          </div> {% endcomment %}
-
-
 
           <div class="main-column prop">
-            <div class="corner" style="background-color: rgba(81, 206, 236);" id="spannungTooltip" data-tippy-content="{% trans "Mehr Spannungsfreiheit = mehr psychologische Sicherheit." %}">{% trans "Spannungsfrei" %}</div>
-            <div class="property" v-for="scale in scale_list_pro" id="spannungTooltip" data-tippy-content="{% trans "Teammitglieder haben unterschiedliche Sicherheitsanker." %}">
+            <div class="corner corner-cyan" data-tippy-content="{% trans "Mehr Spannungsfreiheit = mehr psychologische Sicherheit." %}">{% trans "Spannungsfrei" %}</div>
+            <div class="property" v-for="scale in scale_list_pro" data-tippy-content="{% trans "Teammitglieder haben unterschiedliche Sicherheitsanker." %}">
               <p class="property_one">[[ scale[0] ]]</p>
               <p class="property_two">[[ scale[1] ]]</p>
             </div>
-            {% comment %} <div class="property">
-              <p class="property_one">Curative</p>
-              <p class="property_two">Narcissism</p>
-            </div>
-            <div class="property">
-              <p class="property_one">Ambition</p>
-              <p class="property_two">Enforcement</p>
-            </div>
-            <div class="property">
-              <p class="property_one">Victory</p>
-              <p class="property_two">Dominance</p>
-            </div>
-            <div class="property">
-              <p class="property_one">Pain</p>
-              <p class="property_two">Invisibility</p>
-            </div> {% endcomment %}
-            <div class="corner" style="background-color: #FFFFFF; color: #000000;" id="spannungTooltip" data-tippy-content="{% trans "Teammitglieder haben unterschiedliche Sicherheitsanker." %}">{% trans "SICHERHEITSANKER" %}</div>
+            <div class="corner corner-white" data-tippy-content="{% trans "Teammitglieder haben unterschiedliche Sicherheitsanker." %}">{% trans "SICHERHEITSANKER" %}</div>
           </div>
 
           <div class="main-column right">
-            <div class="corner" id="spannungTooltip" data-tippy-content="{% trans "Sichere Basis für Zusammenarbeit ohne defensive Reaktionen." %}">Safebase</div>
+            <div class="corner" data-tippy-content="{% trans "Sichere Basis für Zusammenarbeit ohne defensive Reaktionen." %}">Safebase</div>
             
-              <div class="heat_value property_value" style="background-color: #9FE2BF;" v-for="value in scale_value_list" id="tensionOneTooltip" data-tippy-content="{% trans "Beitrag des Sicherheitsankers zur Team-Sicherheit." %}">([[ value -16]]&nbsp;. .&nbsp;[[ value +16]])</div>
-              {% comment %} <div class="heat_value property_value">200</div>
-              <div class="heat_value property_value">250</div>
-              <div class="heat_value property_value">300</div>
-              <div class="heat_value property_value">350</div> {% endcomment %}
+              <div class="heat_value property_value property-value-safebase" v-for="value in scale_value_list" data-tippy-content="{% trans "Beitrag des Sicherheitsankers zur Team-Sicherheit." %}">([[ value -16]]&nbsp;. .&nbsp;[[ value +16]])</div>
             
-            <div class="corner" id="spannungTooltip" data-tippy-content="{% trans "Sichere Basis für Zusammenarbeit ohne defensive Reaktionen." %}">Safebase</div>
+            <div class="corner" data-tippy-content="{% trans "Sichere Basis für Zusammenarbeit ohne defensive Reaktionen." %}">Safebase</div>
           </div>
         </div>
         </div>
@@ -447,170 +267,76 @@
   </script>
 
   <script>
-    tippy('#stressTooltip');
-    tippy('#tensionTooltip');
-    tippy('#tensionOneTooltip');
-    tippy('#spannungTooltip');
+    // Initialize all tooltips using data-tippy-content attribute
+    tippy('[data-tippy-content]', {
+      placement: 'top',
+      arrow: true,
+      animation: 'fade'
+    });
+    
+    // ARKS Logo Tooltip
+    function initARKSLogoTooltip() {
+      const arksLogoContainer = document.querySelector('.header-main__title icon');
+      const arksLogoTooltipIcon = document.getElementById('arks-logo-tooltip-icon');
+      
+      if (arksLogoContainer && arksLogoTooltipIcon) {
+        arksLogoContainer.addEventListener('mouseenter', function() {
+          arksLogoTooltipIcon.style.display = 'inline-flex';
+        });
+        
+        arksLogoContainer.addEventListener('mouseleave', function() {
+          arksLogoTooltipIcon.style.display = 'none';
+        });
+        
+        tippy(arksLogoTooltipIcon, {
+          placement: 'bottom',
+          arrow: true,
+          animation: 'fade'
+        });
+      }
+    }
+    
+    // Initialize ARKS logo tooltip when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initARKSLogoTooltip);
+    } else {
+      initARKSLogoTooltip();
+    }
   </script>
 
 
          <div class="container">
-          <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
+          <div class="heatmap-info-box">
 
-          <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">{% trans "Der Farbcode im Innern der Heatmap gilt unverändert." %}<br><br></p>
-          <p>
-{% comment %} 
-          </p>
-            <ul>
-              <li>
-              {% trans "Der erste Wert (in Klammern) zeigt die Fremdwahrnehmung. Je höher dieser Wert, desto grösser der Beitrag zur Spannung aus Teamsicht." %}
-              </li>
-              <li>
-              {% trans "Der zweite Werte zeigt die Abweichung von Fremd- und Selbstwahrnehmung. Werte über 16 deuten auf Spannungen mit dem Team hin." %}
-              </li>
-              <li>
-              {% trans "Bei negativen Vorzeichen schätzt der Spieler den eigenen Beitrag zur Teamdynamik eher zu optimistisch ein. Dadurch entstehen manchmal Spannungen mit dem Team." %}<br><br>
-              </li>
-              <li>
-                {% trans "Vertikal: siehst Du in der oberen Reihe den Beitrag jedes Spielers zu den Sicherheitsankern; je niedriger der Wert, desto grösser ist der Beitrag des Spielers zur Sicherheit im Team." %}
-              </li>
-              <li>
-                {% trans "Horizontal: siehst Du die Lage der Safebase und die zugehörigen Sicherheitsanker und Triggerthemen; je kleiner der Wert links, desto kleiner ist der Beitrag dieser Triggerthemen zur Unsicherheit im Team." %}
-              </li>
-            <li>
-              {% trans "Ganz unten sind die inneren Spannungswerte aufaddiert. Auch hier gilt: je höher der Wert mit negativem Vorzeichen, desto stärker überschätzt der Spieler den positiven Beitrag zur Sicherheit im Team." %}<br><br>
-            </li>
-            </ul>
+          <p class="heatmap-info-text">{% trans "Der Farbcode im Innern der Heatmap gilt unverändert." %}<br><br></p>
 
-            </div>
-
-            <p>
-            </p>
-
-          <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
-                <h1 style="background-color: #52CEEC; color: #FFFFFF; text-align: center; border-radius: 10px; padding: 0 10px;"><br>{% trans "Welche Spannungen im Team könnt ihr mit Feedback lösen?" %}<br><br></h1>
-
-          <div class="center">
-
-                <h1 class="feed-h3" style="background-color: #9FE2BF; color: #626262;">
-                    {% trans "Feedback aussprechen" %}<br>
-                </h1>
-
-                <p class="bold feed-p-1" style="background-color: #9FE2BF; color: #626262;">
-                    {% trans "WEITER SO: Besonders schätze ich deinen Beitrag zum gelingenden Zusammenspiel im Team, wenn WIR..." %}<br><br>
-                </p>
-                {% for feedback in feedback1 %}
-                    <p class="feedback-1"style="font-size: 20px;color: #3781EE;">{{feedback}}</p>
-                {% endfor %}
-                <p class="bold feed-p-2">
-                    {% trans "WUNSCH: Du könntest zu mehr psychologischen Sicherheit im Team beitragen, indem DU..." %}<br><br>
-                </p>
-                {% for feedback in feedback2 %}
-                    <p class="feedback-2" style="font-size: 20px;color: #3781EE;">{{feedback}}</p>
-                {% endfor %}
-                <p class="bold feed-p-3" style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
-                    {% trans "UNTERSTÜTZUNG: Ich werde dich unterstützen unser Team psychologisch sicherer zu machen, indem ICH..." %}<br>
-                </p>
-
-          </div>
-        </div>{% endcomment %} 
+                        <div class="farewell-button-wrapper">
+                            <a href="/farewell/">
+                                <button class="button button-primary" type="button" aria-label="{% trans 'Zum Abschluss' %}">
+                                    <span class="button-text">{% trans "Zum Abschluss." %}</span>
+                                    <span class="button-arrow">→</span>
+                                </button>
+                            </a>
+                        </div>
 
                         <div class="google-slides-container-wrapper" style="position: relative;">
                             <button class="google-slides-fullscreen-button" id="google-slides-fullscreen-button" aria-label="{% trans 'Vollbild anzeigen' %}" title="{% trans 'Vollbild anzeigen' %}" style="position: absolute; top: 15px; right: 15px; z-index: 10; pointer-events: auto; background-color: #52CEEC; color: white; border: none; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; font-size: 20px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">
                                 <span class="fullscreen-icon" style="font-size: 18px; line-height: 1;">⛶</span>
                             </button>
                             <div class="google-slides-container" id="google-slides-container">
-                                <iframe style="padding: 0 10px;" src={% trans "https://docs.google.com/presentation/d/1N-mOfePoj33-14mRFWnxuee-ODTfOBAUky6Zop1nTIk/embed?start=true&loop=false&delayms=8000&rm=minimal"  %} frameborder="0" width="850" height="400" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                                <iframe src="{% trans 'https://docs.google.com/presentation/d/1N-mOfePoj33-14mRFWnxuee-ODTfOBAUky6Zop1nTIk/embed?start=true&loop=false&delayms=8000&rm=minimal' %}" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" title="{% trans 'Google Slides Präsentation' %}"></iframe>
                             </div>
                         </div>
                         
-                        <style>
-                        .google-slides-container-wrapper {
-                        position: relative;
-                        }
-                        .google-slides-container{
-                        position: relative;
-                        width: 100%;
-                        padding-top: 56.25%;
-                        overflow: hidden;
-                        background-color: #9FE2BF;
-                        border-radius: 10px
-                        }
-                        .google-slides-container iframe{
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                        background-color: #9FE2BF;
-                        border-radius: 10px
-                        }
-                        .google-slides-fullscreen-button:hover {
-                        background-color: #3bb5d4 !important;
-                        transform: scale(1.1);
-                        }
-                        .google-slides-fullscreen-button:active {
-                        transform: scale(0.95);
-                        }
-                        .google-slides-container-wrapper.fullscreen {
-                        position: fixed !important;
-                        top: 0;
-                        left: 0;
-                        width: 100vw;
-                        height: 100vh;
-                        z-index: 9999;
-                        background-color: #000;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        }
-                        .google-slides-container-wrapper.fullscreen .google-slides-container {
-                        width: 100%;
-                        height: 100%;
-                        padding-top: 0;
-                        }
-                        .google-slides-container-wrapper.fullscreen .google-slides-container iframe {
-                        width: 100%;
-                        height: 100%;
-                        padding: 0;
-                        }
-                        .google-slides-container-wrapper.fullscreen .google-slides-fullscreen-button {
-                        top: 20px;
-                        right: 20px;
-                        }
-                        .controls {
-                        position: absolute;
-                        top: 10px;
-                        left: 50%;
-                        transform: translateX(-50%);
-                        display: flex;
-                        gap: 10px;
-                        }
-                        .control-button {
-                        padding: 10px 20px;
-                        background-color: #007BFF;
-                        color: white;
-                        border: none;
-                        border-radius: 5px;
-                        cursor: pointer;
-                        }
-                        </style>
 
                         </div>
 
         </div>
 
-
-                        <p><br><br>
-                        <a href="/farewell/">
-                            <button class="button" type="button">
-                                {% trans "Zum Abschluss." %}
-                            </button></a>
-                </p>
-                        <p style="text-align: center; font-size: 10px;"><br><br>
+                        <p class="copyright-text"><br><br>
                             <div class="copyright-footer">
-                                <a href="https://github.com/joe-the-ark/ark" target="_blank">{% trans "ARKS is published under a GPLv3" %}</a> {% trans "license by" %} 
-                                <a href="https://www.linkedin.com/in/dr-joe-maier/" target="_blank">{% trans "Dr. Joe Maier" %}</a>.
+                                <a href="https://github.com/joe-the-ark/ark" target="_blank" rel="noopener noreferrer">{% trans "ARKS is published under a GPLv3" %}</a> {% trans "license by" %} 
+                                <a href="https://www.linkedin.com/in/dr-joe-maier/" target="_blank" rel="noopener noreferrer">{% trans "Dr. Joe Maier" %}</a>.
                             </div>
                         </p>
 

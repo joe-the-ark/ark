@@ -21,9 +21,10 @@
     <div class="app__head">
         <header class="header-main container">
             <div class="header-main__title">
-                <a class="icon" href="https://info.arks.ch/" target="_blank" rel="noopener">
+                <a class="icon arks-logo-clickable" href="https://info.arks.ch/" target="_blank" rel="noopener noreferrer">
                 <span class="icon-logo"></span>
                 <span>ARKS</span>
+                <span id="arks-logo-tooltip-icon" class="tooltip-icon" style="display: none;">{% trans "Info zu safecircles.ch" %}</span>
                 </a>
             </div>
             <div class="header-main__user">
@@ -31,7 +32,7 @@
                     <div class="user__subtitle">
                         {{game.name}}
                     </div>
-                    <img src="{{user.avatar}}" alt="">
+                    <img src="{{user.avatar}}" alt="{{user.name}}" aria-label="{% trans 'Benutzer Avatar' %}">
                     <div class="user__title">
                         {{user.name}}
                     </div>
@@ -41,7 +42,7 @@
                 <div class="progress">
                     <label>VOICE</label>
                     <div class="progress__bar">
-                        <div style="width: 100%; border-radius: 10px;">100%</div>
+                        <div class="progress__bar-fill">100%</div>
                     </div>
                 </div>
             </div>
@@ -57,7 +58,7 @@
                     {% trans "Bitte gib anonymes Feedback" %}
                 </h1>
                 <div class="feedback__data">
-                    <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
+                    <p class="feedback-intro-text">
                         {% trans "Schau dir zuerst das Spannungsprofil deines Feedbacknehmers rechts an. Und beantworte dann die drei Fragen für ein offenes, lösungsorientiertes und anonymes Feedback..." %}
                     </p>
                     <div class="fields-fill__wrapper"></div>
@@ -67,178 +68,29 @@
                         {% trans "Spannungsfelder von" %}
                         <span id="feedback-target-name"></span>
                     </p>
-<!--                     <div class="rang-wrapper">
-                        <div class="rang min">
-                            <div class="rang__item">
-                                <div class="rang__item-name">
-                                    Freundlichkeit
-                                </div>
-                                <div class="rang__item-count">
-                                    49
-                                </div>
-                                <div class="rang__item-name">
-                                    Aufrichtigkeit
-                                </div>
-                            </div>
-                            <div class="rang__item">
-                                <div class="rang__item-name">
-                                    Freundlichkeit
-                                </div>
-                                <div class="rang__item-count">
-                                    49
-                                </div>
-                                <div class="rang__item-name">
-                                    Aufrichtigkeit
-                                </div>
-                            </div>
-                            <div class="rang__item">
-                                <div class="rang__item-name">
-                                    Freundlichkeit
-                                </div>
-                                <div class="rang__item-count">
-                                    49
-                                </div>
-                                <div class="rang__item-name">
-                                    Aufrichtigkeit
-                                </div>
-                            </div>
-                            <div class="rang__item">
-                                <div class="rang__item-name">
-                                    Freundlichkeit
-                                </div>
-                                <div class="rang__item-count">
-                                    49
-                                </div>
-                                <div class="rang__item-name">
-                                    Aufrichtigkeit
-                                </div>
-                            </div>
-                            <div class="rang__item">
-                                <div class="rang__item-name">
-                                    Freundlichkeit
-                                </div>
-                                <div class="rang__item-count">
-                                    49
-                                </div>
-                                <div class="rang__item-name">
-                                    Aufrichtigkeit
-                                </div>
-                            </div>
-                            <div class="rang__item">
-                                <div class="rang__item-name">
-                                    Freundlichkeit
-                                </div>
-                                <div class="rang__item-count">
-                                    49
-                                </div>
-                                <div class="rang__item-name">
-                                    Aufrichtigkeit
-                                </div>
-                            </div>
-                            <div class="rang__item">
-                                <div class="rang__item-name">
-                                    Freundlichkeit
-                                </div>
-                                <div class="rang__item-count">
-                                    49
-                                </div>
-                                <div class="rang__item-name">
-                                    Aufrichtigkeit
-                                </div>
-                            </div>
-                            <div class="rang__item">
-                                <div class="rang__item-name">
-                                    Freundlichkeit
-                                </div>
-                                <div class="rang__item-count">
-                                    49
-                                </div>
-                                <div class="rang__item-name">
-                                    Aufrichtigkeit
-                                </div>
-                            </div>
-                            <div class="rang__item">
-                                <div class="rang__item-name">
-                                    Freundlichkeit
-                                </div>
-                                <div class="rang__item-count">
-                                    49
-                                </div>
-                                <div class="rang__item-name">
-                                    Aufrichtigkeit
-                                </div>
-                            </div>
-                            <div class="rang__item">
-                                <div class="rang__item-name">
-                                    Freundlichkeit
-                                </div>
-                                <div class="rang__item-count">
-                                    49
-                                </div>
-                                <div class="rang__item-name">
-                                    Aufrichtigkeit
-                                </div>
-                            </div>
-                            <div class="rang__item">
-                                <div class="rang__item-name">
-                                    Freundlichkeit
-                                </div>
-                                <div class="rang__item-count">
-                                    49
-                                </div>
-                                <div class="rang__item-name">
-                                    Aufrichtigkeit
-                                </div>
-                            </div>
-                            <div class="rang__item">
-                                <div class="rang__item-name">
-                                    Freundlichkeit
-                                </div>
-                                <div class="rang__item-count">
-                                    49
-                                </div>
-                                <div class="rang__item-name">
-                                    Aufrichtigkeit
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
                 <form id="form_" action="#" method="POST" class="form">
                 {% csrf_token %}
-                <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
+                <div class="feedback-legend-box">
 
-                    <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px;">
-                        {% trans "Grün = Spannungsfreiheit" %}<br>
+                    <p class="feedback-legend-green">
                         {% trans "Spannungs-Werte unter 16 = deuten auf Spannungsfreiheit mit dem Team hin" %}
                     </p>
-                    <p>
+                    <p class="feedback-legend-text">
                         {% trans "Positives Vorzeichen = zu positive Selbstwahrnehmung" %}<br>
                         {% trans "Negatives Vorzeichen = zu kritische Selbstwahrnehmung" %}
                     </p>
-                    <p style="background-color: #fa5252; color: white; border-radius: 10px;">
-                        {% trans "Rot = Selbstwahrnehmung ausserhalb Safe-Base" %}
-                    </p>
-                    <p style="background-color: #FAE03C; color: #626262; border-radius: 10px;">
-                        {% trans "Gelb = Wahrnehmung durch die anderen ausserhalb Safe-Base" %}
-                    </p>
-                    <p style="background-color: #3b4252; color: white; border-radius: 10px;">
-                        {% trans "Schwarz = Selbst- & Fremdwahrnehmung ausserhalb Safe-Base" %}
-                    </p>
                 </div>
-                    <p>
-                    <div class="center">
+                    <div class="center feedback-actions">
                         <input id="data" type="hidden" name="data" value=""/>
-                        <button type="button" id="button" @click="check_submit()">
-                            {% trans "Weiter" %}
+                        <button type="button" class="button button-primary" id="button" @click="check_submit()" aria-label="{% trans 'Weiter' %}">
+                            <span class="button-text">{% trans "Weiter" %}</span>
+                            <span class="button-arrow">→</span>
                         </button>
-                        <button id="test"  type="button" style="position: absolute; visibility: hidden;">Weiterspielen</button>
-                    <div class="copyright-footer">
-                        <a href="https://github.com/joe-the-ark/ark" target="_blank">{% trans "ARKS is published under a GPLv3" %}</a> {% trans "license by" %} 
-                        <a href="https://www.linkedin.com/in/dr-joe-maier/" target="_blank">{% trans "Dr. Joe Maier" %}</a>.
+                        <div class="copyright-footer">
+                            <a href="https://github.com/joe-the-ark/ark" target="_blank" rel="noopener noreferrer">{% trans "ARKS is published under a GPLv3" %}</a> {% trans "license by" %} 
+                            <a href="https://www.linkedin.com/in/dr-joe-maier/" target="_blank" rel="noopener noreferrer">{% trans "Dr. Joe Maier" %}</a>.
+                        </div>
                     </div>
-                    </div>
-                    </p>
                 </form>
             </main>
         </div>
@@ -402,102 +254,14 @@
     }
 
 
-    // function arrayForFeedback(json, nameArray) {
-    //     let arr = []
-    //     for (let name of nameArray) {
-    //         for (let item of json) {
-    //             if(item.name == name) {
-    //                 arr.push({
-    //                     'name':item.name,
-    //                     'id':item.id,
-    //                     'avatar': item.avatar,
-    //                     'feedback': [
-    //                         {
-    //                             title: 'MEHR davon: Ich schätze deinen Beitrag zum gelingenden Zusammenspiel im Team…',
-    //                             text: 'On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying'
-    //                         },
-    //                         {
-    //                             title: 'ÄNDERN: du könntest zur psychologischen Sicherheit im Team beitragen, in dem...',
-    //                             text: ''
-    //                         },
-    //                         {
-    //                             title: 'FRAGEZEICHEN: ich wollte dich schon immer mal fragen…',
-    //                             text: ''
-    //                         }
-    //                     ],
-    //                 });
-    //                 break
-    //             }
-    //         }
-    //     }
-    //     return arr
-    // }
 
     const dataFeedback = arrayForFeedback(jsonAll, getNameArray(jsonAll));
 
 
-    // function traitArray(json_list) {
-    //   let arr = new Set();
-    //   json_list.forEach((item) => {
-    //     arr.add(item.value)
-    //   })
-    //   let result = Array.from(arr);
-    //   return(result)
-    // }
-
-    // function arrayForGraph(json) {
-    //     let arr = [];
-    //     for (let item of json) {
-    //         tempObj = {};
-    //         if(item.name == curentUser) {
-    //             tempObj['name'] = item.target_user;
-    //             tempObj['avatar'] = item.target_user_avatar;
-    //             tempObj['statusSide'] = item.statusSide;
-    //             tempObj['value'] = item.value;
-    //             tempObj['status'] = item.statusSide.toString();
-    //             arr.push(tempObj);
-    //         }
-    //     }
-    //     return arr
-    // }
-
-    // let dataForRange = () => {
-    //   let result = [];
-    //   for (let value of traitArray(jsonAll)) {
-    //     datas = arrayForGraph(jsonAll).filter(jso => jso.value == value);
-    //     let others = 0;
-    //     let self = 0;
-    //     datas.forEach((item, i) => {
-    //       if(item.name != '{{user}}') {
-    //         others += item.statusSide;
-    //       }
-    //       else {
-    //         self = item.statusSide;
-    //       }
-    //     });
-    //     others = Math.round(others/(datas.length-1));
-    //     temp = {
-    //       'value':value,
-    //       'self':self,
-    //       'others':others,
-    //       'tension':self - others,
-    //     };
-    //     result.push(temp);
-    //   }
-    //   return(result)
-    // }
 
     var data = format_list(member_list);
 
 
-    // let range = new AppRange({
-    //     container: '.rang-wrapper',
-    //     data: dataForRange(jsonAll, 'init'),
-    //     innerWrapper: 'rang min',
-    //     load(wrapper) {
-    //         wrapper[0].classList.add('min')
-    //     }
-    // });
 
 
 
@@ -506,47 +270,6 @@
         container: '.fields-fill__wrapper',
         data: dataFeedback,
         loadEnd(bodyItems) {
-            // new Swiper('.fields-fill', {
-            //     centeredSlides: true,
-            //     grabCursor: true,
-            //     loop: false,
-            //     breakpoints: {
-            //         1300: {
-            //             slidesPerView: 3,
-            //             spaceBetween: 30,
-            //         },
-            //         320: {
-            //             slidesPerView: 1,
-            //             spaceBetween: 30,
-            //         },
-            //     },
-            //     navigation: {
-            //         nextEl: '.slider-button-next',
-            //         prevEl: '.slider-button-prev',
-            //     },
-            //     pagination: {
-            //         el: '.swiper-pagination',
-            //         clickable: true
-            //     },
-            //     on: {
-            //         slideChange(a, b, c) {
-            //             const index = a.realIndex;
-            //             let rang = document.querySelectorAll('.rang-wrapper');
-            //             document.querySelector('.feedback__users .bold span').innerText = dataFeedback[index].name;
-            //             bodyItems.forEach((item, i) => {
-            //                 item.classList.remove('active');
-            //             });
-            //             bodyItems[index].classList.add('active');
-            //             rang.forEach((item,i) => {
-            //                 item.classList.remove('active');
-            //             })
-            //             rang[index].classList.add('active');
-            //             let textBox = document.querySelector('.fields-fill__field-wrapper.active').children[1].querySelector('textarea');
-            //             console.log(textBox);
-            //             textBox.focus();
-            //         }
-            //     }
-            // });
             const fieldsBody = document.querySelector('.fields-fill__body');
             if (fieldsBody && fieldsBody.children.length) {
                 fieldsBody.children[0].classList.add('active');
@@ -563,13 +286,10 @@
             if (firstTextarea) {
                 setTimeout(() => { firstTextarea.focus(); }, 500);
             }
-            // document.querySelector('.fields-fill__field-wrapper.active').children[0].focus();
-
             bindWordCounters();
         }
     });
 
-    //console.log(app.data);
 
     function refresh(){
         if (!appfeed || !appfeed.data) {
@@ -615,21 +335,6 @@
         }
     })
 
-    // function cardsPainting(unifiedData) {
-    //   let collection = document.querySelectorAll('.rang__item');
-    //   collection.forEach((item, i) => {
-    //     let low = document.querySelector(`.slide-${i}`).children[0].getAttribute('low')
-    //     let high = document.querySelector(`.slide-${i}`).children[0].getAttribute('high')
-    //     let selfInSafe = unifiedData[i].self>low && unifiedData[i].self<high;
-    //     let othersInSafe = unifiedData[i].others>low && unifiedData[i].others<high;
-    //     if (selfInSafe && othersInSafe) {item.classList.add('white__card');}
-    //     if (selfInSafe && !othersInSafe) { item.classList.add('yellow__card');}
-    //     if (!selfInSafe && othersInSafe) { item.classList.add('red__card');}
-    //     if (!selfInSafe && !othersInSafe) { item.classList.add('black__card');}
-    //   });
-
-    // }
-    // cardsPainting(dataForRange());
 
         //dropdown
     $('.fields-fill__connect').click(function () {
@@ -756,63 +461,95 @@
             const selectors = document.querySelectorAll(`.rang-wrapper.s${name} .rang__item`);
             if (typeof cardsPainting === 'function' && selectors.length) {
             cardsPainting(data, selectors);
+            // Initialize tooltips after cards are painted
+            setTimeout(initColorCardTooltips, 200);
             }
         }
     }
     cardsPlacing(jsonAll);
     bindWordCounters();
-
-    // function formValidator(containers) {
-    //     console.log(containers)
-    //     let menu = document.querySelector('#menu');
-    //     let result = true; 
+    
+    // Initialize tooltips for color cards (rang__item-wrapper)
+    function initColorCardTooltips() {
+        // Get translated tooltip texts from Django
+        const tooltipTexts = {
+            white: "{% trans 'Grün = Spannungsfreiheit'|escapejs %}<br>{% trans 'Spannungs-Werte unter 16 = deuten auf Spannungsfreiheit mit dem Team hin'|escapejs %}",
+            yellow: "{% trans 'Gelb = die Wahrnehmung deines Beitrags zur inneren Sicherheit der anderen liegt außerhalb der Safe-Base'|escapejs %}",
+            red: "{% trans 'Rot = deine Selbstwahrnehmung liegt ausserhalb der Safe-Base'|escapejs %}",
+            black: "{% trans 'Schwarz = die Selbst- und die Fremdwahrnehmung deines Beitrags zur inneren Sicherheit liegen ausserhalb der Safe-Base'|escapejs %}"
+        };
         
-    //         let textarea = document.querySelectorAll('textarea');
-    //         for(let [i, item] of textarea.entries()) {
-    //             // console.log(i, item);
-    //             if(item.textLength < 25) {
-    //                 //setTimeout(() => {item.focus();}, 1000);
-    //                 let tooltip = tippy(item);
-    //                 tooltip.setProps({trigger: 'manual'});
-    //                 tooltip.setContent('Must be more than 25 characters');
-    //                 tooltip.show(); 
-    //                 result = false;
+        // Find all rang__item elements
+        const rangItems = document.querySelectorAll('.rang__item');
+        
+        rangItems.forEach((item, index) => {
+            const wrapper = item.querySelector('.rang__item-wrapper');
+            if (!wrapper) return;
+            
+            // Determine which color card class is present
+            let tooltipText = '';
+            if (item.classList.contains('white__card')) {
+                tooltipText = tooltipTexts.white;
+            } else if (item.classList.contains('yellow__card')) {
+                tooltipText = tooltipTexts.yellow;
+            } else if (item.classList.contains('red__card')) {
+                tooltipText = tooltipTexts.red;
+            } else if (item.classList.contains('black__card')) {
+                tooltipText = tooltipTexts.black;
+            }
+            
+            // Only add tooltip if we have text and haven't initialized it yet
+            if (tooltipText && tooltipText.trim() !== '' && !wrapper.hasAttribute('data-tippy-initialized')) {
+                // Remove existing tooltip if any
+                if (wrapper._tippy) {
+                    wrapper._tippy.destroy();
+                }
                 
-    //             }
+                try {
+                    if (typeof tippy !== 'undefined') {
+                        tippy(wrapper, {
+                            content: tooltipText,
+                            placement: 'top',
+                            theme: 'light',
+                            delay: [200, 0],
+                            allowHTML: true,
+                            interactive: false,
+                            trigger: 'mouseenter focus',
+                        });
+                        wrapper.setAttribute('data-tippy-initialized', 'true');
+                    }
+                } catch (e) {
+                    console.error('Error initializing color card tooltip:', e);
+                }
+            }
+        });
+    }
+    
+    // Initialize tooltips after cards are painted
+    // Use MutationObserver to detect when cards are added/updated
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.addedNodes.length || mutation.type === 'attributes') {
+                setTimeout(initColorCardTooltips, 100);
+            }
+        });
+    });
+    
+    // Observe the feedback__users container for changes
+    const feedbackUsersContainer = document.querySelector('.feedback__users');
+    if (feedbackUsersContainer) {
+        observer.observe(feedbackUsersContainer, {
+            childList: true,
+            subtree: true,
+            attributes: true,
+            attributeFilter: ['class']
+        });
+    }
+    
+    // Initialize tooltips immediately and after a delay to catch dynamically added cards
+    setTimeout(initColorCardTooltips, 500);
+    setTimeout(initColorCardTooltips, 1500);
 
-    //     };
-    //     return result;
-    // }
-
-    // document.querySelector('#test').addEventListener('click', () => {
-    //     formValidator(containers);
-    // })
-
-    // $('.form').submit(function() {
-    //     if(formValidator(containers)) {
-    //         return true
-    //     }
-    //     else {
-    //         return false
-    //     }
-    // })
-
-    // $('#test').click(function() {
-    //     if(formValidator(containers)) {
-    //         console.log('true')
-    //         $('#button').click();
-    //     }
-    //     else {
-    //         console.log('false')
-    //         return 
-    //     }
-    // })
-
-    // document.querySelectorAll('.fields-fill__field-wrapper').forEach((cont, c) => {
-    //     cont.querySelectorAll('textarea').forEach((item, i) => {
-    //         console.log(c, i, item);
-    //     })
-    // })
 
     function sleep(time) {
         return new Promise((resolve) => setTimeout(resolve, time));
@@ -852,7 +589,36 @@
 
     //check_finish()
 
- 
+    // ARKS Logo Tooltip
+    function initARKSLogoTooltip() {
+        const arksLogoContainer = document.querySelector('.header-main__title .arks-logo-clickable');
+        const arksLogoTooltipIcon = document.getElementById('arks-logo-tooltip-icon');
+        
+        if (arksLogoContainer && arksLogoTooltipIcon) {
+            arksLogoContainer.addEventListener('mouseenter', function() {
+                arksLogoTooltipIcon.style.display = 'inline-flex';
+            });
+            
+            arksLogoContainer.addEventListener('mouseleave', function() {
+                arksLogoTooltipIcon.style.display = 'none';
+            });
+            
+            if (typeof tippy !== 'undefined') {
+                tippy(arksLogoTooltipIcon, {
+                    placement: 'bottom',
+                    arrow: true,
+                    animation: 'fade'
+                });
+            }
+        }
+    }
+    
+    // Initialize ARKS logo tooltip when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initARKSLogoTooltip);
+    } else {
+        initARKSLogoTooltip();
+    }
 
 </script>
 <script src="/static/js/update_fix.js"></script>

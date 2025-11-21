@@ -90,8 +90,9 @@
                     </div>
 
                     <p>
-                        <button class="button" type="button" id="button" @click="check_submit()" aria-label="{% trans 'Weiter' %}">
-                            {% trans "Weiter" %}
+                        <button class="button button-primary" type="button" id="button" @click="check_submit()" aria-label="{% trans 'Weiter' %}">
+                            <span class="button-text">{% trans "Weiter" %}</span>
+                            <span class="button-arrow">→</span>
                         </button>
                     </p>
                         <div class="copyright-footer">

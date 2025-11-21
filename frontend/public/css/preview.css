@@ -569,7 +569,7 @@
     color: white;
     border: none;
     border-radius: 10px;
-    padding: 15px 30px;
+    padding: 18px 30px;
     font-size: var(--ls-font-large);
     font-weight: bold;
     cursor: pointer;
@@ -579,12 +579,15 @@
     transition: all 0.3s ease;
     text-decoration: none;
     margin: 0 auto;
+    line-height: normal !important;
+    min-height: 56px;
+    box-sizing: border-box;
 }
 
 .button-primary:hover {
-    background-color: #3bb5d4;
+    background-color: #9FE2BF;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(82, 206, 236, 0.4);
+    box-shadow: 0 4px 12px rgba(159, 226, 191, 0.4);
 }
 
 .button-primary:active {

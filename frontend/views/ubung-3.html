@@ -105,8 +105,9 @@
                     <input id="tags" type="hidden" name="tags" value="EnterValue">
                     <div class="center">
                         {% comment %} <a href="/wartezimmer/"> {% endcomment %}
-                            <button class="submit" @click="continue_()">
-                                {% trans "Weiterspielen" %}
+                            <button class="submit button-primary" @click="continue_()">
+                                <span class="button-text">{% trans "Weiterspielen" %}</span>
+                                <span class="button-arrow">→</span>
                             </button>
                         {% comment %} </a> {% endcomment %}
                     </div>

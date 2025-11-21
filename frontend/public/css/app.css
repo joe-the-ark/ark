@@ -706,6 +706,56 @@ button--primary,
   line-height: 48px;
   color: var(--ls-brand-color);
 }
+
+/* Button Primary Styling with Arrow (from preview.css) */
+.button-primary {
+  background-color: #52CEEC;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 18px 30px;
+  font-size: var(--ls-font-large);
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  margin: 0 auto;
+  line-height: normal;
+  min-height: 56px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.button-primary:hover {
+  background-color: #9FE2BF;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(159, 226, 191, 0.4);
+}
+
+.button-primary:active {
+  transform: translateY(0);
+}
+
+.button-primary:focus {
+  outline: 3px solid #52CEEC;
+  outline-offset: 2px;
+}
+
+.button-arrow {
+  font-size: 20px;
+  transition: transform 0.3s ease;
+}
+
+.button-primary:hover .button-arrow {
+  transform: translateX(5px);
+}
+
+.button-text {
+  display: inline;
+}
 input {
   color: var(--ls-alfa-color);
   font-size: var(--ls-h-font-base);

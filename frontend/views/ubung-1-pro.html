@@ -153,7 +153,7 @@
                     </div>
                     <div class="input-container">
                         <input type="text" 
-                               placeholder="{% trans 'Eigenen Begriff eingeben...' %}" 
+                               placeholder="{% trans '...oder einen eigenen Begriff eingeben' %}" 
                                name="kraftquelle" 
                                v-model="text_input" 
                                @keyup.enter="add_term" 
@@ -185,8 +185,9 @@
                     <div class="center">
                         {% comment %} <a href="/ubung-3/"> {% endcomment %}
                             <p>
-                            <button class="button" type="button" @click="continue_()" id="submit-button" aria-label="{% trans 'Weiter' %}">
-                                {% trans "Weiter" %}
+                            <button class="button button-primary" type="button" @click="continue_()" id="submit-button" aria-label="{% trans 'Weiter' %}">
+                                <span class="button-text">{% trans "Weiter" %}</span>
+                                <span class="button-arrow">→</span>
                             </button></a>
                         </p>
                     <div class="copyright-footer">

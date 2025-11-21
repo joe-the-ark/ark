@@ -148,8 +148,8 @@ msgstr "prise de parole égal"
 msgid "offen und ohne Angst kommunizieren"
 msgstr "communiquer ouvertement et sans crainte"
 
-msgid "Psychologische Sicherheit ist laut Google’s Aristoteles-Studie stärkster Prädiktor für Team-Performance."
-msgstr "Selon l'étude Aristote de Google, la sécurité psychologique est le plus fort prédicteur de la performance d'une équipe."
+msgid "Psychologische Sicherheit ist laut Google's Aristoteles-Studie stärkster Prädiktor für Team-Performance. Wie nahe liegen diese Werte in deinem Team zusammen?"
+msgstr "Selon l'étude Aristote de Google, la sécurité psychologique est le plus fort prédicteur de la performance d'une équipe. À quel point ces valeurs sont-elles proches dans votre équipe ?"
 
 #. preview.html
 #: loco:60688694be899e32216f1b02
@@ -168,6 +168,9 @@ msgstr ""
 
 msgid "https://docs.google.com/presentation/d/1gyEYqnALw4y9yLPUTb1VYQO9IADDD4r-1-yf0sgkvo4/embed?start=true&loop=false&delayms=8000"
 msgstr "https://docs.google.com/presentation/d/1rqEuOH0ZzcrcBMnEp3T9euiXvfGtx4Gk6Y8IxGidnO0/embed?start=true&loop=false&delayms=8000"
+
+msgid "https://docs.google.com/presentation/d/1gyEYqnALw4y9yLPUTb1VYQO9IADDD4r-1-yf0sgkvo4/embed?start=true&loop=false&delayms=8000&rm=minimal"
+msgstr "https://docs.google.com/presentation/d/1rqEuOH0ZzcrcBMnEp3T9euiXvfGtx4Gk6Y8IxGidnO0/embed?start=true&loop=false&delayms=8000&rm=minimal"
 
 msgid "https://docs.google.com/presentation/d/1qi3wNhpRU3FEoatghY7Ca0iNwtGPQGvHqLRXCvbKKJ8/embed?start=true&loop=false&delayms=8000"
 msgstr "https://docs.google.com/presentation/d/1i0O8xnzoa5vJmOcv9kSaKuBn-LvMcGWzE32icZN8jy8/embed?start=true&loop=false&delayms=8000&rm=minimal"
@@ -448,6 +451,42 @@ msgstr "Ta sécurité intérieure"
 
 msgid "Gefühlte Team Performance"
 msgstr "Performance ressentie de l'équipe"
+
+msgid "Psychologischer Sicherheitswert:"
+msgstr "Score de sécurité psychologique :"
+
+msgid "Fall 1: Hohe Performance + Niedrige psychologische Sicherheit"
+msgstr "Cas 1 : Performance élevée + Faible sécurité psychologique"
+
+msgid "Das Team liefert trotz unsicherem Klima – oft durch informelle Netzwerke oder Einzelpersonen. Die Performance ist fragil, da sie \"trotz\" und nicht \"wegen\" des Systems entsteht. Langfristig riskant, da bei Ausfall der Integratoren die Leistung einbricht."
+msgstr "L'équipe livre malgré un climat d'insécurité – souvent grâce à des réseaux informels ou des individus. La performance est fragile car elle émerge « malgré » et non « grâce » au système. Risqué à long terme, car les performances s'effondrent lorsque les intégrateurs échouent."
+
+msgid "Fall 2: Niedrige Performance + Hohe psychologische Sicherheit"
+msgstr "Cas 2 : Faible performance + Haute sécurité psychologique"
+
+msgid "Es herrscht Sicherheit, aber die Leistung bleibt aus. Meist fehlen Klarheit, Struktur oder Kompetenz. Das Team hat großes ungenutztes Potenzial. Die Basis ist gut – jetzt braucht es Führung, Ziele und passende Rahmenbedingungen. Manchmal treffen wir Menschen mit besonderen psychologischen Bedürfnissen im Team an, die von besonderer Aufmerksamkeit und professioneller Betreuung profitieren könnten."
+msgstr "Il y a de la sécurité, mais les performances manquent. Il manque généralement de la clarté, de la structure ou des compétences. L'équipe a un grand potentiel inexploité. La base est bonne – maintenant il faut du leadership, des objectifs et des conditions cadres appropriées. Parfois, nous rencontrons des personnes ayant des besoins psychologiques particuliers dans l'équipe qui pourraient bénéficier d'une attention particulière et d'un accompagnement professionnel."
+
+msgid "Normalfall: Übereinstimmende Werte"
+msgstr "Cas normal : Valeurs alignées"
+
+msgid "Hohe Werte in beiden Bereichen kennzeichnen gesunde, lernstarke Teams. Niedrige Werte deuten auf grundlegende Dysfunktion hin. In beiden Fällen ist die Dynamik konsistent – Interventionen können gezielt am Gesamtsystem ansetzen."
+msgstr "Des valeurs élevées dans les deux domaines caractérisent des équipes saines et fortement apprenantes. Des valeurs faibles indiquent une dysfonction fondamentale. Dans les deux cas, la dynamique est cohérente – les interventions peuvent cibler spécifiquement le système global."
+
+msgid "Zur Orientierung:"
+msgstr "Pour orientation :"
+
+msgid "Deutlich höhere Performance als psychologische Sicherheit"
+msgstr "Performance nettement supérieure à la sécurité psychologique"
+
+msgid "Deutlich höhere psychologische Sicherheit als Performance"
+msgstr "Sécurité psychologique nettement supérieure à la performance"
+
+msgid "Die Werte liegen nah beieinander"
+msgstr "Les valeurs sont proches l'une de l'autre"
+
+msgid "Punkte Unterschied"
+msgstr "points de différence"
 
 #. potential-result
 #: loco:606c4e795e2f794ae22b8e02
@@ -1502,8 +1541,8 @@ msgstr "Vous devez sélectionner un terme ou en saisir un vous-même avant de po
 msgid "Dieser Begriff wurde bereits von einem anderen Mitreisenden gewählt."
 msgstr "*Ce terme a déjà été choisi par un autre voyageur."
 
-msgid "Eigenen Begriff eingeben..."
-msgstr "Entrez votre propre terme..."
+msgid "...oder einen eigenen Begriff eingeben"
+msgstr "...ou entrez votre propre terme"
 
 msgid "Sicherheitsanker eingeben"
 msgstr "Entrer l'ancre de sécurité"

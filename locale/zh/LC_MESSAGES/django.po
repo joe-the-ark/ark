@@ -148,8 +148,8 @@ msgstr "平等地轮流发言"
 msgid "offen und ohne Angst kommunizieren"
 msgstr "公开、无畏地进行沟通"
 
-msgid "Psychologische Sicherheit ist laut Google’s Aristoteles-Studie stärkster Prädiktor für Team-Performance."
-msgstr "根据谷歌的亚里士多德研究，心理安全是团队表现的最有力预测因素。"
+msgid "Psychologische Sicherheit ist laut Google's Aristoteles-Studie stärkster Prädiktor für Team-Performance. Wie nahe liegen diese Werte in deinem Team zusammen?"
+msgstr "根据谷歌的亚里士多德研究，心理安全是团队表现的最有力预测因素。这些值在你的团队中有多接近？"
 
 #. preview.html
 #: loco:60688694be899e32216f1b02
@@ -167,6 +167,9 @@ msgstr "顺便说一下，你会在游戏结束时看到你对挑战的评价。
 
 msgid "https://docs.google.com/presentation/d/1gyEYqnALw4y9yLPUTb1VYQO9IADDD4r-1-yf0sgkvo4/embed?start=true&loop=false&delayms=8000"
 msgstr "https://docs.google.com/presentation/d/1c9Ia81ATlBk_XKiudF5F7lO7eSfyoNjddxK72InbLb0/embed?start=true&loop=false&delayms=8000"
+
+msgid "https://docs.google.com/presentation/d/1gyEYqnALw4y9yLPUTb1VYQO9IADDD4r-1-yf0sgkvo4/embed?start=true&loop=false&delayms=8000&rm=minimal"
+msgstr "https://docs.google.com/presentation/d/1c9Ia81ATlBk_XKiudF5F7lO7eSfyoNjddxK72InbLb0/embed?start=true&loop=false&delayms=8000&rm=minimal"
 
 msgid "https://docs.google.com/presentation/d/1qi3wNhpRU3FEoatghY7Ca0iNwtGPQGvHqLRXCvbKKJ8/embed?start=true&loop=false&delayms=8000"
 msgstr "https://docs.google.com/presentation/d/1RdTxE_HgllO4Khx1jfgxFDHjf4Uu7sX5Tov_CZCn1J8/embed?start=true&loop=false&delayms=8000&rm=minimal"
@@ -430,6 +433,42 @@ msgstr "你内心的安全感"
 
 msgid "Gefühlte Team Performance"
 msgstr "感知的团队表现"
+
+msgid "Psychologischer Sicherheitswert:"
+msgstr "心理安全分数："
+
+msgid "Fall 1: Hohe Performance + Niedrige psychologische Sicherheit"
+msgstr "案例1：高绩效 + 低心理安全"
+
+msgid "Das Team liefert trotz unsicherem Klima – oft durch informelle Netzwerke oder Einzelpersonen. Die Performance ist fragil, da sie \"trotz\" und nicht \"wegen\" des Systems entsteht. Langfristig riskant, da bei Ausfall der Integratoren die Leistung einbricht."
+msgstr "尽管存在不安全氛围，团队仍能交付成果——通常通过非正式网络或个人。绩效很脆弱，因为它是\"尽管\"而非\"由于\"系统而产生的。长期来看存在风险，因为当整合者失效时，绩效会崩溃。"
+
+msgid "Fall 2: Niedrige Performance + Hohe psychologische Sicherheit"
+msgstr "案例2：低绩效 + 高心理安全"
+
+msgid "Es herrscht Sicherheit, aber die Leistung bleibt aus. Meist fehlen Klarheit, Struktur oder Kompetenz. Das Team hat großes ungenutztes Potenzial. Die Basis ist gut – jetzt braucht es Führung, Ziele und passende Rahmenbedingungen. Manchmal treffen wir Menschen mit besonderen psychologischen Bedürfnissen im Team an, die von besonderer Aufmerksamkeit und professioneller Betreuung profitieren könnten."
+msgstr "存在安全感，但绩效不足。通常缺乏清晰度、结构或能力。团队有很大的未开发潜力。基础很好——现在需要领导力、目标和适当的框架条件。有时我们在团队中会遇到有特殊心理需求的人，他们可能会从特别关注和专业护理中受益。"
+
+msgid "Normalfall: Übereinstimmende Werte"
+msgstr "正常情况：一致的值"
+
+msgid "Hohe Werte in beiden Bereichen kennzeichnen gesunde, lernstarke Teams. Niedrige Werte deuten auf grundlegende Dysfunktion hin. In beiden Fällen ist die Dynamik konsistent – Interventionen können gezielt am Gesamtsystem ansetzen."
+msgstr "两个领域的高值表征健康、学习能力强的团队。低值表示基本的功能失调。在这两种情况下，动态是一致的——干预可以有针对性地针对整个系统进行。"
+
+msgid "Zur Orientierung:"
+msgstr "作为参考："
+
+msgid "Deutlich höhere Performance als psychologische Sicherheit"
+msgstr "绩效明显高于心理安全"
+
+msgid "Deutlich höhere psychologische Sicherheit als Performance"
+msgstr "心理安全明显高于绩效"
+
+msgid "Die Werte liegen nah beieinander"
+msgstr "这些值很接近"
+
+msgid "Punkte Unterschied"
+msgstr "分差异"
 
 msgid "GRUPPE"
 msgstr "集团"
@@ -1458,8 +1497,8 @@ msgstr "在继续之前，您必须选择一个术语或输入您自己的术语
 msgid "Dieser Begriff wurde bereits von einem anderen Mitreisenden gewählt."
 msgstr "*此术语已被另一位同行者选择。"
 
-msgid "Eigenen Begriff eingeben..."
-msgstr "输入您自己的术语..."
+msgid "...oder einen eigenen Begriff eingeben"
+msgstr "...或输入您自己的术语"
 
 msgid "Sicherheitsanker eingeben"
 msgstr "输入安全锚点"

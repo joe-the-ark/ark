@@ -502,21 +502,31 @@ def team_potential(request, user):
     game = Game.objects.filter(link=link).first()
 
     from .circle import calc_circles, calc_in_groups
-    ctx['circles'] = circles = calc_circles(game)
-    ctx['in_groups'] = calc_in_groups(game, min_tolerance=1, max_tolerance=20)
+    circles = calc_circles(game)
+    in_groups = calc_in_groups(game, min_tolerance=1, max_tolerance=20)
 
     players = WaitingRoomMember.objects.filter(game=game, state=1)
-    ctx['players'] = { _.player.name: _.player.avatar for _ in players }
+    players_dict = { _.player.name: _.player.avatar for _ in players }
 
     anchors = {}
     current_lang = translation.get_language() or 'en'
     for member in players:
         anchor_entry = Ubung1.objects.filter(game=game, player=member.player).order_by('-create_time').first()
         if anchor_entry:
-            localized = anchor_entry.power_i18n.get(current_lang, anchor_entry.power)
+            if isinstance(anchor_entry.power_i18n, str):
+                power_i18n = json.loads(anchor_entry.power_i18n)
+            else:
+                power_i18n = anchor_entry.power_i18n
+            localized = power_i18n.get(current_lang, anchor_entry.power) if power_i18n else anchor_entry.power
             anchors[member.player.name] = localized
         else:
             anchors[member.player.name] = ''
+    
+    # Pass data directly to template - Django automatically handles serialization to JavaScript
+    # This preserves Unicode characters correctly for Firefox compatibility
+    ctx['circles'] = circles
+    ctx['in_groups'] = in_groups
+    ctx['players'] = players_dict
     ctx['anchors'] = anchors
     
     # Add PRIO 1 tooltip text for translation
@@ -1065,7 +1075,85 @@ def goodbye(request, user):
 @user_required
 def arche(request, user):
     ctx = {}
-    ctx['game'] = Game.objects.filter(link=request.session['link']).first()
+    ctx['game'] = game = Game.objects.filter(link=request.session['link']).first()
+    ctx['user'] = user
+    
+    # Calculate team potential median (performance value) from Ubung2
+    ubung2 = Ubung2.objects.filter(game=game)
+    value_list = []
+    for i in ubung2:
+        value_list.append(int(i.value))
+    
+    if value_list:
+        from .utils import mean
+        median = mean(value_list)
+        ctx['team_potential_median'] = round(median)
+    else:
+        ctx['team_potential_median'] = None
+    
+    # Calculate psychological safety score (psy_score) from Ubung4
+    game_place = list(Ubung4.objects.filter(game=game))
+    row_0 = 0
+    row_1 = 0
+    row_2 = 0
+    row_3 = 0
+    row_4 = 0
+    row_5 = 0
+    for game_ in game_place:
+        row_0 += game_.row0.all().count()
+        row_1 += game_.row1.all().count()
+        row_2 += game_.row2.all().count()
+        row_3 += game_.row3.all().count()
+        row_4 += game_.row4.all().count()
+        row_5 += game_.row5.all().count()
+    
+    num = (WaitingRoomMember.objects.filter(game=game,state=1).count()) ** 2
+    if num > 0:
+        score = (row_0 * 4 + row_1 * 1 + row_2 * 3 + row_3 * 5 + row_4 * 0 + row_5 * 2) * 20
+        score = score / num
+        ctx['psy_score'] = round(score)
+    else:
+        ctx['psy_score'] = None
+    
+    # Determine scenario based on values
+    # Threshold: 50 (middle of 0-99/0-100 scale)
+    threshold = 50
+    ctx['scenario'] = None
+    ctx['orientation_text'] = None
+    
+    if ctx['psy_score'] is not None and ctx['team_potential_median'] is not None:
+        psy_high = ctx['psy_score'] >= threshold
+        performance_high = ctx['team_potential_median'] >= threshold
+        difference = ctx['team_potential_median'] - ctx['psy_score']
+        
+        if psy_high and performance_high:
+            # Both high - Normal case (high values)
+            ctx['scenario'] = 'normal_high'
+        elif not psy_high and not performance_high:
+            # Both low - Normal case (low values)
+            ctx['scenario'] = 'normal_low'
+        elif not psy_high and performance_high:
+            # Low safety, high performance - Case 1
+            ctx['scenario'] = 'case1'
+        elif psy_high and not performance_high:
+            # High safety, low performance - Case 2
+            ctx['scenario'] = 'case2'
+        
+        # Add orientation text based on difference
+        orientation_threshold = 16
+        if difference > orientation_threshold:
+            # Performance deutlich höher als psychologische Sicherheit
+            ctx['orientation_text'] = 'performance_higher'
+            ctx['orientation_difference'] = difference
+        elif difference < -orientation_threshold:
+            # Psychologische Sicherheit deutlich höher als Performance
+            ctx['orientation_text'] = 'safety_higher'
+            ctx['orientation_difference'] = abs(difference)
+        else:
+            # Werte liegen nah beieinander
+            ctx['orientation_text'] = 'values_close'
+            ctx['orientation_difference'] = abs(difference)
+    
     return render(request, './views/arche.html', ctx)
 
 

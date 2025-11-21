@@ -336,8 +336,9 @@
                 <div class="center">
                     <div class="button-with-tooltip">
                         <span class="tooltip-icon button-tooltip-icon" id="button-tooltip-icon" style="display: inline-flex; align-items: center; margin-right: 8px; vertical-align: middle; cursor: help;">?</span>
-                    <button id='main_btn' type="button" onclick="choosePopup()">
-                        {% trans "Klicke erst hier weiter, wenn ALLE ein passendes GEGENSATZPAAR benannt haben!" %}
+                    <button id='main_btn' class="button-primary" type="button" onclick="choosePopup()">
+                        <span class="button-text">{% trans "Klicke erst hier weiter, wenn ALLE ein passendes GEGENSATZPAAR benannt haben!" %}</span>
+                        <span class="button-arrow">→</span>
                     </button>
                     </div>
 
@@ -370,17 +371,40 @@
     });
 
 
-    //Button remover
+    //Button remover - only show button for initiator
     function buttonRemover() {
       let initiator = "{{host}}";
       let user = "{{player_name}}";
       console.log(initiator, user);
-      let btn = document.querySelector('#main_btn')
+      let btn = document.querySelector('#main_btn');
+      let container = btn ? btn.closest('.button-with-tooltip') : null;
+      
       if (initiator != user) {
-        btn.style.display = 'none'
+        // Hide button and container for non-initiators
+        if (btn) {
+          btn.style.setProperty('display', 'none', 'important');
+        }
+        if (container) {
+          container.style.setProperty('display', 'none', 'important');
+        }
+        // Also hide the center container if it only contains the button
+        let centerContainer = btn ? btn.closest('.center') : null;
+        if (centerContainer && centerContainer.querySelectorAll('.button-with-tooltip').length === 1 && !centerContainer.querySelectorAll('p').length) {
+          centerContainer.style.setProperty('display', 'none', 'important');
+        }
       }
     }
-    buttonRemover();
+    // Call buttonRemover after DOM is ready (with small delay to ensure styles are applied)
+    function initButtonRemover() {
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+          setTimeout(buttonRemover, 100);
+        });
+      } else {
+        setTimeout(buttonRemover, 100);
+      }
+    }
+    initButtonRemover();
 
    var app2 = new Vue({
         delimiters: ['[[', ']]'],

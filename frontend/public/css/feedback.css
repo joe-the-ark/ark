@@ -465,3 +465,94 @@ li:hover {
       width: 90%;
     }
 }
+
+/* ARKS logo clickable */
+.arks-logo-clickable {
+  cursor: pointer;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Feedback intro text */
+.feedback-intro-text {
+  background-color: #9FE2BF;
+  color: #626262;
+  border-radius: 10px;
+  padding: 0 10px;
+}
+
+/* Feedback legend box */
+.feedback-legend-box {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+/* Feedback legend styles */
+.feedback-legend-green {
+  background-color: #9FE2BF;
+  color: #626262;
+  border-radius: 10px;
+  padding: 0 10px;
+}
+
+.feedback-legend-text {
+  margin: 10px 0;
+}
+
+.feedback-legend-red {
+  background-color: #fa5252;
+  color: white;
+  border-radius: 10px;
+  padding: 0 10px;
+}
+
+.feedback-legend-yellow {
+  background-color: #FAE03C;
+  color: #626262;
+  border-radius: 10px;
+  padding: 0 10px;
+}
+
+.feedback-legend-black {
+  background-color: #3b4252;
+  color: white;
+  border-radius: 10px;
+  padding: 0 10px;
+}
+
+/* Feedback actions wrapper */
+.feedback-actions {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.feedback-actions .button {
+  margin: 0;
+}
+
+/* Copyright footer styling */
+.feedback-actions .copyright-footer {
+  text-align: center;
+  font-size: 12px;
+  margin-top: 20px;
+}
+
+.feedback-actions .copyright-footer a {
+  color: var(--ls-alfa-color);
+  text-decoration: none;
+}
+
+.feedback-actions .copyright-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Progress bar fill */
+.progress__bar-fill {
+  width: 100%;
+  border-radius: 10px;
+}

@@ -116,7 +116,7 @@
                     </div>
                     <div class="input-container">
                         <input type="text" 
-                               placeholder="{% trans 'Eigenen Begriff eingeben...' %}" 
+                               placeholder="{% trans '...oder einen eigenen Begriff eingeben' %}" 
                                name="energiefresser" 
                                v-model="text_input" 
                                @keyup.enter="add_term" 
@@ -150,8 +150,9 @@
                         {% comment %} <a href="/wartezimmer/"> {% endcomment %}
 
                         <p>
-                            <button class="button" type="button" @click="continue_()" id="submit-button" aria-label="{% trans 'Weiter' %}">
-                                {% trans "Weiter" %}
+                            <button class="button button-primary" type="button" @click="continue_()" id="submit-button" aria-label="{% trans 'Weiter' %}">
+                                <span class="button-text">{% trans "Weiter" %}</span>
+                                <span class="button-arrow">→</span>
                             </button>
                         </p></a>
                         <div class="copyright-footer">

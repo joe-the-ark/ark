@@ -5,6 +5,61 @@
 }
 .terms {
   text-decoration: underline;
+  background-color: #52CEEC;
+  color: #FFFFFF;
+  border: 2px solid #52CEEC;
+  border-radius: 8px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.terms:hover {
+  background-color: #3bb5d4;
+  border-color: #3bb5d4;
+  text-decoration: none;
+}
+
+.terms:focus {
+  outline: 3px solid #52CEEC;
+  outline-offset: 2px;
+  text-decoration: none;
+}
+
+.terms:active {
+  background-color: #2a9fc0;
+  border-color: #2a9fc0;
+}
+
+/* Info tooltip icon */
+.info-tooltip-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #52CEEC;
+  color: #FFFFFF;
+  font-weight: bold;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.info-tooltip-icon:hover {
+  background-color: #3bb5d4;
+  transform: scale(1.1);
+}
+
+.info-tooltip-icon:focus {
+  outline: 3px solid #52CEEC;
+  outline-offset: 2px;
 }
 .slider {
   padding: 10px 20px;
@@ -442,6 +497,47 @@
 #submit_button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+/* Ensure submit button uses button-primary style */
+#submit_button.button-primary {
+  background-color: #52CEEC;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 18px 30px;
+  font-size: var(--ls-font-large);
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  margin: 0 auto;
+  line-height: normal;
+  min-height: 56px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#submit_button.button-primary:hover {
+  background-color: #9FE2BF !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(159, 226, 191, 0.4);
+}
+
+#submit_button.button-primary:active {
+  transform: translateY(0);
+}
+
+#submit_button.button-primary:focus {
+  outline: 3px solid #52CEEC;
+  outline-offset: 2px;
+}
+
+#submit_button.button-primary:hover .button-arrow {
+  transform: translateX(5px);
 }
 
 /* Avatar slider touch optimization */
