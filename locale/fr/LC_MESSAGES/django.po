@@ -170,22 +170,40 @@ msgid "https://docs.google.com/presentation/d/1gyEYqnALw4y9yLPUTb1VYQO9IADDD4r-1
 msgstr "https://docs.google.com/presentation/d/1rqEuOH0ZzcrcBMnEp3T9euiXvfGtx4Gk6Y8IxGidnO0/embed?start=true&loop=false&delayms=8000"
 
 msgid "https://docs.google.com/presentation/d/1qi3wNhpRU3FEoatghY7Ca0iNwtGPQGvHqLRXCvbKKJ8/embed?start=true&loop=false&delayms=8000"
-msgstr "https://docs.google.com/presentation/d/1i0O8xnzoa5vJmOcv9kSaKuBn-LvMcGWzE32icZN8jy8/embed?start=true&loop=false&delayms=8000"
+msgstr "https://docs.google.com/presentation/d/1i0O8xnzoa5vJmOcv9kSaKuBn-LvMcGWzE32icZN8jy8/embed?start=true&loop=false&delayms=8000&rm=minimal"
+
+msgid "https://docs.google.com/presentation/d/1qi3wNhpRU3FEoatghY7Ca0iNwtGPQGvHqLRXCvbKKJ8/embed?start=true&loop=false&delayms=8000&rm=minimal"
+msgstr "https://docs.google.com/presentation/d/1i0O8xnzoa5vJmOcv9kSaKuBn-LvMcGWzE32icZN8jy8/embed?start=true&loop=false&delayms=8000&rm=minimal"
 
 msgid "https://docs.google.com/presentation/d/1N-mOfePoj33-14mRFWnxuee-ODTfOBAUky6Zop1nTIk/embed?start=true&loop=false&delayms=8000"
 msgstr "https://docs.google.com/presentation/d/1rNXwL5lm9EPR6idKkl7vWtDAeYghPvH-E_7Gt-9Tr3c/embed?start=true&loop=false&delayms=8000"
 
+msgid "https://docs.google.com/presentation/d/1N-mOfePoj33-14mRFWnxuee-ODTfOBAUky6Zop1nTIk/embed?start=true&loop=false&delayms=8000&rm=minimal"
+msgstr "https://docs.google.com/presentation/d/1rNXwL5lm9EPR6idKkl7vWtDAeYghPvH-E_7Gt-9Tr3c/embed?start=true&loop=false&delayms=8000&rm=minimal"
+
 msgid "https://docs.google.com/presentation/d/1l1yXJjfM3PRuzWHs2YqvKRKgAApEj-provI2ONmmqS4/embed?start=true&loop=false&delayms=8000"
 msgstr "https://docs.google.com/presentation/d/1eYtU4UPSVjBvCh4AuJsECuK-o6CvrzMhVMpK8WcxW60/embed?start=true&loop=false&delayms=8000"
+
+msgid "https://docs.google.com/presentation/d/1l1yXJjfM3PRuzWHs2YqvKRKgAApEj-provI2ONmmqS4/embed?start=true&loop=false&delayms=8000&rm=minimal"
+msgstr "https://docs.google.com/presentation/d/1eYtU4UPSVjBvCh4AuJsECuK-o6CvrzMhVMpK8WcxW60/embed?start=true&loop=false&delayms=8000&rm=minimal"
 
 msgid "https://docs.google.com/presentation/d/1kgXdYDUcddeDLANKHrsWY8rkwLqaYN86oCrdpaLlod4/embed?start=true&loop=false&delayms=8000"
 msgstr "https://docs.google.com/presentation/d/1A1LZYI6TKEtg_b9YkKTc4cfP04s6P6mUPquuz6xMeLA/embed?start=true&loop=false&delayms=8000"
 
+msgid "https://docs.google.com/presentation/d/1kgXdYDUcddeDLANKHrsWY8rkwLqaYN86oCrdpaLlod4/embed?start=true&loop=false&delayms=8000&rm=minimal"
+msgstr "https://docs.google.com/presentation/d/1A1LZYI6TKEtg_b9YkKTc4cfP04s6P6mUPquuz6xMeLA/embed?start=true&loop=false&delayms=8000&rm=minimal"
+
 msgid "https://docs.google.com/presentation/d/1Cz-fav1DISq2siHi5-RW2uggyQU2ecbI1S3wxs--dng/embed?start=true&loop=false&delayms=8000"
 msgstr "https://docs.google.com/presentation/d/15HXYyGipKwrt5RHOvwcrFV2rl2AgdFYUuBhgm012Un8/embed?start=true&loop=false&delayms=8000"
 
+msgid "https://docs.google.com/presentation/d/1Cz-fav1DISq2siHi5-RW2uggyQU2ecbI1S3wxs--dng/embed?start=true&loop=false&delayms=8000&rm=minimal"
+msgstr "https://docs.google.com/presentation/d/15HXYyGipKwrt5RHOvwcrFV2rl2AgdFYUuBhgm012Un8/embed?start=true&loop=false&delayms=8000&rm=minimal"
+
 msgid "https://docs.google.com/presentation/d/1EnXkRYGm6M0Rbkkt6iFkhZ-kjo7jDjI23eDUntHLRN0/embed?start=true&loop=false&delayms=8000"
 msgstr "https://docs.google.com/presentation/d/15ejRVzl0oOFUP9Nn3vV-v0WNM_Tle8FI5X6I-hMyusU/embed?start=true&loop=false&delayms=8000"
+
+msgid "https://docs.google.com/presentation/d/1EnXkRYGm6M0Rbkkt6iFkhZ-kjo7jDjI23eDUntHLRN0/embed?start=true&loop=false&delayms=8000&rm=minimal"
+msgstr "https://docs.google.com/presentation/d/15ejRVzl0oOFUP9Nn3vV-v0WNM_Tle8FI5X6I-hMyusU/embed?start=true&loop=false&delayms=8000&rm=minimal"
 
 msgid "https://docs.google.com/presentation/d/1xmsuoUm31ay2ecqG-FOb49HdyJkq9mTfcn97gMkzmdw/embed?start=true&loop=false&delayms=8000"
 msgstr "https://docs.google.com/presentation/d/1crpAHkZuX4KtJmvNcK-ZCdjhMaJ3s8zP_Qy8a5mkMik/embed?start=true&loop=false&delayms=8000"
@@ -460,6 +478,9 @@ msgstr "Assure-toi que tout le monde est connecté en toute sécurité dans au m
 
 msgid "SICHERE KREISE bei der Toleranzfenster-Grösse..."
 msgstr "CERCLES SÛRS pour la taille de la fenêtre de tolérance..."
+
+msgid "SICHERE KREISE bei der Toleranzfenster-Grösse"
+msgstr "CERCLES SÛRS à la taille de la fenêtre de tolérance"
 
 msgid "PRIO 3: Die Konstellation beim "
 msgstr "PRIORITÉ 3 : La configuration avec "
@@ -1031,17 +1052,17 @@ msgstr "Dans votre équipe, la valeur moyenne de liberté de tension est"
 msgid "Als Daumenregel gilt: Werte unter 20 sind entspannt. Werte unter 40 sind meist noch ohne externe Begleitung bearbeitbar. Die Skala reicht von 1 (absolute Spannungsfreiheit) bis 99."
 msgstr "C'est la valeur de tension pour votre équipe. En règle générale, les valeurs inférieures à 20 sont détendues. Les valeurs inférieures à 40 sont généralement gérables sans accompagnement externe."
 
-msgid "Als Faustregel gilt: Mit zunehmender Spannungsfreiheit steigt die psychologische Sicherheit."
-msgstr "En règle générale, plus l'absence de tension est importante, plus la sécurité psychologique augmente."
+msgid "Mehr Spannungsfreiheit = mehr psychologische Sicherheit."
+msgstr "Plus de liberté de tension = plus de sécurité psychologique."
 
-msgid "Die Safe-Zone beschreibt den Bereich einer sicheren Basis für die Zusammenarbeit, in dem nicht mit defensiven Reaktionen (Fight, Flight, Freeze oder Fawn) zu rechnen ist."
-msgstr "La Safe-Zone décrit la zone d'une base sécurisée pour la collaboration, où l'on ne s'attend pas à des réactions défensives (Fight, Flight, Freeze ou Fawn)."
+msgid "Sichere Basis für Zusammenarbeit ohne defensive Reaktionen."
+msgstr "Base sécurisée pour la collaboration sans réactions défensives."
 
-msgid "Je niedriger der Stresswert, desto eher wird dass das Verhalten anderer als stressig empfunden und desto enger das Window of Tolerance."
-msgstr "Plus le niveau de stress est bas, plus le comportement des autres est perçu comme stressant et plus la fenêtre de tolérance est étroite."
+msgid "Niedrige Werte = hoher Stress, enges Toleranzfenster."
+msgstr "Valeurs basses = stress élevé, fenêtre de tolérance étroite."
 
-msgid "In der Regel haben Teammitglieder unterschiedliche Sicherheitsanker, da innere Sicherheit nicht allein im Kopf entsteht, sondern über das autonome Nervensystem beeinflusst wird – abhängig davon, was in früheren Lebensabschnitten für Sicherheit gesorgt hat."
-msgstr "En règle générale, les membres de l'équipe ont des ancrages de sécurité différents, car la sécurité intérieure ne naît pas uniquement dans la tête, mais est influencée par le système nerveux autonome - en fonction de ce qui a assuré la sécurité dans des périodes de vie antérieures."
+msgid "Teammitglieder haben unterschiedliche Sicherheitsanker."
+msgstr "Les membres de l'équipe ont des ancres de sécurité différentes."
 
 msgid "Bildet jetzt bitte Zweier- oder Dreiergruppen mit Menschen, die ähnliche Sicherheitsanker gewählt hatten:"
 msgstr "Veuillez maintenant former des groupes de deux ou trois avec des personnes qui ont choisi des ancrages de sécurité similaires :"
@@ -1061,8 +1082,11 @@ msgstr "Temps nécessaire : 10 minutes."
 msgid "Welche Spannungen im Team könnt ihr mit Feedback lösen?"
 msgstr "Quelles sont les tensions au sein de l'équipe que vous pouvez apaiser grâce au feedback ?"
 
-msgid "Die Heatmap zeigt eine Zusammenfassung aller Spannungen. Beginnt eure Auswertung mit den farbigen Feldern im Inneren der Matrix, deren rechte Werte größer als 16 sind..."
-msgstr "La carte de chaleur montre un résumé de toutes les tensions. Commencez votre évaluation par les cases colorées à l'intérieur de la matrice dont la valeur de droite est supérieure à 16..."
+msgid "Die Heatmap zeigt eine Zusammenfassung aller Spannungen."
+msgstr "La carte de chaleur montre un résumé de toutes les tensions."
+
+msgid "Beginnt eure Auswertung mit den farbigen Feldern im Inneren der Matrix, deren rechte Werte größer als 16 sind..."
+msgstr "Commencez votre évaluation par les cases colorées à l'intérieur de la matrice dont la valeur de droite est supérieure à 16..."
 
 msgid "Der Farbcode im Innern der Heatmap gilt unverändert."
 msgstr "Le code couleur à l'intérieur de la heatmap reste inchangé."
@@ -1070,8 +1094,8 @@ msgstr "Le code couleur à l'intérieur de la heatmap reste inchangé."
 msgid "Bei grünen Feldern liegen Fremd- und Selbstwahrnehmung in der Safe-Zone."
 msgstr "Dans les champs verts, la perception de soi et la perception de l'équipe se trouvent dans la zone de sécurité."
 
-msgid "Der erste Wert (in Klammern) zeigt die Fremdwahrnehmung. Ein hoher Wert deutet darauf hin, dass der Beitrag des Spielers zur spannungsfreien Zusammenarbeit aus Teamsicht groß ist. Der zweite Wert zeigt die Abweichung zwischen Fremd- und Selbstwahrnehmung. Werte über 16 deuten auf mögliche Spannungen mit dem Team hin. Bei positiven Vorzeichen schätzt der Spieler seinen eigenen Beitrag zur Teamdynamik eher zu optimistisch ein, was gelegentlich zu weiteren Spannungen im Team führen kann."
-msgstr "La première valeur (entre parenthèses) indique la perception externe. Une valeur élevée indique que la contribution du joueur à une collaboration sans tension est importante du point de vue de l'équipe. La deuxième valeur indique l'écart entre la perception des autres et la perception de soi. Les valeurs supérieures à 16 indiquent de possibles tensions avec l'équipe. Si le signe est positif, le joueur a tendance à considérer sa propre contribution à la dynamique de l'équipe de manière trop optimiste, ce qui peut occasionnellement entraîner de nouvelles tensions au sein de l'équipe."
+msgid "Fremdwahrnehmung (in Klammern) und Spannung (Selbst- minus Fremdwahrnehmung). Werte über 16 = mögliche Spannungen."
+msgstr "Perception externe (entre parenthèses) et tension (soi moins perception externe). Valeurs > 16 = tensions possibles."
 
 msgid "Der erste Wert (in Klammern) zeigt die Fremdwahrnehmung. Je höher dieser Wert, desto grösser der Beitrag zur Spannung aus Teamsicht."
 msgstr "La première valeur (entre parenthèses) indique la perception des autres. Plus cette valeur est élevée, plus la contribution à la tension du point de vue de l'équipe est importante."
@@ -1082,14 +1106,14 @@ msgstr "La deuxième valeur montre l'écart entre la perception des autres et la
 msgid "Bei negativen Vorzeichen schätzt der Spieler den eigenen Beitrag zur Teamdynamik eher zu optimistisch ein. Dadurch entstehen manchmal Spannungen mit dem Team."
 msgstr "En cas de signes négatifs, le joueur a tendance à évaluer de manière trop optimiste sa propre contribution à la dynamique de l'équipe. Cela crée parfois des tensions avec l'équipe."
 
-msgid "Vertikal siehst du in der oberen Reihe den Beitrag jedes Spielers zu den Sicherheitsankern. Je höher der Wert, desto größer ist der wahrgenommene Beitrag des Spielers zur Sicherheit im Team."
-msgstr "Verticalement, tu peux voir dans la rangée supérieure la contribution de chaque joueur aux ancrages de sécurité. Plus la valeur est élevée, plus la contribution perçue du joueur à la sécurité de l'équipe est importante."
+msgid "Beitrag des Spielers zur Team-Sicherheit."
+msgstr "Contribution du joueur à la sécurité de l'équipe."
 
-msgid "Horizontal siehst du die Position der Safe-Zone sowie die zugehörigen Sicherheitsanker und Triggerthemen. Je grösser der Wert auf der linken Seite, desto größer ist der Beitrag dieses Sicherheitsankers zur Team-Sicherheit."
-msgstr "Horizontalement, vous voyez la position de la zone de sécurité ainsi que les ancres de sécurité et les sujets déclencheurs associés. Plus la valeur à gauche est grande, plus la contribution de cette ancre de sécurité à la sécurité de l'équipe est importante."
+msgid "Beitrag des Sicherheitsankers zur Team-Sicherheit."
+msgstr "Contribution de l'ancre de sécurité à la sécurité de l'équipe."
 
-msgid "Hier unten sind alle Spannungswerte pro Spieler aufaddiert. Auch hier gilt: Je höher der Wert mit positivem Vorzeichen, desto stärker überschätzt der Spieler seinen positiven Beitrag zur Sicherheit im Team."
-msgstr "Ici en bas, toutes les valeurs de tension par joueur sont additionnées. Encore une fois, la règle s'applique : Plus la valeur est élevée avec un signe positif, plus le joueur surestime sa contribution positive à la sécurité de l'équipe."
+msgid "Summe aller Spannungswerte. Positives Vorzeichen = mögliche Überschätzung des eigenen Beitrags."
+msgstr "Somme de toutes les valeurs de tension. Signe positif = surestimation possible de sa propre contribution."
 
 msgid "Je weiter oben ein Paar steht, desto integrierender für das Teamzusammenspiel wirkt diese Paarung vermutlich. Finde bitte einen Partner von weiter unten auf der Liste, um die Ergebnisse Deiner Reise mit der Arche zu verstehen und zu interpretieren..."
 msgstr "Plus un couple se trouve en haut de la liste, plus il est susceptible d'avoir un effet intégrateur sur l'interaction de l'équipe. Veuillez trouver un partenaire plus bas dans la liste pour comprendre et interpréter les résultats de votre voyage avec l'arche..."
@@ -1138,8 +1162,8 @@ msgstr "Pour conclure."
 msgid "In dieser Liste sind alle Paarkonstellationen mit ihrem Spannungswert aufgeführt. Je weiter oben ein Paar steht, desto integrierender für das Teamzusammenspiel wirkt die Konstellation vermutlich. Paare weiter unten auf der Liste produzieren höhere Spannungswerte, mehr Reibung in den gegenseitigen Wahrnehmungen und haben eventuell Beef miteinandern – sie täten zum Wohle der Gruppe gut daran, sich in den unterschiedlichen Sichtweisen abzugleichen und ihre soziale Sensibilität zu entwickeln."
 msgstr "Dans cette liste, toutes les constellations de paires sont indiquées avec leur valeur de tension. Plus un couple se trouve en haut de la liste, plus il est susceptible d'intégrer l'équipe. Les couples en bas de la liste produisent des valeurs de tension plus élevées, plus de friction dans les perceptions mutuelles et ont éventuellement des différends entre eux - ils feraient bien, pour le bien du groupe, de s'harmoniser dans les différents points de vue et de développer leur sensibilité sociale."
 
-msgid "Das ist der Wert der Spannungsfreiheit für euer Team. Als Daumenregel gilt: Werte über 80 sind entspannt. Spannungswerte über 60 sind meist noch ohne externe Begleitung bearbeitbar."
-msgstr "C'est la valeur de la liberté de tension pour votre équipe. En règle générale, les valeurs supérieures à 80 sont considérées comme détendues. Les valeurs de tension supérieures à 60 peuvent généralement encore être traitées sans accompagnement externe."
+msgid "Team-Spannungsfreiheit. Werte über 80 = entspannt, über 60 = bearbeitbar."
+msgstr "Valeur de tension libre de l'équipe. Valeurs > 80 = détendu, > 60 = gérable."
 
 #. heatmap
 #: loco:606ef181b72c7c09a00e9952
@@ -1339,3 +1363,329 @@ msgstr "Fenêtre de tolérance:"
 
 msgid "Klicke für weitere Informationen"
 msgstr "Cliquez pour plus d'informations"
+
+msgid "Der Benutzername muss mehr als 2 Zeichen lang sein."
+msgstr "Le nom d'utilisateur doit contenir plus de 2 caractères."
+
+msgid "Der Name der Reisegruppe muss mehr als 2 Zeichen lang sein."
+msgstr "Le nom du groupe de voyage doit contenir plus de 2 caractères."
+
+msgid "Dieser Name der Reisegruppe ist bereits vergeben. Bitte wähle einen anderen Namen."
+msgstr "Ce nom de groupe de voyage est déjà pris. Veuillez choisir un autre nom."
+
+msgid "Bitte gib einen Benutzernamen ein."
+msgstr "Veuillez entrer un nom d'utilisateur."
+
+msgid "Bitte gib einen Namen für deine Reisegruppe ein."
+msgstr "Veuillez entrer un nom pour votre groupe de voyage."
+
+msgid "Bitte wähle ein Benutzerbild aus."
+msgstr "Veuillez sélectionner un avatar."
+
+msgid "Wird verarbeitet..."
+msgstr "Traitement en cours..."
+
+msgid "Sprache auswählen"
+msgstr "Sélectionner la langue"
+
+msgid "Nutzungsbedingungen anzeigen"
+msgstr "Afficher les conditions d'utilisation"
+
+msgid "Schließen"
+msgstr "Fermer"
+
+msgid "Präsentation"
+msgstr "Présentation"
+
+msgid "Avatar-Auswahl"
+msgstr "Sélection d'avatar"
+
+msgid "Vorheriges Avatar"
+msgstr "Avatar précédent"
+
+msgid "Nächstes Avatar"
+msgstr "Avatar suivant"
+
+msgid "Avatar"
+msgstr "Avatar"
+
+msgid "Sie nehmen an einem Forschungsprojekt teil. Ihr Beitrag zu unserem Forschungsprojekt ermöglicht es Wissenschaftlern, mehr über Organisationsdynamik, Dimensionen psychologischer Sicherheit, Spannungsfelder sowie Selbst- und Fremdwahrnehmung innerhalb von Teams herauszufinden. Wir verwenden auch aggregierte Spieldaten, um unsere Software zu verbessern und Muster im Kontext unserer Forschungsfragen zu identifizieren. Durch die Nutzung der Software bestätigen Sie Ihre Akzeptanz der Nutzungsbedingungen. Ihre Teilnahme ist freiwillig. Sie können das Experiment jederzeit beenden, indem Sie Ihren Browser schließen."
+msgstr "Vous participez à un projet de recherche. Votre contribution à notre projet de recherche permettra aux scientifiques d'en savoir plus sur la dynamique organisationnelle, les dimensions de la sécurité psychologique, les champs de tension, ainsi que les perceptions internes et externes au sein des équipes. Nous utilisons également des données de jeu agrégées pour améliorer notre logiciel et identifier des modèles dans le contexte de nos questions de recherche. En utilisant le logiciel, vous reconnaissez votre acceptation des conditions d'utilisation. Votre participation est volontaire. Vous pouvez arrêter l'expérience à tout moment en fermant votre navigateur."
+
+msgid "Info zu safecircles.ch"
+msgstr "Info sur safecircles.ch"
+
+msgid "Dieser Name ist bereits vergeben. Bitte wähle einen anderen Namen."
+msgstr "Ce nom est déjà pris. Veuillez choisir un autre nom."
+
+msgid "Das Spiel hat bereits begonnen. Du kannst nicht mehr beitreten."
+msgstr "Le jeu a déjà commencé. Vous ne pouvez plus rejoindre."
+
+msgid "Dieses Avatar ist verfügbar."
+msgstr "Cet avatar est disponible."
+
+msgid "Spiel ist beitretbar"
+msgstr "Le jeu est accessible"
+
+msgid "Spiel hat bereits begonnen"
+msgstr "Le jeu a déjà commencé"
+
+msgid "Link kopieren"
+msgstr "Copier le lien"
+
+msgid "Kopiert!"
+msgstr "Copié !"
+
+msgid "QR-Code herunterladen"
+msgstr "Télécharger le code QR"
+
+msgid "QR-Code als Bild speichern"
+msgstr "Enregistrer le code QR comme image"
+
+msgid "QR-Code zum Teilen"
+msgstr "Code QR pour partager"
+
+msgid "Weiter zur nächsten Seite"
+msgstr "Continuer vers la page suivante"
+
+msgid "Sprachauswahl"
+msgstr "Sélection de la langue"
+
+msgid "ARKS is published under a GPLv3"
+msgstr "ARKS est publié sous licence GPLv3"
+
+msgid "license by"
+msgstr "par"
+
+msgid "Dr. Joe Maier"
+msgstr "Dr. Joe Maier"
+
+msgid "Vollbild anzeigen"
+msgstr "Afficher en plein écran"
+
+msgid "Vollbild beenden"
+msgstr "Quitter le plein écran"
+
+msgid "Bitte bewege den Slider, um eine Bewertung abzugeben."
+msgstr "Veuillez déplacer le curseur pour soumettre une évaluation."
+
+msgid "Performance-Bewertung"
+msgstr "Évaluation de la performance"
+
+msgid "Performance-Slider"
+msgstr "Curseur de performance"
+
+msgid "Low"
+msgstr "Faible"
+
+msgid "Medium"
+msgstr "Moyen"
+
+msgid "High"
+msgstr "Élevé"
+
+msgid "1 = niedrige Performance, 99 = hohe Performance. Die Skala zeigt die durchschnittliche Team-Performance."
+msgstr "1 = performance faible, 99 = performance élevée. L'échelle montre la performance moyenne de l'équipe."
+
+msgid "Bitte bewege den Slider"
+msgstr "Veuillez déplacer le curseur"
+
+msgid "Du musst eine Bewertung zwischen 1 und 99 abgeben, bevor du fortfahren kannst."
+msgstr "Vous devez fournir une évaluation entre 1 et 99 avant de pouvoir continuer."
+
+msgid "Bitte wähle einen Sicherheitsanker"
+msgstr "Veuillez choisir une ancre de sécurité"
+
+msgid "Du musst einen Begriff auswählen oder einen eigenen eingeben, bevor du fortfahren kannst."
+msgstr "Vous devez sélectionner un terme ou en saisir un vous-même avant de pouvoir continuer."
+
+msgid "Dieser Begriff wurde bereits von einem anderen Mitreisenden gewählt."
+msgstr "*Ce terme a déjà été choisi par un autre voyageur."
+
+msgid "Eigenen Begriff eingeben..."
+msgstr "Entrez votre propre terme..."
+
+msgid "Sicherheitsanker eingeben"
+msgstr "Entrer l'ancre de sécurité"
+
+msgid "Sicherheitsanker-Begriffe"
+msgstr "Termes d'ancre de sécurité"
+
+msgid "Bereits gewählt"
+msgstr "Déjà choisi"
+
+msgid "Dein Sicherheitsanker ist ein positiver Wert oder Begriff, der dir in unsicheren Situationen Halt gibt und dein Sicherheitsgefühl im Team stärkt."
+msgstr "Votre ancre de sécurité est une valeur ou un terme positif qui vous apporte un soutien dans les situations incertaines et renforce votre sentiment de sécurité dans l'équipe."
+
+msgid "Bitte wähle ein Triggerthema"
+msgstr "Veuillez choisir un sujet déclencheur"
+
+msgid "Triggerthema-Begriffe"
+msgstr "Termes de sujet déclencheur"
+
+msgid "Triggerthema eingeben"
+msgstr "Entrer le sujet déclencheur"
+
+msgid "Fehler bei der Auswahl"
+msgstr "Erreur de sélection"
+
+msgid "Du hast dasselbe Sicherheitsanker- und Triggerthema wie ein anderer Mitreisender gewählt. Bitte wähle erneut."
+msgstr "Vous avez choisi la même ancre de sécurité et le même sujet déclencheur qu'un autre voyageur. Veuillez choisir à nouveau."
+
+msgid "Das Triggerthema ist der negative Gegenpol zu deinem Sicherheitsanker. Es beschreibt, was dich im Team negativ beeinflusst oder zu einem Gefühl von Angst beitragen kann."
+msgstr "Le sujet déclencheur est le pôle négatif de votre ancre de sécurité. Il décrit ce qui vous affecte négativement dans l'équipe ou peut contribuer à un sentiment de peur."
+
+msgid "Ein Fehler ist aufgetreten. Bitte versuche es erneut."
+msgstr "Une erreur s'est produite. Veuillez réessayer."
+
+msgid "Aktualisieren"
+msgstr "Mettre à jour"
+
+msgid "Erfolgreich aktualisiert!"
+msgstr "Mis à jour avec succès !"
+
+msgid "Dein Gegensatzpaar wurde erfolgreich aktualisiert."
+msgstr "Votre paire d'opposés a été mise à jour avec succès."
+
+msgid "Bitte fülle beide Felder aus"
+msgstr "Veuillez remplir les deux champs"
+
+msgid "Du musst sowohl einen Sicherheitsanker als auch ein Triggerthema eingeben, bevor du fortfahren kannst."
+msgstr "Vous devez saisir à la fois une ancre de sécurité et un sujet déclencheur avant de pouvoir continuer."
+
+msgid "Fehler bei der Aktualisierung"
+msgstr "Erreur de mise à jour"
+
+msgid "Reise mit"
+msgstr "Continuer le voyage avec"
+
+msgid "grünen Spielern fortsetzen"
+msgstr "les joueurs verts"
+
+msgid "Auf weitere"
+msgstr "Attendre d'autres"
+
+msgid "Spieler warten"
+msgstr "joueurs"
+
+msgid "Lade mehr Spieler ein! Es werden mindestens 3 Spieler benötigt, um dieses Spiel zu spielen."
+msgstr "Invitez plus de joueurs ! Il faut au moins 3 joueurs pour jouer à ce jeu."
+
+msgid "Warte, bis mehr Spieler hier im Warteraum angekommen sind."
+msgstr "Attendez que plus de joueurs arrivent ici dans la salle d'attente."
+
+msgid "Die Einsendung war nicht erfolgreich. Bitte versuche es erneut."
+msgstr "L'envoi n'a pas réussi. Veuillez réessayer."
+
+msgid "Fehler bei der Einsendung"
+msgstr "Erreur d'envoi"
+
+msgid "Einschätzung bestätigen"
+msgstr "Confirmer l'évaluation"
+
+msgid "The following correlation applies: the higher your psychological safety, the better the team's performance."
+msgstr "La corrélation suivante s'applique : plus votre sécurité psychologique est élevée, meilleure est la performance de l'équipe."
+
+
+msgid "Alle da?"
+msgstr "Tous ici ?"
+
+msgid "Fortfahren wenn alle Spieler grün sind"
+msgstr "Continuer une fois que tous les joueurs sont verts"
+
+msgid "Fortfahren, sobald alle Spieler GRÜN sind"
+msgstr "Continuer une fois que tous les joueurs sont VERTS"
+
+msgid "Auf weitere Spieler warten"
+msgstr "Attendre plus de joueurs"
+
+msgid "PRIO 1: Integratoren stärken – "
+msgstr "PRIO 1 : Renforcer les intégrateurs – "
+
+msgid "diese Konstellation ermöglicht euch ein "
+msgstr "cette configuration vous permet un "
+
+msgid "PRIO 1-Erklärung"
+msgstr "Explication PRIO 1"
+
+msgid "PRIO 1: How to Put Integrators in Service of the Team's Psychological Safety Development\n\nIntegrators are team members who naturally belong to multiple psychological safe circles, acting as crucial bridges between different subgroups. To harness them for the team's safety development, a deliberate, multi-step approach is essential. First, identify these individuals by mapping the team's safe circles; they are the ones present in several overlapping zones of trust. Their strength lies in their ability to mediate between conflicting parties without being entangled in the drama. Second, provide them with support, protection, and relief. Acknowledge the often-unseen burden they carry and create structures that allow them to perform this role without burning out. Third, enable and encourage them to share their observations and suggestions within the team. Their unique, cross-cutting perspective can reveal tensions and offer solutions without forcing direct confrontation. Finally, only pursue the small, concrete steps (Babysteps) they propose that have broad team support. By strengthening these integrators, you leverage their existing trust to maintain and enhance psychological safety sustainably, focusing on the team's connective tissue rather than its fault lines."
+msgstr "PRIO 1 : Comment mettre les intégrateurs au service du développement de la sécurité psychologique de l'équipe\n\nLes intégrateurs sont des membres de l'équipe qui appartiennent naturellement à plusieurs cercles psychologiquement sûrs, agissant comme des ponts cruciaux entre différents sous-groupes. Pour les exploiter au profit du développement de la sécurité de l'équipe, une approche délibérée et en plusieurs étapes est essentielle. Premièrement, identifiez ces individus en cartographiant les cercles sûrs de l'équipe ; ce sont ceux qui sont présents dans plusieurs zones de confiance qui se chevauchent. Leur force réside dans leur capacité à médier entre des parties en conflit sans être pris dans le drame. Deuxièmement, offrez-leur un soutien, une protection et un soulagement. Reconnaissez le fardeau souvent invisible qu'ils portent et créez des structures qui leur permettent d'exercer ce rôle sans s'épuiser. Troisièmement, permettez-leur et encouragez-les à partager leurs observations et suggestions au sein de l'équipe. Leur perspective unique et transversale peut révéler des tensions et offrir des solutions sans forcer une confrontation directe. Enfin, ne poursuivez que les petites étapes concrètes (Babysteps) qu'ils proposent et qui bénéficient d'un large soutien de l'équipe. En renforçant ces intégrateurs, vous exploitez leur confiance existante pour maintenir et améliorer durablement la sécurité psychologique, en vous concentrant sur le tissu conjonctif de l'équipe plutôt que sur ses lignes de faille."
+
+
+msgid "Spiel-Link in Zwischenablage kopieren"
+msgstr "Copier le lien du jeu dans le presse-papiers"
+
+
+msgid "Werte über 8 gelten als Safe, der Graubereich liegt zwischen 6.5-7.5, unter 6.5 gilt als eher Unsicher – vielleicht wäre externe Unterstützung angezeigt – Werte unter 6 gelten als sehr unsicher."
+msgstr "Les valeurs supérieures à 8 sont considérées comme sûres, la zone grise se situe entre 6.5-7.5, en dessous de 6.5 est considéré comme plutôt non sécurisé – un soutien externe pourrait être indiqué – les valeurs en dessous de 6 sont considérées comme très non sécurisées."
+
+
+msgid "Als PDF speichern"
+msgstr "Enregistrer en PDF"
+
+msgid "Klicken für Anweisungen"
+msgstr "Cliquez pour les instructions"
+
+msgid "PRIO 2: Satelliten integrieren – "
+msgstr "PRIO 2: Intégrer les satellites – "
+
+msgid "beim Toleranzfenster-Wert von "
+msgstr "à une valeur de fenêtre de tolérance de "
+
+msgid "PRIO 3: Boss-Zentralität erhöhen – "
+msgstr "PRIO 3: Augmenter la centralité du patron – "
+
+msgid "die Konstellation beim "
+msgstr "la constellation au "
+
+msgid "Priority 2: How to Integrate Solists / Satellites\n\nSatellites are team members who operate on the periphery, not yet integrated into any core safe circle. Integrating them requires a sensitive and intentional process. The first step is to identify them and recognize their potential. Their distanced position often grants them a clearer view of \"elephants in the room\" or hidden dynamics that more embedded members might miss. The second step is to facilitate their inclusion by identifying natural connection points. Look for existing integrators who can act as bridge-builders, or find projects or tasks where closer collaboration can occur organically. It is crucial, however, to first verify the satellite's own desire for greater integration; not everyone seeks deeper immersion, and forcing it can be counterproductive. If the interest is mutual, the final step involves targeted interventions for belonging, such as establishing regular check-ins or peer-learning formats. The goal is not to force everyone into one large, homogenous circle, but to carefully bring the satellite into at least one safe micro-structure, thereby enriching the team with their unique perspective and reducing the defensive reactions that isolation can foster."
+msgstr "Priorité 2 : Comment intégrer les solistes / satellites\n\nLes satellites sont des membres de l'équipe qui opèrent en périphérie, pas encore intégrés dans un cercle sûr central. Leur intégration nécessite un processus sensible et intentionnel. La première étape consiste à les identifier et à reconnaître leur potentiel. Leur position distante leur offre souvent une vision plus claire des \"éléphants dans la pièce\" ou des dynamiques cachées que les membres plus intégrés pourraient manquer. La deuxième étape consiste à faciliter leur inclusion en identifiant des points de connexion naturels. Cherchez des intégrateurs existants qui peuvent agir comme des constructeurs de ponts, ou trouvez des projets ou des tâches où une collaboration plus étroite peut se produire organiquement. Il est crucial, cependant, de vérifier d'abord le désir propre du satellite d'une plus grande intégration ; tout le monde ne cherche pas une immersion plus profonde, et forcer cela peut être contre-productif. Si l'intérêt est mutuel, l'étape finale implique des interventions ciblées pour l'appartenance, telles que l'établissement de points de contrôle réguliers ou de formats d'apprentissage par les pairs. L'objectif n'est pas de forcer tout le monde dans un grand cercle homogène, mais d'amener soigneusement le satellite dans au moins une micro-structure sûre, enrichissant ainsi l'équipe avec leur perspective unique et réduisant les réactions défensives que l'isolement peut favoriser."
+
+msgid "Priority 3: How to Securely Connect the Boss\n\nA leader's integration into the team's safe circles is a critical performance factor, yet they often systematically overestimate their own centrality and positive influence. To securely connect, the boss must first engage in honest self-reflection and seek a realistic assessment of the team's actual perception of psychological safety, contrasting it with one's own. The foundation for secure connection is the leader's inner security. This self-regulation ability—staying calm, curious, and flexible under pressure—is the safety anchor that prevents their stress from triggering defensive reactions across the team. With this foundation, the leader can then take conscious steps to increase their centrality. This is achieved not by command, but by actively participating in the team's safe circles, listening, and demonstrating vulnerability. The leader's role shifts to holding the space—creating and protecting an environment where open, drama-free communication can flourish. Ultimately, a leader can only foster a safe team if they are themselves a stable, integrated part of its psychological safe circles."
+msgstr "Priorité 3 : Comment connecter en toute sécurité le patron\n\nL'intégration d'un leader dans les cercles sûrs de l'équipe est un facteur de performance critique, mais ils surestiment souvent systématiquement leur propre centralité et leur influence positive. Pour se connecter en toute sécurité, le patron doit d'abord s'engager dans une auto-réflexion honnête et chercher une évaluation réaliste de la perception réelle de l'équipe en matière de sécurité psychologique, en la contrastant avec la sienne. La base d'une connexion sécurisée est la sécurité intérieure du leader. Cette capacité d'auto-régulation—rester calme, curieux et flexible sous pression—est l'ancre de sécurité qui empêche leur stress de déclencher des réactions défensives dans toute l'équipe. Avec cette base, le leader peut alors prendre des mesures conscientes pour augmenter sa centralité. Cela s'obtient non pas par commandement, mais en participant activement aux cercles sûrs de l'équipe, en écoutant et en démontrant la vulnérabilité. Le rôle du leader passe à tenir l'espace—créer et protéger un environnement où une communication ouverte et sans drame peut prospérer. En fin de compte, un leader ne peut favoriser une équipe sûre que s'il est lui-même une partie stable et intégrée de ses cercles sûrs psychologiques."
+
+
+msgid "hat dich in diese Box gewählt"
+msgstr "vous a voté dans cette boîte"
+
+
+msgid "Du wurdest in diese Box gewählt"
+msgstr "Vous avez été voté dans cette boîte"
+
+
+msgid "Ein anderer Spieler wurde in diese Box gewählt"
+msgstr "Un autre joueur a été voté dans cette boîte"
+
+
+msgid "Spieler-Avatar"
+msgstr "Avatar du joueur"
+
+msgid "ANONYMES FEEDBACK"
+msgstr "RETOUR ANONYME"
+
+msgid "HEATMAP der Spannungen"
+msgstr "CARTE DE CHALEUR des tensions"
+
+msgid "COUNSELING - Kontakt aufnehmen"
+msgstr "COUNSELLING - Prendre contact"
+
+msgid "TUTORIAL Video"
+msgstr "Vidéo TUTORIEL"
+
+msgid "PAYPAL Spende"
+msgstr "DON PAYPAL"
+
+msgid "ANONYMES FEEDBACK: Mit 3 bewährten Fragen zur Stärkung der psychologischen Sicherheit im Team"
+msgstr "RETOUR ANONYME: Avec 3 questions éprouvées pour renforcer la sécurité psychologique dans l'équipe"
+
+msgid "COUNSELING: Für eine professionelle Intervention zur Erweiterung eurer Psychological Safe Circles"
+msgstr "COUNSELLING: Pour une intervention professionnelle visant à élargir vos Cercles de Sécurité Psychologique"
+
+msgid "TUTORIAL: Erklärung zur Berechnung der Safecircles"
+msgstr "TUTORIEL: Explication du calcul des Cercles de Sécurité"
+
+msgid "Für eine professionelle Intervention nimm Kontakt mit deinem Coach oder mit Dr. Joe Maier auf. Das Ziel ist die Erweiterung eurer Psychological Safe Circles. (Empfohlen für Teams mit einem psychologischen Sicherheitswert unter 60)."
+msgstr "Pour une intervention professionnelle, contactez votre coach ou le Dr. Joe Maier. L'objectif est d'élargir vos Cercles de Sécurité Psychologique. (Recommandé pour les équipes avec une valeur de sécurité psychologique inférieure à 60)."
+
+msgid "In diesem Video erklären wir, wie die Safecircles berechnet werden. Eure Safecircles sind eine Selbstbeschreibung durch das Team mit Hilfe eines soziometrischen Verfahrens und KEIN Test."
+msgstr "Dans cette vidéo, nous expliquons comment les Cercles de Sécurité sont calculés. Vos Cercles de Sécurité sont une auto-description par l'équipe utilisant une méthode sociométrique et ne sont PAS un test."

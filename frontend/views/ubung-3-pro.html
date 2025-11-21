@@ -23,16 +23,18 @@
     <div class="app__head">
         <header class="header-main container">
             <div class="header-main__title">
-                <icon classs="icon" onClick="window.open('https://info.arks.ch/');">
+                <icon classs="icon" onClick="window.open('https://info.arks.ch/');" style="cursor: pointer; position: relative; display: inline-flex; align-items: center;">
                 <span class="icon-logo"></span>
                 <span>ARKS</span>
+                <span class="tooltip-icon arks-logo-tooltip" id="arks-logo-tooltip-icon" style="display: none; margin-left: 8px;">{% trans "Info zu safecircles.ch" %}</span>
+            </icon>
             </div>
             <div class="header-main__user">
                 <div class="user">
                     <div class="user__subtitle">
                         {{game.name}}
                     </div>
-                    <img src="{{user.avatar}}" alt="">
+                    <img src="{{user.avatar}}" alt="{{user.name}}">
                     <div class="user__title">
                         {{user.name}}
                     </div>                    
@@ -56,6 +58,7 @@
         element-loading-background="rgba(0, 0, 0, 0.8)">
                 <main class="screen ubung-1">
                     <h1>
+                        <span class="tooltip-icon trigger-tooltip-icon" id="trigger-tooltip-icon" style="display: inline-flex; align-items: center; margin-right: 8px; vertical-align: middle; cursor: help;">?</span>
                         {% trans "Benenne den GEGENPOL zum Sicherheitsanker" %}
                     </h1>
                     <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
@@ -69,8 +72,17 @@
                     <p style="background-color: #52CEEC; color: #FFFFFF; border-radius: 10px; padding: 0 10px;">
                             {% trans "Wähle den negativen Endpunkt, der dein Sicherheitsgefühl im Team bedrohen kann…" %}<br><br>
                     </p>
-                    <div class="tags">
-                        <span :id="item.value" v-bind:class="{ tag: item.state==='tag', 'line-through': item.state !== 'tag'}" v-for="item in term_list" @click="mark( item.value )" style="border-radius: 10px">[[ item.value ]]</span>
+                    <div class="tags" role="group" aria-label="{% trans 'Triggerthema-Begriffe' %}">
+                        <span :id="item.value" 
+                              v-bind:class="{ tag: item.state==='tag', 'line-through': item.state !== 'tag', 'tag-selected': item.state === 'line-through' && item.player_id === currentPlayerId, 'tag-disabled': item.state === 'line-through' && item.player_id !== currentPlayerId}" 
+                              v-for="item in term_list" 
+                              @click="mark( item.value )" 
+                              @keydown.enter="mark( item.value )"
+                              @keydown.space.prevent="mark( item.value )"
+                              :tabindex="item.state === 'line-through' && item.player_id !== currentPlayerId ? -1 : 0"
+                              :aria-label="item.state === 'line-through' && item.player_id !== currentPlayerId ? '{% trans 'Bereits gewählt' %}' : item.value"
+                              role="button"
+                              style="border-radius: 10px; transition: all 0.3s ease; position: relative;">[[ item.value ]]</span>
 
                         {% comment %} <span id="Abhängigkeit" class="tag">Abhängigkeit</span>
                         <span id="Achtlosigkeit" class="tag" class="line-through">Achtlosigkeit</span>
@@ -102,23 +114,50 @@
                         <span id="Versagen" class="tag">Versagen</span>
                         <span id="Willkür" class="tag">Willkür</span> {% endcomment %}
                     </div>
-                    <input type="text" placeholder={% trans "..." %} name="energiefresser" v-model="text_input" @keyup.enter="add_term" @keyup = "keyboard_()"/ style="border-radius: 10px; maxlength=15; minlength=2">
+                    <div class="input-container">
+                        <input type="text" 
+                               placeholder="{% trans 'Eigenen Begriff eingeben...' %}" 
+                               name="energiefresser" 
+                               v-model="text_input" 
+                               @keyup.enter="add_term" 
+                               @keyup="keyboard_()" 
+                               @input="updateCharacterCount"
+                               maxlength="15" 
+                               minlength="2"
+                               id="trigger-input"
+                               aria-label="{% trans 'Triggerthema eingeben' %}"
+                               style="border-radius: 10px; padding: 8px 12px; width: 100%; max-width: 410px; box-sizing: border-box;">
+                        <div class="input-feedback" v-if="text_input.length > 0 && keyboard_input">
+                            <span class="character-count" :class="{ 'character-count-warning': text_input.length > 12 }">
+                                [[ text_input.length ]]/15
+                            </span>
+                        </div>
+                    </div>
                     <input id="tags" type="hidden" name="tags" value="EnterValue">
-
-                    <label>*This pair of opposites has already been chosen by another fellow traveller.</label>
+                    <label id="already-chosen-label" class="already-chosen-label" style="display: none;" role="alert" aria-live="polite">
+                        *{% trans "Dieser Begriff wurde bereits von einem anderen Mitreisenden gewählt." %}
+                    </label>
+                    <div id="validation-error" class="validation-error" role="alert" aria-live="polite" style="display: none;">
+                        <strong>{% trans "Bitte wähle ein Triggerthema" %}</strong><br>
+                        <span class="validation-error-text">{% trans "Du musst einen Begriff auswählen oder einen eigenen eingeben, bevor du fortfahren kannst." %}</span>
+                    </div>
+                    <div id="api-error" class="validation-error api-error" role="alert" aria-live="polite" style="display: none;">
+                        <strong>{% trans "Fehler bei der Auswahl" %}</strong><br>
+                        <span class="validation-error-text" id="api-error-text"></span>
+                    </div>
                 </div>
                     <div class="center">
                         {% comment %} <a href="/wartezimmer/"> {% endcomment %}
 
                         <p>
-                            <button class="submit" @click="continue_()">
+                            <button class="button" type="button" @click="continue_()" id="submit-button" aria-label="{% trans 'Weiter' %}">
                                 {% trans "Weiter" %}
                             </button>
                         </p></a>
-                        <p style="text-align: center; font-size: 10px;">
-                            <a href="https://github.com/joe-the-ark/ark" target="_blank">ARKS is published under a GPLv3</a> license by 
-                            <a href="https://www.linkedin.com/in/dr-joe-maier/" target="_blank">Dr. Joe Maier</a>.
-                        </p>
+                        <div class="copyright-footer">
+                            <a href="https://github.com/joe-the-ark/ark" target="_blank">{% trans "ARKS is published under a GPLv3" %}</a> {% trans "license by" %} 
+                            <a href="https://www.linkedin.com/in/dr-joe-maier/" target="_blank">{% trans "Dr. Joe Maier" %}</a>.
+                        </div>
                     </div>
                 </main>
         </div>
@@ -133,26 +172,80 @@
   <script src="https://unpkg.com/clipboard@2/dist/clipboard.min.js"></script>
 
 <script>
-
+    // ARKS Logo Tooltip
+    const arksLogoContainer = document.querySelector('.header-main__title icon');
+    const arksLogoTooltipIcon = document.getElementById('arks-logo-tooltip-icon');
+    
+    if (arksLogoContainer && arksLogoTooltipIcon) {
+        arksLogoContainer.addEventListener('mouseenter', function() {
+            arksLogoTooltipIcon.style.display = 'inline-flex';
+        });
+        arksLogoContainer.addEventListener('mouseleave', function() {
+            arksLogoTooltipIcon.style.display = 'none';
+        });
+        
+        tippy(arksLogoTooltipIcon, {
+            content: "{% trans 'Info zu safecircles.ch'|escapejs %}",
+            placement: 'bottom',
+            theme: 'light',
+            delay: [200, 0],
+            allowHTML: false,
+            interactive: false,
+            trigger: 'mouseenter focus',
+            maxWidth: 300,
+        });
+    }
+    
+    // Trigger Tooltip - Initialize after DOM is ready
+    function initTriggerTooltip() {
+        const triggerTooltipIcon = document.getElementById('trigger-tooltip-icon');
+        if (triggerTooltipIcon) {
+            // Make sure icon is visible
+            triggerTooltipIcon.style.display = 'inline-flex';
+            
+            // Destroy existing tooltip if any
+            const existingInstance = triggerTooltipIcon._tippy;
+            if (existingInstance) {
+                existingInstance.destroy();
+            }
+            
+            tippy(triggerTooltipIcon, {
+                content: "{% trans 'Das Triggerthema ist der negative Gegenpol zu deinem Sicherheitsanker. Es beschreibt, was dich im Team negativ beeinflusst oder zu einem Gefühl von Angst beitragen kann.'|escapejs %}",
+                placement: 'bottom',
+                theme: 'light',
+                delay: [200, 0],
+                allowHTML: false,
+                interactive: false,
+                trigger: 'mouseenter focus',
+                maxWidth: 500,
+            });
+        } else {
+            console.warn('trigger-tooltip-icon not found');
+        }
+    }
+    
     function sleep (time) {
         return new Promise((resolve) => setTimeout(resolve, time));
     }
 
     console.log('{{ LANGUAGE_CODE }}')
+    var term_list_i18n = [];
     if ('{{LANGUAGE_CODE}}' == 'zh-hans' ){
-        var term_list_i18n = eval({{term_list|safe}})['Chinese']
+        term_list_i18n = eval({{term_list|safe}})['Chinese']
+    } else if ('{{LANGUAGE_CODE}}' == 'de'){
+        term_list_i18n = eval({{term_list|safe}})['Deutsch']
+    } else if ('{{LANGUAGE_CODE}}' == 'fr'){
+        term_list_i18n = eval({{term_list|safe}})['French']
+    } else if ('{{LANGUAGE_CODE}}' == 'en'){
+        term_list_i18n = eval({{term_list|safe}})['English']
+    } else if ('{{LANGUAGE_CODE}}' == 'tr'){
+        term_list_i18n = eval({{term_list|safe}})['Turkish']
     }
-    if ('{{LANGUAGE_CODE}}' == 'de'){
-        var term_list_i18n = eval({{term_list|safe}})['Deutsch']
-    }
-    if ('{{LANGUAGE_CODE}}' == 'fr'){
-        var term_list_i18n = eval({{term_list|safe}})['French']
-    }
-    if ('{{LANGUAGE_CODE}}' == 'en'){
-        var term_list_i18n = eval({{term_list|safe}})['English']
-    }
-    if ('{{LANGUAGE_CODE}}' == 'tr'){
-        var term_list_i18n = eval({{term_list|safe}})['Turkish']
+    
+    // Fallback if term_list_i18n is not set
+    if (!term_list_i18n || term_list_i18n.length === 0) {
+        console.warn('term_list_i18n is empty, using default');
+        term_list_i18n = [];
     }
 
     var app = new Vue({
@@ -164,6 +257,8 @@
             term_list: term_list_i18n,
             loading: false,
             keyboard_input: false,
+            currentPlayerId: {{user.id}},
+            showAlreadyChosen: false,
         },
         mounted(){
             var that = this;
@@ -179,6 +274,15 @@
                 }
                 uu += 1;
             }
+
+            // Initialize tooltip after Vue has mounted
+            that.$nextTick(function() {
+                setTimeout(function() {
+                    if (typeof initTriggerTooltip === 'function') {
+                        initTriggerTooltip();
+                    }
+                }, 200);
+            });
 
             var data_ = {
                 'player_id': '{{user.id}}',
@@ -221,6 +325,9 @@
                 this.keyboard_input = true;
                 return
             },
+            updateCharacterCount(){
+                // Character count is handled by v-if in template
+            },
             get_api_data(){
                 var that = this;
                 var data_ = {
@@ -245,14 +352,58 @@
             },
             continue_:function(){
                 var that = this;
+                const validationError = document.getElementById('validation-error');
+                const apiError = document.getElementById('api-error');
+                
                 if (that.text_input === ''){
-                    alert("Please chose again");
+                    // Show validation error
+                    if (validationError) {
+                        validationError.style.display = 'block';
+                        validationError.setAttribute('role', 'alert');
+                        
+                        // Hide API error if visible
+                        if (apiError) {
+                            apiError.style.display = 'none';
+                        }
+                        
+                        // Focus on input or first tag
+                        const input = document.getElementById('trigger-input');
+                        if (input) {
+                            input.focus();
+                            input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
+                        
+                        // Hide error after 8 seconds
+                        setTimeout(function() {
+                            if (validationError) {
+                                validationError.style.display = 'none';
+                            }
+                        }, 8000);
+                    }
                     return;
-                }else{
+                } else {
+                    // Hide errors if visible
+                    if (validationError) {
+                        validationError.style.display = 'none';
+                    }
+                    if (apiError) {
+                        apiError.style.display = 'none';
+                    }
+                    
+                    // Show loading state
+                    that.loading = true;
+                    
+                    // Disable button during submission
+                    const submitButton = document.getElementById('submit-button');
+                    if (submitButton) {
+                        submitButton.disabled = true;
+                        submitButton.classList.add('button-submitting');
+                    }
+                    
                     //if (that.keyboard_input === true){
                         app.add_term();
                     //}else{
-                        window.location.href = "/wartezimmer/";
+                        //window.location.href = "/wartezimmer/";
                     //}
                 }
             },
@@ -308,9 +459,34 @@
                     .post('/api/ubung_3_api_pro/', data_)
                     .then(function(response){
                         var result = response.data.result;
+                        const apiError = document.getElementById('api-error');
+                        const apiErrorText = document.getElementById('api-error-text');
+                        
                         if (result == '0'){
-                            alert('You have same ubung1 and ubung3 with others, please choose again.')
-                            window.location.href = '/ubung-3/'
+                            // Show translated error message
+                            if (apiError && apiErrorText) {
+                                apiErrorText.textContent = "{% trans 'Du hast dasselbe Sicherheitsanker- und Triggerthema wie ein anderer Mitreisender gewählt. Bitte wähle erneut.'|escapejs %}";
+                                apiError.style.display = 'block';
+                                apiError.setAttribute('role', 'alert');
+                                
+                                // Hide after 8 seconds
+                                setTimeout(function() {
+                                    if (apiError) {
+                                        apiError.style.display = 'none';
+                                    }
+                                }, 8000);
+                                
+                                // Reload page after showing error
+                                setTimeout(function() {
+                                    window.location.href = '/ubung-3/';
+                                }, 2000);
+                            } else {
+                                // Fallback to alert if elements not found
+                                alert("{% trans 'Du hast dasselbe Sicherheitsanker- und Triggerthema wie ein anderer Mitreisender gewählt. Bitte wähle erneut.'|escapejs %}");
+                                window.location.href = '/ubung-3/';
+                            }
+                            that.loading = false;
+                            return;
                         }
                         //console.log(result);
                         let new_term_list = that.term_list
@@ -329,6 +505,21 @@
                             new_term_list.push({value: temp, state: 'line-through', player_id: '{{user.id}}'})
                         }
                         that.term_list = new_term_list
+                        
+                        // Hide loading state
+                        that.loading = false;
+                        
+                        // Re-enable button
+                        const submitButton = document.getElementById('submit-button');
+                        if (submitButton) {
+                            submitButton.disabled = false;
+                            submitButton.classList.remove('button-submitting');
+                        }
+                        
+                        // Redirect to waiting room after successful submission
+                        setTimeout(function() {
+                            window.location.href = "/wartezimmer/";
+                        }, 300);
 
                         //that.term_list.splice(0);
                         //var uu = 0;
@@ -338,9 +529,29 @@
                         //}
                     })
                     .catch(function(error){
-                        console.log(error);
+                        console.error('Error in add_term:', error);
+                        that.loading = false;
+                        
+                        // Re-enable button
+                        const submitButton = document.getElementById('submit-button');
+                        if (submitButton) {
+                            submitButton.disabled = false;
+                            submitButton.classList.remove('button-submitting');
+                        }
+                        
+                        // Show error message
+                        const apiError = document.getElementById('api-error');
+                        const apiErrorText = document.getElementById('api-error-text');
+                        if (apiError && apiErrorText) {
+                            apiErrorText.textContent = "{% trans 'Ein Fehler ist aufgetreten. Bitte versuche es erneut.'|escapejs %}";
+                            apiError.style.display = 'block';
+                            setTimeout(function() {
+                                if (apiError) {
+                                    apiError.style.display = 'none';
+                                }
+                            }, 5000);
+                        }
                     })
-                //window.location.href = "/ubung-2/"
             },
             mark: function(item){
                 //clearInterval(refresh);
@@ -348,6 +559,9 @@
                 this.keyboard_input = false
                 this.loading = true;
                 var player_id = {{user.id}};
+                const alreadyChosenLabel = document.getElementById('already-chosen-label');
+                const validationError = document.getElementById('validation-error');
+                const apiError = document.getElementById('api-error');
 
                 var already_ = 0;
                 var flag = 0; // test whether the user have already select the term.
@@ -373,14 +587,37 @@
                             }
                             that.term_list[uu].state = 'line-through';
                             that.text_input = item;
+                            // Hide validation error if visible
+                            if (validationError) {
+                                validationError.style.display = 'none';
+                            }
+                            if (alreadyChosenLabel) {
+                                alreadyChosenLabel.style.display = 'none';
+                            }
+                            if (apiError) {
+                                apiError.style.display = 'none';
+                            }
                             break;
                         }
                         if (that.term_list[uu].state === 'line-through'){
                             if (that.term_list[uu].player_id !== player_id){
+                                // Show "already chosen" message
+                                if (alreadyChosenLabel) {
+                                    alreadyChosenLabel.style.display = 'block';
+                                    setTimeout(function() {
+                                        if (alreadyChosenLabel) {
+                                            alreadyChosenLabel.style.display = 'none';
+                                        }
+                                    }, 5000);
+                                }
+                                that.loading = false;
                                 return;
                             }
                             that.term_list[uu].state = 'tag';
                             that.text_input = '';
+                            if (alreadyChosenLabel) {
+                                alreadyChosenLabel.style.display = 'none';
+                            }
                             break;
                         }
                     }
@@ -396,13 +633,38 @@
                     .post('/api/ubung_3_api_pro/', data_)
                     .then(function(response){
                         var result = response.data.result;
+                        const apiError = document.getElementById('api-error');
+                        const apiErrorText = document.getElementById('api-error-text');
+                        
                         if (result == '0'){
-                            alert('You have same ubung1 and ubung3 with others, please choose again.')
-                            window.location.href = '/ubung-3/'
+                            // Show translated error message
+                            if (apiError && apiErrorText) {
+                                apiErrorText.textContent = "{% trans 'Du hast dasselbe Sicherheitsanker- und Triggerthema wie ein anderer Mitreisender gewählt. Bitte wähle erneut.'|escapejs %}";
+                                apiError.style.display = 'block';
+                                apiError.setAttribute('role', 'alert');
+                                
+                                // Hide after 8 seconds
+                                setTimeout(function() {
+                                    if (apiError) {
+                                        apiError.style.display = 'none';
+                                    }
+                                }, 8000);
+                                
+                                // Reload page after showing error
+                                setTimeout(function() {
+                                    window.location.href = '/ubung-3/';
+                                }, 2000);
+                            } else {
+                                // Fallback to alert if elements not found
+                                alert("{% trans 'Du hast dasselbe Sicherheitsanker- und Triggerthema wie ein anderer Mitreisender gewählt. Bitte wähle erneut.'|escapejs %}");
+                                window.location.href = '/ubung-3/';
+                            }
+                            that.loading = false;
+                            return;
                         }
                         //console.log(result);
                         let new_term_list = that.term_list
-                        let uu = 0
+                        let uu = 0 
                         let flag = 0
                         while (uu < new_term_list.length){
                             if (new_term_list[uu].value == item){
@@ -417,6 +679,9 @@
                             new_term_list.push({value: item, state: 'line-through', player_id: '{{user.id}}'})
                         }
                         that.term_list = new_term_list
+                        
+                        // Hide loading state
+                        that.loading = false;
 
                         //that.term_list.splice(0);
                         //var uu = 0;
@@ -426,7 +691,21 @@
                         //}
                     })
                     .catch(function(error){
-                        console.log(error);
+                        console.error('Error in mark:', error);
+                        that.loading = false;
+                        
+                        // Show error message
+                        const apiError = document.getElementById('api-error');
+                        const apiErrorText = document.getElementById('api-error-text');
+                        if (apiError && apiErrorText) {
+                            apiErrorText.textContent = "{% trans 'Ein Fehler ist aufgetreten. Bitte versuche es erneut.'|escapejs %}";
+                            apiError.style.display = 'block';
+                            setTimeout(function() {
+                                if (apiError) {
+                                    apiError.style.display = 'none';
+                                }
+                            }, 5000);
+                        }
                     })
                 //refresh = setTimeout(this.get_api_data,6000);
 

@@ -21,9 +21,11 @@
     <div class="app__head">
         <header class="header-main container">
             <div class="header-main__title">
-                <icon classs="icon" onClick="window.open('https://info.arks.ch/');">
+                <icon classs="icon" onClick="window.open('https://info.arks.ch/');" style="cursor: pointer; position: relative; display: inline-flex; align-items: center;">
                 <span class="icon-logo"></span>
                 <span>ARKS</span>
+                <span class="tooltip-icon arks-logo-tooltip-icon" id="arks-logo-tooltip-icon" style="display: none; margin-left: 8px;">{% trans "Info zu safecircles.ch" %}</span>
+            </icon>
             </div>
             <div class="header-main__user">
                 <div class="user">
@@ -54,75 +56,84 @@
             <main class="screen wartezimmer">
                 <div class="wartezimmer__data" id="app-2">
                     <h1>
+                        <span class="tooltip-icon wartezimmer-tooltip-icon" id="wartezimmer-tooltip-icon" style="display: inline-flex; align-items: center; margin-right: 8px; vertical-align: middle; cursor: help;">?</span>
                         {% trans "Erläutert reihum eure Gegensatzpaare" %}
                     </h1>
-                    <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
-                    <p>
-                        {% trans "Damit alle verstehen, welche Spannungsfelder zu euren psychologisch sicheren Kreisen beitragen. (Dauer: 1 Minute pro Person)" %}
-                        <br/>
-                    </p>
+                    <div class="wartezimmer-content-box">
                     <img src="http://info.arks.ch/wp-content/uploads/2022/07/Plus_Minus.png" style="border-radius: 10px;">
-                    <input type="text" placeholder="Sicherheitsanker fehlt!" name="Kraftquelle" v-model="text_input_power" / style="border-radius: 10px">
-                    <p style="background-color: #9FE2BF; color: #FFFFFF; border-radius: 90px; padding: 0 20px; padding: 0 40px; text-align: center; margin: 0 auto; max-width: 60%;">
-                        </br>{% trans "Schreibe gerne auch EIGENE Begriffe ins Textfeld." %} 
-                    </br></br><button class="glow-on-hover" type="button" @click="continue_()" onclick="alert('Updated!')">Update</button></br></br>
+                    <div class="input-container">
+                        <input type="text" 
+                               placeholder="{% trans 'Sicherheitsanker eingeben...' %}" 
+                               name="Kraftquelle" 
+                               v-model="text_input_power" 
+                               @keyup.enter="continue_()"
+                               @input="updateCharacterCount"
+                               maxlength="15" 
+                               minlength="2"
+                               id="power-input"
+                               aria-label="{% trans 'Sicherheitsanker eingeben' %}"
+                               class="wartezimmer-input">
+                        <div class="input-feedback" v-if="text_input_power.length > 0">
+                            <span class="character-count" :class="{ 'character-count-warning': text_input_power.length > 12 }">
+                                [[ text_input_power.length ]]/15
+                            </span>
+                        </div>
+                    </div>
+                    <p class="info-box">
+                        {% trans "Schreibe gerne auch EIGENE Begriffe ins Textfeld." %} 
+                        <br><br>
+                        <button class="button" type="button" @click="continue_()" id="update-button" aria-label="{% trans 'Aktualisieren' %}">
+                            {% trans "Aktualisieren" %}
+                        </button>
+                        <br><br>
                     {% trans "Überarbeite bei Bedarf dein Gegensatzpaar." %} 
-                    <br><br>
                     </p>
-                    <input type="text" placeholder="Trigger fehlt!" name="Energiefresser" v-model="text_input_drainer" / style="border-radius: 10px"><br><br>
+                    <div class="input-container input-container-right">
+                        <input type="text" 
+                               placeholder="{% trans 'Triggerthema eingeben...' %}" 
+                               name="Energiefresser" 
+                               v-model="text_input_drainer" 
+                               @keyup.enter="continue_()"
+                               @input="updateCharacterCount"
+                               maxlength="15" 
+                               minlength="2"
+                               id="drainer-input"
+                               aria-label="{% trans 'Triggerthema eingeben' %}"
+                               class="wartezimmer-input">
+                        <div class="input-feedback" v-if="text_input_drainer.length > 0">
+                            <span class="character-count" :class="{ 'character-count-warning': text_input_drainer.length > 12 }">
+                                [[ text_input_drainer.length ]]/15
+                            </span>
+                        </div>
+                    </div>
+                    <div id="validation-error" class="validation-error" role="alert" aria-live="polite" style="display: none;">
+                        <strong>{% trans "Bitte fülle beide Felder aus" %}</strong><br>
+                        <span class="validation-error-text">{% trans "Du musst sowohl einen Sicherheitsanker als auch ein Triggerthema eingeben, bevor du fortfahren kannst." %}</span>
+                    </div>
+                    <div id="success-message" class="success-message" role="alert" aria-live="polite" style="display: none;">
+                        <strong>{% trans "Erfolgreich aktualisiert!" %}</strong><br>
+                        <span class="success-message-text">{% trans "Dein Gegensatzpaar wurde erfolgreich aktualisiert." %}</span>
+                    </div>
+                    <div id="api-error" class="validation-error api-error" role="alert" aria-live="polite" style="display: none;">
+                        <strong>{% trans "Fehler bei der Aktualisierung" %}</strong><br>
+                        <span class="validation-error-text" id="api-error-text"></span>
+                    </div>
+                    <br><br>
 
 
                     
 
 
-                    <!-- Message placeholder added here -->
-
-
-                        <p v-for='(value, index) in 10' :key="index">
-                            {{ x }}
-                        </p>                     
                 </div>
             </div>
 
-                        <div class="google-slides-container">
-                        <iframe style="padding: 0 10px;" src={% trans "https://docs.google.com/presentation/d/1Cz-fav1DISq2siHi5-RW2uggyQU2ecbI1S3wxs--dng/embed?start=true&loop=false&delayms=8000"  %} frameborder="0" width="850" height="400" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-                        
-                        <style>
-                        .google-slides-container{
-                        position: relative;
-                        width: 100%;
-                        padding-top: 56.25%;
-                        overflow: hidden;
-                        background-color: #9FE2BF;
-                        border-radius: 10px
-                        }
-                        .google-slides-container iframe{
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                        background-color: #9FE2BF;
-                        border-radius: 10px
-                        }
-                        .controls {
-                        position: absolute;
-                        top: 10px;
-                        left: 50%;
-                        transform: translateX(-50%);
-                        display: flex;
-                        gap: 10px;
-                        }
-                        .control-button {
-                        padding: 10px 20px;
-                        background-color: #007BFF;
-                        color: white;
-                        border: none;
-                        border-radius: 5px;
-                        cursor: pointer;
-                        }
-                        </style>
-
+                        <div class="google-slides-container-wrapper">
+                            <button class="google-slides-fullscreen-button" id="google-slides-fullscreen-button" aria-label="{% trans 'Vollbild anzeigen' %}" title="{% trans 'Vollbild anzeigen' %}">
+                                <span class="fullscreen-icon">⛶</span>
+                            </button>
+                            <div class="google-slides-container" id="google-slides-container">
+                                <iframe src={% trans "https://docs.google.com/presentation/d/1Cz-fav1DISq2siHi5-RW2uggyQU2ecbI1S3wxs--dng/embed?start=true&loop=false&delayms=8000&rm=minimal"  %} frameborder="0" width="100%" height="400" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                            </div>
                         </div>
 
 <!--
@@ -323,23 +334,22 @@
             <form action="#" method="POST" class="form">
             {% csrf_token %}
                 <div class="center">
+                    <div class="button-with-tooltip">
+                        <span class="tooltip-icon button-tooltip-icon" id="button-tooltip-icon" style="display: inline-flex; align-items: center; margin-right: 8px; vertical-align: middle; cursor: help;">?</span>
                     <button id='main_btn' type="button" onclick="choosePopup()">
                         {% trans "Klicke erst hier weiter, wenn ALLE ein passendes GEGENSATZPAAR benannt haben!" %}
                     </button>
+                    </div>
 
                     <p>
                         <br><br>
                     </p>
-
-                    <p style="background-color: #FFFFFF; color: #000000; border-radius: 10px; padding: 0 10px;"><br>
-                        {% trans "Startet richtig durch, sobald alle Mitreisenden hier im Warteraum sichtbar sind. Nur wer jetzt noch mit an Bord ist, nimmt an der Reise teil!" %}<br><br>
-                    </p>
                 </div>
             </form>
-                    <p style="text-align: center; font-size: 10px;"><br><br>
-                        <a href="https://github.com/joe-the-ark/ark" target="_blank">ARKS is published under a GPLv3</a> license by 
-                        <a href="https://www.linkedin.com/in/dr-joe-maier/" target="_blank">Dr. Joe Maier</a>.
-                    </p>
+                    <div class="copyright-footer">
+                        <a href="https://github.com/joe-the-ark/ark" target="_blank">{% trans "ARKS is published under a GPLv3" %}</a> {% trans "license by" %} 
+                        <a href="https://www.linkedin.com/in/dr-joe-maier/" target="_blank">{% trans "Dr. Joe Maier" %}</a>.
+                    </div>
         </div>
     </div>
 </div>
@@ -386,16 +396,57 @@
             handleSelect(key, keyPath) {
                 console.log(key, keyPath);
             },
+            updateCharacterCount(){
+                // Character count is handled by v-if in template
+            },
             continue_(){
                 var that = this;
-                if (that.text_input_power === ''){
-                    alert("Please choose a power term.");
-                    return;
-                } else if (that.text_input_drainer === '') {
-                    alert("Please choose a drainer term.");
+                const validationError = document.getElementById('validation-error');
+                const successMessage = document.getElementById('success-message');
+                const apiError = document.getElementById('api-error');
+                
+                // Hide previous messages
+                if (successMessage) successMessage.style.display = 'none';
+                if (apiError) apiError.style.display = 'none';
+                
+                if (that.text_input_power === '' || that.text_input_drainer === ''){
+                    // Show validation error
+                    if (validationError) {
+                        validationError.style.display = 'block';
+                        validationError.setAttribute('role', 'alert');
+                        
+                        // Focus on first empty input
+                        const powerInput = document.getElementById('power-input');
+                        const drainerInput = document.getElementById('drainer-input');
+                        if (that.text_input_power === '' && powerInput) {
+                            powerInput.focus();
+                            powerInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        } else if (that.text_input_drainer === '' && drainerInput) {
+                            drainerInput.focus();
+                            drainerInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
+                        
+                        // Hide error after 8 seconds
+                        setTimeout(function() {
+                            if (validationError) {
+                                validationError.style.display = 'none';
+                            }
+                        }, 8000);
+                    }
                     return;
                 } else {
-                    //if (this.keyboard_input === true){
+                    // Hide validation error if visible
+                    if (validationError) {
+                        validationError.style.display = 'none';
+                    }
+                    
+                    // Disable button during submission
+                    const updateButton = document.getElementById('update-button');
+                    if (updateButton) {
+                        updateButton.disabled = true;
+                        updateButton.classList.add('button-submitting');
+                    }
+                    
                     app2.add_terms();
                 }
             },
@@ -430,10 +481,56 @@
                     .post(`/api/warteimmer_api_pro/`, data_)
                     .then(function(response){
                         var result = response.data.result;
-                        console.log(result);
+                        
+                        // Re-enable button
+                        const updateButton = document.getElementById('update-button');
+                        if (updateButton) {
+                            updateButton.disabled = false;
+                            updateButton.classList.remove('button-submitting');
+                        }
+                        
+                        // Show success message
+                        const successMessage = document.getElementById('success-message');
+                        const validationError = document.getElementById('validation-error');
+                        const apiError = document.getElementById('api-error');
+                        
+                        if (successMessage) {
+                            if (validationError) validationError.style.display = 'none';
+                            if (apiError) apiError.style.display = 'none';
+                            successMessage.style.display = 'block';
+                            successMessage.setAttribute('role', 'alert');
+                            
+                            // Hide success message after 3 seconds
+                            setTimeout(function() {
+                                if (successMessage) {
+                                    successMessage.style.display = 'none';
+                                }
+                            }, 3000);
+                        }
                     })
                     .catch(function(error){
-                        console.log(error);
+                        console.error('Error in add_terms:', error);
+                        
+                        // Re-enable button
+                        const updateButton = document.getElementById('update-button');
+                        if (updateButton) {
+                            updateButton.disabled = false;
+                            updateButton.classList.remove('button-submitting');
+                        }
+                        
+                        // Show error message
+                        const apiError = document.getElementById('api-error');
+                        const apiErrorText = document.getElementById('api-error-text');
+                        if (apiError && apiErrorText) {
+                            apiErrorText.textContent = "{% trans 'Ein Fehler ist aufgetreten. Bitte versuche es erneut.'|escapejs %}";
+                            apiError.style.display = 'block';
+                            apiError.setAttribute('role', 'alert');
+                            setTimeout(function() {
+                                if (apiError) {
+                                    apiError.style.display = 'none';
+                                }
+                            }, 8000);
+                        }
                     })
 
             }
@@ -628,6 +725,100 @@
 
     get_mem_list()
     check_game_start()
+    
+    // Wartezimmer Tooltip - Initialize after DOM is ready
+    function initWartezimmerTooltip() {
+        const wartezimmerTooltipIcon = document.getElementById('wartezimmer-tooltip-icon');
+        if (wartezimmerTooltipIcon) {
+            // Make sure icon is visible
+            wartezimmerTooltipIcon.style.display = 'inline-flex';
+            
+            // Destroy existing tooltip if any
+            const existingInstance = wartezimmerTooltipIcon._tippy;
+            if (existingInstance) {
+                existingInstance.destroy();
+            }
+            
+            tippy(wartezimmerTooltipIcon, {
+                content: "{% trans 'Damit alle verstehen, welche Spannungsfelder zu euren psychologisch sicheren Kreisen beitragen. (Dauer: 1 Minute pro Person)'|escapejs %}",
+                placement: 'bottom',
+                theme: 'light',
+                delay: [200, 0],
+                allowHTML: false,
+                interactive: false,
+                trigger: 'mouseenter focus',
+                maxWidth: 500,
+            });
+        } else {
+            console.warn('wartezimmer-tooltip-icon not found');
+        }
+    }
+    
+    // Initialize tooltip after DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initWartezimmerTooltip);
+    } else {
+        initWartezimmerTooltip();
+    }
+    
+    // Button Tooltip - Initialize after DOM is ready
+    function initButtonTooltip() {
+        const buttonTooltipIcon = document.getElementById('button-tooltip-icon');
+        if (buttonTooltipIcon) {
+            // Make sure icon is visible
+            buttonTooltipIcon.style.display = 'inline-flex';
+            
+            // Destroy existing tooltip if any
+            const existingInstance = buttonTooltipIcon._tippy;
+            if (existingInstance) {
+                existingInstance.destroy();
+            }
+            
+            tippy(buttonTooltipIcon, {
+                content: "{% trans 'Startet richtig durch, sobald alle Mitreisenden hier im Warteraum sichtbar sind. Nur wer jetzt noch mit an Bord ist, nimmt an der Reise teil!'|escapejs %}",
+                placement: 'bottom',
+                theme: 'light',
+                delay: [200, 0],
+                allowHTML: false,
+                interactive: false,
+                trigger: 'mouseenter focus',
+                maxWidth: 500,
+            });
+        } else {
+            console.warn('button-tooltip-icon not found');
+        }
+    }
+    
+    // Initialize button tooltip after DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initButtonTooltip);
+    } else {
+        initButtonTooltip();
+    }
+    
+    // ARKS Logo Tooltip
+    const arksLogoContainer = document.querySelector('.header-main__title icon');
+    const arksLogoTooltipIcon = document.getElementById('arks-logo-tooltip-icon');
+    
+    if (arksLogoContainer && arksLogoTooltipIcon) {
+        arksLogoContainer.addEventListener('mouseenter', function() {
+            arksLogoTooltipIcon.style.display = 'inline-flex';
+        });
+        arksLogoContainer.addEventListener('mouseleave', function() {
+            arksLogoTooltipIcon.style.display = 'none';
+        });
+        
+        tippy(arksLogoTooltipIcon, {
+            content: "{% trans 'Info zu safecircles.ch'|escapejs %}",
+            placement: 'bottom',
+            theme: 'light',
+            delay: [200, 0],
+            allowHTML: false,
+            interactive: false,
+            trigger: 'mouseenter focus',
+            maxWidth: 300,
+        });
+    }
 
 </script>
 <div id='popup_buttons' class="popup">
@@ -635,8 +826,12 @@
         <div class="popup_content">
             <form class="popup_form" action="#" method="post">
               {% csrf_token %}
-              <button class="modal_button" type="submit" id="button" >Continue journey with </br> Green players</button>
-              <button class="modal_button" type="button" >Wait for </br> More players</button>
+              <button class="modal_button" type="submit" id="button" aria-label="{% trans 'Reise mit grünen Spielern fortsetzen' %}">
+                  {% trans "Reise mit" %}<br>{% trans "grünen Spielern fortsetzen" %}
+              </button>
+              <button class="modal_button" type="button" aria-label="{% trans 'Auf weitere Spieler warten' %}">
+                  {% trans "Auf weitere" %}<br>{% trans "Spieler warten" %}
+              </button>
             </form>
         </div>
     </div>
@@ -644,16 +839,94 @@
 <div id='popup_less_players' class="popup">
     <div class="popup_body">
         <div class="popup_content">
-            Invite more players! It takes at least 3 to play this game.
+            {% trans "Lade mehr Spieler ein! Es werden mindestens 3 Spieler benötigt, um dieses Spiel zu spielen." %}
         </div>
     </div>
 </div>
 <div id='popup_less_ready_players' class="popup">
     <div class="popup_body">
         <div class="popup_content">
-            Wait until more players have been arriving here in the waiting room.
+            {% trans "Warte, bis mehr Spieler hier im Warteraum angekommen sind." %}
         </div>
     </div>
 </div>
+    <script>
+    // Google Slides Fullscreen functionality
+    const fullscreenButton = document.getElementById('google-slides-fullscreen-button');
+    const slidesContainerWrapper = document.querySelector('.google-slides-container-wrapper');
+    
+    if (fullscreenButton && slidesContainerWrapper) {
+        fullscreenButton.addEventListener('click', function() {
+            if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.mozFullScreenElement && !document.msFullscreenElement) {
+                // Enter fullscreen
+                if (slidesContainerWrapper.requestFullscreen) {
+                    slidesContainerWrapper.requestFullscreen();
+                } else if (slidesContainerWrapper.webkitRequestFullscreen) {
+                    slidesContainerWrapper.webkitRequestFullscreen();
+                } else if (slidesContainerWrapper.mozRequestFullScreen) {
+                    slidesContainerWrapper.mozRequestFullScreen();
+                } else if (slidesContainerWrapper.msRequestFullscreen) {
+                    slidesContainerWrapper.msRequestFullscreen();
+                }
+                slidesContainerWrapper.classList.add('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild beenden'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild beenden'|escapejs %}");
+            } else {
+                // Exit fullscreen
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+        
+        // Listen for fullscreen changes
+        document.addEventListener('fullscreenchange', function() {
+            if (!document.fullscreenElement) {
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+        
+        document.addEventListener('webkitfullscreenchange', function() {
+            if (!document.webkitFullscreenElement) {
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+        
+        document.addEventListener('mozfullscreenchange', function() {
+            if (!document.mozFullScreenElement) {
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+        
+        document.addEventListener('MSFullscreenChange', function() {
+            if (!document.msFullscreenElement) {
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+    }
+    </script>
 </body>
 </html>

@@ -259,10 +259,20 @@
 @media screen and (min-width: 769px) {
   .spannungsfelder #graph-slider {
     position: relative;
+    overflow: hidden;
   }
   .spannungsfelder #graph-slider .swiper-button-prev,
   .spannungsfelder #graph-slider .swiper-button-next {
     display: block;
+  }
+  /* Ensure only one slide is visible on desktop */
+  .spannungsfelder #graph-slider .swiper-wrapper {
+    display: flex;
+    align-items: center;
+  }
+  .spannungsfelder #graph-slider .swiper-slide {
+    width: 100% !important;
+    flex-shrink: 0;
   }
 }
 

@@ -17,9 +17,11 @@
     <div class="app__head">
         <header class="header-main container">
             <div class="header-main__title">
-                <icon classs="icon" onClick="window.open('https://info.arks.ch/');">
+                <icon classs="icon" onClick="window.open('https://info.arks.ch/');" style="cursor: pointer; position: relative; display: inline-flex; align-items: center;">
                 <span class="icon-logo"></span>
                 <span>ARKS</span>
+                <span class="tooltip-icon arks-logo-tooltip" id="arks-logo-tooltip-icon" style="display: none; margin-left: 8px;">{% trans "Info zu safecircles.ch" %}</span>
+            </icon>
             </div>
             <div class="header-main__user" style="background-color: #FFFFFF; color: #626262; border-radius: 10px; padding: 0 10px;">
               <div class="language-selector" style="display:inline-block;">
@@ -35,14 +37,15 @@
                     {% elif LANGUAGE_CODE == 'tr' %}
                         <img id="flag" src="{% static 'images/flags/5_tr_transparent.png' %}" style="width:20%;vertical-align:middle;padding-left:1px" alt="language flag">
                     {% else %}
-                        <img id="flag" src="{% static 'images/flags/2_en_transparent.png' %}" style="width:20%;vertical-align:middle;padding-left:1px" alt="language flag">
+                    <img id="flag" src="{% static 'images/flags/2_en_transparent.png' %}" style="width:20%;vertical-align:middle;padding-left:1px" alt="language flag">
                     {% endif %}
-                    <select onchange="this.form.submit()" name="language" id="select_" style="width: auto; vertical-align:middle; border-radius: 10px; padding: 10px;">
+                    <select onchange="updateLanguageFlag(); this.form.submit();" name="language" id="select_" style="width: auto; vertical-align:middle; border-radius: 10px; padding: 10px;" aria-label="{% trans 'Sprache auswählen' %}">
+                        <option value="" selected>{% trans "Sprachauswahl" %}</option>
                         {% get_available_languages as LANGUAGES %}
                         {% get_language_info_list for LANGUAGES as languages %}
                         {% for language in languages %}
-                            <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
-                                {{ language.name_local }} ({{ language.code }})
+                            <option value="{{ language.code }}">
+                                {{ language.name_local }}
                             </option>
                         {% endfor %}
                     </select>
@@ -51,9 +54,13 @@
                 <div class="user">
                     <div class="user__subtitle">
                         {{ game.name }}<br>
-                        <button class="my-button" data-clipboard-text="#link_url" style="background-color: #9FE2BF; color: #626262; font-size: 18px; border: 2px #75CBE8;">Copy Link</button>
+                        <button class="copy-link-button" id="copy-link-button" type="button" aria-label="{% trans 'Link kopieren' %}" data-clipboard-text="#link_url">
+                            <span class="copy-link-icon">📋</span>
+                            <span class="copy-link-text">{% trans "Link kopieren" %}</span>
+                            <span class="copy-link-success" style="display: none;">✓ {% trans "Kopiert!" %}</span>
+                        </button>
                     </div>
-                    <img src="{{user.avatar}}" alt="">
+                    <img src="{{user.avatar}}" alt="{{user.name}}">
                     <div class="user__title">
                         {{user.name}}
                     </div>
@@ -81,6 +88,7 @@
                     <div style="border: 1px solid #ccc; border-radius: 10px; padding: 30px;">
                     <p>
                         {% trans "Schätze anonym die aktuelle durchschnittliche Performance dieses Teams auf einer Skala von 1 (low performing) bis 99 (high performing) ein." %}
+                        <span class="tooltip-icon slider-tooltip-icon" id="slider-tooltip-icon" style="display: inline-flex; align-items: center; margin-left: 8px; vertical-align: middle;">?</span>
                     </p>
                     <div class="ui-slider">
                         <div class="ui-slider__marker">
@@ -103,14 +111,18 @@
                 </div>
                      <div class="center">
                         <p>
-                        <button class="button" type="button">
+                        <button class="button" type="button" id="submit-button" aria-label="{% trans 'Weiter' %}">
                             {% trans "Weiter" %}
                         </button>
                         </p>
-                        <p style="text-align: center; font-size: 10px;">
-                        <a href="https://github.com/joe-the-ark/ark" target="_blank">ARKS is published under a GPLv3</a> license by 
-                        <a href="https://www.linkedin.com/in/dr-joe-maier/" target="_blank">Dr. Joe Maier</a>.
-                        </p>
+                        <div id="validation-error" class="validation-error" role="alert" aria-live="polite" style="display: none;">
+                            <strong>{% trans "Bitte bewege den Slider" %}</strong><br>
+                            <span class="validation-error-text">{% trans "Du musst eine Bewertung zwischen 1 und 99 abgeben, bevor du fortfahren kannst." %}</span>
+                        </div>
+                        <div class="copyright-footer">
+                            <a href="https://github.com/joe-the-ark/ark" target="_blank">{% trans "ARKS is published under a GPLv3" %}</a> {% trans "license by" %} 
+                            <a href="https://www.linkedin.com/in/dr-joe-maier/" target="_blank">{% trans "Dr. Joe Maier" %}</a>.
+                        </div>
                     </div>
                 </main>
             </form>
@@ -123,22 +135,81 @@
 <script src="/static/jquery-3.5.1.min.js"></script>
 <script src="/static/js/AppUiSlider.js"></script>
 <script>
-        // Copy and tooltip
-        new ClipboardJS('.my-button');
-        tippy('.my-button', {
-            content: 'Copy gamelink to clipboard',
-            trigger: 'click',
-            onShow(instance) {
-                instance.setContent('Copied');
-            },
-        });
-
         // Link creation
-        // TODO Code below: Link must be from backend.
         var temp_link = '{{ game.link }}';
         var url_host = window.location.host;
         var temp_link_ = url_host + '/link/' + temp_link;
-        document.querySelector('.my-button').dataset.clipboardText = temp_link_;
+        
+        // Copy link button with improved feedback
+        const copyLinkButton = document.getElementById('copy-link-button');
+        const copyLinkText = copyLinkButton ? copyLinkButton.querySelector('.copy-link-text') : null;
+        const copyLinkSuccess = copyLinkButton ? copyLinkButton.querySelector('.copy-link-success') : null;
+        
+        if (copyLinkButton) {
+            copyLinkButton.dataset.clipboardText = temp_link_;
+            const clipboard = new ClipboardJS(copyLinkButton);
+            
+            clipboard.on('success', function(e) {
+                e.clearSelection();
+                
+                // Show success feedback
+                if (copyLinkText) copyLinkText.style.display = 'none';
+                if (copyLinkSuccess) {
+                    copyLinkSuccess.style.display = 'inline';
+                    copyLinkButton.classList.add('copy-link-button--success');
+                }
+                
+                // Reset after 2 seconds
+                setTimeout(function() {
+                    if (copyLinkText) copyLinkText.style.display = 'inline';
+                    if (copyLinkSuccess) copyLinkSuccess.style.display = 'none';
+                    copyLinkButton.classList.remove('copy-link-button--success');
+                }, 2000);
+            });
+            
+            clipboard.on('error', function(e) {
+                console.error('Failed to copy link:', e);
+            });
+        }
+        
+        // ARKS Logo Tooltip
+        const arksLogoContainer = document.querySelector('.header-main__title icon');
+        const arksLogoTooltipIcon = document.getElementById('arks-logo-tooltip-icon');
+        
+        if (arksLogoContainer && arksLogoTooltipIcon) {
+            arksLogoContainer.addEventListener('mouseenter', function() {
+                arksLogoTooltipIcon.style.display = 'inline-flex';
+            });
+            arksLogoContainer.addEventListener('mouseleave', function() {
+                arksLogoTooltipIcon.style.display = 'none';
+            });
+            
+            tippy(arksLogoTooltipIcon, {
+                content: "{% trans 'Info zu safecircles.ch'|escapejs %}",
+                placement: 'bottom',
+                theme: 'light',
+                delay: [200, 0],
+                allowHTML: false,
+                interactive: false,
+                trigger: 'mouseenter focus',
+                maxWidth: 300,
+            });
+        }
+        
+        // Slider Tooltip
+        const sliderTooltipIcon = document.getElementById('slider-tooltip-icon');
+        if (sliderTooltipIcon) {
+            tippy(sliderTooltipIcon, {
+                content: "{% trans '1 = niedrige Performance, 99 = hohe Performance. Die Skala zeigt die durchschnittliche Team-Performance.'|escapejs %}",
+                placement: 'top',
+                theme: 'light',
+                delay: [200, 0],
+                allowHTML: false,
+                interactive: false,
+                trigger: 'mouseenter focus',
+                maxWidth: 300,
+            });
+        }
 
 
     new AppUiSlider({
@@ -151,39 +222,98 @@
             max: 99
         },
         callback(value) {
-            //console.log(value);
             $('#digit_value').val(value);
         }
     });
 
+    // Improved validation with translated messages
     function check_zero(){
-        var value = $('#digit_value').val()
-        if (value === '0'){
-            alert("Please move the slider.")
-            return
-        }else{
-            var form_submit = document.getElementById('form_')            
-            form_submit.submit()
+        var value = $('#digit_value').val();
+        const validationError = document.getElementById('validation-error');
+        
+        if (value === '0' || value === 0 || !value){
+            // Show error message
+            if (validationError) {
+                validationError.style.display = 'block';
+                validationError.setAttribute('role', 'alert');
+                
+                // Focus on slider
+                const slider = document.getElementById('ui-range');
+                if (slider) {
+                    slider.focus();
+                    slider.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                
+                // Hide error after 8 seconds
+                setTimeout(function() {
+                    if (validationError) {
+                        validationError.style.display = 'none';
+                    }
+                }, 8000);
+            }
+            return false;
+        } else {
+            // Hide error if visible
+            if (validationError) {
+                validationError.style.display = 'none';
+            }
+            
+            // Add visual feedback before submit
+            const submitButton = document.getElementById('submit-button');
+            if (submitButton) {
+                submitButton.classList.add('button-submitting');
+                submitButton.disabled = true;
+                submitButton.textContent = "{% trans 'Wird verarbeitet...'|escapejs %}";
+            }
+            
+            var form_submit = document.getElementById('form_');
+            if (form_submit) {
+                form_submit.submit();
+            }
+            return true;
         }
     }
 
-    $('.button').click(function(){
-        check_zero()
-    })
+    // Submit button click handler
+    const submitButton = document.getElementById('submit-button');
+    if (submitButton) {
+        submitButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            check_zero();
+        });
+    }
+    
+    // Allow Enter key to submit
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && e.target.id === 'ui-range') {
+            e.preventDefault();
+            check_zero();
+        }
+    });
 
     // Update flag based on current language
-    var lang_code = $('#select_').val()
-    if (lang_code == 'zh-hans'){
-        $("#flag").attr("src", "{% static 'images/flags/4_zh-hans_transparent.png'%}");
-    } else if (lang_code == 'de'){
-        $("#flag").attr("src", "{% static 'images/flags/1_de_transparent.png'%}");
-    } else if (lang_code == 'en'){
-        $("#flag").attr("src", "{% static 'images/flags/2_en_transparent.png'%}");
-    } else if (lang_code == 'fr'){
-        $("#flag").attr("src", "{% static 'images/flags/3_fr_transparent.png'%}");
-    } else if (lang_code == 'tr'){
-        $("#flag").attr("src", "{% static 'images/flags/5_tr_transparent.png' %}");
+    function updateLanguageFlag() {
+        var lang_code = $('#select_').val();
+        if (lang_code == 'zh-hans'){
+            $("#flag").attr("src", "{% static 'images/flags/4_zh-hans_transparent.png'%}");
+        } else if (lang_code == 'de'){
+            $("#flag").attr("src", "{% static 'images/flags/1_de_transparent.png'%}");
+        } else if (lang_code == 'en'){
+            $("#flag").attr("src", "{% static 'images/flags/2_en_transparent.png'%}");
+        } else if (lang_code == 'fr'){
+            $("#flag").attr("src", "{% static 'images/flags/3_fr_transparent.png'%}");
+        } else if (lang_code == 'tr'){
+            $("#flag").attr("src", "{% static 'images/flags/5_tr_transparent.png' %}");
+        }
     }
+    
+    // Initialize language flag on page load
+    updateLanguageFlag();
+    
+    // Set "Sprachauswahl" as default display in select (flag shows current language)
+    $(document).ready(function() {
+        $('#select_').val('');
+    });
 
 </script>
 </body>

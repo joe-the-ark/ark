@@ -2,16 +2,18 @@
 .container {
   max-width: 100%;
   width: 100%;
-  overflow-x: auto;
+  overflow-x: hidden;
   padding: 0;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 /* Wrapper div around heatmap - ensure it doesn't constrain */
 .container > div[style*="border: 1px solid #ccc"] {
-  overflow-x: auto;
+  overflow-x: hidden;
   width: 100%;
   max-width: 100%;
+  box-sizing: border-box;
 }
 
 .heatmap {
@@ -350,17 +352,21 @@ table.beef-table th.active > span:after {
   .container {
     max-width: 100%;
     padding: 0 20px;
-    overflow-x: visible;
+    overflow-x: hidden;
+    box-sizing: border-box;
   }
   
   .container > div[style*="border: 1px solid #ccc"] {
-    overflow-x: visible;
+    overflow-x: hidden;
+    max-width: 100%;
+    box-sizing: border-box;
   }
   
   .heatmap {
     width: 100%;
     max-width: 100%;
-    overflow-x: visible;
+    overflow-x: hidden;
+    box-sizing: border-box;
   }
 }
 

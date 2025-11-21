@@ -1,3 +1,11 @@
+/* Options Container */
+.arche-options-container {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 30px;
+}
+
 .options {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
@@ -6,26 +14,133 @@
   text-align: left;
   max-width: 1500px;
 }
+
 @media screen and (max-width: 540px) {
   .options {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     grid-gap: 30px;
   }
 }
+
+.options__item {
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.options__item:hover {
+  transform: translateY(-2px);
+}
+
+.options__item:focus {
+  outline: 2px solid var(--ls-alfa-color);
+  outline-offset: 4px;
+  border-radius: 5px;
+}
+
+/* Icon wrapper for positioning tooltip icon and main icon */
+.options__item-icon-wrapper {
+  position: relative;
+  float: left;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 0;
+  padding-top: 0;
+}
+
 .options__item [class*="icon"] {
   font-size: 60px;
   color: var(--ls-alfa-color);
-  float: left;
-  transition-duration: 0.5s;
+  transition: transform 0.3s ease, color 0.3s ease;
   cursor: pointer;
+  line-height: 1;
+  display: inline-block;
+  margin-top: 0;
+  padding-top: 0;
+  vertical-align: top;
 }
-.options__item [class*="icon"]:hover {
-  transition-duration: 0.5s;
+
+/* Icons directly in options__item (without wrapper) should float left and align at top */
+.options__item > [class*="icon"] {
+  float: left;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+/* Icons inside wrapper should also align at top */
+.options__item-icon-wrapper [class*="icon"] {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+/* Links inside icon wrapper should not affect alignment */
+.options__item-icon-wrapper a {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 0;
+  padding-top: 0;
+  text-decoration: none;
+}
+
+/* Tooltip icon positioned left of main icon */
+.options__item-icon-wrapper .tooltip-icon {
+  position: relative;
+  margin: 0;
+  flex-shrink: 0;
+  align-self: flex-start;
+  margin-top: 0;
+  /* Uses standard tooltip-icon size from app.css */
+}
+
+.options__item:hover [class*="icon"],
+.options__item:focus [class*="icon"] {
   transform: scale(1.1, 1.1);
+  color: #52CEEC;
 }
+
 .options__item p {
-  margin-left: 80px;
+  margin-left: 100px;
+  margin-top: 0;
+  padding-top: 0;
+  transition: opacity 0.2s ease;
+  display: block;
+  width: calc(100% - 100px);
+  box-sizing: border-box;
 }
+
+.options__item:hover p {
+  opacity: 0.95;
+}
+
+/* Option Text Styles */
+.option-text {
+  border-radius: 10px;
+  padding: 0 10px;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.option-text-green {
+  background-color: #9FE2BF;
+  color: #626262;
+}
+
+.option-text-yellow {
+  background-color: #FAE03C;
+  color: #626262;
+}
+
+.option-text-red {
+  background-color: #fa5252;
+  color: white;
+}
+
+.options__item:hover .option-text {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
 .arche {
   text-align: center;
 }
@@ -63,11 +178,73 @@
   display: table;
   clear: both;
 }
+/* Button Container */
+.arche-button-container {
+  text-align: center;
+  margin: 30px 0;
+}
+
+/* Info Container */
+.arche-info-container {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 30px;
+}
+
+.arche-info-text {
+  background-color: #52CEEC;
+  color: #FFFFFF;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 0;
+  text-align: center;
+}
+
+/* Mobile Optimizations */
 @media screen and (max-width: 768px) { 
   .options__item p {
-    font-size: 18px; /* Schriftgröße für Paragraphen innerhalb von .options__item */
+    font-size: 18px;
+    margin-left: 90px;
   }
+  
   .options {
-    grid-gap: 30px; /* Neuer Abstand zwischen den Grid-Elementen */
+    grid-gap: 30px;
+  }
+  
+  .options__item [class*="icon"] {
+    font-size: 50px;
+  }
+  
+  .options__item-icon-wrapper {
+    gap: 8px;
+  }
+  
+  .arche-options-container {
+    padding: 15px;
+  }
+  
+  .arche-info-container {
+    padding: 15px;
+  }
+  
+  .arche-info-text {
+    padding: 15px;
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .options__item p {
+    margin-left: 80px;
+    font-size: 16px;
+  }
+  
+  .options__item [class*="icon"] {
+    font-size: 40px;
+  }
+  
+  .options__item-icon-wrapper {
+    gap: 6px;
   }
 }

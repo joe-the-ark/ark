@@ -4,6 +4,206 @@
   margin: var(--ls-paragraph-offset);
 }
 
+/* Heading tooltip icon */
+.team-potential-heading-tooltip {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.team-potential-heading-tooltip .tooltip-icon {
+    margin-left: 0;
+    margin-right: 6px;
+}
+
+/* ARKS Logo tooltip icon - special styling for text instead of question mark */
+#arks-logo-tooltip-icon {
+    width: auto;
+    min-width: 140px;
+    height: 24px;
+    padding: 0 10px;
+    font-size: 11px;
+    white-space: nowrap;
+    font-weight: normal;
+}
+
+/* Google Slides container spacing */
+.google-slides-container-wrapper {
+    margin-bottom: 40px;
+}
+
+/* Progress Bar Styling */
+.progress__bar-fill {
+    width: 85%;
+    border-radius: 10px;
+    background-color: #52CEEC;
+    color: white;
+    text-align: center;
+    padding: 5px 0;
+    font-weight: bold;
+    transition: width 0.3s ease;
+}
+
+/* Print Button Styling - uses standard .button class from app.css */
+/* Additional spacing for print button in header */
+.header-main__progress .button {
+    margin-left: 10px;
+}
+
+/* Visual Feedback: Loading States */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9998;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.loading-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* Visual Feedback: Hover Effects */
+.tolerance-slider:hover {
+    opacity: 0.9;
+}
+
+.tolerance-slider:focus {
+    outline: 2px solid #52CEEC;
+    outline-offset: 2px;
+}
+
+#tolerance-window-input:hover {
+    border-color: #7dd4a8;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+#tolerance-window-input:focus {
+    outline: 2px solid #52CEEC;
+    outline-offset: 2px;
+    border-color: #52CEEC;
+}
+
+/* Visual Feedback: Button Transitions */
+button {
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    transform: translateY(-1px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* Visual Feedback: Canvas Transitions */
+#team-potential-canvas {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#team-potential-canvas:hover {
+    transform: scale(1.01);
+}
+
+/* Visual Feedback: Player Detail Modal */
+.player-detail-modal {
+    /* Animation removed - card appears directly */
+}
+
+.player-detail-content {
+    /* Animation removed - card appears directly */
+}
+
+/* Visual Feedback: Progress Bar Animation */
+.progress__bar-fill {
+    animation: progressPulse 2s ease-in-out infinite;
+}
+
+@keyframes progressPulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
+}
+
+/* PRIO 1 Tooltip Icon - Visual Feedback (only for heading icon, not box-end icon) */
+.prio1-tooltip-icon {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    width: 48px !important;
+    height: 48px !important;
+    font-size: 32px !important;
+}
+
+.prio1-tooltip-icon:hover {
+    background-color: #75CBE8 !important;
+    transform: scale(1.15);
+    box-shadow: 0 4px 8px rgba(117, 203, 232, 0.4);
+}
+
+.prio1-tooltip-container {
+    position: relative;
+}
+
+/* PRIO 2 Tooltip Icon - Visual Feedback (only for heading icon, not box-end icon) */
+.prio2-tooltip-icon {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    width: 48px !important;
+    height: 48px !important;
+    font-size: 32px !important;
+}
+
+.prio2-tooltip-icon:hover {
+    background-color: #52CEEC !important;
+    transform: scale(1.15);
+    box-shadow: 0 4px 8px rgba(82, 206, 236, 0.4);
+}
+
+.prio2-tooltip-container {
+    position: relative;
+}
+
+/* PRIO 3 Tooltip Icon - Visual Feedback (only for heading icon, not box-end icon) */
+.prio3-tooltip-icon {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    width: 48px !important;
+    height: 48px !important;
+    font-size: 32px !important;
+}
+
+.prio3-tooltip-icon:hover {
+    background-color: #7dd4a8 !important;
+    transform: scale(1.15);
+    box-shadow: 0 4px 8px rgba(125, 212, 168, 0.4);
+}
+
+.prio3-tooltip-container {
+    position: relative;
+}
+
+/* PRIO 1, 2, and 3 Tooltip Icons at box-end - original size (24px) */
+#prio1-wie-weiter-tooltip-icon .tooltip-icon,
+#prio2-integrator-tooltip-icon .tooltip-icon,
+#prio3-integrator-tooltip-icon .tooltip-icon {
+    width: 24px !important;
+    height: 24px !important;
+    font-size: 16px !important;
+}
+
 @media screen and (min-width: 769px) {
   .team-potential p {
     float: left;
@@ -95,8 +295,8 @@
 .tolerance-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 20px;
-  height: 20px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   background: #9FE2BF;
   border: 2px solid #FFFFFF;
@@ -105,6 +305,7 @@
   transition: all 0.2s ease;
   position: relative;
   z-index: 2;
+  margin-top: -18px; /* Center the thumb vertically: (60px - 50px) / 2 = 5px, but we need to account for the track */
 }
 
 .tolerance-slider::-webkit-slider-thumb:hover {
@@ -114,8 +315,8 @@
 }
 
 .tolerance-slider::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   background: #9FE2BF;
   border: 2px solid #FFFFFF;
@@ -133,13 +334,13 @@
 }
 
 .tolerance-slider::-webkit-slider-runnable-track {
-  height: 24px;
+  height: 50px;
   background: transparent;
   border-radius: 5px;
 }
 
 .tolerance-slider::-moz-range-track {
-  height: 24px;
+  height: 50px;
   background: transparent;
   border-radius: 5px;
 }
@@ -208,16 +409,7 @@
   justify-content: center;
   align-items: center;
   z-index: 10000;
-  animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  /* Animation removed - modal appears directly */
 }
 
 .player-detail-content {
@@ -228,19 +420,8 @@
   width: 90%;
   overflow-y: auto;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-  animation: slideUp 0.3s ease;
   position: relative;
-}
-
-@keyframes slideUp {
-  from {
-    transform: translateY(50px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  /* Animation removed - card appears directly */
 }
 
 .player-detail-header {
@@ -568,5 +749,83 @@
   
   .player-detail-stats {
     grid-template-columns: 1fr;
+  }
+  
+  /* Mobile: Progress Bar */
+  .progress__bar-fill {
+    font-size: 12px;
+    padding: 3px 0;
+  }
+  
+  /* Mobile: Print Button - uses standard .button class from app.css */
+  .header-main__progress .button {
+    margin-left: 5px;
+  }
+  
+  /* Mobile: Tolerance Window Input */
+  .tolerance-window-input-container {
+    padding: 15px !important;
+  }
+  
+  #tolerance-window-input {
+    width: 80px !important;
+    height: 40px !important;
+    font-size: 16px !important;
+  }
+  
+  /* Mobile: Canvas */
+  #team-potential-canvas {
+    max-width: 100%;
+    height: auto !important;
+  }
+  
+  /* Mobile: Player Detail Modal */
+  .player-detail-content {
+    width: 95%;
+    max-height: 90vh;
+    padding: 15px;
+  }
+  
+  .player-detail-avatar {
+    width: 80px;
+    height: 80px;
+  }
+  
+  /* Mobile: Buttons */
+  #min-value-button,
+  #max-value-button {
+    font-size: 28px !important;
+  }
+  
+  /* Mobile: PRIO Buttons */
+  .team-potential button {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+}
+
+  
+  /* Mobile: Player Detail Modal */
+  .player-detail-content {
+    width: 95%;
+    max-height: 90vh;
+    padding: 15px;
+  }
+  
+  .player-detail-avatar {
+    width: 80px;
+    height: 80px;
+  }
+  
+  /* Mobile: Buttons */
+  #min-value-button,
+  #max-value-button {
+    font-size: 28px !important;
+  }
+  
+  /* Mobile: PRIO Buttons */
+  .team-potential button {
+    font-size: 14px;
+    padding: 8px 12px;
   }
 }

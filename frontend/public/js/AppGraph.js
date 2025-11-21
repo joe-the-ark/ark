@@ -503,7 +503,10 @@ buildGraph() {
                   filter = 180;
               }
           } else {
-              filter = 81 + +value;
+              // Inverted color mapping: low values = red, middle = yellow, high = green
+              // Original: filter = 81 + value (0=green, 50=yellow, 100=red)
+              // New: filter = 261 - value (0=red, 50=yellow, 100=green)
+              filter = 261 - +value;
           }
 
           // Subtract 50 from the displayed value

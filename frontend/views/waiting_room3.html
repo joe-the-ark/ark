@@ -11,6 +11,7 @@
     <title>Waiting-Room-SQUAD</title>
     <link rel="stylesheet" href="/static/css/app.css">
     <link rel="stylesheet" href="/static/css/wartezimmer.css">
+    <link rel="stylesheet" href="/static/css/waiting-room3.css">
 
 </head>
 <body>
@@ -18,9 +19,11 @@
     <div class="app__head">
         <header class="header-main container">
             <div class="header-main__title">
-                <icon classs="icon" onClick="window.open('https://info.arks.ch/');">
+                <icon classs="icon" onClick="window.open('https://info.arks.ch/');" style="cursor: pointer; position: relative; display: inline-flex; align-items: center;">
                 <span class="icon-logo"></span>
                 <span>ARKS</span>
+                <span class="tooltip-icon arks-logo-tooltip-icon" id="arks-logo-tooltip-icon" style="display: none; margin-left: 8px;">{% trans "Info zu safecircles.ch" %}</span>
+            </icon>
             </div>
             <div class="header-main__user">
                 <div class="user">
@@ -37,7 +40,7 @@
             </div>
             <div class="header-main__progress">
                 <div class="progress">
-                    <label>EVERYONE HERE?</label>
+                    <label>{% trans "Alle da?" %}</label>
                     <div class="progress__bar">
                         <div style="width: 100%; border-radius: 10px;">100%</div>
                     </div>
@@ -66,29 +69,13 @@
                             {% trans "Wie wie sicher fühltest du dich in der Lage anzusprechen, was dich eigentlich beschäftigt, um das Team voranzubringen?" %}
                         </li>
                     </ul>
-                <div class="google-slides-container">
-                <iframe style="padding: 0 10px;" src="https://docs.google.com/presentation/d/1Hs_6BrjVGYGJqoi9FmPJuBLQJyzve-ezkPF6pSzlvU0/embed" frameborder="0" width="850" height="400" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-                
-                <style>
-                .google-slides-container{
-                position: relative;
-                width: 100%;
-                padding-top: 56.25%;
-                overflow: hidden;
-                background-color: #9FE2BF;
-                border-radius: 10px
-                }
-                .google-slides-container iframe{
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: #9FE2BF;
-                border-radius: 10px
-                }
-                </style>
-
+                <div class="google-slides-container-wrapper" style="position: relative;">
+                    <button class="google-slides-fullscreen-button" id="google-slides-fullscreen-button" aria-label="{% trans 'Vollbild anzeigen' %}" title="{% trans 'Vollbild anzeigen' %}">
+                        <span class="fullscreen-icon">⛶</span>
+                    </button>
+                    <div class="google-slides-container" id="google-slides-container">
+                        <iframe src="https://docs.google.com/presentation/d/1Hs_6BrjVGYGJqoi9FmPJuBLQJyzve-ezkPF6pSzlvU0/embed?start=true&loop=false&delayms=8000&rm=minimal" frameborder="0" width="850" height="400" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" aria-label="{% trans 'Präsentation' %}"></iframe>
+                    </div>
                 </div>
                 </div>
 
@@ -118,27 +105,29 @@
                     </div>
                 </div>
             </main>
+                    <p>
+                        <br><br>
+                    </p>
             <form action="#" method="POST" class="form">
             {% csrf_token %}
                 <div class="center">
-                    <button id='main_btn' type="button" onclick="choosePopup()">
+                    <div class="button-with-tooltip">
+                        <span class="tooltip-icon continue-button-tooltip-icon" id="continue-button-tooltip-icon" style="display: inline-flex; align-items: center; margin-right: 8px; vertical-align: middle; cursor: help;">?</span>
+                    <button id='main_btn' class="button" type="button" onclick="choosePopup()" aria-label="{% trans 'Weiterspielen' %}">
                         {% trans "Weiterspielen" %}
                     </button>
+                    </div>
 
                     <p>
                         <br><br>
                     </p>
-                    <p style="background-color: #52CEEC; color: #FFFFFF; border-radius: 10px; padding: 0 10px;"><br>
-                        {% trans "Die Reise kann weitergehen, sobald alle Mitspieler hier im Warteraum angekommen sind." %}<br><br>
-                    </p>
-
-                    <p style="text-align: center; font-size: 10px;"><br><br>
-                        <a href="https://github.com/joe-the-ark/ark" target="_blank">ARKS is published under a GPLv3</a> license by 
-                        <a href="https://www.linkedin.com/in/dr-joe-maier/" target="_blank">Dr. Joe Maier</a>.
-                    </p>
-
                 </div>
             </form>
+                    <div class="copyright-footer">
+                        <a href="https://github.com/joe-the-ark/ark" target="_blank">{% trans "ARKS is published under a GPLv3" %}</a> {% trans "license by" %} 
+                        <a href="https://www.linkedin.com/in/dr-joe-maier/" target="_blank">{% trans "Dr. Joe Maier" %}</a>.
+                    </div>
+                </div>
         </div>
     </div>
 </div>
@@ -155,7 +144,6 @@
     function buttonRemover() {
       let initiator = "{{host}}";
       let user = "{{player_name}}";
-      console.log(initiator, user);
       let btn = document.querySelector('#main_btn')
       if (initiator != user) {
         btn.style.display = 'none'
@@ -166,12 +154,70 @@
     // Copy and tooltip
     new ClipboardJS('.icon-link');
     tippy('.icon-link', {
-      content: 'Copy gamelink to clipboard',
+      content: "{% trans 'Spiel-Link in Zwischenablage kopieren'|escapejs %}",
     });
     tippy('.icon-link', {
       trigger: 'click',
-      content: 'Copied',
+      content: "{% trans 'Kopiert'|escapejs %}",
     });
+
+    // ARKS Logo Tooltip
+    function initARKSLogoTooltip() {
+        const arksLogoContainer = document.querySelector('.header-main__title icon');
+        const arksLogoTooltipIcon = document.getElementById('arks-logo-tooltip-icon');
+        
+        if (arksLogoContainer && arksLogoTooltipIcon) {
+            arksLogoContainer.addEventListener('mouseenter', function() {
+                arksLogoTooltipIcon.style.display = 'inline-flex';
+            });
+            arksLogoContainer.addEventListener('mouseleave', function() {
+                arksLogoTooltipIcon.style.display = 'none';
+            });
+            
+            tippy(arksLogoTooltipIcon, {
+                content: "{% trans 'Info zu safecircles.ch'|escapejs %}",
+                placement: 'bottom',
+                theme: 'light',
+                delay: [200, 0],
+                allowHTML: false,
+                interactive: false,
+                trigger: 'mouseenter focus',
+            });
+        }
+    }
+
+    // Continue Button Tooltip
+    function initContinueButtonTooltip() {
+        const continueButtonTooltipIcon = document.getElementById('continue-button-tooltip-icon');
+        if (continueButtonTooltipIcon) {
+            const existingInstance = continueButtonTooltipIcon._tippy;
+            if (existingInstance) {
+                existingInstance.destroy();
+            }
+            
+            tippy(continueButtonTooltipIcon, {
+                content: "{% trans 'Die Reise kann weitergehen, sobald alle Mitspieler hier im Warteraum angekommen sind.'|escapejs %}",
+                placement: 'top',
+                theme: 'light',
+                delay: [200, 0],
+                allowHTML: false,
+                interactive: false,
+                trigger: 'mouseenter focus',
+                maxWidth: 400,
+            });
+        }
+    }
+
+    // Initialize tooltips after DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+            initARKSLogoTooltip();
+            initContinueButtonTooltip();
+        });
+    } else {
+        initARKSLogoTooltip();
+        initContinueButtonTooltip();
+    }
 
     // Link creation
     // TODO Code bellow Link must be from backend.
@@ -202,21 +248,18 @@
         },
         methods: {
             handleSelect(key, keyPath) {
-                console.log(key, keyPath);
+                // Handle select if needed
             },
         },
     })
 
 
     function popupOpen(selector) {
-      console.log('opened', selector);
       selector.classList.add('open');
     }
 
     function popupClose(selector, timeout) {
-      console.log('closed', selector);
       setTimeout(() => {selector.classList.remove('open')}, timeout);
-
     }
 
     function choosePopup() {
@@ -235,7 +278,6 @@
       }
       else if (userList.length >= 3 && readyCount >=3 && userList.length > readyCount){
         waitOrGo();
-        console.log('waitOrGo')
       }
       else if (userList.length == readyCount) {
         start();
@@ -258,8 +300,9 @@
       let popup = document.querySelector('#popup_buttons');
       popupOpen(popup);
       let closeBtn = document.querySelector('.modal_button[type=button]')
-      console.log(closeBtn);
-      closeBtn.addEventListener('click', () => {popupClose(popup)})
+      if (closeBtn) {
+        closeBtn.addEventListener('click', () => {popupClose(popup, 0)})
+      }
     }
 
     function start() {
@@ -299,13 +342,13 @@
                                 app.waiting_list_yet = result;
 
                             })
-                            .catch(function(error) { // 请求失败处理
-                                console.log(error);
+                            .catch(function(error) {
+                                // Error handled silently
                             });
 
                     })
-                    .catch(function(error) { // 请求失败处理
-                        console.log(error);
+                    .catch(function(error) {
+                        // Error handled silently
                     });
             })
             
@@ -336,7 +379,7 @@
                             }
                         })
                     .catch(function(error) {
-                        console.log(error);
+                        // Error handled silently
                     });
             });
         }
@@ -357,8 +400,12 @@
         <div class="popup_content">
             <form class="popup_form" action="#" method="post">
               {% csrf_token %}
-              <button class="modal_button" type="submit" id="button" >Continue once all</br> players are GREEN</button>
-              <button class="modal_button" type="button" >Wait for </br> More players</button>
+              <button class="modal_button button" type="submit" id="button" aria-label="{% trans 'Fortfahren wenn alle Spieler grün sind' %}">
+                  {% trans "Fortfahren, sobald alle Spieler GRÜN sind" %}
+              </button>
+              <button class="modal_button button" type="button" aria-label="{% trans 'Auf weitere Spieler warten' %}">
+                  {% trans "Auf weitere Spieler warten" %}
+              </button>
             </form>
         </div>
     </div>
@@ -366,16 +413,94 @@
 <div id='popup_less_players' class="popup">
     <div class="popup_body">
         <div class="popup_content">
-            Lade Mitspieler ein. Es braucht mindestens 3 um dieses Spiel zu spielen.
+            {% trans "Lade mehr Spieler ein! Es werden mindestens 3 Spieler benötigt, um dieses Spiel zu spielen." %}
         </div>
     </div>
 </div>
 <div id='popup_less_ready_players' class="popup">
     <div class="popup_body">
         <div class="popup_content">
-            Warte bis mehr Spieler hier im Wartezimmer und damit bereit zum Spiel sind.
+            {% trans "Warte, bis mehr Spieler hier im Warteraum angekommen sind." %}
         </div>
     </div>
 </div>
+    <script>
+    // Google Slides Fullscreen functionality
+    const fullscreenButton = document.getElementById('google-slides-fullscreen-button');
+    const slidesContainerWrapper = document.querySelector('.google-slides-container-wrapper');
+    
+    if (fullscreenButton && slidesContainerWrapper) {
+        fullscreenButton.addEventListener('click', function() {
+            if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.mozFullScreenElement && !document.msFullscreenElement) {
+                // Enter fullscreen
+                if (slidesContainerWrapper.requestFullscreen) {
+                    slidesContainerWrapper.requestFullscreen();
+                } else if (slidesContainerWrapper.webkitRequestFullscreen) {
+                    slidesContainerWrapper.webkitRequestFullscreen();
+                } else if (slidesContainerWrapper.mozRequestFullScreen) {
+                    slidesContainerWrapper.mozRequestFullScreen();
+                } else if (slidesContainerWrapper.msRequestFullscreen) {
+                    slidesContainerWrapper.msRequestFullscreen();
+                }
+                slidesContainerWrapper.classList.add('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild beenden'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild beenden'|escapejs %}");
+            } else {
+                // Exit fullscreen
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+        
+        // Listen for fullscreen changes
+        document.addEventListener('fullscreenchange', function() {
+            if (!document.fullscreenElement) {
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+        
+        document.addEventListener('webkitfullscreenchange', function() {
+            if (!document.webkitFullscreenElement) {
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+        
+        document.addEventListener('mozfullscreenchange', function() {
+            if (!document.mozFullScreenElement) {
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+        
+        document.addEventListener('MSFullscreenChange', function() {
+            if (!document.msFullscreenElement) {
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+    }
+    </script>
 </body>
 </html>

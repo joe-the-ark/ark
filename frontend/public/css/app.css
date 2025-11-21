@@ -11,6 +11,11 @@
   --ls-transition: all 0.3s ease;
   --ls-paragraph-offset: 38px 0 10px;
 }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 @media screen and (max-width: 1200px) {
   :root {
     --ls-h-font-large: 40px;
@@ -179,12 +184,21 @@ html:not([theme]) {
   --ls-alfa-color: #160449;
   --ls-beta-color: #000000;
 }
+html {
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
 body {
   background-color: var(--ls-bg-global-color);
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 .container {
   padding: 0 calc(50% - (1640px/2 + (15px)));
   margin: 0 15px;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 [class^="icon-"],
 [class*=" icon-"] {
@@ -437,6 +451,27 @@ body {
     margin-bottom: 10px;
   }
 }
+/* Copyright footer - bottom right, font size 9 */
+.copyright-footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  font-size: 9px;
+  text-align: right;
+  padding: 5px 10px;
+  z-index: 1000;
+  color: #626262;
+}
+
+.copyright-footer a {
+  color: #626262;
+  text-decoration: none;
+}
+
+.copyright-footer a:hover {
+  text-decoration: underline;
+}
+
 .progress__bar {
   border: 1px solid #FFFFFF;
   width: min(481px, 100%);
@@ -694,9 +729,10 @@ input {
   .container {
     padding: 0 10px !important;
     margin: 0 auto !important;
-    width: 99% !important;
+    width: 100% !important;
     max-width: 100% !important;
     box-sizing: border-box !important;
+    overflow-x: hidden !important;
   }
   
   .center {
@@ -798,6 +834,18 @@ input {
   vertical-align: middle;
   margin-left: 6px;
   transition: all 0.2s ease;
+}
+
+/* Special styling for ARKS logo tooltip with text */
+#arks-logo-tooltip-icon {
+  width: auto;
+  min-width: 140px;
+  height: 24px;
+  padding: 0 10px;
+  font-size: 11px;
+  white-space: nowrap;
+  font-weight: normal;
+  border-radius: 12px;
 }
 
 .tooltip-icon:hover {

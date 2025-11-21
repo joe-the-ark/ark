@@ -5,7 +5,7 @@ from meta.decorators import api, APIError
 import json
 from collections import defaultdict
 
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext as _, gettext
 from django.utils import translation
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -518,6 +518,15 @@ def team_potential(request, user):
         else:
             anchors[member.player.name] = ''
     ctx['anchors'] = anchors
+    
+    # Add PRIO 1 tooltip text for translation
+    ctx['prio1_tooltip_text'] = gettext("PRIO 1: How to Put Integrators in Service of the Team's Psychological Safety Development\n\nIntegrators are team members who naturally belong to multiple psychological safe circles, acting as crucial bridges between different subgroups. To harness them for the team's safety development, a deliberate, multi-step approach is essential. First, identify these individuals by mapping the team's safe circles; they are the ones present in several overlapping zones of trust. Their strength lies in their ability to mediate between conflicting parties without being entangled in the drama. Second, provide them with support, protection, and relief. Acknowledge the often-unseen burden they carry and create structures that allow them to perform this role without burning out. Third, enable and encourage them to share their observations and suggestions within the team. Their unique, cross-cutting perspective can reveal tensions and offer solutions without forcing direct confrontation. Finally, only pursue the small, concrete steps (Babysteps) they propose that have broad team support. By strengthening these integrators, you leverage their existing trust to maintain and enhance psychological safety sustainably, focusing on the team's connective tissue rather than its fault lines.")
+    
+    # Add PRIO 2 tooltip text for translation
+    ctx['prio2_tooltip_text'] = gettext("Priority 2: How to Integrate Solists / Satellites\n\nSatellites are team members who operate on the periphery, not yet integrated into any core safe circle. Integrating them requires a sensitive and intentional process. The first step is to identify them and recognize their potential. Their distanced position often grants them a clearer view of \"elephants in the room\" or hidden dynamics that more embedded members might miss. The second step is to facilitate their inclusion by identifying natural connection points. Look for existing integrators who can act as bridge-builders, or find projects or tasks where closer collaboration can occur organically. It is crucial, however, to first verify the satellite's own desire for greater integration; not everyone seeks deeper immersion, and forcing it can be counterproductive. If the interest is mutual, the final step involves targeted interventions for belonging, such as establishing regular check-ins or peer-learning formats. The goal is not to force everyone into one large, homogenous circle, but to carefully bring the satellite into at least one safe micro-structure, thereby enriching the team with their unique perspective and reducing the defensive reactions that isolation can foster.")
+    
+    # Add PRIO 3 tooltip text for translation
+    ctx['prio3_tooltip_text'] = gettext("Priority 3: How to Securely Connect the Boss\n\nA leader's integration into the team's safe circles is a critical performance factor, yet they often systematically overestimate their own centrality and positive influence. To securely connect, the boss must first engage in honest self-reflection and seek a realistic assessment of the team's actual perception of psychological safety, contrasting it with one's own. The foundation for secure connection is the leader's inner security. This self-regulation ability—staying calm, curious, and flexible under pressure—is the safety anchor that prevents their stress from triggering defensive reactions across the team. With this foundation, the leader can then take conscious steps to increase their centrality. This is achieved not by command, but by actively participating in the team's safe circles, listening, and demonstrating vulnerability. The leader's role shifts to holding the space—creating and protecting an environment where open, drama-free communication can flourish. Ultimately, a leader can only foster a safe team if they are themselves a stable, integrated part of its psychological safe circles.")
 
     # ubung2 = Ubung2.objects.filter(game=game)
     ubung2 = []
@@ -1446,56 +1455,118 @@ def psychologischer(request, user):
     link = request.session['link']
     game = Game.objects.filter(link=link).first()
     game_place = list(Ubung4.objects.filter(game=game))
+    
+    # Count how many times the current user appears in each row
     row_0 = 0
     row_1 = 0
     row_2 = 0
     row_3 = 0
     row_4 = 0
     row_5 = 0
-    for game_ in game_place:
-        # if game_.player == user:
-        #     continue
-        # else:
-        # print(game_)
-
-        row_0 += game_.row0.all().count()
-        row_1 += game_.row1.all().count()
-        row_2 += game_.row2.all().count()
-        row_3 += game_.row3.all().count()
-        row_4 += game_.row4.all().count()
-        row_5 += game_.row5.all().count()
-
-        # if user in game_.row0.all():
-        #     row_0 += 1
-        # if user in game_.row1.all():
-        #     row_1 += 1
-        # if user in game_.row2.all():
-        #     row_2 += 1
-        # if user in game_.row3.all():
-        #     row_3 += 1
-        # if user in game_.row4.all():
-        #     row_4 += 1
-        # if user in game_.row5.all():
-        #     row_5 += 1
+    
+    # Count how many times the current user appears in each row across all Ubung4 entries
+    # Use ubung4_target which contains all players in each box, then filter for current user
+    # This is more reliable than iterating through Ubung4 entries
+    ubung4_target = game.ubung4_target
+    
+    # Get all players in each row
+    row0_all = ubung4_target.get('row0', [])
+    row1_all = ubung4_target.get('row1', [])
+    row2_all = ubung4_target.get('row2', [])
+    row3_all = ubung4_target.get('row3', [])
+    row4_all = ubung4_target.get('row4', [])
+    row5_all = ubung4_target.get('row5', [])
+    
+    # Get all players in each box using ubung4_target
+    ubung4_target = game.ubung4_target
+    row0_all = ubung4_target.get('row0', [])
+    row1_all = ubung4_target.get('row1', [])
+    row2_all = ubung4_target.get('row2', [])
+    row3_all = ubung4_target.get('row3', [])
+    row4_all = ubung4_target.get('row4', [])
+    row5_all = ubung4_target.get('row5', [])
+    
+    # Separate current user votes from other players' votes
+    # Current user votes will be shown with avatar in blue circles
+    # Other players' votes will be shown as anonymous gray circles
+    row0_current_user = [p for p in row0_all if p.get('id') == user.id]
+    row0_other_players = [p for p in row0_all if p.get('id') != user.id]
+    
+    row1_current_user = [p for p in row1_all if p.get('id') == user.id]
+    row1_other_players = [p for p in row1_all if p.get('id') != user.id]
+    
+    row2_current_user = [p for p in row2_all if p.get('id') == user.id]
+    row2_other_players = [p for p in row2_all if p.get('id') != user.id]
+    
+    row3_current_user = [p for p in row3_all if p.get('id') == user.id]
+    row3_other_players = [p for p in row3_all if p.get('id') != user.id]
+    
+    row4_current_user = [p for p in row4_all if p.get('id') == user.id]
+    row4_other_players = [p for p in row4_all if p.get('id') != user.id]
+    
+    row5_current_user = [p for p in row5_all if p.get('id') == user.id]
+    row5_other_players = [p for p in row5_all if p.get('id') != user.id]
+    
+    # Count occurrences for score calculation
+    row_0 = len(row0_current_user)
+    row_1 = len(row1_current_user)
+    row_2 = len(row2_current_user)
+    row_3 = len(row3_current_user)
+    row_4 = len(row4_current_user)
+    row_5 = len(row5_current_user)
+    
+    # Debug: Print info
+    print(f"DEBUG psychologischer: user {user.id} ({user.name}) appears:")
+    print(f"  row0: {row_0} times (others: {len(row0_other_players)})")
+    print(f"  row1: {row_1} times (others: {len(row1_other_players)})")
+    print(f"  row2: {row_2} times (others: {len(row2_other_players)})")
+    print(f"  row3: {row_3} times (others: {len(row3_other_players)})")
+    print(f"  row4: {row_4} times (others: {len(row4_other_players)})")
+    print(f"  row5: {row_5} times (others: {len(row5_other_players)})")
 
     score = (row_0 * 4 + row_1 * 1 + row_2 * 3 + row_3 * 5 + row_4 * 0 + row_5 * 2) * 20
     num = (WaitingRoomMember.objects.filter(game=game,state=1).count()) ** 2
-    score = score / num
+    score = score / num if num > 0 else 0
 
     ctx['score'] = round(score)
-    ctx['row0'] = row_0
-    ctx['row1'] = row_1
-    ctx['row2'] = row_2
-    ctx['row3'] = row_3
-    ctx['row4'] = row_4
-    ctx['row5'] = row_5
-    # print(score)
-    # print(row_0)
-    # print(row_1)
-    # print(row_2)
-    # print(row_3)
-    # print(row_4)
-    # print(row_5)
+    
+    # Pass arrays for Vue.js
+    # Each row has two arrays: current_user (blue circles with avatar) and other_players (gray anonymous circles)
+    import json
+    ctx['row0_current_user'] = json.dumps([{} for _ in range(max(0, row_0))])
+    ctx['row0_other_players'] = json.dumps([{} for _ in range(max(0, len(row0_other_players)))])
+    ctx['row1_current_user'] = json.dumps([{} for _ in range(max(0, row_1))])
+    ctx['row1_other_players'] = json.dumps([{} for _ in range(max(0, len(row1_other_players)))])
+    ctx['row2_current_user'] = json.dumps([{} for _ in range(max(0, row_2))])
+    ctx['row2_other_players'] = json.dumps([{} for _ in range(max(0, len(row2_other_players)))])
+    ctx['row3_current_user'] = json.dumps([{} for _ in range(max(0, row_3))])
+    ctx['row3_other_players'] = json.dumps([{} for _ in range(max(0, len(row3_other_players)))])
+    ctx['row4_current_user'] = json.dumps([{} for _ in range(max(0, row_4))])
+    ctx['row4_other_players'] = json.dumps([{} for _ in range(max(0, len(row4_other_players)))])
+    ctx['row5_current_user'] = json.dumps([{} for _ in range(max(0, row_5))])
+    ctx['row5_other_players'] = json.dumps([{} for _ in range(max(0, len(row5_other_players)))])
+    
+    # Pass current user's avatar and name to frontend
+    ctx['current_user_avatar'] = user.avatar
+    ctx['current_user_name'] = user.name
+    
+    # Debug: Add counts to context for debugging
+    ctx['debug_counts'] = json.dumps({
+        'row0_current_user': row_0,
+        'row0_other_players': len(row0_other_players),
+        'row1_current_user': row_1,
+        'row1_other_players': len(row1_other_players),
+        'row2_current_user': row_2,
+        'row2_other_players': len(row2_other_players),
+        'row3_current_user': row_3,
+        'row3_other_players': len(row3_other_players),
+        'row4_current_user': row_4,
+        'row4_other_players': len(row4_other_players),
+        'row5_current_user': row_5,
+        'row5_other_players': len(row5_other_players),
+        'total_ubung4_entries': len(game_place),
+    })
+    
     return render(request, './views/psychologischer.html', ctx)
 
 def logout(request):

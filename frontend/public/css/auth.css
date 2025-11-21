@@ -46,6 +46,31 @@
   display: none;
   right: -8px;
 }
+/* Show navigation buttons on desktop */
+@media screen and (min-width: 769px) {
+  .slider .swiper-button-prev,
+  .slider .swiper-button-next {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+  }
+  .slider .swiper-button-prev:hover,
+  .slider .swiper-button-next:hover {
+    background-color: rgba(255, 255, 255, 1);
+  }
+}
+/* Active avatar highlight */
+.slider .swiper-slide-active img {
+  border-color: var(--ls-accent-2-color);
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}
 .form__field {
   position: relative;
 }
@@ -140,4 +165,292 @@
 }
 #nutzername:focus {
   border: 3px solid red;
+}
+
+/* Required field indicator */
+.required-indicator {
+  color: #fa5252;
+  font-weight: bold;
+  margin-left: 2px;
+}
+
+/* Character counter */
+.form__char-counter {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: var(--ls-font-less);
+  color: #626262;
+  pointer-events: none;
+  background-color: var(--ls-thin-color);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.form input:focus ~ .form__char-counter {
+  top: -7px;
+  transform: translateY(0);
+}
+
+/* Error messages */
+.form__error-message {
+  display: none;
+  color: #fa5252;
+  font-size: var(--ls-font-less);
+  margin-top: 5px;
+  text-align: left;
+  padding-left: 20px;
+}
+
+.form input[aria-invalid="true"] {
+  border-color: #fa5252 !important;
+  border-width: 2px;
+}
+
+/* Success message */
+.form__success-message {
+  color: #9FE2BF;
+  font-size: var(--ls-font-large);
+  margin-top: 10px;
+  text-align: center;
+  padding: 10px;
+  background-color: rgba(159, 226, 191, 0.1);
+  border-radius: 10px;
+}
+
+/* Loading spinner */
+.loading-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 0.8s linear infinite;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Terms Modal */
+.terms-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+}
+
+.terms-modal-content {
+  background-color: var(--ls-thin-color);
+  margin: auto;
+  padding: 0;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.terms-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid var(--ls-between-color);
+  background-color: #52CEEC;
+  color: #FFFFFF;
+  border-radius: 10px 10px 0 0;
+}
+
+.terms-modal-header h2 {
+  margin: 0;
+  font-size: var(--ls-font-large);
+}
+
+.terms-modal-close {
+  background: none;
+  border: none;
+  font-size: 32px;
+  cursor: pointer;
+  color: #FFFFFF;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.terms-modal-close:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.terms-modal-body {
+  padding: 20px;
+  color: var(--ls-alfa-color);
+  line-height: 1.6;
+}
+
+.terms-modal-body p {
+  margin: 0;
+  text-align: left;
+}
+
+/* Google Slides Container Wrapper */
+.google-slides-container-wrapper {
+  position: relative;
+}
+
+/* Google Slides Container - already responsive but ensure it's properly styled */
+.google-slides-container {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+  overflow: hidden;
+  background-color: #9FE2BF;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.google-slides-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #9FE2BF;
+  border-radius: 10px;
+  border: none;
+}
+
+/* Google Slides Fullscreen Button */
+.google-slides-fullscreen-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 10;
+    pointer-events: auto;
+    background-color: #52CEEC;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.google-slides-fullscreen-button:hover {
+    background-color: #3bb5d4;
+    transform: scale(1.1);
+}
+
+.google-slides-fullscreen-button:active {
+    transform: scale(0.95);
+}
+
+.fullscreen-icon {
+    font-size: 18px;
+    line-height: 1;
+}
+
+/* Fullscreen mode styles */
+.google-slides-container-wrapper.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.google-slides-container-wrapper.fullscreen .google-slides-container {
+    width: 100%;
+    height: 100%;
+    padding-top: 0;
+}
+
+.google-slides-container-wrapper.fullscreen .google-slides-container iframe {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
+
+.google-slides-container-wrapper.fullscreen .google-slides-fullscreen-button {
+    top: 20px;
+    right: 20px;
+}
+
+/* Mobile optimizations */
+@media screen and (max-width: 768px) {
+  .form__char-counter {
+    font-size: 12px;
+    padding: 1px 4px;
+  }
+  
+  .terms-modal-content {
+    width: 95%;
+    max-height: 90vh;
+  }
+  
+  .terms-modal-header {
+    padding: 15px;
+  }
+  
+  .terms-modal-body {
+    padding: 15px;
+  }
+  
+  .slider .swiper-button-prev,
+  .slider .swiper-button-next {
+    display: none !important;
+  }
+}
+
+/* Accessibility improvements */
+.form input:focus,
+.form button:focus,
+.terms:focus,
+.swiper-button-prev:focus,
+.swiper-button-next:focus {
+  outline: 3px solid #52CEEC;
+  outline-offset: 2px;
+}
+
+/* Disabled button state */
+#submit_button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Avatar slider touch optimization */
+@media (hover: none) and (pointer: coarse) {
+  .slider .swiper-container {
+    touch-action: pan-y;
+  }
+  
+  .slider img {
+    max-height: 120px;
+  }
 }

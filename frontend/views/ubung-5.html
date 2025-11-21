@@ -16,20 +16,6 @@
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <!-- 引入组件库 -->
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
-    <style>
-        @media screen and (max-width: 1200px) {
-            .rotate-hint {
-                display: block !important;
-            }
-        }
-        .rotate-hint {
-            display: none;
-            background-color: #9FE2BF;
-            color: #626262;
-            border-radius: 10px;
-            padding: 0 10px;
-        }
-    </style>
 </head>
 <body>
   {% get_current_language as LANGUAGE_CODE %}
@@ -37,9 +23,11 @@
     <div class="app__head">
         <header class="header-main container">
             <div class="header-main__title">
-                <icon classs="icon" onClick="window.open('https://info.arks.ch/');">
+                <icon classs="icon" onClick="window.open('https://info.arks.ch/');" style="cursor: pointer; position: relative; display: inline-flex; align-items: center;">
                 <span class="icon-logo"></span>
                 <span>ARKS</span>
+                <span class="tooltip-icon arks-logo-tooltip-icon" id="arks-logo-tooltip-icon" style="display: none; margin-left: 8px;">{% trans "Info zu safecircles.ch" %}</span>
+            </icon>
             </div>
             <div class="header-main__user">
                 <div class="user">
@@ -54,11 +42,11 @@
             </div>
             <div class="header-main__progress">
                 <div class="progress">
-                <p class="rotate-hint" style="background-color: #FFFFFF; color: #626262; border-radius: 10px; padding: 0 10px;">
+                <p class="rotate-hint">
                     {% trans "Bitte dreh dein Gerät um 90° für eine bessere Lesbarkeit." %}
                 </p>
                     <div class="progress__bar">
-                        <div id="ubung5-progress-bar" style="width: 40%; border-radius: 10px;">40%</div>
+                        <div id="ubung5-progress-bar" class="progress-bar-fill">40%</div>
                     </div>
                 </div>
             </div>
@@ -68,47 +56,39 @@
         <div class="container">
             <main class="screen ubung-5">
                 <h1>
+                    <span class="tooltip-icon ubung5-tooltip-icon" id="ubung5-tooltip-icon" style="display: inline-flex; align-items: center; margin-right: 8px; vertical-align: middle; cursor: help;">?</span>
                     {% trans "Wie schätzt du den Beitrag jedes Teammitglieds zu diesem Sicherheitsanker in der täglichen Zusammenarbeit ein?" %}
                 </h1>
 
-                <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;"><br>
-                    {% trans "Deine Einschätzung ist ANONYM – KLICKE auf die Skala von +50 bis -50." %}<br><br>
+                <p class="info-box-ubung5">
+                    {% trans "Deine Einschätzung ist ANONYM – KLICKE auf die Skala von +50 bis -50." %}
                 </p>
 
-                <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
-
+                <div class="ubung5-content-box">
                 <div class="custom-graph-wrapper"></div>
-
-                {% comment %} <form action="#" method="POST" class="form">
-                {% csrf_token %}
-                    <div class="center">
-                        <input id="data" type="hidden" name="data" value=""/>
-                        <p>
-                        <button type="submit" id="button">
-                            Weiterspielen
-                        </button>
-                        </p>
-                    </div>
-                </form> {% endcomment %}
-
-                <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;"><br>
-                    {% trans "Nimm deine Einschätzungen bitte spontan, intuitiv und für jeden Mitspieler vor. Folge dem ersten Eindruck oder Bauchgefühl, wenn ihr euch noch nicht so gut kennt." %}<br><br>
-                </p>
             </div>
 
                     <div class="center">
                         <input id="data" type="hidden" name="data" value=""/>
                         <input type="hidden" name="ubung1_id" value="{{ubung1.id}}">
                         <input type="hidden" name="ubung3_id" value="{{ubung3.id}}">
-                    <p>
-                        <button type="submit" id="button" title="{% blocktrans %}Eingaben können nachträglich nicht geändert werden{% endblocktrans %}">
+                        <div id="validation-error" class="validation-error" role="alert" aria-live="polite" style="display: none;">
+                            <strong>{% trans "Bitte bewerte alle Teammitglieder" %}</strong><br>
+                            <span class="validation-error-text" id="validation-error-text"></span>
+                        </div>
+                        <div id="api-error" class="validation-error api-error" role="alert" aria-live="polite" style="display: none;">
+                            <strong>{% trans "Fehler bei der Einsendung" %}</strong><br>
+                            <span class="validation-error-text" id="api-error-text"></span>
+                        </div>
+                        <p>
+                            <button class="button" type="button" id="button" aria-label="{% trans 'Einschätzung bestätigen' %}" title="{% trans 'Eingaben können nachträglich nicht geändert werden' %}">
                             {% trans "Ja, diese Einschätzung passt" %}
                         </button>
-                    </p>
-                        <p style="text-align: center; font-size: 10px;">
-                            <a href="https://github.com/joe-the-ark/ark" target="_blank">ARKS is published under a GPLv3</a> license by 
-                            <a href="https://www.linkedin.com/in/dr-joe-maier/" target="_blank">Dr. Joe Maier</a>.
                         </p>
+                        <div class="copyright-footer">
+                            <a href="https://github.com/joe-the-ark/ark" target="_blank">{% trans "ARKS is published under a GPLv3" %}</a> {% trans "license by" %} 
+                            <a href="https://www.linkedin.com/in/dr-joe-maier/" target="_blank">{% trans "Dr. Joe Maier" %}</a>.
+                        </div>
                     </div>
 
             </main>
@@ -118,12 +98,73 @@
 <script src="/static/js/AppGraph.js"></script>
 <script src="/static/jquery-3.5.1.min.js"></script>
 <script src="/static/axios.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
 
 <script>
 
     // Translated messages
     var ALERT_MESSAGE_PREFIX = "{% trans 'Bitte bewerte alle Teammitglieder. Noch nicht bewertet:'|escapejs %}";
     var PLAYER_LABEL = "{% trans 'Spieler'|escapejs %}";
+    
+    // ARKS Logo Tooltip
+    const arksLogoContainer = document.querySelector('.header-main__title icon');
+    const arksLogoTooltipIcon = document.getElementById('arks-logo-tooltip-icon');
+    
+    if (arksLogoContainer && arksLogoTooltipIcon) {
+        arksLogoContainer.addEventListener('mouseenter', function() {
+            arksLogoTooltipIcon.style.display = 'inline-flex';
+        });
+        arksLogoContainer.addEventListener('mouseleave', function() {
+            arksLogoTooltipIcon.style.display = 'none';
+        });
+        
+        tippy(arksLogoTooltipIcon, {
+            content: "{% trans 'Info zu safecircles.ch'|escapejs %}",
+            placement: 'bottom',
+            theme: 'light',
+            delay: [200, 0],
+            allowHTML: false,
+            interactive: false,
+            trigger: 'mouseenter focus',
+            maxWidth: 300,
+        });
+    }
+    
+    // Ubung-5 Tooltip - Initialize after DOM is ready
+    function initUbung5Tooltip() {
+        const ubung5TooltipIcon = document.getElementById('ubung5-tooltip-icon');
+        if (ubung5TooltipIcon) {
+            // Make sure icon is visible
+            ubung5TooltipIcon.style.display = 'inline-flex';
+            
+            // Destroy existing tooltip if any
+            const existingInstance = ubung5TooltipIcon._tippy;
+            if (existingInstance) {
+                existingInstance.destroy();
+            }
+            
+            tippy(ubung5TooltipIcon, {
+                content: "{% trans 'Nimm deine Einschätzungen bitte spontan, intuitiv und für jeden Mitspieler vor. Folge dem ersten Eindruck oder Bauchgefühl, wenn ihr euch noch nicht so gut kennt.'|escapejs %}",
+                placement: 'bottom',
+                theme: 'light',
+                delay: [200, 0],
+                allowHTML: false,
+                interactive: false,
+                trigger: 'mouseenter focus',
+                maxWidth: 500,
+            });
+        } else {
+            console.warn('ubung5-tooltip-icon not found');
+        }
+    }
+    
+    // Initialize tooltip after DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initUbung5Tooltip);
+    } else {
+        initUbung5Tooltip();
+    }
 
     // Track total votes cast across all tension pairs using localStorage
     // Key format: 'ubung5_votes_' + gameLink + '_' + userId
@@ -232,6 +273,11 @@
         if (progressBar) {
             progressBar.style.width = progress + '%';
             progressBar.textContent = Math.round(progress) + '%';
+            progressBar.setAttribute('aria-valuenow', progress);
+            progressBar.setAttribute('aria-valuemin', '40');
+            progressBar.setAttribute('aria-valuemax', '60');
+            progressBar.setAttribute('role', 'progressbar');
+            progressBar.setAttribute('aria-label', "{% trans 'Fortschritt'|escapejs %}: " + Math.round(progress) + "%");
         }
     }
 
@@ -261,10 +307,45 @@
         });
         
         if (missingVotes.length > 0) {
-            var message = ALERT_MESSAGE_PREFIX + "\n\n" + missingVotes.join('\n');
-            alert(message);
+            // Show translated validation error instead of alert
+            const validationError = document.getElementById('validation-error');
+            const validationErrorText = document.getElementById('validation-error-text');
+            const apiError = document.getElementById('api-error');
+            
+            if (validationError && validationErrorText) {
+                // Hide API error if visible
+                if (apiError) {
+                    apiError.style.display = 'none';
+                }
+                
+                // Show validation error with list of missing votes
+                validationErrorText.textContent = ALERT_MESSAGE_PREFIX + "\n\n" + missingVotes.join('\n');
+                validationError.style.display = 'block';
+                validationError.setAttribute('role', 'alert');
+                
+                // Scroll to error message
+                validationError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // Hide error after 10 seconds
+                setTimeout(function() {
+                    if (validationError) {
+                        validationError.style.display = 'none';
+                    }
+                }, 10000);
+            } else {
+                // Fallback to alert if elements not found
+                var message = ALERT_MESSAGE_PREFIX + "\n\n" + missingVotes.join('\n');
+                alert(message);
+            }
             return false;
         }
+        
+        // Hide validation error if all players are voted
+        const validationError = document.getElementById('validation-error');
+        if (validationError) {
+            validationError.style.display = 'none';
+        }
+        
         return true;
     }
 
@@ -274,6 +355,19 @@
             return;
         }
         
+        // Disable button during submission
+        const submitButton = document.getElementById('button');
+        if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.classList.add('button-submitting');
+        }
+        
+        // Hide any existing errors
+        const validationError = document.getElementById('validation-error');
+        const apiError = document.getElementById('api-error');
+        if (validationError) validationError.style.display = 'none';
+        if (apiError) apiError.style.display = 'none';
+        
         var data_ = {
             'link': '{{game.link}}',
             'user_id': '{{user.id}}',
@@ -282,29 +376,63 @@
             'ubung3_id': '{{ubung3.id}}',
         }
         
-        console.log('data', data_);
         axios
             .post(`/api/ubung5_data/`, data_)
             .then(function(response){
                 var result = response.data.result;
+                
+                // Re-enable button
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.classList.remove('button-submitting');
+                }
+                
                 if (result === 1){
                     //window.location.href="/team-potential/";
                     window.location.href="/ubung-5/";
                 }else{
+                    // Show error message
+                    const apiErrorText = document.getElementById('api-error-text');
+                    if (apiError && apiErrorText) {
+                        apiErrorText.textContent = "{% trans 'Die Einsendung war nicht erfolgreich. Bitte versuche es erneut.'|escapejs %}";
+                        apiError.style.display = 'block';
+                        apiError.setAttribute('role', 'alert');
+                        setTimeout(function() {
+                            if (apiError) {
+                                apiError.style.display = 'none';
+                            }
+                        }, 8000);
+                    }
                     return;
                 }
             })
             .catch(function(error){
-                console.log(error);
+                // Re-enable button
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.classList.remove('button-submitting');
+                }
+                
+                // Show error message
+                const apiError = document.getElementById('api-error');
+                const apiErrorText = document.getElementById('api-error-text');
+                if (apiError && apiErrorText) {
+                    apiErrorText.textContent = "{% trans 'Ein Fehler ist aufgetreten. Bitte versuche es erneut.'|escapejs %}";
+                    apiError.style.display = 'block';
+                    apiError.setAttribute('role', 'alert');
+                    setTimeout(function() {
+                        if (apiError) {
+                            apiError.style.display = 'none';
+                        }
+                    }, 8000);
+                }
             })
     }
 
     $('#button').click(function(){
         data_submit();
-        console.log('click');
     })
 
-    const {log} = console;
 
     var lang_code = '{{LANGUAGE_CODE}}'
 
@@ -322,7 +450,7 @@
 
     document.getElementById('button').addEventListener('click', function (e) {
         //e.preventDefault();
-        log(app.getData());
+        // Data is logged in data_submit function if needed for debugging
     });
 
     function refresh(){
@@ -331,7 +459,6 @@
         $('#data').val(st);
         // Update progress bar when data refreshes
         updateUbung5ProgressBar();
-        //console.log(st);
     }
     setInterval("refresh()", 100);
     
@@ -421,6 +548,6 @@
             }
         }, 500);
     });
-    </script>
+</script>
 </body>
 </html>

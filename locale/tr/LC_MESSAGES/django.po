@@ -162,22 +162,40 @@ msgid "https://docs.google.com/presentation/d/1gyEYqnALw4y9yLPUTb1VYQO9IADDD4r-1
 msgstr "https://docs.google.com/presentation/d/1_DDImtzbaGkkLwyITIWIG0oSNfK18gzcDlfctM0S6Tw/embed?start=true&loop=false&delayms=8000"
 
 msgid "https://docs.google.com/presentation/d/1qi3wNhpRU3FEoatghY7Ca0iNwtGPQGvHqLRXCvbKKJ8/embed?start=true&loop=false&delayms=8000"
-msgstr "https://docs.google.com/presentation/d/17QkK1SF-QOIx3SeCj-dXXjLVaI58YcV6K6-NIF9EId4/embed?start=true&loop=false&delayms=8000"
+msgstr "https://docs.google.com/presentation/d/17QkK1SF-QOIx3SeCj-dXXjLVaI58YcV6K6-NIF9EId4/embed?start=true&loop=false&delayms=8000&rm=minimal"
+
+msgid "https://docs.google.com/presentation/d/1qi3wNhpRU3FEoatghY7Ca0iNwtGPQGvHqLRXCvbKKJ8/embed?start=true&loop=false&delayms=8000&rm=minimal"
+msgstr "https://docs.google.com/presentation/d/17QkK1SF-QOIx3SeCj-dXXjLVaI58YcV6K6-NIF9EId4/embed?start=true&loop=false&delayms=8000&rm=minimal"
 
 msgid "https://docs.google.com/presentation/d/1N-mOfePoj33-14mRFWnxuee-ODTfOBAUky6Zop1nTIk/embed?start=true&loop=false&delayms=8000"
 msgstr "https://docs.google.com/presentation/d/1N-mOfePoj33-14mRFWnxuee-ODTfOBAUky6Zop1nTIk/embed?start=true&loop=false&delayms=8000"
 
+msgid "https://docs.google.com/presentation/d/1N-mOfePoj33-14mRFWnxuee-ODTfOBAUky6Zop1nTIk/embed?start=true&loop=false&delayms=8000&rm=minimal"
+msgstr "https://docs.google.com/presentation/d/1N-mOfePoj33-14mRFWnxuee-ODTfOBAUky6Zop1nTIk/embed?start=true&loop=false&delayms=8000&rm=minimal"
+
 msgid "https://docs.google.com/presentation/d/1l1yXJjfM3PRuzWHs2YqvKRKgAApEj-provI2ONmmqS4/embed?start=true&loop=false&delayms=8000"
 msgstr "https://docs.google.com/presentation/d/17QkK1SF-QOIx3SeCj-dXXjLVaI58YcV6K6-NIF9EId4/embed?start=true&loop=false&delayms=8000"
+
+msgid "https://docs.google.com/presentation/d/1l1yXJjfM3PRuzWHs2YqvKRKgAApEj-provI2ONmmqS4/embed?start=true&loop=false&delayms=8000&rm=minimal"
+msgstr "https://docs.google.com/presentation/d/17QkK1SF-QOIx3SeCj-dXXjLVaI58YcV6K6-NIF9EId4/embed?start=true&loop=false&delayms=8000&rm=minimal"
 
 msgid "https://docs.google.com/presentation/d/1kgXdYDUcddeDLANKHrsWY8rkwLqaYN86oCrdpaLlod4/embed?start=true&loop=false&delayms=8000"
 msgstr "https://docs.google.com/presentation/d/1kv0eP7ZaxEp3nVk6z98tAXY6M6bu1tTx6OCY4-HvUHk/embed?start=true&loop=false&delayms=8000"
 
+msgid "https://docs.google.com/presentation/d/1kgXdYDUcddeDLANKHrsWY8rkwLqaYN86oCrdpaLlod4/embed?start=true&loop=false&delayms=8000&rm=minimal"
+msgstr "https://docs.google.com/presentation/d/1kv0eP7ZaxEp3nVk6z98tAXY6M6bu1tTx6OCY4-HvUHk/embed?start=true&loop=false&delayms=8000&rm=minimal"
+
 msgid "https://docs.google.com/presentation/d/1Cz-fav1DISq2siHi5-RW2uggyQU2ecbI1S3wxs--dng/embed?start=true&loop=false&delayms=8000"
 msgstr "https://docs.google.com/presentation/d/1ysWsX9NKq9JfTLt7J5pusV4qTfRK1PDInRTQoAWWRU4/embed?start=true&loop=false&delayms=8000"
 
+msgid "https://docs.google.com/presentation/d/1Cz-fav1DISq2siHi5-RW2uggyQU2ecbI1S3wxs--dng/embed?start=true&loop=false&delayms=8000&rm=minimal"
+msgstr "https://docs.google.com/presentation/d/1ysWsX9NKq9JfTLt7J5pusV4qTfRK1PDInRTQoAWWRU4/embed?start=true&loop=false&delayms=8000&rm=minimal"
+
 msgid "https://docs.google.com/presentation/d/1EnXkRYGm6M0Rbkkt6iFkhZ-kjo7jDjI23eDUntHLRN0/embed?start=true&loop=false&delayms=8000"
 msgstr "https://docs.google.com/presentation/d/1mcwBQYB48Db94qB1xJ2WxTvrnj4Exa3J8vreRoXgZIk/embed?start=true&loop=false&delayms=8000"
+
+msgid "https://docs.google.com/presentation/d/1EnXkRYGm6M0Rbkkt6iFkhZ-kjo7jDjI23eDUntHLRN0/embed?start=true&loop=false&delayms=8000&rm=minimal"
+msgstr "https://docs.google.com/presentation/d/1mcwBQYB48Db94qB1xJ2WxTvrnj4Exa3J8vreRoXgZIk/embed?start=true&loop=false&delayms=8000&rm=minimal"
 
 #. preview.html
 #: loco:606888e4b1ed7b49ac1acb02
@@ -459,6 +477,9 @@ msgstr "Herkesin en az bir dairede güvenli bir şekilde bağlı olduğundan emi
 
 msgid "SICHERE KREISE bei der Toleranzfenster-Grösse..."
 msgstr "Tolerans penceresi boyutunda GÜVENLİ DAİRELER..."
+
+msgid "SICHERE KREISE bei der Toleranzfenster-Grösse"
+msgstr "Tolerans penceresi boyutunda GÜVENLİ DAİRELER"
 
 msgid "PRIO 3: Die Konstellation beim "
 msgstr "ÖNCELİK 3: Konstelasyon "
@@ -955,20 +976,20 @@ msgstr "Küçük bir grupta yansıtma"
 msgid "In eurem Team beträgt der durchschnittliche Spannungsfreiheitswert"
 msgstr "Takımınızda ortalama gerilimsizlik değeri"
 
-msgid "Das ist der Wert der Spannungsfreiheit für euer Team. Als Daumenregel gilt: Werte über 80 sind entspannt. Spannungswerte über 60 sind meist noch ohne externe Begleitung bearbeitbar."
-msgstr "Bu, ekibinizin gerilimsizlik değeridir. Genel kural: 80’in üzerindeki değerler rahat kabul edilir. 60’ın üzerindeki gerilim değerleri genellikle harici destek olmadan da yönetilebilir."
+msgid "Team-Spannungsfreiheit. Werte über 80 = entspannt, über 60 = bearbeitbar."
+msgstr "Ekip gerilimsizlik değeri. 80 üzeri = rahat, 60 üzeri = yönetilebilir."
 
-msgid "Als Faustregel gilt: Mit zunehmender Spannungsfreiheit steigt die psychologische Sicherheit."
-msgstr "Genel kural: Gerilimsizlik arttıkça psikolojik güvenlik de artar."
+msgid "Mehr Spannungsfreiheit = mehr psychologische Sicherheit."
+msgstr "Daha fazla gerilimsizlik = daha fazla psikolojik güvenlik."
 
-msgid "Die Safe-Zone beschreibt den Bereich einer sicheren Basis für die Zusammenarbeit, in dem nicht mit defensiven Reaktionen (Fight, Flight, Freeze oder Fawn) zu rechnen ist."
-msgstr "Güvenli Bölge, savunmacı tepkilerin (Savaş, Kaçış, Donma veya Boyun Eğme) beklenmediği, işbirliği için güvenli bir temel alanını tanımlar."
+msgid "Sichere Basis für Zusammenarbeit ohne defensive Reaktionen."
+msgstr "Savunmacı tepkiler olmadan işbirliği için güvenli temel."
 
-msgid "Je niedriger der Stresswert, desto eher wird dass das Verhalten anderer als stressig empfunden und desto enger das Window of Tolerance."
-msgstr "Stres değeri ne kadar düşükse, başkalarının davranışları o kadar stresli algılanır ve Tolerans Penceresi o kadar dar olur."
+msgid "Niedrige Werte = hoher Stress, enges Toleranzfenster."
+msgstr "Düşük değerler = yüksek stres, dar tolerans penceresi."
 
-msgid "In der Regel haben Teammitglieder unterschiedliche Sicherheitsanker, da innere Sicherheit nicht allein im Kopf entsteht, sondern über das autonome Nervensystem beeinflusst wird – abhängig davon, was in früheren Lebensabschnitten für Sicherheit gesorgt hat."
-msgstr "Genellikle ekip üyelerinin farklı güvenlik çapaları vardır, çünkü iç güvenlik sadece zihinde oluşmaz; otonom sinir sistemi tarafından da etkilenir – geçmiş yaşam evrelerinde güvenlik sağlayan deneyimlere bağlı olarak."
+msgid "Teammitglieder haben unterschiedliche Sicherheitsanker."
+msgstr "Ekip üyelerinin farklı güvenlik çapaları vardır."
 
 msgid "Bildet jetzt bitte Zweier- oder Dreiergruppen mit Menschen, die ähnliche Sicherheitsanker gewählt hatten:"
 msgstr "Lütfen şimdi benzer güvenlik çapaları seçmiş kişilerle ikili veya üçlü gruplar oluşturun:"
@@ -991,8 +1012,11 @@ msgstr "Süre: 10 dakika."
 msgid "Welche Spannungen im Team könnt ihr mit Feedback lösen?"
 msgstr "Hangi takım içi gerilimleri geri bildirimle çözebilirsiniz?"
 
-msgid "Die Heatmap zeigt eine Zusammenfassung aller Spannungen. Beginnt eure Auswertung mit den farbigen Feldern im Inneren der Matrix, deren rechte Werte größer als 16 sind..."
-msgstr "Isı haritası tüm gerilimlerin bir özetini gösterir. Değerlendirmenize, matristeki sağ değerleri 16’dan büyük olan renkli alanlardan başlayın..."
+msgid "Die Heatmap zeigt eine Zusammenfassung aller Spannungen."
+msgstr "Isı haritası tüm gerilimlerin bir özetini gösterir."
+
+msgid "Beginnt eure Auswertung mit den farbigen Feldern im Inneren der Matrix, deren rechte Werte größer als 16 sind..."
+msgstr "Değerlendirmenize, matristeki sağ değerleri 16'dan büyük olan renkli alanlardan başlayın..."
 
 msgid "Der Farbcode im Innern der Heatmap gilt unverändert."
 msgstr "Isı haritasının içindeki renk kodu değişmeden geçerlidir."
@@ -1000,8 +1024,8 @@ msgstr "Isı haritasının içindeki renk kodu değişmeden geçerlidir."
 msgid "Bei grünen Feldern liegen Fremd- und Selbstwahrnehmung in der Safe-Zone."
 msgstr "Yeşil alanlarda öz algı ve dış algı Güvenli Bölge’dedir."
 
-msgid "Der erste Wert (in Klammern) zeigt die Fremdwahrnehmung. Ein hoher Wert deutet darauf hin, dass der Beitrag des Spielers zur spannungsfreien Zusammenarbeit aus Teamsicht groß ist. Der zweite Wert zeigt die Abweichung zwischen Fremd- und Selbstwahrnehmung. Werte über 16 deuten auf mögliche Spannungen mit dem Team hin. Bei positiven Vorzeichen schätzt der Spieler seinen eigenen Beitrag zur Teamdynamik eher zu optimistisch ein, was gelegentlich zu weiteren Spannungen im Team führen kann."
-msgstr "İlk değer (parantez içinde) dış algıyı gösterir. Yüksek bir değer, oyuncunun gerilimsiz işbirliğine katkısının ekip açısından büyük olduğunu gösterir. İkinci değer, dış algı ile öz algı arasındaki farkı gösterir. 16’nın üzerindeki değerler, ekipte olası gerilimlere işaret eder. Pozitif işaretlerde oyuncu kendi katkısını fazla iyimser değerlendirir, bu da bazen ekibin içinde ek gerilimlere yol açabilir."
+msgid "Fremdwahrnehmung (in Klammern) und Spannung (Selbst- minus Fremdwahrnehmung). Werte über 16 = mögliche Spannungen."
+msgstr "Dış algı (parantez içinde) ve gerilim (öz algı eksi dış algı). 16 üzeri değerler = olası gerilimler."
 
 msgid "Der erste Wert (in Klammern) zeigt die Fremdwahrnehmung. Je höher dieser Wert, desto grösser der Beitrag zur Spannung aus Teamsicht."
 msgstr "İlk değer (parantez içinde) dış algıyı gösterir. Bu değer ne kadar yüksekse, ekip açısından gerilime katkısı o kadar büyüktür."
@@ -1012,14 +1036,14 @@ msgstr "İkinci değer dış algı ile öz algı arasındaki farkı gösterir. 1
 msgid "Bei negativen Vorzeichen schätzt der Spieler den eigenen Beitrag zur Teamdynamik eher zu optimistisch ein. Dadurch entstehen manchmal Spannungen mit dem Team."
 msgstr "Negatif işaretlerde oyuncu kendi katkısını fazla iyimser değerlendirir. Bu da bazen ekibin içinde gerilimlere yol açar."
 
-msgid "Vertikal siehst du in der oberen Reihe den Beitrag jedes Spielers zu den Sicherheitsankern. Je höher der Wert, desto größer ist der wahrgenommene Beitrag des Spielers zur Sicherheit im Team."
-msgstr "Dikey olarak, üst sırada her oyuncunun güvenlik çapalarına katkısını görürsün. Değer ne kadar yüksekse, oyuncunun takım güvenliğine algılanan katkısı o kadar büyüktür."
+msgid "Beitrag des Spielers zur Team-Sicherheit."
+msgstr "Oyuncunun takım güvenliğine katkısı."
 
-msgid "Horizontal siehst du die Position der Safe-Zone sowie die zugehörigen Sicherheitsanker und Triggerthemen. Je grösser der Wert auf der linken Seite, desto größer ist der Beitrag dieses Sicherheitsankers zur Team-Sicherheit."
-msgstr "Yatay olarak Güvenli Bölge’nin konumunu ve ilgili güvenlik çapaları ile tetikleyici konuları görürsün. Soldaki değer ne kadar büyükse, bu güvenlik çapasının takım güvenliğine katkısı o kadar büyüktür."
+msgid "Beitrag des Sicherheitsankers zur Team-Sicherheit."
+msgstr "Güvenlik çapasının takım güvenliğine katkısı."
 
-msgid "Hier unten sind alle Spannungswerte pro Spieler aufaddiert. Auch hier gilt: Je höher der Wert mit positivem Vorzeichen, desto stärker überschätzt der Spieler seinen positiven Beitrag zur Sicherheit im Team."
-msgstr "Aşağıda her oyuncunun tüm gerilim değerleri toplanmıştır. Burada da kural geçerli: Pozitif işaretli değer ne kadar yüksekse, oyuncu takım güvenliğine olan olumlu katkısını o kadar fazla abartır."
+msgid "Summe aller Spannungswerte. Positives Vorzeichen = mögliche Überschätzung des eigenen Beitrags."
+msgstr "Tüm gerilim değerlerinin toplamı. Pozitif işaret = kendi katkısının olası abartılması."
 
 msgid "Je weiter oben ein Paar steht, desto integrierender für das Teamzusammenspiel wirkt diese Paarung vermutlich. Finde bitte einen Partner von weiter unten auf der Liste, um die Ergebnisse Deiner Reise mit der Arche zu verstehen und zu interpretieren..."
 msgstr "Bir çift listede ne kadar yukarıda yer alıyorsa, bu eşleşme takım etkileşimi için o kadar bütünleştirici olur. Lütfen yolculuğunuzun sonuçlarını anlamak ve yorumlamak için listede daha aşağıdan bir partner bulun..."
@@ -1227,3 +1251,327 @@ msgstr "Tolerans penceresi:"
 
 msgid "Klicke für weitere Informationen"
 msgstr "Daha fazla bilgi için tıklayın"
+
+msgid "Der Benutzername muss mehr als 2 Zeichen lang sein."
+msgstr "Kullanıcı adı 2 karakterden uzun olmalıdır."
+
+msgid "Der Name der Reisegruppe muss mehr als 2 Zeichen lang sein."
+msgstr "Seyahat grubu adı 2 karakterden uzun olmalıdır."
+
+msgid "Dieser Name der Reisegruppe ist bereits vergeben. Bitte wähle einen anderen Namen."
+msgstr "Bu seyahat grubu adı zaten alınmış. Lütfen başka bir ad seçin."
+
+msgid "Bitte gib einen Benutzernamen ein."
+msgstr "Lütfen bir kullanıcı adı girin."
+
+msgid "Bitte gib einen Namen für deine Reisegruppe ein."
+msgstr "Lütfen seyahat grubunuz için bir ad girin."
+
+msgid "Bitte wähle ein Benutzerbild aus."
+msgstr "Lütfen bir avatar seçin."
+
+msgid "Wird verarbeitet..."
+msgstr "İşleniyor..."
+
+msgid "Sprache auswählen"
+msgstr "Dil seç"
+
+msgid "Nutzungsbedingungen anzeigen"
+msgstr "Kullanım koşullarını göster"
+
+msgid "Schließen"
+msgstr "Kapat"
+
+msgid "Präsentation"
+msgstr "Sunum"
+
+msgid "Avatar-Auswahl"
+msgstr "Avatar seçimi"
+
+msgid "Vorheriges Avatar"
+msgstr "Önceki avatar"
+
+msgid "Nächstes Avatar"
+msgstr "Sonraki avatar"
+
+msgid "Avatar"
+msgstr "Avatar"
+
+msgid "Sie nehmen an einem Forschungsprojekt teil. Ihr Beitrag zu unserem Forschungsprojekt ermöglicht es Wissenschaftlern, mehr über Organisationsdynamik, Dimensionen psychologischer Sicherheit, Spannungsfelder sowie Selbst- und Fremdwahrnehmung innerhalb von Teams herauszufinden. Wir verwenden auch aggregierte Spieldaten, um unsere Software zu verbessern und Muster im Kontext unserer Forschungsfragen zu identifizieren. Durch die Nutzung der Software bestätigen Sie Ihre Akzeptanz der Nutzungsbedingungen. Ihre Teilnahme ist freiwillig. Sie können das Experiment jederzeit beenden, indem Sie Ihren Browser schließen."
+msgstr "Bir araştırma projesine katılıyorsunuz. Araştırma projemize katkınız, bilim insanlarının organizasyonel dinamikler, psikolojik güvenlik boyutları, gerilim alanları ve ekipler içindeki öz ve dış algılar hakkında daha fazla bilgi edinmesini sağlayacaktır. Ayrıca yazılımımızı iyileştirmek ve araştırma sorularımız bağlamında kalıpları belirlemek için toplu oyun verilerini kullanıyoruz. Yazılımı kullanarak kullanım koşullarını kabul ettiğinizi onaylarsınız. Katılımınız gönüllüdür. Tarayıcınızı kapatarak deneyi istediğiniz zaman durdurabilirsiniz."
+
+msgid "Info zu safecircles.ch"
+msgstr "safecircles.ch hakkında bilgi"
+
+msgid "Dieser Name ist bereits vergeben. Bitte wähle einen anderen Namen."
+msgstr "Bu isim zaten alınmış. Lütfen başka bir isim seçin."
+
+msgid "Das Spiel hat bereits begonnen. Du kannst nicht mehr beitreten."
+msgstr "Oyun zaten başladı. Artık katılamazsınız."
+
+msgid "Dieses Avatar ist verfügbar."
+msgstr "Bu avatar kullanılabilir."
+
+msgid "Spiel ist beitretbar"
+msgstr "Oyuna katılınabilir"
+
+msgid "Spiel hat bereits begonnen"
+msgstr "Oyun zaten başladı"
+
+msgid "Link kopieren"
+msgstr "Bağlantıyı kopyala"
+
+msgid "Kopiert!"
+msgstr "Kopyalandı!"
+
+msgid "QR-Code herunterladen"
+msgstr "QR kodunu indir"
+
+msgid "QR-Code als Bild speichern"
+msgstr "QR kodunu resim olarak kaydet"
+
+msgid "QR-Code zum Teilen"
+msgstr "Paylaşım için QR kod"
+
+msgid "Weiter zur nächsten Seite"
+msgstr "Sonraki sayfaya devam et"
+msgid "Sprachauswahl"
+msgstr "Dil seçimi"
+
+msgid "ARKS is published under a GPLv3"
+msgstr "ARKS GPLv3 lisansı altında yayınlanmıştır"
+
+msgid "license by"
+msgstr "lisansı"
+
+msgid "Dr. Joe Maier"
+msgstr "Dr. Joe Maier"
+
+msgid "Vollbild anzeigen"
+msgstr "Tam ekran göster"
+
+msgid "Vollbild beenden"
+msgstr "Tam ekrandan çık"
+
+msgid "Bitte bewege den Slider, um eine Bewertung abzugeben."
+msgstr "Lütfen bir değerlendirme göndermek için kaydırıcıyı hareket ettirin."
+
+msgid "Performance-Bewertung"
+msgstr "Performans Değerlendirmesi"
+
+msgid "Performance-Slider"
+msgstr "Performans Kaydırıcısı"
+
+msgid "Low"
+msgstr "Düşük"
+
+msgid "Medium"
+msgstr "Orta"
+
+msgid "High"
+msgstr "Yüksek"
+
+msgid "1 = niedrige Performance, 99 = hohe Performance. Die Skala zeigt die durchschnittliche Team-Performance."
+msgstr "1 = düşük performans, 99 = yüksek performans. Ölçek, ortalama takım performansını gösterir."
+
+msgid "Bitte bewege den Slider"
+msgstr "Lütfen kaydırıcıyı hareket ettirin"
+
+msgid "Du musst eine Bewertung zwischen 1 und 99 abgeben, bevor du fortfahren kannst."
+msgstr "Devam etmeden önce 1 ile 99 arasında bir değerlendirme yapmalısınız."
+
+msgid "Bitte wähle einen Sicherheitsanker"
+msgstr "Lütfen bir güvenlik çapası seçin"
+
+msgid "Du musst einen Begriff auswählen oder einen eigenen eingeben, bevor du fortfahren kannst."
+msgstr "Devam etmeden önce bir terim seçmeli veya kendi teriminizi girmelisiniz."
+
+msgid "Dieser Begriff wurde bereits von einem anderen Mitreisenden gewählt."
+msgstr "*Bu terim zaten başka bir yolcu tarafından seçilmiş."
+
+msgid "Eigenen Begriff eingeben..."
+msgstr "Kendi teriminizi girin..."
+
+msgid "Sicherheitsanker eingeben"
+msgstr "Güvenlik çapası girin"
+
+msgid "Sicherheitsanker-Begriffe"
+msgstr "Güvenlik çapası terimleri"
+
+msgid "Bereits gewählt"
+msgstr "Zaten seçildi"
+
+msgid "Dein Sicherheitsanker ist ein positiver Wert oder Begriff, der dir in unsicheren Situationen Halt gibt und dein Sicherheitsgefühl im Team stärkt."
+msgstr "Güvenlik çapanız, belirsiz durumlarda size destek olan ve takımdaki güvenlik duygunuzu güçlendiren olumlu bir değer veya terimdir."
+
+msgid "Bitte wähle ein Triggerthema"
+msgstr "Lütfen bir tetikleyici konu seçin"
+
+msgid "Triggerthema-Begriffe"
+msgstr "Tetikleyici konu terimleri"
+
+msgid "Triggerthema eingeben"
+msgstr "Tetikleyici konu girin"
+
+msgid "Fehler bei der Auswahl"
+msgstr "Seçim hatası"
+
+msgid "Du hast dasselbe Sicherheitsanker- und Triggerthema wie ein anderer Mitreisender gewählt. Bitte wähle erneut."
+msgstr "Başka bir yolcuyla aynı güvenlik çapası ve tetikleyici konuyu seçtiniz. Lütfen tekrar seçin."
+
+msgid "Das Triggerthema ist der negative Gegenpol zu deinem Sicherheitsanker. Es beschreibt, was dich im Team negativ beeinflusst oder zu einem Gefühl von Angst beitragen kann."
+msgstr "Tetikleyici konu, güvenlik çapanızın negatif karşı kutbudur. Takımda sizi olumsuz etkileyen veya korku hissine katkıda bulunabilecek şeyleri açıklar."
+
+msgid "Ein Fehler ist aufgetreten. Bitte versuche es erneut."
+msgstr "Bir hata oluştu. Lütfen tekrar deneyin."
+
+msgid "Aktualisieren"
+msgstr "Güncelle"
+
+msgid "Erfolgreich aktualisiert!"
+msgstr "Başarıyla güncellendi!"
+
+msgid "Dein Gegensatzpaar wurde erfolgreich aktualisiert."
+msgstr "Karşıt çiftiniz başarıyla güncellendi."
+
+msgid "Bitte fülle beide Felder aus"
+msgstr "Lütfen her iki alanı da doldurun"
+
+msgid "Du musst sowohl einen Sicherheitsanker als auch ein Triggerthema eingeben, bevor du fortfahren kannst."
+msgstr "Devam etmeden önce hem bir güvenlik çapası hem de bir tetikleyici konu girmelisiniz."
+
+msgid "Fehler bei der Aktualisierung"
+msgstr "Güncelleme hatası"
+
+msgid "Reise mit"
+msgstr "Yeşil oyuncularla"
+
+msgid "grünen Spielern fortsetzen"
+msgstr "yolculuğa devam et"
+
+msgid "Auf weitere"
+msgstr "Daha fazla"
+
+msgid "Spieler warten"
+msgstr "oyuncu bekle"
+
+msgid "Lade mehr Spieler ein! Es werden mindestens 3 Spieler benötigt, um dieses Spiel zu spielen."
+msgstr "Daha fazla oyuncu davet edin! Bu oyunu oynamak için en az 3 oyuncu gereklidir."
+
+msgid "Warte, bis mehr Spieler hier im Warteraum angekommen sind."
+msgstr "Bekleme odasında daha fazla oyuncu gelene kadar bekleyin."
+
+msgid "Die Einsendung war nicht erfolgreich. Bitte versuche es erneut."
+msgstr "Gönderim başarılı olmadı. Lütfen tekrar deneyin."
+
+msgid "Fehler bei der Einsendung"
+msgstr "Gönderim hatası"
+
+msgid "Einschätzung bestätigen"
+msgstr "Değerlendirmeyi onayla"
+
+msgid "The following correlation applies: the higher your psychological safety, the better the team's performance."
+msgstr "Aşağıdaki korelasyon geçerlidir: psikolojik güvenliğiniz ne kadar yüksekse, takım performansı o kadar iyidir."
+
+
+msgid "Alle da?"
+msgstr "Herkes burada mı?"
+
+msgid "Fortfahren wenn alle Spieler grün sind"
+msgstr "Tüm oyuncular yeşil olduğunda devam et"
+
+msgid "Fortfahren, sobald alle Spieler GRÜN sind"
+msgstr "Tüm oyuncular YEŞİL olduğunda devam et"
+
+msgid "Auf weitere Spieler warten"
+msgstr "Daha fazla oyuncu bekle"
+
+
+msgid "Spiel-Link in Zwischenablage kopieren"
+msgstr "Oyun bağlantısını panoya kopyala"
+
+msgid "Werte über 8 gelten als Safe, der Graubereich liegt zwischen 6.5-7.5, unter 6.5 gilt als eher Unsicher – vielleicht wäre externe Unterstützung angezeigt – Werte unter 6 gelten als sehr unsicher."
+msgstr "8 üzeri değerler Güvenli olarak kabul edilir, gri alan 6.5-7.5 arasındadır, 6.5'in altı oldukça Güvensiz olarak kabul edilir – belki dış destek gerekebilir – 6'nın altındaki değerler çok güvensiz olarak kabul edilir."
+
+
+msgid "Als PDF speichern"
+msgstr "PDF olarak kaydet"
+
+
+msgid "hat dich in diese Box gewählt"
+msgstr "seni bu kutuya oyladı"
+
+
+msgid "Du wurdest in diese Box gewählt"
+msgstr "Bu kutuya oyladınız"
+
+
+msgid "Ein anderer Spieler wurde in diese Box gewählt"
+msgstr "Başka bir oyuncu bu kutuya oylandı"
+
+msgid "Klicken für Anweisungen"
+msgstr "Talimatlar için tıklayın"
+
+msgid "PRIO 2: Satelliten integrieren – "
+msgstr "ÖNCELİK 2: Uyduları Entegre Et – "
+
+msgid "beim Toleranzfenster-Wert von "
+msgstr "tolerans penceresi değerinde "
+
+msgid "PRIO 3: Boss-Zentralität erhöhen – "
+msgstr "ÖNCELİK 3: Patron Merkeziliğini Artır – "
+
+msgid "die Konstellation beim "
+msgstr "konstelasyon "
+
+msgid "Priority 2: How to Integrate Solists / Satellites\n\nSatellites are team members who operate on the periphery, not yet integrated into any core safe circle. Integrating them requires a sensitive and intentional process. The first step is to identify them and recognize their potential. Their distanced position often grants them a clearer view of \"elephants in the room\" or hidden dynamics that more embedded members might miss. The second step is to facilitate their inclusion by identifying natural connection points. Look for existing integrators who can act as bridge-builders, or find projects or tasks where closer collaboration can occur organically. It is crucial, however, to first verify the satellite's own desire for greater integration; not everyone seeks deeper immersion, and forcing it can be counterproductive. If the interest is mutual, the final step involves targeted interventions for belonging, such as establishing regular check-ins or peer-learning formats. The goal is not to force everyone into one large, homogenous circle, but to carefully bring the satellite into at least one safe micro-structure, thereby enriching the team with their unique perspective and reducing the defensive reactions that isolation can foster."
+msgstr "Öncelik 2: Solistler / Uyduları Nasıl Entegre Ederiz\n\nUydular, çevrede faaliyet gösteren, henüz herhangi bir temel güvenli çembere entegre edilmemiş takım üyeleridir. Onları entegre etmek hassas ve kasıtlı bir süreç gerektirir. İlk adım, onları tanımlamak ve potansiyellerini kabul etmektir. Uzak konumları genellikle daha gömülü üyelerin kaçırabileceği \"odadaki filler\" veya gizli dinamikler hakkında daha net bir görüş sağlar. İkinci adım, doğal bağlantı noktalarını belirleyerek dahil edilmelerini kolaylaştırmaktır. Köprü kurucular olarak hareket edebilecek mevcut entegratörleri arayın veya daha yakın işbirliğinin organik olarak gerçekleşebileceği projeler veya görevler bulun. Ancak, önce uydunun daha büyük entegrasyon arzusunu doğrulamak çok önemlidir; herkes daha derin bir dalış aramaz ve bunu zorlamak ters etki yaratabilir. İlgi karşılıklıysa, son adım, düzenli kontrol noktaları veya akran öğrenme formatları oluşturma gibi aidiyet için hedefli müdahaleleri içerir. Amaç, herkesi tek bir büyük, homojen çembere zorlamak değil, uyduyu en az bir güvenli mikro yapıya dikkatle getirerek takımı benzersiz bakış açılarıyla zenginleştirmek ve izolasyonun besleyebileceği savunma tepkilerini azaltmaktır."
+
+msgid "Priority 3: How to Securely Connect the Boss\n\nA leader's integration into the team's safe circles is a critical performance factor, yet they often systematically overestimate their own centrality and positive influence. To securely connect, the boss must first engage in honest self-reflection and seek a realistic assessment of the team's actual perception of psychological safety, contrasting it with one's own. The foundation for secure connection is the leader's inner security. This self-regulation ability—staying calm, curious, and flexible under pressure—is the safety anchor that prevents their stress from triggering defensive reactions across the team. With this foundation, the leader can then take conscious steps to increase their centrality. This is achieved not by command, but by actively participating in the team's safe circles, listening, and demonstrating vulnerability. The leader's role shifts to holding the space—creating and protecting an environment where open, drama-free communication can flourish. Ultimately, a leader can only foster a safe team if they are themselves a stable, integrated part of its psychological safe circles."
+msgstr "Öncelik 3: Patronu Güvenli Bir Şekilde Nasıl Bağlarız\n\nBir liderin takımın güvenli çemberlerine entegrasyonu kritik bir performans faktörüdür, ancak genellikle kendi merkeziliğini ve olumlu etkisini sistematik olarak abartırlar. Güvenli bir şekilde bağlanmak için, patron önce dürüst bir öz-yansıtma yapmalı ve takımın psikolojik güvenlik algısının gerçekçi bir değerlendirmesini aramalı, bunu kendi algısıyla karşılaştırmalıdır. Güvenli bağlantının temeli, liderin iç güvenliğidir. Bu öz-düzenleme yeteneği—baskı altında sakin, meraklı ve esnek kalmak—streslerinin takım genelinde savunma tepkilerini tetiklemesini önleyen güvenlik çapasıdır. Bu temelle, lider daha sonra merkeziliğini artırmak için bilinçli adımlar atabilir. Bu, komutla değil, takımın güvenli çemberlerine aktif olarak katılarak, dinleyerek ve kırılganlık göstererek elde edilir. Liderin rolü, alanı tutmaya kayar—açık, dramadan arınmış iletişimin gelişebileceği bir ortam yaratmak ve korumak. Sonuç olarak, bir lider ancak kendisi takımın psikolojik güvenli çemberlerinin istikrarlı, entegre bir parçasıysa güvenli bir takım yetiştirebilir."
+
+msgid "PRIO 1: Integratoren stärken – "
+msgstr "ÖNCELİK 1: Entegratörleri güçlendirin – "
+
+msgid "diese Konstellation ermöglicht euch ein "
+msgstr "bu konstelasyon size bir "
+
+msgid "PRIO 1-Erklärung"
+msgstr "ÖNCELİK 1 açıklaması"
+
+msgid "PRIO 1: How to Put Integrators in Service of the Team's Psychological Safety Development\n\nIntegrators are team members who naturally belong to multiple psychological safe circles, acting as crucial bridges between different subgroups. To harness them for the team's safety development, a deliberate, multi-step approach is essential. First, identify these individuals by mapping the team's safe circles; they are the ones present in several overlapping zones of trust. Their strength lies in their ability to mediate between conflicting parties without being entangled in the drama. Second, provide them with support, protection, and relief. Acknowledge the often-unseen burden they carry and create structures that allow them to perform this role without burning out. Third, enable and encourage them to share their observations and suggestions within the team. Their unique, cross-cutting perspective can reveal tensions and offer solutions without forcing direct confrontation. Finally, only pursue the small, concrete steps (Babysteps) they propose that have broad team support. By strengthening these integrators, you leverage their existing trust to maintain and enhance psychological safety sustainably, focusing on the team's connective tissue rather than its fault lines."
+msgstr "ÖNCELİK 1: Entegratörleri Takımın Psikolojik Güvenlik Gelişimine Nasıl Hizmet Ettiririz\n\nEntegratörler, doğal olarak birden fazla psikolojik güvenli çembere ait olan, farklı alt gruplar arasında kritik köprüler görevi gören takım üyeleridir. Onları takımın güvenlik gelişimi için kullanmak için, kasıtlı, çok adımlı bir yaklaşım gereklidir. İlk olarak, takımın güvenli çemberlerini haritalayarak bu bireyleri belirleyin; bunlar birkaç örtüşen güven bölgesinde bulunan kişilerdir. Güçleri, dramaya bulaşmadan çatışan taraflar arasında arabuluculuk yapma yeteneklerinde yatar. İkinci olarak, onlara destek, koruma ve rahatlama sağlayın. Taşıdıkları genellikle görünmeyen yükü kabul edin ve bu rolü tükenmeden yerine getirmelerine olanak tanıyan yapılar oluşturun. Üçüncü olarak, gözlemlerini ve önerilerini takım içinde paylaşmalarını sağlayın ve teşvik edin. Benzersiz, kapsamlı bakış açıları, doğrudan yüzleşmeye zorlamadan gerilimleri ortaya çıkarabilir ve çözümler sunabilir. Son olarak, geniş takım desteğine sahip olan küçük, somut adımları (Babysteps) takip edin. Bu entegratörleri güçlendirerek, mevcut güvenlerini sürdürülebilir bir şekilde psikolojik güvenliği korumak ve geliştirmek için kullanırsınız, takımın bağ dokusuna odaklanarak hata çizgilerinden ziyade."
+
+
+msgid "Spieler-Avatar"
+msgstr "Oyuncu Avatarı"
+
+msgid "ANONYMES FEEDBACK"
+msgstr "ANONİM GERİ BİLDİRİM"
+
+msgid "HEATMAP der Spannungen"
+msgstr "GERİLİM HARİTASI"
+
+msgid "COUNSELING - Kontakt aufnehmen"
+msgstr "DANIŞMANLIK - İletişime Geç"
+
+msgid "TUTORIAL Video"
+msgstr "EĞİTİM VİDEOSU"
+
+msgid "PAYPAL Spende"
+msgstr "PAYPAL BAĞIŞ"
+
+msgid "ANONYMES FEEDBACK: Mit 3 bewährten Fragen zur Stärkung der psychologischen Sicherheit im Team"
+msgstr "ANONİM GERİ BİLDİRİM: Takımdaki psikolojik güvenliği güçlendirmek için 3 kanıtlanmış soruyla"
+
+msgid "COUNSELING: Für eine professionelle Intervention zur Erweiterung eurer Psychological Safe Circles"
+msgstr "DANIŞMANLIK: Psikolojik Güvenli Dairelerinizi genişletmek için profesyonel müdahale"
+
+msgid "TUTORIAL: Erklärung zur Berechnung der Safecircles"
+msgstr "EĞİTİM: Güvenli Dairelerin nasıl hesaplandığının açıklaması"
+
+msgid "Für eine professionelle Intervention nimm Kontakt mit deinem Coach oder mit Dr. Joe Maier auf. Das Ziel ist die Erweiterung eurer Psychological Safe Circles. (Empfohlen für Teams mit einem psychologischen Sicherheitswert unter 60)."
+msgstr "Profesyonel müdahale için koçunuz veya Dr. Joe Maier ile iletişime geçin. Amaç, Psikolojik Güvenli Dairelerinizi genişletmektir. (Psikolojik güvenlik değeri 60'ın altında olan ekipler için önerilir)."
+
+msgid "In diesem Video erklären wir, wie die Safecircles berechnet werden. Eure Safecircles sind eine Selbstbeschreibung durch das Team mit Hilfe eines soziometrischen Verfahrens und KEIN Test."
+msgstr "Bu videoda, Güvenli Dairelerin nasıl hesaplandığını açıklıyoruz. Güvenli Daireleriniz, bir sosyometrik yöntem kullanarak ekip tarafından yapılan bir öz tanımlamadır ve bir TEST DEĞİLDİR."

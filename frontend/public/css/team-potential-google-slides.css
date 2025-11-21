@@ -1,0 +1,128 @@
+/* Google Slides Container Styles */
+.google-slides-container {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    overflow: hidden;
+    border-radius: 10px;
+    background-color: #9FE2BF;
+}
+
+.google-slides-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Ensure the iframe takes the full width */
+    height: 100%;
+    border: none;
+}
+
+.google-slides-container-wrapper {
+    position: relative;
+}
+
+.google-slides-fullscreen-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 10;
+    pointer-events: auto;
+    background-color: #52CEEC;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.google-slides-fullscreen-button:hover {
+    background-color: #3bb5d4 !important;
+    transform: scale(1.1);
+}
+
+.google-slides-fullscreen-button:active {
+    transform: scale(0.95);
+}
+
+.google-slides-container-wrapper.fullscreen {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.google-slides-container-wrapper.fullscreen .google-slides-container {
+    width: 100%;
+    height: 100%;
+    padding-top: 0;
+}
+
+.google-slides-container-wrapper.fullscreen .google-slides-container iframe {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
+
+.google-slides-container-wrapper.fullscreen .google-slides-fullscreen-button {
+    top: 20px;
+    right: 20px;
+}
+
+.fullscreen-icon {
+    font-size: 18px;
+    line-height: 1;
+}
+
+@media print {
+    @page {
+        size: A4 portrait; /* Use landscape orientation for better fit */
+        margin: 0;
+    }
+
+    body {
+        margin: 0;
+        background-color: #ffffff; /* Change background color for print */
+        -webkit-print-color-adjust: exact; /* Chrome, Safari */
+        print-color-adjust: exact; /* Standard property */
+        color-adjust: exact; /* Firefox (legacy) */
+    }
+
+    .header-main__progress, .center, .container {
+        page-break-inside: no;
+    }
+
+    .google-slides-container {
+        position: relative;
+        width: 100%;
+        height: 0;
+        padding-top: 75%; /* Adjust to fit within print area */
+        overflow: visible; /* Ensure the content is not hidden */
+        border-radius: 0;
+        background-color: #fff;
+    }
+
+    .google-slides-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transform: scale(0.75); /* Adjust scale to fit the print area */
+        transform-origin: top left;
+        border: none;
+    }
+}
+

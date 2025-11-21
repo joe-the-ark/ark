@@ -1,0 +1,201 @@
+/* Psychologischer Safety Page Specific Styles */
+
+/* Info Box */
+.psychologischer-info-box {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    background-color: var(--ls-thin-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Statement Boxes (Distry) */
+.psychologischer__container .distry {
+    margin-bottom: 15px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.psychologischer__container .distry:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+}
+
+.psychologischer__container .distry__description {
+    padding: 12px 15px;
+    font-weight: 500;
+    border-radius: 10px 10px 0 0;
+}
+
+.psychologischer__container .distry__thumbnails {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 15px;
+    background-color: var(--ls-thin-color);
+}
+
+.psychologischer__container .distry__user {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ccc;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+    cursor: help;
+    position: relative;
+}
+
+.psychologischer__container .distry__user.highlighted-box {
+    background-color: #52CEEC;
+    border: 3px solid var(--ls-accent-1-color);
+    box-shadow: 0 2px 6px rgba(82, 206, 236, 0.4);
+}
+
+/* Anonymous gray circles for other players */
+.psychologischer__container .distry__user.anonymous-circle {
+    background-color: #ccc;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    cursor: help;
+    position: relative;
+}
+
+.psychologischer__container .distry__user:hover {
+    transform: scale(1.1);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+.psychologischer__container .distry__user.highlighted-box:hover {
+    box-shadow: 0 3px 8px rgba(82, 206, 236, 0.6);
+    border-color: var(--ls-accent-1-color);
+}
+
+.psychologischer__container .distry__user.circle-tooltip {
+    position: relative;
+}
+
+/* Team Average Indicator */
+.team-average {
+    margin: 20px 0;
+}
+
+.team-average__circle {
+    transition: all 0.3s ease;
+}
+
+.team-average__circle:hover {
+    transform: scale(1.05);
+}
+
+/* Info Box at Bottom */
+.psychologischer-bottom-info {
+    background-color: #9FE2BF;
+    color: #626262;
+    border-radius: 10px;
+    padding: 15px 20px;
+    margin: 20px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Print Button */
+.print-button {
+    background-color: #9FE2BF;
+    color: #626262;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: var(--ls-font-base);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-weight: 500;
+}
+
+.print-button:hover {
+    background-color: #7FD4A3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.print-button:active {
+    transform: translateY(0);
+}
+
+/* Print Styles */
+@media print {
+    @page {
+        size: A4;
+        margin: 0;
+    }
+
+    body {
+        margin: 0;
+        -webkit-print-color-adjust: exact;
+        color-adjust: exact;
+    }
+
+    .header-main__progress, .center, .container {
+        page-break-inside: auto;
+    }
+
+    .print-button {
+        display: none;
+    }
+
+    .psychologischer__container .distry {
+        page-break-inside: avoid;
+    }
+}
+
+/* Mobile Optimizations */
+@media screen and (max-width: 768px) {
+    .psychologischer-info-box {
+        padding: 12px 15px;
+        font-size: var(--ls-font-small);
+    }
+
+    .psychologischer__container .distry__description {
+        padding: 10px 12px;
+        font-size: var(--ls-font-small);
+    }
+
+    .psychologischer__container .distry__thumbnails {
+        padding: 12px;
+        gap: 8px;
+    }
+
+    .psychologischer__container .distry__user {
+        width: 35px;
+        height: 35px;
+    }
+
+    .psychologischer-bottom-info {
+        padding: 12px 15px;
+        font-size: var(--ls-font-small);
+    }
+
+    .print-button {
+        padding: 6px 12px;
+        font-size: var(--ls-font-small);
+        margin-left: 10px;
+    }
+}
+
+/* Accessibility Improvements */
+.psychologischer__container .distry:focus {
+    outline: 2px solid var(--ls-accent-1-color);
+    outline-offset: 2px;
+}
+
+.print-button:focus {
+    outline: 2px solid var(--ls-accent-1-color);
+    outline-offset: 2px;
+}
+

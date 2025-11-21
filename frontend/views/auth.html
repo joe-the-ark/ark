@@ -21,14 +21,25 @@
             <div class="language-selector" style="display:inline-block;">
                     <form action="{% url 'set_language' %}" method="post" style="vertical-align:middle;">{% csrf_token %}
                         <input name="next" type="hidden" value="">
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% if LANGUAGE_CODE == 'zh-hans' %}
+                            <img id="flag" src="{% static 'images/flags/4_zh-hans_transparent.png' %}" style="width:20%;vertical-align:middle;padding-left:1px" alt="language flag">
+                        {% elif LANGUAGE_CODE == 'de' %}
+                            <img id="flag" src="{% static 'images/flags/1_de_transparent.png' %}" style="width:20%;vertical-align:middle;padding-left:1px" alt="language flag">
+                        {% elif LANGUAGE_CODE == 'fr' %}
+                            <img id="flag" src="{% static 'images/flags/3_fr_transparent.png' %}" style="width:20%;vertical-align:middle;padding-left:1px" alt="language flag">
+                        {% elif LANGUAGE_CODE == 'tr' %}
+                            <img id="flag" src="{% static 'images/flags/5_tr_transparent.png' %}" style="width:20%;vertical-align:middle;padding-left:1px" alt="language flag">
+                        {% else %}
                         <img id="flag" src="{% static 'images/flags/2_en_transparent.png' %}" style="width:20%;vertical-align:middle;padding-left:1px" alt="language flag">
-                        <select onchange="this.form.submit()" name="language" id="select_" style="width: auto; vertical-align:middle; border-radius: 10px; padding: 10px;">
-                            {% get_current_language as LANGUAGE_CODE %}
+                        {% endif %}
+                        <select onchange="updateLanguageFlag(); this.form.submit();" name="language" id="select_" style="width: auto; vertical-align:middle; border-radius: 10px; padding: 10px;" aria-label="{% trans 'Sprache auswählen' %}">
+                            <option value="" selected>{% trans "Sprachauswahl" %}</option>
                             {% get_available_languages as LANGUAGES %}
                             {% get_language_info_list for LANGUAGES as languages %}
                             {% for language in languages %}
-                                <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
-                                    {{ language.name_local }} ({{ language.code }})
+                                <option value="{{ language.code }}">
+                                    {{ language.name_local }}
                                 </option>
                             {% endfor %}
                         </select>
@@ -47,10 +58,11 @@
                     </div>
                 </div>
             <div class="header-main__title">
-                <icon classs="icon" onClick="window.open('https://info.arks.ch/');">
+                <icon classs="icon" onClick="window.open('https://info.arks.ch/');" style="cursor: pointer; position: relative; display: inline-flex; align-items: center;">
                 <span class="icon-logo"></span>
                 <span>ARKS</span>
-
+                <span class="tooltip-icon arks-logo-tooltip" id="arks-logo-tooltip-icon" style="display: none; margin-left: 8px;">{% trans "Info zu safecircles.ch" %}</span>
+            </icon>
             </div>
         </header>
     </div>
@@ -64,31 +76,47 @@
                     {% trans "Bist du bereit für die aufrichtigste Team-Challenge deiner Karriere mit der Arche (für 3 bis 15 Personen)?" %}<br>
                 </p>
                 <span class="terms_str">{% trans "Das sind die" %}
-                  <span class="terms" style="text-decoration:underline;">{% trans "Nutzungsbedingungen" %}</span>
-
+                  <button type="button" class="terms" id="terms-button" style="text-decoration:underline; background: none; border: none; color: inherit; cursor: pointer; font-size: inherit;" aria-label="{% trans 'Nutzungsbedingungen anzeigen' %}">{% trans "Nutzungsbedingungen" %}</button>
                 </span>
+                
+                <!-- Terms of Use Modal -->
+                <div id="terms-modal" class="terms-modal" style="display: none;">
+                    <div class="terms-modal-content">
+                        <div class="terms-modal-header">
+                            <h2>{% trans "Nutzungsbedingungen" %}</h2>
+                            <button type="button" class="terms-modal-close" id="terms-modal-close" aria-label="{% trans 'Schließen' %}">×</button>
+                        </div>
+                        <div class="terms-modal-body">
+                            <p>{% trans "Sie nehmen an einem Forschungsprojekt teil. Ihr Beitrag zu unserem Forschungsprojekt ermöglicht es Wissenschaftlern, mehr über Organisationsdynamik, Dimensionen psychologischer Sicherheit, Spannungsfelder sowie Selbst- und Fremdwahrnehmung innerhalb von Teams herauszufinden. Wir verwenden auch aggregierte Spieldaten, um unsere Software zu verbessern und Muster im Kontext unserer Forschungsfragen zu identifizieren. Durch die Nutzung der Software bestätigen Sie Ihre Akzeptanz der Nutzungsbedingungen. Ihre Teilnahme ist freiwillig. Sie können das Experiment jederzeit beenden, indem Sie Ihren Browser schließen." %}</p>
+                        </div>
+                    </div>
+                </div>
                 <form id="form_" action="#" method="POST" id="auth-form" class="form" onkeypress="javascript: if (event.keyCode==13 || event.onclick){check_game_name();return false;}">
                 {% csrf_token %}
                     <div class="form__field">
-                        <input maxlength="12" minlength="2" id="nutzername" type="text" name="Nutzername" value="" required autofocus/ style="border-radius: 10px;">
-                        <span class="form__placeholder">{% trans "Nutzername" %}</span>
+                        <input maxlength="12" minlength="2" id="nutzername" type="text" name="Nutzername" value="" required autofocus aria-required="true" aria-describedby="nutzername-error nutzername-counter" style="border-radius: 10px;">
+                        <span class="form__placeholder">{% trans "Nutzername" %} <span class="required-indicator">*</span></span>
+                        <span class="form__char-counter" id="nutzername-counter">0 / 12</span>
+                        <span class="form__error-message" id="nutzername-error" role="alert" aria-live="polite"></span>
                     </div>
                         <p>
                         {% trans "Die Reisezeit der ersten Etappe beträgt eine Stunde." %}
                         </p>
                     <div class="form__field">
-                        <input maxlength="15" minlength="2" id="name-des-spiels" type="text" name="name-des-spiels" value="" required/ style="border-radius: 10px;">
-                        <span class="form__placeholder">{% trans "Name deiner Reisegruppe" %}</span>
+                        <input maxlength="15" minlength="2" id="name-des-spiels" type="text" name="name-des-spiels" value="" required aria-required="true" aria-describedby="name-des-spiels-error name-des-spiels-counter" style="border-radius: 10px;">
+                        <span class="form__placeholder">{% trans "Name deiner Reisegruppe" %} <span class="required-indicator">*</span></span>
+                        <span class="form__char-counter" id="name-des-spiels-counter">0 / 15</span>
+                        <span class="form__error-message" id="name-des-spiels-error" role="alert" aria-live="polite"></span>
                     </div>
                     <div class="form__field">
                         <div class="slider" style="border-radius: 10px;">
-                            <label>
-                                {% trans "Benutzerbild" %}
+                            <label for="avatar-slider" aria-label="{% trans 'Benutzerbild auswählen' %}">
+                                {% trans "Benutzerbild" %} <span class="required-indicator">*</span>
                             </label>
-                            <div class="swiper-container" id="app-1" style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
+                            <div class="swiper-container" id="app-1" style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;" role="region" aria-label="{% trans 'Avatar-Auswahl' %}" tabindex="0">
                                 <div class="swiper-wrapper">
-                                    <div class="swiper-slide" v-for="item in avatar_list" v-bind:key="item.id">
-                                        <img :src="item" alt=""/>
+                                    <div class="swiper-slide" v-for="(item, index) in avatar_list" v-bind:key="item.id" :aria-label="'{% trans "Avatar" %} ' + (index + 1)">
+                                        <img :src="item" alt="" role="presentation"/>
                                     </div>
                                     {% comment %}
                                     <div class="swiper-slide">
@@ -192,8 +220,8 @@
                                     </div> {% endcomment %}
                                 </div>
                                 <input id="avatar" type="hidden" name="avatar" value="EnterValue">
-                                <div class="swiper-button-prev"></div>
-                                <div class="swiper-button-next"></div>
+                                <div class="swiper-button-prev" aria-label="{% trans 'Vorheriges Avatar' %}" tabindex="0"></div>
+                                <div class="swiper-button-next" aria-label="{% trans 'Nächstes Avatar' %}" tabindex="0"></div>
                             </div>
                         </div>
                     </div>
@@ -214,55 +242,28 @@
                         </span>
                     </div>
                     <div class="form__field">
-                        <button id="submit_button" type="button" style="margin-top: 50px;line-height: 38px; padding: 26px 26px; width:100%; font-size: 30px">
-                            {% trans "Challenge starten" %} <br> <span style='font-size:24px;'>{% trans "Link kopieren & QR-Code anzeigen" %}</span>
+                        <button id="submit_button" type="button" style="margin-top: 50px;line-height: 38px; padding: 26px 26px; width:100%; font-size: 30px" aria-label="{% trans 'Challenge starten' %}">
+                            <span id="submit-button-text">{% trans "Challenge starten" %} <br> <span style='font-size:24px;'>{% trans "Link kopieren & QR-Code anzeigen" %}</span></span>
+                            <span id="submit-button-loading" style="display: none;">
+                                <span class="loading-spinner"></span> {% trans "Wird verarbeitet..." %}
+                            </span>
                         </button>
+                        <div id="submit-success-message" class="form__success-message" role="alert" aria-live="polite" style="display: none;"></div>
                     </div>
-                        <p style="display: inline;"><a href="https://github.com/joe-the-ark/ark" target="_blank">ARKS is published under a GPLv3</a> license by <a href="https://www.linkedin.com/in/dr-joe-maier/" target="_blank">Dr. Joe Maier</a>.
-                        </p>
+                        <div class="copyright-footer">
+                            <a href="https://github.com/joe-the-ark/ark" target="_blank">{% trans "ARKS is published under a GPLv3" %}</a> {% trans "license by" %} <a href="https://www.linkedin.com/in/dr-joe-maier/" target="_blank">{% trans "Dr. Joe Maier" %}</a>.
+                        </div>
                 </form>
                 <p>
                     <br>
                 </p>
-                <div class="google-slides-container">
-                        <iframe style="padding: 0 10px;" src={% trans "https://docs.google.com/presentation/d/1l1yXJjfM3PRuzWHs2YqvKRKgAApEj-provI2ONmmqS4/embed?start=true&loop=false&delayms=8000"  %} frameborder="0" width="850" height="400" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-                        
-                        <style>
-                        .google-slides-container{
-                        position: relative;
-                        width: 100%;
-                        padding-top: 56.25%;
-                        overflow: hidden;
-                        background-color: #9FE2BF;
-                        border-radius: 10px
-                        }
-                        .google-slides-container iframe{
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                        background-color: #9FE2BF;
-                        border-radius: 10px
-                        }
-                        .controls {
-                        position: absolute;
-                        top: 10px;
-                        left: 50%;
-                        transform: translateX(-50%);
-                        display: flex;
-                        gap: 10px;
-                        }
-                        .control-button {
-                        padding: 10px 20px;
-                        background-color: #007BFF;
-                        color: white;
-                        border: none;
-                        border-radius: 5px;
-                        cursor: pointer;
-                        }
-                        </style>
-
+                <div class="google-slides-container-wrapper" style="position: relative;">
+                    <button class="google-slides-fullscreen-button" id="google-slides-fullscreen-button" aria-label="{% trans 'Vollbild anzeigen' %}" title="{% trans 'Vollbild anzeigen' %}">
+                        <span class="fullscreen-icon">⛶</span>
+                    </button>
+                    <div class="google-slides-container" id="google-slides-container" role="region" aria-label="{% trans 'Präsentation' %}">
+                        <iframe style="padding: 0 10px;" src={% trans "https://docs.google.com/presentation/d/1l1yXJjfM3PRuzWHs2YqvKRKgAApEj-provI2ONmmqS4/embed?start=true&loop=false&delayms=8000&rm=minimal"  %} frameborder="0" width="850" height="400" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" title="{% trans 'Präsentation' %}"></iframe>
+                    </div>
                 </div>
             </main>
         </div>
@@ -286,15 +287,127 @@
       trigger: 'click',
       content: 'Copied',
     });
-    //Terms of use
-    tippy('.terms', {
-      content: `Terms of use: You are participating in a research project. Your contribution to our research project
-      will enable scientists to find out more about organizational dynamics, dimensions of psychological safety, fields of
-      tension, as well as self- and external perceptions within teams. We also use aggregated game data to improve our
-      software and to identify patterns in the context of our research questions. By using the software, you acknowledge
-      your acceptance of the terms of use. Your participation is voluntary. You can stop the experiment at any time
-      by closing your browser.`,
-    });
+    
+    // ARKS Logo Tooltip
+    const arksLogoContainer = document.querySelector('.header-main__title icon');
+    const arksLogoTooltipIcon = document.getElementById('arks-logo-tooltip-icon');
+    
+    if (arksLogoContainer && arksLogoTooltipIcon) {
+        // Show question mark on mouseover
+        arksLogoContainer.addEventListener('mouseenter', function() {
+            arksLogoTooltipIcon.style.display = 'inline-flex';
+        });
+        
+        arksLogoContainer.addEventListener('mouseleave', function() {
+            arksLogoTooltipIcon.style.display = 'none';
+        });
+        
+        // Initialize Tippy.js tooltip for the question mark
+        tippy(arksLogoTooltipIcon, {
+            content: "{% trans 'Info zu safecircles.ch'|escapejs %}",
+            placement: 'bottom',
+            theme: 'light',
+            delay: [200, 0],
+            allowHTML: false,
+            interactive: false,
+            trigger: 'mouseenter focus',
+        });
+    }
+    
+    // Terms of Use Modal
+    const termsButton = document.getElementById('terms-button');
+    const termsModal = document.getElementById('terms-modal');
+    const termsModalClose = document.getElementById('terms-modal-close');
+    
+    if (termsButton && termsModal) {
+        termsButton.addEventListener('click', function() {
+            termsModal.style.display = 'flex';
+            termsModalClose.focus();
+        });
+        
+        termsModalClose.addEventListener('click', function() {
+            termsModal.style.display = 'none';
+            termsButton.focus();
+        });
+        
+        termsModal.addEventListener('click', function(e) {
+            if (e.target === termsModal) {
+                termsModal.style.display = 'none';
+                termsButton.focus();
+            }
+        });
+        
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && termsModal.style.display === 'flex') {
+                termsModal.style.display = 'none';
+                termsButton.focus();
+            }
+        });
+    }
+    
+    // Update language flag function
+    function updateLanguageFlag() {
+        var lang_code = $('#select_').val();
+        if (lang_code == 'zh-hans'){
+            $("#flag").attr("src", "{% static 'images/flags/4_zh-hans_transparent.png'%}");
+        } else if (lang_code == 'de'){
+            $("#flag").attr("src", "{% static 'images/flags/1_de_transparent.png'%}");
+        } else if (lang_code == 'en'){
+            $("#flag").attr("src", "{% static 'images/flags/2_en_transparent.png'%}");
+        } else if (lang_code == 'fr'){
+            $("#flag").attr("src", "{% static 'images/flags/3_fr_transparent.png'%}");
+        } else if (lang_code == 'tr'){
+            $("#flag").attr("src", "{% static 'images/flags/5_tr_transparent.png' %}");
+        }
+    }
+    
+    // Character counters
+    function updateCharCounter(inputId, counterId, maxLength) {
+        const input = document.getElementById(inputId);
+        const counter = document.getElementById(counterId);
+        if (input && counter) {
+            input.addEventListener('input', function() {
+                const length = this.value.length;
+                counter.textContent = length + ' / ' + maxLength;
+                if (length > maxLength * 0.9) {
+                    counter.style.color = '#fa5252';
+                } else {
+                    counter.style.color = '#626262';
+                }
+            });
+            // Initialize on load
+            const length = input.value.length;
+            counter.textContent = length + ' / ' + maxLength;
+        }
+    }
+    
+    updateCharCounter('nutzername', 'nutzername-counter', 12);
+    updateCharCounter('name-des-spiels', 'name-des-spiels-counter', 15);
+    
+    // Error message display function
+    function showError(inputId, errorId, message) {
+        const input = document.getElementById(inputId);
+        const error = document.getElementById(errorId);
+        if (input && error) {
+            error.textContent = message;
+            error.style.display = 'block';
+            input.setAttribute('aria-invalid', 'true');
+            input.style.borderColor = '#fa5252';
+            input.focus();
+        }
+    }
+    
+    function clearError(inputId, errorId) {
+        const input = document.getElementById(inputId);
+        const error = document.getElementById(errorId);
+        if (input && error) {
+            error.textContent = '';
+            error.style.display = 'none';
+            input.setAttribute('aria-invalid', 'false');
+            input.style.borderColor = '';
+        }
+    }
 
     var app = new Vue({
         delimiters: ['[[', ']]'],
@@ -362,6 +475,10 @@
         },
         slideToClickedSlide: true,
         centeredSlides: true,
+        keyboard: {
+            enabled: true,
+            onlyInViewport: true,
+        },
         breakpoints: {
             320: {
                 slidesPerView: 1,
@@ -375,6 +492,39 @@
                 spaceBetween: 40,
             }
 
+        },
+        on: {
+            slideChange: function() {
+                // Update active avatar visual feedback
+                const activeSlide = this.slides[this.activeIndex];
+                if (activeSlide) {
+                    const img = activeSlide.querySelector('img');
+                    if (img) {
+                        img.style.transform = 'scale(1.1)';
+                        img.style.transition = 'transform 0.3s ease';
+                    }
+                }
+            }
+        }
+    });
+    
+    // Show navigation buttons on desktop
+    if (window.innerWidth > 768) {
+        document.querySelectorAll('.swiper-button-prev, .swiper-button-next').forEach(function(btn) {
+            btn.style.display = 'flex';
+        });
+    }
+    
+    // Update on resize
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            document.querySelectorAll('.swiper-button-prev, .swiper-button-next').forEach(function(btn) {
+                btn.style.display = 'flex';
+            });
+        } else {
+            document.querySelectorAll('.swiper-button-prev, .swiper-button-next').forEach(function(btn) {
+                btn.style.display = 'none';
+            });
         }
     });
 
@@ -421,10 +571,60 @@
         el.innerHTML = window.innerWidth < 768 ? "{% trans 'Schafft eine dramafreie Zusammenarbeit durch psychologisch sichere Kreise.' %}" : "{% trans 'Schafft eine dramafreie Zusammenarbeit durch psychologisch sichere Kreise.' %}"
     }
 
+    // Translated error messages
+    const ERROR_MESSAGES = {
+        usernameTooShort: "{% trans 'Der Benutzername muss mehr als 2 Zeichen lang sein.'|escapejs %}",
+        gameNameTooShort: "{% trans 'Der Name der Reisegruppe muss mehr als 2 Zeichen lang sein.'|escapejs %}",
+        gameNameTaken: "{% trans 'Dieser Name der Reisegruppe ist bereits vergeben. Bitte wähle einen anderen Namen.'|escapejs %}",
+        usernameRequired: "{% trans 'Bitte gib einen Benutzernamen ein.'|escapejs %}",
+        gameNameRequired: "{% trans 'Bitte gib einen Namen für deine Reisegruppe ein.'|escapejs %}",
+        avatarRequired: "{% trans 'Bitte wähle ein Benutzerbild aus.'|escapejs %}"
+    };
+
     function check_game_name(){
-        var game_name = $('#name-des-spiels').val();
-        if (game_name === ''){
-            return
+        // Clear previous errors
+        clearError('nutzername', 'nutzername-error');
+        clearError('name-des-spiels', 'name-des-spiels-error');
+        
+        var game_name = $('#name-des-spiels').val().trim();
+        var username = $('#nutzername').val().trim();
+        var avatar = $('#avatar').val();
+        
+        // Validate username
+        if (!username || username === '') {
+            showError('nutzername', 'nutzername-error', ERROR_MESSAGES.usernameRequired);
+            return false;
+        }
+        
+        if (username.length <= 2) {
+            showError('nutzername', 'nutzername-error', ERROR_MESSAGES.usernameTooShort);
+            return false;
+        }
+        
+        // Validate game name
+        if (!game_name || game_name === '') {
+            showError('name-des-spiels', 'name-des-spiels-error', ERROR_MESSAGES.gameNameRequired);
+            return false;
+        }
+        
+        if (game_name.length <= 2) {
+            showError('name-des-spiels', 'name-des-spiels-error', ERROR_MESSAGES.gameNameTooShort);
+            return false;
+        }
+        
+        // Validate avatar
+        if (!avatar || avatar === 'EnterValue') {
+            // Avatar validation would go here if needed
+        }
+        
+        // Show loading state
+        const submitButton = document.getElementById('submit_button');
+        const submitButtonText = document.getElementById('submit-button-text');
+        const submitButtonLoading = document.getElementById('submit-button-loading');
+        if (submitButton && submitButtonText && submitButtonLoading) {
+            submitButton.disabled = true;
+            submitButtonText.style.display = 'none';
+            submitButtonLoading.style.display = 'inline';
         }
         
         var data_ = {'game_name': game_name};
@@ -433,7 +633,6 @@
             .then(function(response){
                 var result = response.data.result;
                 if (result === 1){
-                    console.log(111)
                     // valid game name
                     var input1 = $('#nutzername').val()
                     var input2 = $('#name-des-spiels').val()
@@ -446,20 +645,40 @@
                         form_submit.submit()
                         return 
                     }else{
-                        alert("The user-name and the game-name should have more than 2 characters");
-                        $('#nutzername').val('')
-                        $('#name-des-spiels').val('')
+                        // Reset loading state
+                        if (submitButton && submitButtonText && submitButtonLoading) {
+                            submitButton.disabled = false;
+                            submitButtonText.style.display = 'inline';
+                            submitButtonLoading.style.display = 'none';
+                        }
+                        showError('nutzername', 'nutzername-error', ERROR_MESSAGES.usernameTooShort);
+                        showError('name-des-spiels', 'name-des-spiels-error', ERROR_MESSAGES.gameNameTooShort);
                         return 
                     }
 
 
                 }else{
+                    // Reset loading state
+                    if (submitButton && submitButtonText && submitButtonLoading) {
+                        submitButton.disabled = false;
+                        submitButtonText.style.display = 'inline';
+                        submitButtonLoading.style.display = 'none';
+                    }
                     // have same name
-                    alert("The game-name is already taken. Please chose another name.");
+                    showError('name-des-spiels', 'name-des-spiels-error', ERROR_MESSAGES.gameNameTaken);
                     $('#name-des-spiels').val('');
                     return
                 }
             })
+            .catch(function(error) {
+                // Reset loading state on error
+                if (submitButton && submitButtonText && submitButtonLoading) {
+                    submitButton.disabled = false;
+                    submitButtonText.style.display = 'inline';
+                    submitButtonLoading.style.display = 'none';
+                }
+                console.error('Error checking game name:', error);
+            });
     }
 
     $('#icon-link').click(function(){
@@ -468,26 +687,104 @@
     })
 
     $('#submit_button').click(function(){
-
         $('.icon-link').trigger('click');
         window.setTimeout(function(){
-            console.log('click');
             check_game_name();
         }, 100);
     })
 
+    // Clear errors on input
+    document.getElementById('nutzername').addEventListener('input', function() {
+        clearError('nutzername', 'nutzername-error');
+    });
     
-    var lang_code = $('#select_').val()
-    if (lang_code == 'zh-hans'){
-        $("#flag").attr("src", "{% static 'images/flags/4_zh-hans_transparent.png'%}");
-    } else if (lang_code == 'de'){
-        $("#flag").attr("src", "{% static 'images/flags/1_de_transparent.png'%}");
-    } else if (lang_code == 'en'){
-        $("#flag").attr("src", "{% static 'images/flags/2_en_transparent.png'%}");
-    } else if (lang_code == 'fr'){
-        $("#flag").attr("src", "{% static 'images/flags/3_fr_transparent.png'%}");
-    } else if (lang_code == 'tr'){
-        $("#flag").attr("src", "{% static 'images/flags/5_tr_transparent.png' %}");
+    document.getElementById('name-des-spiels').addEventListener('input', function() {
+        clearError('name-des-spiels', 'name-des-spiels-error');
+    });
+    
+    // Initialize language flag on page load
+    updateLanguageFlag();
+    
+    // Set "Sprachauswahl" as default display in select (flag shows current language)
+    $(document).ready(function() {
+        $('#select_').val('');
+    });
+    
+    // Google Slides Fullscreen functionality
+    const fullscreenButton = document.getElementById('google-slides-fullscreen-button');
+    const slidesContainerWrapper = document.querySelector('.google-slides-container-wrapper');
+    
+    if (fullscreenButton && slidesContainerWrapper) {
+        fullscreenButton.addEventListener('click', function() {
+            if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.mozFullScreenElement && !document.msFullscreenElement) {
+                // Enter fullscreen
+                if (slidesContainerWrapper.requestFullscreen) {
+                    slidesContainerWrapper.requestFullscreen();
+                } else if (slidesContainerWrapper.webkitRequestFullscreen) {
+                    slidesContainerWrapper.webkitRequestFullscreen();
+                } else if (slidesContainerWrapper.mozRequestFullScreen) {
+                    slidesContainerWrapper.mozRequestFullScreen();
+                } else if (slidesContainerWrapper.msRequestFullscreen) {
+                    slidesContainerWrapper.msRequestFullscreen();
+                }
+                slidesContainerWrapper.classList.add('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild beenden'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild beenden'|escapejs %}");
+            } else {
+                // Exit fullscreen
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+        
+        // Listen for fullscreen changes
+        document.addEventListener('fullscreenchange', function() {
+            if (!document.fullscreenElement) {
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+        
+        document.addEventListener('webkitfullscreenchange', function() {
+            if (!document.webkitFullscreenElement) {
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+        
+        document.addEventListener('mozfullscreenchange', function() {
+            if (!document.mozFullScreenElement) {
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+        
+        document.addEventListener('MSFullscreenChange', function() {
+            if (!document.msFullscreenElement) {
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
     }
 
 

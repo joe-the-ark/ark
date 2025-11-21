@@ -12,25 +12,13 @@
     <link rel="stylesheet" href="/static/css/app.css">
     <link rel="stylesheet" href="/static/css/app_graph.css">
     <link rel="stylesheet" href="/static/css/spannungsfelder.css">
+    <link rel="stylesheet" href="/static/css/spannungsfelder-additional.css">
+    <link rel="stylesheet" href="/static/css/spannungsfelder-google-slides.css">
     <link rel="stylesheet" href="/static/css/assessment.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <script src="/static/dom-to-image.min.js"></script>
     <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
-    <style>
-        @media screen and (max-width: 1200px) {
-            .rotate-hint {
-                display: block !important;
-            }
-        }
-        .rotate-hint {
-            display: none;
-            background-color: #9FE2BF;
-            color: #626262;
-            border-radius: 10px;
-            padding: 0 10px;
-        }
-    </style>
 </head>
 <body>
   {% get_current_language as LANGUAGE_CODE %}
@@ -38,9 +26,11 @@
     <div class="app__head">
         <header class="header-main container">
             <div class="header-main__title">
-                <icon classs="icon" onClick="window.open('https://info.arks.ch/');">
+                <icon class="icon" onClick="window.open('https://info.arks.ch/');">
                 <span class="icon-logo"></span>
                 <span>ARKS</span>
+                <span id="arks-logo-tooltip-icon" class="tooltip-icon" style="display: none;">{% trans "Info zu safecircles.ch" %}</span>
+            </icon>
             </div>
             <div class="header-main__user">
                 <div class="user">
@@ -55,12 +45,12 @@
             </div>
             <div class="header-main__progress">
                 <div class="progress">
-                <p class="rotate-hint" style="background-color: #FFFFFF; color: #626262; border-radius: 10px; padding: 0 10px;">
+                <p class="rotate-hint white">
                     {% trans "Swipe die Graphik nach rechts für mehr Feedbacks zu deiner Wirkung." %}
                 </p>
                     <label>{% trans "SHARING" %}</label>
                     <div class="progress__bar">
-                        <div style="width: 75%; border-radius: 10px;">75%</div>
+                        <div>75%</div>
                     </div>
                 </div>
             </div>
@@ -69,104 +59,78 @@
     <div class="app__body">
         <div class="container">
             <main class="screen spannungsfelder">
-                <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
-                <h1>
+                <div class="info-box">
+                <h1 class="spannungsfelder-heading-tooltip">
+                    <span class="tooltip-icon" id="spannungsfelder-heading-tooltip-icon" tabindex="0" aria-label="{% trans 'Tooltip anzeigen' %}">?</span>
                     {% trans "Wer sieht deinen Beitrag zur psychologischen Sicherheit im Team innerhalb, wer ausserhalb des grünen sicheren Bereichs?" %}
                 </h1>
-                <p class="spannungsfelder-callout"><br>
-                    {% trans "Erläutert reihum, bei welchem Sicherheitsanker Spannungen zwischen deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team entstehen. (Dauer: 1 Minute pro Person)" %}<br><br>
-                </p>
                 </div>
-                <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
+                <div class="info-box">
 
                 <!-- Graph counter indicator -->
-                <div id="graph-counter" style="text-align: center; margin: 0 0 15px 0; color: #626262; font-size: 14px;">
+                <div id="graph-counter">
                     <span id="current-graph">1</span> / <span id="total-graphs">1</span>
                 </div>
-                <div id="graph-slider" class="swiper-container">
+                <div id="graph-slider" class="swiper-container" role="region" aria-label="{% trans 'Graphen-Navigation' %}">
                     <div class="swiper-wrapper"></div>
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-pagination"></div>
+                    <button class="swiper-button-prev" aria-label="{% trans 'Vorheriger Graph' %}" tabindex="0"></button>
+                    <button class="swiper-button-next" aria-label="{% trans 'Nächster Graph' %}" tabindex="0"></button>
+                    <div class="swiper-pagination" role="tablist" aria-label="{% trans 'Graphen-Seiten' %}"></div>
                 </div>
                 <div class="custom-graph-info">
                     <div class="custom-graph-info__item small" 
-                         data-text={% trans "Andere" %}>
+                         data-text={% trans "Andere" %}
+                         role="group"
+                         aria-label="{% trans 'Andere' %}">
                         {{ others }}
-                        <span class="custom-graph-info__tooltip-icon">?</span>
+                        <span class="tooltip-icon" tabindex="0" aria-label="{% trans 'Tooltip anzeigen' %}">?</span>
                     </div>
                     <div class="custom-graph-info__item base" 
-                         data-text={% trans "Spannung" %}>
+                         data-text={% trans "Spannung" %}
+                         role="group"
+                         aria-label="{% trans 'Spannung' %}">
                         {{ himself }}
-                        <span class="custom-graph-info__tooltip-icon">?</span>
+                        <span class="tooltip-icon" tabindex="0" aria-label="{% trans 'Tooltip anzeigen' %}">?</span>
                     </div>
                     <div class="custom-graph-info__item large" 
-                         data-text={% trans "Ich" %}>
+                         data-text={% trans "Ich" %}
+                         role="group"
+                         aria-label="{% trans 'Ich' %}">
                         {{ tension }}
-                        <span class="custom-graph-info__tooltip-icon">?</span>
+                        <span class="tooltip-icon" tabindex="0" aria-label="{% trans 'Tooltip anzeigen' %}">?</span>
                     </div>
                 </div>
                 <div class="custom-graph1"></div>
                 <div class="custom-graph2"></div>
-                <div id="rang-slider" class="swiper-container">
-                    <div class="swiper-wrapper">
+                <div id="rang-slider" class="swiper-container" role="region" aria-label="{% trans 'Farb-Karten Navigation' %}">
+                    <div class="swiper-wrapper" role="list">
                 </div>
                 </div>
                 </div>
 
 
-                        <div class="google-slides-container">
-                        <iframe style="padding: 0 10px;" src={% trans "https://docs.google.com/presentation/d/1kgXdYDUcddeDLANKHrsWY8rkwLqaYN86oCrdpaLlod4/embed?start=true&loop=false&delayms=8000"  %} frameborder="0" width="850" height="400" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-                        
-                        <style>
-                        .google-slides-container{
-                        position: relative;
-                        width: 100%;
-                        padding-top: 56.25%;
-                        overflow: hidden;
-                        background-color: #9FE2BF;
-                        border-radius: 10px
-                        }
-                        .google-slides-container iframe{
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                        background-color: #9FE2BF;
-                        border-radius: 10px
-                        }
-                        .controls {
-                        position: absolute;
-                        top: 10px;
-                        left: 50%;
-                        transform: translateX(-50%);
-                        display: flex;
-                        gap: 10px;
-                        }
-                        .control-button {
-                        padding: 10px 20px;
-                        background-color: #007BFF;
-                        color: white;
-                        border: none;
-                        border-radius: 5px;
-                        cursor: pointer;
-                        }
-                        </style>
+                        <div class="google-slides-container-wrapper">
+                            <button class="google-slides-fullscreen-button" id="google-slides-fullscreen-button" aria-label="{% trans 'Vollbild anzeigen' %}" title="{% trans 'Vollbild anzeigen' %}" tabindex="0">
+                                <span class="fullscreen-icon">⛶</span>
+                            </button>
+                            <div class="google-slides-container" id="google-slides-container">
+                                <iframe src={% trans "https://docs.google.com/presentation/d/1kgXdYDUcddeDLANKHrsWY8rkwLqaYN86oCrdpaLlod4/embed?start=true&loop=false&delayms=8000&rm=minimal"  %} frameborder="0" width="850" height="400" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" title="{% trans 'Google Slides Presentation' %}"></iframe>
+                            </div>
+                        </div>
 
                         </div>
 
-                        <div class="center" style="margin:10px">
+                        <div class="center">
 
                         <a href="/team-potential-/">
-                        <button class="button" type="button">
+                        <button class="button" type="button" aria-label="{% trans 'Weiter' %}" tabindex="0">
                             {% trans "Weiter" %}
                         </button></a>
 
-                            <p style="text-align: center; font-size: 10px;">
-                                <a href="https://github.com/joe-the-ark/ark" target="_blank">ARKS is published under a GPLv3</a> license by 
-                                <a href="https://www.linkedin.com/in/dr-joe-maier/" target="_blank">Dr. Joe Maier</a>.
-                            </p>
+                            <div class="copyright-footer">
+                                <a href="https://github.com/joe-the-ark/ark" target="_blank">{% trans "ARKS is published under a GPLv3" %}</a> {% trans "license by" %} 
+                                <a href="https://www.linkedin.com/in/dr-joe-maier/" target="_blank">{% trans "Dr. Joe Maier" %}</a>.
+                            </div>
                         </div>
                 
             </main>
@@ -178,9 +142,50 @@
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="/static/js/utils.js"></script>
 <script>
+    // ARKS Logo Tooltip
+    function initARKSLogoTooltip() {
+        const arksLogoContainer = document.querySelector('.header-main__title icon');
+        const arksLogoTooltipIcon = document.getElementById('arks-logo-tooltip-icon');
+        
+        if (arksLogoContainer && arksLogoTooltipIcon) {
+            arksLogoContainer.addEventListener('mouseenter', function() {
+                arksLogoTooltipIcon.style.display = 'inline-flex';
+            });
+            arksLogoContainer.addEventListener('mouseleave', function() {
+                arksLogoTooltipIcon.style.display = 'none';
+            });
+            
+            tippy(arksLogoTooltipIcon, {
+                content: "{% trans 'Info zu safecircles.ch'|escapejs %}",
+                placement: 'bottom',
+                theme: 'light',
+                delay: [200, 0],
+                allowHTML: false,
+                interactive: false,
+                trigger: 'mouseenter focus',
+            });
+        }
+    }
+
+    // Heading Tooltip
+    function initHeadingTooltip() {
+        const headingTooltipIcon = document.getElementById('spannungsfelder-heading-tooltip-icon');
+        if (headingTooltipIcon) {
+            tippy(headingTooltipIcon, {
+                content: "{% trans 'Erläutert reihum, bei welchem Sicherheitsanker Spannungen zwischen deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team entstehen. (Dauer: 1 Minute pro Person)'|escapejs %}",
+                placement: 'bottom',
+                theme: 'light',
+                delay: [200, 0],
+                allowHTML: false,
+                interactive: false,
+                trigger: 'mouseenter focus',
+                maxWidth: 500,
+            });
+        }
+    }
+
     var jsonAll = {{ json_list|safe }};
-    var lang_code = '{{LANGUAGE_CODE}}'
-    //console.log('jsonall', jsonAll)
+    var lang_code = '{{LANGUAGE_CODE}}';
     const anchorOwnersMap = {{ anchor_map|safe }};
     jsonAll.forEach((item)=>{
         const anchorRaw = item['ubung1_power_i18n'][lang_code] || item['ubung1_power_i18n']['en'] || '';
@@ -190,145 +195,8 @@
         item['anchor_label'] = anchorLabel;
         item['drainer_label'] = drainerLabel;
         item['value'] = anchorLabel + ' ' + drainerLabel;
-    })
-    //var value_i18n = jsonAll.value
+    });
     let curentUser = "{{ user }}";
-    // function deal_json(json_list, num){
-    //     var new_json_list = [];
-    //     var uu = 0;
-    //     while (uu < json_list.length){
-    //         if (uu == num){
-    //             new_json_list.push(json_list[uu]);
-    //         }else{
-    //             var temp = {
-    //                 statusSide:json_list[uu]['statusSide'],
-    //                 value: json_list[uu]['value'],
-    //             };
-    //             new_json_list.push(temp);
-    //         }
-    //         uu += 1;
-    //     }
-    //     return new_json_list;
-    // }
-
-    //console.log(json_list);
-    //console.log(deal_json(json_list, 0));
-
-    // function format_data(json_list){
-    //     var num = json_list.length;
-    //     var result = [];
-    //     var uu = 0;
-    //     while (uu < num){
-    //         var temp = {
-    //             range: [1, 99],
-    //             labelRange: ['Low', 'High'],
-    //             data: deal_json(json_list, uu)
-    //         };
-    //         result.push(temp);
-    //         uu += 1;
-    //     }
-    //     return result;
-    // }
-
-
-    // function traitArray(json_list) {
-    //   let arr = new Set();
-    //   json_list.forEach((item) => {
-    //     arr.add(item.value)
-    //   })
-    //   let result = Array.from(arr);
-    //   return(result)
-    // }
-
-    // function arrayForGraph(json) {
-    //     let arr = [];
-    //     for (let item of json) {
-    //         tempObj = {};
-    //         if(item.target_user == curentUser) {
-    //             tempObj['name'] = item.name;
-    //             tempObj['avatar'] = item.avatar;
-    //             tempObj['statusSide'] = item.statusSide;
-    //             tempObj['value'] = item.value;
-    //             tempObj['status'] = item.statusSide.toString();
-    //             arr.push(tempObj);
-    //         }
-    //     }
-    //     return arr
-    // }
-
-    // function arrayGraphModifier(item) {
-    //   const {name, avatar, status, statusSide, value} = item;
-    //   if(item.name == "{{user}}") {
-    //     return(
-    //       {'name':name,
-    //       'avatar':avatar,
-    //       'status':status,
-    //       'statusSide':statusSide,
-    //       'value':value}
-    //     )
-    //   }
-    //   else {
-    //     return(
-    //       {'status':status,
-    //       'statusSide':statusSide,
-    //       'value':value}
-    //     )
-    //   }
-    // }
-
-    // function safezoneData(value) {
-    //     let arr = [];
-    //     for (let item of json_list) {
-    //         if (item.value == value) {
-    //             arr.push(item.statusSide);
-    //         }
-    //     }
-    //     return arr
-
-    // }
-
-    // let dataForGraph = () => {
-    //   let result = [];
-    //   for (let value of traitArray(json_list)) {
-    //     dataRaw = arrayForGraph(json_list).filter(jso => jso.value == value);
-    //     datas = dataRaw.map(arrayGraphModifier);
-    //     temp = {
-    //   		'data':datas,
-    //   		'labelRange':value.split(' '),
-    //   		'range':[1,99],
-    //   	}
-    //     result.push(temp);
-    //   }
-    //   return(result)
-    // }
-
-    // let dataForRange = () => {
-    //   let result = [];
-    //   for (let value of traitArray(json_list)) {
-    //     datas = arrayForGraph(json_list).filter(jso => jso.value == value);
-    //     let others = 0;
-    //     let self = 0;
-    //     datas.forEach((item, i) => {
-    //       if(item.name != '{{user}}') {
-    //         others += item.statusSide;
-    //       }
-    //       else {
-    //         self = item.statusSide;
-    //       }
-    //     });
-    //     others = Math.round(others/(datas.length-1));
-    //     temp = {
-    //       'value':value,
-    //       'self':self,
-    //       'others':others,
-    //       'tension':self - others,
-    //     };
-    //     result.push(temp);
-    //   }
-    //   return(result)
-    // }
-
-
     const isMobile = () => window.innerWidth <= 1200;
     // const data = format_data(json_list);
 
@@ -476,7 +344,6 @@
                             const itemClickable = document.querySelectorAll('#graph-slider .swiper-pagination-bullet');
                             itemClickable[index].click();
                             bottomValues = document.querySelector('.custom-graph-info').children;
-                            // console.log($self.data);
                             bottomValues[0].innerText = $self.data[index].others;
                             bottomValues[1].innerText = $self.data[index].tension;
                             bottomValues[2].innerText = $self.data[index].self;
@@ -522,34 +389,16 @@
             safezoneData: safezoneData(jsonAll, item.data[0].value),
             graphNumber: i,
         });
-        
 
-        //console.log(this.data);
-        // if (window.innerWidth <= appgraph.mobile) {
-        //   css_change(`.statistic .custom-graph__items:before{
-        //     left:calc((100% - ${halfAvatar}px) * ${low/100} + ${halfAvatar}px);
-        //     width:calc((100% - ${halfAvatar}px) * ${blue_range/100});
-        //     }`);
-        // } else {
-        //     css_change(`.statistic .custom-graph__items:before{
-        //       bottom:calc((100% - ${halfAvatar}px) * ${low/100} + ${halfAvatar}px);
-        //       height:calc((100% - ${halfAvatar}px) * ${blue_range/100});
-        //       }`);
-        // }
 
-        // function css_change(t, s) {
-        //     s = document.createElement('style');
-        //     s.innerText = `.slide-0 .statistic .custom-graph__items:before{
-        //         left:calc((100% - ${halfAvatar}px) * ${appgraph.low/100} + ${halfAvatar}px);
-        //         width:calc((100% - ${halfAvatar}px) * ${blue_range/100});
-        //         }`;
-        //     document.body.appendChild(s);
-        // };
-        
     });
 
     swipeGraph = new Swiper('#graph-slider', {
+        slidesPerView: 1,
+        spaceBetween: 0,
+        centeredSlides: true,
         grabCursor: true,
+        watchOverflow: true,
         navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
@@ -561,6 +410,14 @@
         keyboard: {
             enabled: true,
             onlyInViewport: true,
+            pageUpDown: true,
+        },
+        a11y: {
+            enabled: true,
+            prevSlideMessage: "{% trans 'Vorheriger Graph'|escapejs %}",
+            nextSlideMessage: "{% trans 'Nächster Graph'|escapejs %}",
+            firstSlideMessage: "{% trans 'Erster Graph'|escapejs %}",
+            lastSlideMessage: "{% trans 'Letzter Graph'|escapejs %}",
         },
         on: {
             slideChange(a, b, c) {
@@ -593,7 +450,7 @@
                     let items = document.body.querySelector('.rang').children;
                     if (items[index]) {
                     items[index].click()
-                    }
+                }
                 }
                 
                 // Re-initialize tooltips when slide changes (in case new elements are rendered)
@@ -602,32 +459,6 @@
         }
     });
 
-    // function graphUnifier(data) {
-    //   // compile all graph in one with all players active
-    //   let arr = [];
-    //   for(let graph of data) {
-    //     let user = graph.data.filter(item => item.name)[0];
-    //     arr.push(user);
-    //   }
-    //   return(arr)
-    // }
-    //
-    // unifiedData = graphUnifier(data);
-
-    // function cardsPainting(unifiedData) {
-    //   let collection = document.querySelectorAll('.rang__item');
-    //   collection.forEach((item, i) => {
-    //     let low = document.querySelector(`.slide-${i}`).children[0].getAttribute('low')
-    //     let high = document.querySelector(`.slide-${i}`).children[0].getAttribute('high')
-    //     let selfInSafe = unifiedData[i].self>low && unifiedData[i].self<high;
-    //     let othersInSafe = unifiedData[i].others>low && unifiedData[i].others<high;
-    //     if (selfInSafe && othersInSafe) {item.classList.add('white__card');}
-    //     if (selfInSafe && !othersInSafe) { item.classList.add('yellow__card');}
-    //     if (!selfInSafe && othersInSafe) { item.classList.add('red__card');}
-    //     if (!selfInSafe && !othersInSafe) { item.classList.add('black__card');}
-    //   });
-
-    // }
     // Initialize tooltips for tension values (rang__item-count)
     function initTensionValueTooltips() {
         // Get translated tooltip texts from Django
@@ -724,7 +555,6 @@
                         trigger: 'mouseenter focus',
                     });
                     wrapper.setAttribute('data-tippy-initialized', 'true');
-                    console.log(`Initialized color card tooltip for item ${index}`);
                 } catch (e) {
                     console.error('Error initializing color card tooltip:', e);
                 }
@@ -755,7 +585,7 @@
     }
     
     cardsPainting(dataForRange(jsonAll, curentUser), document.querySelectorAll(".rang__item"));
-    
+
     // Add CSS classes to rang__item-count based on tension sign and value for styling
     // This will be called after AppRange renders the elements and defaultLoad runs
     // We need to wait longer to ensure defaultLoad has finished applying filters
@@ -786,57 +616,37 @@
     
     // Initialize tooltips for player avatars and votes
     const avatarVoteTooltipText = "{% trans 'So hast du deinen Beitrag zur Teamdynamik eingeschätzt.'|escapejs %}";
-    console.log('Tooltip text loaded:', avatarVoteTooltipText);
     
     function initAvatarVoteTooltips() {
-        // Find all avatars and votes in all graph slides
-        // In statistic mode, votes are in .custom-graph__item-side, not .custom-graph__item-count
         const allSlides = document.querySelectorAll('.swiper-slide[class*="slide-"]');
-        console.log('initAvatarVoteTooltips: Found', allSlides.length, 'slides');
-        
-        let totalAvatars = 0;
-        let totalVotes = 0;
         
         allSlides.forEach((slide, slideIndex) => {
-            // Avatars are in .custom-graph__item-avatar (contains img)
             const avatars = slide.querySelectorAll('.custom-graph__item-avatar');
-            // In statistic mode, votes are in .custom-graph__item-side
             const votes = slide.querySelectorAll('.custom-graph__item-side');
-            // Also check for .custom-graph__item-count as fallback
             const votesCount = slide.querySelectorAll('.custom-graph__item-count');
             
-            console.log(`Slide ${slideIndex}: Found ${avatars.length} avatars, ${votes.length} votes (side), ${votesCount.length} votes (count)`);
-            
-            avatars.forEach((avatar, avatarIndex) => {
+            avatars.forEach((avatar) => {
                 if (avatar) {
-                    // Only add tooltip to the active player (the one with a visible name)
-                    // Inactive players don't have a name element
                     const customGraphItem = avatar.closest('.custom-graph__item');
                     const nameElement = customGraphItem ? customGraphItem.querySelector('.custom-graph__item-name') : null;
                     const hasVisibleName = nameElement && nameElement.textContent.trim() !== '';
                     
-                    // Skip inactive players (blacked out ones without names)
                     if (!hasVisibleName) {
-                        console.log(`Skipping tooltip for inactive player ${avatarIndex} in slide ${slideIndex}`);
                         return;
                     }
                     
-                    // Remove existing tooltip if any
                     if (avatar._tippy) {
                         avatar._tippy.destroy();
                     }
-                    // Remove the attribute to allow re-initialization
                     avatar.removeAttribute('data-tippy-initialized');
                     
                     try {
                         if (avatarVoteTooltipText && avatarVoteTooltipText.trim() !== '') {
-                            // Ensure element is interactive - override any parent pointer-events
                             avatar.style.setProperty('pointer-events', 'auto', 'important');
                             avatar.style.cursor = 'help';
                             avatar.style.position = 'relative';
                             avatar.style.zIndex = '10';
                             
-                            // Also make the img inside interactive
                             const img = avatar.querySelector('img');
                             if (img) {
                                 img.style.setProperty('pointer-events', 'auto', 'important');
@@ -852,10 +662,6 @@
                                 trigger: 'mouseenter focus',
                             });
                             avatar.setAttribute('data-tippy-initialized', 'true');
-                            totalAvatars++;
-                            console.log(`Initialized tooltip for active player avatar ${avatarIndex} in slide ${slideIndex}, text: "${avatarVoteTooltipText}"`);
-                        } else {
-                            console.warn(`Empty tooltip text for avatar ${avatarIndex} in slide ${slideIndex}`);
                         }
                     } catch (e) {
                         console.error('Error initializing tooltip for avatar:', e);
@@ -863,33 +669,23 @@
                 }
             });
             
-            // Handle votes in .custom-graph__item-side (statistic mode)
-            // Note: These are inside .custom-graph__item-head which has pointer-events: none
-            // We need to set pointer-events on the vote element itself
-            // Only add tooltip to the active player's vote
-            votes.forEach((vote, voteIndex) => {
+            votes.forEach((vote) => {
                 if (vote) {
-                    // Only add tooltip to the active player (the one with a visible name)
                     const customGraphItem = vote.closest('.custom-graph__item');
                     const nameElement = customGraphItem ? customGraphItem.querySelector('.custom-graph__item-name') : null;
                     const hasVisibleName = nameElement && nameElement.textContent.trim() !== '';
                     
-                    // Skip inactive players (blacked out ones without names)
                     if (!hasVisibleName) {
-                        console.log(`Skipping tooltip for inactive player vote ${voteIndex} in slide ${slideIndex}`);
                         return;
                     }
                     
-                    // Remove existing tooltip if any
                     if (vote._tippy) {
                         vote._tippy.destroy();
                     }
-                    // Remove the attribute to allow re-initialization
                     vote.removeAttribute('data-tippy-initialized');
                     
                     try {
                         if (avatarVoteTooltipText && avatarVoteTooltipText.trim() !== '') {
-                            // Override parent's pointer-events: none
                             vote.style.setProperty('pointer-events', 'auto', 'important');
                             vote.style.cursor = 'help';
                             vote.style.position = 'relative';
@@ -905,10 +701,6 @@
                                 trigger: 'mouseenter focus',
                             });
                             vote.setAttribute('data-tippy-initialized', 'true');
-                            totalVotes++;
-                            console.log(`Initialized tooltip for active player vote (side) ${voteIndex} in slide ${slideIndex}, text: "${avatarVoteTooltipText}"`);
-                        } else {
-                            console.warn(`Empty tooltip text for vote ${voteIndex} in slide ${slideIndex}`);
                         }
                     } catch (e) {
                         console.error('Error initializing tooltip for vote:', e);
@@ -916,19 +708,15 @@
                 }
             });
             
-            // Handle votes in .custom-graph__item-count (fallback for non-statistic mode)
-            votesCount.forEach((vote, voteIndex) => {
+            votesCount.forEach((vote) => {
                 if (vote) {
-                    // Remove existing tooltip if any
                     if (vote._tippy) {
                         vote._tippy.destroy();
                     }
-                    // Remove the attribute to allow re-initialization
                     vote.removeAttribute('data-tippy-initialized');
                     
                     try {
                         if (avatarVoteTooltipText && avatarVoteTooltipText.trim() !== '') {
-                            // Ensure element is interactive
                             vote.style.pointerEvents = 'auto';
                             vote.style.cursor = 'help';
                             
@@ -941,10 +729,6 @@
                                 interactive: false,
                             });
                             vote.setAttribute('data-tippy-initialized', 'true');
-                            totalVotes++;
-                            console.log(`Initialized tooltip for vote (count) ${voteIndex} in slide ${slideIndex}, text: "${avatarVoteTooltipText}"`);
-                        } else {
-                            console.warn(`Empty tooltip text for vote ${voteIndex} in slide ${slideIndex}`);
                         }
                     } catch (e) {
                         console.error('Error initializing tooltip for vote:', e);
@@ -952,8 +736,6 @@
                 }
             });
         });
-        
-        console.log(`Total tooltips initialized: ${totalAvatars} avatars, ${totalVotes} votes`);
     }
     
     // Use MutationObserver to watch for when elements are added to the DOM
@@ -994,20 +776,15 @@
     }
     
     // Initialize tooltips for custom-graph-info items
-    // Get translated tooltip texts from Django
     const tooltipTexts = {
         other: "{% trans 'deine Wirkung auf andere'|escapejs %}",
         tension: "{% trans 'Spannungen entstehen aus der Differenz zwischen Selbst- und Fremdbild'|escapejs %}",
         me: "{% trans 'meine Selbstwahrnehmung im Team'|escapejs %}"
     };
     
-    // Debug: log the tooltip texts to see what's being loaded
-    console.log('Tooltip texts loaded:', tooltipTexts);
-    
-    function initTooltips() {
+    function initGraphInfoTooltips() {
         const tooltipItems = document.querySelectorAll('.custom-graph-info__item');
-        console.log('Initializing tooltips for', tooltipItems.length, 'items');
-        tooltipItems.forEach((item, index) => {
+        tooltipItems.forEach((item) => {
             let tooltipText = '';
             if (item.classList.contains('small')) {
                 tooltipText = tooltipTexts.other;
@@ -1017,10 +794,7 @@
                 tooltipText = tooltipTexts.me;
             }
             
-            console.log('Item', index, 'class:', item.className, 'tooltip:', tooltipText);
-            
-            // Find the tooltip icon within the item
-            const tooltipIcon = item.querySelector('.custom-graph-info__tooltip-icon');
+            const tooltipIcon = item.querySelector('.tooltip-icon');
             const targetElement = tooltipIcon || item;
             
             if (tooltipText && tooltipText.trim() !== '') {
@@ -1033,47 +807,33 @@
                         allowHTML: false,
                     });
                 } catch (e) {
-                    console.error('Error initializing tooltip for item', index, ':', e);
+                    console.error('Error initializing graph info tooltip:', e);
                 }
-            } else {
-                console.warn('Empty tooltip text for item', index);
             }
         });
     }
     
-    // Initialize tooltips after DOM is ready - wait for all elements to be rendered
+    // Initialize all tooltips after DOM is ready
+    function initAllTooltips() {
+        initARKSLogoTooltip();
+        initHeadingTooltip();
+        initGraphInfoTooltips();
+        initAvatarVoteTooltips();
+        initColorCardTooltips();
+        initTensionValueTooltips();
+    }
+    
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', function() {
             setupTooltipObserver();
-            setTimeout(() => {
-                initTooltips();
-                initAvatarVoteTooltips();
-                initColorCardTooltips();
-                initTensionValueTooltips();
-            }, 2000);
-            // Also try again after a longer delay
-            setTimeout(initAvatarVoteTooltips, 3000);
-            setTimeout(initAvatarVoteTooltips, 5000);
-            setTimeout(initColorCardTooltips, 3000);
-            setTimeout(initTensionValueTooltips, 3000);
+            setTimeout(initAllTooltips, 2000);
+            setTimeout(initAllTooltips, 4000);
         });
     } else {
         setupTooltipObserver();
-        setTimeout(() => {
-            initTooltips();
-            initAvatarVoteTooltips();
-            initColorCardTooltips();
-            initTensionValueTooltips();
-        }, 2000);
-        // Also try again after a longer delay
-        setTimeout(initAvatarVoteTooltips, 3000);
-        setTimeout(initAvatarVoteTooltips, 5000);
-        setTimeout(initColorCardTooltips, 3000);
-        setTimeout(initTensionValueTooltips, 3000);
+        setTimeout(initAllTooltips, 2000);
+        setTimeout(initAllTooltips, 4000);
     }
-    
-    // Also re-initialize tooltips when slides change (in case new elements are rendered)
-    // This will be set up after swipeGraph is initialized
     
     // Reload page on window resize to fix graph connection lines
     let resizeTimeout;
@@ -1104,12 +864,82 @@
         }, 500);
     });
 
-    // var css_change = function(t,s){
-    //     s = document.createElement('style');
-    //     s.innerText = t;
-    //     document.body.appendChild(s);
-    // };
-
+    // Google Slides Fullscreen functionality
+    const fullscreenButton = document.getElementById('google-slides-fullscreen-button');
+    const slidesContainerWrapper = document.querySelector('.google-slides-container-wrapper');
+    
+    if (fullscreenButton && slidesContainerWrapper) {
+        fullscreenButton.addEventListener('click', function() {
+            if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.mozFullScreenElement && !document.msFullscreenElement) {
+                // Enter fullscreen
+                if (slidesContainerWrapper.requestFullscreen) {
+                    slidesContainerWrapper.requestFullscreen();
+                } else if (slidesContainerWrapper.webkitRequestFullscreen) {
+                    slidesContainerWrapper.webkitRequestFullscreen();
+                } else if (slidesContainerWrapper.mozRequestFullScreen) {
+                    slidesContainerWrapper.mozRequestFullScreen();
+                } else if (slidesContainerWrapper.msRequestFullscreen) {
+                    slidesContainerWrapper.msRequestFullscreen();
+                }
+                slidesContainerWrapper.classList.add('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild beenden'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild beenden'|escapejs %}");
+            } else {
+                // Exit fullscreen
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+        
+        // Listen for fullscreen changes
+        document.addEventListener('fullscreenchange', function() {
+            if (!document.fullscreenElement) {
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+        
+        document.addEventListener('webkitfullscreenchange', function() {
+            if (!document.webkitFullscreenElement) {
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+        
+        document.addEventListener('mozfullscreenchange', function() {
+            if (!document.mozFullScreenElement) {
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+        
+        document.addEventListener('MSFullscreenChange', function() {
+            if (!document.msFullscreenElement) {
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+    }
 
 </script>
 

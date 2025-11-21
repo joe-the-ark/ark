@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/static/css/app.css">
     <link rel="stylesheet" href="/static/css/app_graph.css">
     <link rel="stylesheet" href="/static/css/team-potential.css">
+    <link rel="stylesheet" href="/static/css/team-potential-google-slides.css">
 
     <script src="/static/vue.js"></script>
     <!-- 引入样式 -->
@@ -27,9 +28,11 @@
     <div class="app__head">
         <header class="header-main container">
             <div class="header-main__title">
-                <icon classs="icon" onClick="window.open('https://info.arks.ch/');">
+                <icon class="icon" onClick="window.open('https://info.arks.ch/');">
                 <span class="icon-logo"></span>
                 <span>ARKS</span>
+                <span id="arks-logo-tooltip-icon" class="tooltip-icon" style="display: none;">{% trans "Info zu safecircles.ch" %}</span>
+            </icon>
             </div>
             <div class="header-main__user">
                 <div class="user">
@@ -45,54 +48,12 @@
             <div class="header-main__progress">
                 <div class="progress">
                     <div class="progress__bar">
-                        <div style="width: 85%; border-radius: 10px;">85%</div>
+                        <div class="progress__bar-fill">85%</div>
                     </div>
                 </div>
-                <button onclick="window.print()" title="Print or safe this window as PDF">Save as PDF</button> <!-- Print Button Added --> 
+                <button class="button" onclick="window.print()" aria-label="{% trans 'Als PDF speichern' %}" title="{% trans 'Als PDF speichern' %}">{% trans "Als PDF speichern" %}</button> 
             </div>
 
-                <style>
-                    .google-slides-container {
-                        position: relative;
-                        width: 100%;
-                        padding-top: 56.25%; /* 16:9 Aspect Ratio */
-                        overflow: hidden;
-                        border-radius: 10px;
-                        background-color: #9FE2BF;
-                    }
-
-                    .google-slides-container iframe {
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        width: 100%; /* Ensure the iframe takes the full width */
-                        height: 100%;
-                        border: none;
-                    }
-
-                    @media print {
-                        .google-slides-container {
-                            position: relative;
-                            width: 100%;
-                            height: 0;
-                            padding-top: 75%; /* Adjust to fit within print area */
-                            overflow: visible; /* Ensure the content is not hidden */
-                            border-radius: 0;
-                            background-color: #fff;
-                        }
-
-                        .google-slides-container iframe {
-                            position: absolute;
-                            top: 0;
-                            left: 0;
-                            width: 100%;
-                            height: 100%;
-                            transform: scale(0.75); /* Adjust scale to fit the print area */
-                            transform-origin: top left;
-                            border: none;
-                        }
-                    }
-                </style>
 
 
         </header>
@@ -103,22 +64,36 @@
         element-loading-text="Waiting for others to finish"
         element-loading-background="rgba(0, 0, 0, 0.8)">
             <main class="screen auth">
-                <h1 style="display: inline-flex; align-items: center; gap: 8px;">
-                    {% trans "Sichere Kreise im Team boosten" %}
+                <h1 class="team-potential-heading-tooltip">
                     <span 
                         id="team-potential-title-tooltip-icon"
                         class="tooltip-icon"
-                        title="{% trans 'Team-Potential-Titel-Erklärung' %}"
+                        tabindex="0"
+                        aria-label="{% trans 'Tooltip anzeigen' %}"
                     >
                         ?
                     </span>
+                    {% trans "Sichere Kreise im Team boosten" %}
                 </h1>
 
                 <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
 
                 <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
                             <br>
-                            {% trans "PRIO 1: Diese Konstellation ermöglicht euch ein " %}<button @click="current=getValue4()" style="background-color: #FFFFFF; border: 5px solid #75CBE8; color: black;">{% trans "maximales Mass an psychologischer Sicherheit beim Toleranzfenster" %} [[ getValue4() ]]</button><br>                            {% trans "Wer ist in mehreren sicheren Kreisen und wirkt integrierend?" %}<br>
+                            <span 
+                                id="prio1-heading-tooltip-icon"
+                                class="prio1-tooltip-container"
+                                style="display: inline-flex; align-items: center; gap: 4px; margin-right: 8px; vertical-align: middle;"
+                            >
+                                <span 
+                                    id="prio1-tooltip-icon"
+                                    class="tooltip-icon prio1-tooltip-icon"
+                                    title="{% trans 'Klicken für Anweisungen' %}"
+                                >
+                                    ?
+                                </span>
+                            </span>
+                            {% trans "PRIO 1: Integratoren stärken – " %}{% trans "diese Konstellation ermöglicht euch ein " %}<button @click="current=getValue4()" style="background-color: #FFFFFF; border: 5px solid #75CBE8; color: black;">{% trans "maximales Mass an psychologischer Sicherheit beim Toleranzfenster" %} [[ getValue4() ]]</button><br>                            {% trans "Wer ist in mehreren sicheren Kreisen und wirkt integrierend?" %}<br>
                             <span 
                                 id="prio1-integrator-tooltip-icon"
                                 style="display: inline-flex; align-items: center; gap: 4px; margin-left: 0; vertical-align: middle;"
@@ -126,7 +101,7 @@
                                 {% trans "Wie weiter" %}
                                 <span 
                                     class="tooltip-icon"
-                                    title="{% trans 'Integratoren-Erklärung' %}"
+                                    title="{% trans 'PRIO 1-Erklärung' %}"
                                 >
                                     ?
                                 </span>
@@ -196,13 +171,13 @@
                     
                     <!-- Improved Tolerance Window Input Container -->
                     <div class="tolerance-window-input-container" style="display: flex; flex-direction: column; align-items: center; gap: 15px; margin: 20px 0; padding: 20px; background-color: #f5f5f5; border-radius: 10px; border: 2px solid #9FE2BF;">
-                        <div style="display: flex; align-items: center; gap: 10px; width: 100%; max-width: 600px;">
+                        <div style="display: flex; align-items: center; gap: 10px; width: 100%; max-width: 900px;">
                             <label for="tolerance-window-input" style="font-weight: bold; color: #626262; white-space: nowrap;">
                                 {% trans "Toleranzfenster:" %}
                             </label>
                             <div style="position: relative; flex: 1; display: flex; align-items: center; gap: 10px;">
                                 <!-- Range Slider with gradient background -->
-                                <div style="position: relative; flex: 1; height: 24px; border-radius: 5px;" :style="getSliderGradientBackgroundStyle()">
+                                <div style="position: relative; flex: 1.5; min-width: 450px; height: 50px; border-radius: 5px;" :style="getSliderGradientBackgroundStyle()">
                                     <input 
                                         type="range" 
                                         id="tolerance-window-slider"
@@ -212,6 +187,10 @@
                                         step="1"
                                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; margin: 0; padding: 0; background: transparent; outline: none; cursor: pointer; z-index: 1;"
                                         class="tolerance-slider"
+                                        aria-label="{% trans 'Toleranzfenster einstellen' %}"
+                                        aria-valuemin="getMinTolerance()"
+                                        aria-valuemax="getValue2()"
+                                        :aria-valuenow="current"
                                     />
                                 </div>
                                 <!-- Number Input -->
@@ -222,6 +201,10 @@
                                     :min="getMinTolerance()" 
                                     :max="getValue2()" 
                                     style="width: 100px; height: 50px; padding: 10px; border-radius: 10px; border: 3px solid #9FE2BF; font-size: 20px; font-weight: bold; text-align: center; background-color: #FAE03C; color: #626262; box-shadow: 0 2px 5px rgba(0,0,0,0.1);" 
+                                    aria-label="{% trans 'Toleranzfenster-Wert eingeben' %}"
+                                    aria-valuemin="getMinTolerance()"
+                                    aria-valuemax="getValue2()"
+                                    :aria-valuenow="current"
                                 />
                                 <!-- Tooltip Icon -->
                                 <span 
@@ -238,7 +221,9 @@
                                 @click="hideReadingHelp()"
                                 id="min-value-button"
                                 style="font-weight: bold; font-size: 42px; color: #626262; background: none; border: none; cursor: pointer; padding: 0; margin: 0; text-decoration: underline;"
+                                :aria-label="'{% trans 'Lesehilfe anzeigen' %}: ' + getMinTolerance()"
                                 title="{% trans 'Lesehilfe anzeigen' %}"
+                                tabindex="0"
                             >
                                 [[ getMinTolerance() ]]
                             </button>
@@ -247,7 +232,9 @@
                                 @click="hideMaxValueHelp()"
                                 id="max-value-button"
                                 style="font-weight: bold; font-size: 42px; color: #626262; background: none; border: none; cursor: pointer; padding: 0; margin: 0; text-decoration: underline;"
+                                :aria-label="'{% trans 'Maximalwert-Erklärung' %}: ' + getValue2()"
                                 title="{% trans 'Maximalwert-Erklärung' %}"
+                                tabindex="0"
                             >
                                 [[ getValue2() ]]
                             </button>
@@ -262,6 +249,9 @@
                             :height="height" 
                             :style="{ width:width+'px', height:height+'px', display: viewMode === 'canvas' ? 'block' : 'none', transition: 'opacity 0.3s ease' }" 
                             id="team-potential-canvas"
+                            role="img"
+                            :aria-label="'{% trans 'Team-Potential-Visualisierung' %}: ' + current"
+                            tabindex="0"
                         ></canvas>
                     </div>
                     <div v-if="viewMode === 'overview'" style="min-height: 400px; padding: 20px; background-color: #f5f5f5; border-radius: 10px; text-align: center;">
@@ -279,7 +269,7 @@
                 >
                     <div class="player-detail-content" v-if="getPlayerDetails(selectedPlayer)">
                         <div class="player-detail-header">
-                            <button class="player-detail-close" @click="closePlayerDetail()">×</button>
+                            <button class="player-detail-close" @click="closePlayerDetail()" aria-label="{% trans 'Spieler-Detail schließen' %}" title="{% trans 'Schließen' %}">×</button>
                             <h2>[[ getPlayerDetails(selectedPlayer).name ]]</h2>
                         </div>
                         <div class="player-detail-body">
@@ -387,8 +377,20 @@
                 </div>
 
                 <p style="background-color: #9FE2BF; color: #626262; text-align: left; border-radius: 10px; padding: 0 10px;"><br>
-
-                       {% trans "PRIO 2: Beim Toleranzfenster-Wert von " %}<button @click="current=getValue3()" style="background-color: #FFFFFF; border: 5px solid #52CEEC; color: black;">[[ getValue3() ]] </button>{% trans " (hier klicken) siehst du, wer zuerst SOLO ist. " %}<button @click="current=getValue3()+1" style="background-color: #FFFFFF; border: 5px solid #52CEEC; color: black;">{% trans "Booste Satelliten" %}</button> {% trans " und erkenne, wer Hand in einen sicheren Kreis bieten kann." %}<br>
+                            <span 
+                                id="prio2-heading-tooltip-icon"
+                                class="prio2-tooltip-container"
+                                style="display: inline-flex; align-items: center; gap: 4px; margin-right: 8px; vertical-align: middle;"
+                            >
+                                <span 
+                                    id="prio2-tooltip-icon"
+                                    class="tooltip-icon prio2-tooltip-icon"
+                                    title="{% trans 'Klicken für Anweisungen' %}"
+                                >
+                                    ?
+                                </span>
+                            </span>
+                       {% trans "PRIO 2: Satelliten integrieren – " %}{% trans "beim Toleranzfenster-Wert von " %}<button @click="current=getValue3()" style="background-color: #FFFFFF; border: 5px solid #52CEEC; color: black;">[[ getValue3() ]] </button>{% trans " (hier klicken) siehst du, wer zuerst SOLO ist. " %}<button @click="current=getValue3()+1" style="background-color: #FFFFFF; border: 5px solid #52CEEC; color: black;">{% trans "Booste Satelliten" %}</button> {% trans " und erkenne, wer Hand in einen sicheren Kreis bieten kann." %}<br>
                        <span 
                            id="prio2-integrator-tooltip-icon"
                            style="display: inline-flex; align-items: center; gap: 4px; margin-left: 0; vertical-align: middle;"
@@ -405,7 +407,20 @@
                 </p>
 
                 <p style="background-color: #52CEEC; text-align: left; color: #FFFFFF; border-radius: 10px; padding: 0 10px;"><br>
-                            {% trans "PRIO 3: Die Konstellation beim " %}<button  @click="current=16" style="border: 5px solid #9FE2BF;">{% trans "Standard-Toleranzfenster von 16" %}</button>{% trans " könnte der IST-Situation im Team nahekommen. Wie sicher verbunden ist der Boss?" %}<br>
+                            <span 
+                                id="prio3-heading-tooltip-icon"
+                                class="prio3-tooltip-container"
+                                style="display: inline-flex; align-items: center; gap: 4px; margin-right: 8px; vertical-align: middle;"
+                            >
+                                <span 
+                                    id="prio3-tooltip-icon"
+                                    class="tooltip-icon tooltip-icon-green prio3-tooltip-icon"
+                                    title="{% trans 'Klicken für Anweisungen' %}"
+                                >
+                                    ?
+                                </span>
+                            </span>
+                            {% trans "PRIO 3: Boss-Zentralität erhöhen – " %}{% trans "die Konstellation beim " %}<button  @click="current=16" style="border: 5px solid #9FE2BF;">{% trans "Standard-Toleranzfenster von 16" %}</button>{% trans " könnte der IST-Situation im Team nahekommen. Wie sicher verbunden ist der Boss?" %}<br>
                             <span 
                                 id="prio3-integrator-tooltip-icon"
                                 style="display: inline-flex; align-items: center; gap: 4px; margin-left: 0; vertical-align: middle;"
@@ -452,66 +467,20 @@
 
 
                         <p style="text-align: center; font-size: 10px;">
-                            <a href="https://github.com/joe-the-ark/ark" target="_blank">ARKS is published under a GPLv3</a> license by 
-                            <a href="https://www.linkedin.com/in/dr-joe-maier/" target="_blank">Dr. Joe Maier</a>.
+                            <div class="copyright-footer">
+                                <a href="https://github.com/joe-the-ark/ark" target="_blank">{% trans "ARKS is published under a GPLv3" %}</a> {% trans "license by" %} 
+                                <a href="https://www.linkedin.com/in/dr-joe-maier/" target="_blank">{% trans "Dr. Joe Maier" %}</a>.
+                            </div>
                         </p>
                 </div>
 
-                <style>
-                      .google-slides-container {
-                        position: relative;
-                        width: 100%;
-                        padding-top: 56.25%; /* 16:9 Aspect Ratio */
-                        overflow: hidden;
-                        border-radius: 10px;
-                        background-color: #9FE2BF;
-                    }
-
-                    .google-slides-container iframe {
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                        border: none;
-                    }
-
-                    @media print {
-                        @page {
-                            size: A4 portrait; /* Use landscape orientation for better fit */
-                            margin: 0;
-                        }
-
-                        body {
-                            margin: 0;
-                            background-color: #ffffff; /* Change background color for print */
-                            -webkit-print-color-adjust: exact; /* Chrome, Safari */
-                            color-adjust: exact; /* Firefox */
-                        }
-
-                        .header-main__progress, .center, .container {
-                            page-break-inside: no;
-                        }
-
-                        .google-slides-container {
-                            width: 100%;
-                            height: 100%; /* Fill the viewport height for printing */
-                            padding-top: 0; /* Remove padding-top to fit print size */
-                            background-color: #ffffff; /* Change background color for print */
-                            border-radius: 0; /* Remove border radius for printing */
-                        }
-
-                        .google-slides-container iframe {
-                            position: static;
-                            width: auto;
-                            height: auto; /* Fill the viewport height for printing */
-                        }
-                    }
-
-
-                </style>
-                <div class="google-slides-container">
-                    <iframe src={% trans "https://docs.google.com/presentation/d/1qi3wNhpRU3FEoatghY7Ca0iNwtGPQGvHqLRXCvbKKJ8/embed?start=true&loop=false&delayms=8000"  %} frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                <div class="google-slides-container-wrapper" style="position: relative; margin-top: 40px;">
+                    <button class="google-slides-fullscreen-button" id="google-slides-fullscreen-button" aria-label="{% trans 'Vollbild anzeigen' %}" title="{% trans 'Vollbild anzeigen' %}">
+                        <span class="fullscreen-icon">⛶</span>
+                    </button>
+                    <div class="google-slides-container" id="google-slides-container">
+                        <iframe src={% trans "https://docs.google.com/presentation/d/1qi3wNhpRU3FEoatghY7Ca0iNwtGPQGvHqLRXCvbKKJ8/embed?start=true&loop=false&delayms=8000&rm=minimal"  %} frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                    </div>
                 </div>
 
                 {% comment %}<p class="spanun-p" style="background-color: #FFFFFF; color: #626262; border-radius: 10px; padding: 0 10px;">
@@ -522,11 +491,23 @@
 
     </div>
 </div>
+{{ prio1_tooltip_text|json_script:"prio1-tooltip-text" }}
+{{ prio2_tooltip_text|json_script:"prio2-tooltip-text" }}
+{{ prio3_tooltip_text|json_script:"prio3-tooltip-text" }}
 <script src="/static/js/AppGraph.js"></script>
 <script src="/static/axios.min.js"></script>
 <script>
-
-// static/js/AppGraph.js
+/**
+ * Team Potential Visualization
+ * 
+ * This Vue.js application visualizes safecircles and in-groups for team dynamics.
+ * Features:
+ * - Interactive tolerance window slider
+ * - Canvas visualization with safecircles and in-groups
+ * - Player detail modal
+ * - Keyboard navigation (Arrow keys, Space)
+ * - Smooth animations
+ */
 
 var app1 = new Vue({
     delimiters: ['[[', ']]'],
@@ -575,16 +556,33 @@ var app1 = new Vue({
         }
     },
     methods: {
+        /**
+         * Navigation Methods
+         */
         waiting_room() {
             window.location.href = '/waiting-room2/';
         },
-        getValue1() { for (const key in this.circles.circles) return key; },
+        
+        /**
+         * Tolerance Window Value Methods
+         * These methods calculate the minimum, maximum, and optimal tolerance window values
+         */
+        getValue1() { 
+            // Returns the first (lowest) tolerance value where safecircles exist
+            for (const key in this.circles.circles) return key; 
+        },
         getValue2() {
+            // Returns the highest tolerance value where safecircles exist
             let maxKey = -Infinity;
             for (const key in this.circles.circles) maxKey = Math.max(maxKey, parseInt(key));
             return maxKey;
         },
         getMinTolerance() {
+            /**
+             * Returns the minimum tolerance value, considering both safecircles and in-groups.
+             * If in-groups exist at lower tolerance values, returns the lowest in-group tolerance.
+             * Otherwise, returns the lowest safecircle tolerance - 1.
+             */
             // Find the lowest tolerance value where in-groups exist
             // If no in-groups exist, return getValue1()-1 (lowest safecircle value - 1)
             const inGroups = this.inGroups || [];
@@ -619,8 +617,13 @@ var app1 = new Vue({
                 if (sum > maxSum) { maxSum = sum; best = key; }
             }
             return best;
-        },
-        getCircles() {
+           },
+           
+           /**
+            * Safecircle Data Methods
+            * Methods for retrieving and formatting safecircle information
+            */
+           getCircles() {
             const entry = this.circles.circles[this.current] || {};
             return (entry.circles || []).map(group => group.map(i => this.circles.players[i]).join(' '));
         },
@@ -652,7 +655,16 @@ var app1 = new Vue({
                    };
                });
            },
+           /**
+            * Visual Styling Methods
+            */
            getSliderGradientBackgroundStyle() {
+               /**
+                * Creates a gradient background for the tolerance window slider.
+                * - Red for low values (< 16): indicates high stress
+                * - Green for optimal values (>= 16): indicates safe zone
+                * - White for very high values: indicates potential groupthink
+                */
                const min = this.getMinTolerance();
                const max = this.getValue2();
                const threshold = 16; // Value below which it transitions to red
@@ -673,7 +685,13 @@ var app1 = new Vue({
                    background: `linear-gradient(to right, ${redColor} 0%, ${greenColor} ${thresholdPercent}%, ${greenColor} 85%, ${whiteColor} 100%)`
                };
            },
+           /**
+            * UI Interaction Methods
+            */
            hideReadingHelp() {
+               /**
+                * Hides the reading help section and sets tolerance to first safe circle value.
+                */
                const section = document.getElementById('reading-help-section');
                if (section) {
                    section.style.display = 'none';
@@ -682,6 +700,9 @@ var app1 = new Vue({
                this.current = this.getValue1();
            },
            hideMaxValueHelp() {
+               /**
+                * Hides the max value help section and sets tolerance to highest value.
+                */
                const section = document.getElementById('max-value-help-section');
                if (section) {
                    section.style.display = 'none';
@@ -689,7 +710,11 @@ var app1 = new Vue({
                // Set current to highest tolerance window value to display it
                this.current = this.getValue2();
            },
-           // Animation methods
+           
+           /**
+            * Animation Methods
+            * Provides smooth transitions when tolerance window changes
+            */
            animateTransition(fromVal, toVal) {
                if (this.isAnimating) return;
                this.isAnimating = true;
@@ -727,7 +752,11 @@ var app1 = new Vue({
            easeInOutCubic(t) {
                return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
            },
-           // Keyboard shortcuts
+           /**
+            * Keyboard Navigation
+            * Arrow keys: Change tolerance window
+            * Space: Toggle between canvas and overview view
+            */
            setupKeyboardShortcuts() {
                document.addEventListener('keydown', (e) => {
                    // Don't trigger if user is typing in an input field
@@ -1090,7 +1119,7 @@ var app1 = new Vue({
                 if (isAllPlayersCircle) {
                     // Draw a perfect circle that encompasses all players
                     // Calculate center as average of all boundary positions
-                    let x0=0,y0=0; members.forEach(i=>(x0+=boundaryX[i],y0+=boundaryY[i])); x0/=members.length; y0/=members.length;
+                let x0=0,y0=0; members.forEach(i=>(x0+=boundaryX[i],y0+=boundaryY[i])); x0/=members.length; y0/=members.length;
                     
                     // Calculate radius: distance from center to farthest boundary point + dR
                     let maxRadius = 0;
@@ -1127,24 +1156,24 @@ var app1 = new Vue({
                     // Base handle radius (increased from 120 to 180 for rounder appearance)
                     const baseHr = 180;
                     
-                    ctx.strokeStyle=colors[idx%colors.length]; ctx.lineWidth=3; ctx.setLineDash([]); ctx.beginPath();
-                    members.forEach((pt,j)=>{
-                        const nextIdx=members[(j+1)%members.length];
-                        const [tx,ty,,,th1]=calcEdge(j,members,x0,y0,boundaryX,boundaryY,moveP);
-                        const [nx,ny,,,th2]=calcEdge((j+1)%members.length,members,x0,y0,boundaryX,boundaryY,moveP);
+                ctx.strokeStyle=colors[idx%colors.length]; ctx.lineWidth=3; ctx.setLineDash([]); ctx.beginPath();
+                members.forEach((pt,j)=>{
+                    const nextIdx=members[(j+1)%members.length];
+                    const [tx,ty,,,th1]=calcEdge(j,members,x0,y0,boundaryX,boundaryY,moveP);
+                    const [nx,ny,,,th2]=calcEdge((j+1)%members.length,members,x0,y0,boundaryX,boundaryY,moveP);
                         
                         // Dynamic hr: adjust based on distance between points
                         // For larger distances, use larger hr; for smaller distances, use smaller hr
                         const segmentDistance = Math.hypot(nx - tx, ny - ty);
                         const hr = baseHr * (segmentDistance / avgDistance);
                         
-                        const c1x = round(tx + hr * Math.cos(th1 - Math.PI / 2));
-                        const c1y = round(ty + hr * Math.sin(th1 - Math.PI / 2));
-                        const c2x = round(nx + hr * Math.cos(th2 + Math.PI / 2));
-                        const c2y = round(ny + hr * Math.sin(th2 + Math.PI / 2));
-                        if(!j)ctx.moveTo(tx,ty);
-                        ctx.bezierCurveTo(c1x,c1y,c2x,c2y,nx,ny);
-                    }); ctx.stroke();
+                    const c1x = round(tx + hr * Math.cos(th1 - Math.PI / 2));
+                    const c1y = round(ty + hr * Math.sin(th1 - Math.PI / 2));
+                    const c2x = round(nx + hr * Math.cos(th2 + Math.PI / 2));
+                    const c2y = round(ny + hr * Math.sin(th2 + Math.PI / 2));
+                    if(!j)ctx.moveTo(tx,ty);
+                    ctx.bezierCurveTo(c1x,c1y,c2x,c2y,nx,ny);
+                }); ctx.stroke();
                 }
             });
 
@@ -1479,27 +1508,59 @@ function initCanvasTooltips() {
 }
 
 // Initialize tooltips after page load
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function() {
+    // ARKS Logo Tooltip
+    function initARKSLogoTooltip() {
+        const arksLogoContainer = document.querySelector('.header-main__title icon');
+        const arksLogoTooltipIcon = document.getElementById('arks-logo-tooltip-icon');
+        
+        if (arksLogoContainer && arksLogoTooltipIcon) {
+            arksLogoContainer.addEventListener('mouseenter', function() {
+                arksLogoTooltipIcon.style.display = 'inline-flex';
+            });
+            arksLogoContainer.addEventListener('mouseleave', function() {
+                arksLogoTooltipIcon.style.display = 'none';
+            });
+            
+            tippy(arksLogoTooltipIcon, {
+                content: "{% trans 'Info zu safecircles.ch'|escapejs %}",
+                placement: 'bottom',
+                theme: 'light',
+                delay: [200, 0],
+                allowHTML: false,
+                interactive: false,
+                trigger: 'mouseenter focus',
+            });
+        }
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(initARKSLogoTooltip, 1000);
+            setTimeout(initCanvasTooltips, 1000);
+            setTimeout(initToleranceWindowTooltip, 1000);
+            setTimeout(initPrio1HeadingTooltip, 1000);
+            setTimeout(initPrio1IntegratorTooltip, 1000);
+            setTimeout(initPrio2HeadingTooltip, 1000);
+            setTimeout(initPrio2IntegratorTooltip, 1000);
+            setTimeout(initPrio3HeadingTooltip, 1000);
+            setTimeout(initPrio3IntegratorTooltip, 1000);
+            setTimeout(initMinValueButtonTooltip, 1000);
+            setTimeout(initMaxValueButtonTooltip, 1000);
+            setTimeout(initTeamPotentialTitleTooltip, 1000);
+        });
+    } else {
+        setTimeout(initARKSLogoTooltip, 1000);
         setTimeout(initCanvasTooltips, 1000);
         setTimeout(initToleranceWindowTooltip, 1000);
+        setTimeout(initPrio1HeadingTooltip, 1000);
         setTimeout(initPrio1IntegratorTooltip, 1000);
+        setTimeout(initPrio2HeadingTooltip, 1000);
         setTimeout(initPrio2IntegratorTooltip, 1000);
         setTimeout(initPrio3IntegratorTooltip, 1000);
         setTimeout(initMinValueButtonTooltip, 1000);
         setTimeout(initMaxValueButtonTooltip, 1000);
         setTimeout(initTeamPotentialTitleTooltip, 1000);
-    });
-} else {
-    setTimeout(initCanvasTooltips, 1000);
-    setTimeout(initToleranceWindowTooltip, 1000);
-    setTimeout(initPrio1IntegratorTooltip, 1000);
-    setTimeout(initPrio2IntegratorTooltip, 1000);
-    setTimeout(initPrio3IntegratorTooltip, 1000);
-    setTimeout(initMinValueButtonTooltip, 1000);
-    setTimeout(initMaxValueButtonTooltip, 1000);
-    setTimeout(initTeamPotentialTitleTooltip, 1000);
-}
+    }
 
 // Initialize tooltip for team potential title
 function initTeamPotentialTitleTooltip() {
@@ -1559,13 +1620,196 @@ function initToleranceWindowTooltip() {
     }
 }
 
+// Initialize tooltip for PRIO 1 heading explanation (big card modal)
+function initPrio1HeadingTooltip() {
+    const tooltipContainer = document.getElementById('prio1-heading-tooltip-icon');
+    const tooltipIcon = document.getElementById('prio1-tooltip-icon');
+    if (!tooltipContainer || !tooltipIcon) return;
+    
+    // Get translated tooltip text from Django - using JSON script tag to avoid escaping issues
+    const tooltipTextElement = document.getElementById('prio1-tooltip-text');
+    const tooltipText = tooltipTextElement ? JSON.parse(tooltipTextElement.textContent) : '';
+    
+    // Remove existing tooltips if any
+    if (tooltipIcon._tippy) {
+        tooltipIcon._tippy.destroy();
+    }
+    if (tooltipContainer._tippy) {
+        tooltipContainer._tippy.destroy();
+    }
+    
+    try {
+        // First, add a simple hover tooltip that shows "click for instructions"
+        const hoverTooltipText = "{% trans 'Klicken für Anweisungen'|escapejs %}";
+        tippy(tooltipIcon, {
+            content: hoverTooltipText,
+            placement: 'top',
+            theme: 'light',
+            delay: [300, 0],
+            allowHTML: false,
+            interactive: false,
+            trigger: 'mouseenter focus',
+            maxWidth: 200,
+            animation: 'fade',
+            arrow: true,
+        });
+        
+        // Then, add the big card tooltip on click
+        const parts = tooltipText.split('\n\n');
+        const title = parts[0] || '';
+        const body = parts.slice(1).join('\n\n') || '';
+        
+        // Create a styled card-like tooltip similar to player detail modal
+        const cardContent = '<div style="max-width: 600px; padding: 25px; font-size: 15px; line-height: 1.7; text-align: left; background-color: #ffffff; border-radius: 10px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);"><h3 style="margin: 0 0 15px 0; color: #626262; font-size: 18px; font-weight: bold; border-bottom: 2px solid #9FE2BF; padding-bottom: 10px;">' + title + '</h3><div style="color: #626262;">' + body.replace(/\n/g, '<br>') + '</div></div>';
+        
+        // Apply big card tooltip to container on click
+        tippy(tooltipContainer, {
+            content: cardContent,
+            placement: 'right',
+            theme: 'light',
+            delay: [0, 0],
+            allowHTML: true,
+            interactive: true,
+            trigger: 'click',
+            maxWidth: 650,
+            animation: 'fade',
+            arrow: true,
+            hideOnClick: true,
+        });
+    } catch (e) {
+        console.error('Error initializing PRIO 1 heading tooltip:', e);
+    }
+}
+
+// Initialize tooltip for PRIO 2 heading explanation (big card modal)
+function initPrio2HeadingTooltip() {
+    const tooltipContainer = document.getElementById('prio2-heading-tooltip-icon');
+    const tooltipIcon = document.getElementById('prio2-tooltip-icon');
+    if (!tooltipContainer || !tooltipIcon) return;
+    
+    // Get translated tooltip text from Django - using JSON script tag to avoid escaping issues
+    const tooltipTextElement = document.getElementById('prio2-tooltip-text');
+    const tooltipText = tooltipTextElement ? JSON.parse(tooltipTextElement.textContent) : '';
+    
+    // Remove existing tooltips if any
+    if (tooltipIcon._tippy) {
+        tooltipIcon._tippy.destroy();
+    }
+    if (tooltipContainer._tippy) {
+        tooltipContainer._tippy.destroy();
+    }
+    
+    try {
+        // First, add a simple hover tooltip that shows "click for instructions"
+        const hoverTooltipText = "{% trans 'Klicken für Anweisungen'|escapejs %}";
+        tippy(tooltipIcon, {
+            content: hoverTooltipText,
+            placement: 'top',
+            theme: 'light',
+            delay: [300, 0],
+            allowHTML: false,
+            interactive: false,
+            trigger: 'mouseenter focus',
+            maxWidth: 200,
+            animation: 'fade',
+            arrow: true,
+        });
+        
+        // Then, add the big card tooltip on click
+        const parts = tooltipText.split('\n\n');
+        const title = parts[0] || '';
+        const body = parts.slice(1).join('\n\n') || '';
+        
+        // Create a styled card-like tooltip similar to player detail modal
+        const cardContent = '<div style="max-width: 600px; padding: 25px; font-size: 15px; line-height: 1.7; text-align: left; background-color: #ffffff; border-radius: 10px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);"><h3 style="margin: 0 0 15px 0; color: #626262; font-size: 18px; font-weight: bold; border-bottom: 2px solid #52CEEC; padding-bottom: 10px;">' + title + '</h3><div style="color: #626262;">' + body.replace(/\n/g, '<br>') + '</div></div>';
+        
+        // Apply big card tooltip to container on click
+        tippy(tooltipContainer, {
+            content: cardContent,
+            placement: 'right',
+            theme: 'light',
+            delay: [0, 0],
+            allowHTML: true,
+            interactive: true,
+            trigger: 'click',
+            maxWidth: 650,
+            animation: 'fade',
+            arrow: true,
+            hideOnClick: true,
+        });
+    } catch (e) {
+        console.error('Error initializing PRIO 2 heading tooltip:', e);
+    }
+}
+
+// Initialize tooltip for PRIO 3 heading explanation (big card modal)
+function initPrio3HeadingTooltip() {
+    const tooltipContainer = document.getElementById('prio3-heading-tooltip-icon');
+    const tooltipIcon = document.getElementById('prio3-tooltip-icon');
+    if (!tooltipContainer || !tooltipIcon) return;
+    
+    // Get translated tooltip text from Django - using JSON script tag to avoid escaping issues
+    const tooltipTextElement = document.getElementById('prio3-tooltip-text');
+    const tooltipText = tooltipTextElement ? JSON.parse(tooltipTextElement.textContent) : '';
+    
+    // Remove existing tooltips if any
+    if (tooltipIcon._tippy) {
+        tooltipIcon._tippy.destroy();
+    }
+    if (tooltipContainer._tippy) {
+        tooltipContainer._tippy.destroy();
+    }
+    
+    try {
+        // First, add a simple hover tooltip that shows "click for instructions"
+        const hoverTooltipText = "{% trans 'Klicken für Anweisungen'|escapejs %}";
+        tippy(tooltipIcon, {
+            content: hoverTooltipText,
+            placement: 'top',
+            theme: 'light',
+            delay: [300, 0],
+            allowHTML: false,
+            interactive: false,
+            trigger: 'mouseenter focus',
+            maxWidth: 200,
+            animation: 'fade',
+            arrow: true,
+        });
+        
+        // Then, add the big card tooltip on click
+        const parts = tooltipText.split('\n\n');
+        const title = parts[0] || '';
+        const body = parts.slice(1).join('\n\n') || '';
+        
+        // Create a styled card-like tooltip similar to player detail modal
+        const cardContent = '<div style="max-width: 600px; padding: 25px; font-size: 15px; line-height: 1.7; text-align: left; background-color: #ffffff; border-radius: 10px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);"><h3 style="margin: 0 0 15px 0; color: #626262; font-size: 18px; font-weight: bold; border-bottom: 2px solid #9FE2BF; padding-bottom: 10px;">' + title + '</h3><div style="color: #626262;">' + body.replace(/\n/g, '<br>') + '</div></div>';
+        
+        // Apply big card tooltip to container on click
+        tippy(tooltipContainer, {
+            content: cardContent,
+            placement: 'right',
+            theme: 'light',
+            delay: [0, 0],
+            allowHTML: true,
+            interactive: true,
+            trigger: 'click',
+            maxWidth: 650,
+            animation: 'fade',
+            arrow: true,
+            hideOnClick: true,
+        });
+    } catch (e) {
+        console.error('Error initializing PRIO 3 heading tooltip:', e);
+    }
+}
+
 // Initialize tooltip for PRIO 1 integrator explanation
 function initPrio1IntegratorTooltip() {
     const tooltipIcon = document.getElementById('prio1-integrator-tooltip-icon');
     if (!tooltipIcon) return;
     
     // Get translated tooltip text from Django
-    const tooltipText = "{% trans 'Lasst diese Integratoren Babysteps vorschlagen, die für gleichberechtigte Redeanteile sorgen, euren Sicherheitsankern gerecht werden und Triggersituationen entspannen können.'|escapejs %}";
+    const tooltipText = "{% trans 'Lasst diese Integratoren Babysteps vorschlagen, die für gleichberechtigte Redeanteile sorgen, eure Sicherheitsankern gerecht werden und Triggersituationen entspannen können.'|escapejs %}";
     
     // Remove existing tooltip if any
     if (tooltipIcon._tippy) {
@@ -1774,10 +2018,6 @@ function initMaxValueButtonTooltip() {
             },
         ] {% endcomment %}
     });
-    console.log({{ circles|safe }});
-
-    console.log({{ players|safe }});
-    console.log({{ all_result|safe }});
     {% comment %} var css_change = function(t,s){
         s = document.createElement('style');
         s.innerText = t;
@@ -1794,7 +2034,6 @@ function initMaxValueButtonTooltip() {
         high = 100;
     }
     var blue_range = high - low;
-    console.log('median',median,low,high);
     css_change(`.statistic .custom-graph__items:before{left:${low}%;width:min(${blue_range}%);}`); {% endcomment %}
 
 
@@ -1802,6 +2041,83 @@ function initMaxValueButtonTooltip() {
     //    e.preventDefault();
     //    log(app.getData())
     //});
+
+    // Google Slides Fullscreen functionality
+    const fullscreenButton = document.getElementById('google-slides-fullscreen-button');
+    const slidesContainerWrapper = document.querySelector('.google-slides-container-wrapper');
+    
+    if (fullscreenButton && slidesContainerWrapper) {
+        fullscreenButton.addEventListener('click', function() {
+            if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.mozFullScreenElement && !document.msFullscreenElement) {
+                // Enter fullscreen
+                if (slidesContainerWrapper.requestFullscreen) {
+                    slidesContainerWrapper.requestFullscreen();
+                } else if (slidesContainerWrapper.webkitRequestFullscreen) {
+                    slidesContainerWrapper.webkitRequestFullscreen();
+                } else if (slidesContainerWrapper.mozRequestFullScreen) {
+                    slidesContainerWrapper.mozRequestFullScreen();
+                } else if (slidesContainerWrapper.msRequestFullscreen) {
+                    slidesContainerWrapper.msRequestFullscreen();
+                }
+                slidesContainerWrapper.classList.add('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild beenden'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild beenden'|escapejs %}");
+            } else {
+                // Exit fullscreen
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+        
+        // Listen for fullscreen changes
+        document.addEventListener('fullscreenchange', function() {
+            if (!document.fullscreenElement) {
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+        
+        document.addEventListener('webkitfullscreenchange', function() {
+            if (!document.webkitFullscreenElement) {
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+        
+        document.addEventListener('mozfullscreenchange', function() {
+            if (!document.mozFullScreenElement) {
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+        
+        document.addEventListener('MSFullscreenChange', function() {
+            if (!document.msFullscreenElement) {
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+    }
 
 </script>
 
