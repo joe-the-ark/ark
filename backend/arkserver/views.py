@@ -1092,6 +1092,7 @@ def arche(request, user):
         ctx['team_potential_median'] = None
     
     # Calculate psychological safety score (psy_score) from Ubung4
+    # Use the same calculation method as in get_u4_avg function
     game_place = list(Ubung4.objects.filter(game=game))
     row_0 = 0
     row_1 = 0
@@ -1099,13 +1100,13 @@ def arche(request, user):
     row_3 = 0
     row_4 = 0
     row_5 = 0
-    for game_ in game_place:
-        row_0 += game_.row0.all().count()
-        row_1 += game_.row1.all().count()
-        row_2 += game_.row2.all().count()
-        row_3 += game_.row3.all().count()
-        row_4 += game_.row4.all().count()
-        row_5 += game_.row5.all().count()
+    for vote in game_place:
+        row_0 += vote.row0.count()
+        row_1 += vote.row1.count()
+        row_2 += vote.row2.count()
+        row_3 += vote.row3.count()
+        row_4 += vote.row4.count()
+        row_5 += vote.row5.count()
     
     num = (WaitingRoomMember.objects.filter(game=game,state=1).count()) ** 2
     if num > 0:
@@ -1595,7 +1596,7 @@ def psychologischer(request, user):
     row5_current_user = [p for p in row5_all if p.get('id') == user.id]
     row5_other_players = [p for p in row5_all if p.get('id') != user.id]
     
-    # Count occurrences for score calculation
+    # Count occurrences for score calculation (for current user display)
     row_0 = len(row0_current_user)
     row_1 = len(row1_current_user)
     row_2 = len(row2_current_user)
@@ -1612,11 +1613,90 @@ def psychologischer(request, user):
     print(f"  row4: {row_4} times (others: {len(row4_other_players)})")
     print(f"  row5: {row_5} times (others: {len(row5_other_players)})")
 
+    # Calculate individual score for current user (for display)
     score = (row_0 * 4 + row_1 * 1 + row_2 * 3 + row_3 * 5 + row_4 * 0 + row_5 * 2) * 20
     num = (WaitingRoomMember.objects.filter(game=game,state=1).count()) ** 2
     score = score / num if num > 0 else 0
 
     ctx['score'] = round(score)
+    
+    # Calculate team psychological safety score (psy_score) from all Ubung4 entries
+    # Use the same calculation method as in arche view and get_u4_avg function
+    # This matches the calculation in management/commands/utils.py get_u4_avg()
+    game_place_all = list(Ubung4.objects.filter(game=game))
+    row_0_all = 0
+    row_1_all = 0
+    row_2_all = 0
+    row_3_all = 0
+    row_4_all = 0
+    row_5_all = 0
+    for vote in game_place_all:
+        row_0_all += vote.row0.count()
+        row_1_all += vote.row1.count()
+        row_2_all += vote.row2.count()
+        row_3_all += vote.row3.count()
+        row_4_all += vote.row4.count()
+        row_5_all += vote.row5.count()
+    
+    num_all = (WaitingRoomMember.objects.filter(game=game,state=1).count()) ** 2
+    if num_all > 0:
+        score_all = (row_0_all * 4 + row_1_all * 1 + row_2_all * 3 + row_3_all * 5 + row_4_all * 0 + row_5_all * 2) * 20
+        score_all = score_all / num_all
+        ctx['psy_score'] = round(score_all)
+    else:
+        ctx['psy_score'] = None
+    
+    # Calculate team potential median (performance value) from Ubung2
+    ubung2 = Ubung2.objects.filter(game=game)
+    value_list = []
+    for i in ubung2:
+        value_list.append(int(i.value))
+    
+    if value_list:
+        from .utils import mean
+        median = mean(value_list)
+        ctx['team_potential_median'] = round(median)
+    else:
+        ctx['team_potential_median'] = None
+    
+    # Determine scenario based on values
+    # Threshold: 50 (middle of 0-99/0-100 scale)
+    threshold = 50
+    ctx['scenario'] = None
+    ctx['orientation_text'] = None
+    
+    if ctx['psy_score'] is not None and ctx['team_potential_median'] is not None:
+        psy_high = ctx['psy_score'] >= threshold
+        performance_high = ctx['team_potential_median'] >= threshold
+        difference = ctx['team_potential_median'] - ctx['psy_score']
+        
+        if psy_high and performance_high:
+            # Both high - Normal case (high values)
+            ctx['scenario'] = 'normal_high'
+        elif not psy_high and not performance_high:
+            # Both low - Normal case (low values)
+            ctx['scenario'] = 'normal_low'
+        elif not psy_high and performance_high:
+            # Low safety, high performance - Case 1
+            ctx['scenario'] = 'case1'
+        elif psy_high and not performance_high:
+            # High safety, low performance - Case 2
+            ctx['scenario'] = 'case2'
+        
+        # Add orientation text based on difference
+        orientation_threshold = 16
+        if difference > orientation_threshold:
+            # Performance deutlich höher als psychologische Sicherheit
+            ctx['orientation_text'] = 'performance_higher'
+            ctx['orientation_difference'] = difference
+        elif difference < -orientation_threshold:
+            # Psychologische Sicherheit deutlich höher als Performance
+            ctx['orientation_text'] = 'safety_higher'
+            ctx['orientation_difference'] = abs(difference)
+        else:
+            # Werte liegen nah beieinander
+            ctx['orientation_text'] = 'values_close'
+            ctx['orientation_difference'] = abs(difference)
     
     # Pass arrays for Vue.js
     # Each row has two arrays: current_user (blue circles with avatar) and other_players (gray anonymous circles)

@@ -151,7 +151,7 @@
                     
                     {% if scenario %}
                     <div class="arche-scenarios-container">
-                        <div class="arche-scenario-card {% if scenario == 'case1' %}arche-scenario-active{% endif %}" 
+                        <div class="arche-scenario-card {% if scenario == 'case1' %}arche-scenario-active scenario-case1{% endif %}" 
                              id="scenario-case1"
                              data-tippy-content="{% trans 'Fall 1: Hohe Performance + Niedrige psychologische Sicherheit'|escapejs %}">
                             <div class="arche-scenario-header">
@@ -163,7 +163,7 @@
                             </div>
                         </div>
                         
-                        <div class="arche-scenario-card {% if scenario == 'case2' %}arche-scenario-active{% endif %}" 
+                        <div class="arche-scenario-card {% if scenario == 'case2' %}arche-scenario-active scenario-case2{% endif %}" 
                              id="scenario-case2"
                              data-tippy-content="{% trans 'Fall 2: Niedrige Performance + Hohe psychologische Sicherheit'|escapejs %}">
                             <div class="arche-scenario-header">
@@ -175,7 +175,7 @@
                             </div>
                         </div>
                         
-                        <div class="arche-scenario-card {% if scenario == 'normal_high' or scenario == 'normal_low' %}arche-scenario-active{% endif %}" 
+                        <div class="arche-scenario-card {% if scenario == 'normal_high' or scenario == 'normal_low' %}arche-scenario-active scenario-normal{% endif %}" 
                              id="scenario-normal"
                              data-tippy-content="{% trans 'Normalfall: Übereinstimmende Werte'|escapejs %}">
                             <div class="arche-scenario-header">

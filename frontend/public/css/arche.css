@@ -301,6 +301,91 @@
   box-shadow: 0 2px 8px rgba(82, 206, 236, 0.3);
 }
 
+/* Match scenario cards with orientation text styling */
+.arche-scenario-card.arche-scenario-active.scenario-case1 {
+  background-color: #fa5252 !important;
+  color: #FFFFFF !important;
+  border-color: #fa5252 !important;
+  box-shadow: 0 2px 8px rgba(250, 82, 82, 0.3);
+}
+
+.arche-scenario-card.arche-scenario-active.scenario-case1 .arche-scenario-title {
+  color: #FFFFFF !important;
+}
+
+.arche-scenario-card.arche-scenario-active.scenario-case1 .arche-scenario-content {
+  color: #FFFFFF !important;
+}
+
+.arche-scenario-card.arche-scenario-active.scenario-case1 .arche-scenario-content p {
+  color: #FFFFFF !important;
+}
+
+.arche-scenario-card.arche-scenario-active.scenario-case1 .arche-scenario-tooltip-icon {
+  background-color: rgba(255, 255, 255, 0.3) !important;
+  color: #FFFFFF !important;
+}
+
+.arche-scenario-card.arche-scenario-active.scenario-case1 .arche-scenario-tooltip-icon:hover {
+  background-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.arche-scenario-card.arche-scenario-active.scenario-case2 {
+  background-color: #52CEEC !important;
+  color: #FFFFFF !important;
+  border-color: #52CEEC !important;
+  box-shadow: 0 2px 8px rgba(82, 206, 236, 0.3);
+}
+
+.arche-scenario-card.arche-scenario-active.scenario-case2 .arche-scenario-title {
+  color: #FFFFFF !important;
+}
+
+.arche-scenario-card.arche-scenario-active.scenario-case2 .arche-scenario-content {
+  color: #FFFFFF !important;
+}
+
+.arche-scenario-card.arche-scenario-active.scenario-case2 .arche-scenario-content p {
+  color: #FFFFFF !important;
+}
+
+.arche-scenario-card.arche-scenario-active.scenario-case2 .arche-scenario-tooltip-icon {
+  background-color: rgba(255, 255, 255, 0.3) !important;
+  color: #FFFFFF !important;
+}
+
+.arche-scenario-card.arche-scenario-active.scenario-case2 .arche-scenario-tooltip-icon:hover {
+  background-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.arche-scenario-card.arche-scenario-active.scenario-normal {
+  background-color: #9FE2BF !important;
+  color: #FFFFFF !important;
+  border-color: #9FE2BF !important;
+  box-shadow: 0 2px 8px rgba(159, 226, 191, 0.3);
+}
+
+.arche-scenario-card.arche-scenario-active.scenario-normal .arche-scenario-title {
+  color: #FFFFFF !important;
+}
+
+.arche-scenario-card.arche-scenario-active.scenario-normal .arche-scenario-content {
+  color: #FFFFFF !important;
+}
+
+.arche-scenario-card.arche-scenario-active.scenario-normal .arche-scenario-content p {
+  color: #FFFFFF !important;
+}
+
+.arche-scenario-card.arche-scenario-active.scenario-normal .arche-scenario-tooltip-icon {
+  background-color: rgba(255, 255, 255, 0.3) !important;
+  color: #FFFFFF !important;
+}
+
+.arche-scenario-card.arche-scenario-active.scenario-normal .arche-scenario-tooltip-icon:hover {
+  background-color: rgba(255, 255, 255, 0.5) !important;
+}
+
 .arche-scenario-header {
   display: flex;
   align-items: flex-start;
