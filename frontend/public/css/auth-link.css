@@ -548,15 +548,34 @@
   
   .terms-modal-content {
     width: 95%;
-    max-height: 90vh;
+    max-height: 85vh;
+    margin: 10px auto;
   }
   
   .terms-modal-header {
-    padding: 15px;
+    padding: 12px 15px;
+  }
+  
+  .terms-modal-header h2 {
+    font-size: 18px;
+  }
+  
+  .terms-modal-close {
+    font-size: 28px;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
   }
   
   .terms-modal-body {
-    padding: 15px;
+    padding: 12px 15px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  
+  .terms-modal-body p {
+    font-size: 14px;
+    line-height: 1.5;
   }
   
   .slider .swiper-button-prev,
@@ -572,6 +591,70 @@
   .avatar-status-info {
     font-size: 12px;
     padding: 6px 10px;
+  }
+}
+
+/* Mobile portrait mode - extra small screens */
+@media screen and (max-width: 768px) and (orientation: portrait) {
+  .terms-modal-content {
+    max-height: 80vh;
+    margin: 5px auto;
+  }
+  
+  .terms-modal-header {
+    padding: 10px 12px;
+  }
+  
+  .terms-modal-header h2 {
+    font-size: 16px;
+  }
+  
+  .terms-modal-body {
+    padding: 10px 12px;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+  
+  .terms-modal-body p {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+}
+
+/* Very small screens - ensure modal is always visible and scrollable */
+@media screen and (max-width: 480px) {
+  .terms-modal-content {
+    width: 98%;
+    max-height: 85vh;
+    margin: 5px auto;
+    border-radius: 8px;
+  }
+  
+  .terms-modal-header {
+    padding: 8px 10px;
+    border-radius: 8px 8px 0 0;
+  }
+  
+  .terms-modal-header h2 {
+    font-size: 15px;
+  }
+  
+  .terms-modal-close {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+  }
+  
+  .terms-modal-body {
+    padding: 8px 10px;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+  
+  .terms-modal-body p {
+    font-size: 12px;
+    line-height: 1.4;
   }
 }
 

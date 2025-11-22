@@ -735,20 +735,101 @@ button:active {
 @media screen and (max-width: 768px) {
   .player-detail-content {
     width: 95%;
-    max-height: 90vh;
+    max-height: 85vh;
+    margin: 10px auto;
+  }
+  
+  .player-detail-header {
+    padding: 12px 15px;
   }
   
   .player-detail-header h2 {
-    font-size: 20px;
+    font-size: 18px;
+  }
+  
+  .player-detail-close {
+    font-size: 28px;
+    width: 28px;
+    height: 28px;
+  }
+  
+  .player-detail-body {
+    padding: 12px 15px;
   }
   
   .player-detail-avatar {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
+  }
+  
+  .player-detail-role {
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+  
+  .player-detail-anchor {
+    font-size: 12px;
   }
   
   .player-detail-stats {
     grid-template-columns: 1fr;
+    gap: 10px;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .player-detail-stat {
+    padding: 12px;
+  }
+  
+  .stat-label {
+    font-size: 11px;
+  }
+  
+  .stat-value {
+    font-size: 20px;
+  }
+  
+  .player-detail-section {
+    margin-bottom: 15px;
+  }
+  
+  .player-detail-section h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+  }
+  
+  .player-detail-circle,
+  .player-detail-in-group {
+    padding: 8px;
+    margin-bottom: 6px;
+  }
+  
+  .player-detail-circle-tolerance,
+  .player-detail-in-group-tolerance {
+    font-size: 12px;
+    padding: 3px 10px;
+  }
+  
+  .player-detail-circle-member {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+  
+  .player-detail-circle-member-avatar,
+  .player-detail-circle-member-avatar-placeholder {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .player-detail-circle-member-anchor {
+    font-size: 10px;
+  }
+  
+  .player-detail-circle-member-badge {
+    font-size: 10px;
+    padding: 2px 6px;
   }
   
   /* Mobile: Progress Bar */
@@ -779,18 +860,6 @@ button:active {
     height: auto !important;
   }
   
-  /* Mobile: Player Detail Modal */
-  .player-detail-content {
-    width: 95%;
-    max-height: 90vh;
-    padding: 15px;
-  }
-  
-  .player-detail-avatar {
-    width: 80px;
-    height: 80px;
-  }
-  
   /* Mobile: Buttons */
   #min-value-button,
   #max-value-button {
@@ -804,28 +873,147 @@ button:active {
   }
 }
 
-  
-  /* Mobile: Player Detail Modal */
+/* Mobile portrait mode - extra small screens */
+@media screen and (max-width: 768px) and (orientation: portrait) {
   .player-detail-content {
-    width: 95%;
-    max-height: 90vh;
-    padding: 15px;
+    max-height: 80vh;
+    margin: 5px auto;
+  }
+  
+  .player-detail-header {
+    padding: 10px 12px;
+  }
+  
+  .player-detail-header h2 {
+    font-size: 16px;
+  }
+  
+  .player-detail-body {
+    padding: 10px 12px;
   }
   
   .player-detail-avatar {
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
   }
   
-  /* Mobile: Buttons */
-  #min-value-button,
-  #max-value-button {
-    font-size: 28px !important;
+  .player-detail-role {
+    font-size: 13px;
+    padding: 5px 10px;
   }
   
-  /* Mobile: PRIO Buttons */
-  .team-potential button {
+  .player-detail-anchor {
+    font-size: 11px;
+  }
+  
+  .stat-value {
+    font-size: 18px;
+  }
+  
+  .player-detail-section h3 {
+    font-size: 15px;
+  }
+}
+
+/* Very small screens - ensure modal is always visible and scrollable */
+@media screen and (max-width: 480px) {
+  .player-detail-content {
+    width: 98%;
+    max-height: 85vh;
+    margin: 5px auto;
+    border-radius: 12px;
+  }
+  
+  .player-detail-header {
+    padding: 8px 10px;
+    border-radius: 12px 12px 0 0;
+  }
+  
+  .player-detail-header h2 {
+    font-size: 15px;
+  }
+  
+  .player-detail-close {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+  }
+  
+  .player-detail-body {
+    padding: 8px 10px;
+  }
+  
+  .player-detail-avatar {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .player-detail-role {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+  
+  .player-detail-anchor {
+    font-size: 11px;
+  }
+  
+  .player-detail-stats {
+    gap: 8px;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+  }
+  
+  .player-detail-stat {
+    padding: 10px;
+  }
+  
+  .stat-label {
+    font-size: 10px;
+  }
+  
+  .stat-value {
+    font-size: 16px;
+  }
+  
+  .player-detail-section {
+    margin-bottom: 12px;
+  }
+  
+  .player-detail-section h3 {
     font-size: 14px;
-    padding: 8px 12px;
+    margin-bottom: 6px;
+    padding-bottom: 6px;
+  }
+  
+  .player-detail-circle,
+  .player-detail-in-group {
+    padding: 6px;
+    margin-bottom: 5px;
+  }
+  
+  .player-detail-circle-tolerance,
+  .player-detail-in-group-tolerance {
+    font-size: 11px;
+    padding: 2px 8px;
+  }
+  
+  .player-detail-circle-member {
+    font-size: 11px;
+    padding: 4px 8px;
+  }
+  
+  .player-detail-circle-member-avatar,
+  .player-detail-circle-member-avatar-placeholder {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .player-detail-circle-member-anchor {
+    font-size: 9px;
+  }
+  
+  .player-detail-circle-member-badge {
+    font-size: 9px;
+    padding: 1px 5px;
   }
 }
