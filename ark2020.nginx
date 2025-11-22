@@ -1,8 +1,7 @@
 server {
-    listen 443;
+    listen 443 ssl;
     server_name arks.ch www.arks.ch safecircles.ch www.safecircles.ch;
 
-    ssl on;
     ssl_certificate /etc/letsencrypt/live/arks.ch/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/arks.ch/privkey.pem;
 
@@ -30,35 +29,11 @@ server {
       proxy_http_version 1.1;
       proxy_set_header Upgrade $http_upgrade;
       proxy_set_header Connection "upgrade";
-
     }
 }
 
-
 server {
     listen 80;
-    server_name arks.ch;
-    
-    return 302 https://arks.ch$request_uri;
-}
-
-server {
-    listen 80;
-    server_name www.arks.ch;
-    
-    return 302 https://arks.ch$request_uri;
-}
-
-server {
-    listen 80;
-    server_name safecircles.ch;
-    
-    return 302 https://safecircles.ch$request_uri;
-}
-
-server {
-    listen 80;
-    server_name www.safecircles.ch;
-    
-    return 302 https://www.safecircles.ch$request_uri;
+    server_name arks.ch www.arks.ch safecircles.ch www.safecircles.ch;
+    return 301 https://arks.ch$request_uri;
 }
