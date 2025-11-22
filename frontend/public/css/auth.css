@@ -305,6 +305,10 @@
   justify-content: center;
 }
 
+.terms-modal[style*="flex"] {
+  display: flex !important;
+}
+
 .terms-modal-content {
   background-color: var(--ls-thin-color);
   margin: auto;
@@ -313,7 +317,10 @@
   width: 90%;
   max-width: 600px;
   max-height: 80vh;
-  overflow-y: auto;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
@@ -326,6 +333,7 @@
   background-color: #52CEEC;
   color: #FFFFFF;
   border-radius: 10px 10px 0 0;
+  flex-shrink: 0;
 }
 
 .terms-modal-header h2 {
@@ -356,11 +364,18 @@
   padding: 20px;
   color: var(--ls-alfa-color);
   line-height: 1.6;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
 }
 
 .terms-modal-body p {
   margin: 0;
   text-align: left;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: var(--ls-alfa-color) !important;
 }
 
 /* Google Slides Container Wrapper */
@@ -466,12 +481,20 @@
   
   .terms-modal-content {
     width: 95%;
+    height: 85vh;
     max-height: 85vh;
+    min-height: 200px;
     margin: 10px auto;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+    position: relative;
   }
   
   .terms-modal-header {
     padding: 12px 15px;
+    flex-shrink: 0 !important;
+    min-height: 50px;
   }
   
   .terms-modal-header h2 {
@@ -489,11 +512,23 @@
     padding: 12px 15px;
     font-size: 14px;
     line-height: 1.5;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    flex: 1 1 auto !important;
+    min-height: 100px !important;
+    max-height: calc(85vh - 80px) !important;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+    background-color: var(--ls-thin-color) !important;
   }
   
   .terms-modal-body p {
     font-size: 14px;
     line-height: 1.5;
+    margin: 0;
+    display: block;
+    visibility: visible;
+    opacity: 1;
   }
   
   .slider .swiper-button-prev,
@@ -505,12 +540,20 @@
 /* Mobile portrait mode - extra small screens */
 @media screen and (max-width: 768px) and (orientation: portrait) {
   .terms-modal-content {
+    height: 80vh;
     max-height: 80vh;
+    min-height: 200px;
     margin: 5px auto;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+    position: relative;
   }
   
   .terms-modal-header {
     padding: 10px 12px;
+    flex-shrink: 0 !important;
+    min-height: 45px;
   }
   
   .terms-modal-header h2 {
@@ -521,11 +564,22 @@
     padding: 10px 12px;
     font-size: 13px;
     line-height: 1.4;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    flex: 1 1 auto !important;
+    min-height: 100px !important;
+    max-height: calc(80vh - 70px) !important;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
   }
   
   .terms-modal-body p {
     font-size: 13px;
     line-height: 1.4;
+    margin: 0;
+    display: block;
+    visibility: visible;
+    opacity: 1;
   }
 }
 
@@ -533,14 +587,22 @@
 @media screen and (max-width: 480px) {
   .terms-modal-content {
     width: 98%;
+    height: 85vh;
     max-height: 85vh;
+    min-height: 200px;
     margin: 5px auto;
     border-radius: 8px;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+    position: relative;
   }
   
   .terms-modal-header {
     padding: 8px 10px;
     border-radius: 8px 8px 0 0;
+    flex-shrink: 0 !important;
+    min-height: 40px;
   }
   
   .terms-modal-header h2 {
@@ -558,11 +620,22 @@
     padding: 8px 10px;
     font-size: 12px;
     line-height: 1.4;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    flex: 1 1 auto !important;
+    min-height: 100px !important;
+    max-height: calc(85vh - 60px) !important;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
   }
   
   .terms-modal-body p {
     font-size: 12px;
     line-height: 1.4;
+    margin: 0;
+    display: block;
+    visibility: visible;
+    opacity: 1;
   }
 }
 
