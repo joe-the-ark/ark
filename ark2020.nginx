@@ -1,6 +1,6 @@
 server {
     listen 443;
-    server_name arks.ch www.arks.ch;
+    server_name arks.ch www.arks.ch safecircles.ch www.safecircles.ch;
 
     ssl on;
     ssl_certificate /etc/letsencrypt/live/arks.ch/fullchain.pem;
@@ -47,4 +47,18 @@ server {
     server_name www.arks.ch;
     
     return 302 https://arks.ch$request_uri;
+}
+
+server {
+    listen 80;
+    server_name safecircles.ch;
+    
+    return 302 https://safecircles.ch$request_uri;
+}
+
+server {
+    listen 80;
+    server_name www.safecircles.ch;
+    
+    return 302 https://www.safecircles.ch$request_uri;
 }

@@ -16,6 +16,6 @@ DATABASES = {
     }
 }
 
-ALLOWED_HOSTS = ['127.0.0.1','192.168.3.103','10.192.12.148']
+ALLOWED_HOSTS = ['127.0.0.1', '192.168.3.103', '10.192.12.148', 'arks.ch', 'www.arks.ch', 'safecircles.ch', 'www.safecircles.ch']
 STATIC_ROOT = '/var/ark2020/static/'
 MEDIA_ROOT = '/var/ark2020/media/'
