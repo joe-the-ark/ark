@@ -2,8 +2,8 @@ server {
     listen 443 ssl;
     server_name arks.ch www.arks.ch safecircles.ch www.safecircles.ch;
 
-    ssl_certificate /etc/letsencrypt/live/arks.ch/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/arks.ch/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/arks.ch-0002/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/arks.ch-0002/privkey.pem;
 
     gzip on;
     gzip_buffers 32 4K;
