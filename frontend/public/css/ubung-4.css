@@ -463,11 +463,8 @@ button {
   height: 100%;
   transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
   border-radius: 12px;
-  background: linear-gradient(90deg, 
-      #52CEEC 0%, 
-      #51CEEC 50%, 
-      #75CBE8 100%);
-  box-shadow: 0 2px 4px rgba(81, 206, 236, 0.3);
+  background-color: #E29635;
+  box-shadow: 0 2px 4px rgba(226, 150, 53, 0.3);
   position: relative;
   overflow: hidden;
 }
@@ -496,11 +493,8 @@ button {
 }
 
 .progress-bar-container .progress-bar-fill[style*="9FE2BF"] {
-  background: linear-gradient(90deg, 
-      #9FE2BF 0%, 
-      #52CEEC 50%, 
-      #9FE2BF 100%);
-  box-shadow: 0 2px 6px rgba(159, 226, 191, 0.4);
+  background-color: #E29635;
+  box-shadow: 0 2px 6px rgba(226, 150, 53, 0.4);
 }
 
 .progress-message {
@@ -524,21 +518,71 @@ button {
   }
 }
 
-/* Rotate Hint */
+/* Rotate Hint - Hidden on desktop */
 .rotate-hint {
   display: none;
-  background-color: #FFFFFF;
-  color: #626262;
-  border-radius: 10px;
-  padding: 8px 12px;
-  margin-bottom: 10px;
-  text-align: center;
-  font-size: var(--ls-font-small);
 }
 
+.rotate-hint::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.rotate-hint-icon {
+  display: inline-block;
+  font-size: 24px;
+  animation: rotateDevice 2s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes rotateDevice {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(90deg);
+  }
+  75% {
+    transform: rotate(0deg);
+  }
+}
+
+/* Mobile view only - show rotate hint */
 @media screen and (max-width: 1200px) {
   .rotate-hint {
-    display: block !important;
+    display: flex !important;
+    background: linear-gradient(135deg, #E29635 0%, #c7852a 100%);
+    color: #FFFFFF;
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: var(--ls-font-small);
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(226, 150, 53, 0.3);
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    position: relative;
+    overflow: hidden;
   }
 }
 

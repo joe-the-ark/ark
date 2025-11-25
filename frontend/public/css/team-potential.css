@@ -36,7 +36,7 @@
 .progress__bar-fill {
     width: 85%;
     border-radius: 10px;
-    background-color: #52CEEC;
+    background-color: #E29635;
     color: white;
     text-align: center;
     padding: 5px 0;
@@ -148,9 +148,9 @@ button:active {
 }
 
 .prio1-tooltip-icon:hover {
-    background-color: #75CBE8 !important;
+    background-color: #c7852a !important;
     transform: scale(1.15);
-    box-shadow: 0 4px 8px rgba(117, 203, 232, 0.4);
+    box-shadow: 0 4px 8px rgba(199, 133, 42, 0.4);
 }
 
 .prio1-tooltip-container {
@@ -167,9 +167,9 @@ button:active {
 }
 
 .prio2-tooltip-icon:hover {
-    background-color: #52CEEC !important;
+    background-color: #c7852a !important;
     transform: scale(1.15);
-    box-shadow: 0 4px 8px rgba(82, 206, 236, 0.4);
+    box-shadow: 0 4px 8px rgba(199, 133, 42, 0.4);
 }
 
 .prio2-tooltip-container {
@@ -186,9 +186,9 @@ button:active {
 }
 
 .prio3-tooltip-icon:hover {
-    background-color: #7dd4a8 !important;
+    background-color: #c7852a !important;
     transform: scale(1.15);
-    box-shadow: 0 4px 8px rgba(125, 212, 168, 0.4);
+    box-shadow: 0 4px 8px rgba(199, 133, 42, 0.4);
 }
 
 .prio3-tooltip-container {
@@ -573,7 +573,7 @@ button:active {
 
 .player-detail-circle-tolerance {
   margin-left: auto;
-  background-color: #FAE03C;
+  background-color: #E29635;
   color: #626262;
   padding: 4px 12px;
   border-radius: 12px;
@@ -722,7 +722,7 @@ button:active {
 }
 
 .player-detail-in-group-tolerance {
-  background-color: #FAE03C;
+  background-color: #E29635;
   color: #626262;
   padding: 4px 12px;
   border-radius: 12px;

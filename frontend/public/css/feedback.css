@@ -384,7 +384,7 @@
   background-color: white;
 }
 .yellow__card {
-  background-color: #FAE03C;
+  background-color: #E29635;
 }
 .yellow__card .rang__item-name {
   background-color: white;
@@ -509,7 +509,7 @@ li:hover {
 }
 
 .feedback-legend-yellow {
-  background-color: #FAE03C;
+  background-color: #E29635;
   color: #626262;
   border-radius: 10px;
   padding: 0 10px;
@@ -555,4 +555,5 @@ li:hover {
 .progress__bar-fill {
   width: 100%;
   border-radius: 10px;
+  background-color: #E29635;
 }

@@ -206,7 +206,7 @@
                                     v-model.number="current" 
                                     :min="getMinTolerance()" 
                                     :max="getValue2()" 
-                                    style="width: 100px; height: 50px; padding: 10px; border-radius: 10px; border: 3px solid #9FE2BF; font-size: 20px; font-weight: bold; text-align: center; background-color: #FAE03C; color: #626262; box-shadow: 0 2px 5px rgba(0,0,0,0.1);" 
+                                    style="width: 100px; height: 50px; padding: 10px; border-radius: 10px; border: 3px solid #9FE2BF; font-size: 20px; font-weight: bold; text-align: center; background-color: #E29635; color: #626262; box-shadow: 0 2px 5px rgba(0,0,0,0.1);" 
                                     aria-label="{% trans 'Toleranzfenster-Wert eingeben' %}"
                                     aria-valuemin="getMinTolerance()"
                                     aria-valuemax="getValue2()"
@@ -710,7 +710,7 @@ var app1 = new Vue({
                const entry = this.circles.circles[this.current] || {};
                const circles = entry.circles || [];
                const circle_count = entry.circle_count || {};
-               const colors = ['#fa5252', '#ff8c00', '#9FE2BF', '#52CEEC', '#9b59b6', '#FAE03C', '#3b4252'];
+               const colors = ['#fa5252', '#ff8c00', '#9FE2BF', '#52CEEC', '#9b59b6', '#E29635', '#3b4252'];
                
                // Calculate maxCount to identify integrators
                const maxCount = Math.max(0, ...Object.values(circle_count));
@@ -1085,7 +1085,7 @@ var app1 = new Vue({
                const maxCount = Math.max(0, ...Object.values(circle_count));
                
                // Find all circles this player is in
-               const colors = ['#fa5252', '#ff8c00', '#9FE2BF', '#52CEEC', '#9b59b6', '#FAE03C', '#3b4252'];
+               const colors = ['#fa5252', '#ff8c00', '#9FE2BF', '#52CEEC', '#9b59b6', '#E29635', '#3b4252'];
                const playerCircles = circles
                    .map((circle, idx) => {
                        const memberDetails = circle.map(i => {

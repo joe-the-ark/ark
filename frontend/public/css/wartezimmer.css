@@ -122,7 +122,7 @@ body > .user-connect .user-connect__name {
   width: 100%;
   color: var(--ls-alfa-color);
   font-size: var(--ls-font-base);
-  background: linear-gradient(90deg, #fffb00 0%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(90deg, #E29635 0%, rgba(255, 255, 255, 0) 100%);
   margin-left: -15px;
   padding: 12px 35px;
   box-sizing: border-box;

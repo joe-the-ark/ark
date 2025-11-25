@@ -107,7 +107,7 @@ msgid "Teile diesen QR-Code mit den anderen"
 msgstr "Share this QR code with the others"
 
 msgid "(oder bitte den Initiator um den Link im Zwischenspeicher)."
-msgstr "(or ask the initiator for the link in the cache)."
+msgstr "(or ask the initiator for the link in the clipboard)."
 
 msgid "Wie sicher ist euer Gruppenklima?"
 msgstr "How safe is your group climate?"

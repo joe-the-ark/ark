@@ -128,7 +128,7 @@
 }
 
 .option-text-yellow {
-  background-color: #FAE03C;
+  background-color: #E29635;
   color: #626262;
 }
 
@@ -327,7 +327,7 @@
   justify-content: center;
   width: 20px;
   height: 20px;
-  background-color: var(--ls-alfa-color);
+  background-color: #E29635;
   color: white;
   border-radius: 50%;
   font-size: 12px;
@@ -338,7 +338,7 @@
 }
 
 .arche-scenario-tooltip-icon:hover {
-  background-color: #0066CC;
+  background-color: #c7852a;
 }
 
 .arche-scenario-content {

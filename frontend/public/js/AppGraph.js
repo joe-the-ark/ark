@@ -157,12 +157,17 @@ buildGraph() {
   }
 
   handlersDots(input, head, index) {
+    if (!this.templates) {
+      this.templates = this.container.querySelectorAll('.custom-graph__item');
+    }
     input.addEventListener('input', () =>
       this.showSliderValue(input, head, index)
     );
-    input.addEventListener('change', () =>
-      this.addDot(this.templates[index], index)
-    );
+    input.addEventListener('change', () => {
+      if (this.templates && this.templates[index]) {
+        this.addDot(this.templates[index], index);
+      }
+    });
     
     // Add keyboard input support for typing numbers
     // Store buffer and timeout on the input element itself to persist across events
@@ -296,6 +301,8 @@ buildGraph() {
 
   handlersItem() {
     const $self = this;
+    this.templates = this.container.querySelectorAll('.custom-graph__item');
+    if (!this.templates || this.templates.length === 0) return;
     this.templates.forEach((item, i) => {
       const itemAvatar = this.find(item, '.custom-graph__item-avatar');
 
@@ -426,10 +433,13 @@ buildGraph() {
     const isNextElement = this.searchInnerElNextSearch(item);
     if (!isNextElement) return;
     const { circle, line, nextItem } = this.searchInnerEl(item, isNextElement);
+    if (!line || !circle || !nextItem) return;
     const lineWidth = this.calculateWidth(circle, nextItem);
     const deg_an = this.getDegAn(circle, nextItem);
+    // Use transform3d for hardware acceleration
     line.style.width = `${lineWidth}px`;
-    line.style.transform = `translate(-50%, -50%) rotate(${deg_an}deg) translate(50%, 50%)`;
+    line.style.transform = `translate3d(-50%, -50%, 0) rotate(${deg_an}deg) translate3d(50%, 50%, 0)`;
+    line.style.willChange = 'transform';
   }
 
   renderPolygon(polygon, circle, avatar) {
@@ -466,21 +476,181 @@ buildGraph() {
     return (an * 180) / Math.PI;
   }
 
+  interpolateColor(color1, color2, ratio) {
+    // Convert hex colors to RGB
+    const hex1 = color1.replace('#', '');
+    const hex2 = color2.replace('#', '');
+    const r1 = parseInt(hex1.substring(0, 2), 16);
+    const g1 = parseInt(hex1.substring(2, 4), 16);
+    const b1 = parseInt(hex1.substring(4, 6), 16);
+    const r2 = parseInt(hex2.substring(0, 2), 16);
+    const g2 = parseInt(hex2.substring(2, 4), 16);
+    const b2 = parseInt(hex2.substring(4, 6), 16);
+    
+    // Interpolate
+    const r = Math.round(r1 + (r2 - r1) * ratio);
+    const g = Math.round(g1 + (g2 - g1) * ratio);
+    const b = Math.round(b1 + (b2 - b1) * ratio);
+    
+    // Convert back to hex
+    return '#' + [r, g, b].map(x => {
+      const hex = x.toString(16);
+      return hex.length === 1 ? '0' + hex : hex;
+    }).join('');
+  }
+
   update() {
     this.templates = this.container.querySelectorAll('.custom-graph__item');
     this.templates.forEach((item) => {
       this.searchInnerElNext(item);
+      // Update dashed line in mobile view - DISABLED (line is hidden in mobile)
+      // if (window.innerWidth <= this.mobile) {
+      //   this.updateDashedLine(item);
+      // }
     });
+  }
+  
+  updateDashedLine(item) {
+    // Update the dashed line (:after pseudo-element) in mobile view
+    // The line should extend from the left edge (visible part of item) to the avatar/vote point
+    // This shows the area from minimum (Triggerthema, left) to the vote point (avatar)
+    const rangeInput = item.querySelector('.custom-graph__range');
+    const thumb = rangeInput ? rangeInput.nextSibling : null;
+    const avatar = item.querySelector('.custom-graph__item-avatar');
+    
+    if (rangeInput && thumb && avatar && window.innerWidth <= this.mobile) {
+      // Get positions relative to the item container
+      const itemRect = item.getBoundingClientRect();
+      const avatarRect = avatar.getBoundingClientRect();
+      
+      // Calculate avatar center position relative to item (in pixels)
+      // Avatar might have negative margin, so we need to account for that
+      const avatarCenterX = avatarRect.left - itemRect.left + (avatarRect.width / 2);
+      const itemWidth = itemRect.width;
+      
+      // If avatar is outside the item bounds (negative position), we need to adjust
+      // The visible left edge of the item starts at itemRect.left
+      // For the line, we want to start at the visible left edge (0% of item width)
+      // and extend to where the avatar center is
+      
+      // Calculate the actual visible start point (accounting for negative margins)
+      // The line should start at the left visible edge of the item
+      // and extend to the avatar center
+      
+      // Avatar center position relative to item left edge (can be negative)
+      // We want the line to go from left edge (0) to avatar center
+      // If avatar is at negative position, line width should be minimal
+      // If avatar is within item bounds, line extends to avatar
+      
+      const avatarCenterRelative = avatarCenterX;
+      
+      // The line starts at left: 0% and extends to the avatar
+      // If avatar is at position X (which can be negative), we need to handle that
+      // For now, let's clamp the position and calculate width from visible left edge
+      
+      // Get the visible left edge position (accounting for item padding/margins)
+      const itemsContainer = item.closest('.custom-graph__items');
+      const itemsRect = itemsContainer ? itemsContainer.getBoundingClientRect() : null;
+      
+      if (itemsRect) {
+        // Calculate position relative to items container
+        const avatarCenterRelativeToItems = avatarRect.left - itemsRect.left + (avatarRect.width / 2);
+        const itemsWidth = itemsRect.width;
+        
+        // Avatar center position as percentage of items container width
+        const avatarCenterPercent = (avatarCenterRelativeToItems / itemsWidth) * 100;
+        
+        // INVERTED LOGIC: Lower values (avatar left, small %) = longer line
+        // Higher values (avatar right, large %) = shorter line
+        // Line should extend from left edge to avatar center
+        // When avatar is far left (low value, e.g. 1%), line should be long
+        // When avatar is far right (high value, e.g. 99%), line should be short
+        // Invert: lineWidth = 100 - avatarCenterPercent (remaining distance from avatar to right)
+        // But we want line from left to avatar, so: lineWidth = avatarCenterPercent is correct
+        // Wait, but user wants: left avatar = long line
+        // So: lineWidth should be INVERSE of avatar position
+        // If avatar at 10% (left), line should be 90% (long)
+        // If avatar at 90% (right), line should be 10% (short)
+        
+        // User wants: "je näher der Avatar bei 1, desto länger die Linie"
+        // This means: avatar near left (low values) = longer line
+        //             avatar near right (high values) = shorter line
+        
+        // The line should go from the avatar center to the left edge
+        // When avatar is at 10% (left), line should be long (show more distance)
+        // When avatar is at 90% (right), line should be short (show less distance)
+        
+        // Line starts at avatar position and extends to left edge (0%)
+        // So: left position = avatarCenterPercent, width = avatarCenterPercent
+        // Avatar at 10% → left: 10%, width: 10% (short) ❌
+        // Avatar at 90% → left: 90%, width: 90% (long) ❌
+        
+        // Wait, if line goes FROM avatar TO left, then:
+        // Avatar at 10% → line from 10% to 0% = width 10% (short) ❌
+        // But user wants this to be LONG
+        
+        // Maybe the line shows the "remaining" area? Let's try inverted:
+        // Line width = 100 - avatarCenterPercent
+        // Avatar at 10% → width = 90% (long) ✓
+        // Avatar at 90% → width = 10% (short) ✓
+        // But where does it start? If it starts at left: 0%, it goes to 90%, passing the avatar
+        
+        // Actually, maybe the line should start at the left edge and have inverted width?
+        // Or maybe the line starts at avatar and goes left, but the width calculation is inverted?
+        
+        // Let me try: line starts at avatar, width = 100 - avatarCenterPercent (distance from avatar to right edge)
+        // No, that goes right, not left
+        
+        // Let's try: line starts at left edge (0%), width = 100 - avatarCenterPercent
+        // Avatar at 10% → line from 0% to 90% (long, goes past avatar to right) - wrong direction
+        
+        // User says line should go left (Triggerthema direction), so maybe:
+        // Line starts at avatar position, extends left, width = 100 - avatarCenterPercent
+        // Avatar at 10% → line from 10% to (10% - 90%) = -80% (outside) - doesn't work
+        
+        // User wants: "je näher der Avatar bei 1, desto länger die Linie"
+        // This means: avatar near left (low values) = longer line
+        //             avatar near right (high values) = shorter line
+        
+        // Line starts at avatar position (right edge of line at avatar), extends left
+        // right position = 100 - avatarCenterPercent (distance from right edge to avatar)
+        // width = 100 - avatarCenterPercent (inverted: low position = long line)
+        // Avatar at 10% → right: 90%, width: 90% → line from 0% to 90% (long) ✓
+        // Avatar at 90% → right: 10%, width: 10% → line from 80% to 90% (short) ✓
+        
+        const rightPositionPercent = 100 - avatarCenterPercent;
+        const lineWidthPercent = 100 - avatarCenterPercent; // Inverted: low position = long line
+        
+        // Line: right edge at avatar, extends left
+        // right = 100 - avatarCenter%, width = 100 - avatarCenter%
+        // Avatar at 10% → right: 90%, width: 90% → line from 0% to 90% (long) ✓
+        // Avatar at 90% → right: 10%, width: 10% → line from 0% to 10% (short) ✓
+        
+        item.style.setProperty('--dashed-line-right', `${Math.max(0, Math.min(100, rightPositionPercent))}%`);
+        item.style.setProperty('--dashed-line-width', `${Math.max(0, Math.min(100, lineWidthPercent))}%`);
+        
+        // Debug log
+        console.log('[DASHED LINE] avatarCenterRelativeToItems:', avatarCenterRelativeToItems.toFixed(2), 
+                    'itemsWidth:', itemsWidth.toFixed(2), 
+                    'avatarCenterPercent:', avatarCenterPercent.toFixed(2) + '%',
+                    'lineWidthPercent (inverted):', lineWidthPercent.toFixed(2) + '%');
+      } else {
+        // Fallback: use item-based calculation, but clamp to handle negative positions
+        const lineWidth = Math.max(0, Math.min(100, (avatarCenterX / itemWidth) * 100));
+        item.style.setProperty('--dashed-line-width', `${lineWidth}%`);
+      }
+    }
   }
 
   showSliderValue(inputSlider, thumb, index) {
-      const { value, max } = inputSlider;
+      const { value, min: inputMin, max: inputMax } = inputSlider;
       const innerWidthSlider = inputSlider.clientWidth - 40;
-      const bulletPosition = value / max;
+      const bulletPosition = (value - inputMin) / (inputMax - inputMin);
       const count = bulletPosition * innerWidthSlider;
       let filter = 0;
       if (window.innerWidth <= this.mobile) {
-          thumb.style.left = `${count}px`;
+          // Add 30px offset to account for extended range input padding
+          thumb.style.left = `${count + 30}px`;
           thumb.style.bottom = 'auto';
       } else {
           thumb.style.bottom = `${count}px`;
@@ -489,7 +659,7 @@ buildGraph() {
 
       const countDot = this.find(thumb, `.custom-graph__item-count`);
       if (countDot) {
-          let hueRotate = 0;
+          let color = '';
           if (this.guess.length) {
               let circle = thumb.querySelector('.custom-graph__item-circle');
               let right = this.guess[index].statusSide;
@@ -497,35 +667,86 @@ buildGraph() {
               if (diff <= 4) {
                   circle.classList.remove('missed');
                   filter = 90;
+                  // Use green for correct guess
+                  color = '#9FE2BF';
               } else {
                   circle.querySelector('.value__missed').innerText = value;
                   circle.classList.add('missed');
                   filter = 180;
+                  // Use red for missed guess
+                  color = '#fa5252';
               }
           } else {
-              // Inverted color mapping: low values = red, middle = yellow, high = green
-              // Original: filter = 81 + value (0=green, 50=yellow, 100=red)
-              // New: filter = 261 - value (0=red, 50=yellow, 100=green)
-              filter = 261 - +value;
+              // Color gradient: low values = red, middle = orange, high = green
+              // Normalize value to 0-1 based on input range
+              const normalizedValue = Math.min(Math.max((+value - inputMin) / (inputMax - inputMin), 0), 1);
+              
+              if (normalizedValue <= 0.5) {
+                  // Red to Orange: 0% to 50%
+                  const ratio = normalizedValue * 2; // 0 to 1
+                  color = this.interpolateColor('#fa5252', '#E29635', ratio);
+              } else {
+                  // Orange to Green: 50% to 100%
+                  const ratio = (normalizedValue - 0.5) * 2; // 0 to 1
+                  color = this.interpolateColor('#E29635', '#9FE2BF', ratio);
+              }
           }
 
           // Subtract 50 from the displayed value
           countDot.innerHTML = value - 50;
-          countDot.style.filter = `hue-rotate(-${filter}deg)  saturate(200%)`;
+          if (color) {
+              countDot.style.color = color;
+              countDot.style.filter = 'none';
+          } else {
+              countDot.style.filter = `hue-rotate(-${filter}deg)  saturate(200%)`;
+          }
           index !== undefined && this.setDataStatus(index, value);
       }
       if (this.statistic) {
           const countSide = this.find(thumb, `.custom-graph__item-side`);
           if (countSide) {
               countSide.innerHTML = value;
-              countSide.style.filter = `hue-rotate(-${
-                  180 - +value
-              }deg)  saturate(200%)`;
+              
+              // Color gradient: low values = red, middle = orange, high = green
+              // Normalize value to 0-1 based on input range
+              const normalizedValue = Math.min(Math.max((+value - inputMin) / (inputMax - inputMin), 0), 1);
+              let color = '';
+              
+              if (normalizedValue <= 0.5) {
+                  // Red to Orange: 0% to 50%
+                  const ratio = normalizedValue * 2; // 0 to 1
+                  color = this.interpolateColor('#fa5252', '#E29635', ratio);
+              } else {
+                  // Orange to Green: 50% to 100%
+                  const ratio = (normalizedValue - 0.5) * 2; // 0 to 1
+                  color = this.interpolateColor('#E29635', '#9FE2BF', ratio);
+              }
+              
+              countSide.style.color = color;
+              countSide.style.filter = 'none';
               index !== undefined && this.setDataStatus(index, value);
           }
       }
       this.getDependency(inputSlider, thumb, index, value);
-      this.update();
+      
+      // Update dashed line for mobile view when slider value changes - DISABLED (line is hidden)
+      // if (window.innerWidth <= this.mobile) {
+      //   const item = thumb.closest('.custom-graph__item');
+      //   if (item) {
+      //     setTimeout(() => {
+      //       this.updateDashedLine(item);
+      //     }, 0);
+      //   }
+      // }
+      
+      // Update lines dynamically when slider value changes
+      // Use requestAnimationFrame for smooth performance
+      if (!this._updateRequestId) {
+        this._updateRequestId = requestAnimationFrame(() => {
+          this.update();
+          this._updateRequestId = null;
+        });
+      }
   }
 
 
@@ -638,6 +859,10 @@ render() {
       this.statistic ? `statistic` : ''
     }">${html}</div>`;
 
+    // Initialize templates and render lines after graph is built
+    this.templates = this.container.querySelectorAll('.custom-graph__item');
+    this.update();
+    
     return this;
   }
 

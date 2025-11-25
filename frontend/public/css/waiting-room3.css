@@ -161,6 +161,7 @@
 .progress__bar-fill {
   width: 100%;
   border-radius: 10px;
+  background-color: #E29635;
 }
 
 /* Now terms uppercase */

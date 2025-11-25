@@ -52,7 +52,7 @@
                         {% get_language_info_list for LANGUAGES as languages %}
                         {% for language in languages %}
                                 <option value="{{ language.code }}">
-                                    {{ language.name_local }}
+                                    {{ language.name_local|capfirst }}
                             </option>
                         {% endfor %}
                     </select>
@@ -124,15 +124,17 @@
                         </div>
                         <div id="qrcode" class="qrcode-wrapper" role="img" aria-label="{% trans 'QR-Code zum Teilen' %}"></div>
                         <div class="qrcode-link-section">
-                            <button class="copy-link-button" id="copy-link-button" type="button" aria-label="{% trans 'Link kopieren' %}" data-clipboard-text="#link_url">
-                                <span class="copy-link-icon">📋</span>
-                                <span class="copy-link-text">{% trans "Link kopieren" %}</span>
-                                <span class="copy-link-success" style="display: none;">✓ {% trans "Kopiert!" %}</span>
-                            </button>
+                            <div style="display: flex; align-items: center; gap: 8px; justify-content: center;">
+                                <button class="copy-link-button" id="copy-link-button" type="button" aria-label="{% trans 'Link kopieren' %}" data-clipboard-text="#link_url">
+                                    <span class="copy-link-icon">📋</span>
+                                    <span class="copy-link-text">{% trans "Link kopieren" %}</span>
+                                    <span class="copy-link-success" style="display: none;">✓ {% trans "Kopiert!" %}</span>
+                                </button>
+                                <div class="copy-link-tooltip-trigger" id="copy-link-tooltip-trigger">
+                                    <span class="tooltip-icon copy-link-tooltip-icon">?</span>
+                                </div>
+                            </div>
                         </div>
-                        <p class="qrcode-hint">
-                            {% trans "(oder bitte den Initiator um den Link im Zwischenspeicher)." %}
-                        </p>
                     </div>
 
                         <!-- Ship tooltip trigger - positioned over the ship image -->
@@ -269,6 +271,21 @@
                 interactive: false,
                 trigger: 'mouseenter focus',
                 maxWidth: 400,
+            });
+        }
+        
+        // Copy link tooltip
+        const copyLinkTooltipTrigger = document.getElementById('copy-link-tooltip-trigger');
+        if (copyLinkTooltipTrigger) {
+            tippy(copyLinkTooltipTrigger, {
+                content: "{% trans '(oder bitte den Initiator um den Link im Zwischenspeicher).'|escapejs %}",
+                placement: 'top',
+                theme: 'light',
+                delay: [200, 0],
+                allowHTML: false,
+                interactive: false,
+                trigger: 'mouseenter focus',
+                maxWidth: 300,
             });
         }
         

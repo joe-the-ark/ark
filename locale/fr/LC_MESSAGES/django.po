@@ -124,7 +124,7 @@ msgid "Teile diesen QR-Code mit den anderen"
 msgstr "Partage ce code QR avec les autres"
 
 msgid "(oder bitte den Initiator um den Link im Zwischenspeicher)."
-msgstr "(ou demande à l'initiateur de mettre le lien en cache)."
+msgstr "(ou demandez à l'initiateur le lien dans le presse-papiers)."
 
 #: loco:606885b920934b401305cbb2
 msgid "Wie sicher ist euer Gruppenklima?"

@@ -107,7 +107,7 @@ msgid "Teile diesen QR-Code mit den anderen"
 msgstr "Bu QR kodunu diğerleriyle paylaşın"
 
 msgid "(oder bitte den Initiator um den Link im Zwischenspeicher)."
-msgstr "(veya başlatıcıdan bağlantıyı isteme önbelleğinde isteyin)."
+msgstr "(veya başlatıcıdan panodaki bağlantıyı isteyin)."
 
 msgid "Wie sicher ist euer Gruppenklima?"
 msgstr "Grubunuzun ortamı ne kadar güvenli?"

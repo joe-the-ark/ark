@@ -43,7 +43,7 @@
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background-color: #52CEEC;
+  background-color: #E29635;
   color: #FFFFFF;
   font-weight: bold;
   font-size: 18px;
@@ -54,18 +54,20 @@
 }
 
 .info-tooltip-icon:hover {
-  background-color: #3bb5d4;
+  background-color: #c7852a;
   transform: scale(1.1);
 }
 
 .info-tooltip-icon:focus {
-  outline: 3px solid #52CEEC;
+  outline: 3px solid #E29635;
   outline-offset: 2px;
 }
 .slider {
   padding: 10px 20px;
   border: 1px solid var(--ls-between-color);
   box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
 }
 .slider label {
   color: var(--ls-alfa-color);
@@ -85,6 +87,7 @@
   box-sizing: border-box;
   text-align: center;
   margin: 10px 0 4px;
+  overflow: hidden;
 }
 .slider .swiper-slide-active img {
   border-color: var(--ls-accent-2-color);
@@ -95,30 +98,48 @@
   font-weight: bold;
 }
 .slider .swiper-button-prev {
-  display: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
   left: -8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 .slider .swiper-button-next {
-  display: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
   right: -8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
-/* Show navigation buttons on desktop */
-@media screen and (min-width: 769px) {
+/* Hover effect for navigation buttons */
+.slider .swiper-button-prev:hover,
+.slider .swiper-button-next:hover {
+  background-color: rgba(255, 255, 255, 1);
+}
+/* Mobile adjustments */
+@media screen and (max-width: 768px) {
   .slider .swiper-button-prev,
   .slider .swiper-button-next {
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 50%;
-    cursor: pointer;
-    z-index: 10;
+    width: 36px;
+    height: 36px;
+    left: 5px;
+    right: 5px;
   }
-  .slider .swiper-button-prev:hover,
-  .slider .swiper-button-next:hover {
-    background-color: rgba(255, 255, 255, 1);
+  .slider .swiper-button-prev:after,
+  .slider .swiper-button-next:after {
+    font-size: 16px;
   }
 }
 /* Active avatar highlight */

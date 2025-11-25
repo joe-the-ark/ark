@@ -88,7 +88,7 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background-color: #52CEEC;
+  background-color: #E29635;
   color: white;
   display: inline-flex;
   align-items: center;
@@ -101,7 +101,7 @@
 }
 
 .ship-tooltip-icon:hover {
-  background-color: #3bb5d4;
+  background-color: #c7852a;
   transform: scale(1.1);
 }
 
@@ -247,9 +247,55 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.qrcode-wrapper img {
+    width: 150px !important;
+    height: 150px !important;
+    display: block;
+}
+
+.qrcode-wrapper canvas {
+    width: 150px !important;
+    height: 150px !important;
+    display: block;
+}
+
 .qrcode-link-section {
     margin: 15px 0;
     text-align: center;
+}
+
+.qrcode-link-section > div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+}
+
+.copy-link-tooltip-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: #E29635;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    user-select: none;
+}
+
+.copy-link-tooltip-icon:hover {
+    background-color: #c7852a;
+    transform: scale(1.1);
+}
+
+.copy-link-tooltip-icon:focus {
+    outline: 3px solid #E29635;
+    outline-offset: 2px;
 }
 
 .copy-link-button {
@@ -422,7 +468,7 @@
     width: 24px;
     height: 24px;
     border-radius: 50%;
-    background-color: #52CEEC;
+    background-color: #E29635;
     color: white;
     display: inline-flex;
     align-items: center;
@@ -435,7 +481,7 @@
 }
 
 .google-slides-tooltip-icon:hover {
-    background-color: #3bb5d4;
+    background-color: #c7852a;
     transform: scale(1.1);
 }
 
@@ -494,6 +540,9 @@
     flex-direction: column;
     gap: 12px;
     align-items: flex-start;
+    background-color: transparent;
+    border-radius: 10px;
+    padding: 0;
 }
 
 .language-selector-wrapper {
