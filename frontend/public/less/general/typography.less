@@ -1,0 +1,135 @@
+.fontFace('../fonts/lato/regular', 'Lato-Regular');
+.fontFace('../fonts/lato/bold', 'Lato-Bold');
+.fontFace('../fonts/icons', 'icomoon', {
+    font-display: block
+});
+
+.typography(true, {
+    body {
+        .font(@ultra-color 0 1 400, {
+            font-family: @lato-regular
+        });
+    }
+
+    a {
+        text-decoration: none;
+        transition: @transition;
+        outline: 0;
+    }
+
+    b {
+        font-weight: 700;
+    }
+
+    h1 {
+        font-size: @h-font-large;
+        font-family: @lato-bold;
+        color: @alfa-color;
+
+        .sm({
+            text-align: center;
+        });
+
+        .forMisha({
+            font-size: 38px;
+        });
+    }
+
+    h3{
+        font-size: @h-font-small;
+        font-weight: 600;
+        color: @alfa-color;
+        line-height: 1.2;
+    }
+
+    h4 {
+        font-size: 18.48px;
+        color: @alfa-color;
+    }
+
+    h6 {
+        font-size: 14px;
+    }
+
+    h1, h2, h4, h5, h6 {
+        font-weight: 500;
+        line-height: 1.2;
+    }
+
+    p {
+        .font(@alfa-color @font-large 29px);
+        .forMisha({
+            font-size: 18px;
+            line-height: 24px;
+        });
+        &.bold {
+            font-weight: 600;
+            span {
+                color: @brand-color
+            }
+        }
+    }
+
+    ul {
+        li {
+            .font(@alfa-color @font-large 29px);
+            position: relative;
+            padding-left: 27px;
+
+            .forMisha({
+                font-size: 18px;
+                line-height: 24px;
+            });
+
+            &:before {
+                content: " ";
+                position: absolute;
+                top: 10px;
+                left: 0;
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background-color: @alfa-color;
+            }
+        }
+    }
+
+    button, .button {
+        .font(@thin-color @font-large 50px);
+        background-color: @brand-color;
+        box-sizing: border-box;
+        cursor: pointer;
+        transition: @transition;
+        padding: 0 22px;
+        display: inline-block;
+
+        &:hover {
+            box-shadow: 0 6px 10px rgba(117, 10, 237, 0.4);
+        }
+
+        &--primary {
+            background-color: transparent;
+            border: 1px solid @brand-color;
+            line-height: 48px;
+            color: @brand-color;
+        }
+    }
+
+    input {
+        .font(@alfa-color @font-large 52px, {
+            font-family: @lato-regular;
+        });
+
+        padding: 0 20px;
+        border: 1px solid @between-color;
+        transition: all .2s ease;
+        width: 100%;
+        box-sizing: border-box;
+        outline: none;
+    }
+
+    .center {
+        text-align: center;
+    }
+});
+

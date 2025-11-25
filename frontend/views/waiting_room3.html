@@ -1,0 +1,475 @@
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="icon" href="/static/images/favicon.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
+    <meta name="theme-color" content="#51ceec"/>
+    <meta name="description" content="ARK"/>
+    <title>Waiting-Room-SQUAD</title>
+    <link rel="stylesheet" href="/static/css/app.css">
+    <link rel="stylesheet" href="/static/css/wartezimmer.css">
+    <link rel="stylesheet" href="/static/css/waiting-room3.css">
+
+</head>
+<body>
+<div class="app">
+    <div class="app__head">
+        <header class="header-main container">
+            <div class="header-main__title">
+                <icon class="icon arks-logo-clickable" onClick="window.open('https://info.arks.ch/');">
+                <span class="icon-logo"></span>
+                <span>ARKS</span>
+                <span class="tooltip-icon arks-logo-tooltip-icon" id="arks-logo-tooltip-icon" style="display: none;">{% trans "Info zu safecircles.ch" %}</span>
+            </icon>
+            </div>
+            <div class="header-main__user">
+                <div class="user">
+                    <div class="user__subtitle">
+                        {{game.name}}
+                    </div>
+                    <img src="{{avatar}}" alt="{{user.name}}" aria-label="{% trans 'Benutzer Avatar' %}">
+                    <div class="user__title">
+                        {{user.name}}
+                    </div>
+                </div>
+            </div>
+            <div class="header-main__progress">
+                <div class="progress">
+                    <label>{% trans "Alle da?" %}</label>
+                    <div class="progress__bar">
+                        <div class="progress__bar-fill">100%</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+    <div class="app__body">
+        <div class="container">
+            <main class="screen wartezimmer">
+                <div class="wartezimmer__data">
+                    <h1>{% trans "Wartezimmer" %}</h1>
+                    <ul class="wartezimmer-list">
+                        <li>{% trans "Wie hast du beim Feedback-Geben deine psychologische Sicherheit wahrgenommen?"%}</li>
+                        <li>{% trans "Hast du Augenblicke von Selbstzensur wahrgenommen?" %}</li>
+                        <li>{% trans "Wie wie sicher fühltest du dich in der Lage anzusprechen, was dich eigentlich beschäftigt, um das Team voranzubringen?" %}</li>
+                    </ul>
+                    <div class="google-slides-container-wrapper">
+                        <span class="tooltip-icon google-slides-tooltip-icon" id="google-slides-tooltip-icon" data-tippy-content="{% trans 'Angstfrei und offen kommunizieren zu können, ist eine wesentliche Dimension psychologischer Sicherheit. Amy Edmondson geht sogar soweit, psychologische Sicherheit zu definieren als die gemeinsame Überzeugung aller Teammitglieder, dass es im Team sicher sei, zwischenmenschliche Risiken einzugehen.'|escapejs %}">?</span>
+                        <button class="google-slides-fullscreen-button" id="google-slides-fullscreen-button" aria-label="{% trans 'Vollbild anzeigen' %}" title="{% trans 'Vollbild anzeigen' %}">
+                            <span class="fullscreen-icon">⛶</span>
+                        </button>
+                        <div class="google-slides-container" id="google-slides-container">
+                            <iframe src="https://docs.google.com/presentation/d/1Hs_6BrjVGYGJqoi9FmPJuBLQJyzve-ezkPF6pSzlvU0/embed?start=true&loop=false&delayms=8000&rm=minimal" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" title="{% trans 'Präsentation' %}" aria-label="{% trans 'Präsentation' %}"></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wartezimmer__addition" id="app-1">
+                    <div class="user-connect active" v-for='(value, index) in waiting_list_active' :key="'active-' + value.id">
+                        <img :src="value.avatar" :alt="value.name" :aria-label="value.name">
+                        <div class="user-connect__now">
+                            <span class="user-connect__now-name">
+                            [[ value.name ]]
+                            </span>
+                            <span class="now-terms now-terms-uppercase">
+                              [[ value.item_power ]] / [[ value.item_drainer ]]
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="user-connect" v-for='(value, index) in waiting_list_yet' :key="'yet-' + value.id">
+                        <img :src="value.avatar" :alt="value.name" :aria-label="value.name">
+                        <div class="user-connect__now">
+                            <span class="user-connect__now-name">
+                                [[ value.name ]]
+                            </span>
+                            <span class="now-terms">
+                            {% trans "..." %}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            
+            <form action="#" method="POST" class="form">
+                {% csrf_token %}
+                <div class="center wartezimmer-button-container">
+                    <div class="button-with-tooltip">
+                        <span class="tooltip-icon continue-button-tooltip-icon" id="continue-button-tooltip-icon">?</span>
+                        <button id='main_btn' class="button button-primary" type="button" onclick="choosePopup()" aria-label="{% trans 'Weiterspielen' %}">
+                            <span class="button-text">{% trans "Weiterspielen" %}</span>
+                            <span class="button-arrow">→</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            
+            <div class="copyright-footer">
+                <a href="https://github.com/joe-the-ark/ark" target="_blank" rel="noopener noreferrer">{% trans "ARKS is published under a GPLv3" %}</a> {% trans "license by" %} 
+                <a href="https://www.linkedin.com/in/dr-joe-maier/" target="_blank" rel="noopener noreferrer">{% trans "Dr. Joe Maier" %}</a>.
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+<script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+<script src="/static/js/waitingRoomHelpers.js"></script>
+<script>
+
+    //Button remover - only show button for initiator
+    function buttonRemover() {
+      let initiator = "{{host}}";
+      let user = "{{player_name}}";
+      let btn = document.querySelector('#main_btn');
+      let container = btn ? btn.closest('.button-with-tooltip') : null;
+      
+      if (initiator != user) {
+        // Hide button and container for non-initiators
+        if (btn) {
+          btn.style.setProperty('display', 'none', 'important');
+        }
+        if (container) {
+          container.style.setProperty('display', 'none', 'important');
+        }
+        // Also hide the center container if it only contains the button
+        let centerContainer = btn ? btn.closest('.center') : null;
+        if (centerContainer && centerContainer.querySelectorAll('.button-with-tooltip').length === 1 && !centerContainer.querySelectorAll('p').length) {
+          centerContainer.style.setProperty('display', 'none', 'important');
+        }
+      }
+    }
+    // Call buttonRemover after DOM is ready (with small delay to ensure styles are applied)
+    function initButtonRemover() {
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+          setTimeout(buttonRemover, 100);
+        });
+      } else {
+        setTimeout(buttonRemover, 100);
+      }
+    }
+    initButtonRemover();
+
+
+    // ARKS Logo Tooltip
+    function initARKSLogoTooltip() {
+        const arksLogoContainer = document.querySelector('.header-main__title icon');
+        const arksLogoTooltipIcon = document.getElementById('arks-logo-tooltip-icon');
+        
+        if (arksLogoContainer && arksLogoTooltipIcon) {
+            arksLogoContainer.addEventListener('mouseenter', function() {
+                arksLogoTooltipIcon.style.display = 'inline-flex';
+            });
+            arksLogoContainer.addEventListener('mouseleave', function() {
+                arksLogoTooltipIcon.style.display = 'none';
+            });
+            
+            tippy(arksLogoTooltipIcon, {
+                content: "{% trans 'Info zu safecircles.ch'|escapejs %}",
+                placement: 'bottom',
+                theme: 'light',
+                delay: [200, 0],
+                allowHTML: false,
+                interactive: false,
+                trigger: 'mouseenter focus',
+            });
+        }
+    }
+
+    // Continue Button Tooltip
+    function initContinueButtonTooltip() {
+        const continueButtonTooltipIcon = document.getElementById('continue-button-tooltip-icon');
+        if (continueButtonTooltipIcon) {
+            const existingInstance = continueButtonTooltipIcon._tippy;
+            if (existingInstance) {
+                existingInstance.destroy();
+            }
+            
+            tippy(continueButtonTooltipIcon, {
+                content: "{% trans 'Die Reise kann weitergehen, sobald alle Mitspieler hier im Warteraum angekommen sind.'|escapejs %}",
+                placement: 'top',
+                theme: 'light',
+                delay: [200, 0],
+                allowHTML: false,
+                interactive: false,
+                trigger: 'mouseenter focus',
+                maxWidth: 400,
+            });
+        }
+    }
+
+    // Google Slides Tooltip
+    function initGoogleSlidesTooltip() {
+        const googleSlidesTooltipIcon = document.getElementById('google-slides-tooltip-icon');
+        if (googleSlidesTooltipIcon) {
+            const existingInstance = googleSlidesTooltipIcon._tippy;
+            if (existingInstance) {
+                existingInstance.destroy();
+            }
+            
+            const tooltipContent = googleSlidesTooltipIcon.getAttribute('data-tippy-content');
+            if (tooltipContent && typeof tippy !== 'undefined') {
+                tippy(googleSlidesTooltipIcon, {
+                    content: tooltipContent,
+                    placement: 'bottom',
+                    theme: 'light',
+                    delay: [200, 0],
+                    allowHTML: false,
+                    interactive: false,
+                    trigger: 'mouseenter focus',
+                    maxWidth: 400,
+                });
+            }
+        }
+    }
+
+    // Initialize tooltips after DOM is ready
+    function initAllTooltips() {
+        initARKSLogoTooltip();
+        initContinueButtonTooltip();
+        initGoogleSlidesTooltip();
+    }
+    
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initAllTooltips);
+    } else {
+        initAllTooltips();
+    }
+
+
+    var app = new Vue({
+        delimiters: ['[[', ']]'],
+        el: '#app-1',
+        data() {
+            return {
+                waiting_list_active: [],
+                waiting_list_yet: [],
+            }
+        }
+    })
+
+
+    function popupOpen(selector) {
+      selector.classList.add('open');
+    }
+
+    function popupClose(selector, timeout) {
+      setTimeout(() => {selector.classList.remove('open')}, timeout);
+    }
+
+    function choosePopup() {
+      let userList = document.querySelectorAll('.user-connect');
+      let readyCount = 0;
+      for (let item of userList) {
+        if(item.classList.contains('active')) {
+          readyCount++;
+        }
+      }
+      if (userList.length < 3) {
+        morePlayersNeeded();
+      }
+      else if (userList.length >= 3 && readyCount < 3) {
+        letsWaitMorePlayers();
+      }
+      else if (userList.length >= 3 && readyCount >=3 && userList.length > readyCount){
+        waitOrGo();
+      }
+      else if (userList.length == readyCount) {
+        start();
+      }
+    }
+
+    function morePlayersNeeded() {
+      let popup = document.querySelector('#popup_less_players');
+      popupOpen(popup);
+      popupClose(popup, 1500);
+    }
+
+    function letsWaitMorePlayers() {
+      let popup = document.querySelector('#popup_less_ready_players');
+      popupOpen(popup);
+      popupClose(popup, 1500);
+    }
+
+    function waitOrGo() {
+      let popup = document.querySelector('#popup_buttons');
+      popupOpen(popup);
+      let closeBtn = document.querySelector('.modal_button[type=button]')
+      if (closeBtn) {
+        closeBtn.addEventListener('click', () => {popupClose(popup, 0)})
+      }
+    }
+
+    function start() {
+      document.forms[0].submit();
+    }
+
+    function sleep(time) {
+        return new Promise((resolve) => setTimeout(resolve, time));
+    }
+
+    async function get_mem_list() {
+        while (1) {
+            var waiting_post = {"player_id": "{{player_id}}","link":"{{link}}"};
+            await sleep(4000).then(() => {
+                axios
+                    .post(`/api/waiting_room3_active/`,waiting_post)
+                    .then(function(response) {
+                        app.waiting_list_active = response.data.result || [];
+
+                        axios
+                            .post(`/api/waiting_room3_yet/`,waiting_post)
+                            .then(function(response) {
+                                app.waiting_list_yet = response.data.result || [];
+
+                            })
+                            .catch(function(error) {
+                                // Error handled silently
+                            });
+
+                    })
+                    .catch(function(error) {
+                        // Error handled silently
+                    });
+            })
+            
+        }
+    }
+
+    async function check_game_start() {
+        const reminderMessage = "{% trans 'Kein Stress – klick auf „Weiterspielen“, sobald alle bereit sind.' %}";
+        const reminder = WaitingRoomHelpers.createReminder({
+            message: reminderMessage,
+            firstDelayMs: 120000,
+            repeatDelayMs: 210000,
+            maxCount: 2
+        });
+
+        while (1) {
+            var data_ = {'link': '{{link}}'};
+            await sleep(12000).then(() => {
+                axios
+                    .post(`/api/waiting_room3_game_start/`, data_)
+                    .then(function(response) {
+                        var result = response.data.result;
+                        if (result === 1) {
+                            reminder.stop();
+                                window.location.href="/assessment/";
+                        } else {
+                            reminder.touch();
+                            }
+                        })
+                    .catch(function(error) {
+                        // Error handled silently
+                    });
+            });
+        }
+    }  
+
+    get_mem_list()
+    check_game_start()
+
+
+
+
+
+
+
+</script>
+<div id='popup_buttons' class="popup">
+    <div class="popup_body">
+        <div class="popup_content">
+            <form class="popup_form" action="#" method="post">
+              {% csrf_token %}
+              <button class="modal_button button" type="submit" id="button" aria-label="{% trans 'Fortfahren wenn alle Spieler grün sind' %}">
+                  {% trans "Fortfahren, sobald alle Spieler GRÜN sind" %}
+              </button>
+              <button class="modal_button button" type="button" aria-label="{% trans 'Auf weitere Spieler warten' %}">
+                  {% trans "Auf weitere Spieler warten" %}
+              </button>
+            </form>
+        </div>
+    </div>
+</div>
+<div id='popup_less_players' class="popup">
+    <div class="popup_body">
+        <div class="popup_content">
+            {% trans "Lade mehr Spieler ein! Es werden mindestens 3 Spieler benötigt, um dieses Spiel zu spielen." %}
+        </div>
+    </div>
+</div>
+<div id='popup_less_ready_players' class="popup">
+    <div class="popup_body">
+        <div class="popup_content">
+            {% trans "Warte, bis mehr Spieler hier im Warteraum angekommen sind." %}
+        </div>
+    </div>
+</div>
+    <script>
+    // Google Slides Fullscreen functionality
+    const fullscreenButton = document.getElementById('google-slides-fullscreen-button');
+    const slidesContainerWrapper = document.querySelector('.google-slides-container-wrapper');
+    
+    if (fullscreenButton && slidesContainerWrapper) {
+        fullscreenButton.addEventListener('click', function() {
+            if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.mozFullScreenElement && !document.msFullscreenElement) {
+                // Enter fullscreen
+                if (slidesContainerWrapper.requestFullscreen) {
+                    slidesContainerWrapper.requestFullscreen();
+                } else if (slidesContainerWrapper.webkitRequestFullscreen) {
+                    slidesContainerWrapper.webkitRequestFullscreen();
+                } else if (slidesContainerWrapper.mozRequestFullScreen) {
+                    slidesContainerWrapper.mozRequestFullScreen();
+                } else if (slidesContainerWrapper.msRequestFullscreen) {
+                    slidesContainerWrapper.msRequestFullscreen();
+                }
+                slidesContainerWrapper.classList.add('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild beenden'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild beenden'|escapejs %}");
+            } else {
+                // Exit fullscreen
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+        
+        // Helper function to exit fullscreen and update button
+        function exitFullscreenAndUpdate() {
+            slidesContainerWrapper.classList.remove('fullscreen');
+            fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+            const enterLabel = "{% trans 'Vollbild anzeigen'|escapejs %}";
+            fullscreenButton.setAttribute('aria-label', enterLabel);
+            fullscreenButton.setAttribute('title', enterLabel);
+        }
+        
+        // Listen for fullscreen changes (consolidated event handlers)
+        const fullscreenEvents = ['fullscreenchange', 'webkitfullscreenchange', 'mozfullscreenchange', 'MSFullscreenChange'];
+        fullscreenEvents.forEach(eventName => {
+            document.addEventListener(eventName, function() {
+                if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.mozFullScreenElement && !document.msFullscreenElement) {
+                    exitFullscreenAndUpdate();
+                }
+            });
+        });
+    }
+    </script>
+</body>
+</html>

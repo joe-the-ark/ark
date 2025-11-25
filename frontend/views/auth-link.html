@@ -1,0 +1,948 @@
+{% load i18n %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="icon" href="/static/images/favicon.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
+    <meta name="theme-color" content="#51ceec"/>
+    <meta name="description" content="ARK"/>
+    <title>Onboard crew</title>
+    <link rel="stylesheet" href="/static/css/app.css">
+    <link rel="stylesheet" href="/static/css/auth-link.css">
+    <!--  plugins  -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+</head>
+<body>
+<div class="app started">
+    <div class="app__head">
+            <div class="language-selector" style="display:inline-block;">
+                <form action="{% url 'set_language' %}" method="post" style="vertical-align:middle;">{% csrf_token %}
+                    <input name="next" type="hidden" value="">
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% if LANGUAGE_CODE == 'zh-hans' %}
+                        <img id="flag" src="{% static 'images/flags/4_zh-hans_transparent.png' %}" style="width:20%;vertical-align:middle;padding-left:1px" alt="language flag">
+                    {% elif LANGUAGE_CODE == 'de' %}
+                        <img id="flag" src="{% static 'images/flags/1_de_transparent.png' %}" style="width:20%;vertical-align:middle;padding-left:1px" alt="language flag">
+                    {% elif LANGUAGE_CODE == 'fr' %}
+                        <img id="flag" src="{% static 'images/flags/3_fr_transparent.png' %}" style="width:20%;vertical-align:middle;padding-left:1px" alt="language flag">
+                    {% elif LANGUAGE_CODE == 'tr' %}
+                        <img id="flag" src="{% static 'images/flags/5_tr_transparent.png' %}" style="width:20%;vertical-align:middle;padding-left:1px" alt="language flag">
+                    {% else %}
+                        <img id="flag" src="{% static 'images/flags/2_en_transparent.png' %}" style="width:20%;vertical-align:middle;padding-left:1px" alt="language flag">
+                    {% endif %}
+                    <select onchange="updateLanguageFlag(); this.form.submit();" name="language" id="select_" style="width: auto; vertical-align:middle; border-radius: 10px; padding: 10px;" aria-label="{% trans 'Sprache auswählen' %}">
+                        <option value="" selected>{% trans "Sprachauswahl" %}</option>
+                        {% get_available_languages as LANGUAGES %}
+                        {% get_language_info_list for LANGUAGES as languages %}
+                        {% for language in languages %}
+                            <option value="{{ language.code }}">
+                                {{ language.name_local }}
+                            </option>
+                        {% endfor %}
+                    </select>
+
+                </form>
+              </div>
+        <header class="header-main container">
+            <div class="header-main__title">
+                <icon classs="icon" onClick="window.open('https://info.arks.ch/');" style="cursor: pointer; position: relative; display: inline-flex; align-items: center;">
+                <span class="icon-logo"></span>
+                <span>ARKS</span>
+                <span class="tooltip-icon arks-logo-tooltip" id="arks-logo-tooltip-icon" style="display: none; margin-left: 8px;">{% trans "Info zu safecircles.ch" %}</span>
+            </icon>
+            </div>
+
+
+
+                <div class="user">
+                    <div class="user__subtitle">
+                        {{game.name}}
+                    </div>
+                    <img src="{{user.avatar}}" alt="">
+                    <div class="user__title">
+                        {{user.name}}
+                    </div>
+                </div>
+        </header>
+    </div>
+    <div class="app__body">
+        <div class="container">
+            <main class="screen auth-link">
+                <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 20px;">
+                    <span class="info-tooltip-icon" id="info-tooltip-icon" aria-label="{% trans 'Info' %}">?</span>
+                    <h1 id="title-game" style="margin: 0;"></h1>
+                </div>
+                
+                <!-- Game Status Indicator -->
+                <div id="game-status-indicator" class="game-status-indicator" style="display: none;">
+                    <span class="game-status-icon"></span>
+                    <span class="game-status-text"></span>
+                </div>
+
+                <form id="form_" action="#" method="POST" id="auth-form" class="form" onkeypress="javascript: if (event.keyCode==13){check_player_name();return false;}">
+                {% csrf_token %}
+                    <div class="form__field">
+                        <input maxlength="12" minlength="2" id="nutzername" type="text" name="Nutzername" value="" required autofocus aria-required="true" aria-describedby="nutzername-error nutzername-counter" style="border-radius: 10px;">
+                        <span class="form__placeholder">{% trans "Nutzername" %} <span class="required-indicator">*</span></span>
+                        <span class="form__char-counter" id="nutzername-counter">0 / 12</span>
+                        <span class="form__error-message" id="nutzername-error" role="alert" aria-live="polite"></span>
+
+
+                        <div class="slider" style="border-radius: 10px;">
+                            <label for="avatar-slider" aria-label="{% trans 'Benutzerbild auswählen' %}">
+                                {% trans "Benutzerbild" %} <span class="required-indicator">*</span>
+                            </label>
+                            <div class="avatar-status-info" id="avatar-status-info" style="display: none;">
+                                <span class="avatar-status-text"></span>
+                            </div>
+                            {% if avatar_error %}
+                            <div class="avatar-hint avatar-hint--error" role="alert">
+                                {% trans "Dieses Benutzerbild ist bereits vergeben. Bitte wähle ein anderes." %}
+                            </div>
+                            {% endif %}
+                            {% if avatars_full %}
+                            <div class="avatar-hint avatar-hint--error" role="alert">
+                                {% trans "Alle Benutzerbilder sind bereits vergeben. Bitte kontaktiere den Host." %}
+                            </div>
+                            {% endif %}
+                            <div class="swiper-container" id="app-1" style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;" role="region" aria-label="{% trans 'Avatar-Auswahl' %}" tabindex="0">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide" v-for="(item, index) in avatar_list" v-bind:key="item.id" :class="{'avatar-used': isAvatarUsed(item)}" :aria-label="'{% trans "Avatar" %} ' + (index + 1)">
+                                        <img :src="item" alt="" role="presentation" :class="{'avatar-image-used': isAvatarUsed(item)}"/>
+                                        <span v-if="isAvatarUsed(item)" class="avatar-used-badge" :title="'{% trans "Dieses Avatar ist bereits vergeben"|escapejs %}'">✗</span>
+                                    </div>
+
+                                    {% comment %} <div class="swiper-slide">
+                                        <img src="/static/images/avatars/bear.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="/static/images/avatars/boar.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="/static/images/avatars/beaver.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="/static/images/avatars/buffalo-1.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="/static/images/avatars/buffalo.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="/static/images/avatars/cat.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="/static/images/avatars/chicken.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="/static/images/avatars/cow.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="/static/images/avatars/crow.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="/static/images/avatars/dog-1.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="/static/images/avatars/dog.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="/static/images/avatars/donkey.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="/static/images/avatars/elephant.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="/static/images/avatars/fox.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="/static/images/avatars/giraffe.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="/static/images/avatars/hedgehog.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="/static/images/avatars/hen.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="/static/images/avatars/hippopotamus.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="/static/images/avatars/horse.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="/static/images/avatars/kangaroo.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="/static/images/avatars/koala.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="/static/images/avatars/leopard.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="/static/images/avatars/lion.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="/static/images/avatars/marten.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="/static/images/avatars/monkey-1.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="/static/images/avatars/monkey.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="/static/images/avatars/mouse.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="/static/images/avatars/octopus.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="/static/images/avatars/ostrich.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="/static/images/avatars/owl.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="/static/images/avatars/panda.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="/static/images/avatars/parrot.svg" alt=""/>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="/static/images/avatars/penguin-1.svg" alt=""/>
+                                    </div> {% endcomment %}
+                                </div>
+                                <input id="avatar" type="hidden" name="avatar" value="EnterValue">
+                                <div class="swiper-button-prev" aria-label="{% trans 'Vorheriges Avatar' %}" tabindex="0"></div>
+                                <div class="swiper-button-next" aria-label="{% trans 'Nächstes Avatar' %}" tabindex="0"></div>
+                            </div>
+                        </div>
+                        <span class="form__error-message" id="avatar-error" role="alert" aria-live="polite"></span>
+
+                        <p>
+                            <br><br>{% trans "Die Reisezeit der ersten Etappe beträgt eine Stunde." %} {% trans "Das sind die" %}
+                      <button type="button" class="terms" id="terms-button" aria-label="{% trans 'Nutzungsbedingungen anzeigen' %}">{% trans "Nutzungsbedingungen" %}</button>.<br><br>
+                        </p>
+                        
+                        <!-- Terms of Use Modal -->
+                        <div id="terms-modal" class="terms-modal" style="display: none;">
+                            <div class="terms-modal-content">
+                                <div class="terms-modal-header">
+                                    <h2>{% trans "Nutzungsbedingungen" %}</h2>
+                                    <button type="button" class="terms-modal-close" id="terms-modal-close" aria-label="{% trans 'Schließen' %}">×</button>
+                                </div>
+                                <div class="terms-modal-body">
+                                    <p>{% trans "Sie nehmen an einem Forschungsprojekt teil. Ihr Beitrag zu unserem Forschungsprojekt ermöglicht es Wissenschaftlern, mehr über Organisationsdynamik, Dimensionen psychologischer Sicherheit, Spannungsfelder sowie Selbst- und Fremdwahrnehmung innerhalb von Teams herauszufinden. Wir verwenden auch aggregierte Spieldaten, um unsere Software zu verbessern und Muster im Kontext unserer Forschungsfragen zu identifizieren. Durch die Nutzung der Software bestätigen Sie Ihre Akzeptanz der Nutzungsbedingungen. Ihre Teilnahme ist freiwillig. Sie können das Experiment jederzeit beenden, indem Sie Ihren Browser schließen." %}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form__field">
+
+                    </div>
+                    <!--
+                    <div class="form__field">
+                        <input id="name-des-spiels" type="text" name="name-des-spiels" value="" required/>
+                        <span class="form__placeholder">Name des Spiels</span>
+                    </div>
+                    -->
+
+                    <div class="form__field">
+                        {% comment %} <button id="submit_button" type="submit">
+                            {% trans "Challenge starten" %}
+                        </button> {% endcomment %}
+                    </div>
+                </form>
+                    <button id="submit_button" class="button button-primary" type="button" aria-label="{% trans 'Challenge starten' %}">
+                        <span id="submit-button-text">
+                            <span class="button-text">{% trans "Challenge starten" %}</span>
+                            <span class="button-arrow">→</span>
+                        </span>
+                        <span id="submit-button-loading" style="display: none;">
+                            <span class="loading-spinner"></span> {% trans "Wird verarbeitet..." %}
+                        </span>
+                    </button>
+                    <div id="submit-success-message" class="form__success-message" role="alert" aria-live="polite" style="display: none;"></div>
+                    <div id="submit-error-message" class="form__error-message" role="alert" aria-live="polite" style="display: none; text-align: center; margin-top: 10px;"></div>
+                <p>
+                    <br>
+                </p>
+                <div class="google-slides-container-wrapper" style="position: relative;">
+                    <button class="google-slides-fullscreen-button" id="google-slides-fullscreen-button" aria-label="{% trans 'Vollbild anzeigen' %}" title="{% trans 'Vollbild anzeigen' %}">
+                        <span class="fullscreen-icon">⛶</span>
+                    </button>
+                    <div class="google-slides-container" id="google-slides-container" role="region" aria-label="{% trans 'Präsentation' %}">
+                        <iframe style="padding: 0 10px;" src={% trans "https://docs.google.com/presentation/d/1l1yXJjfM3PRuzWHs2YqvKRKgAApEj-provI2ONmmqS4/embed?start=true&loop=false&delayms=8000&rm=minimal"  %} frameborder="0" width="850" height="400" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" title="{% trans 'Präsentation' %}"></iframe>
+                    </div>
+                </div>
+
+                    <div class="copyright-footer">
+                        <a href="https://github.com/joe-the-ark/ark" target="_blank">{% trans "ARKS is published under a GPLv3" %}</a> {% trans "license by" %} <a href="https://www.linkedin.com/in/dr-joe-maier/" target="_blank">{% trans "Dr. Joe Maier" %}</a>.
+                    </div>
+                        <br>
+                      
+                    </span>
+
+            </main>
+        </div>
+    </div>
+</div>
+{{ used_avatars|json_script:"used-avatars-data" }}
+{{ avatars_full|json_script:"avatars-full-flag" }}
+<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+<script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="/static/vue.js"></script>
+<script src="/static/axios.min.js"></script>
+<script src="/static/jquery-3.5.1.min.js"></script>
+<script src="https://unpkg.com/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+    // Copy and tooltip
+    new ClipboardJS('.icon-link');
+    let linkSpan = tippy(document.querySelector('.icon-link'));
+    tippy('.icon-link', {
+      content: 'Copy gamelink to clipboard',
+    });
+    tippy('.icon-link', {
+      trigger: 'click',
+      content: 'Copied',
+    });
+    
+    // Terms of Use Modal
+    const termsButton = document.getElementById('terms-button');
+    const termsModal = document.getElementById('terms-modal');
+    const termsModalClose = document.getElementById('terms-modal-close');
+    
+    if (termsButton && termsModal) {
+        termsButton.addEventListener('click', function() {
+            termsModal.style.display = 'flex';
+            termsModalClose.focus();
+        });
+        
+        termsModalClose.addEventListener('click', function() {
+            termsModal.style.display = 'none';
+            termsButton.focus();
+        });
+        
+        termsModal.addEventListener('click', function(e) {
+            if (e.target === termsModal) {
+                termsModal.style.display = 'none';
+                termsButton.focus();
+            }
+        });
+        
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && termsModal.style.display === 'flex') {
+                termsModal.style.display = 'none';
+                termsButton.focus();
+            }
+        });
+    }
+    
+    // ARKS Logo Tooltip
+    const arksLogoContainer = document.querySelector('.header-main__title icon');
+    const arksLogoTooltipIcon = document.getElementById('arks-logo-tooltip-icon');
+    
+    if (arksLogoContainer && arksLogoTooltipIcon) {
+        arksLogoContainer.addEventListener('mouseenter', function() {
+            arksLogoTooltipIcon.style.display = 'inline-flex';
+        });
+        
+        arksLogoContainer.addEventListener('mouseleave', function() {
+            arksLogoTooltipIcon.style.display = 'none';
+        });
+        
+        tippy(arksLogoTooltipIcon, {
+            content: "{% trans 'Info zu safecircles.ch'|escapejs %}",
+            placement: 'bottom',
+            theme: 'light',
+            delay: [200, 0],
+            allowHTML: false,
+            interactive: false,
+            trigger: 'mouseenter focus',
+        });
+    }
+    
+    // Info Tooltip for title
+    const infoTooltipIcon = document.getElementById('info-tooltip-icon');
+    if (infoTooltipIcon) {
+        tippy(infoTooltipIcon, {
+            content: "{% trans 'Bist du bereit für die aufrichtigste Team-Challenge deiner Karriere mit der Arche (für 3 bis 15 Personen)?'|escapejs %}",
+            placement: 'bottom',
+            theme: 'light',
+            delay: [200, 0],
+            allowHTML: false,
+            interactive: false,
+            trigger: 'mouseenter focus',
+        });
+    }
+    
+    // Update language flag function
+    function updateLanguageFlag() {
+        var lang_code = $('#select_').val();
+        if (lang_code == 'zh-hans'){
+            $("#flag").attr("src", "{% static 'images/flags/4_zh-hans_transparent.png'%}");
+        } else if (lang_code == 'de'){
+            $("#flag").attr("src", "{% static 'images/flags/1_de_transparent.png'%}");
+        } else if (lang_code == 'en'){
+            $("#flag").attr("src", "{% static 'images/flags/2_en_transparent.png'%}");
+        } else if (lang_code == 'fr'){
+            $("#flag").attr("src", "{% static 'images/flags/3_fr_transparent.png'%}");
+        } else if (lang_code == 'tr'){
+            $("#flag").attr("src", "{% static 'images/flags/5_tr_transparent.png' %}");
+        }
+    }
+    
+    // Character counter
+    function updateCharCounter(inputId, counterId, maxLength) {
+        const input = document.getElementById(inputId);
+        const counter = document.getElementById(counterId);
+        if (input && counter) {
+            input.addEventListener('input', function() {
+                const length = this.value.length;
+                counter.textContent = length + ' / ' + maxLength;
+                if (length > maxLength * 0.9) {
+                    counter.style.color = '#fa5252';
+                } else {
+                    counter.style.color = '#626262';
+                }
+            });
+            const length = input.value.length;
+            counter.textContent = length + ' / ' + maxLength;
+        }
+    }
+    
+    updateCharCounter('nutzername', 'nutzername-counter', 12);
+    
+    // Error message display function
+    function showError(inputId, errorId, message) {
+        const input = document.getElementById(inputId);
+        const error = document.getElementById(errorId);
+        if (input && error) {
+            error.textContent = message;
+            error.style.display = 'block';
+            input.setAttribute('aria-invalid', 'true');
+            input.style.borderColor = '#fa5252';
+            input.focus();
+        }
+    }
+    
+    function clearError(inputId, errorId) {
+        const input = document.getElementById(inputId);
+        const error = document.getElementById(errorId);
+        if (input && error) {
+            error.textContent = '';
+            error.style.display = 'none';
+            input.setAttribute('aria-invalid', 'false');
+            input.style.borderColor = '';
+        }
+    }
+    
+    // Translated error messages
+    const ERROR_MESSAGES = {
+        usernameTooShort: "{% trans 'Der Benutzername muss mehr als 2 Zeichen lang sein.'|escapejs %}",
+        usernameRequired: "{% trans 'Bitte gib einen Benutzernamen ein.'|escapejs %}",
+        usernameTaken: "{% trans 'Dieser Name ist bereits vergeben. Bitte wähle einen anderen Namen.'|escapejs %}",
+        avatarRequired: "{% trans 'Bitte wähle ein Benutzerbild aus.'|escapejs %}",
+        avatarTaken: "{% trans 'Dieses Benutzerbild ist bereits vergeben. Bitte wähle ein anderes.'|escapejs %}",
+        avatarsFull: "{% trans 'Alle Benutzerbilder sind bereits vergeben. Bitte kontaktiere den Host.'|escapejs %}",
+        gameStarted: "{% trans 'Das Spiel hat bereits begonnen. Du kannst nicht mehr beitreten.'|escapejs %}"
+    };
+
+    var a = Date.now();
+    var temp_link = btoa(a);
+    var url_host = window.location.host;
+    var temp_link_ = url_host + '/link/' + '{{link}}' + '/';
+    $('#link_url').val(temp_link_);
+
+   const usedAvatars = (() => {
+        const node = document.getElementById('used-avatars-data');
+        if (!node) {
+            return [];
+        }
+        try {
+            return JSON.parse(node.textContent) || [];
+        } catch (err) {
+            console.error('Unable to parse used avatars payload', err);
+            return [];
+        }
+    })();
+    const avatarsFullNode = document.getElementById('avatars-full-flag');
+    const avatarsFull = avatarsFullNode ? JSON.parse(avatarsFullNode.textContent) : false;
+
+   var app = new Vue({
+        delimiters: ['[[', ']]'],
+        el: '#app-1',
+        data() {
+            return {
+                avatar_list: [
+                    'anteater.svg',
+                    'bear.svg',
+                    'boar.svg',
+                    'beaver.svg',
+                    'buffalo-1.svg',
+                    'buffalo.svg',
+                    'cat.svg',
+                    'chicken.svg',
+                    'cow.svg',
+                    'crow.svg',
+                    'dog-1.svg',
+                    'dog.svg',
+                    'donkey.svg',
+                    'elephant.svg',
+                    'fox.svg',
+                    'giraffe.svg',
+                    'hedgehog.svg',
+                    'hen.svg',
+                    'hippopotamus.svg',
+                    'horse.svg',
+                    'kangaroo.svg',
+                    'koala.svg',
+                    'leopard.svg',
+                    'lion.svg',
+                    'marten.svg',
+                    'monkey-1.svg',
+                    'monkey.svg',
+                    'mouse.svg',
+                    'octopus.svg',
+                    'ostrich.svg',
+                    'owl.svg',
+                    'panda.svg',
+                    'parrot.svg',
+                    'penguin-1.svg',
+                ],
+                usedAvatarsSet: new Set(usedAvatars),
+            }
+        },
+        created(){
+            this.avatar_list.sort(function(){return Math.random()>0.5?-1:1;});
+            const usedSet = new Set(usedAvatars);
+            this.usedAvatarsSet = usedSet;
+            const populated = [];
+            for (let i = 0; i < this.avatar_list.length; i += 1) {
+                const result = '/static/images/avatars/' + this.avatar_list[i];
+                if (!usedSet.has(result)) {
+                    populated.push(result);
+                }
+            }
+            this.avatar_list = populated;
+        },
+        methods: {
+            isAvatarUsed(avatarPath) {
+                return this.usedAvatarsSet && this.usedAvatarsSet.has(avatarPath);
+            }
+        }
+    })
+
+    var mySwiper = new Swiper('.swiper-container', {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        grabCursor: true,
+        loop: app.avatar_list.length > 1,
+        allowTouchMove: app.avatar_list.length > 1,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        keyboard: {
+            enabled: true,
+            onlyInViewport: true,
+        },
+        slideToClickedSlide: true,
+        centeredSlides: true,
+        breakpoints: {
+            320: {
+                slidesPerView: 1,
+            },
+            398: {
+                slidesPerView: 3,
+                spaceBetween: 20,
+            },
+            500: {
+                slidesPerView: 4,
+                spaceBetween: 40,
+            }
+
+        },
+        on: {
+            slideChange: function() {
+                const activeSlide = this.slides[this.activeIndex];
+                if (activeSlide) {
+                    const img = activeSlide.querySelector('img');
+                    if (img) {
+                        img.style.transform = 'scale(1.1)';
+                        img.style.transition = 'transform 0.3s ease';
+                    }
+                }
+                // Check if selected avatar is used
+                checkAvatarSelection();
+            }
+        }
+    });
+    
+    // Show navigation buttons on desktop
+    if (window.innerWidth > 768) {
+        document.querySelectorAll('.swiper-button-prev, .swiper-button-next').forEach(function(btn) {
+            btn.style.display = 'flex';
+        });
+    }
+    
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            document.querySelectorAll('.swiper-button-prev, .swiper-button-next').forEach(function(btn) {
+                btn.style.display = 'flex';
+            });
+        } else {
+            document.querySelectorAll('.swiper-button-prev, .swiper-button-next').forEach(function(btn) {
+                btn.style.display = 'none';
+            });
+        }
+    });
+    
+    // Check avatar selection and show warning if used
+    function checkAvatarSelection() {
+        const selectedAvatar = $('#avatar').val();
+        const avatarError = document.getElementById('avatar-error');
+        const avatarStatusInfo = document.getElementById('avatar-status-info');
+        const avatarStatusText = avatarStatusInfo ? avatarStatusInfo.querySelector('.avatar-status-text') : null;
+        
+        if (!selectedAvatar || selectedAvatar === 'EnterValue') {
+            if (avatarError) {
+                clearError('avatar', 'avatar-error');
+            }
+            if (avatarStatusInfo) {
+                avatarStatusInfo.style.display = 'none';
+            }
+            return;
+        }
+        
+        if (usedAvatars.indexOf(selectedAvatar) !== -1) {
+            if (avatarError) {
+                showError('avatar', 'avatar-error', ERROR_MESSAGES.avatarTaken);
+            }
+            if (avatarStatusInfo && avatarStatusText) {
+                avatarStatusInfo.style.display = 'block';
+                avatarStatusInfo.className = 'avatar-status-info avatar-status-info--error';
+                avatarStatusText.textContent = ERROR_MESSAGES.avatarTaken;
+            }
+        } else {
+            if (avatarError) {
+                clearError('avatar', 'avatar-error');
+            }
+            if (avatarStatusInfo && avatarStatusText) {
+                avatarStatusInfo.style.display = 'block';
+                avatarStatusInfo.className = 'avatar-status-info avatar-status-info--success';
+                avatarStatusText.textContent = "{% trans 'Dieses Avatar ist verfügbar.'|escapejs %}";
+            }
+        }
+    }
+    
+    function check(){
+        if (!app.avatar_list.length) {
+            $('#avatar').val('');
+            return;
+        }
+        var temp = app.avatar_list[mySwiper.realIndex % app.avatar_list.length];
+        $('#avatar').val(temp);
+        // Check avatar selection in real-time
+        checkAvatarSelection();
+    }
+    setInterval("check()", 100);
+
+    window.addEventListener('load', defaultLoad);
+    window.addEventListener('resize', defaultLoad);
+
+    function defaultLoad() {
+        const el = document.getElementById('title-game');
+        el.innerHTML = window.innerWidth < 768 ? "{% trans 'Schafft eine dramafreie Zusammenarbeit durch psychologisch sichere Kreise.' %}" : "{% trans 'Schafft eine dramafreie Zusammenarbeit durch psychologisch sichere Kreise.' %}"
+    }
+    
+
+    // Game status check
+    function updateGameStatus() {
+        const gameStatusIndicator = document.getElementById('game-status-indicator');
+        const gameStatusText = gameStatusIndicator ? gameStatusIndicator.querySelector('.game-status-text') : null;
+        const gameStatusIcon = gameStatusIndicator ? gameStatusIndicator.querySelector('.game-status-icon') : null;
+        
+        if (!gameStatusIndicator) return;
+        
+        // Check game status via API
+        const link = '{{link}}';
+        axios
+            .post(`/api/check_game_is_after_waiting_room/`, {'link': link})
+            .then(function(response){
+                const result = response.data.result;
+                if (result === 1) {
+                    // Game is still joinable
+                    gameStatusIndicator.style.display = 'flex';
+                    gameStatusIndicator.className = 'game-status-indicator game-status-indicator--joinable';
+                    if (gameStatusText) {
+                        gameStatusText.textContent = "{% trans 'Spiel ist beitretbar'|escapejs %}";
+                    }
+                    if (gameStatusIcon) {
+                        gameStatusIcon.textContent = '✓';
+                    }
+                } else {
+                    // Game has started
+                    gameStatusIndicator.style.display = 'flex';
+                    gameStatusIndicator.className = 'game-status-indicator game-status-indicator--started';
+                    if (gameStatusText) {
+                        gameStatusText.textContent = "{% trans 'Spiel hat bereits begonnen'|escapejs %}";
+                    }
+                    if (gameStatusIcon) {
+                        gameStatusIcon.textContent = '⚠';
+                    }
+                }
+            })
+            .catch(function(error) {
+                console.error('Error checking game status:', error);
+            });
+    }
+    
+    // Update game status on load
+    updateGameStatus();
+    
+    function check_player_name(){
+        // Clear previous errors
+        clearError('nutzername', 'nutzername-error');
+        clearError('avatar', 'avatar-error');
+        const submitError = document.getElementById('submit-error-message');
+        if (submitError) {
+            submitError.style.display = 'none';
+        }
+        
+        var player_name = $('#nutzername').val().trim();
+        var link = '{{link}}';
+        var selectedAvatar = $('#avatar').val();
+
+        // Validate username
+        if (!player_name || player_name === '') {
+            showError('nutzername', 'nutzername-error', ERROR_MESSAGES.usernameRequired);
+            return false;
+        }
+        
+        if (player_name.length <= 2) {
+            showError('nutzername', 'nutzername-error', ERROR_MESSAGES.usernameTooShort);
+            return false;
+        }
+        
+        // Validate avatar
+        if (!selectedAvatar || selectedAvatar === 'EnterValue') {
+            showError('avatar', 'avatar-error', ERROR_MESSAGES.avatarRequired);
+            return false;
+        }
+        
+        if (!app.avatar_list.length || app.avatar_list.indexOf(selectedAvatar) === -1) {
+            showError('avatar', 'avatar-error', ERROR_MESSAGES.avatarsFull);
+            return false;
+        }
+
+        if (usedAvatars.indexOf(selectedAvatar) !== -1) {
+            showError('avatar', 'avatar-error', ERROR_MESSAGES.avatarTaken);
+            return false;
+        }
+        
+        // Show loading state
+        const submitButton = document.getElementById('submit_button');
+        const submitButtonText = document.getElementById('submit-button-text');
+        const submitButtonLoading = document.getElementById('submit-button-loading');
+        if (submitButton && submitButtonText && submitButtonLoading) {
+            submitButton.disabled = true;
+            submitButtonText.style.display = 'none';
+            submitButtonLoading.style.display = 'inline';
+        }
+
+        var data_ = {
+            'player_name': player_name,
+            'link': link,
+        };
+
+        axios
+            .post(`/api/check_game_is_after_waiting_room/`, {'link': link})
+            .then(function(response){
+                var result = response.data.result;
+                if (result === 1){
+                    axios
+                        .post(`/api/check_player_name/`, data_)
+                        .then(function(response){
+                            var result = response.data.result;
+                            if (result === 1) {
+                                // valid player name
+                                var input1 = $('#nutzername').val()
+                                input1 = input1.replace(/ /g, "").replace(/[_\.]/g, "")
+                                $('#nutzername').val(input1)
+                                if (input1.length > 2) {
+                                    var form_submit = document.getElementById('form_');
+                                    form_submit.submit()
+                                    return
+                                } else {
+                                    // Reset loading state
+                                    if (submitButton && submitButtonText && submitButtonLoading) {
+                                        submitButton.disabled = false;
+                                        submitButtonText.style.display = 'inline';
+                                        submitButtonLoading.style.display = 'none';
+                                    }
+                                    showError('nutzername', 'nutzername-error', ERROR_MESSAGES.usernameTooShort);
+                                    $('#nutzername').val('')
+                                    return
+                                }
+                            } else {
+                                // Reset loading state
+                                if (submitButton && submitButtonText && submitButtonLoading) {
+                                    submitButton.disabled = false;
+                                    submitButtonText.style.display = 'inline';
+                                    submitButtonLoading.style.display = 'none';
+                                }
+                                // have same name
+                                showError('nutzername', 'nutzername-error', ERROR_MESSAGES.usernameTaken);
+                                $('#nutzername').val('');
+                                return 
+                            }
+                        })
+                        .catch(function(error) {
+                            // Reset loading state on error
+                            if (submitButton && submitButtonText && submitButtonLoading) {
+                                submitButton.disabled = false;
+                                submitButtonText.style.display = 'inline';
+                                submitButtonLoading.style.display = 'none';
+                            }
+                            console.error('Error checking player name:', error);
+                        });
+                } else {
+                    // Reset loading state
+                    if (submitButton && submitButtonText && submitButtonLoading) {
+                        submitButton.disabled = false;
+                        submitButtonText.style.display = 'inline';
+                        submitButtonLoading.style.display = 'none';
+                    }
+                    // Game has started
+                    if (submitError) {
+                        submitError.textContent = ERROR_MESSAGES.gameStarted;
+                        submitError.style.display = 'block';
+                    }
+                    $('#nutzername').val('');
+                }
+            })
+            .catch(function(error) {
+                // Reset loading state on error
+                if (submitButton && submitButtonText && submitButtonLoading) {
+                    submitButton.disabled = false;
+                    submitButtonText.style.display = 'inline';
+                    submitButtonLoading.style.display = 'none';
+                }
+                console.error('Error checking game status:', error);
+            });
+
+    }
+
+    $('#submit_button').click(function(){
+        check_player_name();
+    })
+    
+    // Clear errors on input
+    document.getElementById('nutzername').addEventListener('input', function() {
+        clearError('nutzername', 'nutzername-error');
+    });
+    
+    // Initialize language flag on page load
+    updateLanguageFlag();
+    
+    // Set "Sprachauswahl" as default display in select (flag shows current language)
+    $(document).ready(function() {
+        $('#select_').val('');
+    });
+    
+    // Google Slides Fullscreen functionality
+    const fullscreenButton = document.getElementById('google-slides-fullscreen-button');
+    const slidesContainerWrapper = document.querySelector('.google-slides-container-wrapper');
+    
+    if (fullscreenButton && slidesContainerWrapper) {
+        fullscreenButton.addEventListener('click', function() {
+            if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.mozFullScreenElement && !document.msFullscreenElement) {
+                // Enter fullscreen
+                if (slidesContainerWrapper.requestFullscreen) {
+                    slidesContainerWrapper.requestFullscreen();
+                } else if (slidesContainerWrapper.webkitRequestFullscreen) {
+                    slidesContainerWrapper.webkitRequestFullscreen();
+                } else if (slidesContainerWrapper.mozRequestFullScreen) {
+                    slidesContainerWrapper.mozRequestFullScreen();
+                } else if (slidesContainerWrapper.msRequestFullscreen) {
+                    slidesContainerWrapper.msRequestFullscreen();
+                }
+                slidesContainerWrapper.classList.add('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild beenden'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild beenden'|escapejs %}");
+            } else {
+                // Exit fullscreen
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+        
+        // Listen for fullscreen changes
+        document.addEventListener('fullscreenchange', function() {
+            if (!document.fullscreenElement) {
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+        
+        document.addEventListener('webkitfullscreenchange', function() {
+            if (!document.webkitFullscreenElement) {
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+        
+        document.addEventListener('mozfullscreenchange', function() {
+            if (!document.mozFullScreenElement) {
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+        
+        document.addEventListener('MSFullscreenChange', function() {
+            if (!document.msFullscreenElement) {
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+    }
+    
+    // Disable submit if avatars are full
+    if (avatarsFull) {
+        const submitButton = document.getElementById('submit_button');
+        if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.classList.add('avatar-button-disabled');
+        }
+    }
+</script>
+</body>
+</html>

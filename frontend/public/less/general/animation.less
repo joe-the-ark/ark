@@ -1,0 +1,64 @@
+@store: {
+    .animate({
+        .is("fade-in", {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        });
+        .is('pulse', {
+            @shadowPulse: @bodeBrand;
+            0% {
+                box-shadow: 0 0 0 0 rgba(@shadowPulse, 0.2),
+                0 0 0 6px rgba(@shadowPulse, 0.2),
+                0 0 0 12px rgba(@shadowPulse, 0.2),
+                0 0 0 27px rgba(@shadowPulse, 0.2);
+            }
+            100% {
+                box-shadow: 0 0 0 6px rgba(@shadowPulse, 0),
+                0 0 0 12px rgba(@shadowPulse, 0),
+                0 0 0 27px rgba(@shadowPulse, 0),
+                0 0 0 48px rgba(@shadowPulse, 0);
+            }
+        });
+        .is('tada', {
+            20% {
+                -webkit-transform: rotate3d(0, 0, 1, 15deg);
+                transform: rotate3d(0, 0, 1, 15deg);
+            }
+
+            40% {
+                -webkit-transform: rotate3d(0, 0, 1, -10deg);
+                transform: rotate3d(0, 0, 1, -10deg);
+            }
+
+            60% {
+                -webkit-transform: rotate3d(0, 0, 1, 5deg);
+                transform: rotate3d(0, 0, 1, 5deg);
+            }
+
+            80% {
+                -webkit-transform: rotate3d(0, 0, 1, -5deg);
+                transform: rotate3d(0, 0, 1, -5deg);
+            }
+
+            to {
+                -webkit-transform: rotate3d(0, 0, 1, 0deg);
+                transform: rotate3d(0, 0, 1, 0deg);
+            }
+        });
+    });
+}
+
+.animate({
+    .model(
+        @types:
+        "ripple"
+        "pulse"
+        "tada"
+        "fade-in",
+        @store: @store
+    );
+});

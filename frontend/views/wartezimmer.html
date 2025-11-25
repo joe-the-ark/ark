@@ -1,0 +1,956 @@
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="icon" href="/static/images/favicon.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
+    <meta name="theme-color" content="#51ceec"/>
+    <meta name="description" content="ARK"/>
+    <title>Social_sensitivity</title>
+    <link rel="stylesheet" href="/static/css/app.css">
+    <link rel="stylesheet" href="/static/css/wartezimmer.css">
+    <link rel="stylesheet" href="/static/css/ubung-1.css">
+    <link rel="stylesheet" href="/static/css/heatmap.css">
+
+</head>
+<body>
+ {% get_current_language as LANGUAGE_CODE %}
+ <div class="app">
+    <div class="app__head">
+        <header class="header-main container">
+            <div class="header-main__title">
+                <icon classs="icon" onClick="window.open('https://info.arks.ch/');" style="cursor: pointer; position: relative; display: inline-flex; align-items: center;">
+                <span class="icon-logo"></span>
+                <span>ARKS</span>
+                <span class="tooltip-icon arks-logo-tooltip-icon" id="arks-logo-tooltip-icon" style="display: none; margin-left: 8px;">{% trans "Info zu safecircles.ch" %}</span>
+            </icon>
+            </div>
+            <div class="header-main__user">
+                <div class="user">
+                    <div class="user__subtitle">
+                        {{game.name}}
+                    </div>
+                    <img src="{{user.avatar}}" alt="">
+                    <div class="user__title">
+                        {{user.name}}
+                    </div>                    
+                </div>
+            </div>
+            <div class="header-main__progress">
+                <div class="progress">
+                    <label>SHARING</label>
+                    <div class="progress__bar">
+                        <div style="width: 20%; border-radius: 10px;">20%</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+    <div class="app__body">
+        <div class="container">
+
+
+
+            <main class="screen wartezimmer">
+                <div class="wartezimmer__data" id="app-2">
+                    <h1>
+                        <span class="tooltip-icon wartezimmer-tooltip-icon" id="wartezimmer-tooltip-icon" style="display: inline-flex; align-items: center; margin-right: 8px; vertical-align: middle; cursor: help;">?</span>
+                        {% trans "Erläutert reihum eure Gegensatzpaare" %}
+                    </h1>
+                    <div class="wartezimmer-content-box">
+                    <img src="http://info.arks.ch/wp-content/uploads/2022/07/Plus_Minus.png" style="border-radius: 10px;">
+                    <div class="input-container">
+                        <input type="text" 
+                               placeholder="{% trans 'Sicherheitsanker eingeben...' %}" 
+                               name="Kraftquelle" 
+                               v-model="text_input_power" 
+                               @keyup.enter="continue_()"
+                               @input="updateCharacterCount"
+                               maxlength="15" 
+                               minlength="2"
+                               id="power-input"
+                               aria-label="{% trans 'Sicherheitsanker eingeben' %}"
+                               class="wartezimmer-input">
+                        <div class="input-feedback" v-if="text_input_power.length > 0">
+                            <span class="character-count" :class="{ 'character-count-warning': text_input_power.length > 12 }">
+                                [[ text_input_power.length ]]/15
+                            </span>
+                        </div>
+                    </div>
+                    <p class="info-box">
+                        {% trans "Schreibe gerne auch EIGENE Begriffe ins Textfeld." %} 
+                        <br><br>
+                        <button class="button" type="button" @click="continue_()" id="update-button" aria-label="{% trans 'Aktualisieren' %}">
+                            {% trans "Aktualisieren" %}
+                        </button>
+                        <br><br>
+                    {% trans "Überarbeite bei Bedarf dein Gegensatzpaar." %} 
+                    </p>
+                    <div class="input-container input-container-right">
+                        <input type="text" 
+                               placeholder="{% trans 'Triggerthema eingeben...' %}" 
+                               name="Energiefresser" 
+                               v-model="text_input_drainer" 
+                               @keyup.enter="continue_()"
+                               @input="updateCharacterCount"
+                               maxlength="15" 
+                               minlength="2"
+                               id="drainer-input"
+                               aria-label="{% trans 'Triggerthema eingeben' %}"
+                               class="wartezimmer-input">
+                        <div class="input-feedback" v-if="text_input_drainer.length > 0">
+                            <span class="character-count" :class="{ 'character-count-warning': text_input_drainer.length > 12 }">
+                                [[ text_input_drainer.length ]]/15
+                            </span>
+                        </div>
+                    </div>
+                    <div id="validation-error" class="validation-error" role="alert" aria-live="polite" style="display: none;">
+                        <strong>{% trans "Bitte fülle beide Felder aus" %}</strong><br>
+                        <span class="validation-error-text">{% trans "Du musst sowohl einen Sicherheitsanker als auch ein Triggerthema eingeben, bevor du fortfahren kannst." %}</span>
+                    </div>
+                    <div id="success-message" class="success-message" role="alert" aria-live="polite" style="display: none;">
+                        <strong>{% trans "Erfolgreich aktualisiert!" %}</strong><br>
+                        <span class="success-message-text">{% trans "Dein Gegensatzpaar wurde erfolgreich aktualisiert." %}</span>
+                    </div>
+                    <div id="api-error" class="validation-error api-error" role="alert" aria-live="polite" style="display: none;">
+                        <strong>{% trans "Fehler bei der Aktualisierung" %}</strong><br>
+                        <span class="validation-error-text" id="api-error-text"></span>
+                    </div>
+                    <br><br>
+
+
+                    
+
+
+                </div>
+            </div>
+
+                        <div class="google-slides-container-wrapper">
+                            <button class="google-slides-fullscreen-button" id="google-slides-fullscreen-button" aria-label="{% trans 'Vollbild anzeigen' %}" title="{% trans 'Vollbild anzeigen' %}">
+                                <span class="fullscreen-icon">⛶</span>
+                            </button>
+                            <div class="google-slides-container" id="google-slides-container">
+                                <iframe src={% trans "https://docs.google.com/presentation/d/1Cz-fav1DISq2siHi5-RW2uggyQU2ecbI1S3wxs--dng/embed?start=true&loop=false&delayms=8000&rm=minimal"  %} frameborder="0" width="100%" height="400" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                            </div>
+                        </div>
+
+<!--
+                <div class="heatmap">
+
+
+          <div class="main-column prop">
+            <div class="corner"></div>
+            <div class="corner"></div>
+            <div class="property" v-for="scale in scale_list_pro">
+              <p class="property_one">[[ scale[0] ]]</p>
+              <p class="property_two">[[ scale[1] ]]</p>
+            </div>
+            {% comment %} <div class="property">
+              <p class="property_one">Curative</p>
+              <p class="property_two">Narcissism</p>
+            </div>
+            <div class="property">
+              <p class="property_one">Ambition</p>
+              <p class="property_two">Enforcement</p>
+            </div>
+            <div class="property">
+              <p class="property_one">Victory</p>
+              <p class="property_two">Dominance</p>
+            </div>
+            <div class="property">
+              <p class="property_one">Pain</p>
+              <p class="property_two">Invisibility</p>
+            </div> {% endcomment %}
+
+          </div>
+
+
+                </div>
+-->
+                <div class="wartezimmer__addition" id="app-1">
+
+                    <div class="user-connect active" v-for='(value, index) in waiting_list_active'>
+                        <img :src="value.avatar" alt=""/>
+                        <div class="user-connect__now">
+                            <span class="user-connect__now-name">
+                            [[ value.name ]]
+                            </span>
+                                    <span class="now-terms" style="text-transform: uppercase;">
+                                      [[ value.item_power ]] / [[ value.item_drainer ]]
+                                    </span>
+                            </div>
+                        </div>
+
+                    <div class="user-connect" v-for='(value, index) in waiting_list_yet'>
+                        <img :src="value.avatar" alt=""/>
+                        <div class="user-connect__now">
+                                <span class="user-connect__now-name">
+                                  [[ value.name ]]
+                                </span>
+                                <span class="now-terms">
+                                    {% trans "bereit?" %}
+                                </span>
+                        </div>
+
+                    </div>
+                    {% comment %} <div class="user-connect">
+                        <img src="/static/images/avatars/penguin-1.svg" alt=""/>
+                        <div class="user-connect__name">
+                            Constantin
+                            Constantinopol
+                        </div>
+                        <div class="user-connect__now">
+                                {% trans "bereit?" %}
+                                </span>
+                        </div>
+                    </div>
+                    <div class="user-connect active">
+                        <img src="/static/images/avatars/penguin-1.svg" alt=""/>
+                        <div class="user-connect__name">
+                            Constantin
+                            Constantinopol
+                        </div>
+                        <div class="user-connect__now">
+                            {% trans "bereit?" %}
+                        </div>
+                    </div>
+                    <div class="user-connect">
+                        <img src="/static/images/avatars/penguin-1.svg" alt=""/>
+                        <div class="user-connect__name">
+                            Constantin
+                            Constantinopol
+                        </div>
+                        <div class="user-connect__now">
+                            {% trans "bereit?" %}
+                        </div>
+                    </div>
+                    <div class="user-connect">
+                        <img src="/static/images/avatars/penguin-1.svg" alt=""/>
+                        <div class="user-connect__name">
+                            Constantin
+                            Constantinopol
+                        </div>
+                        <div class="user-connect__now">
+                            {% trans "bereit?" %}
+                        </div>
+                    </div>
+                    <div class="user-connect">
+                        <img src="/static/images/avatars/penguin-1.svg" alt=""/>
+                        <div class="user-connect__name">
+                            Constantin
+                            Constantinopol
+                        </div>
+                        <div class="user-connect__now">
+                            {% trans "bereit?" %}
+                        </div>
+                    </div>
+                    <div class="user-connect">
+                        <img src="/static/images/avatars/penguin-1.svg" alt=""/>
+                        <div class="user-connect__name">
+                            Constantin
+                            Constantinopol
+                        </div>
+                        <div class="user-connect__now">
+                            {% trans "bereit?" %}
+                        </div>
+                    </div>
+                    <div class="user-connect">
+                        <img src="/static/images/avatars/penguin-1.svg" alt=""/>
+                        <div class="user-connect__name">
+                            Constantin
+                            Constantinopol
+                        </div>
+                        <div class="user-connect__now">
+                            {% trans "bereit?" %}
+                        </div>
+                    </div>
+                    <div class="user-connect">
+                        <img src="/static/images/avatars/penguin-1.svg" alt=""/>
+                        <div class="user-connect__name">
+                            Constantin
+                            Constantinopol
+                        </div>
+                        <div class="user-connect__now">
+                            {% trans "bereit?" %}
+                        </div>
+                    </div>
+                    <div class="user-connect">
+                        <img src="/static/images/avatars/penguin-1.svg" alt=""/>
+                        <div class="user-connect__name">
+                            Constantin
+                            Constantinopol
+                        </div>
+                        <div class="user-connect__now">
+                            {% trans "bereit?" %}
+                        </div>
+                    </div>
+                    <div class="user-connect">
+                        <img src="/static/images/avatars/penguin-1.svg" alt=""/>
+                        <div class="user-connect__name">
+                            Constantin
+                            Constantinopol
+                        </div>
+                        <div class="user-connect__now">
+                            {% trans "bereit?" %}
+                        </div>
+                    </div>
+                    <div class="user-connect">
+                        <img src="/static/images/avatars/penguin-1.svg" alt=""/>
+                        <div class="user-connect__name">
+                            Constantin
+                            Constantinopol
+                        </div>
+                        <div class="user-connect__now">
+                            {% trans "bereit?" %}
+                        </div>
+                    </div>
+                    <div class="user-connect">
+                        <img src="/static/images/avatars/penguin-1.svg" alt=""/>
+                        <div class="user-connect__name">
+                            Constantin
+                            Constantinopol
+                        </div>
+                        <div class="user-connect__now">
+                            {% trans "bereit?" %}
+                        </div>
+                    </div>
+                    <div class="user-connect">
+                        <img src="/static/images/avatars/penguin-1.svg" alt=""/>
+                        <div class="user-connect__name">
+                            Constantin
+                            Constantinopol
+                        </div>
+                        <div class="user-connect__now">
+                            {% trans "bereit?" %}
+                        </div>
+                    </div>  {% endcomment %}
+                </div>
+            </main>
+                    <p>
+                        <br><br>
+                    </p>
+            <form action="#" method="POST" class="form">
+            {% csrf_token %}
+                <div class="center">
+                    <div class="button-with-tooltip">
+                        <span class="tooltip-icon button-tooltip-icon" id="button-tooltip-icon" style="display: inline-flex; align-items: center; margin-right: 8px; vertical-align: middle; cursor: help;">?</span>
+                    <button id='main_btn' class="button-primary" type="button" onclick="choosePopup()">
+                        <span class="button-text">{% trans "Klicke erst hier weiter, wenn ALLE ein passendes GEGENSATZPAAR benannt haben!" %}</span>
+                        <span class="button-arrow">→</span>
+                    </button>
+                    </div>
+
+                    <p>
+                        <br><br>
+                    </p>
+                </div>
+            </form>
+                    <div class="copyright-footer">
+                        <a href="https://github.com/joe-the-ark/ark" target="_blank">{% trans "ARKS is published under a GPLv3" %}</a> {% trans "license by" %} 
+                        <a href="https://www.linkedin.com/in/dr-joe-maier/" target="_blank">{% trans "Dr. Joe Maier" %}</a>.
+                    </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+<script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+<script src="https://unpkg.com/clipboard@2/dist/clipboard.min.js"></script>
+<script src="/static/js/waitingRoomHelpers.js"></script>
+<script>
+
+    var scaleI18n = {{scale|safe}} ;
+    var scale = [];
+    var lang_code = '{{LANGUAGE_CODE}}';
+    scaleI18n.forEach( (item) => {
+        scale.push(item[lang_code]);
+    });
+
+
+    //Button remover - only show button for initiator
+    function buttonRemover() {
+      let initiator = "{{host}}";
+      let user = "{{player_name}}";
+      console.log(initiator, user);
+      let btn = document.querySelector('#main_btn');
+      let container = btn ? btn.closest('.button-with-tooltip') : null;
+      
+      if (initiator != user) {
+        // Hide button and container for non-initiators
+        if (btn) {
+          btn.style.setProperty('display', 'none', 'important');
+        }
+        if (container) {
+          container.style.setProperty('display', 'none', 'important');
+        }
+        // Also hide the center container if it only contains the button
+        let centerContainer = btn ? btn.closest('.center') : null;
+        if (centerContainer && centerContainer.querySelectorAll('.button-with-tooltip').length === 1 && !centerContainer.querySelectorAll('p').length) {
+          centerContainer.style.setProperty('display', 'none', 'important');
+        }
+      }
+    }
+    // Call buttonRemover after DOM is ready (with small delay to ensure styles are applied)
+    function initButtonRemover() {
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+          setTimeout(buttonRemover, 100);
+        });
+      } else {
+        setTimeout(buttonRemover, 100);
+      }
+    }
+    initButtonRemover();
+
+   var app2 = new Vue({
+        delimiters: ['[[', ']]'],
+        el: '#app-2',
+        data() {
+            return {
+                scale: scale,
+                text_input_power : scale[0],
+                text_input_drainer : scale[1]
+            }
+        },
+        methods: {
+            handleSelect(key, keyPath) {
+                console.log(key, keyPath);
+            },
+            updateCharacterCount(){
+                // Character count is handled by v-if in template
+            },
+            continue_(){
+                var that = this;
+                const validationError = document.getElementById('validation-error');
+                const successMessage = document.getElementById('success-message');
+                const apiError = document.getElementById('api-error');
+                
+                // Hide previous messages
+                if (successMessage) successMessage.style.display = 'none';
+                if (apiError) apiError.style.display = 'none';
+                
+                if (that.text_input_power === '' || that.text_input_drainer === ''){
+                    // Show validation error
+                    if (validationError) {
+                        validationError.style.display = 'block';
+                        validationError.setAttribute('role', 'alert');
+                        
+                        // Focus on first empty input
+                        const powerInput = document.getElementById('power-input');
+                        const drainerInput = document.getElementById('drainer-input');
+                        if (that.text_input_power === '' && powerInput) {
+                            powerInput.focus();
+                            powerInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        } else if (that.text_input_drainer === '' && drainerInput) {
+                            drainerInput.focus();
+                            drainerInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
+                        
+                        // Hide error after 8 seconds
+                        setTimeout(function() {
+                            if (validationError) {
+                                validationError.style.display = 'none';
+                            }
+                        }, 8000);
+                    }
+                    return;
+                } else {
+                    // Hide validation error if visible
+                    if (validationError) {
+                        validationError.style.display = 'none';
+                    }
+                    
+                    // Disable button during submission
+                    const updateButton = document.getElementById('update-button');
+                    if (updateButton) {
+                        updateButton.disabled = true;
+                        updateButton.classList.add('button-submitting');
+                    }
+                    
+                    app2.add_terms();
+                }
+            },
+            add_terms(){
+                var that = this;
+                var tempPower = that.text_input_power;
+                tempPower = tempPower.replace(/\s*/g,"")
+                if (that.text_input_power ===  ''){
+                    return;
+                }
+                if (tempPower === ''){
+                    return;
+                }
+
+                var tempDrainer = that.text_input_drainer;
+                tempDrainer = tempDrainer.replace(/\s*/g,"")
+                if (that.text_input_drainer ===  ''){
+                    return;
+                }
+                if (tempDrainer === ''){
+                    return;
+                }
+
+                var data_ = {
+                    'player_id': '{{user.id}}',
+                    'link': '{{game.link}}',
+                    'item_power': tempPower,
+                    'item_drainer': tempDrainer,
+                    'lang_code': '{{LANGUAGE_CODE}}'
+                };
+                axios
+                    .post(`/api/warteimmer_api_pro/`, data_)
+                    .then(function(response){
+                        var result = response.data.result;
+                        
+                        // Re-enable button
+                        const updateButton = document.getElementById('update-button');
+                        if (updateButton) {
+                            updateButton.disabled = false;
+                            updateButton.classList.remove('button-submitting');
+                        }
+                        
+                        // Show success message
+                        const successMessage = document.getElementById('success-message');
+                        const validationError = document.getElementById('validation-error');
+                        const apiError = document.getElementById('api-error');
+                        
+                        if (successMessage) {
+                            if (validationError) validationError.style.display = 'none';
+                            if (apiError) apiError.style.display = 'none';
+                            successMessage.style.display = 'block';
+                            successMessage.setAttribute('role', 'alert');
+                            
+                            // Hide success message after 3 seconds
+                            setTimeout(function() {
+                                if (successMessage) {
+                                    successMessage.style.display = 'none';
+                                }
+                            }, 3000);
+                        }
+                    })
+                    .catch(function(error){
+                        console.error('Error in add_terms:', error);
+                        
+                        // Re-enable button
+                        const updateButton = document.getElementById('update-button');
+                        if (updateButton) {
+                            updateButton.disabled = false;
+                            updateButton.classList.remove('button-submitting');
+                        }
+                        
+                        // Show error message
+                        const apiError = document.getElementById('api-error');
+                        const apiErrorText = document.getElementById('api-error-text');
+                        if (apiError && apiErrorText) {
+                            apiErrorText.textContent = "{% trans 'Ein Fehler ist aufgetreten. Bitte versuche es erneut.'|escapejs %}";
+                            apiError.style.display = 'block';
+                            apiError.setAttribute('role', 'alert');
+                            setTimeout(function() {
+                                if (apiError) {
+                                    apiError.style.display = 'none';
+                                }
+                            }, 8000);
+                        }
+                    })
+
+            }
+        }
+    });
+
+
+    var app = new Vue({
+        delimiters: ['[[', ']]'],
+        el: '#app-1',
+        data() {
+            return {
+                activeIndex: '1',
+                message: 'Hello Vue!',
+                waiting_list_active: [
+                {
+                    'id': -1,
+                    'name': '',
+                    'avatar': '',
+                }],
+                waiting_list_yet:[{
+                    'id': -1,
+                    'name': '',
+                    'avatar': '',
+                }],
+            }
+        },
+        methods: {
+            handleSelect(key, keyPath) {
+                console.log(key, keyPath);
+            },
+        },
+    })
+
+
+    function popupOpen(selector) {
+      console.log('opened', selector);
+      selector.classList.add('open');
+    }
+
+    function popupClose(selector, timeout) {
+      console.log('closed', selector);
+      setTimeout(() => {selector.classList.remove('open')}, timeout);
+
+    }
+
+    function choosePopup() {
+      let userList = document.querySelectorAll('.user-connect');
+      let readyCount = 0;
+      for (let item of userList) {
+        if(item.classList.contains('active')) {
+          readyCount++;
+        }
+      }
+      if (userList.length < 3) {
+        morePlayersNeeded();
+      }
+      else if (userList.length >= 3 && readyCount < 3) {
+        letsWaitMorePlayers();
+      }
+      else if (userList.length >= 3 && readyCount >=3 && userList.length > readyCount){
+        waitOrGo();
+        console.log('waitOrGo')
+      }
+      else if (userList.length == readyCount) {
+        start();
+      }
+    }
+
+    function morePlayersNeeded() {
+      let popup = document.querySelector('#popup_less_players');
+      popupOpen(popup);
+      popupClose(popup, 1500);
+    }
+
+    function letsWaitMorePlayers() {
+      let popup = document.querySelector('#popup_less_ready_players');
+      popupOpen(popup);
+      popupClose(popup, 1500);
+    }
+
+    function waitOrGo() {
+      let popup = document.querySelector('#popup_buttons');
+      popupOpen(popup);
+      let closeBtn = document.querySelector('.modal_button[type=button]')
+      console.log(closeBtn);
+      closeBtn.addEventListener('click', () => {popupClose(popup)})
+    }
+
+    function start() {
+      document.forms[0].submit();
+    }
+
+    function sleep(time) {
+        return new Promise((resolve) => setTimeout(resolve, time));
+    }
+
+    async function get_mem_list() {
+        while (1) {
+            var waiting_post = {"player_id": "{{player_id}}","link":"{{link}}"};
+            await sleep(4000).then(() => {
+                axios
+                    .post(`/api/waiting_room_active/`,waiting_post)
+                    .then(function(response) {
+                        var result = response.data.result;
+                        app.waiting_list_active.splice(0);
+                        var uu = 0;
+                        while (uu < result.length) {
+                            app.waiting_list_active.push((result)[uu]);
+                            uu += 1;
+                        }
+                        app.waiting_list_active = result;
+
+                        axios
+                            .post(`/api/waiting_room_yet/`,waiting_post)
+                            .then(function(response) {
+                                var result = response.data.result;
+                                app.waiting_list_yet.splice(0);
+                                var uu = 0;
+                                while (uu < result.length) {
+                                    app.waiting_list_yet.push((result)[uu]);
+                                    uu += 1;
+                                }
+                                app.waiting_list_yet = result;
+
+                            })
+                            .catch(function(error) { // 请求失败处理
+                                console.log(error);
+                            });
+
+                    })
+                    .catch(function(error) { // 请求失败处理
+                        console.log(error);
+                    });
+            })
+            
+        }
+    }
+
+    async function check_game_start() {
+    const reminderMessage = "{% trans 'Bleibt gern im Gespräch – klickt auf Weiter, sobald alle ihr Gegensatzpaar ergänzt haben.' %}";
+    const reminder = WaitingRoomHelpers.createReminder({
+        message: reminderMessage,
+        firstDelayMs: 120000,
+        repeatDelayMs: 210000,
+        maxCount: 2
+    });
+
+    while (1) {
+        var data_ = { 'link': '{{link}}' };
+        var user_ = { 'user_id': '{{user.id}}' };
+        await sleep(15000).then(() => {
+            axios
+                .post(`/api/check_ubung1_ubung3_blank/`, user_)
+                .then(function(response) {
+                    var result = response.data.result;
+                    if (result === '1') {
+                        reminder.stop();
+                        document.getElementById('message-placeholder').innerText = "Please choose a term from the list, you may change it later in the waiting-room.";
+                        // You can add a delay before the redirection if needed
+                        setTimeout(() => {
+                            window.location.href = '/ubung-1/';
+                        }, 3000); // Redirects after 3 seconds
+                    } else if (result === '3') {
+                        reminder.stop();
+                        window.location.href = '/ubung-3/';
+                    }
+
+                    axios
+                        .post(`/api/waiting_room_game_start/`, data_)
+                        .then(function(response) {
+                            var result = response.data.result;
+                            if (result === 1) {
+                                reminder.stop();
+                                window.location.href = "/ubung-5/";
+                            } else {
+                                reminder.touch();
+                            }
+                        })
+                        .catch(function(error) {
+                            console.log(error);
+                        });
+
+                })
+                .catch(function(error) {
+                    console.log(error);
+                });
+            });
+        }
+    }
+
+
+    get_mem_list()
+    check_game_start()
+    
+    // Wartezimmer Tooltip - Initialize after DOM is ready
+    function initWartezimmerTooltip() {
+        const wartezimmerTooltipIcon = document.getElementById('wartezimmer-tooltip-icon');
+        if (wartezimmerTooltipIcon) {
+            // Make sure icon is visible
+            wartezimmerTooltipIcon.style.display = 'inline-flex';
+            
+            // Destroy existing tooltip if any
+            const existingInstance = wartezimmerTooltipIcon._tippy;
+            if (existingInstance) {
+                existingInstance.destroy();
+            }
+            
+            tippy(wartezimmerTooltipIcon, {
+                content: "{% trans 'Damit alle verstehen, welche Spannungsfelder zu euren psychologisch sicheren Kreisen beitragen. (Dauer: 1 Minute pro Person)'|escapejs %}",
+                placement: 'bottom',
+                theme: 'light',
+                delay: [200, 0],
+                allowHTML: false,
+                interactive: false,
+                trigger: 'mouseenter focus',
+                maxWidth: 500,
+            });
+        } else {
+            console.warn('wartezimmer-tooltip-icon not found');
+        }
+    }
+    
+    // Initialize tooltip after DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initWartezimmerTooltip);
+    } else {
+        initWartezimmerTooltip();
+    }
+    
+    // Button Tooltip - Initialize after DOM is ready
+    function initButtonTooltip() {
+        const buttonTooltipIcon = document.getElementById('button-tooltip-icon');
+        if (buttonTooltipIcon) {
+            // Make sure icon is visible
+            buttonTooltipIcon.style.display = 'inline-flex';
+            
+            // Destroy existing tooltip if any
+            const existingInstance = buttonTooltipIcon._tippy;
+            if (existingInstance) {
+                existingInstance.destroy();
+            }
+            
+            tippy(buttonTooltipIcon, {
+                content: "{% trans 'Startet richtig durch, sobald alle Mitreisenden hier im Warteraum sichtbar sind. Nur wer jetzt noch mit an Bord ist, nimmt an der Reise teil!'|escapejs %}",
+                placement: 'bottom',
+                theme: 'light',
+                delay: [200, 0],
+                allowHTML: false,
+                interactive: false,
+                trigger: 'mouseenter focus',
+                maxWidth: 500,
+            });
+        } else {
+            console.warn('button-tooltip-icon not found');
+        }
+    }
+    
+    // Initialize button tooltip after DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initButtonTooltip);
+    } else {
+        initButtonTooltip();
+    }
+    
+    // ARKS Logo Tooltip
+    const arksLogoContainer = document.querySelector('.header-main__title icon');
+    const arksLogoTooltipIcon = document.getElementById('arks-logo-tooltip-icon');
+    
+    if (arksLogoContainer && arksLogoTooltipIcon) {
+        arksLogoContainer.addEventListener('mouseenter', function() {
+            arksLogoTooltipIcon.style.display = 'inline-flex';
+        });
+        arksLogoContainer.addEventListener('mouseleave', function() {
+            arksLogoTooltipIcon.style.display = 'none';
+        });
+        
+        tippy(arksLogoTooltipIcon, {
+            content: "{% trans 'Info zu safecircles.ch'|escapejs %}",
+            placement: 'bottom',
+            theme: 'light',
+            delay: [200, 0],
+            allowHTML: false,
+            interactive: false,
+            trigger: 'mouseenter focus',
+            maxWidth: 300,
+        });
+    }
+
+</script>
+<div id='popup_buttons' class="popup">
+    <div class="popup_body">
+        <div class="popup_content">
+            <form class="popup_form" action="#" method="post">
+              {% csrf_token %}
+              <button class="modal_button" type="submit" id="button" aria-label="{% trans 'Reise mit grünen Spielern fortsetzen' %}">
+                  {% trans "Reise mit" %}<br>{% trans "grünen Spielern fortsetzen" %}
+              </button>
+              <button class="modal_button" type="button" aria-label="{% trans 'Auf weitere Spieler warten' %}">
+                  {% trans "Auf weitere" %}<br>{% trans "Spieler warten" %}
+              </button>
+            </form>
+        </div>
+    </div>
+</div>
+<div id='popup_less_players' class="popup">
+    <div class="popup_body">
+        <div class="popup_content">
+            {% trans "Lade mehr Spieler ein! Es werden mindestens 3 Spieler benötigt, um dieses Spiel zu spielen." %}
+        </div>
+    </div>
+</div>
+<div id='popup_less_ready_players' class="popup">
+    <div class="popup_body">
+        <div class="popup_content">
+            {% trans "Warte, bis mehr Spieler hier im Warteraum angekommen sind." %}
+        </div>
+    </div>
+</div>
+    <script>
+    // Google Slides Fullscreen functionality
+    const fullscreenButton = document.getElementById('google-slides-fullscreen-button');
+    const slidesContainerWrapper = document.querySelector('.google-slides-container-wrapper');
+    
+    if (fullscreenButton && slidesContainerWrapper) {
+        fullscreenButton.addEventListener('click', function() {
+            if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.mozFullScreenElement && !document.msFullscreenElement) {
+                // Enter fullscreen
+                if (slidesContainerWrapper.requestFullscreen) {
+                    slidesContainerWrapper.requestFullscreen();
+                } else if (slidesContainerWrapper.webkitRequestFullscreen) {
+                    slidesContainerWrapper.webkitRequestFullscreen();
+                } else if (slidesContainerWrapper.mozRequestFullScreen) {
+                    slidesContainerWrapper.mozRequestFullScreen();
+                } else if (slidesContainerWrapper.msRequestFullscreen) {
+                    slidesContainerWrapper.msRequestFullscreen();
+                }
+                slidesContainerWrapper.classList.add('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild beenden'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild beenden'|escapejs %}");
+            } else {
+                // Exit fullscreen
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+        
+        // Listen for fullscreen changes
+        document.addEventListener('fullscreenchange', function() {
+            if (!document.fullscreenElement) {
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+        
+        document.addEventListener('webkitfullscreenchange', function() {
+            if (!document.webkitFullscreenElement) {
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+        
+        document.addEventListener('mozfullscreenchange', function() {
+            if (!document.mozFullScreenElement) {
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+        
+        document.addEventListener('MSFullscreenChange', function() {
+            if (!document.msFullscreenElement) {
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+    }
+    </script>
+</body>
+</html>

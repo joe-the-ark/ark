@@ -1,0 +1,645 @@
+//belongs xaoni.dev
+
+@CASE_LG: 1640px;
+@CASE_MD: 1640px;
+@CASE_SM: 1200px;
+@CASE_XS: 768px;
+
+@COLUMNS: 12;
+@OFFSET: 15px;
+
+.render() {
+    //colors
+    @ERROR: #ff000f;
+    //grid
+    @SYSTEM_COLUMNS: @COLUMNS;
+    @SYSTEM_COL: 100%/@SYSTEM_COLUMNS;
+    @DIFFERENCE_OFFSET: @OFFSET;
+    @CONTAINER_OFFSETS: @OFFSET*2;
+
+    .isTrue(@value, @end: {}) {
+        & when not (@value = false) {
+            @end();
+        }
+    }
+    .isFalse(@value, @end:{}) {
+        & when (@value = false) {
+            @end();
+        }
+    }
+    .if(@condition, @end:{}) {
+        & when (@condition) {
+            @end();
+        }
+        //TODO
+    }
+    .media(@property, @value, @end, @value-2: false) {
+        & when (@property = max) {
+            @media screen and (max-width: @value) {
+                @end();
+            }
+        }
+        & when (@property = min) {
+            @media screen and (min-width: @value) {
+                @end();
+            }
+        }
+        & when (@property = minmax) {
+            @media screen and (min-width: @value) and (max-width: @value-2) {
+                @end();
+            }
+        }
+    }
+    .min(@width, @end:{}) {
+        .media(min, @width, {
+            @end();
+        });
+    }
+    .max(@width, @end:{}) {
+        .media(max, @width, {
+            @end();
+        });
+    }
+    .minmax(@min-width, @max-width, @end:{}) {
+        .media(minmax, @min-width, @value-2:@max-width, @end:{
+            @end();
+        });
+    }
+    .defendQueryLG() {
+        .lg(@value, @end) when (@value = min) and (isruleset(@end)){
+            .min(@CASE_LG + 1, @end);
+        }
+        .lg(@value, @end:false) when (isruleset(@value)) {
+            .max(@CASE_LG, @value);
+        }
+    }
+    .defendQueryMD() {
+        .md(@value, @end) when (@value = min) and (isruleset(@end)){
+            .min(@CASE_MD + 1, @end);
+        }
+        .md(@value, @end:false) when (isruleset(@value)) {
+            .max(@CASE_MD, @value);
+        }
+    }
+    .defendQuerySM() {
+        .sm(@value, @end) when (@value = min) and (isruleset(@end)){
+            .min(@CASE_SM + 1, @end);
+        }
+        .sm(@value, @end:false) when (isruleset(@value)) {
+            .max(@CASE_SM, @value);
+        }
+    }
+    .defendQueryXS() {
+        .xs(@value, @end) when (@value = min) and (isruleset(@end)){
+            .min(@CASE_XS + 1, @end);
+        }
+        .xs(@value, @end:false) when (isruleset(@value)) {
+            .max(@CASE_XS, @value);
+        }
+    }
+    .defendBefore() {
+        ._(@value, @end) when (isstring(@value)) and (isruleset(@end)) {
+            &:before {
+                content: @value;
+                @end();
+            }
+        }
+        ._(@value, @end:false) when (isruleset(@value)) {
+            &:before {
+                content: " ";
+                @value();
+            }
+        }
+    }
+    .defendAfter() {
+        .__(@value, @end) when (isstring(@value)) and (isruleset(@end)) {
+            &:after {
+                content: @value;
+                @end();
+            }
+        }
+        .__(@value, @end:false) when (isruleset(@value)) {
+            &:after {
+                content: " ";
+                @value();
+            }
+        }
+    }
+    .defendBeforeAfter() {
+        .___(@value, @end) when (isstring(@value)) and (isruleset(@end)) {
+            &:before, &:after {
+                content: @value;
+                @end();
+            }
+        }
+        .___(@value, @end:false) when (isruleset(@value)) {
+            &:before, &:after {
+                content: " ";
+                @value();
+            }
+        }
+    }
+    .defendFirst() {
+        .first(@value, @end) when (@value = not) and (isruleset(@end)) {
+            &:not(:first-child) {
+                @end();
+            }
+        }
+        .first(@value, @end) when (@value = type) and (isruleset(@end)) {
+            &:first-of-type {
+                @end();
+            }
+        }
+
+        .first(@value, @ned: false) when (isruleset(@value)) {
+            &:first-child {
+                @value();
+            }
+        }
+    };
+    .defendLast() {
+        .last(@value, @end) when (@value = not) and (isruleset(@end)) {
+            &:not(:last-child) {
+                @end();
+            }
+        }
+        .last(@value, @end) when (@value = type) and (isruleset(@end)) {
+            &:last-of-type {
+                @end();
+            }
+        }
+
+        .last(@value, @ned: false) when (isruleset(@value)) {
+            &:last-child {
+                @value();
+            }
+        }
+    };
+    .defendFunctions() {
+        .scroll(@scrollbar:{}, @thumb:{}) {
+            &::-webkit-scrollbar {
+                @scrollbar();
+            }
+            &::-webkit-scrollbar-thumb {
+                @thumb();
+            }
+        }
+        .vendor(@property: "", @value: "") {
+            .isTrue(@value, {
+                -webkit-@{property}: @value;
+                -khtml-@{property}: @value;
+                -moz-@{property}: @value;
+                -ms-@{property}: @value;
+                    @{property}: @value;
+            })
+        }
+        .placeholder(@property, @value: false) {
+            .isTrue(@value, {
+                &:placeholder {
+                        @{property}: @value;
+                }
+                &::placeholder {
+                        @{property}: @value;
+                }
+                &::-webkit-input-placeholder {
+                        @{property}: @value;
+                }
+                &::-moz-placeholder {
+                        @{property}: @value;
+                }
+                &:-moz-placeholder {
+                        @{property}: @value;
+                }
+                &:-ms-input-placeholder {
+                        @{property}: @value;
+                }
+            });
+        }
+        .clear(@before: false) {
+            .clearing() {
+                display: table;
+                clear: both;
+            }
+            .isTrue(@before, {
+                ._({
+                    .clearing();
+                });
+            });
+            .isFalse(@before, {
+                .__({
+                    .clearing();
+                })
+            });
+        }
+        .hide() {
+            visibility: hidden;
+            opacity: 0;
+        }
+        .show() {
+            visibility: hidden;
+            opacity: 0;
+        }
+        .container-start() {
+            //.xs(min, {TODO
+            //    max-width: @CASE_XS + @CONTAINER_OFFSETS !important
+            //});
+            .sm(min, {
+                max-width: @CASE_SM + @CONTAINER_OFFSETS !important
+            });
+            .md(min, {
+                max-width: @CASE_MD + @CONTAINER_OFFSETS !important
+            });
+            .lg(min, {
+                max-width: @CASE_LG + @CONTAINER_OFFSETS !important
+            });
+        }
+        .container-end() {
+            padding: 0 ~"calc(50% - (@{CASE_LG}/2 + (15px)))";
+        }
+        .container(@type: start) {
+            & when (@type = start) {
+                margin-left: auto !important;
+                margin-right: auto !important;
+                box-sizing: border-box;
+                padding-right: @DIFFERENCE_OFFSET !important;
+                padding-left: @DIFFERENCE_OFFSET !important;
+                .container-start();
+            }
+            & when (@type = end) {
+                .container-end();
+            }
+        }
+    }
+    .defendFont() {
+        .elseIfEach(@index, @indexValue, @valueEach, @property, @value) {
+            & when (@index = @indexValue) {
+                .isFalse(@value, {
+                        @{property}: ~"@{valueEach}";
+                });
+                .isTrue(@value, @end: {
+                        @{property}: @value;
+                });
+            }
+        }
+        .font(@arguments: false, @end: {}, @color: false, @size: false, @weight: false, @line: false) {
+            @argumentsArray: @arguments;
+            .isTrue(@arguments, {
+                each(@argumentsArray, {
+                    .elseIfEach(@index, 1, @value, color, @color);
+                    .elseIfEach(@index, 2, @value, font-size, @size);
+                    .elseIfEach(@index, 3, @value, line-height, @line);
+                    .elseIfEach(@index, 4, @value, font-weight, @weight);
+                });
+            });
+            .isFalse(@arguments, {
+                .isTrue(@color, {
+                    color: @color;
+                });
+                .isTrue(@size, {
+                    font-size: @size;
+                });
+                .isTrue(@line, {
+                    line-height: @line;
+                });
+                .isTrue(@weight, {
+                    font-weight: @weight;
+                });
+            });
+            @end();
+        }
+    }
+    .defendBlock() { //TODO
+        @flex: {
+            display: flex;
+        }
+        .centeringX(@wrap: wrap) {
+            @flex();
+            justify-content: center;
+            .isTrue(@wrap, {
+                flex-wrap: @wrap
+            });
+        }
+        .centeringY(@wrap, @type) {
+            .centeringX(@wrap);
+            align-items: @type;
+        }
+        .flex(@stage: 1) {
+            @flex();
+            .center(@arguments: false) {
+                .centeringX(false);
+                align-items: center;
+                .top(@wrap: wrap) {
+                    .centeringY(@wrap, flex-start);
+                }
+                .bot(@wrap: wrap) {
+                    .centeringY(@wrap, flex-end);
+                }
+            }
+            .center(@arguments) when (@arguments = column) {
+                flex-direction: column;
+            }
+            .center(@arguments: false) when (@arguments = false) {
+                flex-wrap: wrap;
+            }
+            .center(@arguments) when (@arguments = nowrap) {
+                flex-wrap: nowrap;
+            }
+            .evenly(@arguments: false) {
+                @flex();
+                justify-content: space-evenly;
+                .center() {
+                    @flex();
+                    justify-content: space-evenly;
+                    align-items: center; //TODO
+                }
+            }
+        }
+        .flex(@stage) when (@stage = column) {
+            flex-direction: column;
+        }
+    }
+
+    .matrix(
+        @scaleX: 1,
+        @scaleY: 1,
+        @moveX: 0,
+        @moveY: 0,
+        @rotateX: 0,
+        @rotateY: 0,
+        @perspective: 1
+    ) {
+        //@scaleX: 1, //scaleX
+        //@scaleY: 1, //scaleY
+        //@moveX: 1, //translateX
+        //@moveY: 1, //translateY
+        //@rotate, @scale, @translate
+        transform: matrix3d(@scaleX, 0, 0.00, @rotateX, 0.00, @scaleY, 0.00, @rotateY, 0, 0, 1, 0, @moveX, @moveY, 0, @perspective);
+        //-------------- @rotate @scale
+        //  @scaleX  | @scaleY  |      |           | 0 |
+        //  @rotateX | @rotateY |      |           | 0 |
+        //           |          |                  | 0 |
+        //-------------- @translate
+        // @moveX    | @moveY   |                  | @perspective |
+    }
+
+    .animate(@animationBuild:{}) {
+        .ANI_CORE_GET_ANIMATE(@animationName, @PROVIDER:{}) {
+            @animationArray: @animationName;
+            .handlerCore(@i: 1) when (@i =< length(@animationArray)) {
+                @searchIndex: e(extract(@animationArray, @i));
+                @getQueryToCore: %(~"@{searchIndex}", @searchIndex);
+                .ANI_CORE_GET_KEYFRAME(@getQueryToCore, {
+                    .ANI_CORE_MODEL("@{getQueryToCore}", {
+                        @PROVIDER();
+                    });
+                });
+                .handlerCore(@i + 1);
+            }
+            .handlerCore();
+        }
+        .ANI_CORE_GET_KEYFRAME(@name, @callback) {
+            @keyframes @name {
+                @callback();
+            }
+        }
+        .ANI_CORE_ANIMATION_NAME(@name) {
+            -webkit-animation-name+: @name;
+            animation-name+: @name;
+        }
+        .ANI_CORE_MODEL(@type, @store: {}) {
+            @store();
+        }
+
+        .model(@types, @store: {}) {
+            .ANI_CORE_GET_ANIMATE(@types, @store);
+        }
+        .action(@animationName, @duration: 1s, @infinite: 1, @fn: false, @delay: false, @both: false, @callback:{}) {
+            @animationArray: @animationName;
+            .handler(@i: 1) when (@i =< length(@animationArray)) {
+                @elementName: e(extract(@animationArray, @i));
+                @animationGetName: %(~"@{elementName}", @elementName);
+                .ANI_CORE_ANIMATION_NAME(@animationGetName);
+                .handler(@i + 1);
+            }
+            .handler();
+            -webkit-animation-duration: @duration;
+            animation-duration: @duration;
+
+            & when not (@delay = false) {
+                animation-delay: @delay;
+            }
+
+            & when not (@fn = false) {
+                -webkit-animation-timing-function: @fn;
+                animation-timing-function: @fn;
+            }
+
+            & when (@infinite = infinite) {
+                -webkit-animation-iteration-count: infinite;
+                animation-iteration-count: infinite;
+            }
+
+            & when (@both = true) {
+                -webkit-animation-fill-mode: both;
+                animation-fill-mode: both;
+            }
+
+            @callback();
+        }
+
+        .is(@value, @end:{}) {
+            & when (@type = @value) {
+                @end();
+            }
+        }
+        @animationBuild();
+    }
+
+    .layer(@depth: 9%) {
+        html * {
+            background-color: fade(@ERROR, @depth);
+        }
+    }
+
+    .debug() {
+        html > * {
+            .font(@ERROR 13px 1) !important;
+        }
+    }
+
+    .reset() {
+        html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym,
+        address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var,
+        b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead,
+        tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav,
+        output, ruby, section, summary, time, mark, audio, video {
+            border: 0;
+            font-size: 100%;
+            font: inherit;
+            vertical-align: baseline;
+            margin: 0;
+            padding: 0
+        }
+        article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+            display: block
+        }
+        address, caption, cite, code, dfn, em, strong, th, var {
+            font-style: normal;
+            font-weight: normal;
+        }
+        caption, th {
+            text-align: left;
+        }
+        ol, ul {
+            list-style: none
+        }
+        table {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+    }
+
+    .typography(@all_use: false, @end:{}) {
+        .button() {
+            button {
+                border: 0;
+                box-sizing: border-box;
+                cursor: pointer;
+                .vendor(appearance, none);
+                outline: none;
+            }
+            button, a {
+                &::-moz-focus-inner {
+                    border: 0;
+                }
+            }
+        }
+        .svg() {
+            svg {
+                fill-rule: evenodd;
+                clip-rule: evenodd;
+            }
+        }
+        .touch() {
+            .sm({
+                * {
+                    -webkit-tap-highlight-color: transparent;
+                }
+            })
+        }
+        .textarea() {
+            textarea {
+                max-width: 100%;
+            }
+        }
+        .img() {
+            img {
+                width: auto;
+                height: auto;
+                max-width: 100%;
+                max-height: 100%;
+            }
+        }
+        .outline() {
+            a:active, a:focus, button::-moz-focus-inner, input[type=button]::-moz-focus-inner, input[type=file] > input[type=button]::-moz-focus-inner, input[type=reset]::-moz-focus-inner, input[type=submit]::-moz-focus-inner, select::-moz-focus-inner {
+                outline: 0
+            }
+        }
+        .user() {
+            body {
+                user-select: none;
+            }
+        }
+        .code() {
+            code, kbd, tt, var, samp, pre {
+                font-family: monospace;
+                hyphens: none;
+            }
+        }
+        .list() {
+            ul:not([class]):not([id]):not([style]) {
+                padding: 0;
+                > li:not([class]):not([id]):not([style]) {
+                    list-style: none;
+                }
+            }
+        }
+        .table() {
+            table {
+                border-spacing: 0;
+                border-width: 0 0 0 0;
+                table-layout: auto;
+                width: 100%;
+                line-height: normal;
+            }
+        }
+        .isTrue(@all_use, {
+            .user();
+            .img();
+            .outline();
+            .list();
+            .button();
+            .touch();
+            .textarea();
+            .svg();
+            .code();
+            .table();
+        });
+        @end();
+    }
+
+    .fontFaceOld(@path, @name, @end:{}) {
+        @font-face {
+            font-family: @name;
+            src: url("@{path}/@{name}.eot"); /* IE9 Compat Modes */
+            src: url("@{path}/@{name}.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */ url("@{path}/@{name}.otf") format("opentype"), /* Open Type Font */ url("@{path}/@{name}.svg") format("svg"), /* Legacy iOS */ url("@{path}/@{name}.ttf") format("truetype"), /* Safari, Android, iOS */ url("@{path}/@{name}.woff") format("woff"), /* Modern Browsers */ url("@{path}/@{name}.woff2") format("woff2"); /* Modern Browsers */
+            font-weight: normal;
+            font-style: normal;
+            @end();
+        }
+    }
+
+    .fontFace(@path, @name, @end:{}) {
+        @font-face {
+            font-family: @name;
+            src: url("@{path}/@{name}.ttf") format("truetype"), /* Safari, Android, iOS */ url("@{path}/@{name}.woff") format("woff"), /* Modern Browsers */ url("@{path}/@{name}.woff2") format("woff2"); /* Modern Browsers */
+            font-weight: normal;
+            font-style: normal;
+            @end();
+        }
+    }
+
+    .mobileLayout(@root) {
+        @rootSelector: ~"@{root}";
+        html {
+            height: 100%;
+        }
+        body {
+            height: calc(100% - 1px);
+            overflow: hidden;
+        }
+        @{rootSelector} {
+            height: 100%;
+            overflow-y: scroll;
+            -webkit-overflow-scrolling: touch;
+        }
+    }
+
+    .defendQueryLG();
+    .defendQueryMD();
+    .defendQuerySM();
+    .defendQueryXS();
+
+    .defendBeforeAfter();
+    .defendBefore();
+    .defendAfter();
+    .defendFirst();
+    .defendLast();
+
+    .defendFont();
+    .defendBlock();
+
+    .defendFunctions();
+}
+
+.render();

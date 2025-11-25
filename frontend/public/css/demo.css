@@ -1,0 +1,30 @@
+.demo {
+  display: flex;
+  flex-wrap: wrap;
+}
+@media screen and (max-width: 1200px) {
+  .demo {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  }
+}
+.demo a {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  width: calc(100% / 3 - 60px);
+  margin: 0 30px 60px;
+}
+@media screen and (max-width: 1200px) {
+  .demo a {
+    margin: 0 15px 30px;
+    width: calc(100% / 2 - 30px);
+  }
+}
+@media screen and (max-width: 768px) {
+  .demo a {
+    margin: 0 15px 30px;
+    width: calc(100% / 1 - 30px);
+  }
+}
+.demo a:hover {
+  transform: translateY(-30px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}

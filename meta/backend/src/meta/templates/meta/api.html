@@ -1,0 +1,122 @@
+{% load metatags %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>API Document - {{ name }}</title>
+
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+    <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+    <script type="text/javascript" src="{% static '/js/egret.min.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/egret.web.min.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/meta.0.0.1.js' %}"></script>
+</head>
+<body>
+    
+<div class="container">
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="#">API Document</a>
+    </nav>
+
+    <br>
+
+    <div class="row">
+        <div class="col-3">
+            <ul class="list-group">
+                {% for api in all_apis %}
+                <a class="list-group-item list-group-item-action {% if name == api %}active {% endif %}" href="/api/{{ api }}/">{{ api }}</a>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="col-9">
+            <h1>
+                <span class="badge badge-primary">POST</span>
+
+                /api/{{ name }}/
+            </h1>
+
+            {% if doc %}
+            <h5>Description:</h5>
+            <p>{{ doc }}</p>
+            {% endif %}
+
+            <h5>Arg Spec:</h5>
+            <table class="table">
+            <thead>
+                <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Required</th>
+                <th scope="col">Comment</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for arg in args %}
+                <tr>
+                    <td>{{ arg.name }}</td>
+                    <td>{% if arg.required %}Yes{% else %}No(Default:{{ arg.default }}){% endif %}</td>
+                    <td>{{ comments|attr:arg.name|default:'No comments' }}</td>
+                </tr>
+                {% empty %}
+                <tr colspan="3">
+                    <td>无参数调用</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            {% if params_sample %}
+            <h5>Sample Input:</h5>
+            {% for code in params_sample %}
+            <pre><code>{{ code }}</code></pre>
+            {% endfor %}
+            {% endif %}
+
+            {% if returns_sample %}
+            <h5>Sample Output:</h5>
+            {% for code in returns_sample %}
+            <pre><code>{{ code }}</code></pre>
+            {% endfor %}
+            {% endif %}
+
+            {% if errors_sample %}
+            <h5>Sample Error:</h5>
+            {% for code in errors_sample %}
+            <pre><code>{{ code }}</code></pre>
+            {% endfor %}
+            {% endif %}
+
+            <h5><button class="btn btn-success" id="btnTest">Test</button></h5>
+            <div class="row">
+                <div class="col">
+                    <textarea class="form-input" name="" id="testInput" cols="30" rows="10">{% if params_sample %}{{params_sample.0}}{%else%}{}{% endif %}
+                    </textarea>
+                </div>
+                <div class="col">
+                    <textarea class="form-input" name="" id="testOutput" cols="30" rows="10"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+$(function () {
+    $('#btnTest').click(function () {
+        meta.api('{{ name }}', JSON.parse($('#testInput').val())).then(function (r) {
+            $('#testOutput').val(JSON.stringify(r, null, 2));
+        }).catch(function (r) {
+            $('#testOutput').val(JSON.stringify(r, null, 2));
+        });
+    });
+});
+
+</script>
+
+</body>
+</html>

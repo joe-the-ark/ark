@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Result</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+  <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
+  <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+	{% for result in results %}
+		{% if result.name == 'TensionScaleResult' %}
+		<h3>My Major Sources of Tension with my Teammates & my Team’s Major Tensions</h3>
+		{% else %}
+		<h3>My Team‘s Zone of PSYCHOLOGICAL SAFETY</h3>
+		{% endif %}
+		<div>
+			<img src="{{result.img.url}}" height="600" width="350">
+		</div>
+	{% endfor %}
+
+
+	 <div class="container-fluid">
+	 	<h3>First Feedback: LOVE</h3>
+    	<div class="row">
+
+		    <div style="float: left;width: 100px;" class="col-sm-2 bg-success">
+				<p>I LOVE you because...</p>	
+			</div>
+			<div style="float: left;height: 300px; width:250px;overflow: auto;" class="col-sm-10 bg-light">
+				{% for love in loveFeedback %}
+				<p style="background: yellow;">{{love}}</p>
+				{% endfor %}
+			</div>
+		</div>
+		<br>
+		<h3>Second Feedback: ADD</h3>
+		<div class="row">
+			<div style="float: left;width: 100px;" class="col-sm-2 bg-success">
+				<p>I would LOVE you even more,if...</p>	
+			</div>
+			<div style="float: left;height: 300px;width:250px; overflow: auto;" class="col-sm-10 bg-light" style="background-color:lavender;">
+				{% for love in addFeedback %}
+				<p style="background: yellow;">{{love}}</p>
+				{% endfor %}
+			</div>
+		</div>
+		<br>
+		<h3>Third Feedback: ASK</h3>
+		<div class="row">
+			<div style="float: left;width: 100px;" class="col-sm-2 bg-success">
+				<p>I always wanted to ASK you ...</p>	
+			</div>
+			<div style="float: left;height: 300px;width:250px; overflow: auto;" class="col-sm-10 bg-light" style="background-color:lavender;">
+				{% for love in askFeedback %}
+				<p style="background: yellow;">{{love}}</p>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>

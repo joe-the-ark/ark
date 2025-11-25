@@ -1,0 +1,53 @@
+.ui-slider-range-track(@height: 18px) {
+    width: 100%;
+    height: @height;
+    cursor: pointer;
+    box-shadow: none;
+    background: linear-gradient(89.48deg, #F53131 0%, #E1F131 52.91%, #3DFF39 101.58%);
+    border-radius: 0px;
+    border: 0px solid #010101;
+}
+
+.ui-slider-range-thumb() {
+    box-shadow: none;
+    height: 84px;
+    width: 84px;
+    border-radius: 50%;
+    background-color: transparent;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -35px;
+    margin-left: -6px;
+    pointer-events: none;
+    border: 0;
+}
+
+.custom-graph-range-track() {
+    width: 100%;
+    height: 0;
+    border: 0;
+    cursor: pointer;
+    box-shadow: none;
+    background: transparent;
+    border-radius: 0;
+}
+
+.custom-graph-range-thumb() {
+    box-shadow: none;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: 0;
+    background-color: transparent;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -19px;
+    margin-left: 0;
+    pointer-events: none;
+}
+
+.forMisha(@end:{}) {
+    @media (max-height: 763px) and (min-width: 1200px) {
+        @end();
+    }
+}

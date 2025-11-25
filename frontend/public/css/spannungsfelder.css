@@ -1,0 +1,329 @@
+.rang {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(241px, 1fr));
+  grid-gap: 30px;
+}
+.rang.min {
+  grid-template-columns: repeat(auto-fit, minmax(172px, 1fr));
+}
+.rang.min ~ [class*="rang-button"] {
+  display: none;
+}
+.rang:not(.min) .rang__item.active .rang__item-wrapper {
+  border-color: var(--ls-brand-color);
+  box-shadow: inset 0 0 0 3px var(--ls-accent-2-color);
+}
+@media screen and (max-width: 1200px) {
+  .rang.swiper-wrapper {
+    grid-gap: 0;
+  }
+}
+.rang.swiper-wrapper .rang__item:not(.swiper-slide-active) .rang__item-wrapper {
+  transform: scale(0.9);
+  filter: grayscale(100%);
+  opacity: 0.5;
+}
+.rang.swiper-wrapper .rang__item.swiper-slide-active .rang__item-wrapper {
+  border-color: var(--ls-brand-color);
+  box-shadow: inset 0 0 0 3px var(--ls-accent-2-color);
+}
+.rang__item-name {
+  color: var(--ls-alfa-color);
+  font-size: var(--ls-font-large);
+  line-height: 48px;
+  border: 1px solid var(--ls-brand-color);
+  box-sizing: border-box;
+  padding: 0 11px;
+  margin: 0 auto;
+  transition: var(--ls-transition);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.min .rang__item-name {
+  font-size: 18px;
+  line-height: 40px;
+}
+.rang__item-count {
+  font-size: var(--ls-h-font-small);
+  color: #00000f;
+  line-height: 72px;
+  text-align: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 4px solid var(--ls-between-color);
+  box-sizing: border-box;
+  margin: 20px auto;
+}
+/* Tension values over 16 should be dark red and bold */
+.rang__item-count.tension-high {
+  color: #fa5252 !important;
+  font-weight: bold !important;
+}
+.min .rang__item-count.tension-high {
+  color: #fa5252 !important;
+  font-weight: bold !important;
+}
+/* Override color card styles for tension-high */
+.white__card .rang__item-count.tension-high,
+.yellow__card .rang__item-count.tension-high,
+.red__card .rang__item-count.tension-high,
+.black__card .rang__item-count.tension-high {
+  color: #fa5252 !important;
+  font-weight: bold !important;
+}
+/* Ensure tension-high applies regardless of sign (positive, negative, neutral) */
+.rang__item-count.tension-positive.tension-high,
+.rang__item-count.tension-negative.tension-high,
+.rang__item-count.tension-neutral.tension-high {
+  color: #fa5252 !important;
+  font-weight: bold !important;
+}
+.min .rang__item-count.tension-positive.tension-high,
+.min .rang__item-count.tension-negative.tension-high,
+.min .rang__item-count.tension-neutral.tension-high {
+  color: #fa5252 !important;
+  font-weight: bold !important;
+}
+/* Override color card styles for all tension sign combinations with tension-high */
+.white__card .rang__item-count.tension-positive.tension-high,
+.white__card .rang__item-count.tension-negative.tension-high,
+.white__card .rang__item-count.tension-neutral.tension-high,
+.yellow__card .rang__item-count.tension-positive.tension-high,
+.yellow__card .rang__item-count.tension-negative.tension-high,
+.yellow__card .rang__item-count.tension-neutral.tension-high,
+.red__card .rang__item-count.tension-positive.tension-high,
+.red__card .rang__item-count.tension-negative.tension-high,
+.red__card .rang__item-count.tension-neutral.tension-high,
+.black__card .rang__item-count.tension-positive.tension-high,
+.black__card .rang__item-count.tension-negative.tension-high,
+.black__card .rang__item-count.tension-neutral.tension-high {
+  color: #fa5252 !important;
+  font-weight: bold !important;
+}
+/* Tension sign indicators - CSS classes are added via JavaScript for potential styling */
+/* .rang__item-count.tension-positive - positive tension (self > others) */
+/* .rang__item-count.tension-negative - negative tension (self < others) */
+/* .rang__item-count.tension-neutral - neutral tension (self == others) */
+.min .rang__item-count {
+  font-size: 24px;
+  margin: 10px auto;
+  width: 50px;
+  height: 50px;
+  border-width: 2px;
+  line-height: 46px;
+}
+.rang__item-wrapper {
+  padding: 29px;
+  border: 1px solid var(--ls-between-color);
+  box-sizing: border-box;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--ls-transition);
+}
+@media screen and (max-width: 1200px) {
+  .rang-button-prev,
+  .rang-button-next {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    background-color: var(--ls-accent-2-color);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    text-align: center;
+  }
+  .rang-button-prev:before,
+  .rang-button-next:before {
+    content: " ";
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid var(--ls-thin-color);
+    border-left: 2px solid var(--ls-thin-color);
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .rang-button-prev {
+    left: calc(30% - 50px);
+  }
+  .rang-button-prev:before {
+    transform: translateX(2px) rotate(-45deg);
+  }
+  .rang-button-next {
+    right: calc(30% - 50px);
+  }
+  .rang-button-next:before {
+    transform: translateX(-2px) rotate(135deg);
+  }
+}
+.spannungsfelder p {
+  max-width: 908px;
+  margin: var(--ls-paragraph-offset);
+}
+
+.spannungsfelder p.spannungsfelder-callout {
+  display: block;
+  max-width: 100%;
+  width: 100%;
+  background-color: #9FE2BF;
+  color: #626262;
+  border-radius: 10px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  margin: 42px 0 20px;
+}
+.spannungsfelder .rang {
+  margin: 70px 0;
+}
+@media screen and (min-width: 769px) {
+  .spannungsfelder .custom-graph {
+    margin: 0 70px;
+  }
+}
+/* Harmonized navigation buttons - unified style for all sliders */
+.spannungsfelder .swiper-button-prev,
+.spannungsfelder .swiper-button-next,
+.spannungsfelder .rang-button-prev,
+.spannungsfelder .rang-button-next {
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  background-color: var(--ls-accent-2-color);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  text-align: center;
+  margin-top: 0;
+  cursor: pointer;
+}
+
+.spannungsfelder .swiper-button-prev:after,
+.spannungsfelder .swiper-button-next:after {
+  display: none;
+}
+
+.spannungsfelder .swiper-button-prev:before,
+.spannungsfelder .swiper-button-next:before,
+.spannungsfelder .rang-button-prev:before,
+.spannungsfelder .rang-button-next:before {
+  content: " ";
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid var(--ls-thin-color);
+  border-left: 2px solid var(--ls-thin-color);
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.spannungsfelder .swiper-button-prev,
+.spannungsfelder .rang-button-prev {
+  left: calc(30% - 50px);
+}
+
+.spannungsfelder .swiper-button-prev:before,
+.spannungsfelder .rang-button-prev:before {
+  transform: translateX(2px) rotate(-45deg);
+}
+
+.spannungsfelder .swiper-button-next,
+.spannungsfelder .rang-button-next {
+  right: calc(30% - 50px);
+}
+
+.spannungsfelder .swiper-button-next:before,
+.spannungsfelder .rang-button-next:before {
+  transform: translateX(-2px) rotate(135deg);
+}
+
+.spannungsfelder .swiper-button-prev.swiper-button-disabled,
+.spannungsfelder .swiper-button-next.swiper-button-disabled {
+  opacity: 0.35;
+  cursor: auto;
+  pointer-events: none;
+}
+
+/* Hide graph-slider buttons on mobile */
+@media screen and (max-width: 768px) {
+  .spannungsfelder #graph-slider .swiper-button-prev,
+  .spannungsfelder #graph-slider .swiper-button-next {
+    display: none;
+  }
+}
+
+/* Show graph-slider buttons on desktop */
+@media screen and (min-width: 769px) {
+  .spannungsfelder #graph-slider {
+    position: relative;
+    overflow: hidden;
+  }
+  .spannungsfelder #graph-slider .swiper-button-prev,
+  .spannungsfelder #graph-slider .swiper-button-next {
+    display: block;
+  }
+  /* Ensure only one slide is visible on desktop */
+  .spannungsfelder #graph-slider .swiper-wrapper {
+    display: flex;
+    align-items: center;
+  }
+  .spannungsfelder #graph-slider .swiper-slide {
+    width: 100% !important;
+    flex-shrink: 0;
+  }
+}
+
+/* Show rang-button only on mobile */
+@media screen and (min-width: 1201px) {
+  .spannungsfelder .rang-button-prev,
+  .spannungsfelder .rang-button-next {
+    display: none;
+  }
+}
+.spannungsfelder .swiper-pagination {
+  display: none;
+}
+.spannungsfelder .custom-graph-info {
+  max-width: 432px;
+  margin: 0 auto;
+}
+/* Cards painting */
+.black__card {
+  background-color: #3b4252;
+}
+.black__card .rang__item-name {
+  background-color: white;
+}
+.black__card .rang__item-count {
+  background-color: white;
+}
+.yellow__card {
+  background-color: #FAE03C;
+}
+.yellow__card .rang__item-name {
+  background-color: white;
+}
+.yellow__card .rang__item-count {
+  background-color: white;
+}
+.red__card {
+  background-color: #fa5252;
+}
+.red__card .rang__item-name {
+  background-color: white;
+}
+.red__card .rang__item-count {
+  background-color: white;
+}
+.white__card {
+  background-color: #eceff4;
+}
+.white__card .rang__item-name {
+  background-color: white;
+}
+.white__card .rang__item-count {
+  background-color: white;
+}

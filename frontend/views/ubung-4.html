@@ -1,0 +1,973 @@
+<!-- {% load static %} -->
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="icon" href="/static/images/favicon.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
+    <meta name="theme-color" content="#51ceec"/>
+    <meta name="description" content="ARK"/>
+    <title>Safety-Score-VOTE-4</title>
+    <link rel="stylesheet" href="/static/css/app.css">
+    <link rel="stylesheet" href="/static/css/ubung-4.css">
+
+    <script src="/static/vue.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+<body>
+<div class="app">
+    <div class="app__head">
+        <header class="header-main container">
+            <div class="header-main__title">
+                <icon classs="icon" onClick="window.open('https://info.arks.ch/');" style="cursor: pointer; position: relative; display: inline-flex; align-items: center;">
+                <span class="icon-logo"></span>
+                <span>ARKS</span>
+                <span class="tooltip-icon arks-logo-tooltip-icon" id="arks-logo-tooltip-icon" style="display: none; margin-left: 8px;">{% trans "Info zu safecircles.ch" %}</span>
+            </icon>
+            </div>
+            <div class="header-main__user">
+                <div class="user">
+                    <div class="user__subtitle">
+                        {{game.name}}
+                    </div>
+                    <img src="{{user.avatar}}" alt="">
+                    <div class="user__title">
+                        {{user.name}}
+                    </div>
+                </div>
+            </div>
+            <div class="header-main__progress">
+                <div class="progress">
+                <p class="rotate-hint">
+                    {% trans "Wähle einen Avatar und klicke auf das passende Textfeld." %}
+                </p>
+                    <div class="progress__bar">
+                        <div class="progress-bar-fill" style="width: 65%;">65%</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+    <div class="app__body">
+        <div class="container">
+            <main class="screen ubung-4">
+                <h1>
+                    <span class="tooltip-icon ubung4-tooltip-icon" id="ubung4-tooltip-icon" style="display: inline-flex; align-items: center; margin-right: 8px; vertical-align: middle; cursor: help;">?</span>
+                    {% trans "Testet zum Abschluss eure psychologische Sicherheit." %}
+                </h1>
+                <p class="info-box-ubung4">
+                    {% trans "Einer Aussage können auch mehrere Personen zugeordnet werden." %}
+                </p>
+                <div class="distribution__wrapper"></div>
+
+                <form id="form_" action="#" method="POST" class="form">
+                {% csrf_token %}
+                    <div class="center" id="app-1">
+                        <input id="row0" type="hidden" name="row-0" value=""/>
+                        <input id="row1" type="hidden" name="row-1" value=""/>
+                        <input id="row2" type="hidden" name="row-2" value=""/>
+                        <input id="row3" type="hidden" name="row-3" value=""/>
+                        <input id="row4" type="hidden" name="row-4" value=""/>
+                        <input id="row5" type="hidden" name="row-5" value=""/>
+                        
+
+                    <div class="progress-box-ubung4">
+                        <div class="progress-box-header">
+                            <span>{% trans "Fortschritt:" %}</span>
+                            <span><strong>[[ assignedCount ]] / [[ totalCount ]]</strong></span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill" :style="{ width: progressPercentage + '%', backgroundColor: progressPercentage === 100 ? '#9FE2BF' : '#52CEEC' }"></div>
+                        </div>
+                        <p class="progress-message">
+                            <span v-if="assignedCount < totalCount">{% trans "Noch" %} [[ remainingMessage ]] {% trans "Personen zuordnen" %}</span>
+                            <span v-else class="progress-complete">{% trans "Alle Personen zugeordnet!" %}</span>
+                        </p>
+                    </div>
+
+                    <p>
+                        <button class="button button-primary" type="button" id="button" @click="check_submit()" aria-label="{% trans 'Weiter' %}">
+                            <span class="button-text">{% trans "Weiter" %}</span>
+                            <span class="button-arrow">→</span>
+                        </button>
+                    </p>
+                        <div class="copyright-footer">
+                            <a href="https://github.com/joe-the-ark/ark" target="_blank">{% trans "ARKS is published under a GPLv3" %}</a> {% trans "license by" %} 
+                            <a href="https://www.linkedin.com/in/dr-joe-maier/" target="_blank">{% trans "Dr. Joe Maier" %}</a>.
+                        </div>
+                    </div>
+                </form>
+
+            </main>
+        </div>
+    </div>
+</div>
+<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+<script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+<script src="/static/jquery-3.5.1.min.js"></script>
+<script>
+
+    // ARKS Logo Tooltip
+    const arksLogoContainer = document.querySelector('.header-main__title icon');
+    const arksLogoTooltipIcon = document.getElementById('arks-logo-tooltip-icon');
+    
+    if (arksLogoContainer && arksLogoTooltipIcon) {
+        arksLogoContainer.addEventListener('mouseenter', function() {
+            arksLogoTooltipIcon.style.display = 'inline-flex';
+        });
+        arksLogoContainer.addEventListener('mouseleave', function() {
+            arksLogoTooltipIcon.style.display = 'none';
+        });
+        
+        tippy(arksLogoTooltipIcon, {
+            content: "{% trans 'Info zu safecircles.ch'|escapejs %}",
+            placement: 'bottom',
+            theme: 'light',
+            delay: [200, 0],
+            allowHTML: false,
+            interactive: false,
+            trigger: 'mouseenter focus',
+            maxWidth: 300,
+        });
+    }
+    
+    // Ubung-4 Tooltip - Initialize after DOM is ready
+    function initUbung4Tooltip() {
+        const ubung4TooltipIcon = document.getElementById('ubung4-tooltip-icon');
+        if (ubung4TooltipIcon) {
+            // Make sure icon is visible
+            ubung4TooltipIcon.style.display = 'inline-flex';
+            
+            // Destroy existing tooltip if any
+            const existingInstance = ubung4TooltipIcon._tippy;
+            if (existingInstance) {
+                existingInstance.destroy();
+            }
+            
+            tippy(ubung4TooltipIcon, {
+                content: "{% trans 'Bewege jede Person zu der Aussage, die am ehesten passt! Beziehe deine Einschätzung auf alltägliche Situationen im Team, die sich bei dir eingeprägt haben.'|escapejs %}",
+                placement: 'bottom',
+                theme: 'light',
+                delay: [200, 0],
+                allowHTML: false,
+                interactive: false,
+                trigger: 'mouseenter focus',
+                maxWidth: 500,
+            });
+        }
+    }
+    
+    // Initialize tooltip after DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initUbung4Tooltip);
+    } else {
+        initUbung4Tooltip();
+    }
+
+    class Dnd {
+        constructor({container, containersTo, data, after}) {
+            this.container = document.querySelector(container);
+            this.containersTo = containersTo;
+            this.data = data;
+            this.after = after;
+            this.lastWindowWidth = window.innerWidth;
+            this.isDesktop = window.innerWidth > 1200;
+            window.addEventListener('load', () => {
+                this.render();
+            });
+            this.saveDndItem = {};
+            this.saveDndItemIndex = 0;
+            this.cloned = {};
+            this.saveX = 0;
+            this.saveY = 0;
+            
+            // Handle window resize to re-initialize handlers when crossing mobile/desktop threshold
+            let resizeTimeout;
+            const resizeHandler = () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(() => {
+                    const currentWidth = window.innerWidth;
+                    const wasDesktop = this.isDesktop;
+                    this.isDesktop = currentWidth > 1200;
+                    
+                    // Only re-render if we crossed the threshold
+                    if (wasDesktop !== this.isDesktop) {
+                        this.lastWindowWidth = currentWidth;
+                        // Clean up any existing cloned elements
+                        if (this.cloned && this.cloned.parentNode) {
+                            this.cloned.remove();
+                            this.cloned = null;
+                        }
+                        // Reset drag state
+                        this.saveDndItem = {};
+                        this.saveDndItemIndex = 0;
+                        this.saveX = 0;
+                        this.saveY = 0;
+                        
+                        // Clean up old event listeners (onmousemove will be re-attached in handlers)
+                        document.onmousemove = null;
+                        
+                        // Remove any selected states
+                        document.querySelectorAll('.user-connect').forEach(el => {
+                            el.classList.remove('outline', 'click-selected', 'keyboard-selected');
+                        });
+                        document.querySelectorAll('.distry').forEach(el => {
+                            el.classList.remove('ready-to-assign', 'active', 'keyboard-selected');
+                        });
+                        
+                        // Re-render to re-attach handlers with correct mode
+                        this.render();
+                    }
+                }, 300);
+            };
+            window.addEventListener('resize', resizeHandler);
+            this.resizeHandler = resizeHandler; // Store reference for cleanup if needed
+        }
+
+        handlers() {
+            const $self = this;
+            let start = false;
+            let replace = false;
+            const usersFrom = document.querySelectorAll('.user-connect--to');
+            const body = document.body;
+
+            const usersDistr = document.querySelectorAll('.distry__user');
+            let name = '';
+            let whichContainer = 0;
+            let player = {};
+
+            // Keyboard navigation state
+            let keyboardSelectedAvatar = null;
+            let keyboardSelectedAvatarIndex = -1;
+            let keyboardSelectedStatement = null;
+            let keyboardSelectedStatementIndex = -1;
+            
+            // Use stored desktop/mobile state instead of checking window.innerWidth each time
+            // This ensures handlers match the mode at initialization
+            const isDesktopMode = this.isDesktop;
+
+            if (isDesktopMode) {
+                // Add click-to-select functionality for desktop
+                usersFrom.forEach((item, i) => {
+                    // Check if item itself has 'active' class
+                    if (item.classList.contains('active')) {
+                        // Track if this was a click or drag
+                        let hasDragged = false;
+                        let mouseDownPos = {x: 0, y: 0};
+                        
+                        // Restore original drag functionality
+                        item.addEventListener('mousedown', function (e) {
+                            mouseDownPos = {x: e.clientX, y: e.clientY};
+                            hasDragged = false;
+                            
+                            // Start drag immediately (original behavior)
+                            $self.saveDndItem = item;
+                            $self.cloned = item.cloneNode(true);
+                            body.appendChild($self.cloned);
+                            item.ondragstart = () => false;
+                            item.classList.remove('active')
+                            $self.cloned.style.position = 'fixed';
+                            $self.cloned.style.zIndex = 1000;
+                            $self.saveX = e.offsetX;
+                            $self.saveY = e.offsetY;
+                            const originalIndex = item.getAttribute('data-original-index');
+                            $self.saveDndItemIndex = originalIndex !== null ? parseInt(originalIndex, 10) : i;
+                            start = true;
+                            
+                            // Track if user actually drags
+                            const handleMouseMove = function(moveEvent) {
+                                const moved = Math.abs(moveEvent.clientX - mouseDownPos.x) > 5 || 
+                                             Math.abs(moveEvent.clientY - mouseDownPos.y) > 5;
+                                if (moved) {
+                                    hasDragged = true; // User is dragging
+                                }
+                            };
+                            
+                            document.addEventListener('mousemove', handleMouseMove);
+                            
+                            // On mouseup, if it was just a click (no drag), convert to click-to-select
+                            const handleMouseUp = function(upEvent) {
+                                document.removeEventListener('mousemove', handleMouseMove);
+                                document.removeEventListener('mouseup', handleMouseUp);
+                                
+                                // If user didn't drag, treat as click-to-select
+                                if (!hasDragged && $self.cloned) {
+                                    // Remove the cloned element
+                                    $self.cloned.remove();
+                                    $self.cloned = null;
+                                    start = false;
+                                    
+                                    // Restore active class
+                                    item.classList.add('active');
+                                    
+                                    // Remove outline from other items
+                                    document.querySelectorAll('.user-connect').forEach(u => u.classList.remove('outline', 'click-selected'));
+                                    // Add outline to selected item
+                                    item.classList.add('outline', 'click-selected');
+                                    $self.saveDndItem = item;
+                                    $self.saveDndItemIndex = originalIndex !== null ? parseInt(originalIndex, 10) : i;
+                                    start = true;
+                                }
+                            };
+                            document.addEventListener('mouseup', handleMouseUp, {once: true});
+                        });
+                    }
+                });
+                //Добавляем перемещение уже выбранного игрока
+                if (usersDistr) {
+                  usersDistr.forEach((item, i) => {
+                    item.addEventListener('mousedown', function (e) {
+                      name = event.target.parentNode.getAttribute('data-tippy-content');
+                      $self.saveDndItem = item;
+                      $self.cloned = item.cloneNode(true);
+                      body.appendChild($self.cloned);
+                      item.ondragstart = () => false;
+                      $self.cloned.style.position = 'fixed';
+                      $self.cloned.style.zIndex = 1000;
+                      $self.saveX = e.offsetX;
+                      $self.saveY = e.offsetY;
+                      $self.saveDndItemIndex = i;
+                      whichContainer = event.target.parentNode.parentNode.parentNode.getAttribute('data-id');
+                      player = $self.containersTo[whichContainer].items.find(item => item.name == name);
+                      replace = true;
+                    });
+                  });
+
+                }
+
+                document.onmousemove = event => {
+                    // Only handle drag operations (when cloned exists)
+                    if (start && $self.cloned) {
+                        const distry = event.target.closest('.distry');
+                        if (distry) {
+                            distry.classList.add('active')
+                        } else {
+                            document.querySelectorAll('.distry').forEach((item, i) => {
+                                item.classList.remove('active')
+                            });
+                        }
+
+                        $self.cloned.style.position = 'fixed';
+                        $self.cloned.style.top = event.clientY - $self.saveY + 'px';
+                        $self.cloned.style.left = event.pageX - $self.saveX + 'px';
+                    }
+                    if (replace && $self.cloned) {
+                        const distry = event.target.closest('.distry');
+                        if (distry) {
+                            distry.classList.add('active')
+                        } else {
+                            document.querySelectorAll('.distry').forEach((item, i) => {
+                                item.classList.remove('active')
+                            });
+                        }
+
+                        $self.cloned.style.position = 'fixed';
+                        $self.cloned.style.top = event.clientY - $self.saveY + 'px';
+                        $self.cloned.style.left = event.pageX - $self.saveX + 'px';
+                    }
+
+                };
+
+                document.addEventListener('mouseup', function (e) {
+                    // Only handle drag operations (when cloned exists)
+                    if (start && $self.cloned) {
+                        const toElemnet = e.target;
+                        const toElementId = toElemnet.parentNode.getAttribute('data-id');
+                        $self.saveX = 0;
+                        $self.saveY = 0;
+                        $self.cloned.remove();
+                        $self.cloned = null;
+                        start = false;
+                        if (toElementId) {
+                            const testItem = $self.data[$self.saveDndItemIndex]
+                            $self.data[$self.saveDndItemIndex] = {
+                                ...testItem,
+                                hidden: true
+                            };
+                            $self.containersTo[toElementId].items.push(testItem);
+                            $self.render();
+                            
+                            // Update progress if Vue app exists
+                            if (window.app1) {
+                                window.app1.updateProgress();
+                            }
+                        } else {
+                            $self.saveDndItem.classList.add('active')
+                        }
+                    }
+                    if (replace) {
+                      const toElemnet = e.target;
+                      const toElementId = toElemnet.parentNode.getAttribute('data-id');
+                      $self.saveX = 0;
+                      $self.saveY = 0;
+                      $self.cloned.remove();
+                      replace = false;
+                      if (toElementId) {
+                        $self.containersTo[toElementId].items.push(player);
+                        let contItems = $self.containersTo[whichContainer].items.filter(item => item.name != name);
+                        $self.containersTo[whichContainer].items = contItems;
+                        $self.render();
+
+                      }
+                      else {
+                        let contItems = $self.containersTo[whichContainer].items.filter(item => item.name != name);
+                        $self.containersTo[whichContainer].items = contItems;
+                        $self.data.forEach((item, i) => {
+                          if (item.name == name) {item.hidden = false}
+                        });
+                        $self.render();
+                      }
+                    }
+
+                });
+
+                // Действие по клику на выбраном игроке, чтобы вернуть в пул.
+                if (usersDistr) {
+                  usersDistr.forEach((item, i) => {
+                    item.addEventListener('click', function (event) {
+                      name = event.target.parentNode.getAttribute('data-tippy-content');
+                      whichContainer = event.target.parentNode.parentNode.parentNode.getAttribute('data-id');
+                      let contItems = $self.containersTo[whichContainer].items.filter(item => item.name != name);
+                      $self.containersTo[whichContainer].items = contItems;
+                      $self.data.forEach((item, i) => {
+                        if (item.name == name) {item.hidden = false}
+                      });
+                      $self.render();
+                    })
+                  });
+                }
+
+            }
+
+            if (!isDesktopMode) {
+                // Mobile: Click avatar to select, then click statement to assign
+                usersFrom.forEach((item, i) => {
+                    // Check if item itself has 'active' class
+                    if (item.classList.contains('active')) {
+                        // Click avatar to select it
+                        item.addEventListener('click', function (e) {
+                            e.stopPropagation();
+                            // Remove selection from other avatars
+                            document.querySelectorAll('.user-connect').forEach(u => u.classList.remove('outline'));
+                            // Select this avatar
+                            item.classList.add('outline');
+                            $self.saveDndItem = item;
+                            const originalIndex = item.getAttribute('data-original-index');
+                            $self.saveDndItemIndex = originalIndex !== null ? parseInt(originalIndex, 10) : i;
+                            start = true;
+                        });
+                    }
+                });
+
+                // Mobile: Click statement box to assign selected avatar
+                // Attach handlers immediately, they'll be re-attached after each render
+                const attachStatementHandlers = () => {
+                    const statementBoxes = document.querySelectorAll('.distry');
+                    statementBoxes.forEach((statementBox) => {
+                        // Remove any existing handler to avoid duplicates
+                        const newHandler = function (e) {
+                            e.stopPropagation();
+                            
+                            // Only assign if we have a selected avatar (with outline class) and not dragging
+                            // Check if cloned is null/undefined or an empty object (not a DOM element)
+                            // DOM elements have nodeType property, empty objects don't
+                            const isNotDragging = !$self.cloned || (typeof $self.cloned === 'object' && !$self.cloned.nodeType && Object.keys($self.cloned).length === 0);
+                            if (start && $self.saveDndItem && $self.saveDndItem.classList.contains('outline') && isNotDragging) {
+                                const toElementId = statementBox.getAttribute('data-id');
+                                
+                                if (toElementId !== null && toElementId !== '') {
+                                    const avatarIndex = $self.saveDndItemIndex;
+                                    if (avatarIndex >= 0 && avatarIndex < $self.data.length) {
+                                        const testItem = $self.data[avatarIndex];
+                                        
+                                        if (testItem && !testItem.hidden) {
+                                            // Mark item as hidden
+                                            $self.data[avatarIndex] = {
+                                    ...testItem,
+                                    hidden: true
+                                };
+                                            // Add to target container
+                                $self.containersTo[toElementId].items.push(testItem);
+                                            
+                                            // Re-render
+                                $self.render();
+                                            
+                                            // Update progress if Vue app exists
+                                            if (window.app1) {
+                                                window.app1.updateProgress();
+                                            }
+                                            
+                                            // Clear selection
+                                            $self.saveDndItem.classList.remove('outline');
+                                            $self.saveDndItem = null;
+                                            start = false;
+                                        }
+                                    }
+                                }
+                            }
+                        };
+                        
+                        // Store handler reference to remove it later if needed
+                        if (statementBox._mobileClickHandler) {
+                            statementBox.removeEventListener('click', statementBox._mobileClickHandler);
+                        }
+                        statementBox._mobileClickHandler = newHandler;
+                        statementBox.addEventListener('click', newHandler);
+                    });
+                };
+                
+                // Attach immediately and also after a short delay
+                attachStatementHandlers();
+                setTimeout(attachStatementHandlers, 100);
+                
+                //Replace player (click on already assigned player to remove)
+                if (usersDistr) {
+                  usersDistr.forEach((item, i) => {
+                    item.addEventListener('click', function (e) {
+                        name = event.target.parentNode.getAttribute('data-tippy-content');
+                        whichContainer = event.target.parentNode.parentNode.parentNode.getAttribute('data-id');
+                        let contItems = $self.containersTo[whichContainer].items.filter(item => item.name != name);
+                        $self.containersTo[whichContainer].items = contItems;
+                        $self.data.forEach((item, i) => {
+                            if (item.name == name) {item.hidden = false}
+                        });
+                        $self.render();
+                    });
+                  });
+                }
+            }
+            
+            // Desktop: Add hover effects for click-selected avatars
+            if (isDesktopMode) {
+                const statements = document.querySelectorAll('.distry');
+                statements.forEach((item) => {
+                    // Add hover effect when avatar is selected
+                    item.addEventListener('mouseenter', function() {
+                        const clickSelected = document.querySelector('.user-connect.click-selected');
+                        if (clickSelected && !$self.cloned) {
+                            this.classList.add('ready-to-assign');
+                        }
+                    });
+                    item.addEventListener('mouseleave', function() {
+                        this.classList.remove('ready-to-assign');
+                    });
+                    
+                    // Desktop: Click statement box to assign click-selected avatar
+                    item.addEventListener('click', function (e) {
+                        const clickSelected = document.querySelector('.user-connect.click-selected');
+                        if (clickSelected && !$self.cloned) {
+                            const toElementId = item.getAttribute('data-id');
+                            if (toElementId !== null && toElementId !== '') {
+                                const originalIndex = clickSelected.getAttribute('data-original-index');
+                                const avatarIndex = originalIndex !== null ? parseInt(originalIndex, 10) : $self.saveDndItemIndex;
+                                
+                                if (avatarIndex >= 0 && avatarIndex < $self.data.length) {
+                                    const testItem = $self.data[avatarIndex];
+                                    if (testItem && !testItem.hidden) {
+                                        // Mark item as hidden
+                                        $self.data[avatarIndex] = {
+                                            ...testItem,
+                                            hidden: true
+                                        };
+                                        // Add to target container
+                                        $self.containersTo[toElementId].items.push(testItem);
+                                        
+                                        // Re-render
+                                        $self.render();
+                                        
+                                        // Update progress if Vue app exists
+                                        if (window.app1) {
+                                            window.app1.updateProgress();
+                                        }
+                                        
+                                        // Clear selection
+                                        clickSelected.classList.remove('outline', 'click-selected');
+                                        $self.saveDndItem = null;
+                                        start = false;
+                                    }
+                                }
+                            }
+                        }
+                    });
+                });
+            }
+            
+            // Add keyboard navigation support
+            this.addKeyboardNavigation($self);
+
+        }
+        
+        addKeyboardNavigation($self) {
+            let keyboardSelectedAvatar = null;
+            let keyboardSelectedAvatarIndex = -1;
+            let keyboardSelectedStatement = null;
+            let keyboardSelectedStatementIndex = -1;
+            
+            // Make avatars and statements focusable
+            const makeFocusable = () => {
+                const avatars = document.querySelectorAll('.user-connect--to.active');
+                const statements = document.querySelectorAll('.distry');
+                
+                avatars.forEach((avatar, i) => {
+                    if (!avatar.hasAttribute('tabindex')) {
+                        avatar.setAttribute('tabindex', '0');
+                        avatar.setAttribute('role', 'button');
+                        avatar.setAttribute('aria-label', avatar.querySelector('.user-connect__name')?.textContent || 'Avatar');
+                    }
+                });
+                
+                statements.forEach((statement, i) => {
+                    if (!statement.hasAttribute('tabindex')) {
+                        statement.setAttribute('tabindex', '0');
+                        statement.setAttribute('role', 'button');
+                        const description = statement.querySelector('.distry__description')?.textContent || '';
+                        statement.setAttribute('aria-label', description);
+                    }
+                });
+            };
+            
+            // Handle keyboard events
+            document.addEventListener('keydown', (e) => {
+                const avatars = Array.from(document.querySelectorAll('.user-connect--to.active'));
+                const statements = Array.from(document.querySelectorAll('.distry'));
+                const allFocusable = [...avatars, ...statements];
+                
+                // Find current focus
+                const currentFocus = document.activeElement;
+                const currentIndex = allFocusable.indexOf(currentFocus);
+                
+                // Handle Tab navigation
+                if (e.key === 'Tab') {
+                    // Let default Tab behavior work, but ensure elements are focusable
+                    makeFocusable();
+                    return; // Don't prevent default
+                }
+                
+                // Handle Enter/Space to select/assign
+                if ((e.key === 'Enter' || e.key === ' ') && currentFocus) {
+                    e.preventDefault();
+                    makeFocusable();
+                    
+                    if (avatars.includes(currentFocus)) {
+                        // Avatar selected - highlight it
+                        avatars.forEach(a => a.classList.remove('keyboard-selected'));
+                        currentFocus.classList.add('keyboard-selected');
+                        keyboardSelectedAvatar = currentFocus;
+                        keyboardSelectedAvatarIndex = avatars.indexOf(currentFocus);
+                        
+                        // Focus first statement
+                        if (statements.length > 0) {
+                            statements[0].focus();
+                        }
+                    } else if (statements.includes(currentFocus) && keyboardSelectedAvatar) {
+                        // Statement selected with avatar ready - assign it
+                        const statementId = currentFocus.getAttribute('data-id');
+                        if (statementId !== null) {
+                            const avatarIndex = keyboardSelectedAvatarIndex;
+                            if (avatarIndex >= 0 && avatarIndex < $self.data.length) {
+                                const testItem = $self.data[avatarIndex];
+                                $self.data[avatarIndex] = {
+                                    ...testItem,
+                                    hidden: true
+                                };
+                                $self.containersTo[statementId].items.push(testItem);
+                                $self.render();
+                                
+                                // Update progress if Vue app exists
+                                if (window.app1) {
+                                    window.app1.updateProgress();
+                                }
+                                
+                                // Clear selection
+                                keyboardSelectedAvatar = null;
+                                keyboardSelectedAvatarIndex = -1;
+                                avatars.forEach(a => a.classList.remove('keyboard-selected'));
+                            }
+                        }
+                    }
+                }
+                
+                // Handle Escape to cancel selection
+                if (e.key === 'Escape') {
+                    avatars.forEach(a => a.classList.remove('keyboard-selected'));
+                    statements.forEach(s => s.classList.remove('keyboard-selected'));
+                    keyboardSelectedAvatar = null;
+                    keyboardSelectedAvatarIndex = -1;
+                    keyboardSelectedStatement = null;
+                    keyboardSelectedStatementIndex = -1;
+                }
+                
+                // Handle Arrow keys for navigation
+                if (e.key.startsWith('Arrow') && currentIndex >= 0) {
+                    e.preventDefault();
+                    makeFocusable();
+                    
+                    let nextIndex = currentIndex;
+                    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                        nextIndex = (currentIndex + 1) % allFocusable.length;
+                    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                        nextIndex = (currentIndex - 1 + allFocusable.length) % allFocusable.length;
+                    }
+                    
+                    if (allFocusable[nextIndex]) {
+                        allFocusable[nextIndex].focus();
+                    }
+                }
+            });
+            
+            // Make elements focusable on render
+            setTimeout(makeFocusable, 100);
+        }
+
+        renderContainersTo(item, i) {
+            const {name, items} = item;
+
+            return `<div class="distribution__item">
+                        <div class="distry" data-id="${i}">
+                            <div class="distry__description">
+                                ${name}
+                            </div>
+                            <div class="distry__thumbnails" >
+                            ${items.map(({name, avatar}) => {
+                return `<div class="distry__user" data-tippy-content="${name}"><img src="${avatar}" alt=""></div>`
+            })}
+                            </div>
+                        </div>
+                    </div>`;
+        }
+
+        renderDataItems() {
+            // Organize players in columns of max 7
+            const maxPerColumn = 7;
+            // Create array with original indices preserved
+            const activePlayersWithIndex = this.data.map((item, index) => ({...item, originalIndex: index}))
+                .filter(({hidden}) => !hidden);
+            
+            const columns = [];
+            
+            for (let i = 0; i < activePlayersWithIndex.length; i += maxPerColumn) {
+                columns.push(activePlayersWithIndex.slice(i, i + maxPerColumn));
+            }
+            
+            // If no columns, return empty
+            if (columns.length === 0) {
+            return `<div class="distribution__item">
+                   <div class="distribution__users">
+                   </div>
+                </div>`;
+            }
+            
+            const columnsHtml = columns.map((column, colIdx) => {
+                return `<div class="distribution__users-column" style="display: flex; flex-direction: column; gap: 20px; min-width: 210px; max-width: 210px;">
+                    ${column.map(({name, avatar, hidden, originalIndex}) => {
+                const isActive = hidden ? '' : 'active';
+                        return `<div class="user-connect ${isActive} user-connect--to" data-original-index="${originalIndex}">
+                                <img src="${avatar}" alt=""/>
+                                <div class="user-connect__name">
+                                    ${name}
+                                </div>
+                            </div>`
+                    }).join('')}
+                </div>`;
+            }).join('');
+            
+
+            return `<div class="distribution__item">
+                   <div class="distribution__users">
+                        ${columnsHtml}
+                        </div>
+                </div>`;
+
+        }
+
+        render() {
+
+
+            const renderHtml = ` <div class="distribution">
+                 ${this.containersTo.map((item, i) => {
+
+                if (this.after === i + 1) {
+                    return this.renderContainersTo(item, i) + this.renderDataItems();
+                }
+
+                return this.renderContainersTo(item, i)
+            })}
+                </div>`;
+
+            this.container.innerHTML = renderHtml.split(`,`).join('');
+            // Use setTimeout to ensure DOM is fully updated before attaching handlers
+            setTimeout(() => {
+            this.handlers();
+            }, 0);
+            // With the above scripts loaded, you can call `tippy()` with a CSS
+            // selector and a `content` prop:
+            tippy('[data-tippy-content]');
+            tippy(document.querySelectorAll('div[data-tippy-content]'));
+        }
+
+        getData() {
+            return this.containersTo;
+        }
+    }
+
+
+    const app = new Dnd({
+        container: '.distribution__wrapper',
+        containersTo: [
+            {
+                name: "{% trans 'Schwierige Themen können wir meist gut zusammen anschauen.' %}",
+                items: []
+            },
+            {
+                name: "{% trans 'Ich beobachte wie du gelegentlich Menschen im Team ausschliesst.' %}",
+                items: []
+            },
+            {
+                name: "{% trans 'Für mich bist du im Team nicht immer sichtbar.' %}",
+                items: []
+            },
+            {
+                name: "{% trans 'Ich fühle wie meine Talente von dir gesehen und einbezogen werden.' %}",
+                items: []
+            },
+            {
+                name: "{% trans 'Ich habe das Gefühl du reagierst auf Fehler mit Schuldzuweisungen an Einzelne im Team.' %}",
+                items: []
+            },
+            {
+                name: "{% trans 'Mir fällt es mitunter schwer dich um Hilfe zu bitten.' %}",
+                items: []
+            },
+
+        ],
+        data:{{ member_list|safe }},
+
+        {% comment %} data: [
+            {
+                name: 'Constantin Constantinopol',
+                avatar: '/static/images/avatars/boar.svg'
+            },
+            {
+                name: 'Some test',
+                avatar: '/static/images/avatars/boar.svg'
+            },
+            {
+                name: 'Some test123',
+                avatar: '/static/images/avatars/boar.svg'
+            },
+            {
+                name: 'Some test222',
+                avatar: '/static/images/avatars/boar.svg'
+            },
+            {
+                name: 'Some test333',
+                avatar: '/static/images/avatars/boar.svg'
+            },
+            {
+                name: 'Some test444',
+                avatar: '/static/images/avatars/boar.svg'
+            },
+            {
+                name: 'Some test1',
+                avatar: '/static/images/avatars/boar.svg'
+            }
+        ], {% endcomment %}
+        after: 2
+    });
+
+
+    function get_id(in_value){
+        var uu = 0;
+        var output = [];
+        while (uu < in_value.length){
+            output.push(in_value[uu]['id']);
+            uu += 1;
+        }
+        return output;
+    }
+
+    function refresh(){
+        $('#row0').val(get_id(app.containersTo[0].items));
+        $('#row1').val(get_id(app.containersTo[1].items));
+        $('#row2').val(get_id(app.containersTo[2].items));
+        $('#row3').val(get_id(app.containersTo[3].items));
+        $('#row4').val(get_id(app.containersTo[4].items));
+        $('#row5').val(get_id(app.containersTo[5].items));
+    }
+    setInterval("refresh()", 1000);
+
+    var app1 = new Vue({
+        delimiters: ['[[', ']]'],
+        el: '#app-1',
+        data() {
+            return {
+                totalCount: {{member_list|safe}}.length,
+                assignedCount: 0
+            }
+        },
+        computed: {
+            progressPercentage() {
+                if (this.totalCount === 0) return 0;
+                return Math.round((this.assignedCount / this.totalCount) * 100);
+            },
+            remainingMessage() {
+                if (this.assignedCount >= this.totalCount) {
+                    return '';
+                }
+                var remaining = this.totalCount - this.assignedCount;
+                // Construct message: "Noch X Personen zuordnen"
+                // Translations are handled by Django template tags, so we just insert the number
+                return remaining;
+            }
+        },
+        methods:{
+            updateProgress() {
+                var done_list = app.getData()
+                var done_num = 0
+                var uu = 0
+                while (uu < done_list.length){
+                    done_num = done_num + done_list[uu].items.length
+                    uu += 1
+                }
+                this.assignedCount = done_num;
+            },
+            check_submit(){
+                var member_num = this.totalCount;
+                var done_num = this.assignedCount;
+                if (member_num === done_num){
+                    var form_submit = document.getElementById('form_');
+                    form_submit.submit()
+                }else{
+                    var remaining = member_num - done_num;
+                    var errorMessage = "{% trans 'Bitte verschiebe alle Avatare. Noch'|escapejs %} " + remaining + " {% trans 'verbleibend.'|escapejs %}";
+                    this.$message({
+                        showClose: true,
+                        message: errorMessage,
+                        type: 'error',
+                        center: true
+                    })
+                    
+                }
+            }
+        },
+        mounted() {
+            // Make Vue app globally accessible for keyboard navigation
+            window.app1 = this;
+            
+            // Update progress every second
+            setInterval(() => {
+                this.updateProgress();
+            }, 1000);
+            // Initial update
+            this.updateProgress();
+        }
+    })
+
+</script>
+
+</body>
+</html>

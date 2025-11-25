@@ -1,0 +1,948 @@
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="icon" href="/static/images/favicon.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
+    <meta name="theme-color" content="#51ceec"/>
+    <meta name="description" content="Web site"/>
+    <title>Team-Tensions-RESULT</title>
+    <link rel="stylesheet" href="/static/css/app.css">
+    <link rel="stylesheet" href="/static/css/app_graph.css">
+    <link rel="stylesheet" href="/static/css/spannungsfelder.css">
+    <link rel="stylesheet" href="/static/css/spannungsfelder-additional.css">
+    <link rel="stylesheet" href="/static/css/spannungsfelder-google-slides.css">
+    <link rel="stylesheet" href="/static/css/assessment.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <script src="/static/dom-to-image.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+</head>
+<body>
+  {% get_current_language as LANGUAGE_CODE %}
+<div class="app">
+    <div class="app__head">
+        <header class="header-main container">
+            <div class="header-main__title">
+                <icon class="icon" onClick="window.open('https://info.arks.ch/');">
+                <span class="icon-logo"></span>
+                <span>ARKS</span>
+                <span id="arks-logo-tooltip-icon" class="tooltip-icon" style="display: none;">{% trans "Info zu safecircles.ch" %}</span>
+            </icon>
+            </div>
+            <div class="header-main__user">
+                <div class="user">
+                    <div class="user__subtitle">
+                        {{game.name}}
+                    </div>
+                    <img src="{{user.avatar}}" alt="">
+                    <div class="user__title">
+                        {{user.name}}
+                    </div>
+                </div>
+            </div>
+            <div class="header-main__progress">
+                <div class="progress">
+                <p class="rotate-hint white">
+                    {% trans "Swipe die Graphik nach rechts für mehr Feedbacks zu deiner Wirkung." %}
+                </p>
+                    <label>{% trans "SHARING" %}</label>
+                    <div class="progress__bar">
+                        <div>75%</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+    <div class="app__body">
+        <div class="container">
+            <main class="screen spannungsfelder">
+                <div class="info-box">
+                <h1 class="spannungsfelder-heading-tooltip">
+                    <span class="tooltip-icon" id="spannungsfelder-heading-tooltip-icon" tabindex="0" aria-label="{% trans 'Tooltip anzeigen' %}">?</span>
+                    {% trans "Wer sieht deinen Beitrag zur psychologischen Sicherheit im Team innerhalb, wer ausserhalb des grünen sicheren Bereichs?" %}
+                </h1>
+                </div>
+                <div class="info-box">
+
+                <!-- Graph counter indicator -->
+                <div id="graph-counter">
+                    <span id="current-graph">1</span> / <span id="total-graphs">1</span>
+                </div>
+                <div id="graph-slider" class="swiper-container" role="region" aria-label="{% trans 'Graphen-Navigation' %}">
+                    <div class="swiper-wrapper"></div>
+                    <button class="swiper-button-prev" aria-label="{% trans 'Vorheriger Graph' %}" tabindex="0"></button>
+                    <button class="swiper-button-next" aria-label="{% trans 'Nächster Graph' %}" tabindex="0"></button>
+                    <div class="swiper-pagination" role="tablist" aria-label="{% trans 'Graphen-Seiten' %}"></div>
+                </div>
+                <div class="custom-graph-info">
+                    <div class="custom-graph-info__item small" 
+                         data-text={% trans "Andere" %}
+                         role="group"
+                         aria-label="{% trans 'Andere' %}">
+                        {{ others }}
+                        <span class="tooltip-icon" tabindex="0" aria-label="{% trans 'Tooltip anzeigen' %}">?</span>
+                    </div>
+                    <div class="custom-graph-info__item base" 
+                         data-text={% trans "Spannung" %}
+                         role="group"
+                         aria-label="{% trans 'Spannung' %}">
+                        {{ himself }}
+                        <span class="tooltip-icon" tabindex="0" aria-label="{% trans 'Tooltip anzeigen' %}">?</span>
+                    </div>
+                    <div class="custom-graph-info__item large" 
+                         data-text={% trans "Ich" %}
+                         role="group"
+                         aria-label="{% trans 'Ich' %}">
+                        {{ tension }}
+                        <span class="tooltip-icon" tabindex="0" aria-label="{% trans 'Tooltip anzeigen' %}">?</span>
+                    </div>
+                </div>
+                <div class="custom-graph1"></div>
+                <div class="custom-graph2"></div>
+                <div id="rang-slider" class="swiper-container" role="region" aria-label="{% trans 'Farb-Karten Navigation' %}">
+                    <div class="swiper-wrapper" role="list">
+                </div>
+                </div>
+                </div>
+
+
+                        <div class="google-slides-container-wrapper">
+                            <button class="google-slides-fullscreen-button" id="google-slides-fullscreen-button" aria-label="{% trans 'Vollbild anzeigen' %}" title="{% trans 'Vollbild anzeigen' %}" tabindex="0">
+                                <span class="fullscreen-icon">⛶</span>
+                            </button>
+                            <div class="google-slides-container" id="google-slides-container">
+                                <iframe src={% trans "https://docs.google.com/presentation/d/1kgXdYDUcddeDLANKHrsWY8rkwLqaYN86oCrdpaLlod4/embed?start=true&loop=false&delayms=8000&rm=minimal"  %} frameborder="0" width="850" height="400" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" title="{% trans 'Google Slides Presentation' %}"></iframe>
+                            </div>
+                        </div>
+
+                        </div>
+
+                        <div class="center">
+
+                        <a href="/team-potential-/">
+                        <button class="button button-primary" type="button" aria-label="{% trans 'Weiter' %}" tabindex="0">
+                            <span class="button-text">{% trans "Weiter" %}</span>
+                            <span class="button-arrow">→</span>
+                        </button></a>
+
+                            <div class="copyright-footer">
+                                <a href="https://github.com/joe-the-ark/ark" target="_blank">{% trans "ARKS is published under a GPLv3" %}</a> {% trans "license by" %} 
+                                <a href="https://www.linkedin.com/in/dr-joe-maier/" target="_blank">{% trans "Dr. Joe Maier" %}</a>.
+                            </div>
+                        </div>
+                
+            </main>
+        </div>
+    </div>
+</div>
+<script src="/static/js/AppRange.js"></script>
+<script src="/static/js/AppGraph.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="/static/js/utils.js"></script>
+<script>
+    // ARKS Logo Tooltip
+    function initARKSLogoTooltip() {
+        const arksLogoContainer = document.querySelector('.header-main__title icon');
+        const arksLogoTooltipIcon = document.getElementById('arks-logo-tooltip-icon');
+        
+        if (arksLogoContainer && arksLogoTooltipIcon) {
+            arksLogoContainer.addEventListener('mouseenter', function() {
+                arksLogoTooltipIcon.style.display = 'inline-flex';
+            });
+            arksLogoContainer.addEventListener('mouseleave', function() {
+                arksLogoTooltipIcon.style.display = 'none';
+            });
+            
+            tippy(arksLogoTooltipIcon, {
+                content: "{% trans 'Info zu safecircles.ch'|escapejs %}",
+                placement: 'bottom',
+                theme: 'light',
+                delay: [200, 0],
+                allowHTML: false,
+                interactive: false,
+                trigger: 'mouseenter focus',
+            });
+        }
+    }
+
+    // Heading Tooltip
+    function initHeadingTooltip() {
+        const headingTooltipIcon = document.getElementById('spannungsfelder-heading-tooltip-icon');
+        if (headingTooltipIcon) {
+            tippy(headingTooltipIcon, {
+                content: "{% trans 'Erläutert reihum, bei welchem Sicherheitsanker Spannungen zwischen deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team entstehen. (Dauer: 1 Minute pro Person)'|escapejs %}",
+                placement: 'bottom',
+                theme: 'light',
+                delay: [200, 0],
+                allowHTML: false,
+                interactive: false,
+                trigger: 'mouseenter focus',
+                maxWidth: 500,
+            });
+        }
+    }
+
+    var jsonAll = {{ json_list|safe }};
+    var lang_code = '{{LANGUAGE_CODE}}';
+    const anchorOwnersMap = {{ anchor_map|safe }};
+    jsonAll.forEach((item)=>{
+        const anchorRaw = item['ubung1_power_i18n'][lang_code] || item['ubung1_power_i18n']['en'] || '';
+        const drainerRaw = item['ubung3_drainer_i18n'][lang_code] || item['ubung3_drainer_i18n']['en'] || '';
+        const anchorLabel = String(anchorRaw).trim();
+        const drainerLabel = String(drainerRaw).trim();
+        item['anchor_label'] = anchorLabel;
+        item['drainer_label'] = drainerLabel;
+        item['value'] = anchorLabel + ' ' + drainerLabel;
+    });
+    let curentUser = "{{ user }}";
+    const isMobile = () => window.innerWidth <= 1200;
+    // const data = format_data(json_list);
+
+
+    const wrapper = document.querySelector('#graph-slider .swiper-wrapper');
+    let htmlWrappers = ``;
+    const graphData = dataForGraph(jsonAll, curentUser);
+    const totalGraphs = graphData.length;
+
+    // Update total graphs counter
+    const totalGraphsElement = document.getElementById('total-graphs');
+    if (totalGraphsElement) {
+        totalGraphsElement.textContent = totalGraphs;
+    }
+
+    graphData.forEach((item, i) => {
+        htmlWrappers += `<div class="swiper-slide slide-${i}"></div>`;
+    });
+
+    wrapper.innerHTML = htmlWrappers;
+
+    // Initialize swipeGraph first (will be defined later, but we need a reference)
+    let swipeGraph = null;
+
+    let newapp = new AppRange({
+        container: '#rang-slider',
+        innerWrapper: isMobile() ? 'rang swiper-wrapper' : 'rang',
+        // data: data.map(({data}) => {
+        //     const dataSort = data.filter(el => el.name);
+        //     const {name, avatar, statusSide, value} = dataSort[0];
+        //     return {
+        //         name,
+        //         avatar,
+        //         statusSide,
+        //         value,
+        //     }
+        // }),
+        data:dataForRange(jsonAll, curentUser),
+        callback(item, i) {
+            if (!isMobile()) {
+                // Navigate to corresponding graph
+                if (swipeGraph) {
+                    swipeGraph.slideTo(i);
+                }
+                // Update active state
+                this.updateRange();
+                item.classList.add('active');
+                bottomValues = document.querySelector('.custom-graph-info').children;
+                bottomValues[0].innerText = this.data[i].others;
+                // Format tension with sign and add styling if over 16
+                const tension = this.data[i].tension;
+                const tensionText = tension > 0 ? `+${tension}` : tension < 0 ? `${tension}` : '0';
+                bottomValues[1].innerText = tensionText;
+                // Add dark red and bold styling if absolute value is over 16
+                if (Math.abs(tension) > 16) {
+                    bottomValues[1].style.color = '#fa5252';
+                    bottomValues[1].style.fontWeight = 'bold';
+                } else {
+                    bottomValues[1].style.color = '';
+                    bottomValues[1].style.fontWeight = '';
+                }
+                bottomValues[2].innerText = this.data[i].self;
+            }
+        },
+        update(item) {
+            if (!isMobile()) {
+                item.classList.remove('active');
+            }
+        },
+        loadEnd() {
+            $self = this;
+            bottomValues = document.querySelector('.custom-graph-info').children;
+            bottomValues[0].innerText = $self.data[0].others;
+            // Format tension with sign and add styling if over 16
+            const tension = $self.data[0].tension;
+            const tensionText = tension > 0 ? `+${tension}` : tension < 0 ? `${tension}` : '0';
+            bottomValues[1].innerText = tensionText;
+            // Add dark red and bold styling if absolute value is over 16
+            if (Math.abs(tension) > 16) {
+                bottomValues[1].style.color = '#fa5252';
+                bottomValues[1].style.fontWeight = 'bold';
+            } else {
+                bottomValues[1].style.color = '';
+                bottomValues[1].style.fontWeight = '';
+            }
+            bottomValues[2].innerText = $self.data[0].self;
+            
+            // Add CSS classes to rang__item-count based on tension sign and value after rendering
+            // This runs after loadEnd, so we need to wait for defaultLoad to finish
+            setTimeout(() => {
+                document.querySelectorAll('.rang__item-count').forEach(countElement => {
+                    const tension = parseInt(countElement.getAttribute('data-tension'), 10);
+                    if (!isNaN(tension)) {
+                        const sign = getTensionSign(tension);
+                        countElement.classList.add(`tension-${sign}`);
+                        // Add tension-high class if absolute value is over 16
+                        if (Math.abs(tension) > 16) {
+                            countElement.classList.add('tension-high');
+                            // Override filter and set color directly via inline style
+                            // This must override the filter applied in defaultLoad()
+                            countElement.style.setProperty('filter', 'none', 'important');
+                            countElement.style.setProperty('color', '#fa5252', 'important');
+                            countElement.style.setProperty('font-weight', '700', 'important'); // Use numeric value for bold
+                        }
+                    }
+                });
+                // Initialize tooltips for tension values after classes are set
+                initTensionValueTooltips();
+            }, 300);
+
+            
+            // let contNum = i;
+            if (isMobile()) {
+                let swipeMob = new Swiper(this.container, {
+                    slidesPerView: 6,
+                    spaceBetween: 0,
+                    centeredSlides: true,
+                    grabCursor: true,
+                    loop: false,
+                    breakpoints: {
+                        768: {
+                            slidesPerView: 3,
+                            spaceBetween: 0,
+                        },
+                        480: {
+                            slidesPerView: 2,
+                            spaceBetween: 0,
+                        },
+                        320: {
+                            slidesPerView: 1,
+                            spaceBetween: 0,
+                        },
+                    },
+                    navigation: {
+                        nextEl: '.rang-button-next',
+                        prevEl: '.rang-button-prev',
+                    },
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                    on: {
+                        slideChange(a, b, c) {
+                            const index = a.realIndex;
+                            const itemClickable = document.querySelectorAll('#graph-slider .swiper-pagination-bullet');
+                            itemClickable[index].click();
+                            bottomValues = document.querySelector('.custom-graph-info').children;
+                            bottomValues[0].innerText = $self.data[index].others;
+                            bottomValues[1].innerText = $self.data[index].tension;
+                            bottomValues[2].innerText = $self.data[index].self;
+
+                        }
+                    }
+                });
+            }
+        }
+    });
+
+    dataForGraph(jsonAll, curentUser).forEach((item, i) => {
+        // Extract anchor and drainer from the value (format: "anchorLabel drainerLabel")
+        // or get from the original jsonAll data
+        const value = item.data[0]?.value || '';
+        const valueParts = value.split(' ');
+        let anchorLabel = '';
+        let drainerLabel = '';
+        
+        // Try to get from original jsonAll data first
+        const originalData = jsonAll.find(d => d.value === value);
+        if (originalData) {
+            anchorLabel = originalData.anchor_label || '';
+            drainerLabel = originalData.drainer_label || '';
+        } else if (valueParts.length >= 2) {
+            // Fallback: split the value (last part is drainer, rest is anchor)
+            drainerLabel = valueParts[valueParts.length - 1] || '';
+            anchorLabel = valueParts.slice(0, -1).join(' ') || '';
+        }
+        
+        const ownersForAnchor = (anchorOwnersMap[anchorLabel] || []).slice().sort();
+
+        appgraph = new AppGraph({
+            container: `.swiper-slide.slide-${i}`,
+            range: [0, 100],
+            labelRange: [
+                { text: anchorLabel, subtext: ownersForAnchor.join(', ') },
+                { text: drainerLabel, subtext: '' },
+            ],
+            mobile: 1200,
+            statistic: true,
+            data: item.data,
+            safezoneData: safezoneData(jsonAll, item.data[0].value),
+            graphNumber: i,
+        });
+
+
+    });
+
+    swipeGraph = new Swiper('#graph-slider', {
+        slidesPerView: 1,
+        spaceBetween: 0,
+        centeredSlides: true,
+        grabCursor: true,
+        watchOverflow: true,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true
+        },
+        keyboard: {
+            enabled: true,
+            onlyInViewport: true,
+            pageUpDown: true,
+        },
+        a11y: {
+            enabled: true,
+            prevSlideMessage: "{% trans 'Vorheriger Graph'|escapejs %}",
+            nextSlideMessage: "{% trans 'Nächster Graph'|escapejs %}",
+            firstSlideMessage: "{% trans 'Erster Graph'|escapejs %}",
+            lastSlideMessage: "{% trans 'Letzter Graph'|escapejs %}",
+        },
+        on: {
+            slideChange(a, b, c) {
+                let index = a.realIndex;
+                
+                // Update graph counter
+                const currentGraphElement = document.getElementById('current-graph');
+                if (currentGraphElement) {
+                    currentGraphElement.textContent = index + 1;
+                }
+                
+                // Highlight active rang item
+                if (window.innerWidth > 1200) {
+                    let items = document.body.querySelector('.rang').children;
+                    // Remove active class from all items
+                    Array.from(items).forEach(item => item.classList.remove('active'));
+                    // Add active class to current item
+                    if (items[index]) {
+                        items[index].classList.add('active');
+                    }
+                }
+                
+                if (window.innerWidth < 1200) {
+                    let pages = document.querySelector('#rang-slider .swiper-pagination').children
+                    if (pages[index]) {
+                    pages[index].click();
+                    }
+                }
+                if (window.innerWidth > 1200) {
+                    let items = document.body.querySelector('.rang').children;
+                    if (items[index]) {
+                    items[index].click()
+                }
+                }
+                
+                // Re-initialize tooltips when slide changes (in case new elements are rendered)
+                setTimeout(initAvatarVoteTooltips, 300);
+            }
+        }
+    });
+
+    // Initialize tooltips for tension values (rang__item-count)
+    function initTensionValueTooltips() {
+        // Get translated tooltip texts from Django
+        const tooltipTexts = {
+            positive: "{% trans 'Positives Spannungs-Vorzeichen = hier schätzt du deinen Beitrag zur inneren Sicherheit im Team eher zu positiv ein'|escapejs %}",
+            negative: "{% trans 'Negatives Spannungs-Vorzeichen = hier schätzt du deinen Beitrag zur inneren Sicherheit im Team eher zu kritisch ein'|escapejs %}"
+        };
+        
+        // Find all rang__item-count elements
+        document.querySelectorAll('.rang__item-count').forEach(countElement => {
+            // Skip if already initialized
+            if (countElement.hasAttribute('data-tension-tooltip-initialized')) {
+                return;
+            }
+            
+            // Determine tooltip text based on tension sign
+            let tooltipText = '';
+            if (countElement.classList.contains('tension-positive')) {
+                tooltipText = tooltipTexts.positive;
+            } else if (countElement.classList.contains('tension-negative')) {
+                tooltipText = tooltipTexts.negative;
+            }
+            // Neutral values don't get a tooltip
+            
+            // Only add tooltip if we have text
+            if (tooltipText && tooltipText.trim() !== '') {
+                // Remove existing tooltip if any
+                if (countElement._tippy) {
+                    countElement._tippy.destroy();
+                }
+                
+                try {
+                    tippy(countElement, {
+                        content: tooltipText,
+                        placement: 'top',
+                        theme: 'light',
+                        delay: [200, 0],
+                        allowHTML: false,
+                        interactive: false,
+                        trigger: 'mouseenter focus',
+                    });
+                    countElement.setAttribute('data-tension-tooltip-initialized', 'true');
+                } catch (e) {
+                    console.error('Error initializing tension value tooltip:', e);
+                }
+            }
+        });
+    }
+    
+    // Initialize tooltips for color cards (rang__item-wrapper)
+    function initColorCardTooltips() {
+        // Get translated tooltip texts from Django
+        const tooltipTexts = {
+            white: "{% trans 'Grün = Spannungsfreiheit'|escapejs %}<br>{% trans 'Spannungs-Werte unter 16 = deuten auf Spannungsfreiheit mit dem Team hin'|escapejs %}",
+            yellow: "{% trans 'Gelb = die Wahrnehmung deines Beitrags zur inneren Sicherheit der anderen liegt außerhalb der Safe-Base'|escapejs %}",
+            red: "{% trans 'Rot = deine Selbstwahrnehmung liegt ausserhalb der Safe-Base'|escapejs %}",
+            black: "{% trans 'Schwarz = die Selbst- und die Fremdwahrnehmung deines Beitrags zur inneren Sicherheit liegen ausserhalb der Safe-Base'|escapejs %}"
+        };
+        
+        // Find all rang__item elements
+        const rangItems = document.querySelectorAll('.rang__item');
+        
+        rangItems.forEach((item, index) => {
+            const wrapper = item.querySelector('.rang__item-wrapper');
+            if (!wrapper) return;
+            
+            // Determine which color card class is present
+            let tooltipText = '';
+            if (item.classList.contains('white__card')) {
+                tooltipText = tooltipTexts.white;
+            } else if (item.classList.contains('yellow__card')) {
+                tooltipText = tooltipTexts.yellow;
+            } else if (item.classList.contains('red__card')) {
+                tooltipText = tooltipTexts.red;
+            } else if (item.classList.contains('black__card')) {
+                tooltipText = tooltipTexts.black;
+            }
+            
+            // Only add tooltip if we have text and haven't initialized it yet
+            if (tooltipText && tooltipText.trim() !== '' && !wrapper.hasAttribute('data-tippy-initialized')) {
+                // Remove existing tooltip if any
+                if (wrapper._tippy) {
+                    wrapper._tippy.destroy();
+                }
+                
+                try {
+                    tippy(wrapper, {
+                        content: tooltipText,
+                        placement: 'top',
+                        theme: 'light',
+                        delay: [200, 0],
+                        allowHTML: true,
+                        interactive: false,
+                        trigger: 'mouseenter focus',
+                    });
+                    wrapper.setAttribute('data-tippy-initialized', 'true');
+                } catch (e) {
+                    console.error('Error initializing color card tooltip:', e);
+                }
+            }
+        });
+    }
+    
+    // Helper function to identify tension sign
+    function getTensionSign(tension) {
+        if (tension > 0) {
+            return 'positive';
+        } else if (tension < 0) {
+            return 'negative';
+        } else {
+            return 'neutral';
+        }
+    }
+    
+    // Helper function to format tension with sign
+    function formatTension(tension) {
+        if (tension > 0) {
+            return `+${tension}`;
+        } else if (tension < 0) {
+            return `${tension}`; // Already has minus sign
+        } else {
+            return '0';
+        }
+    }
+    
+    cardsPainting(dataForRange(jsonAll, curentUser), document.querySelectorAll(".rang__item"));
+
+    // Add CSS classes to rang__item-count based on tension sign and value for styling
+    // This will be called after AppRange renders the elements and defaultLoad runs
+    // We need to wait longer to ensure defaultLoad has finished applying filters
+    setTimeout(() => {
+        document.querySelectorAll('.rang__item-count').forEach(countElement => {
+            const tension = parseInt(countElement.getAttribute('data-tension'), 10);
+            if (!isNaN(tension)) {
+                const sign = getTensionSign(tension);
+                countElement.classList.add(`tension-${sign}`);
+                // Add tension-high class if absolute value is over 16
+                if (Math.abs(tension) > 16) {
+                    countElement.classList.add('tension-high');
+                    // Override filter and set color directly via inline style
+                    // This must override the filter applied in defaultLoad()
+                    countElement.style.setProperty('filter', 'none', 'important');
+                    countElement.style.setProperty('color', '#fa5252', 'important');
+                    countElement.style.setProperty('font-weight', '700', 'important'); // Use numeric value for bold
+                }
+            }
+        });
+        // Initialize tooltips for tension values after classes are set
+        initTensionValueTooltips();
+    }, 500);
+    
+    // Initialize tooltips for color cards immediately after cardsPainting
+    // so that the color classes are already set
+    setTimeout(initColorCardTooltips, 100);
+    
+    // Initialize tooltips for player avatars and votes
+    const avatarVoteTooltipText = "{% trans 'So hast du deinen Beitrag zur Teamdynamik eingeschätzt.'|escapejs %}";
+    
+    function initAvatarVoteTooltips() {
+        const allSlides = document.querySelectorAll('.swiper-slide[class*="slide-"]');
+        
+        allSlides.forEach((slide, slideIndex) => {
+            const avatars = slide.querySelectorAll('.custom-graph__item-avatar');
+            const votes = slide.querySelectorAll('.custom-graph__item-side');
+            const votesCount = slide.querySelectorAll('.custom-graph__item-count');
+            
+            avatars.forEach((avatar) => {
+                if (avatar) {
+                    const customGraphItem = avatar.closest('.custom-graph__item');
+                    const nameElement = customGraphItem ? customGraphItem.querySelector('.custom-graph__item-name') : null;
+                    const hasVisibleName = nameElement && nameElement.textContent.trim() !== '';
+                    
+                    if (!hasVisibleName) {
+                        return;
+                    }
+                    
+                    if (avatar._tippy) {
+                        avatar._tippy.destroy();
+                    }
+                    avatar.removeAttribute('data-tippy-initialized');
+                    
+                    try {
+                        if (avatarVoteTooltipText && avatarVoteTooltipText.trim() !== '') {
+                            avatar.style.setProperty('pointer-events', 'auto', 'important');
+                            avatar.style.cursor = 'help';
+                            avatar.style.position = 'relative';
+                            avatar.style.zIndex = '10';
+                            
+                            const img = avatar.querySelector('img');
+                            if (img) {
+                                img.style.setProperty('pointer-events', 'auto', 'important');
+                            }
+                            
+                            tippy(avatar, {
+                                content: avatarVoteTooltipText,
+                                placement: 'top',
+                                theme: 'light',
+                                delay: [200, 0],
+                                allowHTML: false,
+                                interactive: false,
+                                trigger: 'mouseenter focus',
+                            });
+                            avatar.setAttribute('data-tippy-initialized', 'true');
+                        }
+                    } catch (e) {
+                        console.error('Error initializing tooltip for avatar:', e);
+                    }
+                }
+            });
+            
+            votes.forEach((vote) => {
+                if (vote) {
+                    const customGraphItem = vote.closest('.custom-graph__item');
+                    const nameElement = customGraphItem ? customGraphItem.querySelector('.custom-graph__item-name') : null;
+                    const hasVisibleName = nameElement && nameElement.textContent.trim() !== '';
+                    
+                    if (!hasVisibleName) {
+                        return;
+                    }
+                    
+                    if (vote._tippy) {
+                        vote._tippy.destroy();
+                    }
+                    vote.removeAttribute('data-tippy-initialized');
+                    
+                    try {
+                        if (avatarVoteTooltipText && avatarVoteTooltipText.trim() !== '') {
+                            vote.style.setProperty('pointer-events', 'auto', 'important');
+                            vote.style.cursor = 'help';
+                            vote.style.position = 'relative';
+                            vote.style.zIndex = '10';
+                            
+                            tippy(vote, {
+                                content: avatarVoteTooltipText,
+                                placement: 'top',
+                                theme: 'light',
+                                delay: [200, 0],
+                                allowHTML: false,
+                                interactive: false,
+                                trigger: 'mouseenter focus',
+                            });
+                            vote.setAttribute('data-tippy-initialized', 'true');
+                        }
+                    } catch (e) {
+                        console.error('Error initializing tooltip for vote:', e);
+                    }
+                }
+            });
+            
+            votesCount.forEach((vote) => {
+                if (vote) {
+                    if (vote._tippy) {
+                        vote._tippy.destroy();
+                    }
+                    vote.removeAttribute('data-tippy-initialized');
+                    
+                    try {
+                        if (avatarVoteTooltipText && avatarVoteTooltipText.trim() !== '') {
+                            vote.style.pointerEvents = 'auto';
+                            vote.style.cursor = 'help';
+                            
+                            tippy(vote, {
+                                content: avatarVoteTooltipText,
+                                placement: 'top',
+                                theme: 'light',
+                                delay: [200, 0],
+                                allowHTML: false,
+                                interactive: false,
+                            });
+                            vote.setAttribute('data-tippy-initialized', 'true');
+                        }
+                    } catch (e) {
+                        console.error('Error initializing tooltip for vote:', e);
+                    }
+                }
+            });
+        });
+    }
+    
+    // Use MutationObserver to watch for when elements are added to the DOM
+    function setupTooltipObserver() {
+        const observer = new MutationObserver(function(mutations) {
+            let shouldReinit = false;
+            mutations.forEach(function(mutation) {
+                if (mutation.addedNodes.length > 0) {
+                    mutation.addedNodes.forEach(function(node) {
+                        if (node.nodeType === 1) { // Element node
+                            if (node.classList && (
+                                node.classList.contains('custom-graph__item-avatar') ||
+                                node.classList.contains('custom-graph__item-count') ||
+                                node.classList.contains('custom-graph__item-side') ||
+                                node.querySelector('.custom-graph__item-avatar') ||
+                                node.querySelector('.custom-graph__item-count') ||
+                                node.querySelector('.custom-graph__item-side')
+                            )) {
+                                shouldReinit = true;
+                            }
+                        }
+                    });
+                }
+            });
+            if (shouldReinit) {
+                setTimeout(initAvatarVoteTooltips, 100);
+            }
+        });
+        
+        // Observe the graph slider container for changes
+        const graphSlider = document.querySelector('#graph-slider');
+        if (graphSlider) {
+            observer.observe(graphSlider, {
+                childList: true,
+                subtree: true
+            });
+        }
+    }
+    
+    // Initialize tooltips for custom-graph-info items
+    const tooltipTexts = {
+        other: "{% trans 'deine Wirkung auf andere'|escapejs %}",
+        tension: "{% trans 'Spannungen entstehen aus der Differenz zwischen Selbst- und Fremdbild'|escapejs %}",
+        me: "{% trans 'meine Selbstwahrnehmung im Team'|escapejs %}"
+    };
+    
+    function initGraphInfoTooltips() {
+        const tooltipItems = document.querySelectorAll('.custom-graph-info__item');
+        tooltipItems.forEach((item) => {
+            let tooltipText = '';
+            if (item.classList.contains('small')) {
+                tooltipText = tooltipTexts.other;
+            } else if (item.classList.contains('base')) {
+                tooltipText = tooltipTexts.tension;
+            } else if (item.classList.contains('large')) {
+                tooltipText = tooltipTexts.me;
+            }
+            
+            const tooltipIcon = item.querySelector('.tooltip-icon');
+            const targetElement = tooltipIcon || item;
+            
+            if (tooltipText && tooltipText.trim() !== '') {
+                try {
+                    tippy(targetElement, {
+                        content: tooltipText,
+                        placement: 'top',
+                        theme: 'light',
+                        delay: [200, 0],
+                        allowHTML: false,
+                    });
+                } catch (e) {
+                    console.error('Error initializing graph info tooltip:', e);
+                }
+            }
+        });
+    }
+    
+    // Initialize all tooltips after DOM is ready
+    function initAllTooltips() {
+        initARKSLogoTooltip();
+        initHeadingTooltip();
+        initGraphInfoTooltips();
+        initAvatarVoteTooltips();
+        initColorCardTooltips();
+        initTensionValueTooltips();
+    }
+    
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+            setupTooltipObserver();
+            setTimeout(initAllTooltips, 2000);
+            setTimeout(initAllTooltips, 4000);
+        });
+    } else {
+        setupTooltipObserver();
+        setTimeout(initAllTooltips, 2000);
+        setTimeout(initAllTooltips, 4000);
+    }
+    
+    // Reload page on window resize to fix graph connection lines
+    let resizeTimeout;
+    let lastWindowWidth = window.innerWidth;
+    let lastWindowHeight = window.innerHeight;
+    
+    window.addEventListener('resize', function() {
+        // Clear existing timeout
+        if (resizeTimeout) {
+            clearTimeout(resizeTimeout);
+        }
+        
+        // Debounce resize event - wait 500ms after last resize before reloading
+        resizeTimeout = setTimeout(function() {
+            const currentWidth = window.innerWidth;
+            const currentHeight = window.innerHeight;
+            
+            // Only reload if there's a significant size change (more than 50px difference)
+            // This prevents unnecessary reloads during continuous resizing
+            const widthDiff = Math.abs(currentWidth - lastWindowWidth);
+            const heightDiff = Math.abs(currentHeight - lastWindowHeight);
+            
+            if (widthDiff > 50 || heightDiff > 50) {
+                lastWindowWidth = currentWidth;
+                lastWindowHeight = currentHeight;
+                location.reload();
+            }
+        }, 500);
+    });
+
+    // Google Slides Fullscreen functionality
+    const fullscreenButton = document.getElementById('google-slides-fullscreen-button');
+    const slidesContainerWrapper = document.querySelector('.google-slides-container-wrapper');
+    
+    if (fullscreenButton && slidesContainerWrapper) {
+        fullscreenButton.addEventListener('click', function() {
+            if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.mozFullScreenElement && !document.msFullscreenElement) {
+                // Enter fullscreen
+                if (slidesContainerWrapper.requestFullscreen) {
+                    slidesContainerWrapper.requestFullscreen();
+                } else if (slidesContainerWrapper.webkitRequestFullscreen) {
+                    slidesContainerWrapper.webkitRequestFullscreen();
+                } else if (slidesContainerWrapper.mozRequestFullScreen) {
+                    slidesContainerWrapper.mozRequestFullScreen();
+                } else if (slidesContainerWrapper.msRequestFullscreen) {
+                    slidesContainerWrapper.msRequestFullscreen();
+                }
+                slidesContainerWrapper.classList.add('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild beenden'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild beenden'|escapejs %}");
+            } else {
+                // Exit fullscreen
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+        
+        // Listen for fullscreen changes
+        document.addEventListener('fullscreenchange', function() {
+            if (!document.fullscreenElement) {
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+        
+        document.addEventListener('webkitfullscreenchange', function() {
+            if (!document.webkitFullscreenElement) {
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+        
+        document.addEventListener('mozfullscreenchange', function() {
+            if (!document.mozFullScreenElement) {
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+        
+        document.addEventListener('MSFullscreenChange', function() {
+            if (!document.msFullscreenElement) {
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+    }
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,191 @@
+/* Waiting Room 3 Specific Styles */
+
+/* Google Slides Container */
+.google-slides-container-wrapper {
+    position: relative;
+    margin: var(--ls-paragraph-offset);
+}
+
+/* Tooltip icon over Google Slides */
+.google-slides-tooltip-icon {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    z-index: 10;
+    pointer-events: auto;
+}
+
+.google-slides-container {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    overflow: hidden;
+    background-color: #9FE2BF;
+    border-radius: 10px;
+}
+
+.google-slides-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #9FE2BF;
+    border-radius: 10px;
+}
+
+.google-slides-fullscreen-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 10;
+    pointer-events: auto;
+    background-color: #52CEEC;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.google-slides-fullscreen-button:hover {
+    background-color: #3bb5d4 !important;
+    transform: scale(1.1);
+}
+
+.google-slides-fullscreen-button:active {
+    transform: scale(0.95);
+}
+
+.google-slides-fullscreen-button .fullscreen-icon {
+    font-size: 18px;
+    line-height: 1;
+}
+
+.google-slides-container-wrapper.fullscreen {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.google-slides-container-wrapper.fullscreen .google-slides-container {
+    width: 100%;
+    height: 100%;
+    padding-top: 0;
+}
+
+.google-slides-container-wrapper.fullscreen .google-slides-container iframe {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
+
+.google-slides-container-wrapper.fullscreen .google-slides-fullscreen-button {
+    top: 20px;
+    right: 20px;
+}
+
+/* Button with Tooltip Container */
+.button-with-tooltip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+}
+
+.continue-button-tooltip-icon {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 8px;
+    vertical-align: middle;
+    cursor: help;
+}
+
+/* Popup Modal Buttons */
+.modal_button.button {
+    margin: 10px;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-size: var(--ls-font-base);
+    transition: all 0.3s ease;
+}
+
+.modal_button.button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal_button.button:active {
+    transform: translateY(0);
+}
+
+/* ARKS logo clickable */
+.arks-logo-clickable {
+  cursor: pointer;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+
+/* Wartezimmer list */
+.wartezimmer-list {
+  margin: var(--ls-paragraph-offset);
+  max-width: 908px;
+}
+
+.wartezimmer-list li {
+  margin-bottom: 15px;
+}
+
+/* Button container with standard margins */
+.wartezimmer-button-container {
+  margin: var(--ls-paragraph-offset);
+}
+
+/* Progress bar fill */
+.progress__bar-fill {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* Now terms uppercase */
+.now-terms-uppercase {
+  text-transform: uppercase;
+}
+
+/* Mobile Optimizations */
+@media screen and (max-width: 768px) {
+    .google-slides-fullscreen-button {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+        top: 10px;
+        right: 10px;
+    }
+    
+    .google-slides-fullscreen-button .fullscreen-icon {
+        font-size: 14px;
+    }
+    
+    .modal_button.button {
+        padding: 10px 20px;
+        font-size: var(--ls-font-small);
+        margin: 5px;
+    }
+}
+

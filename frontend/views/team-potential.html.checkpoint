@@ -1,0 +1,1070 @@
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="icon" href="/static/images/favicon.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
+    <meta name="theme-color" content="#51ceec"/>
+    <meta name="description" content="ARK"/>
+    <title>Psychological-Safe-Circles</title>
+    <link rel="stylesheet" href="/static/css/app.css">
+    <link rel="stylesheet" href="/static/css/app_graph.css">
+    <link rel="stylesheet" href="/static/css/team-potential.css">
+
+    <script src="/static/vue.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/element-ui/2.15.9/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://cdn.staticfile.org/element-ui/2.15.9/index.js"></script>
+    <!-- Tippy.js for tooltips -->
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+</head>
+<body>
+<div class="app">
+    <div class="app__head">
+        <header class="header-main container">
+            <div class="header-main__title">
+                <icon classs="icon" onClick="window.open('https://info.arks.ch/');">
+                <span class="icon-logo"></span>
+                <span>ARKS</span>
+            </div>
+            <div class="header-main__user">
+                <div class="user">
+                    <div class="user__subtitle">
+                        {{game.name}}
+                    </div>
+                    <img src="{{ user.avatar }}" alt="boar">
+                    <div class="user__title">
+                        {{ user.name }}
+                    </div>
+                </div>
+            </div>
+            <div class="header-main__progress">
+                <div class="progress">
+                    <div class="progress__bar">
+                        <div style="width: 85%; border-radius: 10px;">85%</div>
+                    </div>
+                </div>
+                <button onclick="window.print()" title="Print or safe this window as PDF">Save as PDF</button> <!-- Print Button Added --> 
+            </div>
+
+                <style>
+                    .google-slides-container {
+                        position: relative;
+                        width: 100%;
+                        padding-top: 56.25%; /* 16:9 Aspect Ratio */
+                        overflow: hidden;
+                        border-radius: 10px;
+                        background-color: #9FE2BF;
+                    }
+
+                    .google-slides-container iframe {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%; /* Ensure the iframe takes the full width */
+                        height: 100%;
+                        border: none;
+                    }
+
+                    @media print {
+                        .google-slides-container {
+                            position: relative;
+                            width: 100%;
+                            height: 0;
+                            padding-top: 75%; /* Adjust to fit within print area */
+                            overflow: visible; /* Ensure the content is not hidden */
+                            border-radius: 0;
+                            background-color: #fff;
+                        }
+
+                        .google-slides-container iframe {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            transform: scale(0.75); /* Adjust scale to fit the print area */
+                            transform-origin: top left;
+                            border: none;
+                        }
+                    }
+                </style>
+
+
+        </header>
+    </div>
+    <div class="app__body" id="app-1">
+        <div class="container"
+        v-loading="loading"
+        element-loading-text="Waiting for others to finish"
+        element-loading-background="rgba(0, 0, 0, 0.8)">
+            <main class="screen auth">
+                <h1>
+                    {% trans "Schafft sicher verbundene Kreise, in denen Defensivreaktionen überflüssig werden." %}
+                </h1>
+
+                <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
+
+                <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
+                            <br>
+                            {% trans "PRIO 1: Diese Konstellation ermöglicht euch ein " %}<button @click="current=getValue4()" style="background-color: #FFFFFF; border: 5px solid #75CBE8; color: black;">{% trans "maximales Mass an psychologischer Sicherheit beim Toleranzfenster" %} [[ getValue4() ]]</button><br>                            {% trans "Wer ist in mehreren sicheren Kreisen und wirkt integrierend?" %}<br>
+                            <span 
+                                id="prio1-integrator-tooltip-icon"
+                                style="display: inline-flex; align-items: center; gap: 4px; margin-left: 0; vertical-align: middle;"
+                            >
+                                {% trans "Wie weiter" %}
+                                <span 
+                                    style="width: 24px; height: 24px; border-radius: 50%; background-color: #52CEEC; color: white; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; cursor: help; font-size: 16px;"
+                                    title="{% trans 'Integratoren-Erklärung' %}"
+                                >
+                                    ?
+                                </span>
+                            </span>
+                            <br><br>
+                </p>
+
+                <!-- Safe Circles Overview -->
+                <div class="safe-circles-overview" style="margin: 20px 0; padding: 20px; background-color: #f5f5f5; border-radius: 10px; border: 2px solid #9FE2BF;">
+                    <h3 style="margin: 0 0 15px 0; color: #626262; font-size: 18px; font-weight: bold;">
+                        {% trans "Sichere Kreise beim Toleranzfenster" %} [[ current ]]
+                    </h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px;">
+                        <div 
+                            v-for="(circle, idx) in getCirclesDetailed()" 
+                            :key="idx"
+                            class="circle-card"
+                            :style="{ borderLeft: '5px solid ' + circle.color }"
+                            style="background-color: #FFFFFF; padding: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"
+                        >
+                            <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                                <div 
+                                    :style="{ backgroundColor: circle.color, width: '20px', height: '20px', borderRadius: '50%', marginRight: '10px' }"
+                                ></div>
+                                <strong style="color: #626262; font-size: 16px;">
+                                    {% trans "Kreis" %} [[ idx + 1 ]]
+                                </strong>
+                                <span style="margin-left: auto; color: #9FE2BF; font-weight: bold; font-size: 14px;">
+                                    [[ circle.memberCount ]] {% trans "Personen" %}
+                                </span>
+                            </div>
+                            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                                <span 
+                                    v-for="(member, memberIdx) in circle.members"
+                                    :key="memberIdx"
+                                    :style="member.isIntegrator ? 'background-color: #f0f0f0; padding: 6px 12px; border-radius: 20px; font-size: 14px; color: #626262; display: inline-flex; align-items: center; border: 2px solid #9FE2BF; box-shadow: 0 0 0 2px rgba(159, 226, 191, 0.3);' : 'background-color: #f0f0f0; padding: 6px 12px; border-radius: 20px; font-size: 14px; color: #626262; display: inline-flex; align-items: center;'"
+                                >
+                                    <img 
+                                        v-if="member.avatar"
+                                        :src="member.avatar"
+                                        :alt="member.name"
+                                        :style="member.isIntegrator ? 'width: 24px; height: 24px; border-radius: 50%; margin-right: 8px; object-fit: cover; border: 2px solid #9FE2BF;' : 'width: 24px; height: 24px; border-radius: 50%; margin-right: 8px; object-fit: cover; border: 2px solid #FFFFFF;'"
+                                    />
+                                    <span v-else style="margin-right: 6px;">👤</span>
+                                    [[ member.name ]]
+                                    <span v-if="member.count > 0" style="margin-left: 6px; color: #9FE2BF; font-weight: bold;">
+                                        ([[ member.count ]])
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div v-if="getCirclesDetailed().length === 0" style="text-align: center; padding: 20px; color: #999;">
+                        {% trans "Keine sicheren Kreise bei diesem Toleranzfenster-Wert" %}
+                    </div>
+                </div>
+
+                <div class="center">
+                  <p style="float:none; display: inline">
+                    <br>[[ getCircles().length ]] {% trans "SICHERE KREISE bei der Toleranzfenster-Grösse..." %}
+                    
+                    <!-- Improved Tolerance Window Input Container -->
+                    <div class="tolerance-window-input-container" style="display: flex; flex-direction: column; align-items: center; gap: 15px; margin: 20px 0; padding: 20px; background-color: #f5f5f5; border-radius: 10px; border: 2px solid #9FE2BF;">
+                        <div style="display: flex; align-items: center; gap: 10px; width: 100%; max-width: 600px;">
+                            <label for="tolerance-window-input" style="font-weight: bold; color: #626262; white-space: nowrap;">
+                                {% trans "Toleranzfenster:" %}
+                            </label>
+                            <div style="position: relative; flex: 1; display: flex; align-items: center; gap: 10px;">
+                                <!-- Range Slider with gradient background -->
+                                <div style="position: relative; flex: 1; height: 24px; border-radius: 5px;" :style="getSliderGradientBackgroundStyle()">
+                                    <input 
+                                        type="range" 
+                                        id="tolerance-window-slider"
+                                        v-model.number="current" 
+                                        :min="getValue1()-1" 
+                                        :max="getValue2()" 
+                                        step="1"
+                                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; margin: 0; padding: 0; background: transparent; outline: none; cursor: pointer; z-index: 1;"
+                                        class="tolerance-slider"
+                                    />
+                                </div>
+                                <!-- Number Input -->
+                                <input 
+                                    type="number" 
+                                    id="tolerance-window-input"
+                                    v-model.number="current" 
+                                    :min="getValue1()-1" 
+                                    :max="getValue2()" 
+                                    style="width: 100px; height: 50px; padding: 10px; border-radius: 10px; border: 3px solid #9FE2BF; font-size: 20px; font-weight: bold; text-align: center; background-color: #FAE03C; color: #626262; box-shadow: 0 2px 5px rgba(0,0,0,0.1);" 
+                                />
+                                <!-- Tooltip Icon -->
+                                <span 
+                                    id="tolerance-window-tooltip-icon"
+                                    style="width: 24px; height: 24px; border-radius: 50%; background-color: #52CEEC; color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; cursor: help; font-size: 16px; flex-shrink: 0;"
+                                    title="{% trans 'Toleranzfenster-Erklärung' %}"
+                                >
+                                    ?
+                                </span>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 5px; font-size: 14px; color: #626262;">
+                            <button 
+                                @click="hideReadingHelp()"
+                                id="min-value-button"
+                                style="font-weight: bold; font-size: 42px; color: #626262; background: none; border: none; cursor: pointer; padding: 0; margin: 0; text-decoration: underline;"
+                                title="{% trans 'Lesehilfe anzeigen' %}"
+                            >
+                                [[ getValue1()-1 ]]
+                            </button>
+                            <span style="flex: 1; text-align: center; font-style: italic;">{% trans "(niedrige Werte = hoher Stress)" %}</span>
+                            <button 
+                                @click="hideMaxValueHelp()"
+                                id="max-value-button"
+                                style="font-weight: bold; font-size: 42px; color: #626262; background: none; border: none; cursor: pointer; padding: 0; margin: 0; text-decoration: underline;"
+                                title="{% trans 'Maximalwert-Erklärung' %}"
+                            >
+                                [[ getValue2() ]]
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <br/>
+                    <canvas ref="canvas" :width="width" :height="height" :style="{ width:width+'px', height:height+'px' }" id="team-potential-canvas"></canvas>
+                  </p>
+                </div>
+
+                <p style="background-color: #9FE2BF; color: #626262; text-align: left; border-radius: 10px; padding: 0 10px;"><br>
+
+                       {% trans "PRIO 2: Beim Toleranzfenster-Wert von " %}<button @click="current=getValue3()" style="background-color: #FFFFFF; border: 5px solid #52CEEC; color: black;">[[ getValue3() ]] </button>{% trans " (hier klicken) siehst du, wer zuerst SOLO ist. " %}<button @click="current=getValue3()+1" style="background-color: #FFFFFF; border: 5px solid #52CEEC; color: black;">{% trans "Booste Satelliten" %}</button> {% trans " und erkenne, wer Hand in einen sicheren Kreis bieten kann." %}<br>
+                       <span 
+                           id="prio2-integrator-tooltip-icon"
+                           style="display: inline-flex; align-items: center; gap: 4px; margin-left: 0; vertical-align: middle;"
+                       >
+                           {% trans "Wie weiter" %}
+                           <span 
+                               style="width: 24px; height: 24px; border-radius: 50%; background-color: #52CEEC; color: white; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; cursor: help; font-size: 16px;"
+                               title="{% trans 'PRIO 2-Erklärung' %}"
+                           >
+                               ?
+                           </span>
+                       </span>
+                       <br><br>
+                </p>
+
+                <p style="background-color: #52CEEC; text-align: left; color: #FFFFFF; border-radius: 10px; padding: 0 10px;"><br>
+                            {% trans "PRIO 3: Die Konstellation beim " %}<button  @click="current=16" style="border: 5px solid #9FE2BF;">{% trans "Standard-Toleranzfenster von 16" %}</button>{% trans " könnte der IST-Situation im Team nahekommen. Wie sicher verbunden ist der Boss?" %}<br>
+                            <span 
+                                id="prio3-integrator-tooltip-icon"
+                                style="display: inline-flex; align-items: center; gap: 4px; margin-left: 0; vertical-align: middle;"
+                            >
+                                {% trans "Wie weiter" %}
+                                <span 
+                                    style="width: 24px; height: 24px; border-radius: 50%; background-color: #9FE2BF; color: #626262; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; cursor: help; font-size: 16px;"
+                                    title="{% trans 'PRIO 3-Erklärung' %}"
+                                >
+                                    ?
+                                </span>
+                            </span>
+                            <br><br>
+                </p>
+
+
+                <p style="background-color: #fffff; text-align: left; color: #00000; border-radius: 10px; padding: 0 10px;"><br>
+                            {% trans "" %}<br><br>
+                </p>
+
+                <p id="reading-help-section" style="display: none; background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
+                            <br>
+                            {% trans "Eine Lesehilfe: je kleiner der Zahlenwert, desto mehr Stress und negative Trigger zeigen sich, weil sich die Toleranzfenster der Teammitglieder schliessen." %}<br>
+                            <button @click="current=getValue1()" style="border: 5px solid #9FE2BF;">{% trans "Im ersten sicheren Kreise bei" %} [[ getValue1() ]]</button>{% trans " (hier klicken) funktioniert die Zusammenarbeit auch bei sehr grossem Stress noch ohne Drama." %}<br>
+                            <br>
+                </p>
+
+                <p id="max-value-help-section" style="display: none; background-color: #fffff; text-align: left; color: #00000; border-radius: 10px; padding: 0 10px;"><br>
+                            {% trans "Aktuell seid ihr beim Toleranzfenster von " %}<button @click="current=getValue2()" style="border: 5px solid #9FE2BF;">[[ getValue2() ]] {% trans " alle in EINEM sicheren Kreis." %}</button><br>{% trans "Wenn Einzelne auf undifferenzierte Einigkeit drängen, zeigt sich das an einer Toleranzfenster-Grösse von über 35, bei dem die Teamdynamik schon sektenartige Züge tragen kann. Ein weiterer Indikator für ein ungesundes Mass an erwarteter Konformität zeigt sich bei Werten unter 25, die auf eine Gefahr von Groupthink deutet." %}<br><br>
+                </p><br>
+
+            </div>
+
+            </main>
+
+                <div class="center">
+
+                        <span>
+                            <a href="/arche/">
+                            <button class="button" type="button">
+                                {% trans "Aftercare" %}
+                            </button></a>
+                        </span>
+
+
+                        <p style="text-align: center; font-size: 10px;">
+                            <a href="https://github.com/joe-the-ark/ark" target="_blank">ARKS is published under a GPLv3</a> license by 
+                            <a href="https://www.linkedin.com/in/dr-joe-maier/" target="_blank">Dr. Joe Maier</a>.
+                        </p>
+                </div>
+
+                <style>
+                      .google-slides-container {
+                        position: relative;
+                        width: 100%;
+                        padding-top: 56.25%; /* 16:9 Aspect Ratio */
+                        overflow: hidden;
+                        border-radius: 10px;
+                        background-color: #9FE2BF;
+                    }
+
+                    .google-slides-container iframe {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        border: none;
+                    }
+
+                    @media print {
+                        @page {
+                            size: A4 portrait; /* Use landscape orientation for better fit */
+                            margin: 0;
+                        }
+
+                        body {
+                            margin: 0;
+                            background-color: #ffffff; /* Change background color for print */
+                            -webkit-print-color-adjust: exact; /* Chrome, Safari */
+                            color-adjust: exact; /* Firefox */
+                        }
+
+                        .header-main__progress, .center, .container {
+                            page-break-inside: no;
+                        }
+
+                        .google-slides-container {
+                            width: 100%;
+                            height: 100%; /* Fill the viewport height for printing */
+                            padding-top: 0; /* Remove padding-top to fit print size */
+                            background-color: #ffffff; /* Change background color for print */
+                            border-radius: 0; /* Remove border radius for printing */
+                        }
+
+                        .google-slides-container iframe {
+                            position: static;
+                            width: auto;
+                            height: auto; /* Fill the viewport height for printing */
+                        }
+                    }
+
+
+                </style>
+                <div class="google-slides-container">
+                    <iframe src={% trans "https://docs.google.com/presentation/d/1qi3wNhpRU3FEoatghY7Ca0iNwtGPQGvHqLRXCvbKKJ8/embed?start=true&loop=false&delayms=8000"  %} frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                </div>
+
+                {% comment %}<p class="spanun-p" style="background-color: #FFFFFF; color: #626262; border-radius: 10px; padding: 0 10px;">
+                            {% trans "Zum Abschluss empfehlen wir eine anonyme Feedbackrunde mit 3 bewährten Fragen zur Stärkung der psychologischen Sicherheit im Team: Dieser Feedbackprozess ist Voraussetzung, damit die hier noch anonym dargestellten Einschätzungen der anderen Teammitglieder offengelegt werden können." %}
+                <br><br><br></p>{% endcomment %}
+
+        </div>
+
+    </div>
+</div>
+<script src="/static/js/AppGraph.js"></script>
+<script src="/static/axios.min.js"></script>
+<script>
+
+// static/js/AppGraph.js
+
+var app1 = new Vue({
+    delimiters: ['[[', ']]'],
+    el: '#app-1',
+    data() {
+        return {
+            loading: false,
+            circles: {{ circles|safe }},
+            players: {{ players|safe }},
+            anchors: {{ anchors|safe }},
+            allResult: {{ all_result|safe }},       // raw statusSide data for each player
+            current: 16,
+            width: 800,
+            height: 800
+        };
+    },
+    created() {
+        this.current = this.getValue4();
+        this.loading = '{{ loading }}' !== '0';
+    },
+    mounted() {
+        this.redraw();
+    },
+    methods: {
+        waiting_room() {
+            window.location.href = '/waiting-room2/';
+        },
+        getValue1() { for (const key in this.circles.circles) return key; },
+        getValue2() {
+            let maxKey = -Infinity;
+            for (const key in this.circles.circles) maxKey = Math.max(maxKey, parseInt(key));
+            return maxKey;
+        },
+        getValue3() {
+            const pCount = this.circles.players.length;
+            return Object.keys(this.circles.circles)
+                .map(k => parseInt(k)).reverse()
+                .find(k => Object.keys(this.circles.circles[k].circle_count).length <= pCount - 1);
+        },
+        getValue4() {
+            let maxSum = -Infinity, best = -1;
+            for (const key in this.circles.circles) {
+                const sum = Object.values(this.circles.circles[key].circle_count)
+                              .reduce((s, e) => s + e, 0);
+                if (sum > maxSum) { maxSum = sum; best = key; }
+            }
+            return best;
+        },
+           getCircles() {
+               const entry = this.circles.circles[this.current] || {};
+               return (entry.circles || []).map(group => group.map(i => this.circles.players[i]).join(' '));
+           },
+           getCirclesDetailed() {
+               const entry = this.circles.circles[this.current] || {};
+               const circles = entry.circles || [];
+               const circle_count = entry.circle_count || {};
+               const colors = ['#fa5252', '#ff8c00', '#9FE2BF', '#52CEEC', '#9b59b6', '#FAE03C', '#3b4252'];
+               
+               // Calculate maxCount to identify integrators
+               const maxCount = Math.max(0, ...Object.values(circle_count));
+               
+               return circles.map((group, idx) => {
+                   const members = group.map(i => {
+                       const count = circle_count[i] || 0;
+                       const isTop = count === maxCount && maxCount > 0;
+                       return {
+                           name: this.circles.players[i],
+                           avatar: this.players[this.circles.players[i]] || '',
+                           count: count,
+                           isIntegrator: isTop
+                       };
+                   });
+                   
+                   return {
+                       members: members,
+                       memberCount: members.length,
+                       color: colors[idx % colors.length]
+                   };
+               });
+           },
+           getSliderGradientBackgroundStyle() {
+               const min = this.getValue1() - 1;
+               const max = this.getValue2();
+               const threshold = 16; // Value below which it transitions to red
+               
+               // Calculate percentage position of threshold (16)
+               const thresholdPercent = ((threshold - min) / (max - min)) * 100;
+               
+               // Colors: red (low, < 16) -> green (main, >= 16) -> white (high)
+               const redColor = '#fa5252';
+               const greenColor = '#9FE2BF';
+               const whiteColor = '#FFFFFF';
+               
+               // Create gradient: 
+               // - Left (low values, < 16): red transitioning to green at 16
+               // - Right (high values): green transitioning to white
+               // The majority should be green
+               return {
+                   background: `linear-gradient(to right, ${redColor} 0%, ${greenColor} ${thresholdPercent}%, ${greenColor} 85%, ${whiteColor} 100%)`
+               };
+           },
+           hideReadingHelp() {
+               const section = document.getElementById('reading-help-section');
+               if (section) {
+                   section.style.display = 'none';
+               }
+               // Set current to first safe circle value to display it
+               this.current = this.getValue1();
+           },
+           hideMaxValueHelp() {
+               const section = document.getElementById('max-value-help-section');
+               if (section) {
+                   section.style.display = 'none';
+               }
+               // Set current to highest tolerance window value to display it
+               this.current = this.getValue2();
+           },
+        redraw() {
+            const canvas = this.$refs.canvas;
+            const ctx    = canvas.getContext('2d');
+            const { width, height } = this;
+
+            const drawToken = Symbol('draw');
+            this._drawToken = drawToken;
+
+            ctx.clearRect(0, 0, width, height);
+
+            // text
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+
+            // core data
+            const players = this.circles.players;
+            const avatars = this.players;
+            const anchors = this.anchors || {};
+            const entry = this.circles.circles[this.current] || { circles: [], circle_count: {} };
+            const { circles, circle_count } = entry;
+            const n = players.length;
+            const [cx, cy] = [width/2, height/2];
+            const r0 = Math.min(width, height);
+            const dR = 16;
+            const r1 = r0 * 0.4;
+            const theta = 2 * Math.PI / n;
+
+            // header
+            const total = Object.values(circle_count).reduce((s,v) => s + v, 0);
+            ctx.fillStyle = '#000000';
+            ctx.font = '32px Arial'; ctx.fillText('SAFE CIRCLES', cx, cy-32);
+            ctx.font = '60px Arial'; ctx.fillText(total, cx, cy+32);
+            ctx.font = '18px STheiti, SimHei';
+
+            // positions
+            const round = v => Math.round(v * 1e5) / 1e5;
+            const boundaryX = players.map((_, i) => cx + (r1 + dR) * round(Math.cos(theta * i)));
+            const boundaryY = players.map((_, i) => cy + (r1 + dR) * round(Math.sin(theta * i)));
+
+
+            // top sizing
+            const maxCount = Math.max(0, ...Object.values(circle_count));
+            const baseSize = 64;
+
+            // helpers
+            const calc=(x1,y1,x2,y2)=>[Math.hypot(x2-x1,y2-y1),Math.atan2(y2-y1,x2-x1)];
+            const moveP=(xo,yo,xp,yp)=>{
+            let [d,a]=calc(xo,yo,xp,yp);
+            d+=dR;
+            return [
+                round(xo + d * Math.cos(a)),
+                round(yo + d * Math.sin(a))
+            ];
+            };
+
+            // draw safe circles
+            const colors=['red','orange','green','blue','purple','yellow','black'];
+            // Track which players are in circles for green dot placement
+            const playersInCircles = new Set();
+            circles.forEach((members,idx)=>{
+                members.forEach(i => playersInCircles.add(i));
+                let x0=0,y0=0; members.forEach(i=>(x0+=boundaryX[i],y0+=boundaryY[i])); x0/=members.length; y0/=members.length;
+                ctx.strokeStyle=colors[idx%colors.length]; ctx.lineWidth=3; ctx.setLineDash([]); ctx.beginPath();
+                members.forEach((pt,j)=>{
+                    const nextIdx=members[(j+1)%members.length];
+                    const [tx,ty,,,th1]=calcEdge(j,members,x0,y0,boundaryX,boundaryY,moveP);
+                    const [nx,ny,,,th2]=calcEdge((j+1)%members.length,members,x0,y0,boundaryX,boundaryY,moveP);
+                    const hr=120;
+                    const c1x = round(tx + hr * Math.cos(th1 - Math.PI / 2));
+                    const c1y = round(ty + hr * Math.sin(th1 - Math.PI / 2));
+                    const c2x = round(nx + hr * Math.cos(th2 + Math.PI / 2));
+                    const c2y = round(ny + hr * Math.sin(th2 + Math.PI / 2));
+                    if(!j)ctx.moveTo(tx,ty);
+                    ctx.bezierCurveTo(c1x,c1y,c2x,c2y,nx,ny);
+                }); ctx.stroke();
+            });
+
+                        // ✅ draw dyads (real safe dyads from backend)
+            const dyads = entry.dyads || [];
+            dyads.forEach(pair => {
+                const [i, j] = pair;
+                const x1 = boundaryX[i];
+                const y1 = boundaryY[i];
+                const x2 = boundaryX[j];
+                const y2 = boundaryY[j];
+
+                ctx.beginPath();
+                ctx.setLineDash([6, 4]); // dotted style for dyads
+                ctx.strokeStyle = 'gold';
+                ctx.lineWidth = 2;
+                ctx.moveTo(x1, y1);
+                ctx.lineTo(x2, y2);
+                ctx.stroke();
+                ctx.setLineDash([]);
+            });
+
+
+
+/*
+                // dynamic golden pairs: aligned to players order
+                const statusSides = players.map((name, idx) => {
+                  // find the matching entry by name, or fall back by index
+                  const entry = this.allResult.find(e => e.name === name);
+                  return entry ? entry.statusSide : this.allResult[idx].statusSide;
+                });
+                const goldenCandidates = [];
+                const threshold = Math.round(this.current);
+
+                for (let i = 0; i < n; i++) {
+                  for (let j = i + 1; j < n; j++) {
+                    const diff = Math.abs(statusSides[i] - statusSides[j]);
+                    if (diff - threshold <= 1e-6) {
+                      goldenCandidates.push([i, j]);
+                    }
+                  }
+                }
+
+                const activeGolden = goldenCandidates.filter(pair =>
+                  !circles.some(rc => pair.every(idx => rc.includes(idx)))
+                );
+
+                // 🔒 Stabilisiere Reihenfolge
+                activeGolden.sort((a, b) => a[0] - b[0] || a[1] - b[1]);
+                // draw golden dotted
+
+            activeGolden.forEach(members=>{
+                let x0=0,y0=0; members.forEach(i=>(x0+=boundaryX[i],y0+=boundaryY[i])); x0/=members.length; y0/=members.length;
+                ctx.strokeStyle='gold'; ctx.lineWidth=2; ctx.setLineDash([10,5]); ctx.beginPath();
+                members.forEach((pt,j)=>{
+                    const [tx,ty,,,th1]=calcEdge(j,members,x0,y0,boundaryX,boundaryY,moveP);
+                    const idx2=(j+1)%members.length;
+                    const [nx,ny,,,th2]=calcEdge(idx2,members,x0,y0,boundaryX,boundaryY,moveP);
+                    const hr=120;
+                    const c1x=tx+hr*Math.cos(th1-Math.PI/2), c1y=ty+hr*Math.sin(th1-Math.PI/2);
+                    const c2x=nx+hr*Math.cos(th2+Math.PI/2), c2y=ny+hr*Math.sin(th2+Math.PI/2);
+                    if(!j)ctx.moveTo(tx,ty);
+                    ctx.bezierCurveTo(c1x,c1y,c2x,c2y,nx,ny);
+                });
+                ctx.stroke(); ctx.setLineDash([]); ctx.lineWidth=3;
+            });
+*/
+
+
+                        // draw players
+            players.forEach((name,i)=>{
+                const count = circle_count[i]||0;
+                const isTop = count===maxCount && maxCount>0;
+                const size = isTop?Math.floor(baseSize*1.3):baseSize;
+                const radius = isTop? r1*0.75 : r1;
+                const px = cx + radius*Math.cos(theta*i);
+                const py = cy + radius*Math.sin(theta*i);
+
+                    // green filled dot for top players (Integratoren)
+                    // Position dot on line from center to player, touching the player's avatar at one point
+            if (isTop) {
+                const dotRadius = size / 2;
+                
+                // Calculate direction from center to player
+                const dx = px - cx;
+                const dy = py - cy;
+                const dist = Math.hypot(dx, dy);
+                
+                if (dist > 0) {
+                    // Calculate the distance from center where the dot should be positioned
+                    // The dot should touch the avatar's edge
+                    // Avatar center is at (px, py) with radius size/2
+                    // Dot center should be at distance: dist - size/2 - dotRadius from center
+                    // This positions the dot so it touches the avatar at one point
+                    const dotDistFromCenter = dist - (size / 2) - dotRadius;
+                    
+                    // Position dot on the line from center to player
+                    const dotX = cx + (dx / dist) * dotDistFromCenter;
+                    const dotY = cy + (dy / dist) * dotDistFromCenter;
+                    
+                    ctx.beginPath();
+                    ctx.fillStyle = '#9FE2BF';
+                    ctx.arc(dotX, dotY, dotRadius, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+                const img = new Image(); img.src = avatars[name];
+                const drawPerson = () => {
+                    if (this._drawToken !== drawToken) return;
+                    ctx.drawImage(img, px-size/2, py-size/2, size, size);
+                    ctx.fillStyle='black'; ctx.font='18px STheiti, SimHei';
+                    ctx.fillText(name, px, py+size/2+20, size+40);
+                    const safetyAnchor = anchors[name];
+                    if (safetyAnchor) {
+                        ctx.fillStyle = '#555555';
+                        ctx.font = '16px STheiti, SimHei';
+                        ctx.fillText(safetyAnchor, px, py+size/2+40, size+80);
+                    }
+                    const bubbleOffset=27, bx=px+bubbleOffset, by=py-bubbleOffset;
+                    ctx.beginPath(); ctx.fillStyle='#9FE2BF'; ctx.strokeStyle='white'; ctx.lineWidth=2;
+                    ctx.arc(bx,by,20,0,2*Math.PI); ctx.fill(); ctx.stroke();
+                    ctx.fillStyle='black'; ctx.font=`bold ${isTop?36:32}px STheiti, SimHei`;
+                    ctx.textBaseline='middle'; ctx.fillText(count,bx,by); ctx.textBaseline='alphabetic';
+                };
+                if (img.complete) {
+                    drawPerson();
+                } else {
+                    img.onload = drawPerson;
+                }
+            });
+
+            // helper for edges
+            function calcEdge(i2,members,x0,y0,bX,bY,moveF){
+                const prev=members[(i2-1+members.length)%members.length];
+                const nxt=members[(i2+1)%members.length];
+                const [tx,ty]=moveF(x0,y0,bX[members[i2]],bY[members[i2]]);
+                const [px,py]=moveF(x0,y0,bX[prev],bY[prev]);
+                const [nx,ny]=moveF(x0,y0,bX[nxt],bY[nxt]);
+                const a1=Math.atan2(ny-ty,nx-tx), a2=Math.atan2(py-ty,px-tx);
+                let th=(a1+a2)/2; if(th<a1)th+=Math.PI; return [tx,ty,nx,ny,th];
+            }
+        }
+    },
+    watch:{ 
+        current(){ 
+            this.redraw();
+            // Re-initialize tooltips after redraw
+            setTimeout(() => {
+                initCanvasTooltips();
+            }, 100);
+        } 
+    }
+});
+
+// Initialize tooltips for canvas elements
+function initCanvasTooltips() {
+    const canvas = document.getElementById('team-potential-canvas');
+    if (!canvas) return;
+    
+    // Get translated tooltip texts from Django
+    const tooltipTexts = {
+        integrators: "{% trans 'Grüne Punkte = Integratoren'|escapejs %}",
+        bubbleNumbers: "{% trans 'Zahlen in Blasen = Anzahl Safecircle des Spielers'|escapejs %}",
+        centerCount: "{% trans 'Zentrum = alle Safecircle im Team (je mehr, desto sicherer und vielfältiger wird die Zusammenarbeit)'|escapejs %}"
+    };
+    
+    // Remove existing tooltip if any
+    if (canvas._tippy) {
+        canvas._tippy.destroy();
+    }
+    
+    // Create a comprehensive tooltip for the canvas
+    // Since we can't add tooltips to individual canvas elements easily,
+    // we'll add a tooltip to the canvas itself that explains all elements
+    const combinedTooltip = tooltipTexts.integrators + '<br>' + tooltipTexts.bubbleNumbers + '<br>' + tooltipTexts.centerCount;
+    
+    try {
+        tippy(canvas, {
+            content: combinedTooltip,
+            placement: 'top',
+            theme: 'light',
+            delay: [200, 0],
+            allowHTML: true,
+            interactive: false,
+            trigger: 'mouseenter focus',
+        });
+    } catch (e) {
+        console.error('Error initializing canvas tooltip:', e);
+    }
+}
+
+// Initialize tooltips after page load
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(initCanvasTooltips, 1000);
+        setTimeout(initToleranceWindowTooltip, 1000);
+        setTimeout(initPrio1IntegratorTooltip, 1000);
+        setTimeout(initPrio2IntegratorTooltip, 1000);
+        setTimeout(initPrio3IntegratorTooltip, 1000);
+        setTimeout(initMinValueButtonTooltip, 1000);
+        setTimeout(initMaxValueButtonTooltip, 1000);
+    });
+} else {
+    setTimeout(initCanvasTooltips, 1000);
+    setTimeout(initToleranceWindowTooltip, 1000);
+    setTimeout(initPrio1IntegratorTooltip, 1000);
+    setTimeout(initPrio2IntegratorTooltip, 1000);
+    setTimeout(initPrio3IntegratorTooltip, 1000);
+    setTimeout(initMinValueButtonTooltip, 1000);
+    setTimeout(initMaxValueButtonTooltip, 1000);
+}
+
+// Initialize tooltip for tolerance window input
+function initToleranceWindowTooltip() {
+    const tooltipIcon = document.getElementById('tolerance-window-tooltip-icon');
+    if (!tooltipIcon) return;
+    
+    // Get translated tooltip text from Django
+    const tooltipText = "{% trans 'Das Toleranzfenster ist in der Arche der zentrale Mechanismus zur Visualisierung psychologischer Sicherheit. Es wird als grüner Bereich um den Team-Mittelwert herum definiert, dessen Breite ein festgelegtes Sicherheitsintervall (z.B. ±16 Punkte) vorgibt. Dieser Bereich markiert, welche Unterschiede in der gegenseitigen Wahrnehmung als sicher und akzeptabel gelten. Der erstrebenswerte Team-Sweetspot ist jenes Intervall, in dem die maximale Anzahl psychologisch sicherer Kreise entsteht – also stabile Verbindungen, in denen auch schwierige Themen offen besprochen werden können. Ein zu enges Fenster führt zu Stress und defensiven Reaktionen, da bereits kleine Abweichungen als Bedrohung wahrgenommen werden. Ein zu weites Toleranzfenster hingegen kann auf problematische Uniformität hindeuten: Es fehlt an notwendigen, herausfordernden Perspektiven, was zu Groupthink und erstarrenden Dynamiken führen kann. Das Ziel ist somit die Balance – ein Gruppen-Toleranzfenster, das Sicherheit gewährt, ohne Lernprozesse zu ersticken.'|escapejs %}";
+    
+    // Remove existing tooltip if any
+    if (tooltipIcon._tippy) {
+        tooltipIcon._tippy.destroy();
+    }
+    
+    try {
+        tippy(tooltipIcon, {
+            content: tooltipText,
+            placement: 'top',
+            theme: 'light',
+            delay: [200, 0],
+            allowHTML: false,
+            interactive: false,
+            trigger: 'mouseenter focus',
+            maxWidth: 400,
+        });
+    } catch (e) {
+        console.error('Error initializing tolerance window tooltip:', e);
+    }
+}
+
+// Initialize tooltip for PRIO 1 integrator explanation
+function initPrio1IntegratorTooltip() {
+    const tooltipIcon = document.getElementById('prio1-integrator-tooltip-icon');
+    if (!tooltipIcon) return;
+    
+    // Get translated tooltip text from Django
+    const tooltipText = "{% trans 'Lasst diese Integratoren Babysteps vorschlagen, die für gleichberechtigte Redeanteile sorgen, euren Sicherheitsankern gerecht werden und Triggersituationen entspannen können.'|escapejs %}";
+    
+    // Remove existing tooltip if any
+    if (tooltipIcon._tippy) {
+        tooltipIcon._tippy.destroy();
+    }
+    
+    try {
+        // Apply tooltip to the entire span (including "Wie weiter?" text)
+        tippy(tooltipIcon, {
+            content: tooltipText,
+            placement: 'top',
+            theme: 'light',
+            delay: [200, 0],
+            allowHTML: false,
+            interactive: false,
+            trigger: 'mouseenter focus',
+            maxWidth: 350,
+        });
+    } catch (e) {
+        console.error('Error initializing PRIO 1 integrator tooltip:', e);
+    }
+}
+
+// Initialize tooltip for PRIO 2 integrator explanation
+function initPrio2IntegratorTooltip() {
+    const tooltipIcon = document.getElementById('prio2-integrator-tooltip-icon');
+    if (!tooltipIcon) return;
+    
+    // Get translated tooltip text from Django
+    const tooltipText = "{% trans 'Lasst die Personen im ersten sicheren Kreis Vorschläge machen, wie eine Integration, sofern gewünscht, noch besser gelingen kann.'|escapejs %}";
+    
+    // Remove existing tooltip if any
+    if (tooltipIcon._tippy) {
+        tooltipIcon._tippy.destroy();
+    }
+    
+    try {
+        // Apply tooltip to the entire span (including "Wie weiter?" text)
+        tippy(tooltipIcon, {
+            content: tooltipText,
+            placement: 'top',
+            theme: 'light',
+            delay: [200, 0],
+            allowHTML: false,
+            interactive: false,
+            trigger: 'mouseenter focus',
+            maxWidth: 350,
+        });
+    } catch (e) {
+        console.error('Error initializing PRIO 2 integrator tooltip:', e);
+    }
+}
+
+// Initialize tooltip for PRIO 3 integrator explanation
+function initPrio3IntegratorTooltip() {
+    const tooltipIcon = document.getElementById('prio3-integrator-tooltip-icon');
+    if (!tooltipIcon) return;
+    
+    // Get translated tooltip text from Django
+    const tooltipText = "{% trans 'Welchen Einsatz kann die Führungskraft leisten, um das Team vom Ist-Wert zur optimalen Konstellation aus Prio 1 zu entwickeln?'|escapejs %}";
+    
+    // Remove existing tooltip if any
+    if (tooltipIcon._tippy) {
+        tooltipIcon._tippy.destroy();
+    }
+    
+    try {
+        // Apply tooltip to the entire span (including "Wie weiter?" text)
+        tippy(tooltipIcon, {
+            content: tooltipText,
+            placement: 'top',
+            theme: 'light',
+            delay: [200, 0],
+            allowHTML: false,
+            interactive: false,
+            trigger: 'mouseenter focus',
+            maxWidth: 350,
+        });
+    } catch (e) {
+        console.error('Error initializing PRIO 3 integrator tooltip:', e);
+    }
+}
+
+// Initialize tooltip for min value button
+function initMinValueButtonTooltip() {
+    const button = document.getElementById('min-value-button');
+    if (!button) return;
+    
+    // Get translated tooltip text from Django
+    const tooltipText = "{% trans 'Eine Lesehilfe: je kleiner der Zahlenwert, desto mehr Stress und negative Trigger zeigen sich, weil sich die Toleranzfenster der Teammitglieder schliessen. Im ersten sicheren Kreise funktioniert die Zusammenarbeit auch bei sehr grossem Stress noch ohne Drama.'|escapejs %}";
+    
+    // Remove existing tooltip if any
+    if (button._tippy) {
+        button._tippy.destroy();
+    }
+    
+    try {
+        tippy(button, {
+            content: tooltipText,
+            placement: 'top',
+            theme: 'light',
+            delay: [200, 0],
+            allowHTML: false,
+            interactive: false,
+            trigger: 'mouseenter focus',
+            maxWidth: 400,
+        });
+    } catch (e) {
+        console.error('Error initializing min value button tooltip:', e);
+    }
+}
+
+// Initialize tooltip for max value button
+function initMaxValueButtonTooltip() {
+    const button = document.getElementById('max-value-button');
+    if (!button) return;
+    
+    // Get translated tooltip text from Django - combine the text from the section
+    // The value will be inserted dynamically when the tooltip is shown
+    const tooltipTextPart1 = "{% trans 'Aktuell seid ihr beim Toleranzfenster von '|escapejs %}";
+    const tooltipTextPart2 = "{% trans ' alle in EINEM sicheren Kreis.'|escapejs %}";
+    const tooltipTextPart3 = "{% trans 'Wenn Einzelne auf undifferenzierte Einigkeit drängen, zeigt sich das an einer Toleranzfenster-Grösse von über 35, bei dem die Teamdynamik schon sektenartige Züge tragen kann. Ein weiterer Indikator für ein ungesundes Mass an erwarteter Konformität zeigt sich bei Werten unter 25, die auf eine Gefahr von Groupthink deutet.'|escapejs %}";
+    
+    // Remove existing tooltip if any
+    if (button._tippy) {
+        button._tippy.destroy();
+    }
+    
+    try {
+        // Use a function to get dynamic content
+        tippy(button, {
+            content: function() {
+                // Get the Vue instance to access getValue2()
+                const vueApp = window.app1; // Use the global app1 instance
+                const maxValue = vueApp ? vueApp.getValue2() : '';
+                return tooltipTextPart1 + maxValue + ' ' + tooltipTextPart2 + '\n\n' + tooltipTextPart3;
+            },
+            placement: 'top',
+            theme: 'light',
+            delay: [200, 0],
+            allowHTML: false,
+            interactive: false,
+            trigger: 'mouseenter focus',
+            maxWidth: 400,
+        });
+    } catch (e) {
+        console.error('Error initializing max value button tooltip:', e);
+    }
+}
+
+
+    let data = {{ all_result|safe }};
+    let safezoneData = () => {
+        let arr = [];
+        for(let item of data) {
+            arr.push(item.statusSide);
+        }
+        return arr
+    }
+
+    const {log} = console;
+
+    const app = new AppGraph({
+        container: ".custom-graph-wrapper",
+        range: [1, 99],
+        labelRange: ['Low', 'High'],
+        statistic: true,
+        mobile: 1200,
+        data: data,
+        safezoneData: safezoneData(),
+        {% comment %} [
+            {
+               statusSide: 10
+            },
+            {
+               statusSide: 20
+            },
+            {
+               statusSide: 45
+            },
+            {
+               statusSide: 49
+            },
+            {
+                name: 'Vasilisa Kochetkova',
+                avatar: '/static/images/avatars/boar.svg',
+               statusSide: 49
+            },
+            {
+               statusSide: 49
+            },
+            {
+               statusSide: 49
+            },
+            {
+               statusSide: 49
+            },
+            {
+               statusSide: 60
+            },
+            {
+               statusSide: 70
+            },
+            {
+               statusSide: 99
+            },
+        ] {% endcomment %}
+    });
+    console.log({{ circles|safe }});
+
+    console.log({{ players|safe }});
+    console.log({{ all_result|safe }});
+    {% comment %} var css_change = function(t,s){
+        s = document.createElement('style');
+        s.innerText = t;
+        document.body.appendChild(s);
+    };
+
+    var median = {{ median }};
+    var low = median - 16;
+    var high = median + 16;
+    if (low < 0){
+        low = 0;
+    }
+    if (high > 100){
+        high = 100;
+    }
+    var blue_range = high - low;
+    console.log('median',median,low,high);
+    css_change(`.statistic .custom-graph__items:before{left:${low}%;width:min(${blue_range}%);}`); {% endcomment %}
+
+
+    //document.getElementById('button').addEventListener('click', function (e) {
+    //    e.preventDefault();
+    //    log(app.getData())
+    //});
+
+</script>
+
+</body>
+</html>

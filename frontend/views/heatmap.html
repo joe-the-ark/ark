@@ -1,0 +1,423 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="icon" href="/static/images/favicon.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
+    <meta name="theme-color" content="#51ceec"/>
+    <meta name="description" content="ARK"/>
+    <title>Team-HEATMAP</title>
+    <link rel="stylesheet" href="/static/css/app.css">
+    <link rel="stylesheet" href="/static/css/heatmap.css">
+    <style>
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+
+            body {
+                margin: 0;
+                -webkit-print-color-adjust: exact; /* Chrome, Safari */
+                color-adjust: exact; /* Firefox */
+            }
+
+            .header-main__progress, .center, .container {
+                page-break-inside: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+  {% get_current_language as LANGUAGE_CODE %}
+  <div class="app">
+    <div class="app__head">
+        <header class="header-main container">
+            <div class="header-main__title">
+                <icon class="icon" onClick="window.open('https://info.arks.ch/');" style="cursor: pointer;">
+                <span class="icon-logo"></span>
+                <span>ARKS</span>
+                <span id="arks-logo-tooltip-icon" class="tooltip-icon" style="display: none;">{% trans "Info zu safecircles.ch" %}</span>
+            </div>
+            <div class="header-main__user">
+                <div class="user">
+                    <div class="user__subtitle">
+                        {{game.name}}
+                    </div>
+                    <img src="{{user.avatar}}" alt="boar">
+                    <div class="user__title">
+                        {{user.name}}
+                    </div>
+
+                </div>
+            </div>
+            <div class="header-main__progress">
+                <div class="progress">
+                  <p class="rotate-hint rotate-hint-white">
+                      {% trans "Bitte dreh dein Gerät um 90° für eine bessere Lesbarkeit." %}
+                  </p>
+                </div>
+                <button class="button" onclick="window.print()" aria-label="{% trans 'Als PDF speichern' %}" title="{% trans 'Als PDF speichern' %}">{% trans "Als PDF speichern" %}</button> 
+            </div>
+        </header>
+    </div>
+    <div class="app__body" id="app-1">
+    
+    
+    <div class="container">
+  
+          <h1 class="heatmap-heading"><br>{% trans "Die Heatmap zeigt eine Zusammenfassung aller Spannungen." %}<br><br></h1>
+          <p class="heatmap-intro"><br>{% trans "In eurem Team beträgt der durchschnittliche Spannungsfreiheitswert" %} <span class="tension-average-value" data-tippy-content="{% trans "Team-Spannungsfreiheit. Werte über 80 = entspannt, über 60 = bearbeitbar." %}">[[tension_average]]</span>.<br> {% trans "Beginnt eure Auswertung mit den farbigen Feldern im Inneren der Matrix, deren rechte Werte größer als 16 sind..." %}<br><br></p>
+	</div>
+        <div class="container">
+
+
+        <div class="heatmap-wrapper">
+        <div class="heatmap">
+
+          <div class="main-column left">
+            <div class="teamtension teamtension-large" data-tippy-content="{% trans "Team-Spannungsfreiheit. Werte über 80 = entspannt, über 60 = bearbeitbar." %}"><span>[[tension_average]]</span></div>
+
+              <div class="heat_value property_value" v-for="value in scale_value_list" data-tippy-content="{% trans "Beitrag des Sicherheitsankers zur Team-Sicherheit." %}">[[ value ]]</div>
+              <div class="corner"></div>
+              <div class="corner corner-stress" data-tippy-content="{% trans "Niedrige Werte = hoher Stress, enges Toleranzfenster." %}">{% trans "Stressfrei" %}</div>
+
+          </div>
+
+
+          <div class="main-column player" v-for="user in main_map">
+            <div class="heat_value over_player over-player-cyan" data-tippy-content="{% trans "Beitrag des Spielers zur Team-Sicherheit." %}">[[ user[0] ]]</div>
+            <div v-for="value in user[3]" v-bind:class="{ 'heat_value one': value[1]==='yellow', 'heat_value two': value[1]==='black', 'heat_value three': value[1]==='None', 'heat_value four': value[1]==='red' }" data-tippy-content="{% trans "Fremdwahrnehmung (in Klammern) und Spannung (Selbst- minus Fremdwahrnehmung). Werte über 16 = mögliche Spannungen." %}" >([[ keepTwoDecimal(value[2])]])&nbsp;&nbsp;[[ (value[0] >= 0 ? '+' : '') + keepTwoDecimal(value[0]) ]]</div>
+
+            <div class="heat_value over_player">[[ user[1] ]]</div>
+            <div class="heat_value over_player over-player-stress" data-tippy-content="{% trans "Niedrige Werte = hoher Stress, enges Toleranzfenster." %}">[[ stress(user[1]) ]]</div>
+            <div class="heat_player">
+              <img :src="user[2]" :alt="user[1]">
+            </div>
+            <div class="heat_value over_player" data-tippy-content="{% trans "Summe aller Spannungswerte. Positives Vorzeichen = mögliche Überschätzung des eigenen Beitrags." %}">[[ user[4] ]]</div>
+          </div>
+
+          <div class="main-column prop">
+            <div class="corner corner-cyan" data-tippy-content="{% trans "Mehr Spannungsfreiheit = mehr psychologische Sicherheit." %}">{% trans "Spannungsfrei" %}</div>
+            <div class="property" v-for="scale in scale_list_pro" data-tippy-content="{% trans "Teammitglieder haben unterschiedliche Sicherheitsanker." %}">
+              <p class="property_one">[[ scale[0] ]]</p>
+              <p class="property_two">[[ scale[1] ]]</p>
+            </div>
+            <div class="corner corner-white" data-tippy-content="{% trans "Teammitglieder haben unterschiedliche Sicherheitsanker." %}">{% trans "SICHERHEITSANKER" %}</div>
+          </div>
+
+          <div class="main-column right">
+            <div class="corner" data-tippy-content="{% trans "Sichere Basis für Zusammenarbeit ohne defensive Reaktionen." %}">Safebase</div>
+            
+              <div class="heat_value property_value property-value-safebase" v-for="value in scale_value_list" data-tippy-content="{% trans "Beitrag des Sicherheitsankers zur Team-Sicherheit." %}">([[ value -16]]&nbsp;. .&nbsp;[[ value +16]])</div>
+            
+            <div class="corner" data-tippy-content="{% trans "Sichere Basis für Zusammenarbeit ohne defensive Reaktionen." %}">Safebase</div>
+          </div>
+        </div>
+        </div>
+    </div>
+  </div>
+
+  <script src="/static/vue.js"></script>
+  <script src="/static/axios.min.js"></script>
+  <script src="https://unpkg.com/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.min.js"></script>
+  <script>
+  var app_ = new Vue({
+    delimiters: ['[[', ']]'],
+    el: '#app-1',
+    data:{
+      row0: {{ row0|safe }},
+      main_map: {{ main_map|safe }},
+      scale_list: {{ scale_list|safe }},
+      scale_value_list: {{ scale_value_list|safe }},
+      beef_table: {{ beef_table|safe }},
+      stress_table: {{ stress|safe }},
+      lang_code: '{{LANGUAGE_CODE}}',
+      
+      current_sort_column: 'tension',
+      user_to_group: '',
+      
+      //debug: '{{debug|safe}}',
+      //debug2: '{{debug2|safe}}',
+      //debug3: '{{debug3|safe}}'
+    },
+    computed:{
+      tension_average: function() {
+        var sum = 0;
+        var length = this.$data.main_map.length;
+        for (var i=0; i < length; i++) {
+          var row = this.$data.main_map[i];
+          sum += row[0];
+        }
+        var avg = sum / length;
+        return Math.round(avg);
+      },
+      scale_list_pro:function(){
+        var result = []
+        this.scale_list.forEach((item)=>{
+          result.push(
+            [item[0][this.lang_code], item[1][this.lang_code]]
+          )
+        })
+        return result
+      },
+      sorted_beef_table:function() {
+      	var sorted = [];
+      	var userToGroup = this.$data.user_to_group;
+      	for (var i=0; i < this.$data.beef_table.length; i++) {
+      		
+      		var row = this.$data.beef_table[i];
+      		
+      		if (userToGroup) {
+      			if (row['user1'].name == userToGroup) {
+      				sorted.push(row);
+      			} else if (row['user2'].name == userToGroup) {
+      				finalRow = { 'user1' : row['user2'], 'tension' : row['tension'], 'user2' : row['user1'] }
+		      		sorted.push(finalRow);
+      			} else {
+      				sorted.push(row);
+      			}
+      		} else {
+	      		sorted.push(row);
+      		}
+      	}
+
+      	sorted.sort(function(a, b) {
+      		var current_sort_column = this.$data.current_sort_column;
+
+      		var attriName = 'tension';
+      		
+      		var valueA = a[attriName];
+      		var valueB = b[attriName];
+      		
+      		var result = 0;
+      		if (valueA > valueB) {
+      			result = 1;
+      		} else if (valueA < valueB) {
+      			result = -1;
+      		} 
+      		return result;
+      	}.bind(this))
+
+      	return sorted;
+      }
+    },
+    methods:{
+      stress(username) {
+        return this.stress_table[username];
+      },
+      keepTwoDecimal(num) {  
+        var result = parseFloat(num);  
+        if (isNaN(result)) {  
+          alert('error, please check！');  
+            return false;  
+          }  
+          result = Math.round(num * 100) / 100;  
+          return result;  
+       },
+       setUserToGroup(user) {
+       	this.$data.user_to_group = user.name;
+       },
+       clearUserToGroup() {
+       	this.$data.user_to_group = '';
+       }
+    }
+  })
+  let playersCount = {{user_number}};; 
+  let heatmapEl = document.querySelector('.heatmap');
+  // Calculate column width based on available space and number of players
+  // For desktop: allow columns to grow flexibly, minimum 80px, preferred 120px, maximum 150px
+  // For mobile: use smaller fixed sizes
+  let isMobile = window.innerWidth <= 768;
+  let leftColWidth = isMobile ? 'minmax(60px, 80px)' : 'minmax(80px, 120px)';
+  let playerColWidth = isMobile ? 'minmax(60px, 80px)' : 'minmax(80px, 150px)';
+  let propColWidth = isMobile ? '140px' : '180px';
+  let rightColWidth = isMobile ? 'minmax(60px, 80px)' : 'minmax(80px, 120px)';
+  
+  heatmapEl.style.gridTemplateColumns = `[lft] ${leftColWidth} repeat(${playersCount}, ${playerColWidth}) [prop] ${propColWidth} [rght] ${rightColWidth} `;
+  
+  // Calculate number of matrix rows (from first player's data)
+  let matrixRows = 0;
+  if (app_.$data.main_map && app_.$data.main_map.length > 0 && app_.$data.main_map[0][3]) {
+    matrixRows = app_.$data.main_map[0][3].length;
+  }
+  // Total rows: 1 (top value) + matrixRows + 1 (name) + 1 (stress) + 1 (avatar) + 1 (tension) = 4 + matrixRows
+  let totalRows = 4 + matrixRows;
+  
+  // Set grid-template-rows for all player columns
+  document.querySelectorAll('.main-column.player').forEach(function(col) {
+    col.style.gridTemplateRows = `repeat(${totalRows}, 50px)`;
+  });
+  
+  // Update on window resize
+  window.addEventListener('resize', function() {
+    let isMobileNow = window.innerWidth <= 768;
+    if (isMobileNow !== isMobile) {
+      isMobile = isMobileNow;
+      leftColWidth = isMobile ? 'minmax(60px, 80px)' : 'minmax(80px, 120px)';
+      playerColWidth = isMobile ? 'minmax(60px, 80px)' : 'minmax(80px, 150px)';
+      propColWidth = isMobile ? '140px' : '180px';
+      rightColWidth = isMobile ? 'minmax(60px, 80px)' : 'minmax(80px, 120px)';
+      heatmapEl.style.gridTemplateColumns = `[lft] ${leftColWidth} repeat(${playersCount}, ${playerColWidth}) [prop] ${propColWidth} [rght] ${rightColWidth} `;
+    }
+  });
+
+  </script>
+
+  <script>
+    // Initialize all tooltips using data-tippy-content attribute
+    tippy('[data-tippy-content]', {
+      placement: 'top',
+      arrow: true,
+      animation: 'fade'
+    });
+    
+    // ARKS Logo Tooltip
+    function initARKSLogoTooltip() {
+      const arksLogoContainer = document.querySelector('.header-main__title icon');
+      const arksLogoTooltipIcon = document.getElementById('arks-logo-tooltip-icon');
+      
+      if (arksLogoContainer && arksLogoTooltipIcon) {
+        arksLogoContainer.addEventListener('mouseenter', function() {
+          arksLogoTooltipIcon.style.display = 'inline-flex';
+        });
+        
+        arksLogoContainer.addEventListener('mouseleave', function() {
+          arksLogoTooltipIcon.style.display = 'none';
+        });
+        
+        tippy(arksLogoTooltipIcon, {
+          placement: 'bottom',
+          arrow: true,
+          animation: 'fade'
+        });
+      }
+    }
+    
+    // Initialize ARKS logo tooltip when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initARKSLogoTooltip);
+    } else {
+      initARKSLogoTooltip();
+    }
+  </script>
+
+
+         <div class="container">
+          <div class="heatmap-info-box">
+
+          <p class="heatmap-info-text">{% trans "Der Farbcode im Innern der Heatmap gilt unverändert." %}<br><br></p>
+
+                        <div class="farewell-button-wrapper">
+                            <a href="/farewell/">
+                                <button class="button button-primary" type="button" aria-label="{% trans 'Zum Abschluss' %}">
+                                    <span class="button-text">{% trans "Zum Abschluss." %}</span>
+                                    <span class="button-arrow">→</span>
+                                </button>
+                            </a>
+                        </div>
+
+                        <div class="google-slides-container-wrapper" style="position: relative;">
+                            <button class="google-slides-fullscreen-button" id="google-slides-fullscreen-button" aria-label="{% trans 'Vollbild anzeigen' %}" title="{% trans 'Vollbild anzeigen' %}" style="position: absolute; top: 15px; right: 15px; z-index: 10; pointer-events: auto; background-color: #52CEEC; color: white; border: none; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; font-size: 20px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">
+                                <span class="fullscreen-icon" style="font-size: 18px; line-height: 1;">⛶</span>
+                            </button>
+                            <div class="google-slides-container" id="google-slides-container">
+                                <iframe src="{% trans 'https://docs.google.com/presentation/d/1N-mOfePoj33-14mRFWnxuee-ODTfOBAUky6Zop1nTIk/embed?start=true&loop=false&delayms=8000&rm=minimal' %}" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" title="{% trans 'Google Slides Präsentation' %}"></iframe>
+                            </div>
+                        </div>
+                        
+
+                        </div>
+
+        </div>
+
+                        <p class="copyright-text"><br><br>
+                            <div class="copyright-footer">
+                                <a href="https://github.com/joe-the-ark/ark" target="_blank" rel="noopener noreferrer">{% trans "ARKS is published under a GPLv3" %}</a> {% trans "license by" %} 
+                                <a href="https://www.linkedin.com/in/dr-joe-maier/" target="_blank" rel="noopener noreferrer">{% trans "Dr. Joe Maier" %}</a>.
+                            </div>
+                        </p>
+
+    <script>
+    // Google Slides Fullscreen functionality
+    const fullscreenButton = document.getElementById('google-slides-fullscreen-button');
+    const slidesContainerWrapper = document.querySelector('.google-slides-container-wrapper');
+    
+    if (fullscreenButton && slidesContainerWrapper) {
+        fullscreenButton.addEventListener('click', function() {
+            if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.mozFullScreenElement && !document.msFullscreenElement) {
+                // Enter fullscreen
+                if (slidesContainerWrapper.requestFullscreen) {
+                    slidesContainerWrapper.requestFullscreen();
+                } else if (slidesContainerWrapper.webkitRequestFullscreen) {
+                    slidesContainerWrapper.webkitRequestFullscreen();
+                } else if (slidesContainerWrapper.mozRequestFullScreen) {
+                    slidesContainerWrapper.mozRequestFullScreen();
+                } else if (slidesContainerWrapper.msRequestFullscreen) {
+                    slidesContainerWrapper.msRequestFullscreen();
+                }
+                slidesContainerWrapper.classList.add('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild beenden'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild beenden'|escapejs %}");
+            } else {
+                // Exit fullscreen
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+        
+        // Listen for fullscreen changes
+        document.addEventListener('fullscreenchange', function() {
+            if (!document.fullscreenElement) {
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+        
+        document.addEventListener('webkitfullscreenchange', function() {
+            if (!document.webkitFullscreenElement) {
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+        
+        document.addEventListener('mozfullscreenchange', function() {
+            if (!document.mozFullScreenElement) {
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+        
+        document.addEventListener('MSFullscreenChange', function() {
+            if (!document.msFullscreenElement) {
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+    }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+@import './general/xnls';
+@import "general/variables";
+@import "components/rang";
+@import "components/fields-fill";
+
+.feedback {
+    display: flex;
+    flex-wrap: wrap;
+
+    h1 {
+        width: 100%;
+        margin-bottom: 40px;
+    }
+
+    .center {
+        width: 100%;
+    }
+
+    &__data {
+        width: 100%;
+        .xs(min, {
+            width: calc(50% + 100px);
+        });
+
+        > p {
+            max-width: 908px;
+        }
+    }
+
+    &__users {
+        .xs(min, {
+            width: calc(50% - 181px);
+            margin-left: auto;
+        });
+
+        p {
+            margin-bottom: 40px;
+        }
+    }
+
+}
+
+.max(1300px, {
+    .slider-button-prev, .slider-button-next {
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        background-color: @accent-2-color;
+        border-radius: 50%;
+        position: absolute;
+        top: 74px;
+        z-index: 2;
+        text-align: center;
+
+        &:before {
+            content: " ";
+            width: 10px;
+            height: 10px;
+            border-top: 2px solid @thin-color;
+            border-left: 2px solid @thin-color;
+            display: inline-block;
+            vertical-align: middle;
+        }
+    }
+
+    .slider-button-prev {
+        left: 0;
+        &:before {
+            transform: translateX(2px) rotate(-45deg);
+        }
+    }
+
+    .slider-button-next {
+        right: 0;
+        &:before {
+            transform: translateX(-2px) rotate(135deg);
+        }
+    }
+});
+

@@ -1,0 +1,166 @@
+/* Additional styles for spannungsfelder.html - moved from inline styles */
+
+/* Info boxes */
+.spannungsfelder .info-box {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.spannungsfelder .info-box h1 {
+    margin: 0 0 10px 0;
+}
+
+.spannungsfelder .info-box-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Graph counter */
+#graph-counter {
+    text-align: center;
+    margin: 0 0 15px 0;
+    color: #626262;
+    font-size: 14px;
+}
+
+/* Progress bar */
+.progress__bar > div {
+    width: 75%;
+    border-radius: 10px;
+}
+
+/* Rotate hint */
+.rotate-hint {
+    display: none;
+    background-color: #9FE2BF;
+    color: #626262;
+    border-radius: 10px;
+    padding: 0 10px;
+}
+
+.rotate-hint.white {
+    background-color: #FFFFFF;
+    color: #626262;
+}
+
+@media screen and (max-width: 1200px) {
+    .rotate-hint {
+        display: block !important;
+    }
+}
+
+/* Center button container */
+.center {
+    margin: 10px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Google Slides iframe */
+.google-slides-container iframe {
+    padding: 0 10px;
+}
+
+/* Tooltip icons within custom graph info items */
+.custom-graph-info__item .tooltip-icon {
+    width: 24px;
+    height: 24px;
+    margin-left: 6px;
+}
+
+/* Heading tooltip icon */
+.spannungsfelder-heading-tooltip {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Visual feedback for interactive elements */
+.rang__item-wrapper {
+    transition: all 0.3s ease;
+}
+
+.rang__item-wrapper:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.rang__item-wrapper:active {
+    transform: translateY(0);
+}
+
+/* Button improvements */
+.button {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.button:active {
+    transform: translateY(0);
+}
+
+.button:focus {
+    outline: 2px solid #52CEEC;
+    outline-offset: 2px;
+}
+
+/* Loading state */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+    position: relative;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid #52CEEC;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Accessibility improvements */
+.swiper-button-prev:focus,
+.swiper-button-next:focus,
+.rang__item-wrapper:focus {
+    outline: 2px solid #52CEEC;
+    outline-offset: 2px;
+}
+
+/* Mobile optimizations */
+@media screen and (max-width: 768px) {
+    .spannungsfelder .info-box {
+        padding: 8px;
+    }
+    
+    #graph-counter {
+        font-size: 12px;
+        margin: 0 0 10px 0;
+    }
+    
+    .center {
+        margin: 5px;
+    }
+}
+

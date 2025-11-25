@@ -1,0 +1,104 @@
+
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="icon" href="/static/images/favicon.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
+    <meta name="theme-color" content="#51ceec"/>
+    <meta name="description" content="ARK"/>
+    <title>Social Sensitivity Training</title>
+    <link rel="stylesheet" href="/static/css/app.css">
+    <link rel="stylesheet" href="/static/css/preview-2.css">
+</head>
+<body>
+<div class="app">
+    <div class="app__head">
+        <header class="header-main container">
+            <div class="header-main__title">
+                <icon classs="icon" onClick="window.open('https://info.arks.ch/');">
+                <span class="icon-logo"></span>
+                <span>ARKS</span>
+            </div>
+            <div class="header-main__user">
+                <div class="user">
+                    <div class="user__subtitle">
+                        {{game.name}}
+                    </div>
+                    <img src="{{user.avatar}}" alt="">
+                    <div class="user__title">
+                        {{user.name}}
+                    </div>
+                </div>
+            </div>
+            <div class="header-main__progress">
+                <div class="progress">
+                    <label>Social Sensitivity</label>
+                    <div class="progress__bar">
+                        <div style="width: 100%; border-radius: 10px;">100%</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+    <div class="app__body">
+        <div class="container">
+            <main class="screen preview-2">
+                <h1>
+                    {% trans "Trainiere deine soziale Sensibilität" %}
+                </h1>
+                <div class="preview__main">
+                    <div class="preview__data">
+                        <p>
+                            {% trans "Hilf mit die psychologische Sicherheit im Team zu verbessern:" %}
+                        </p>
+                        <ul>
+                            <li>
+                                {% trans "Lerne einzuschätzen, wie dein Beitrag zur Teamdynamik von den anderen Teammitgliedern wahrgenommen wird."%}
+                            </li>
+                            <li>
+                                {% trans "Erkunde den Unterschied zwischen Selbst- und Fremdbild. Und kläre eine wesentliche Quelle von Spannungen im Team." %}
+                            </li>
+                        </ul>
+                        <p>
+                        <a href="/mission-2-ubung-1/" class="button">
+                            {% trans "Weiter" %}
+                        </a>
+                        </p>
+                        <p>
+                            {% trans "Soziale Sensibilität ist eine der drei Dimensionen psychologischer Sicherheit. Soziale Sensibiltät bezeichnet den Willen und die Fähigkeit auf Augenhöhe wahrzunehmen, welches Bedürfnis beim Gegenüber Sicherheit stiftet und wo Triggerthemen liegen könnten." %}
+                        </p>
+                        <!-- <a href="/mission-2-ubung-1/" class="button">
+                            Weiterspielen
+                        </a> -->
+                    </div>
+                </div>
+
+                        <div class="google-slides-container">
+                            <iframe src="https://docs.google.com/presentation/d/12Yt9apd_iDwIfYYv-1JB_hab9BUoaZbJfn5iSVe2tHM/embed?start=true&loop=false&delayms=8000&rm=minimal" frameborder="0" width="850" height="400" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                
+                            <style>
+                            .google-slides-container{
+                            position: relative;
+                            width: 100%;
+                            padding-top: 56.25%;
+                            overflow: hidden;
+                            }
+                            .google-slides-container iframe{
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 70%;
+                            height: 70%;
+                            }
+                            </style>
+
+                        </div> 
+            </main>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,9 @@
+.arche {
+  text-align: center;
+}
+.arche .user {
+  display: inline-block;
+}
+.options__item {
+  cursor: pointer;
+}

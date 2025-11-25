@@ -1,0 +1,81 @@
+@import "../general/mixins";
+
+.team-average {
+    .flex.center();
+    max-width: 386px;
+    max-height: 228px;
+    border: 1px solid @between-color;
+    width: 100%;
+    height: 100%;
+
+    .sm({
+        max-width: 100%;
+    });
+
+    &__wrapper {
+
+        position: relative;
+        max-width: 261px;
+        border-right: 1px solid @alfa-color;
+        border-left: 1px solid @alfa-color;
+        height: 19px;
+        margin: 130px auto 50px;
+        width: 100%;
+
+        &:before {
+            content: ' ';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 8px;
+            width: 100%;
+            background: linear-gradient(89.69deg, #f53131 0%, #e1f131 52.91%, #3dff39 101.58%);
+        }
+
+    }
+    &__range {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+    }
+
+    &__circle {
+        .font(@alfa-color @h-font-small 72px, {
+            text-align: center;
+        });
+
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        box-sizing: border-box;
+        border: 4px solid #3781ee;
+        position: absolute;
+        bottom: calc(100% + 18px);
+        left: 100%;
+        transform: translateX(-50%);
+
+        &:before {
+            content: " ";
+            position: absolute;
+            top: calc(100% + 4px);
+            height: 26px;
+            border-right: 1px solid @alfa-color;
+            left: 50%;
+        }
+    }
+
+    &__down, &__up {
+        .font(@alfa-color @font-small 1);
+        position: absolute;
+        top: calc(100% + 4px);
+    }
+
+    &__down {
+        left: -6px;
+    }
+
+    &__up {
+        right: -6px;
+    }
+}

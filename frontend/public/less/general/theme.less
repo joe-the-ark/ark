@@ -1,0 +1,23 @@
+@import './variables';
+
+.defaultTheme() {
+    .theme({
+        .general(
+            @brand-color: @primary,
+            @accent-1-color: #51CEEC,
+            @accent-2-color: #3781EE
+        );
+        .backgrounds(
+            @bg-global-color: @thin-color;
+        );
+        .colors(
+            @thin-color: @white-lighter,
+            @meta-color: @white,
+            @extra-color: @white-darker,
+            @between-color: @gray,
+            @ultra-color: @black-lighter,
+            @alfa-color: @black,
+            @beta-color: @black-darker
+        )
+    });
+}

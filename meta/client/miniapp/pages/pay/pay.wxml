@@ -1,0 +1,10 @@
+<!--pages/pay/pay.wxml-->
+
+
+<view class="container">
+  <image class="logo" src="../logo.jpeg"></image>
+  <text>
+  正在支付 Paying
+  </text>
+</view>
+

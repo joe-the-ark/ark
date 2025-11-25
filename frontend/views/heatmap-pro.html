@@ -1,0 +1,231 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="icon" href="/static/images/favicon.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
+    <meta name="theme-color" content="#51ceec"/>
+    <meta name="description" content="ARK"/>
+    <title>Team-HEATMAP</title>
+    <link rel="stylesheet" href="/static/css/app.css">
+    <link rel="stylesheet" href="/static/css/heatmap.css">
+
+
+</head>
+<body>
+  <div class="app">
+    <div class="app__head">
+        <header class="header-main container">
+            <div class="header-main__title">
+                <span class="icon-logo"></span>
+                <span>ARKS</span>
+            </div>
+            <div class="header-main__user">
+                <div class="user">
+                    <div class="user__subtitle">
+                        {{game.name}}
+                    </div>
+                    <img src="{{user.avatar}}" alt="boar">
+                    <div class="user__title">
+                        {{user.name}}
+                    </div>
+
+                </div>
+            </div>
+            <div class="header-main__progress">
+                <div class="progress">
+                    <label>Mirror</label>
+                    <div class="progress__bar">
+                        <div style="width: 99%">99%</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+    <div class="app__body" id="app-1">
+        <div class="container">
+          <h1>Team Heatmap</h1>
+
+          <p>Die Heatmap bietet eine aggregierte Auswertung aller Spannungen im Team: xxx</p>
+            <ul>
+             
+              <li>
+                In der <b>Horizontalen sieht man links die Lage der Safe Zones</b> und rechts die Skalen mit den Kraftquellen und Energiefressern des Teams – je höher der Wert, desto grösser ist der Beitrag dieser Skala zu den Energiefressern im Team.<br> 
+              </li>
+              <li>
+              <b>Vertikal sieht man den Beitrag, den jeder Spieler zu den Energiefressern leistet</b>. Im Innern der Heatmap sieht man, wie gross die Abweichung jedes Spielers zwischen Selbst- und Fremdwahrnehmung ist. Bei negativen Vorzeichen schätzt der Spieler den Beitrag zur Teamdynamik eher zu positiv ein. Werte über 16 deuten auf Spannungen hin.
+              </li>>
+            </ul>
+
+        </div>
+        <div class="heatmap">
+
+          <div class="main-column left">
+            <div class="corner"></div>
+            <div class="corner"></div>
+            
+              <div class="heat_value property_value" v-for="value in scale_value_list">[[ value -16]]-[[ value +16]]</div>
+              {% comment %} <div class="heat_value property_value">200</div>
+              <div class="heat_value property_value">250</div>
+              <div class="heat_value property_value">300</div>
+              <div class="heat_value property_value">350</div> {% endcomment %}
+            
+            <div class="corner"></div>
+          </div>
+
+          <div class="main-column player" v-for="user in main_map">
+            <div class="heat_value over_player">[[ user[0] ]]</div>
+            <div class="heat_player">
+              <div class="name">[[ user[1] ]]</div>
+              <img :src="user[2]" alt="">
+            </div>
+            <div v-for="value in user[3]" v-bind:class="{ 'heat_value one': value[1]==='yellow', 'heat_value two': value[1]==='black', 'heat_value three': value[1]==='None', 'heat_value four': value[1]==='red' }">[[ keepTwoDecimal(value[0]) ]]</div>
+            {% comment %} <div class="heat_value one">[[ user[4] ]]</div>
+            <div class="heat_value two">[[ user[5] ]]</div>
+            <div class="heat_value one">[[ user[6] ]]</div>
+            <div class="heat_value three"></div> {% endcomment %}
+            <div class="heat_value average-by-player">[[ user[4] ]]</div>
+          </div>
+
+{% comment %} 
+          <div class="main-column player">
+            <div class="heat_value over_player">300</div>
+            <div class="heat_player">
+              <div class="name">Paula Fernandes</div>
+              <img src="/static/images/avatars/bear.svg" alt="">
+            </div>
+            <div class="heat_value four">103</div>
+            <div class="heat_value two">58</div>
+            <div class="heat_value one">95</div>
+            <div class="heat_value three">73</div>
+            <div class="heat_value one">50</div>
+            <div class="heat_value average-by-player">100</div>
+          </div>
+
+          <div class="main-column player">
+            <div class="heat_value over_player">250</div>
+            <div class="heat_player">
+              <div class="name">Paula Fernandes</div>
+              <img src="/static/images/avatars/bear.svg" alt="">
+            </div>
+            <div class="heat_value one">114</div>
+            <div class="heat_value three">113</div>
+            <div class="heat_value one">125</div>
+            <div class="heat_value four">37</div>
+            <div class="heat_value two">76</div>
+            <div class="heat_value average-by-player">99</div>
+          </div>
+
+          <div class="main-column player">
+            <div class="heat_value over_player">150</div>
+            <div class="heat_player">
+              <div class="name">Paula Fernandes</div>
+              <img src="/static/images/avatars/bear.svg" alt="">
+            </div>
+            <div class="heat_value four">90</div>
+            <div class="heat_value one">99</div>
+            <div class="heat_value three">78</div>
+            <div class="heat_value two">70</div>
+            <div class="heat_value one">67</div>
+            <div class="heat_value average-by-player">64</div>
+          </div>
+
+          <div class="main-column player">
+            <div class="heat_value over_player">100</div>
+            <div class="heat_player">
+              <div class="name">Paula Fernandes</div>
+              <img src="/static/images/avatars/bear.svg" alt="">
+            </div>
+            <div class="heat_value one">183</div>
+            <div class="heat_value two">149</div>
+            <div class="heat_value one">127</div>
+            <div class="heat_value four">68</div>
+            <div class="heat_value three">101</div>
+            <div class="heat_value average-by-player">65</div>
+          </div> {% endcomment %}
+
+
+
+          <div class="main-column prop">
+            <div class="corner"></div>
+            <div class="corner"></div>
+            <div class="property" v-for="scale in scale_list">
+              <p class="property_one">[[ scale[0] ]]</p>
+              <p class="property_two">[[ scale[1] ]]</p>
+            </div>
+            {% comment %} <div class="property">
+              <p class="property_one">Curative</p>
+              <p class="property_two">Narcissism</p>
+            </div>
+            <div class="property">
+              <p class="property_one">Ambition</p>
+              <p class="property_two">Enforcement</p>
+            </div>
+            <div class="property">
+              <p class="property_one">Victory</p>
+              <p class="property_two">Dominance</p>
+            </div>
+            <div class="property">
+              <p class="property_one">Pain</p>
+              <p class="property_two">Invisibility</p>
+            </div> {% endcomment %}
+            <div class="corner"></div>
+          </div>
+
+          <div class="main-column right">
+            <div class="corner"></div>
+            <div class="corner"></div>
+            
+              <div class="heat_value property_value" v-for="value in scale_value_list">[[ value ]]</div>
+              {% comment %} <div class="heat_value property_value">200</div>
+              <div class="heat_value property_value">250</div>
+              <div class="heat_value property_value">300</div>
+              <div class="heat_value property_value">350</div> {% endcomment %}
+            
+            <div class="corner"></div>
+          </div>
+
+
+        </div>
+    </div>
+  </div>
+
+  <script src="/static/vue.js"></script>
+  <script src="/static/axios.min.js"></script>
+  <script>
+  var app_ = new Vue({
+    delimiters: ['[[', ']]'],
+    el: '#app-1',
+    data:{
+      row0: {{ row0|safe }},
+      main_map: {{ main_map|safe }},
+      scale_list: {{ scale_list|safe }},
+      scale_value_list: {{ scale_value_list|safe }}
+    },
+    methods:{
+      keepTwoDecimal(num) {  
+        var result = parseFloat(num);  
+        if (isNaN(result)) {  
+          alert('error, please check！');  
+            return false;  
+          }  
+          result = Math.round(num * 100) / 100;  
+          return result;  
+       },
+    }
+  })
+  let playersCount = {{user_number}};; 
+  let heatmapEl = document.querySelector('.heatmap');
+  heatmapEl.style.gridTemplateColumns = `[lft] minmax(50px, 100px) repeat(${playersCount}, minmax(50px, 100px)) [prop] 150px [rght] minmax(50px, 100px) `
+
+  </script>
+
+  <div class="center">
+      <a href="/farewell/" class="button" id="button">
+                        Auf Wiedersehen sagen
+      </a>  
+  </div>  
+
+</body>
+</html>

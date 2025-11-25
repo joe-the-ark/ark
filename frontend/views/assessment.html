@@ -1,0 +1,1184 @@
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="icon" href="/static/images/favicon.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
+    <meta name="theme-color" content="#51ceec"/>
+    <meta name="description" content="ARK"/>
+    <title>Ark-INSIGHTS</title>
+    <link rel="stylesheet" href="/static/css/app.css">
+    <link rel="stylesheet" href="/static/css/app_graph.css">
+    <link rel="stylesheet" href="/static/css/assessment.css">
+    <link rel="stylesheet" href="/static/css/load.css">
+
+    <style>
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+
+            body {
+                margin: 0;
+                -webkit-print-color-adjust: exact; /* Chrome, Safari */
+                color-adjust: exact; /* Firefox */
+            }
+
+            .header-main__progress, .center, .container {
+                page-break-inside: auto;
+            }
+        }
+    </style>
+
+    <!-- <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"> -->
+
+</head>
+<body>
+  {% get_current_language as LANGUAGE_CODE %}
+<div class="app">
+    <div class="app__head">
+        <header class="header-main container">
+            <div class="header-main__title">
+                <icon classs="icon" onClick="window.open('https://info.arks.ch/');">
+                <span class="icon-logo"></span>
+                <span>ARKS</span>
+            </div>
+            <div class="header-main__user">
+                <div class="user">
+                    <div class="user__subtitle">
+                        {{game.name}}
+                    </div>
+                    <img src="{{user.avatar}}" alt="boar">
+                    <div class="user__title">
+                        {{user.name}}
+                    </div>
+
+                </div>
+            </div>
+            <div class="header-main__progress">
+                <div class="progress">
+                    <label>SOUVENIRS</label>
+                    <div class="progress__bar">
+                        <div style="width: 95%; border-radius: 10px;">95%</div>
+                    </div>
+                </div>
+            </div>
+                <button onclick="window.print()" title="Print or safe this window as PDF">Save as PDF</button> <!-- Print Button Added --> 
+             <div id="pdf" class="save">
+
+                <div class="icon-download"></div>
+                {% comment %}
+                <p>Save as PDF</p>
+                {% endcomment %}
+                <div class="windows8">
+                    <div class="wBall" id="wBall_1">
+                        <div class="wInnerBall"></div>
+                    </div>
+                    <div class="wBall" id="wBall_2">
+                        <div class="wInnerBall"></div>
+                    </div>
+                    <div class="wBall" id="wBall_3">
+                        <div class="wInnerBall"></div>
+                    </div>
+                    <div class="wBall" id="wBall_4">
+                        <div class="wInnerBall"></div>
+                    </div>
+                    <div class="wBall" id="wBall_5">
+                        <div class="wInnerBall"></div>
+                    </div>
+                </div>
+            </div>
+
+        </header>
+    </div>
+    <div class="app__body">
+        <div class="container">
+            <main class="screen assessment">
+                <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
+                <h1>
+                    {% trans "Wie sicher ist euer Gruppenklima?" %}
+                </h1>
+                <div class="custom-graph-info">
+                    <div class="custom-graph-info__item small" data-text="{% trans 'pS' %}">
+                        {{ psy_score }}
+                    </div>
+                    <div class="custom-graph-info__item base" data-text="{% trans 'Deine innere Sicherheit' %}">
+                        ?
+                    </div>
+                    <div class="custom-graph-info__item large" data-text="{% trans 'Gefühlte Team Performance' %}">
+                        {{ team_potential_median }}
+                    </div>
+                </div>
+                <h3 class="psycho-h3"><br><br>
+                    {% trans "Reality Check: Safe oder Unsafe Team – wo steht ihr wirklich?" %}
+                </h3>
+                <p class="psycho-p">
+                    {% trans "Hier siehst du den psychologische Sicherheitswert für dein Team auf einer Skala zwischen 0 (sehr unsicher) bis 99 (aussergewöhnlich sicher). Welches Verhalten trägt zur psychologischen Sicherheit bei?" %}
+                </p>
+                <div class="psychologischer__container" id="app-1">
+                    <div class="distry">
+                        <div class="distry__description" style="background-color: #9FE2BF; color: #626262;">
+                            {% trans "Schwierige Themen können wir meist gut zusammen anschauen." %}
+                        </div>
+                        <div class="distry__thumbnails">
+                            <div class="distry__user" v-for="person in row0">
+                                <img :src="[[ person.avatar ]]" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-average">
+                        <div class="team-average__wrapper">
+                            <div class="team-average__range" v-bind:style="{width: widthCalc}">
+                                <div class="team-average__circle">[[ score ]]</div>
+                            </div>
+                            <div class="team-average__down">100</div>
+                            <div class="team-average__up">0</div>
+                        </div>
+                    </div>
+                    <div class="distry">
+                        <div class="distry__description" style="background-color: #fa5252; color: white;">
+                            {% trans "Ich beobachte wie du gelegentlich Menschen im Team ausschliesst." %}
+                        </div>
+                        <div class="distry__thumbnails">
+                            <div class="distry__user" v-for="person in row1">
+                                <img :src="[[ person.avatar ]]" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="distry">
+                        <div class="distry__description" style="background-color: #FAE03C; color: #626262;">
+                            {% trans "Für mich bist du im Team nicht immer sichtbar." %}
+                        </div>
+                        <div class="distry__thumbnails">
+                            <div class="distry__user" v-for="person in row2">
+                                <img :src="[[ person.avatar ]]" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="distry">
+                        <div class="distry__description" style="background-color: #9FE2BF; color: #626262;">
+                            {% trans "Ich fühle wie meine Talente von dir gesehen und einbezogen werden." %}
+                        </div>
+                        <div class="distry__thumbnails">
+                            <div class="distry__user" v-for="person in row3">
+                                <img :src="[[ person.avatar ]]" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="distry">
+                        <div class="distry__description" style="background-color: #fa5252; color: white;">
+                            {% trans "Ich habe das Gefühl du reagierst auf Fehler mit Schuldzuweisungen an Einzelne im Team." %}
+                        </div>
+                        <div class="distry__thumbnails">
+                            <div class="distry__user" v-for="person in row4">
+                                <img :src="[[ person.avatar ]]" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="distry">
+                        <div class="distry__description" style="background-color: #FAE03C; color: #626262;">
+                            {% trans "Mir fällt es mitunter schwer dich um Hilfe zu bitten." %}
+                        </div>
+                        <div class="distry__thumbnails">
+                            <div class="distry__user" v-for="person in row5">
+                                <img :src="[[ person.avatar ]]" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="center">
+                        <p class="spanun-p" style="background-color: #52CEEC; color: #FFFFFF; border-radius: 10px; padding: 0 10px;">
+                            {% trans "In der Regel liegen die wahrgenommene Team-Performance und der psychologische Sicherheitswert eng beieinander. Der Schlüssel zur Angleichung, bzw. zur Verbesserung beider Werte liegt in einer Steigerung der inneren Sicherheit aller Teammitglieder." %}<br><br>
+                        </p>
+                        <p>
+                            <br><br>
+                        </p>
+                </div>
+
+                <h3>
+                    {% trans "Gefühlte Team-Performance-Einschätzung" %}
+                </h3>
+                <p>
+                    {% trans "Erinnerst du dich an deine Einschätzung der gefühlten Team-Performance? Diese Auswertung setzt sich aus den gleichberechtigten Wahrnehmungen aller Teammitglieder zusammen – gibt es Ausreißer?" %}
+                </p>
+                <div class="custom-graph-info">
+                    <div class="custom-graph-info__item small" data-text="{% trans 'Minimal' %}">
+                        {{ team_potential_minimal }}
+                    </div>
+                    <div class="custom-graph-info__item base" data-text="{% trans 'Durchschnitt' %}">
+                        {{ team_potential_median }}
+                    </div>
+                    <div class="custom-graph-info__item large" data-text="{% trans 'Maximal' %}">
+                        {{ team_potential_maximal }}
+                    </div>
+                </div>
+                <div class="custom-graph-wrapper user"></div>
+                <div class="fields-fill__wrapper"></div>
+
+                </div>
+
+                <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
+                <h1 class="feed-h3">
+                    {% trans "Hier ist Platz für dein Feedback." %}
+                </h1>
+
+                <div class="left">
+
+                <p class="bold feed-p-1">
+                    {% trans "WEITER SO: Besonders schätze ich deinen Beitrag zum gelingenden Zusammenspiel im Team, wenn WIR..." %}
+                </p>
+                {% for feedback in feedback1 %}
+                    <p class="feedback-1"style="font-size: 20px; background-color: #9FE2BF; color: #626262; border: 1px solid #ccc; border-radius: 10px; padding: 10px;">{{feedback}}</p>
+                {% endfor %}
+                <p>
+                    <br>
+                </p>
+                <p class="bold feed-p-2">
+                    {% trans "WUNSCH: Du könntest zu mehr psychologischen Sicherheit im Team beitragen, indem DU..." %}
+                </p>
+                {% for feedback in feedback2 %}
+                    <p class="feedback-2" style="font-size: 20px; background-color: #fa5252; color: white; border: 1px solid #ccc; border-radius: 10px; padding: 10px;">{{feedback}}</p>
+                {% endfor %}
+                <p>
+                    <br>
+                </p>
+                <p class="bold feed-p-3">
+                    {% trans "UNTERSTÜTZUNG: Ich werde dich unterstützen unser Team psychologisch sicherer zu machen, indem ICH..." %}
+                </p>
+                {% for feedback in feedback3 %}
+                    <p class="feedback-3" style="font-size: 20px; background-color: #FAE03C; color: #626262; border: 1px solid #ccc; border-radius: 10px; padding: 10px;">{{feedback}}</p>
+                {% endfor %}
+
+                </div>
+                </div>
+
+                <p>
+                    <br>
+                </p>
+
+                <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
+
+                <div id="rang-slider" class="swiper-container">
+                    <div class="swiper-wrapper">
+                    </div>
+                </div>
+                <h3 class="spanun-h3">
+                    {% trans "Was ist dein Beitrag zur inneren Sicherheit im Team?" %}<br>{% trans "Hier deine Interpretationshilfe:" %}<br>
+                </h3>
+                <ul class="spanun-ul">
+                    <li style="border: 3px solid #ffff; background-color: #9FE2BF; color: #626262; border-radius: 10px;">
+                        {% trans "Grün = Spannungsfreiheit" %}.<br>{% trans "Spannungs-Werte unter 16 = deuten auf Spannungsfreiheit mit dem Team hin" %}<br><br>
+                    </li>
+                    <li style="background-color: #ffff; color: #626262; border-radius: 10px;">
+                        {% trans "Positives Spannungs-Vorzeichen = hier schätzt du deinen Beitrag zur inneren Sicherheit im Team eher zu positiv ein" %}
+                    </li>
+                    <li style="background-color: #ffff; color: #626262; border-radius: 10px;">
+                        {% trans "Negatives Spannungs-Vorzeichen = hier schätzt du deinen Beitrag zur inneren Sicherheit im Team eher zu kritisch ein" %}<br><br>
+                    </li>                    
+                    <li style="background-color: #fa5252; color: white; border-radius: 10px;">
+                        {% trans "Rot = deine Selbstwahrnehmung liegt ausserhalb der Safe-Base" %}<br><br>
+                    </li>
+                    <li style="background-color: #FAE03C; color: #626262; border-radius: 10px;">
+                        {% trans "Gelb = die Wahrnehmung deines Beitrags zur inneren Sicherheit der anderen liegt außerhalb der Safe-Base" %}<br><br>
+                    </li>
+                    <li style="background-color: #3b4252; color: white; border-radius: 10px;">
+                        {% trans "Schwarz = die Selbst- und die Fremdwahrnehmung deines Beitrags zur inneren Sicherheit liegen ausserhalb der Safe-Base" %}<br><br>
+                    </li>
+                </ul>
+                <div id="graph-slider" class="swiper-container">
+                    <div class="swiper-wrapper">
+                    </div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-pagination"></div>              
+                </div>
+                </div>
+                <div class="center">
+                    <p class="spanun-p" style="background-color: #52CEEC; color: #FFFFFF; border-radius: 10px; padding: 0 10px;">
+                        {% trans "Unsere Hypothese: Ungeklärte Spannungen erzeugen Unsicherheit und gefährden Vertrauen. Eine tragfähige, sichere Beziehungsbasis macht Defensivreaktionen überflüssig (Fight, Flight, Freeze & Fawn) und lässt dich achtsam mit dir und anderen umgehen." %} {% trans "Welchen Beitrag leistest du zur psychologischen Sicherheit? Wie klärst du Unterschiede zwischen deiner Selbstwahrnehmung und der Fremdwahrnehmung durch das Team?" %}<br><br>
+                    </p>
+                    <p>
+                            <br>
+                    </p>
+                </div>
+                <div class="center">
+
+                        <p>
+                            <br>
+                            <br>
+                        </p>
+
+                        <p>
+                        <a href="/farewell/">
+                        <button class="button button-primary" type="button">
+                            <span class="button-text">{% trans "Auf Wiedersehen sagen" %}</span>
+                            <span class="button-arrow">→</span>
+                        </button>
+                        {% comment %}<a href="/heatmap/">
+                        <button class="button" type="button">
+                            {% trans "Zur Team Heatmap" %}
+                        </button>{% endcomment %}
+                        </p>
+
+                </div>
+            </main>
+        </div>
+    </div>
+</div>
+<script src="/static/jspdf.umd.min.js"></script>
+<script src="/static/dom-to-image.min.js"></script>
+<script src="/static/vue.js"></script>
+<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+<script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+<!-- <script src="/static/html2canvas.min.js"></script> -->
+<script src="/static/js/AppGraph.js"></script>
+<script src="/static/js/AppRange.js"></script>
+<script src="/static/js/AppFeedback.js"></script>
+<!-- <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script> -->
+<script src="/static/js/utils.js"></script>
+<script>
+    const instance = tippy(document.querySelector('.app__head #pdf [class*="icon"]'));
+    instance.setContent('Download your result page');
+    instance.setProps({trigger: 'manual',})
+
+    const isMobile = () => window.innerWidth <= 1200;
+    let jsonAll = {{ json_all|safe }};
+    var json_list = {{ span_json_list|safe }};
+
+    var lang_code = '{{LANGUAGE_CODE}}'
+
+    jsonAll.forEach((item)=>{
+        //if (!item['ubung1_power_i18n'][lang_code]){
+        //    item['ubung1_power_i18n'][lang_code] = item['ubung1_power_i18n']['en']
+        //}
+        //if (!item['ubung3_drainer_i18n'][lang_code]){
+        //    item['ubung3_drainer_i18n'][lang_code] = item['ubung3_drainer_i18n']['en']
+        //}
+        item['value'] = item['ubung1_power_i18n'][lang_code] + ' ' + item['ubung3_drainer_i18n'][lang_code]
+    })
+    json_list.forEach((item)=>{
+        //if (!item['ubung1_power_i18n'][lang_code]){
+        //    item['ubung1_power_i18n'][lang_code] = item['ubung1_power_i18n']['en']
+        //}
+        //if (!item['ubung3_drainer_i18n'][lang_code]){
+        //    item['ubung3_drainer_i18n'][lang_code] = item['ubung3_drainer_i18n']['en']
+        //}
+        item['value'] = item['ubung1_power_i18n'][lang_code] + ' ' + item['ubung3_drainer_i18n'][lang_code]
+    })
+
+    console.log('jsonAll', jsonAll)
+    console.log('json_list', json_list)
+
+    function deal_json(json_list, num){
+        var new_json_list = [];
+        var uu = 0;
+        while (uu < json_list.length){
+            if (uu == num){
+                new_json_list.push(json_list[uu]);
+            }else{
+                var temp = {statusSide:json_list[uu]['statusSide'] };
+                new_json_list.push(temp);
+            }
+            uu += 1;
+        }
+        return new_json_list;
+    }
+
+    //console.log(json_list);
+    //console.log(deal_json(json_list, 0));
+
+    function format_data(json_list){
+        var num = json_list.length;
+        var result = [];
+        var uu = 0;
+        while (uu < num){
+            var temp = {
+                range: [0, 100],
+                labelRange: ['Low', 'High'],
+                data: deal_json(json_list, uu)
+            };
+            result.push(temp);
+            uu += 1;
+        }
+        return result;
+    }
+    const data = format_data(json_list);
+    console.log(data);
+
+    let user = "{{ user.name }}";
+    const wrapper = document.querySelector('#graph-slider .swiper-wrapper');
+    let htmlWrappers = ``;
+
+    dataForGraph(jsonAll, user).forEach((item, i) => {
+        htmlWrappers += `<div class="swiper-slide slide-${i}"></div>
+                        <div class="custom-graph-info">
+                    <div class="custom-graph-info__item small" data-text={% trans "Andere" %}>
+                        
+                    </div>
+
+                    <div class="custom-graph-info__item base" data-text={% trans "Spannung" %}>    
+                    </div>
+
+                    <div class="custom-graph-info__item large" data-text={% trans "Ich" %}>
+                        
+                    </div>
+                </div>`;
+    });
+
+    wrapper.innerHTML = htmlWrappers;
+
+    let newapp = new AppRange({
+        container: '#rang-slider',
+        innerWrapper: isMobile() ? 'rang swiper-wrapper' : 'rang',
+        // data: data.map(({data}) => {
+        //     const dataSort = data.filter(el => el.name);
+        //     const {name, avatar, statusSide, value} = dataSort[0];
+        //     return {
+        //         name,
+        //         avatar,
+        //         statusSide,
+        //         value,
+        //     }
+        // }),
+        data:dataForRange(jsonAll, user),
+        callback(item, i) {
+            if (!isMobile()) {
+                const itemClickable = document.querySelectorAll('#graph-slider .swiper-pagination-bullet');
+                // itemClickable[i].click();
+                // item.classList.add('active');
+                // bottomValues = document.querySelector('.custom-graph-info').children;
+                // bottomValues[0].innerText = this.data[i].others;
+                // bottomValues[1].innerText = this.data[i].self;
+                // bottomValues[2].innerText = this.data[i].tension;
+            }
+        },
+        update(item) {
+            if (!isMobile()) {
+                item.classList.remove('active');
+            }
+        },
+        loadEnd() {
+            document.querySelectorAll('.rang__item').forEach((item) => {
+                item.classList.remove('active');
+            })
+            document.querySelector('#rang-slider .rang').classList.remove('swiper-wrapper');
+            document.querySelector('#rang-slider .rang-button-prev').style['visibility'] = 'hidden';
+            document.querySelector('#rang-slider .rang-button-next').style['visibility'] = 'hidden';
+            instance.show();
+            setTimeout(()=>{instance.hide()}, 5000);
+            $self = this;
+            // let contNum = i;
+            // if (isMobile()) {
+            //     let swipeMob = new Swiper(this.container, {
+            //         slidesPerView: 6,
+            //         spaceBetween: 0,
+            //         centeredSlides: true,
+            //         grabCursor: true,
+            //         loop: false,
+            //         breakpoints: {
+            //             768: {
+            //                 slidesPerView: 3,
+            //                 spaceBetween: 0,
+            //             },
+            //             480: {
+            //                 slidesPerView: 2,
+            //                 spaceBetween: 0,
+            //             },
+            //             320: {
+            //                 slidesPerView: 1,
+            //                 spaceBetween: 0,
+            //             },
+            //         },
+            //         navigation: {
+            //             nextEl: '.rang-button-next',
+            //             prevEl: '.rang-button-prev',
+            //         },
+            //         pagination: {
+            //             el: '.swiper-pagination',
+            //             type:"bullets",
+            //             clickable: true,
+            //         },
+            //         on: {
+            //             slideChange(a, b, c) {
+            //                 // const index = a.realIndex;
+            //                 // const itemClickable = document.querySelectorAll('#graph-slider .swiper-pagination-bullet');
+            //                 // itemClickable[index].click();
+            //                 // bottomValues = document.querySelector('.custom-graph-info').children;
+            //                 // // console.log($self.data);
+            //                 // bottomValues[0].innerText = $self.data[index].others;
+            //                 // bottomValues[1].innerText = $self.data[index].self;
+            //                 // bottomValues[2].innerText = $self.data[index].tension;
+            //             }
+            //         }
+            //     });
+            // }
+        }
+    });
+
+    // new AppRange({
+    //     container: '#rang-slider',
+    //     innerWrapper: isMobile() ? 'rang swiper-wrapper' : 'rang',
+    //     data: data.map(({data}) => {
+    //         const dataSort = data.filter(el => el.name);
+    //         const {name, avatar, statusSide} = dataSort[0];
+    //         return {
+    //             name,
+    //             avatar,
+    //             statusSide
+    //         }
+    //     }),
+    //     callback(item, i) {
+    //         if (!isMobile()) {
+    //             const itemClickable = document.querySelectorAll('#graph-slider .swiper-pagination-bullet');
+    //             itemClickable[i].click();
+    //             item.classList.add('active');
+    //         }
+    //     },
+    //     update(item) {
+    //         if (!isMobile()) {
+    //             item.classList.remove('active');
+    //         }
+    //     },
+    //     loadEnd() {
+    //         if (isMobile()) {
+    //             new Swiper(this.container, {
+    //                 slidesPerView: 6,
+    //                 spaceBetween: 0,
+    //                 centeredSlides: true,
+    //                 grabCursor: true,
+    //                 loop: true,
+    //                 breakpoints: {
+    //                     768: {
+    //                         slidesPerView: 3,
+    //                         spaceBetween: 0,
+    //                     },
+    //                     480: {
+    //                         slidesPerView: 2,
+    //                         spaceBetween: 0,
+    //                     },
+    //                     320: {
+    //                         slidesPerView: 1,
+    //                         spaceBetween: 0,
+    //                     },
+    //                 },
+    //                 navigation: {
+    //                     nextEl: '.rang-button-next',
+    //                     prevEl: '.rang-button-prev',
+    //                 },
+    //                 on: {
+    //                     slideChange(a, b, c) {
+    //                         const index = a.realIndex;
+    //                         const itemClickable = document.querySelectorAll('#graph-slider .swiper-pagination-bullet');
+    //                         itemClickable[index].click();
+    //                     }
+    //                 }
+    //             });
+    //         }
+    //     }
+    // });
+
+
+    dataForGraph(jsonAll, user, modify=false).forEach((item, i) => {
+        new AppGraph({
+            container: `.swiper-slide.slide-${i}`,
+            range: item.range,
+            labelRange: item.labelRange,
+            mobile: 1200,
+            statistic: true,
+            data: item.data,
+            safezoneData: safezoneData(jsonAll,item.data[0].value),
+            graphNumber: i,
+        });
+    });
+
+    // new Swiper('#graph-slider', {
+    //     grabCursor: true,
+    //     navigation: {
+    //         nextEl: '.swiper-button-next',
+    //         prevEl: '.swiper-button-prev',
+    //     },
+    //     pagination: {
+    //         el: '.swiper-pagination',
+    //         clickable: true
+    //     }
+    // });
+
+    let dataTeam = {{ team_potential_all_result|safe }};
+    let safezoneDataTeam = () => {
+        let arr = [];
+        for(let item of dataTeam) {
+            arr.push(item.statusSide);
+        }
+        return arr
+    }
+    new AppGraph({
+        container: '.custom-graph-wrapper.user',
+        range: [0, 100],
+        labelRange: ['High', 'Low'],
+        mobile: 1200,
+        statistic: true,
+        data: dataTeam,
+        safezoneData: safezoneDataTeam(),
+
+    });
+    document.querySelector(".custom-graph.statistic").style['margin'] = '0 70px';
+
+
+    cardsPainting(dataForRange(jsonAll, user), document.querySelectorAll(".rang__item"))
+    function circlesValue(dataForRange, selectors) {
+        selectors.forEach((item,i) => {
+            item.children[0].innerText = dataForRange[i].others;
+                        item.children[1].innerText = dataForRange[i].tension;
+            item.children[2].innerText = dataForRange[i].self;
+        })
+    }
+    circlesValue(dataForRange(jsonAll, user), document.querySelectorAll('.swiper-wrapper .custom-graph-info'))
+
+
+
+
+</script>
+{% comment %} <script src="/static/js/update_fix.js"></script> {% endcomment %}
+<script src="/static/jspdf_font/vue.js"></script>
+<script src="/static/jspdf_font/jspdf.min.js" charset="utf-8"></script>
+<script src="/static/jspdf_font/jspdf.customfonts.min.js"></script>
+<script src="/static/jspdf_font/default_vfs.js"></script>
+<script>
+
+    var app = new Vue({
+        delimiters: ['[[', ']]'],
+        el: '#app-1',
+        data() {
+            return {
+                message: 'Hello Vue!',
+                row0: {{ row0|safe }},
+                row1: {{ row1|safe }},
+                row2: {{ row2|safe }},
+                row3: {{ row3|safe }},
+                row4: {{ row4|safe }},
+                row5: {{ row5|safe }},
+                score: '{{ psy_score }}',
+            }
+        },
+        methods: {
+            handleSelect(key, keyPath) {
+                console.log(key, keyPath);
+            },
+        },
+        computed: {
+            widthCalc: function () {
+                if (this.score.length > 1) {
+                    return (100 - Number(this.score.replace(',', ".")) / 5 * 5) + "%"
+                }
+                else {
+                    return (100 - Number(this.score) / 5 * 5) + '%'
+                }
+            }
+        }
+    })
+
+    let doc = new jspdf.jsPDF({
+        orientation: 'p',
+        unit: 'px',
+        format: 'a4',
+        putOnlyUsedFonts:true,
+    });
+
+    doc.addFont('NotoSansCJKtc-Regular.ttf', 'NotoSansCJKtc', 'normal');
+    doc.setFont('NotoSansCJKtc');
+
+    // window.getComputedStyle(c)['font-size']  Get font size of the element
+
+    let userBar = document.querySelector('.user');
+    let mainH1 = document.querySelector('main').querySelector('h1').innerText;
+    let mainH3 = document.querySelector('main').querySelector('h3').innerText;
+    let mainP = document.querySelector('main').querySelector('p').innerText;
+    let teamThree = {};
+    let teamGraph = {};
+    let feedH3 = document.querySelector('.feed-h3').innerText;
+    let feedP1 = document.querySelector('.feed-p-1').innerText;
+    let feedP2 = document.querySelector('.feed-p-2').innerText;
+    let feedP3 = document.querySelector('.feed-p-3').innerText;
+    let psychoH3 = document.querySelector('.psycho-h3').innerText;
+    let psychoP = document.querySelector('.psycho-p').innerText;
+    let psychoCont = {};
+    let spanunH3 = document.querySelector('.spanun-h3').innerText;
+    let spanunP = document.querySelector('.spanun-p').innerText;
+    let spanunUl = document.querySelector('.spanun-ul').innerText;
+    let avatar = {};
+    let titleIcon = {};
+    let gameName = document.querySelector('.user__subtitle').innerText;
+    let playerName = document.querySelector('.user__title').innerText;
+    let distry0 = {};
+    let distry1 = {};
+    let distry2 = {};
+    let distry3 = {};
+    let distry4 = {};
+    let distry5 = {};
+    let teamAverage = {};
+    let spanungItems = [];
+
+    function spanun() {
+        let rangs = document.querySelectorAll('.rang__item');
+        let graphs = document.querySelectorAll('#graph-slider .swiper-slide .custom-graph.statistic');
+        let customs = document.querySelectorAll('#graph-slider .custom-graph-info');
+        if(spanungItems.length == 0) {
+            rangs.forEach(() => {spanungItems.push({})});
+        };
+        let promAll = Promise.all(Array.from(rangs).map((item, i) => {
+            let prom = domtoimage.toPng(item)
+            .then(function (dataUrl) {
+                var img = new Image();
+                img.src = dataUrl;
+                spanungItems[i]['rang'] = img;
+
+            })
+            .catch(function (error) {
+                console.error('oops, something went wrong!', error);
+            });
+            return prom
+        }))
+        .then(()=>{
+            return Promise.all(Array.from(graphs).map((item, i) => {
+                let prom = domtoimage.toPng(item)
+                .then(function (dataUrl) {
+                    var img = new Image();
+                    img.src = dataUrl;
+                    spanungItems[i]['graph'] = img;
+
+                })
+                .catch(function (error) {
+                    console.error('oops, something went wrong!', error);
+                });
+                return prom
+        }))
+        })
+        .then(()=> {
+            return Promise.all(Array.from(customs).map((item, i) => {
+                let margin = window.getComputedStyle(item)['margin-left'];
+                item.style['margin'] = '0';
+                let prom = domtoimage.toPng(item)
+                .then(function (dataUrl) {
+                    var img = new Image();
+                    img.src = dataUrl;
+                    spanungItems[i]['custom'] = img;
+                    return item
+
+                })
+                .then(function(item) {
+
+                    item.style['margin'] = '0' + ' ' + margin;
+                })
+                .catch(function (error) {
+                    console.error('oops, something went wrong!', error);
+                });
+                return prom
+        }))
+        })
+        return promAll
+    }
+
+
+    function lorem() {
+        let lorem = `"On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains."`
+        let feed1 = document.querySelectorAll('.feedback-1');
+        let feed2 = document.querySelectorAll('.feedback-2');
+        let feed3 = document.querySelectorAll('.feedback-3');
+        feed1.forEach((item)=> {item.innerText = lorem})
+        feed2.forEach((item)=> {item.innerText = lorem})
+        feed3.forEach((item)=> {item.innerText = lorem})
+    }
+
+    function addPageWithHead(jsPDFinstance ,pageType) {
+        jsPDFinstance.addPage('a4', pageType);
+        jsPDFinstance.setFont('Helvetica', "bold");
+        jsPDFinstance.setDrawColor(81,206,236);
+        jsPDFinstance.setFillColor(81,206,236);
+        jsPDFinstance.rect(0,0,650,100,"F");
+        jsPDFinstance.addImage(titleIcon, 'png', 50, 40);
+        jsPDFinstance.addImage(avatar, 'png', 230, 40);
+        jsPDFinstance.setFontSize(18);
+        jsPDFinstance.text(playerName, 270, 60);
+        jsPDFinstance.text(gameName, 270, 40);
+    }
+
+    function getPdf() {
+        document.querySelector('.windows8').style['display'] = 'block';
+        collectImages()
+        .then(()=> {
+            // lorem();
+            addPsycho();
+            addTeamPotential();
+            addSpanung();
+            addFeedback();
+            doc.save();
+            document.querySelector('.windows8').style['display'] = 'none';
+        })
+
+    }
+
+    function addPsycho() {
+        let pageData = {
+            currentCord:120,
+        };
+        addPageWithHead(doc, 'portrait');
+        doc.setFont('Helvetica', "bold");
+        doc.setFontSize(16);
+        addText(doc, pageData, textArrayer(doc, psychoH3, 380));
+        doc.setFont('Helvetica', "normal");
+        doc.setFontSize(12);
+        addText(doc, pageData, textArrayer(doc, psychoP, 380));
+        console.log(pageData.currentCord);
+        if (window.innerWidth < 1050) {
+            doc.addImage(teamAverage, 'png', 30, pageData.currentCord, 350, 350*zoomLvl(teamAverage));
+            pageData.currentCord += 350*zoomLvl(teamAverage)+5;
+            doc.addImage(distry0, 'png', 30, pageData.currentCord, 350, 350*zoomLvl(distry0));
+            pageData.currentCord += 350*zoomLvl(distry0) + 10;
+            doc.addImage(distry1, 'png', 30, pageData.currentCord, 350, 350*zoomLvl(distry1));
+            pageData.currentCord += 350*zoomLvl(distry1) + 10;
+            doc.addImage(distry2, 'png', 30, pageData.currentCord, 350, 350*zoomLvl(distry2));
+            pageData.currentCord += 350*zoomLvl(distry2) + 10;
+            doc.addImage(distry3, 'png', 30, pageData.currentCord, 350, 350*zoomLvl(distry3));
+            pageData.currentCord += 350*zoomLvl(distry3) + 10;
+            doc.addImage(distry4, 'png', 30, pageData.currentCord, 350, 350*zoomLvl(distry4));
+            pageData.currentCord += 350*zoomLvl(distry4) + 10;
+            doc.addImage(distry5, 'png', 30, pageData.currentCord, 350, 350*zoomLvl(distry5));
+            pageData.currentCord += 350*zoomLvl(distry5) + 10;
+        }
+        if (window.innerWidth > 1050) {
+            doc.addImage(distry0, 'png', 30, pageData.currentCord, 180, 200*zoomLvl(distry0));
+            doc.addImage(teamAverage, 'png', 230, pageData.currentCord+20, 180, 200*zoomLvl(teamAverage));
+            pageData.currentCord += 200*zoomLvl(distry0) + 30;
+            doc.addImage(distry1, 'png', 30, pageData.currentCord, 180, 200*zoomLvl(distry1));
+            pageData.currentCord += 200*zoomLvl(distry1) + 10;
+            doc.addImage(distry2, 'png', 30, pageData.currentCord, 180, 200*zoomLvl(distry2));
+            doc.addImage(distry3, 'png', 230, pageData.currentCord, 180, 200*zoomLvl(distry3));
+            pageData.currentCord += 200*zoomLvl(distry2) + 10;
+            doc.addImage(distry4, 'png', 30, pageData.currentCord, 180, 200*zoomLvl(distry4));
+            doc.addImage(distry5, 'png', 230, pageData.currentCord, 180, 200*zoomLvl(distry5));
+        }
+
+
+
+    }
+
+
+    function addTeamPotential() {
+        let pageData = {
+            currentCord:120,
+        };
+        let pageType = '';
+        let textMaxWidth = 0;
+        let ballsStart = 0;
+        let graphWidth = 0;
+        if (window.innerWidth < 1200) {
+            pageType = 'portrait';
+            textMaxWidth = 380;
+            ballsStart = 160;
+            graphWidth = 350;
+        }
+        if (window.innerWidth > 1200) {
+            pageType = 'landscape';
+            textMaxWidth = 580;
+            ballsStart = 230;
+            graphWidth = 580;
+        }
+
+
+        addPageWithHead(doc, pageType);
+        doc.setFont('Helvetica', "bold");
+        doc.setFontSize(16);
+        addText(doc, pageData, textArrayer(doc, mainH1, textMaxWidth));
+        doc.setFontSize(12);
+
+        console.log(pageData.currentCord);
+        doc.addImage(teamThree, 'png', ballsStart, pageData.currentCord, 200, 200*zoomLvl(teamThree));
+        pageData.currentCord += 200*zoomLvl(teamThree);
+        console.log(pageData.currentCord);
+        doc.addImage(teamGraph, 'png', 30, pageData.currentCord, graphWidth, graphWidth*zoomLvl(teamGraph));
+        doc.deletePage(1);
+
+
+
+    }
+
+    function addSpanung() {
+        let pageData = {
+            currentCord:120,
+        };
+        if (window.innerWidth < 1200) {
+            addPageWithHead(doc, 'portrait');
+            doc.setFont('Helvetica', "bold");
+            doc.setFontSize(16);
+            addText(doc, pageData, textArrayer(doc, spanunH3, 380));
+            doc.setFont('Helvetica', "normal");
+            doc.setFontSize(12);
+            addText(doc, pageData, textArrayer(doc, spanunP, 380));
+            addText(doc, pageData, textArrayer(doc, spanunUl, 380));
+            spanungItems.forEach((item, i) => {
+                addPageWithHead(doc, 'portrait');
+                pageData.currentCord = 120;
+                doc.addImage(item['rang'], 'png', 30, pageData.currentCord, 100, 100*zoomLvl(item['rang']));
+                doc.addImage(item['custom'], 'png', 150, pageData.currentCord, 200, 200*zoomLvl(item['custom']));
+                pageData.currentCord += 100*zoomLvl(item['rang']) + 10;
+                doc.addImage(item['graph'], 'png', 30, pageData.currentCord, 350, 350*zoomLvl(item['graph']));
+            })
+        }
+        if (window.innerWidth > 1200) {
+            addPageWithHead(doc, 'landscape');
+            doc.setFont('Helvetica', "bold");
+            doc.setFontSize(16);
+            addText(doc, pageData, textArrayer(doc, spanunH3, 500));
+            doc.setFont('Helvetica', "normal");
+            doc.setFontSize(12);
+            addText(doc, pageData, textArrayer(doc, spanunP, 500));
+            addText(doc, pageData, textArrayer(doc, spanunUl, 500));
+            spanungItems.forEach((item, i) => {
+                addPageWithHead(doc, 'landscape');
+                pageData.currentCord = 120;
+                doc.addImage(item['rang'], 'png', 30, pageData.currentCord, 100, 100*zoomLvl(item['rang']));
+                doc.addImage(item['custom'], 'png', 150, pageData.currentCord, 200, 200*zoomLvl(item['custom']));
+                pageData.currentCord += 100*zoomLvl(item['rang']) + 10;
+                doc.addImage(item['graph'], 'png', 30, pageData.currentCord, 580, 580*zoomLvl(item['graph']));
+            })
+        }
+
+
+    }
+
+    function addFeedback() {
+        let pageData = {
+            currentCord:120,
+        };
+        addPageWithHead(doc, 'portrait')
+        doc.setFontSize(16);
+        doc.setFont('Helvetica', 'bold')
+        addText(doc, pageData, textArrayer(doc, feedH3, 380));
+        doc.setFont('Helvetica', 'normal')
+        doc.setFontSize(14);
+        addText(doc, pageData, textArrayer(doc, feedP1, 380));
+
+        for (let item of document.querySelectorAll('.feedback-1')) {
+            doc.setFont('Helvetica', 'normal');
+            doc.setFontSize(10);
+            let textArray = textArrayer(doc, item.innerText, 380);
+            let spaceLeft = 600 - pageData.currentCord - textArray.length * doc.getFontSize();
+            console.log(spaceLeft);
+            if (spaceLeft > 0) {
+                addText(doc, pageData, textArray);
+                console.log(pageData.currentCord);
+            }
+            else {
+                addPageWithHead(doc, 'portrait')
+                pageData.currentCord = 120;
+                doc.setFont('Helvetica', 'normal')
+                doc.setFontSize(10);
+                addText(doc, pageData, textArray);
+                console.log(pageData.currentCord);
+
+            }
+            pageData.currentCord += 10;
+        }
+        pageData.currentCord += 10;
+
+
+        if((600 - pageData.currentCord) > 50 ) {}
+        else {
+            addPageWithHead(doc, 'portrait')
+            pageData.currentCord = 120;
+        }
+
+        doc.setFontSize(14);
+        addText(doc, pageData, textArrayer(doc, feedP2, 380));
+        doc.setFontSize(10);
+
+        for (let item of document.querySelectorAll('.feedback-2')) {
+            doc.setFont('Helvetica', 'normal');
+            doc.setFontSize(10);
+            let textArray = textArrayer(doc, item.innerText, 380);
+            let spaceLeft = 600 - pageData.currentCord - textArray.length * doc.getFontSize();
+            console.log(spaceLeft);
+            if (spaceLeft > 0) {
+                addText(doc, pageData, textArray);
+                console.log(pageData.currentCord);
+            }
+            else {
+                addPageWithHead(doc, 'portrait');
+                pageData.currentCord = 120;
+                doc.setFont('Helvetica', 'normal');
+                doc.setFontSize(10);
+                addText(doc, pageData, textArray);
+                console.log(pageData.currentCord);
+
+            }
+            pageData.currentCord += 10;
+        }
+        pageData.currentCord += 10;
+
+
+        if((600 - pageData.currentCord) > 50 ) {}
+        else {
+            addPageWithHead(doc, 'portrait')
+            pageData.currentCord = 120;
+        }
+
+        doc.setFontSize(14);
+        addText(doc, pageData, textArrayer(doc, feedP3, 380));
+        doc.setFontSize(10);
+
+        for (let item of document.querySelectorAll('.feedback-3')) {
+            doc.setFont('Helvetica', 'normal');
+            doc.setFontSize(10);
+            let textArray = textArrayer(doc, item.innerText, 380);
+            let spaceLeft = 600 - pageData.currentCord - textArray.length * doc.getFontSize();
+            console.log(spaceLeft);
+            if (spaceLeft > 0) {
+                addText(doc, pageData, textArray);
+                console.log(pageData.currentCord);
+            }
+            else {
+                addPageWithHead(doc, 'portrait')
+                pageData.currentCord = 120;
+                doc.setFont('Helvetica', 'normal')
+                doc.setFontSize(10);
+                addText(doc, pageData, textArray);
+                console.log(pageData.currentCord);
+
+            }
+            pageData.currentCord += 10;
+        }
+
+
+    }
+
+    function getClass(obj) {
+      return {}.toString.call(obj).slice(8, -1);
+    }
+
+    function textArrayer(jsPDFinstance ,string, width) {
+        return jsPDFinstance.splitTextToSize(string, width);
+    }
+
+
+    function addText(jsPDFinstance, pageData, text) {
+        console.log(text);
+        jsPDFinstance.text(text, 30, pageData.currentCord);
+        pageData.currentCord += text.length*jsPDFinstance.getFontSize();
+        console.log(pageData.currentCord);
+    }
+
+    function collectImages() {
+        let titleIc = document.querySelector('.header-main__title');
+        if(window.innerWidth < 1200) {
+            titleIc.style['width'] = 'auto';
+        }
+        let teamCust = document.querySelector('.custom-graph-info');
+        let margin = window.getComputedStyle(teamCust)['margin-left'];
+        teamCust.style['margin'] = '0';
+        let teamScore = document.querySelector('.team-average');
+        teamScore.style['margin'] = '0';
+        let prom = Promise.all([
+            imageToVar(document.querySelector('.user').querySelector('img')).then((img)=>{avatar = img;}),
+            imageToVar(titleIc).then((img)=>{
+                titleIcon = img;
+            }),
+            imageToVar(teamCust)
+            .then((img)=>{
+                teamThree = img;
+                teamCust.style['margin'] = '0' + ' ' + margin;
+            }),
+            imageToVar(document.querySelector('.custom-graph.statistic')).then((img)=>{teamGraph = img;}),
+            imageToVar(document.querySelectorAll('.distry')[0]).then((img)=>{distry0 = img}),
+            imageToVar(document.querySelectorAll('.distry')[1]).then((img)=>{distry1 = img}),
+            imageToVar(document.querySelectorAll('.distry')[2]).then((img)=>{distry2 = img}),
+            imageToVar(document.querySelectorAll('.distry')[3]).then((img)=>{distry3 = img}),
+            imageToVar(document.querySelectorAll('.distry')[4]).then((img)=>{distry4 = img}),
+            imageToVar(document.querySelectorAll('.distry')[5]).then((img)=>{distry5 = img}),
+            imageToVar(teamScore).then((img)=>{
+                teamAverage = img;
+                teamScore.style['margin'] = 'auto';
+            })
+            ])
+        .then(()=> {
+            return spanun()
+        })
+        .then(()=>{console.log('done')})
+        return prom
+    }
+
+    function imageToVar(selector) {
+        let prom = domtoimage.toPng(selector)
+            .then(function (dataUrl) {
+                var img = new Image();
+                img.src = dataUrl;
+                return img
+            })
+            .catch(function (error) {
+                console.error('oops, something went wrong!', error);
+            });
+        return prom
+    }
+
+
+    function temp() {
+        domtoimage.toPng(selector)
+            .then(function (dataUrl) {
+                var img = new Image();
+                img.src = dataUrl;
+                document.body.appendChild(img);
+            })
+            .catch(function (error) {
+                console.error('oops, something went wrong!', error);
+            });
+    }
+
+    function zoomLvl(img) {
+        return img.height/img.width;
+    }
+
+
+
+
+    document.querySelector('#pdf').addEventListener('click', () => { 
+        getPdf();
+    })
+
+
+    </script>
+    
+    <script>
+    // Reload page on window resize to fix graph connection lines
+    let resizeTimeout;
+    let lastWindowWidth = window.innerWidth;
+    let lastWindowHeight = window.innerHeight;
+    
+    window.addEventListener('resize', function() {
+        // Clear existing timeout
+        if (resizeTimeout) {
+            clearTimeout(resizeTimeout);
+        }
+        
+        // Debounce resize event - wait 500ms after last resize before reloading
+        resizeTimeout = setTimeout(function() {
+            const currentWidth = window.innerWidth;
+            const currentHeight = window.innerHeight;
+            
+            // Only reload if there's a significant size change (more than 50px difference)
+            // This prevents unnecessary reloads during continuous resizing
+            const widthDiff = Math.abs(currentWidth - lastWindowWidth);
+            const heightDiff = Math.abs(currentHeight - lastWindowHeight);
+            
+            if (widthDiff > 50 || heightDiff > 50) {
+                lastWindowWidth = currentWidth;
+                lastWindowHeight = currentHeight;
+                location.reload();
+            }
+        }, 500);
+    });
+</script>
+</body>
+</html>

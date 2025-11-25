@@ -1,0 +1,295 @@
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="icon" href="/static/images/favicon.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
+    <meta name="theme-color" content="#51ceec"/>
+    <meta name="description" content="ARK"/>
+    <title>NEXT STEPS</title>
+    <link rel="stylesheet" href="/static/css/app.css">
+    <link rel="stylesheet" href="/static/css/arche.css">
+    <!-- Tippy.js for tooltips -->
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+</head>
+<body>
+<div class="app started">
+    <div class="app__head">
+        <header class="header-main">
+            <div class="header-main__title">
+                <icon class="icon" onClick="window.open('https://info.arks.ch/');">
+                <span class="icon-logo"></span>
+                <span>ARKS</span>
+                <span id="arks-logo-tooltip-icon" class="tooltip-icon" style="display: none;">{% trans "Info zu safecircles.ch" %}</span>
+            </icon>
+            </div>
+        </header>
+    </div>
+    <div class="app__body">
+        <div class="container">
+            <main class="screen arche">
+                <h1>
+                    {% trans "Aftercare" %}
+                </h1>
+                <div class="user">
+                    <img src="{{user.avatar}}" alt="{{user.name}}" aria-label="{% trans 'Spieler-Avatar' %}"/>
+                    <div class="user__data">
+                        <div class="user__subname">{{game.name}}</div>
+                        <div class="user__name">
+                            {{user.name}}
+                        </div>
+                    </div>
+                </div>
+                <div class="arche-options-container">
+
+
+                <div class="options">
+
+
+                    <div class="options__item" role="button" tabindex="0" aria-label="{% trans 'ANONYMES FEEDBACK' %}" onclick="location='/mission-2-ubung-2/'" onkeydown="if(event.key==='Enter' || event.key===' '){location='/mission-2-ubung-2/';}">
+                        <div class="options__item-icon-wrapper">
+                            <span id="anonymous-feedback-tooltip-icon" class="tooltip-icon" data-tippy-content="{% trans 'ANONYMES FEEDBACK (Zeitbedarf: 3 Minuten pro Person). Mit 3 bewährten Fragen zur Stärkung der psychologischen Sicherheit im Team. ACHTUNG: Nach diesem Feedbackprozess werden alle Daten der Arche offengelegt.' %}">?</span>
+                            <div class="icon-logo" aria-hidden="true"></div>
+                        </div>
+                        <p class="option-text option-text-green">
+                            {% trans "ANONYMES FEEDBACK: Mit 3 bewährten Fragen zur Stärkung der psychologischen Sicherheit im Team" %}
+                        </p>
+                    </div>
+
+                    <div class="options__item" role="button" tabindex="0" aria-label="{% trans 'Erkundet nochmal eure Psychologischen Safe Circles' %}" onclick="location='/potential-result/'" onkeydown="if(event.key==='Enter' || event.key===' '){location='/potential-result/';}">
+                        <div class="icon-download" aria-hidden="true"></div>
+                        <p class="option-text option-text-green">
+                            {% trans "Erkundet nochmal eure Psychologischen Safe Circles." %}<br><br>
+                        </p>
+                    </div>
+
+                    <div class="options__item">
+                        <div class="options__item-icon-wrapper">
+                            <span id="counseling-tooltip-icon" class="tooltip-icon" data-tippy-content="{% trans 'Für eine professionelle Intervention nimm Kontakt mit deinem Coach oder mit Dr. Joe Maier auf. Das Ziel ist die Erweiterung eurer Psychological Safe Circles. (Empfohlen für Teams mit einem psychologischen Sicherheitswert unter 60).' %}">?</span>
+                            <a href="https://calendly.com/joe-1116/kostenloses-vorgesprach?month=2021-12" target="_blank" rel="noopener noreferrer" aria-label="{% trans 'COUNSELING - Kontakt aufnehmen' %}">
+                            
+                            </a>
+                        </div>
+                        <p class="option-text option-text-red">
+                            {% trans "COUNSELING: Für eine professionelle Intervention zur Erweiterung eurer Psychological Safe Circles" %}
+                        </p>
+                    </div>
+
+                    <div class="options__item" role="button" tabindex="0" aria-label="{% trans 'HEATMAP der Spannungen' %}" onclick="location='/heatmap/'" onkeydown="if(event.key==='Enter' || event.key===' '){location='/heatmap/';}">
+                        <div class="icon-download" aria-hidden="true"></div>
+                        <p class="option-text option-text-yellow">
+                            {% trans "Bist du ein Coach oder vertraut mit gruppendynamischen Mustern? Dann ist die HEATMAP der Spannungen im Team etwas für dich." %}<br><br>
+                        </p>
+                    </div>
+
+                    <div class="options__item">
+                        <div class="options__item-icon-wrapper">
+                            <span id="tutorial-tooltip-icon" class="tooltip-icon" data-tippy-content="{% trans 'In diesem Video erklären wir, wie die Safecircles berechnet werden. Eure Safecircles sind eine Selbstbeschreibung durch das Team mit Hilfe eines soziometrischen Verfahrens und KEIN Test.' %}">?</span>
+                            <a href="https://www.youtube.com/watch?v=TF0RB9hpKNY" target="_blank" rel="noopener noreferrer" aria-label="{% trans 'TUTORIAL Video' %}">
+                            </a>
+                        </div>
+                        <p class="option-text">
+                            {% trans "TUTORIAL: Erklärung zur Berechnung der Safecircles" %}
+                        </p>
+                    </div>
+
+                    <div class="options__item">
+                        <div class="options__item-icon-wrapper">
+                            <a href="https://www.paypal.me/joetheark?nsukey=Cv9DYpec9jSFBrhYMyG9ykAZjUgNbEQDsmPE6GXAwsF2Zk0d4nZh32OO2%2BLAnWMQrHpAgJar7t0TlkRgmPwi9c03UHIIRpCOepR136%2BGHLevVY1gXinDcDvAMKCqGvzkYRWiQ9vvGgd8HxfbiQZNROA2jEK58%2FHWrgQT5Kg%2FCjSbGePxGdZb7iWDX9gM5DMIyiSzSf1%2BThqtZEoJdoor9w%3D%3D" target="_blank" rel="noopener noreferrer" aria-label="{% trans 'PAYPAL Spende' %}">
+                                <div class="icon-money" aria-hidden="true"></div>
+                            </a>
+                        </div>
+                        <p class="option-text option-text-green">
+                            {% trans "PAYPAL? Gönn' dem Entwickler einen Kaffee – Dr. Joe wird es dir danken!" %}
+                            <br><br>
+                        </p>
+                    </div>
+                </div>
+                </div>
+
+                <div class="arche-info-container">
+                    <p class="arche-info-text">
+                        {% trans "Psychologische Sicherheit ist laut Google's Aristoteles-Studie stärkster Prädiktor für Team-Performance. Wie nahe liegen diese Werte in deinem Team zusammen?" %}
+                    </p>
+                    
+                    {% if psy_score is not None or team_potential_median is not None %}
+                    <div class="arche-values-container">
+                        {% if psy_score is not None %}
+                        <div class="arche-value-item">
+                            <span class="arche-value-label">{% trans "Psychologischer Sicherheitswert:" %}</span>
+                            <span class="arche-value-number">{{ psy_score }}</span>
+                        </div>
+                        {% endif %}
+                        {% if team_potential_median is not None %}
+                        <div class="arche-value-item">
+                            <span class="arche-value-label">{% trans "Gefühlte Team Performance:" %}</span>
+                            <span class="arche-value-number">{{ team_potential_median }}</span>
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    {% if orientation_text %}
+                    <div class="arche-orientation-container">
+                        {% if orientation_text == 'performance_higher' %}
+                        <p class="arche-orientation-text arche-orientation-warning">
+                            <strong>{% trans "Zur Orientierung:" %}</strong> {% trans "Deutlich höhere Performance als psychologische Sicherheit" %} ({{ orientation_difference }} {% trans "Punkte Unterschied" %})
+                        </p>
+                        {% elif orientation_text == 'safety_higher' %}
+                        <p class="arche-orientation-text arche-orientation-info">
+                            <strong>{% trans "Zur Orientierung:" %}</strong> {% trans "Deutlich höhere psychologische Sicherheit als Performance" %} ({{ orientation_difference }} {% trans "Punkte Unterschied" %})
+                        </p>
+                        {% elif orientation_text == 'values_close' %}
+                        <p class="arche-orientation-text arche-orientation-success">
+                            <strong>{% trans "Zur Orientierung:" %}</strong> {% trans "Die Werte liegen nah beieinander" %} ({{ orientation_difference }} {% trans "Punkte Unterschied" %})
+                        </p>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                    
+                    {% if scenario %}
+                    <div class="arche-scenarios-container">
+                        <div class="arche-scenario-card {% if scenario == 'case1' %}arche-scenario-active{% endif %}" 
+                             id="scenario-case1"
+                             data-tippy-content="{% trans 'Fall 1: Hohe Performance + Niedrige psychologische Sicherheit'|escapejs %}">
+                            <div class="arche-scenario-header">
+                                <span class="arche-scenario-title">{% trans "Fall 1: Hohe Performance + Niedrige psychologische Sicherheit" %}</span>
+                                <span class="arche-scenario-tooltip-icon" id="scenario-case1-tooltip">?</span>
+                            </div>
+                            <div class="arche-scenario-content">
+                                <p>{% trans 'Das Team liefert trotz unsicherem Klima – oft durch informelle Netzwerke oder Einzelpersonen. Die Performance ist fragil, da sie "trotz" und nicht "wegen" des Systems entsteht. Langfristig riskant, da bei Ausfall der Integratoren die Leistung einbricht.' %}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="arche-scenario-card {% if scenario == 'case2' %}arche-scenario-active{% endif %}" 
+                             id="scenario-case2"
+                             data-tippy-content="{% trans 'Fall 2: Niedrige Performance + Hohe psychologische Sicherheit'|escapejs %}">
+                            <div class="arche-scenario-header">
+                                <span class="arche-scenario-title">{% trans "Fall 2: Niedrige Performance + Hohe psychologische Sicherheit" %}</span>
+                                <span class="arche-scenario-tooltip-icon" id="scenario-case2-tooltip">?</span>
+                            </div>
+                            <div class="arche-scenario-content">
+                                <p>{% trans 'Es herrscht Sicherheit, aber die Leistung bleibt aus. Meist fehlen Klarheit, Struktur oder Kompetenz. Das Team hat großes ungenutztes Potenzial. Die Basis ist gut – jetzt braucht es Führung, Ziele und passende Rahmenbedingungen. Manchmal treffen wir Menschen mit besonderen psychologischen Bedürfnissen im Team an, die von besonderer Aufmerksamkeit und professioneller Betreuung profitieren könnten.' %}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="arche-scenario-card {% if scenario == 'normal_high' or scenario == 'normal_low' %}arche-scenario-active{% endif %}" 
+                             id="scenario-normal"
+                             data-tippy-content="{% trans 'Normalfall: Übereinstimmende Werte'|escapejs %}">
+                            <div class="arche-scenario-header">
+                                <span class="arche-scenario-title">{% trans "Normalfall: Übereinstimmende Werte" %}</span>
+                                <span class="arche-scenario-tooltip-icon" id="scenario-normal-tooltip">?</span>
+                            </div>
+                            <div class="arche-scenario-content">
+                                <p>{% trans 'Hohe Werte in beiden Bereichen kennzeichnen gesunde, lernstarke Teams. Niedrige Werte deuten auf grundlegende Dysfunktion hin. In beiden Fällen ist die Dynamik konsistent – Interventionen können gezielt am Gesamtsystem ansetzen.' %}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endif %}
+
+                    <div class="copyright-footer">
+                        <a href="https://github.com/joe-the-ark/ark" target="_blank" rel="noopener noreferrer">{% trans "ARKS is published under a GPLv3" %}</a> {% trans "license by" %} 
+                        <a href="https://www.linkedin.com/in/dr-joe-maier/" target="_blank" rel="noopener noreferrer">{% trans "Dr. Joe Maier" %}</a>.
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    // ARKS Logo Tooltip
+    function initARKSLogoTooltip() {
+        const arksLogoContainer = document.querySelector('.header-main__title icon');
+        const arksLogoTooltipIcon = document.getElementById('arks-logo-tooltip-icon');
+        
+        if (arksLogoContainer && arksLogoTooltipIcon) {
+            arksLogoContainer.addEventListener('mouseenter', function() {
+                arksLogoTooltipIcon.style.display = 'inline-flex';
+            });
+            
+            arksLogoContainer.addEventListener('mouseleave', function() {
+                arksLogoTooltipIcon.style.display = 'none';
+            });
+        }
+    }
+
+    // Initialize tooltips for option items
+    function initOptionTooltips() {
+        // Anonymous Feedback tooltip
+        const anonymousFeedbackTooltip = document.getElementById('anonymous-feedback-tooltip-icon');
+        if (anonymousFeedbackTooltip && typeof tippy !== 'undefined') {
+            tippy(anonymousFeedbackTooltip, {
+                content: anonymousFeedbackTooltip.getAttribute('data-tippy-content'),
+                placement: 'top',
+                theme: 'light',
+                maxWidth: 400,
+            });
+        }
+
+        // Counseling tooltip
+        const counselingTooltip = document.getElementById('counseling-tooltip-icon');
+        if (counselingTooltip && typeof tippy !== 'undefined') {
+            tippy(counselingTooltip, {
+                content: counselingTooltip.getAttribute('data-tippy-content'),
+                placement: 'top',
+                theme: 'light',
+                maxWidth: 400,
+            });
+        }
+
+        // Tutorial tooltip
+        const tutorialTooltip = document.getElementById('tutorial-tooltip-icon');
+        if (tutorialTooltip && typeof tippy !== 'undefined') {
+            tippy(tutorialTooltip, {
+                content: tutorialTooltip.getAttribute('data-tippy-content'),
+                placement: 'top',
+                theme: 'light',
+                maxWidth: 400,
+            });
+        }
+    }
+
+    // Initialize scenario tooltips
+    function initScenarioTooltips() {
+        const scenarioCards = document.querySelectorAll('.arche-scenario-card');
+        scenarioCards.forEach(function(card) {
+            const tooltipIcon = card.querySelector('.arche-scenario-tooltip-icon');
+            if (tooltipIcon && typeof tippy !== 'undefined') {
+                const existingInstance = tooltipIcon._tippy;
+                if (existingInstance) {
+                    existingInstance.destroy();
+                }
+                
+                tippy(tooltipIcon, {
+                    content: card.getAttribute('data-tippy-content'),
+                    placement: 'top',
+                    theme: 'light',
+                    delay: [200, 0],
+                    allowHTML: true,
+                    interactive: false,
+                    trigger: 'mouseenter focus',
+                    maxWidth: 400,
+                });
+            }
+        });
+    }
+
+    // Initialize on DOM ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+            initARKSLogoTooltip();
+            initOptionTooltips();
+            initScenarioTooltips();
+        });
+    } else {
+        initARKSLogoTooltip();
+        initOptionTooltips();
+        initScenarioTooltips();
+    }
+</script>
+</html>

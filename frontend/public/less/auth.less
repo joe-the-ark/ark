@@ -1,0 +1,57 @@
+@import './general/xnls';
+@import "general/variables";
+@import "components/slider";
+@import "components/form";
+
+.auth {
+    text-align: center;
+
+    h1 {
+        .xs({
+            margin-bottom: 30px;
+        });
+
+        + p {
+            margin: 20px 0 50px;
+        }
+    }
+
+    p {
+        .xs({
+            display: none;
+        });
+    }
+
+    form {
+        width: ~"min(641px, 100%)";
+        margin: 0 auto;
+        > div {
+            &:nth-child(1), &:nth-child(2) {
+                width: ~"min(519px, 100%)";
+                margin-right: auto;
+                margin-left: auto;
+            }
+
+            p {
+                + button {
+                    display: none;
+                    .minmax(540px, 768px, {
+                        .font(@alfa-color @font-large 1);
+                        display: block;
+                        position: absolute;
+                        background-color: #dcf5fb;
+                        box-shadow: none;
+                        top: 1px;
+                        bottom: 1px;
+                        left: 1px;
+                        border-right: 1px solid @between-color;
+                        padding: 0 20px;
+                        + input {
+                            padding-left: 243px;
+                        }
+                    });
+                }
+            }
+        }
+    }
+}

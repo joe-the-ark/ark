@@ -1,0 +1,55 @@
+.form {
+
+    &__field {
+        position: relative;
+
+        .last(not, {
+            margin-bottom: 40px;
+        });
+    }
+
+    input {
+        &:focus, &:valid {
+            + .form__placeholder {
+                font-size: @font-less;
+                line-height: 17px;
+                top: -7px;
+            }
+        }
+        &[name="link"] {
+            padding-right: 55px;
+        }
+    }
+
+    span[class*="icon"] {
+        font-size: 20px;
+        position: absolute;
+        right: 20px;
+        bottom: 18px;
+    }
+
+    p {
+        text-align: left;
+
+        .xs(min, {
+            + input {
+                margin-top: 20px;
+            }
+        });
+    }
+
+    &__placeholder {
+        .font(@between-color @font-large 42px);
+        position: absolute;
+        top: 7px;
+        left: 20px;
+        pointer-events: none;
+        transition: @transition;
+        background-color: @thin-color;
+        padding: 0 2px;
+    }
+
+    button {
+
+    }
+}

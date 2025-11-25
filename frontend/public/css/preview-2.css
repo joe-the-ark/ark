@@ -1,0 +1,125 @@
+.preview-2 {
+  padding-bottom: 203px;
+}
+@media screen and (max-width: 1200px) {
+  .preview-2 {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  }
+}
+@media (max-height: 763px) and (min-width: 1200px) {
+  .preview-2 {
+    padding-bottom: 0;
+  }
+}
+.preview-2 p {
+  margin: var(--ls-paragraph-offset);
+}
+@media (max-height: 763px) and (min-width: 1200px) {
+  .preview-2 p {
+    margin: 22px 0 10px;
+  }
+}
+.preview-2 ul {
+  margin-bottom: 30px;
+}
+@media screen and (max-width: 1200px) {
+  .preview-2 ul + .button {
+    display: none;
+  }
+}
+.preview-2:before,
+.preview-2:after {
+  content: " ";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-size: auto;
+  background-repeat: no-repeat;
+  z-index: -1;
+}
+.preview-2:before {
+  background-image: url("../images/general/boat-big.png");
+  background-position: left bottom;
+}
+@media screen and (max-width: 1200px) {
+  .preview-2:before {
+    background-image: url("../images/general/ship-min.png");
+  }
+}
+@media (max-height: 763px) and (min-width: 1200px) {
+  .preview-2:before {
+    background-size: 350px;
+  }
+}
+@media screen and (min-width: 1201px) {
+  .preview-2:after {
+    background-image: url("../images/general/anchor.png");
+    background-position: right bottom;
+  }
+}
+@media (max-height: 763px) and (min-width: 1200px) {
+  .preview-2:after {
+    background-size: 230px;
+  }
+}
+.preview-2 iframe {
+  background-color: #e4e4e4;
+  width: 100%;
+  margin-top: 30px;
+}
+@media (max-height: 763px) and (min-width: 1200px) {
+  .preview-2 iframe {
+    height: 300px;
+    margin-top: 0;
+  }
+}
+@media screen and (min-width: 1201px) {
+  .preview-2 iframe + .button {
+    display: none;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .preview-2 iframe {
+    height: 292px;
+  }
+  .preview-2 iframe + .button {
+    display: inline-block;
+  }
+}
+.preview-2 .button {
+  margin-top: 30px;
+}
+@media (max-height: 763px) and (min-width: 1200px) {
+  .preview-2 .button {
+    margin-top: 0;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .preview-2 .button {
+    margin-top: 60px;
+  }
+}
+.preview__main {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, calc(50% + 78px) calc(50% - 138px));
+  grid-gap: 60px;
+}
+@media screen and (max-width: 1200px) {
+  .preview__main {
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    grid-gap: 0;
+  }
+}
+@media screen and (max-width: 700px) {
+  .preview__main {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+@media screen and (max-width: 1200px) {
+  .preview__thumbnail {
+    text-align: center;
+  }
+}

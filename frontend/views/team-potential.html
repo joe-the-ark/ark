@@ -1,0 +1,2359 @@
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="icon" href="/static/images/favicon.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
+    <meta name="theme-color" content="#51ceec"/>
+    <meta name="description" content="ARK"/>
+    <title>Psychological-Safe-Circles</title>
+    <link rel="stylesheet" href="/static/css/app.css">
+    <link rel="stylesheet" href="/static/css/app_graph.css">
+    <link rel="stylesheet" href="/static/css/team-potential.css">
+    <link rel="stylesheet" href="/static/css/team-potential-google-slides.css">
+
+    <script src="/static/vue.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/element-ui/2.15.9/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://cdn.staticfile.org/element-ui/2.15.9/index.js"></script>
+    <script>
+        // Initialize Element UI with Vue
+        if (typeof Vue !== 'undefined' && typeof ELEMENT !== 'undefined') {
+            Vue.use(ELEMENT);
+        }
+    </script>
+    <!-- Tippy.js for tooltips -->
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+</head>
+<body>
+<div class="app">
+    <div class="app__head">
+        <header class="header-main container">
+            <div class="header-main__title">
+                <icon class="icon" onClick="window.open('https://info.arks.ch/');">
+                <span class="icon-logo"></span>
+                <span>ARKS</span>
+                <span id="arks-logo-tooltip-icon" class="tooltip-icon" style="display: none;">{% trans "Info zu safecircles.ch" %}</span>
+            </icon>
+            </div>
+            <div class="header-main__user">
+                <div class="user">
+                    <div class="user__subtitle">
+                        {{game.name}}
+                    </div>
+                    <img src="{{ user.avatar }}" alt="boar">
+                    <div class="user__title">
+                        {{ user.name }}
+                    </div>
+                </div>
+            </div>
+            <div class="header-main__progress">
+                <div class="progress">
+                    <div class="progress__bar">
+                        <div class="progress__bar-fill">85%</div>
+                    </div>
+                </div>
+                <button class="button" onclick="window.print()" aria-label="{% trans 'Als PDF speichern' %}" title="{% trans 'Als PDF speichern' %}">{% trans "Als PDF speichern" %}</button> 
+            </div>
+
+
+
+        </header>
+    </div>
+    <div class="app__body" id="app-1">
+        <div class="container"
+        v-loading="loading"
+        element-loading-text="Waiting for others to finish"
+        element-loading-background="rgba(0, 0, 0, 0.8)">
+            <main class="screen auth">
+                <h1 class="team-potential-heading-tooltip">
+                    <span 
+                        id="team-potential-title-tooltip-icon"
+                        class="tooltip-icon"
+                        tabindex="0"
+                        aria-label="{% trans 'Tooltip anzeigen' %}"
+                    >
+                        ?
+                    </span>
+                    {% trans "Sichere Kreise im Team boosten" %}
+                </h1>
+
+                <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
+
+                <p style="background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
+                            <br>
+                            <span 
+                                id="prio1-heading-tooltip-icon"
+                                class="prio1-tooltip-container"
+                                style="display: inline-flex; align-items: center; gap: 4px; margin-right: 8px; vertical-align: middle;"
+                            >
+                                <span 
+                                    id="prio1-tooltip-icon"
+                                    class="tooltip-icon prio1-tooltip-icon"
+                                    title="{% trans 'Klicken für Anweisungen' %}"
+                                >
+                                    ?
+                                </span>
+                            </span>
+                            {% trans "PRIO 1: Integratoren stärken – " %}{% trans "diese Konstellation ermöglicht euch ein " %}<button @click="current=getValue4()" style="background-color: #FFFFFF; border: 5px solid #75CBE8; color: black;">{% trans "maximales Mass an psychologischer Sicherheit beim Toleranzfenster" %} [[ getValue4() ]]</button><br>                            {% trans "Wer ist in mehreren sicheren Kreisen und wirkt integrierend?" %}<br>
+                            <span 
+                                id="prio1-integrator-tooltip-icon"
+                                style="display: inline-flex; align-items: center; gap: 4px; margin-left: 0; vertical-align: middle;"
+                            >
+                                {% trans "Wie weiter" %}
+                                <span 
+                                    class="tooltip-icon"
+                                    title="{% trans 'PRIO 1-Erklärung' %}"
+                                >
+                                    ?
+                                </span>
+                            </span>
+                            <br><br>
+                </p>
+<!--
+
+                <div class="safe-circles-overview" style="margin: 20px 0; padding: 20px; background-color: #f5f5f5; border-radius: 10px; border: 2px solid #9FE2BF;">
+                    <h3 style="margin: 0 0 15px 0; color: #626262; font-size: 18px; font-weight: bold;">
+                        {% trans "Sichere Kreise beim Toleranzfenster" %} [[ current ]]
+                    </h3>
+
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px;">
+                        <div 
+                            v-for="(circle, idx) in getCirclesDetailed()" 
+                            :key="idx"
+                            class="circle-card"
+                            :style="{ borderLeft: '5px solid ' + circle.color }"
+                            style="background-color: #FFFFFF; padding: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"
+                        >
+                            <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                                <div 
+                                    :style="{ backgroundColor: circle.color, width: '20px', height: '20px', borderRadius: '50%', marginRight: '10px' }"
+                                ></div>
+                                <strong style="color: #626262; font-size: 16px;">
+                                    {% trans "Kreis" %} [[ idx + 1 ]]
+                                </strong>
+                                <span style="margin-left: auto; color: #9FE2BF; font-weight: bold; font-size: 14px;">
+                                    [[ circle.memberCount ]] {% trans "Personen" %}
+                                </span>
+                            </div>
+                            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                                <span 
+                                    v-for="(member, memberIdx) in circle.members"
+                                    :key="memberIdx"
+                                    :style="member.isIntegrator ? 'background-color: #f0f0f0; padding: 6px 12px; border-radius: 20px; font-size: 14px; color: #626262; display: inline-flex; align-items: center; border: 2px solid #9FE2BF; box-shadow: 0 0 0 2px rgba(159, 226, 191, 0.3);' : 'background-color: #f0f0f0; padding: 6px 12px; border-radius: 20px; font-size: 14px; color: #626262; display: inline-flex; align-items: center;'"
+                                >
+                                    <img 
+                                        v-if="member.avatar"
+                                        :src="member.avatar"
+                                        :alt="member.name"
+                                        :style="member.isIntegrator ? 'width: 24px; height: 24px; border-radius: 50%; margin-right: 8px; object-fit: cover; border: 2px solid #9FE2BF;' : 'width: 24px; height: 24px; border-radius: 50%; margin-right: 8px; object-fit: cover; border: 2px solid #FFFFFF;'"
+                                    />
+                                    <span v-else style="margin-right: 6px;">👤</span>
+                                    [[ member.name ]]
+                                    <span v-if="member.count > 0" style="margin-left: 6px; color: #9FE2BF; font-weight: bold;">
+                                        ([[ member.count ]])
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+
+-->
+
+                    <div v-if="getCirclesDetailed().length === 0" style="text-align: center; padding: 20px; color: #999;">
+                        {% trans "Keine sicheren Kreise bei diesem Toleranzfenster-Wert" %}
+                    </div>
+                </div>
+
+                <div class="center">
+                  <p style="float:none; display: inline">
+                    <br>[[ getCircles().length ]] {% trans "SICHERE KREISE bei der Toleranzfenster-Grösse" %} <span style="font-weight: bold; font-size: 42px; color: #626262; vertical-align: middle;">[[ current ]]</span>
+                    
+                    <!-- Improved Tolerance Window Input Container -->
+                    <div class="tolerance-window-input-container" style="display: flex; flex-direction: column; align-items: center; gap: 15px; margin: 20px 0; padding: 20px; background-color: #f5f5f5; border-radius: 10px; border: 2px solid #9FE2BF;">
+                        <div style="display: flex; align-items: center; gap: 10px; width: 100%; max-width: 900px;">
+                            <label for="tolerance-window-input" style="font-weight: bold; color: #626262; white-space: nowrap;">
+                                {% trans "Toleranzfenster:" %}
+                            </label>
+                            <div style="position: relative; flex: 1; display: flex; align-items: center; gap: 10px;">
+                                <!-- Range Slider with gradient background -->
+                                <div style="position: relative; flex: 1.5; min-width: 450px; height: 50px; border-radius: 5px;" :style="getSliderGradientBackgroundStyle()">
+                                    <input 
+                                        type="range" 
+                                        id="tolerance-window-slider"
+                                        v-model.number="current" 
+                                        :min="getMinTolerance()" 
+                                        :max="getValue2()" 
+                                        step="1"
+                                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; margin: 0; padding: 0; background: transparent; outline: none; cursor: pointer; z-index: 1;"
+                                        class="tolerance-slider"
+                                        aria-label="{% trans 'Toleranzfenster einstellen' %}"
+                                        aria-valuemin="getMinTolerance()"
+                                        aria-valuemax="getValue2()"
+                                        :aria-valuenow="current"
+                                    />
+                                </div>
+                                <!-- Number Input -->
+                                <input 
+                                    type="number" 
+                                    id="tolerance-window-input"
+                                    v-model.number="current" 
+                                    :min="getMinTolerance()" 
+                                    :max="getValue2()" 
+                                    style="width: 100px; height: 50px; padding: 10px; border-radius: 10px; border: 3px solid #9FE2BF; font-size: 20px; font-weight: bold; text-align: center; background-color: #FAE03C; color: #626262; box-shadow: 0 2px 5px rgba(0,0,0,0.1);" 
+                                    aria-label="{% trans 'Toleranzfenster-Wert eingeben' %}"
+                                    aria-valuemin="getMinTolerance()"
+                                    aria-valuemax="getValue2()"
+                                    :aria-valuenow="current"
+                                />
+                                <!-- Tooltip Icon -->
+                                <span 
+                                    id="tolerance-window-tooltip-icon"
+                                    class="tooltip-icon"
+                                    title="{% trans 'Toleranzfenster-Erklärung' %}"
+                                >
+                                    ?
+                                </span>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 5px; font-size: 14px; color: #626262;">
+                            <button 
+                                @click="hideReadingHelp()"
+                                id="min-value-button"
+                                style="font-weight: bold; font-size: 42px; color: #626262; background: none; border: none; cursor: pointer; padding: 0; margin: 0; text-decoration: underline;"
+                                :aria-label="'{% trans 'Lesehilfe anzeigen'|escapejs %}: ' + getMinTolerance()"
+                                title="{% trans 'Lesehilfe anzeigen' %}"
+                                tabindex="0"
+                            >
+                                [[ getMinTolerance() ]]
+                            </button>
+                            <span style="flex: 1; text-align: center; font-style: italic;">{% trans "(niedrige Werte = hoher Stress)" %}</span>
+                            <button 
+                                @click="hideMaxValueHelp()"
+                                id="max-value-button"
+                                style="font-weight: bold; font-size: 42px; color: #626262; background: none; border: none; cursor: pointer; padding: 0; margin: 0; text-decoration: underline;"
+                                :aria-label="'{% trans 'Maximalwert-Erklärung' %}: ' + getValue2()"
+                                title="{% trans 'Maximalwert-Erklärung' %}"
+                                tabindex="0"
+                            >
+                                [[ getValue2() ]]
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <br/>
+                    <div style="position: relative; display: inline-block;">
+                        <canvas 
+                            ref="canvas" 
+                            :width="width" 
+                            :height="height" 
+                            :style="{ width:width+'px', height:height+'px', display: viewMode === 'canvas' ? 'block' : 'none', transition: 'opacity 0.3s ease' }" 
+                            id="team-potential-canvas"
+                            role="img"
+                            :aria-label="'{% trans 'Team-Potential-Visualisierung' %}: ' + current"
+                            tabindex="0"
+                        ></canvas>
+                    </div>
+                    <div v-if="viewMode === 'overview'" style="min-height: 400px; padding: 20px; background-color: #f5f5f5; border-radius: 10px; text-align: center;">
+                        <h3 style="color: #626262; margin-bottom: 20px;">{% trans "Übersichtsansicht" %}</h3>
+                        <p style="color: #999;">{% trans "Drücke Leertaste, um zur Canvas-Ansicht zurückzukehren" %}</p>
+                    </div>
+                  </p>
+                </div>
+                
+                <!-- Player Detail Modal -->
+                <div 
+                    v-if="showPlayerDetail && selectedPlayer !== null" 
+                    class="player-detail-modal"
+                    @click.self="closePlayerDetail()"
+                >
+                    <div class="player-detail-content" v-if="getPlayerDetails(selectedPlayer)">
+                        <div class="player-detail-header">
+                            <button class="player-detail-close" @click="closePlayerDetail()" aria-label="{% trans 'Spieler-Detail schließen' %}" title="{% trans 'Schließen' %}">×</button>
+                            <h2>[[ getPlayerDetails(selectedPlayer).name ]]</h2>
+                        </div>
+                        <div class="player-detail-body">
+                            <div class="player-detail-avatar-section">
+                                <img 
+                                    :src="getPlayerDetails(selectedPlayer).avatar" 
+                                    :alt="getPlayerDetails(selectedPlayer).name"
+                                    class="player-detail-avatar"
+                                />
+                                <div class="player-detail-role" :class="{ 'integrator': getPlayerDetails(selectedPlayer).isIntegrator }">
+                                    [[ getPlayerDetails(selectedPlayer).role ]]
+                                </div>
+                                <div v-if="getPlayerDetails(selectedPlayer).safetyAnchor" class="player-detail-anchor">
+                                    <strong>{% trans "Sicherheitsanker:" %}</strong> [[ getPlayerDetails(selectedPlayer).safetyAnchor ]]
+                                </div>
+                            </div>
+                            
+                            <div class="player-detail-stats">
+                                <div class="player-detail-stat">
+                                    <span class="stat-label">{% trans "Safecircle-Anzahl:" %}</span>
+                                    <span class="stat-value">[[ getPlayerDetails(selectedPlayer).circleCount ]]</span>
+                                </div>
+                                <div class="player-detail-stat" v-if="getPlayerDetails(selectedPlayer).inGroups.length > 0">
+                                    <span class="stat-label">{% trans "In-Groups:" %}</span>
+                                    <span class="stat-value">[[ getPlayerDetails(selectedPlayer).inGroups.length ]]</span>
+                                </div>
+                            </div>
+                            
+                            <div v-if="getPlayerDetails(selectedPlayer).circles.length > 0" class="player-detail-section">
+                                <h3 class="player-detail-section-title-circles">{% trans "Sichere Kreise:" %}</h3>
+                                <div 
+                                    v-for="(circle, idx) in getPlayerDetails(selectedPlayer).circles" 
+                                    :key="idx"
+                                    class="player-detail-circle"
+                                    :style="{ borderLeftColor: circle.color }"
+                                >
+                                    <div class="player-detail-circle-header">
+                                        <span class="player-detail-circle-color-indicator" :style="{ backgroundColor: circle.color }"></span>
+                                        <strong>{% trans "Kreis" %} [[ circle.index + 1 ]]:</strong>
+                                        <span class="player-detail-circle-tolerance">
+                                            {% trans "Toleranzfenster:" %} [[ current ]]
+                                        </span>
+                                    </div>
+                                    <div class="player-detail-circle-members">
+                                        <span 
+                                            v-for="(member, memberIdx) in circle.members" 
+                                            :key="memberIdx"
+                                            class="player-detail-circle-member"
+                                            :class="{ 'integrator': member.isIntegrator, 'current-player': member.isCurrentPlayer }"
+                                        >
+                                            <img 
+                                                v-if="member.avatar"
+                                                :src="member.avatar" 
+                                                :alt="member.name"
+                                                class="player-detail-circle-member-avatar"
+                                            />
+                                            <span v-else class="player-detail-circle-member-avatar-placeholder">👤</span>
+                                            <div class="player-detail-circle-member-info">
+                                                <span class="player-detail-circle-member-name">[[ member.name ]]</span>
+                                                <span v-if="member.safetyAnchor" class="player-detail-circle-member-anchor">[[ member.safetyAnchor ]]</span>
+                                            </div>
+                                            <span v-if="member.isIntegrator" class="player-detail-circle-member-badge">{% trans "Integrator" %}</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div v-if="getPlayerDetails(selectedPlayer).inGroups.length > 0" class="player-detail-section">
+                                <h3>{% trans "In-Groups:" %}</h3>
+                                <div 
+                                    v-for="(group, idx) in getPlayerDetails(selectedPlayer).inGroups" 
+                                    :key="idx"
+                                    class="player-detail-in-group"
+                                >
+                                    <div class="player-detail-in-group-header">
+                                        <span class="player-detail-in-group-tolerance">
+                                            {% trans "Toleranzfenster:" %} [[ current ]]
+                                        </span>
+                                    </div>
+                                    <div class="player-detail-circle-members">
+                                        <span 
+                                            v-for="(member, memberIdx) in group.members" 
+                                            :key="memberIdx"
+                                            class="player-detail-circle-member"
+                                            :class="{ 'integrator': member.isIntegrator, 'current-player': member.isCurrentPlayer }"
+                                        >
+                                            <img 
+                                                v-if="member.avatar"
+                                                :src="member.avatar" 
+                                                :alt="member.name"
+                                                class="player-detail-circle-member-avatar"
+                                            />
+                                            <span v-else class="player-detail-circle-member-avatar-placeholder">👤</span>
+                                            <div class="player-detail-circle-member-info">
+                                                <span class="player-detail-circle-member-name">[[ member.name ]]</span>
+                                                <span v-if="member.safetyAnchor" class="player-detail-circle-member-anchor">[[ member.safetyAnchor ]]</span>
+                                            </div>
+                                            <span v-if="member.isIntegrator" class="player-detail-circle-member-badge">{% trans "Integrator" %}</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p style="background-color: #9FE2BF; color: #626262; text-align: left; border-radius: 10px; padding: 0 10px;"><br>
+                            <span 
+                                id="prio2-heading-tooltip-icon"
+                                class="prio2-tooltip-container"
+                                style="display: inline-flex; align-items: center; gap: 4px; margin-right: 8px; vertical-align: middle;"
+                            >
+                                <span 
+                                    id="prio2-tooltip-icon"
+                                    class="tooltip-icon prio2-tooltip-icon"
+                                    title="{% trans 'Klicken für Anweisungen' %}"
+                                >
+                                    ?
+                                </span>
+                            </span>
+                       {% trans "PRIO 2: Satelliten integrieren – " %}{% trans "beim Toleranzfenster-Wert von " %}<button @click="current=getValue3()" style="background-color: #FFFFFF; border: 5px solid #52CEEC; color: black;">[[ getValue3() ]] </button>{% trans " (hier klicken) siehst du, wer zuerst SOLO ist. " %}<button @click="current=getValue3()+1" style="background-color: #FFFFFF; border: 5px solid #52CEEC; color: black;">{% trans "Booste Satelliten" %}</button> {% trans " und erkenne, wer Hand in einen sicheren Kreis bieten kann." %}<br>
+                       <span 
+                           id="prio2-integrator-tooltip-icon"
+                           style="display: inline-flex; align-items: center; gap: 4px; margin-left: 0; vertical-align: middle;"
+                       >
+                           {% trans "Wie weiter" %}
+                           <span 
+                               class="tooltip-icon"
+                               title="{% trans 'PRIO 2-Erklärung' %}"
+                           >
+                               ?
+                           </span>
+                       </span>
+                       <br><br>
+                </p>
+
+                <p style="background-color: #52CEEC; text-align: left; color: #FFFFFF; border-radius: 10px; padding: 0 10px;"><br>
+                            <span 
+                                id="prio3-heading-tooltip-icon"
+                                class="prio3-tooltip-container"
+                                style="display: inline-flex; align-items: center; gap: 4px; margin-right: 8px; vertical-align: middle;"
+                            >
+                                <span 
+                                    id="prio3-tooltip-icon"
+                                    class="tooltip-icon tooltip-icon-green prio3-tooltip-icon"
+                                    title="{% trans 'Klicken für Anweisungen' %}"
+                                >
+                                    ?
+                                </span>
+                            </span>
+                            {% trans "PRIO 3: Boss-Zentralität erhöhen – " %}{% trans "die Konstellation beim " %}<button  @click="current=16" style="border: 5px solid #9FE2BF;">{% trans "Standard-Toleranzfenster von 16" %}</button>{% trans " könnte der IST-Situation im Team nahekommen. Wie sicher verbunden ist der Boss?" %}<br>
+                            <span 
+                                id="prio3-integrator-tooltip-icon"
+                                style="display: inline-flex; align-items: center; gap: 4px; margin-left: 0; vertical-align: middle;"
+                            >
+                                {% trans "Wie weiter" %}
+                                <span 
+                                    class="tooltip-icon tooltip-icon-green"
+                                    title="{% trans 'PRIO 3-Erklärung' %}"
+                                >
+                                    ?
+                                </span>
+                            </span>
+                            <br><br>
+                </p>
+
+
+                <p style="background-color: #fffff; text-align: left; color: #00000; border-radius: 10px; padding: 0 10px;"><br>
+                            {% trans "" %}<br><br>
+                </p>
+
+                <p id="reading-help-section" style="display: none; background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
+                            <br>
+                            {% trans "Eine Lesehilfe: je kleiner der Zahlenwert, desto mehr Stress und negative Trigger zeigen sich, weil sich die Toleranzfenster der Teammitglieder schliessen." %}<br>
+                            <button @click="current=getValue1()" style="border: 5px solid #9FE2BF;">{% trans "Im ersten sicheren Kreise bei" %} [[ getValue1() ]]</button>{% trans " (hier klicken) funktioniert die Zusammenarbeit auch bei sehr grossem Stress noch ohne Drama." %}<br>
+                            <br>
+                </p>
+
+                <p id="max-value-help-section" style="display: none; background-color: #fffff; text-align: left; color: #00000; border-radius: 10px; padding: 0 10px;"><br>
+                            {% trans "Aktuell seid ihr beim Toleranzfenster von " %}<button @click="current=getValue2()" style="border: 5px solid #9FE2BF;">[[ getValue2() ]] {% trans " alle in EINEM sicheren Kreis." %}</button><br>{% trans "Wenn Einzelne auf undifferenzierte Einigkeit drängen, zeigt sich das an einer Toleranzfenster-Grösse von über 35, bei dem die Teamdynamik schon sektenartige Züge tragen kann. Ein weiterer Indikator für ein ungesundes Mass an erwarteter Konformität zeigt sich bei Werten unter 25, die auf eine Gefahr von Groupthink deutet." %}<br><br>
+                </p><br>
+
+            </div>
+
+            </main>
+
+                <div class="center">
+
+                        <span>
+                            <a href="/arche/">
+                            <button class="button button-primary" type="button">
+                                <span class="button-text">{% trans "Aftercare" %}</span>
+                                <span class="button-arrow">→</span>
+                            </button></a>
+                        </span>
+
+
+                        <p style="text-align: center; font-size: 10px;">
+                            <div class="copyright-footer">
+                                <a href="https://github.com/joe-the-ark/ark" target="_blank">{% trans "ARKS is published under a GPLv3" %}</a> {% trans "license by" %} 
+                                <a href="https://www.linkedin.com/in/dr-joe-maier/" target="_blank">{% trans "Dr. Joe Maier" %}</a>.
+                            </div>
+                        </p>
+                </div>
+
+                <div class="google-slides-container-wrapper" style="position: relative; margin-top: 40px;">
+                    <button class="google-slides-fullscreen-button" id="google-slides-fullscreen-button" aria-label="{% trans 'Vollbild anzeigen' %}" title="{% trans 'Vollbild anzeigen' %}">
+                        <span class="fullscreen-icon">⛶</span>
+                    </button>
+                    <div class="google-slides-container" id="google-slides-container">
+                        <iframe src={% trans "https://docs.google.com/presentation/d/1qi3wNhpRU3FEoatghY7Ca0iNwtGPQGvHqLRXCvbKKJ8/embed?start=true&loop=false&delayms=8000&rm=minimal"  %} frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                    </div>
+                </div>
+
+                {% comment %}<p class="spanun-p" style="background-color: #FFFFFF; color: #626262; border-radius: 10px; padding: 0 10px;">
+                            {% trans "Zum Abschluss empfehlen wir eine anonyme Feedbackrunde mit 3 bewährten Fragen zur Stärkung der psychologischen Sicherheit im Team: Dieser Feedbackprozess ist Voraussetzung, damit die hier noch anonym dargestellten Einschätzungen der anderen Teammitglieder offengelegt werden können." %}
+                <br><br><br></p>{% endcomment %}
+
+        </div>
+
+    </div>
+</div>
+{{ prio1_tooltip_text|json_script:"prio1-tooltip-text" }}
+{{ prio2_tooltip_text|json_script:"prio2-tooltip-text" }}
+{{ prio3_tooltip_text|json_script:"prio3-tooltip-text" }}
+{{ circles|json_script:"circles-data" }}
+{{ players|json_script:"players-data" }}
+{{ anchors|json_script:"anchors-data" }}
+{{ all_result|json_script:"all-result-data" }}
+{{ in_groups|json_script:"in-groups-data" }}
+<script src="/static/js/AppGraph.js"></script>
+<script src="/static/axios.min.js"></script>
+<script>
+/**
+ * Team Potential Visualization
+ * 
+ * This Vue.js application visualizes safecircles and in-groups for team dynamics.
+ * Features:
+ * - Interactive tolerance window slider
+ * - Canvas visualization with safecircles and in-groups
+ * - Player detail modal
+ * - Keyboard navigation (Arrow keys, Space)
+ * - Smooth animations
+ */
+
+// Parse JSON data from json_script tags - this ensures proper Unicode handling for Firefox
+function parseJsonScript(id, defaultValue) {
+    var element = document.getElementById(id);
+    if (!element) {
+        console.error('JSON script element not found:', id);
+        return defaultValue;
+    }
+    try {
+        return JSON.parse(element.textContent);
+    } catch(e) {
+        console.error('Error parsing JSON from', id, ':', e);
+        console.error('Element textContent:', element.textContent.substring(0, 200));
+        return defaultValue;
+    }
+}
+
+// Ensure DOM is ready before parsing
+function initTeamPotential() {
+    // Prevent multiple initializations
+    if (window.teamPotentialInitialized) {
+        console.warn('Team potential already initialized, skipping...');
+        return;
+    }
+    
+    // Also check if Vue instance already exists
+    if (window.app1 && window.app1.$el) {
+        console.warn('Vue app already exists, skipping initialization...');
+        return;
+    }
+    
+    window.teamPotentialInitialized = true;
+    
+    var circlesData = parseJsonScript('circles-data', {});
+    var playersData = parseJsonScript('players-data', {});
+    var anchorsData = parseJsonScript('anchors-data', {});
+    var allResultData = parseJsonScript('all-result-data', []);
+    var inGroupsData = parseJsonScript('in-groups-data', []);
+    
+    // Store allResultData globally for later use
+    window.allResultData = allResultData;
+
+var app1 = new Vue({
+    delimiters: ['[[', ']]'],
+    el: '#app-1',
+    data() {
+        return {
+            loading: false,
+            circles: circlesData,
+            players: playersData,
+            anchors: anchorsData,
+            allResult: allResultData,       // raw statusSide data for each player
+            inGroups: inGroupsData,         // in-groups data
+            current: 16,
+            width: 800,
+            height: 800,
+            // Animation state
+            animationFrame: null,
+            isAnimating: false,
+            // Player detail view
+            selectedPlayer: null,
+            playerPositions: {}, // Store player positions for click detection
+            playerPositionsArray: [], // Array version for Vue reactivity
+            showPlayerDetail: false,
+            // View toggle
+            viewMode: 'canvas' // 'canvas' or 'overview'
+        };
+    },
+    created() {
+        // Ensure isAnimating is false from the start
+        this.isAnimating = false;
+        this._animationStartTime = 0;
+        this.current = this.getValue4();
+        this.loading = '{{ loading }}' !== '0';
+    },
+    mounted() {
+        // Ensure isAnimating is false on mount
+        this.isAnimating = false;
+        this._animationStartTime = 0;
+        
+        // Use $nextTick to ensure DOM refs are available
+        this.$nextTick(() => {
+            if (this.$refs.canvas) {
+                this.redraw();
+            }
+            this.setupKeyboardShortcuts();
+            this.setupCanvasClickHandlers();
+        });
+        // Make app1 globally accessible for keyboard handlers
+        window.app1 = this;
+    },
+    beforeDestroy() {
+        // Clean up event listeners
+        if (this._keyboardHandler) {
+            document.removeEventListener('keydown', this._keyboardHandler, true);
+            this._keyboardHandler = null;
+        }
+    },
+    watch: {
+        current(newVal, oldVal) {
+            // Only animate if values actually changed and oldVal is defined (not initial load)
+            if (oldVal !== undefined && oldVal !== newVal && !this.isAnimating) {
+                console.log('Watch triggered: animating from', oldVal, 'to', newVal);
+                this.animateTransition(oldVal, newVal);
+            } else {
+                // Ensure canvas ref is available before redraw
+                this.$nextTick(() => {
+                    if (this.$refs.canvas) {
+                        this.redraw();
+                    }
+                });
+            }
+        }
+    },
+    methods: {
+        /**
+         * Navigation Methods
+         */
+        waiting_room() {
+            window.location.href = '/waiting-room2/';
+        },
+        
+        /**
+         * Tolerance Window Value Methods
+         * These methods calculate the minimum, maximum, and optimal tolerance window values
+         */
+        getValue1() { 
+            // Returns the first (lowest) tolerance value where safecircles exist
+            for (const key in this.circles.circles) return key; 
+        },
+        getValue2() {
+            // Returns the highest tolerance value where safecircles exist
+            let maxKey = -Infinity;
+            for (const key in this.circles.circles) maxKey = Math.max(maxKey, parseInt(key));
+            return maxKey;
+        },
+        getMinTolerance() {
+            /**
+             * Returns the minimum tolerance value, considering both safecircles and in-groups.
+             * If in-groups exist at lower tolerance values, returns the lowest in-group tolerance.
+             * Otherwise, returns the lowest safecircle tolerance - 1.
+             */
+            // Find the lowest tolerance value where in-groups exist
+            // If no in-groups exist, return getValue1()-1 (lowest safecircle value - 1)
+            const inGroups = this.inGroups || [];
+            if (inGroups.length === 0) {
+                return this.getValue1() - 1;
+            }
+            
+            // Find the minimum tolerance value from all in-groups
+            let minTolerance = Infinity;
+            inGroups.forEach(group => {
+                if (group.tolerance !== undefined && group.tolerance < minTolerance) {
+                    minTolerance = group.tolerance;
+                }
+            });
+            
+            // If we found a lower value than getValue1()-1, use it
+            // Otherwise, use getValue1()-1 as the minimum
+            const safecircleMin = this.getValue1() - 1;
+            return Math.min(minTolerance, safecircleMin);
+        },
+        getValue3() {
+            const pCount = this.circles.players.length;
+            return Object.keys(this.circles.circles)
+                .map(k => parseInt(k)).reverse()
+                .find(k => Object.keys(this.circles.circles[k].circle_count).length <= pCount - 1);
+        },
+        getValue4() {
+            let maxSum = -Infinity, best = -1;
+            for (const key in this.circles.circles) {
+                const sum = Object.values(this.circles.circles[key].circle_count)
+                              .reduce((s, e) => s + e, 0);
+                if (sum > maxSum) { maxSum = sum; best = key; }
+            }
+            return best;
+           },
+           
+           /**
+            * Safecircle Data Methods
+            * Methods for retrieving and formatting safecircle information
+            */
+           getCircles() {
+            const entry = this.circles.circles[this.current] || {};
+            return (entry.circles || []).map(group => group.map(i => this.circles.players[i]).join(' '));
+        },
+           getCirclesDetailed() {
+               const entry = this.circles.circles[this.current] || {};
+               const circles = entry.circles || [];
+               const circle_count = entry.circle_count || {};
+               const colors = ['#fa5252', '#ff8c00', '#9FE2BF', '#52CEEC', '#9b59b6', '#FAE03C', '#3b4252'];
+               
+               // Calculate maxCount to identify integrators
+               const maxCount = Math.max(0, ...Object.values(circle_count));
+               
+               return circles.map((group, idx) => {
+                   const members = group.map(i => {
+                       const count = circle_count[i] || 0;
+                       const isTop = count === maxCount && maxCount > 0;
+                       return {
+                           name: this.circles.players[i],
+                           avatar: this.players[this.circles.players[i]] || '',
+                           count: count,
+                           isIntegrator: isTop
+                       };
+                   });
+                   
+                   return {
+                       members: members,
+                       memberCount: members.length,
+                       color: colors[idx % colors.length]
+                   };
+               });
+           },
+           /**
+            * Visual Styling Methods
+            */
+           getSliderGradientBackgroundStyle() {
+               /**
+                * Creates a gradient background for the tolerance window slider.
+                * - Red for low values (< 16): indicates high stress
+                * - Green for optimal values (>= 16): indicates safe zone
+                * - White for very high values: indicates potential groupthink
+                */
+               const min = this.getMinTolerance();
+               const max = this.getValue2();
+               const threshold = 16; // Value below which it transitions to red
+               
+               // Calculate percentage position of threshold (16)
+               const thresholdPercent = ((threshold - min) / (max - min)) * 100;
+               
+               // Colors: red (low, < 16) -> green (main, >= 16) -> white (high)
+               const redColor = '#fa5252';
+               const greenColor = '#9FE2BF';
+               const whiteColor = '#FFFFFF';
+               
+               // Create gradient: 
+               // - Left (low values, < 16): red transitioning to green at 16
+               // - Right (high values): green transitioning to white
+               // The majority should be green
+               return {
+                   background: `linear-gradient(to right, ${redColor} 0%, ${greenColor} ${thresholdPercent}%, ${greenColor} 85%, ${whiteColor} 100%)`
+               };
+           },
+           /**
+            * UI Interaction Methods
+            */
+           hideReadingHelp() {
+               /**
+                * Hides the reading help section and sets tolerance to first safe circle value.
+                */
+               const section = document.getElementById('reading-help-section');
+               if (section) {
+                   section.style.display = 'none';
+               }
+               // Set current to first safe circle value to display it
+               this.current = this.getValue1();
+           },
+           hideMaxValueHelp() {
+               /**
+                * Hides the max value help section and sets tolerance to highest value.
+                */
+               const section = document.getElementById('max-value-help-section');
+               if (section) {
+                   section.style.display = 'none';
+               }
+               // Set current to highest tolerance window value to display it
+               this.current = this.getValue2();
+           },
+           
+           /**
+            * Animation Methods
+            * Provides smooth transitions when tolerance window changes
+            */
+           animateTransition(fromVal, toVal) {
+               // Don't animate if values are the same
+               if (fromVal === toVal) {
+                   console.log('Skipping animation: fromVal === toVal (', fromVal, ')');
+                   return;
+               }
+               
+               if (this.isAnimating) {
+                   console.log('Animation already in progress, skipping');
+                   return;
+               }
+               this.isAnimating = true;
+               this._animationStartTime = Date.now();
+               console.log('Starting animation from', fromVal, 'to', toVal);
+               
+               const steps = 20; // Number of animation frames
+               const duration = 300; // Animation duration in ms
+               const stepTime = duration / steps;
+               let currentStep = 0;
+               const self = this;
+               
+               const animate = function() {
+                   // Check if animation was cancelled
+                   if (!self.isAnimating || !self.animationFrame) {
+                       console.log('Animation cancelled, stopping');
+                       return;
+                   }
+                   
+                   if (currentStep >= steps) {
+                       self.current = toVal;
+                       self.isAnimating = false;
+                       self._animationStartTime = 0;
+                       self.animationFrame = null;
+                       console.log('Animation completed, final value:', toVal);
+                       // Ensure canvas is redrawn after animation completes
+                       self.$nextTick(() => {
+                           if (self.$refs.canvas) {
+                               self.redraw();
+                           }
+                       });
+                       return;
+                   }
+                   
+                   // Interpolate between fromVal and toVal
+                   const progress = currentStep / steps;
+                   // Use easing function for smoother animation
+                   const eased = self.easeInOutCubic(progress);
+                   const interpolated = Math.round(fromVal + (toVal - fromVal) * eased);
+                   
+                   self.current = interpolated;
+                   currentStep++;
+                   self.redraw();
+                   self.animationFrame = setTimeout(function() {
+                       requestAnimationFrame(animate);
+                   }, stepTime);
+               };
+               
+               animate();
+           },
+           easeInOutCubic(t) {
+               return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+           },
+           /**
+            * Keyboard Navigation
+            * Arrow keys: Change tolerance window
+            * Space: Toggle between canvas and overview view
+            */
+          setupKeyboardShortcuts() {
+              // Remove existing listener if any to prevent duplicates
+              if (this._keyboardHandler) {
+                  document.removeEventListener('keydown', this._keyboardHandler, true);
+                  this._keyboardHandler = null;
+              }
+              
+              // Create a bound handler function with debouncing to prevent multiple rapid calls
+              const self = this;
+              let lastKeyTime = 0;
+              const DEBOUNCE_MS = 50; // Prevent rapid-fire key events
+              
+              this._keyboardHandler = function(e) {
+                  // Debounce rapid key presses
+                  const now = Date.now();
+                  if (e.key && (e.key.startsWith('Arrow') || e.key === ' ')) {
+                      if (now - lastKeyTime < DEBOUNCE_MS) {
+                          console.log('Debouncing key press:', e.key);
+                          return;
+                      }
+                      lastKeyTime = now;
+                  }
+                  
+                  // Debug: Log all arrow key presses
+                  if (e.key && (e.key.startsWith('Arrow') || e.key === ' ')) {
+                      console.log('Key pressed:', e.key, 'Target:', e.target.tagName, 'Current value:', self.current);
+                  }
+                  
+                  // Don't trigger if user is typing in an input field
+                  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+                      console.log('Ignoring key press in input/textarea');
+                      return;
+                  }
+                  
+                  // Always allow keyboard navigation - animation will be cancelled in switch statement if needed
+                  
+                  const min = self.getMinTolerance(); // Use minimum tolerance (including in-groups)
+                  const max = self.getValue2();
+                  
+                  switch(e.key) {
+                      case 'ArrowLeft':
+                      case 'ArrowUp':
+                          e.preventDefault();
+                          e.stopPropagation();
+                          
+                          // Cancel any ongoing animation immediately
+                          if (self.isAnimating && self.animationFrame) {
+                              clearTimeout(self.animationFrame);
+                              self.animationFrame = null;
+                              console.log('Cancelled ongoing animation');
+                          }
+                          // Temporarily disable animation for immediate response
+                          const wasAnimating = self.isAnimating;
+                          self.isAnimating = true; // Temporarily set to true to prevent watch from triggering animation
+                          self._animationStartTime = 0;
+                          
+                          const currentBeforeLeft = self.current;
+                          console.log('Arrow left/up pressed, current:', currentBeforeLeft, 'min:', min);
+                          if (currentBeforeLeft > min) {
+                              const newValue = Math.max(min, currentBeforeLeft - 1);
+                              console.log('Setting current to:', newValue, 'from:', currentBeforeLeft);
+                              
+                              // Set value directly without animation for immediate response
+                              self.current = newValue;
+                              
+                              // Immediately redraw to prevent flickering
+                              self.$nextTick(() => {
+                                  if (self.$refs.canvas) {
+                                      self.redraw();
+                                  }
+                                  // Re-enable animation flag after redraw
+                                  self.isAnimating = false;
+                                  console.log('Current after Vue update and redraw:', self.current);
+                              });
+                          } else {
+                              // Re-enable animation if no change
+                              self.isAnimating = wasAnimating;
+                          }
+                          break;
+                      case 'ArrowRight':
+                      case 'ArrowDown':
+                          e.preventDefault();
+                          e.stopPropagation();
+                          
+                          // Cancel any ongoing animation immediately
+                          if (self.isAnimating && self.animationFrame) {
+                              clearTimeout(self.animationFrame);
+                              self.animationFrame = null;
+                              console.log('Cancelled ongoing animation');
+                          }
+                          // Temporarily disable animation for immediate response
+                          self.isAnimating = true; // Temporarily set to true to prevent watch from triggering animation
+                          self._animationStartTime = 0;
+                          
+                          const currentBeforeRight = self.current;
+                          console.log('Arrow right/down pressed, current:', currentBeforeRight, 'max:', max);
+                          if (currentBeforeRight < max) {
+                              const newValue = Math.min(max, currentBeforeRight + 1);
+                              console.log('Setting current to:', newValue, 'from:', currentBeforeRight);
+                              
+                              // Set value directly without animation for immediate response
+                              self.current = newValue;
+                              
+                              // Immediately redraw to prevent flickering
+                              self.$nextTick(() => {
+                                  if (self.$refs.canvas) {
+                                      self.redraw();
+                                  }
+                                  // Re-enable animation flag after redraw
+                                  self.isAnimating = false;
+                                  console.log('Current after Vue update and redraw:', self.current);
+                              });
+                          } else {
+                              // Re-enable animation if no change
+                              self.isAnimating = false;
+                          }
+                          break;
+                      case ' ':
+                          e.preventDefault();
+                          e.stopPropagation();
+                          console.log('Space pressed, toggling view');
+                          self.toggleView();
+                          break;
+                  }
+              };
+              
+              // Add the event listener with capture phase to ensure it runs early
+              document.addEventListener('keydown', this._keyboardHandler, true);
+              
+              console.log('Keyboard shortcuts initialized, handler bound to:', this._keyboardHandler);
+          },
+           toggleView() {
+               this.viewMode = this.viewMode === 'canvas' ? 'overview' : 'canvas';
+               // Close player detail when toggling
+               if (this.showPlayerDetail) {
+                   this.closePlayerDetail();
+               }
+           },
+           // Player detail view methods
+           setupCanvasClickHandlers() {
+               const canvas = this.$refs.canvas;
+               if (!canvas) return;
+               
+               canvas.addEventListener('click', (e) => {
+                   const rect = canvas.getBoundingClientRect();
+                   const x = e.clientX - rect.left;
+                   const y = e.clientY - rect.top;
+                   
+                   // Check if click is on a player avatar
+                   const clickedPlayer = this.getPlayerAtPosition(x, y);
+                   if (clickedPlayer !== null) {
+                       this.showPlayerDetailView(clickedPlayer);
+                   }
+               });
+               
+               // Add cursor and visual feedback on hover over players
+               let hoveredPlayer = null;
+               
+               canvas.addEventListener('mousemove', (e) => {
+                   const rect = canvas.getBoundingClientRect();
+                   const x = e.clientX - rect.left;
+                   const y = e.clientY - rect.top;
+                   
+                   const player = this.getPlayerAtPosition(x, y);
+                   
+                   if (player !== null) {
+                       // Show question mark cursor
+                       canvas.style.cursor = 'help';
+                       
+                       // Show visual question mark if not already shown
+                       if (hoveredPlayer !== player) {
+                           hoveredPlayer = player;
+                           this.showQuestionMarkOverPlayer(player, x, y);
+                       }
+                   } else {
+                       // Reset cursor
+                       canvas.style.cursor = 'default';
+                       
+                       // Hide question mark
+                       if (hoveredPlayer !== null) {
+                           hoveredPlayer = null;
+                           this.hideQuestionMark();
+                       }
+                   }
+               });
+               
+               canvas.addEventListener('mouseleave', () => {
+                   canvas.style.cursor = 'default';
+                   if (hoveredPlayer !== null) {
+                       hoveredPlayer = null;
+                       this.hideQuestionMark();
+                   }
+               });
+           },
+           getPlayerAtPosition(x, y) {
+               // Check each stored player position
+               for (const [playerIndex, pos] of Object.entries(this.playerPositions)) {
+                   const distance = Math.hypot(x - pos.x, y - pos.y);
+                   // Clickable area: avatar size / 2 + some padding
+                   const clickRadius = (pos.size / 2) + 10;
+                   if (distance <= clickRadius) {
+                       return parseInt(playerIndex);
+                   }
+               }
+               return null;
+           },
+           showPlayerDetailView(playerIndex) {
+               this.selectedPlayer = playerIndex;
+               this.showPlayerDetail = true;
+           },
+           closePlayerDetail() {
+               this.showPlayerDetail = false;
+               this.selectedPlayer = null;
+           },
+           getPlayerDetails(playerIndex) {
+               if (playerIndex === null || playerIndex === undefined) return null;
+               
+               const playerName = this.circles.players[playerIndex];
+               const entry = this.circles.circles[this.current] || {};
+               const circles = entry.circles || [];
+               const circle_count = entry.circle_count || {};
+               const maxCount = Math.max(0, ...Object.values(circle_count));
+               
+               // Find all circles this player is in
+               const colors = ['#fa5252', '#ff8c00', '#9FE2BF', '#52CEEC', '#9b59b6', '#FAE03C', '#3b4252'];
+               const playerCircles = circles
+                   .map((circle, idx) => {
+                       const memberDetails = circle.map(i => {
+                           const memberName = this.circles.players[i];
+                           const memberCount = circle_count[i] || 0;
+                           const isMemberIntegrator = memberCount === maxCount && maxCount > 0;
+                           return {
+                               name: memberName,
+                               avatar: this.players[memberName] || '',
+                               safetyAnchor: this.anchors[memberName] || '',
+                               isIntegrator: isMemberIntegrator,
+                               isCurrentPlayer: i === playerIndex
+                           };
+                       });
+                       return {
+                           index: idx,
+                           members: memberDetails,
+                           includesPlayer: circle.includes(playerIndex),
+                           color: colors[idx % colors.length]
+                       };
+                   })
+                   .filter(c => c.includesPlayer);
+               
+               // Find in-groups this player is part of
+               // First, create a set of pairs that are in safecircles at current tolerance
+               const pairsInCurrentCircle = new Set();
+               const currentCircles = circles || [];
+               const currentDyads = entry.dyads || [];
+               
+               currentCircles.forEach(circle => {
+                   for (let idx1 = 0; idx1 < circle.length; idx1++) {
+                       for (let idx2 = idx1 + 1; idx2 < circle.length; idx2++) {
+                           const pair = [Math.min(circle[idx1], circle[idx2]), Math.max(circle[idx1], circle[idx2])];
+                           pairsInCurrentCircle.add(pair.join(','));
+                       }
+                   }
+               });
+               currentDyads.forEach(dyad => {
+                   if (dyad.length === 2) {
+                       const pair = [Math.min(dyad[0], dyad[1]), Math.max(dyad[0], dyad[1])];
+                       pairsInCurrentCircle.add(pair.join(','));
+                   }
+               });
+               
+               // Filter in-groups: only show those NOT in safecircles at current tolerance
+               const playerInGroups = (this.inGroups || [])
+                   .filter(group => {
+                       // Check if this player is part of the in-group
+                       if (group.i !== playerIndex && group.j !== playerIndex) {
+                           return false;
+                       }
+                       
+                       // Show in-groups if current tolerance is within the range where this in-group exists
+                       // In-groups exist from group.tolerance (min) to group.max_tolerance (max, if defined)
+                       // Also show if current is the lowest available tolerance value (even if lower than group.tolerance)
+                       // This allows in-groups detected below the first safecircle to still be visible
+                       const minAvailableTolerance = this.getValue1(); // Lowest tolerance with safecircles
+                       const isLowestTolerance = this.current === minAvailableTolerance;
+                       
+                       if (group.tolerance) {
+                           // Check if current is within the valid range
+                           const maxTolerance = group.max_tolerance || 999; // If no max, assume it continues
+                           const isWithinRange = this.current >= group.tolerance && this.current <= maxTolerance;
+                           
+                           if (!isWithinRange && !isLowestTolerance) {
+                               return false; // Don't show - current tolerance is outside the valid range for this in-group
+                           }
+                       }
+                       
+                       // Check if this pair is in a safecircle at current tolerance
+                       const pairKey = [Math.min(group.i, group.j), Math.max(group.i, group.j)].join(',');
+                       if (pairsInCurrentCircle.has(pairKey)) {
+                           return false; // Don't show - they're in a safecircle now
+                       }
+                       
+                       return true; // Show this in-group
+                   })
+                   .map(group => {
+                       const otherIndex = group.i === playerIndex ? group.j : group.i;
+                       const otherPlayerName = this.circles.players[otherIndex];
+                       const currentPlayerName = this.circles.players[playerIndex];
+                       
+                       // Get integrator status for both players
+                       const otherCount = circle_count[otherIndex] || 0;
+                       const currentCount = circle_count[playerIndex] || 0;
+                       const isOtherIntegrator = otherCount === maxCount && maxCount > 0;
+                       const isCurrentIntegrator = currentCount === maxCount && maxCount > 0;
+                       
+                       // Create member details for both players in the in-group
+                       const members = [
+                           {
+                               name: currentPlayerName,
+                               avatar: this.players[currentPlayerName] || '',
+                               safetyAnchor: this.anchors[currentPlayerName] || '',
+                               isIntegrator: isCurrentIntegrator,
+                               isCurrentPlayer: true
+                           },
+                           {
+                               name: otherPlayerName,
+                               avatar: this.players[otherPlayerName] || '',
+                               safetyAnchor: this.anchors[otherPlayerName] || '',
+                               isIntegrator: isOtherIntegrator,
+                               isCurrentPlayer: false
+                           }
+                       ];
+                       
+                       return {
+                           members: members,
+                           otherPlayer: otherPlayerName,
+                           avg_p1_to_p2: group.avg_p1_to_p2,
+                           avg_p2_to_p1: group.avg_p2_to_p1,
+                           similarity: group.similarity
+                       };
+                   });
+               
+               // Determine role
+               const count = circle_count[playerIndex] || 0;
+               const isIntegrator = count === maxCount && maxCount > 0;
+               const isSolo = playerCircles.length === 0;
+               const isInMultipleCircles = playerCircles.length > 1;
+               
+               let role = 'Team Member';
+               if (isIntegrator) role = 'Integrator';
+               else if (isSolo) role = 'Solo';
+               else if (isInMultipleCircles) role = 'Bridge';
+               
+               return {
+                   name: playerName,
+                   avatar: this.players[playerName] || '',
+                   safetyAnchor: this.anchors[playerName] || '',
+                   circleCount: count,
+                   role: role,
+                   circles: playerCircles,
+                   inGroups: playerInGroups,
+                   isIntegrator: isIntegrator
+               };
+        },
+        redraw() {
+            const canvas = this.$refs.canvas;
+            if (!canvas) {
+                console.warn('Canvas ref not available yet');
+                return;
+            }
+            const ctx    = canvas.getContext('2d');
+            const { width, height } = this;
+
+            const drawToken = Symbol('draw');
+            this._drawToken = drawToken;
+
+            ctx.clearRect(0, 0, width, height);
+
+            // text
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+
+            // core data
+            const players = this.circles.players;
+            const avatars = this.players;
+            const anchors = this.anchors || {};
+            const entry = this.circles.circles[this.current] || { circles: [], circle_count: {} };
+            const { circles, circle_count } = entry;
+            const n = players.length;
+            const [cx, cy] = [width/2, height/2];
+            const r0 = Math.min(width, height);
+            const dR = 16;
+            const r1 = r0 * 0.4;
+            const theta = 2 * Math.PI / n;
+
+            // header
+            const total = Object.values(circle_count).reduce((s,v) => s + v, 0);
+            ctx.fillStyle = '#000000';
+            ctx.font = '32px Arial'; ctx.fillText('SAFE CIRCLES', cx, cy-32);
+            ctx.font = '60px Arial'; ctx.fillText(total, cx, cy+32);
+            ctx.font = '18px STheiti, SimHei';
+
+            // positions
+            const round = v => Math.round(v * 1e5) / 1e5;
+
+            // top sizing
+            const maxCount = Math.max(0, ...Object.values(circle_count));
+            const baseSize = 64;
+
+            // Calculate actual avatar positions (before drawing, so we can use them for safecircles and in-group lines)
+            const avatarPositions = {};
+            players.forEach((name, i) => {
+                const count = circle_count[i] || 0;
+                const isTop = count === maxCount && maxCount > 0;
+                const radius = isTop ? r1 * 0.75 : r1;
+                const px = cx + radius * Math.cos(theta * i);
+                const py = cy + radius * Math.sin(theta * i);
+                avatarPositions[i] = { x: px, y: py };
+            });
+            
+            // Create boundary arrays from actual avatar positions (for safecircle drawing)
+            // Add dR offset to position the circle edge outside the avatar
+            const boundaryX = players.map((_, i) => {
+                const pos = avatarPositions[i];
+                const dx = pos.x - cx;
+                const dy = pos.y - cy;
+                const dist = Math.hypot(dx, dy);
+                if (dist > 0) {
+                    // Move dR pixels further out from the avatar center
+                    return cx + (dx / dist) * (dist + dR);
+                }
+                return pos.x + dR;
+            });
+            const boundaryY = players.map((_, i) => {
+                const pos = avatarPositions[i];
+                const dx = pos.x - cx;
+                const dy = pos.y - cy;
+                const dist = Math.hypot(dx, dy);
+                if (dist > 0) {
+                    // Move dR pixels further out from the avatar center
+                    return cy + (dy / dist) * (dist + dR);
+                }
+                return pos.y + dR;
+            });
+
+            // helpers
+            const calc=(x1,y1,x2,y2)=>[Math.hypot(x2-x1,y2-y1),Math.atan2(y2-y1,x2-x1)];
+            const moveP=(xo,yo,xp,yp)=>{
+            let [d,a]=calc(xo,yo,xp,yp);
+            d+=dR;
+            return [
+                round(xo + d * Math.cos(a)),
+                round(yo + d * Math.sin(a))
+            ];
+            };
+
+            // draw safe circles
+            const colors=['red','orange','green','blue','purple','yellow','black'];
+            // Track which players are in circles for green dot placement
+            const playersInCircles = new Set();
+            circles.forEach((members,idx)=>{
+                members.forEach(i => playersInCircles.add(i));
+                
+                // Check if all players are in this single circle (perfect circle case)
+                const isAllPlayersCircle = circles.length === 1 && members.length === n;
+                
+                if (isAllPlayersCircle) {
+                    // Draw a perfect circle that encompasses all players
+                    // Calculate center as average of all boundary positions
+                let x0=0,y0=0; members.forEach(i=>(x0+=boundaryX[i],y0+=boundaryY[i])); x0/=members.length; y0/=members.length;
+                    
+                    // Calculate radius: distance from center to farthest boundary point + dR
+                    let maxRadius = 0;
+                    members.forEach(i => {
+                        const dist = Math.hypot(boundaryX[i] - x0, boundaryY[i] - y0);
+                        maxRadius = Math.max(maxRadius, dist);
+                    });
+                    const circleRadius = maxRadius + dR;
+                    
+                    // Draw perfect circle
+                    ctx.strokeStyle=colors[idx%colors.length]; 
+                    ctx.lineWidth=3; 
+                    ctx.setLineDash([]); 
+                    ctx.beginPath();
+                    ctx.arc(x0, y0, circleRadius, 0, 2 * Math.PI);
+                    ctx.stroke();
+                } else {
+                    // Draw using Bezier curves (existing logic)
+                    let x0=0,y0=0; members.forEach(i=>(x0+=boundaryX[i],y0+=boundaryY[i])); x0/=members.length; y0/=members.length;
+                    
+                    // Calculate average distance between points for dynamic hr adjustment
+                    let totalDistance = 0;
+                    let distanceCount = 0;
+                    members.forEach((pt,j)=>{
+                        const nextIdx=members[(j+1)%members.length];
+                        const [tx,ty]=moveP(x0,y0,boundaryX[members[j]],boundaryY[members[j]]);
+                        const [nx,ny]=moveP(x0,y0,boundaryX[nextIdx],boundaryY[nextIdx]);
+                        const dist = Math.hypot(nx - tx, ny - ty);
+                        totalDistance += dist;
+                        distanceCount++;
+                    });
+                    const avgDistance = distanceCount > 0 ? totalDistance / distanceCount : 200;
+                    
+                    // Base handle radius (increased from 120 to 180 for rounder appearance)
+                    const baseHr = 180;
+                    
+                ctx.strokeStyle=colors[idx%colors.length]; ctx.lineWidth=3; ctx.setLineDash([]); ctx.beginPath();
+                members.forEach((pt,j)=>{
+                    const nextIdx=members[(j+1)%members.length];
+                    const [tx,ty,,,th1]=calcEdge(j,members,x0,y0,boundaryX,boundaryY,moveP);
+                    const [nx,ny,,,th2]=calcEdge((j+1)%members.length,members,x0,y0,boundaryX,boundaryY,moveP);
+                        
+                        // Dynamic hr: adjust based on distance between points
+                        // For larger distances, use larger hr; for smaller distances, use smaller hr
+                        const segmentDistance = Math.hypot(nx - tx, ny - ty);
+                        const hr = baseHr * (segmentDistance / avgDistance);
+                        
+                    const c1x = round(tx + hr * Math.cos(th1 - Math.PI / 2));
+                    const c1y = round(ty + hr * Math.sin(th1 - Math.PI / 2));
+                    const c2x = round(nx + hr * Math.cos(th2 + Math.PI / 2));
+                    const c2y = round(ny + hr * Math.sin(th2 + Math.PI / 2));
+                    if(!j)ctx.moveTo(tx,ty);
+                    ctx.bezierCurveTo(c1x,c1y,c2x,c2y,nx,ny);
+                }); ctx.stroke();
+                }
+            });
+
+                        // ✅ draw dyads (real safe dyads from backend)
+            const dyads = entry.dyads || [];
+            dyads.forEach(pair => {
+                const [i, j] = pair;
+                
+                // Use actual avatar positions (not boundary positions)
+                // This accounts for integrators being larger and closer to center
+                const pos1 = avatarPositions[i];
+                const pos2 = avatarPositions[j];
+                
+                if (!pos1 || !pos2) {
+                    return; // Skip if positions not calculated yet
+                }
+                
+                const x1 = pos1.x;
+                const y1 = pos1.y;
+                const x2 = pos2.x;
+                const y2 = pos2.y;
+
+                ctx.beginPath();
+                ctx.setLineDash([6, 4]); // dotted style for dyads
+                ctx.strokeStyle = 'gold';
+                ctx.lineWidth = 2;
+                ctx.moveTo(x1, y1);
+                ctx.lineTo(x2, y2);
+                ctx.stroke();
+                ctx.setLineDash([]);
+            });
+
+            // ✅ draw in-groups (dotted golden lines for similar high-voting pairs not in safecircles)
+            // Only draw if the pair is NOT in a safecircle at the current tolerance window value
+            const inGroups = this.inGroups || [];
+            const currentEntry = this.circles.circles[this.current] || { circles: [], dyads: [] };
+            const currentCircles = currentEntry.circles || [];
+            const currentDyads = currentEntry.dyads || [];
+            
+            // Create a set of pairs that are in safecircles at current tolerance
+            const pairsInCurrentCircle = new Set();
+            currentCircles.forEach(circle => {
+                for (let idx1 = 0; idx1 < circle.length; idx1++) {
+                    for (let idx2 = idx1 + 1; idx2 < circle.length; idx2++) {
+                        const pair = [Math.min(circle[idx1], circle[idx2]), Math.max(circle[idx1], circle[idx2])];
+                        pairsInCurrentCircle.add(pair.join(','));
+                    }
+                }
+            });
+            currentDyads.forEach(dyad => {
+                if (dyad.length === 2) {
+                    const pair = [Math.min(dyad[0], dyad[1]), Math.max(dyad[0], dyad[1])];
+                    pairsInCurrentCircle.add(pair.join(','));
+                }
+            });
+            
+            inGroups.forEach(group => {
+                const i = group.i;
+                const j = group.j;
+                const pairKey = [Math.min(i, j), Math.max(i, j)].join(',');
+                
+                // Show in-groups if current tolerance is within the range where this in-group exists
+                // In-groups exist from group.tolerance (min) to group.max_tolerance (max, if defined)
+                // Also show if current is the lowest available tolerance value (even if lower than group.tolerance)
+                // This allows in-groups detected below the first safecircle to still be visible
+                const minAvailableTolerance = this.getValue1(); // Lowest tolerance with safecircles
+                const isLowestTolerance = this.current === minAvailableTolerance;
+                
+                if (group.tolerance) {
+                    // Check if current is within the valid range
+                    const maxTolerance = group.max_tolerance || 999; // If no max, assume it continues
+                    const isWithinRange = this.current >= group.tolerance && this.current <= maxTolerance;
+                    
+                    if (!isWithinRange && !isLowestTolerance) {
+                        return; // Don't draw - current tolerance is outside the valid range for this in-group
+                    }
+                }
+                
+                // Skip if this pair is in a safecircle at the current tolerance window
+                if (pairsInCurrentCircle.has(pairKey)) {
+                    return; // Don't draw - they're in a safecircle now
+                }
+                
+                // Use actual avatar positions (not boundary positions)
+                // This accounts for integrators being larger and closer to center
+                const pos1 = avatarPositions[i];
+                const pos2 = avatarPositions[j];
+                
+                if (!pos1 || !pos2) {
+                    return; // Skip if positions not calculated yet
+                }
+                
+                const x1 = pos1.x;
+                const y1 = pos1.y;
+                const x2 = pos2.x;
+                const y2 = pos2.y;
+
+                ctx.beginPath();
+                ctx.setLineDash([8, 4]); // dotted style for in-groups (slightly longer dashes)
+                ctx.strokeStyle = '#FFD700'; // golden color
+                ctx.lineWidth = 2;
+                ctx.moveTo(x1, y1);
+                ctx.lineTo(x2, y2);
+                ctx.stroke();
+                ctx.setLineDash([]);
+            });
+
+
+
+/*
+                // dynamic golden pairs: aligned to players order
+                const statusSides = players.map((name, idx) => {
+                  // find the matching entry by name, or fall back by index
+                  const entry = this.allResult.find(e => e.name === name);
+                  return entry ? entry.statusSide : this.allResult[idx].statusSide;
+                });
+                const goldenCandidates = [];
+                const threshold = Math.round(this.current);
+
+                for (let i = 0; i < n; i++) {
+                  for (let j = i + 1; j < n; j++) {
+                    const diff = Math.abs(statusSides[i] - statusSides[j]);
+                    if (diff - threshold <= 1e-6) {
+                      goldenCandidates.push([i, j]);
+                    }
+                  }
+                }
+
+                const activeGolden = goldenCandidates.filter(pair =>
+                  !circles.some(rc => pair.every(idx => rc.includes(idx)))
+                );
+
+                // 🔒 Stabilisiere Reihenfolge
+                activeGolden.sort((a, b) => a[0] - b[0] || a[1] - b[1]);
+                // draw golden dotted
+
+            activeGolden.forEach(members=>{
+                let x0=0,y0=0; members.forEach(i=>(x0+=boundaryX[i],y0+=boundaryY[i])); x0/=members.length; y0/=members.length;
+                ctx.strokeStyle='gold'; ctx.lineWidth=2; ctx.setLineDash([10,5]); ctx.beginPath();
+                members.forEach((pt,j)=>{
+                    const [tx,ty,,,th1]=calcEdge(j,members,x0,y0,boundaryX,boundaryY,moveP);
+                    const idx2=(j+1)%members.length;
+                    const [nx,ny,,,th2]=calcEdge(idx2,members,x0,y0,boundaryX,boundaryY,moveP);
+                    const hr=120;
+                    const c1x=tx+hr*Math.cos(th1-Math.PI/2), c1y=ty+hr*Math.sin(th1-Math.PI/2);
+                    const c2x=nx+hr*Math.cos(th2+Math.PI/2), c2y=ny+hr*Math.sin(th2+Math.PI/2);
+                    if(!j)ctx.moveTo(tx,ty);
+                    ctx.bezierCurveTo(c1x,c1y,c2x,c2y,nx,ny);
+                });
+                ctx.stroke(); ctx.setLineDash([]); ctx.lineWidth=3;
+            });
+*/
+
+
+                        // draw players
+            // Clear player positions for click detection
+            this.playerPositions = {};
+            players.forEach((name,i)=>{
+                const count = circle_count[i]||0;
+                const isTop = count===maxCount && maxCount>0;
+                const size = isTop?Math.floor(baseSize*1.3):baseSize;
+                const radius = isTop? r1*0.75 : r1;
+                const px = cx + radius*Math.cos(theta*i);
+                const py = cy + radius*Math.sin(theta*i);
+
+                // Store player position for click detection
+                this.playerPositions[i] = { x: px, y: py, size: size };
+
+                    // green filled dot for top players (Integratoren)
+                    // Position dot on line from center to player, touching the player's avatar at one point
+            if (isTop) {
+                const dotRadius = size / 2; 
+                
+                // Calculate direction from center to player
+                const dx = px - cx;
+                const dy = py - cy;
+                const dist = Math.hypot(dx, dy);
+                
+                if (dist > 0) {
+                    // Calculate the distance from center where the dot should be positioned
+                    // The dot should touch the avatar's edge
+                    // Avatar center is at (px, py) with radius size/2
+                    // Dot center should be at distance: dist - size/2 - dotRadius from center
+                    // This positions the dot so it touches the avatar at one point
+                    const dotDistFromCenter = dist - (size / 2) - dotRadius;
+                    
+                    // Position dot on the line from center to player
+                    const dotX = cx + (dx / dist) * dotDistFromCenter;
+                    const dotY = cy + (dy / dist) * dotDistFromCenter;
+                    
+                ctx.beginPath();
+                ctx.fillStyle = '#9FE2BF';
+                    ctx.arc(dotX, dotY, dotRadius, 0, Math.PI * 2);
+                ctx.fill();
+                }
+            }
+
+                const img = new Image(); img.src = avatars[name];
+                const drawPerson = () => {
+                    if (this._drawToken !== drawToken) return;
+                    ctx.drawImage(img, px-size/2, py-size/2, size, size);
+                    ctx.fillStyle='black'; ctx.font='18px STheiti, SimHei';
+                    ctx.fillText(name, px, py+size/2+20, size+40);
+                    const safetyAnchor = anchors[name];
+                    if (safetyAnchor) {
+                        ctx.fillStyle = '#555555';
+                        ctx.font = '16px STheiti, SimHei';
+                        ctx.fillText(safetyAnchor, px, py+size/2+40, size+80);
+                    }
+                    const bubbleOffset=27, bx=px+bubbleOffset, by=py-bubbleOffset;
+                    ctx.beginPath(); ctx.fillStyle='#9FE2BF'; ctx.strokeStyle='white'; ctx.lineWidth=2;
+                    ctx.arc(bx,by,20,0,2*Math.PI); ctx.fill(); ctx.stroke();
+                    ctx.fillStyle='black'; ctx.font=`bold ${isTop?36:32}px STheiti, SimHei`;
+                    ctx.textBaseline='middle'; ctx.fillText(count,bx,by); ctx.textBaseline='alphabetic';
+                };
+                if (img.complete) {
+                    drawPerson();
+                } else {
+                    img.onload = drawPerson;
+                }
+            });
+
+            // helper for edges
+            function calcEdge(i2,members,x0,y0,bX,bY,moveF){
+                const prev=members[(i2-1+members.length)%members.length];
+                const nxt=members[(i2+1)%members.length];
+                const [tx,ty]=moveF(x0,y0,bX[members[i2]],bY[members[i2]]);
+                const [px,py]=moveF(x0,y0,bX[prev],bY[prev]);
+                const [nx,ny]=moveF(x0,y0,bX[nxt],bY[nxt]);
+                const a1=Math.atan2(ny-ty,nx-tx), a2=Math.atan2(py-ty,px-tx);
+                let th=(a1+a2)/2; if(th<a1)th+=Math.PI; return [tx,ty,nx,ny,th];
+            }
+        },
+        showQuestionMarkOverPlayer(playerIndex, mouseX, mouseY) {
+            // Remove existing question mark
+            this.hideQuestionMark();
+            
+            // Get player position
+            const pos = this.playerPositions[playerIndex];
+            if (!pos) return;
+            
+            // Create question mark element
+            const questionMark = document.createElement('div');
+            questionMark.id = 'player-question-mark';
+            questionMark.textContent = '?';
+            questionMark.style.cssText = `
+                position: absolute;
+                left: ${pos.x}px;
+                top: ${pos.y - pos.size/2 - 35}px;
+                font-size: 28px;
+                font-weight: bold;
+                color: #52CEEC;
+                pointer-events: none;
+                z-index: 1000;
+                text-align: center;
+                width: 36px;
+                height: 36px;
+                line-height: 36px;
+                background-color: rgba(255, 255, 255, 0.95);
+                border-radius: 50%;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+                transform: translateX(-50%);
+            `;
+            
+            // Add to canvas container (parent div)
+            const canvas = this.$refs.canvas;
+            if (canvas && canvas.parentElement) {
+                canvas.parentElement.style.position = 'relative';
+                canvas.parentElement.appendChild(questionMark);
+                this._questionMarkElement = questionMark;
+            }
+        },
+        hideQuestionMark() {
+            if (this._questionMarkElement) {
+                this._questionMarkElement.remove();
+                this._questionMarkElement = null;
+            } else {
+                const existing = document.getElementById('player-question-mark');
+                if (existing) {
+                    existing.remove();
+                }
+            }
+        }
+    },
+});
+
+    // Close initTeamPotential function
+}
+
+// Initialize when DOM is ready - this ensures json_script elements are loaded
+// Prevent multiple initializations
+if (!window.teamPotentialInitStarted) {
+    window.teamPotentialInitStarted = true;
+    
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+            initTeamPotential();
+            // Try to initialize AppGraph only if container exists (optional)
+            setTimeout(initAppGraphInstance, 500);
+        });
+    } else {
+        initTeamPotential();
+        // Try to initialize AppGraph only if container exists (optional)
+        setTimeout(initAppGraphInstance, 500);
+    }
+}
+
+// Initialize tooltips for canvas elements
+function initCanvasTooltips() {
+    const canvas = document.getElementById('team-potential-canvas');
+    if (!canvas) return;
+    
+    // Get translated tooltip texts from Django
+    const tooltipTexts = {
+        integrators: "{% trans 'Grüne Punkte = Integratoren'|escapejs %}",
+        bubbleNumbers: "{% trans 'Zahlen in Blasen = Anzahl Safecircle des Spielers'|escapejs %}",
+        centerCount: "{% trans 'Zentrum = alle Safecircle im Team (je mehr, desto sicherer und vielfältiger wird die Zusammenarbeit)'|escapejs %}",
+        goldenLine: "{% trans 'Goldene Linie = In-Group'|escapejs %}"
+    };
+    
+    // Remove existing tooltip if any
+    if (canvas._tippy) {
+        canvas._tippy.destroy();
+    }
+    
+    // Create a comprehensive tooltip for the canvas
+    // Since we can't add tooltips to individual canvas elements easily,
+    // we'll add a tooltip to the canvas itself that explains all elements
+    const combinedTooltip = tooltipTexts.integrators + '<br>' + tooltipTexts.bubbleNumbers + '<br>' + tooltipTexts.centerCount + '<br>' + tooltipTexts.goldenLine;
+    
+    try {
+        tippy(canvas, {
+            content: combinedTooltip,
+            placement: 'top',
+            theme: 'light',
+            delay: [200, 0],
+            allowHTML: true,
+            interactive: false,
+            trigger: 'mouseenter focus',
+        });
+    } catch (e) {
+        console.error('Error initializing canvas tooltip:', e);
+    }
+}
+
+// Initialize tooltips after page load
+    // ARKS Logo Tooltip
+    function initARKSLogoTooltip() {
+        const arksLogoContainer = document.querySelector('.header-main__title icon');
+        const arksLogoTooltipIcon = document.getElementById('arks-logo-tooltip-icon');
+        
+        if (arksLogoContainer && arksLogoTooltipIcon) {
+            arksLogoContainer.addEventListener('mouseenter', function() {
+                arksLogoTooltipIcon.style.display = 'inline-flex';
+            });
+            arksLogoContainer.addEventListener('mouseleave', function() {
+                arksLogoTooltipIcon.style.display = 'none';
+            });
+            
+            tippy(arksLogoTooltipIcon, {
+                content: "{% trans 'Info zu safecircles.ch'|escapejs %}",
+                placement: 'bottom',
+                theme: 'light',
+                delay: [200, 0],
+                allowHTML: false,
+                interactive: false,
+                trigger: 'mouseenter focus',
+            });
+        }
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(initARKSLogoTooltip, 1000);
+            setTimeout(initCanvasTooltips, 1000);
+            setTimeout(initToleranceWindowTooltip, 1000);
+            setTimeout(initPrio1HeadingTooltip, 1000);
+            setTimeout(initPrio1IntegratorTooltip, 1000);
+            setTimeout(initPrio2HeadingTooltip, 1000);
+            setTimeout(initPrio2IntegratorTooltip, 1000);
+            setTimeout(initPrio3HeadingTooltip, 1000);
+            setTimeout(initPrio3IntegratorTooltip, 1000);
+            setTimeout(initMinValueButtonTooltip, 1000);
+            setTimeout(initMaxValueButtonTooltip, 1000);
+            setTimeout(initTeamPotentialTitleTooltip, 1000);
+        });
+    } else {
+        setTimeout(initARKSLogoTooltip, 1000);
+        setTimeout(initCanvasTooltips, 1000);
+        setTimeout(initToleranceWindowTooltip, 1000);
+        setTimeout(initPrio1HeadingTooltip, 1000);
+        setTimeout(initPrio1IntegratorTooltip, 1000);
+        setTimeout(initPrio2HeadingTooltip, 1000);
+        setTimeout(initPrio2IntegratorTooltip, 1000);
+        setTimeout(initPrio3IntegratorTooltip, 1000);
+        setTimeout(initMinValueButtonTooltip, 1000);
+        setTimeout(initMaxValueButtonTooltip, 1000);
+        setTimeout(initTeamPotentialTitleTooltip, 1000);
+    }
+
+// Initialize tooltip for team potential title
+function initTeamPotentialTitleTooltip() {
+    const tooltipIcon = document.getElementById('team-potential-title-tooltip-icon');
+    if (!tooltipIcon) return;
+    
+    // Get translated tooltip text from Django - this is the old title
+    const tooltipText = "{% trans 'Schafft sicher verbundene Kreise, in denen Defensivreaktionen überflüssig werden.'|escapejs %}";
+    
+    // Remove existing tooltip if any
+    if (tooltipIcon._tippy) {
+        tooltipIcon._tippy.destroy();
+    }
+    
+    try {
+        tippy(tooltipIcon, {
+            content: tooltipText,
+            placement: 'top',
+            theme: 'light',
+            delay: [200, 0],
+            allowHTML: false,
+            interactive: false,
+            trigger: 'mouseenter focus',
+            maxWidth: 400,
+        });
+    } catch (e) {
+        console.error('Error initializing team potential title tooltip:', e);
+    }
+}
+
+// Initialize tooltip for tolerance window input
+function initToleranceWindowTooltip() {
+    const tooltipIcon = document.getElementById('tolerance-window-tooltip-icon');
+    if (!tooltipIcon) return;
+    
+    // Get translated tooltip text from Django
+    const tooltipText = "{% trans 'Das Toleranzfenster ist in der Arche der zentrale Mechanismus zur Visualisierung psychologischer Sicherheit. Es wird als grüner Bereich um den Team-Mittelwert herum definiert, dessen Breite ein festgelegtes Sicherheitsintervall (z.B. ±16 Punkte) vorgibt. Dieser Bereich markiert, welche Unterschiede in der gegenseitigen Wahrnehmung als sicher und akzeptabel gelten. Der erstrebenswerte Team-Sweetspot ist jenes Intervall, in dem die maximale Anzahl psychologisch sicherer Kreise entsteht – also stabile Verbindungen, in denen auch schwierige Themen offen besprochen werden können. Ein zu enges Fenster führt zu Stress und defensiven Reaktionen, da bereits kleine Abweichungen als Bedrohung wahrgenommen werden. Ein zu weites Toleranzfenster hingegen kann auf problematische Uniformität hindeuten: Es fehlt an notwendigen, herausfordernden Perspektiven, was zu Groupthink und erstarrenden Dynamiken führen kann. Das Ziel ist somit die Balance – ein Gruppen-Toleranzfenster, das Sicherheit gewährt, ohne Lernprozesse zu ersticken.'|escapejs %}";
+    
+    // Remove existing tooltip if any
+    if (tooltipIcon._tippy) {
+        tooltipIcon._tippy.destroy();
+    }
+    
+    try {
+        tippy(tooltipIcon, {
+            content: tooltipText,
+            placement: 'top',
+            theme: 'light',
+            delay: [200, 0],
+            allowHTML: false,
+            interactive: false,
+            trigger: 'mouseenter focus',
+            maxWidth: 400,
+        });
+    } catch (e) {
+        console.error('Error initializing tolerance window tooltip:', e);
+    }
+}
+
+// Initialize tooltip for PRIO 1 heading explanation (big card modal)
+function initPrio1HeadingTooltip() {
+    const tooltipContainer = document.getElementById('prio1-heading-tooltip-icon');
+    const tooltipIcon = document.getElementById('prio1-tooltip-icon');
+    if (!tooltipContainer || !tooltipIcon) return;
+    
+    // Get translated tooltip text from Django - using JSON script tag to avoid escaping issues
+    const tooltipTextElement = document.getElementById('prio1-tooltip-text');
+    const tooltipText = tooltipTextElement ? JSON.parse(tooltipTextElement.textContent) : '';
+    
+    // Remove existing tooltips if any
+    if (tooltipIcon._tippy) {
+        tooltipIcon._tippy.destroy();
+    }
+    if (tooltipContainer._tippy) {
+        tooltipContainer._tippy.destroy();
+    }
+    
+    try {
+        // First, add a simple hover tooltip that shows "click for instructions"
+        const hoverTooltipText = "{% trans 'Klicken für Anweisungen'|escapejs %}";
+        tippy(tooltipIcon, {
+            content: hoverTooltipText,
+            placement: 'top',
+            theme: 'light',
+            delay: [300, 0],
+            allowHTML: false,
+            interactive: false,
+            trigger: 'mouseenter focus',
+            maxWidth: 200,
+            animation: 'fade',
+            arrow: true,
+        });
+        
+        // Then, add the big card tooltip on click
+        const parts = tooltipText.split('\n\n');
+        const title = parts[0] || '';
+        const body = parts.slice(1).join('\n\n') || '';
+        
+        // Create a styled card-like tooltip similar to player detail modal
+        const cardContent = '<div style="max-width: 600px; padding: 25px; font-size: 15px; line-height: 1.7; text-align: left; background-color: #ffffff; border-radius: 10px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);"><h3 style="margin: 0 0 15px 0; color: #626262; font-size: 18px; font-weight: bold; border-bottom: 2px solid #9FE2BF; padding-bottom: 10px;">' + title + '</h3><div style="color: #626262;">' + body.replace(/\n/g, '<br>') + '</div></div>';
+        
+        // Apply big card tooltip to container on click
+        tippy(tooltipContainer, {
+            content: cardContent,
+            placement: 'right',
+            theme: 'light',
+            delay: [0, 0],
+            allowHTML: true,
+            interactive: true,
+            trigger: 'click',
+            maxWidth: 650,
+            animation: 'fade',
+            arrow: true,
+            hideOnClick: true,
+        });
+    } catch (e) {
+        console.error('Error initializing PRIO 1 heading tooltip:', e);
+    }
+}
+
+// Initialize tooltip for PRIO 2 heading explanation (big card modal)
+function initPrio2HeadingTooltip() {
+    const tooltipContainer = document.getElementById('prio2-heading-tooltip-icon');
+    const tooltipIcon = document.getElementById('prio2-tooltip-icon');
+    if (!tooltipContainer || !tooltipIcon) return;
+    
+    // Get translated tooltip text from Django - using JSON script tag to avoid escaping issues
+    const tooltipTextElement = document.getElementById('prio2-tooltip-text');
+    const tooltipText = tooltipTextElement ? JSON.parse(tooltipTextElement.textContent) : '';
+    
+    // Remove existing tooltips if any
+    if (tooltipIcon._tippy) {
+        tooltipIcon._tippy.destroy();
+    }
+    if (tooltipContainer._tippy) {
+        tooltipContainer._tippy.destroy();
+    }
+    
+    try {
+        // First, add a simple hover tooltip that shows "click for instructions"
+        const hoverTooltipText = "{% trans 'Klicken für Anweisungen'|escapejs %}";
+        tippy(tooltipIcon, {
+            content: hoverTooltipText,
+            placement: 'top',
+            theme: 'light',
+            delay: [300, 0],
+            allowHTML: false,
+            interactive: false,
+            trigger: 'mouseenter focus',
+            maxWidth: 200,
+            animation: 'fade',
+            arrow: true,
+        });
+        
+        // Then, add the big card tooltip on click
+        const parts = tooltipText.split('\n\n');
+        const title = parts[0] || '';
+        const body = parts.slice(1).join('\n\n') || '';
+        
+        // Create a styled card-like tooltip similar to player detail modal
+        const cardContent = '<div style="max-width: 600px; padding: 25px; font-size: 15px; line-height: 1.7; text-align: left; background-color: #ffffff; border-radius: 10px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);"><h3 style="margin: 0 0 15px 0; color: #626262; font-size: 18px; font-weight: bold; border-bottom: 2px solid #52CEEC; padding-bottom: 10px;">' + title + '</h3><div style="color: #626262;">' + body.replace(/\n/g, '<br>') + '</div></div>';
+        
+        // Apply big card tooltip to container on click
+        tippy(tooltipContainer, {
+            content: cardContent,
+            placement: 'right',
+            theme: 'light',
+            delay: [0, 0],
+            allowHTML: true,
+            interactive: true,
+            trigger: 'click',
+            maxWidth: 650,
+            animation: 'fade',
+            arrow: true,
+            hideOnClick: true,
+        });
+    } catch (e) {
+        console.error('Error initializing PRIO 2 heading tooltip:', e);
+    }
+}
+
+// Initialize tooltip for PRIO 3 heading explanation (big card modal)
+function initPrio3HeadingTooltip() {
+    const tooltipContainer = document.getElementById('prio3-heading-tooltip-icon');
+    const tooltipIcon = document.getElementById('prio3-tooltip-icon');
+    if (!tooltipContainer || !tooltipIcon) return;
+    
+    // Get translated tooltip text from Django - using JSON script tag to avoid escaping issues
+    const tooltipTextElement = document.getElementById('prio3-tooltip-text');
+    const tooltipText = tooltipTextElement ? JSON.parse(tooltipTextElement.textContent) : '';
+    
+    // Remove existing tooltips if any
+    if (tooltipIcon._tippy) {
+        tooltipIcon._tippy.destroy();
+    }
+    if (tooltipContainer._tippy) {
+        tooltipContainer._tippy.destroy();
+    }
+    
+    try {
+        // First, add a simple hover tooltip that shows "click for instructions"
+        const hoverTooltipText = "{% trans 'Klicken für Anweisungen'|escapejs %}";
+        tippy(tooltipIcon, {
+            content: hoverTooltipText,
+            placement: 'top',
+            theme: 'light',
+            delay: [300, 0],
+            allowHTML: false,
+            interactive: false,
+            trigger: 'mouseenter focus',
+            maxWidth: 200,
+            animation: 'fade',
+            arrow: true,
+        });
+        
+        // Then, add the big card tooltip on click
+        const parts = tooltipText.split('\n\n');
+        const title = parts[0] || '';
+        const body = parts.slice(1).join('\n\n') || '';
+        
+        // Create a styled card-like tooltip similar to player detail modal
+        const cardContent = '<div style="max-width: 600px; padding: 25px; font-size: 15px; line-height: 1.7; text-align: left; background-color: #ffffff; border-radius: 10px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);"><h3 style="margin: 0 0 15px 0; color: #626262; font-size: 18px; font-weight: bold; border-bottom: 2px solid #9FE2BF; padding-bottom: 10px;">' + title + '</h3><div style="color: #626262;">' + body.replace(/\n/g, '<br>') + '</div></div>';
+        
+        // Apply big card tooltip to container on click
+        tippy(tooltipContainer, {
+            content: cardContent,
+            placement: 'right',
+            theme: 'light',
+            delay: [0, 0],
+            allowHTML: true,
+            interactive: true,
+            trigger: 'click',
+            maxWidth: 650,
+            animation: 'fade',
+            arrow: true,
+            hideOnClick: true,
+        });
+    } catch (e) {
+        console.error('Error initializing PRIO 3 heading tooltip:', e);
+    }
+}
+
+// Initialize tooltip for PRIO 1 integrator explanation
+function initPrio1IntegratorTooltip() {
+    const tooltipIcon = document.getElementById('prio1-integrator-tooltip-icon');
+    if (!tooltipIcon) return;
+    
+    // Get translated tooltip text from Django
+    const tooltipText = "{% trans 'Lasst diese Integratoren Babysteps vorschlagen, die für gleichberechtigte Redeanteile sorgen, eure Sicherheitsankern gerecht werden und Triggersituationen entspannen können.'|escapejs %}";
+    
+    // Remove existing tooltip if any
+    if (tooltipIcon._tippy) {
+        tooltipIcon._tippy.destroy();
+    }
+    
+    try {
+        // Apply tooltip to the entire span (including "Wie weiter?" text)
+        tippy(tooltipIcon, {
+            content: tooltipText,
+            placement: 'top',
+            theme: 'light',
+            delay: [200, 0],
+            allowHTML: false,
+            interactive: false,
+            trigger: 'mouseenter focus',
+            maxWidth: 350,
+        });
+    } catch (e) {
+        console.error('Error initializing PRIO 1 integrator tooltip:', e);
+    }
+}
+
+// Initialize tooltip for PRIO 2 integrator explanation
+function initPrio2IntegratorTooltip() {
+    const tooltipIcon = document.getElementById('prio2-integrator-tooltip-icon');
+    if (!tooltipIcon) return;
+    
+    // Get translated tooltip text from Django
+    const tooltipText = "{% trans 'Lasst die Personen im ersten sicheren Kreis Vorschläge machen, wie eine Integration, sofern gewünscht, noch besser gelingen kann.'|escapejs %}";
+    
+    // Remove existing tooltip if any
+    if (tooltipIcon._tippy) {
+        tooltipIcon._tippy.destroy();
+    }
+    
+    try {
+        // Apply tooltip to the entire span (including "Wie weiter?" text)
+        tippy(tooltipIcon, {
+            content: tooltipText,
+            placement: 'top',
+            theme: 'light',
+            delay: [200, 0],
+            allowHTML: false,
+            interactive: false,
+            trigger: 'mouseenter focus',
+            maxWidth: 350,
+        });
+    } catch (e) {
+        console.error('Error initializing PRIO 2 integrator tooltip:', e);
+    }
+}
+
+// Initialize tooltip for PRIO 3 integrator explanation
+function initPrio3IntegratorTooltip() {
+    const tooltipIcon = document.getElementById('prio3-integrator-tooltip-icon');
+    if (!tooltipIcon) return;
+    
+    // Get translated tooltip text from Django
+    const tooltipText = "{% trans 'Welchen Einsatz kann die Führungskraft leisten, um das Team vom Ist-Wert zur optimalen Konstellation aus Prio 1 zu entwickeln?'|escapejs %}";
+    
+    // Remove existing tooltip if any
+    if (tooltipIcon._tippy) {
+        tooltipIcon._tippy.destroy();
+    }
+    
+    try {
+        // Apply tooltip to the entire span (including "Wie weiter?" text)
+        tippy(tooltipIcon, {
+            content: tooltipText,
+            placement: 'top',
+            theme: 'light',
+            delay: [200, 0],
+            allowHTML: false,
+            interactive: false,
+            trigger: 'mouseenter focus',
+            maxWidth: 350,
+        });
+    } catch (e) {
+        console.error('Error initializing PRIO 3 integrator tooltip:', e);
+    }
+}
+
+// Initialize tooltip for min value button
+function initMinValueButtonTooltip() {
+    const button = document.getElementById('min-value-button');
+    if (!button) return;
+    
+    // Get translated tooltip text from Django
+    const tooltipText = "{% trans 'Eine Lesehilfe: je kleiner der Zahlenwert, desto mehr Stress und negative Trigger zeigen sich, weil sich die Toleranzfenster der Teammitglieder schliessen. Im ersten sicheren Kreise funktioniert die Zusammenarbeit auch bei sehr grossem Stress noch ohne Drama.'|escapejs %}";
+    
+    // Remove existing tooltip if any
+    if (button._tippy) {
+        button._tippy.destroy();
+    }
+    
+    try {
+        tippy(button, {
+            content: tooltipText,
+            placement: 'top',
+            theme: 'light',
+            delay: [200, 0],
+            allowHTML: false,
+            interactive: false,
+            trigger: 'mouseenter focus',
+            maxWidth: 400,
+        });
+    } catch (e) {
+        console.error('Error initializing min value button tooltip:', e);
+    }
+}
+
+// Initialize tooltip for max value button
+function initMaxValueButtonTooltip() {
+    const button = document.getElementById('max-value-button');
+    if (!button) return;
+    
+    // Get translated tooltip text from Django - combine the text from the section
+    // The value will be inserted dynamically when the tooltip is shown
+    const tooltipTextPart1 = "{% trans 'Aktuell seid ihr beim Toleranzfenster von '|escapejs %}";
+    const tooltipTextPart2 = "{% trans ' alle in EINEM sicheren Kreis.'|escapejs %}";
+    const tooltipTextPart3 = "{% trans 'Wenn Einzelne auf undifferenzierte Einigkeit drängen, zeigt sich das an einer Toleranzfenster-Grösse von über 35, bei dem die Teamdynamik schon sektenartige Züge tragen kann. Ein weiterer Indikator für ein ungesundes Mass an erwarteter Konformität zeigt sich bei Werten unter 25, die auf eine Gefahr von Groupthink deutet.'|escapejs %}";
+    
+    // Remove existing tooltip if any
+    if (button._tippy) {
+        button._tippy.destroy();
+    }
+    
+    try {
+        // Use a function to get dynamic content
+        tippy(button, {
+            content: function() {
+                // Get the Vue instance to access getValue2()
+                const vueApp = window.app1; // Use the global app1 instance
+                const maxValue = vueApp ? vueApp.getValue2() : '';
+                return tooltipTextPart1 + maxValue + ' ' + tooltipTextPart2 + '\n\n' + tooltipTextPart3;
+            },
+            placement: 'top',
+            theme: 'light',
+            delay: [200, 0],
+            allowHTML: false,
+            interactive: false,
+            trigger: 'mouseenter focus',
+            maxWidth: 400,
+        });
+    } catch (e) {
+        console.error('Error initializing max value button tooltip:', e);
+    }
+}
+
+
+    // Use the already parsed all_resultData from above (parsed from json_script tag)
+    let data = window.allResultData || [];
+    let safezoneData = () => {
+        let arr = [];
+        for(let item of data) {
+            arr.push(item.statusSide);
+        }
+        return arr
+    }
+
+    // Initialize AppGraph only after DOM is ready
+    // Only initialize if the container exists (it may not exist on team-potential page)
+    function initAppGraphInstance() {
+        // Check if container exists - if not, skip AppGraph initialization
+        const container = document.querySelector('.custom-graph-wrapper');
+        if (!container) {
+            // Container doesn't exist on this page - this is normal for team-potential page
+            // No need to retry or log warnings
+            return;
+        }
+
+        const {log} = console;
+
+        const app = new AppGraph({
+            container: ".custom-graph-wrapper",
+            range: [1, 99],
+            labelRange: ['Low', 'High'],
+            statistic: true,
+            mobile: 1200,
+            data: data,
+            safezoneData: safezoneData(),
+        {% comment %} [
+            {
+               statusSide: 10
+            },
+            {
+               statusSide: 20
+            },
+            {
+               statusSide: 45
+            },
+            {
+               statusSide: 49
+            },
+            {
+                name: 'Vasilisa Kochetkova',
+                avatar: '/static/images/avatars/boar.svg',
+               statusSide: 49
+            },
+            {
+               statusSide: 49
+            },
+            {
+               statusSide: 49
+            },
+            {
+               statusSide: 49
+            },
+            {
+               statusSide: 60
+            },
+            {
+               statusSide: 70
+            },
+            {
+               statusSide: 99
+            },
+        ] {% endcomment %}
+        });
+    }
+    {% comment %} var css_change = function(t,s){
+        s = document.createElement('style');
+        s.innerText = t;
+        document.body.appendChild(s);
+    };
+
+    var median = {{ median }};
+    var low = median - 16;
+    var high = median + 16;
+    if (low < 0){
+        low = 0;
+    }
+    if (high > 100){
+        high = 100;
+    }
+    var blue_range = high - low;
+    css_change(`.statistic .custom-graph__items:before{left:${low}%;width:min(${blue_range}%);}`); {% endcomment %}
+
+
+    //document.getElementById('button').addEventListener('click', function (e) {
+    //    e.preventDefault();
+    //    log(app.getData())
+    //});
+
+    // Google Slides Fullscreen functionality
+    const fullscreenButton = document.getElementById('google-slides-fullscreen-button');
+    const slidesContainerWrapper = document.querySelector('.google-slides-container-wrapper');
+    
+    if (fullscreenButton && slidesContainerWrapper) {
+        fullscreenButton.addEventListener('click', function() {
+            if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.mozFullScreenElement && !document.msFullscreenElement) {
+                // Enter fullscreen
+                if (slidesContainerWrapper.requestFullscreen) {
+                    slidesContainerWrapper.requestFullscreen();
+                } else if (slidesContainerWrapper.webkitRequestFullscreen) {
+                    slidesContainerWrapper.webkitRequestFullscreen();
+                } else if (slidesContainerWrapper.mozRequestFullScreen) {
+                    slidesContainerWrapper.mozRequestFullScreen();
+                } else if (slidesContainerWrapper.msRequestFullscreen) {
+                    slidesContainerWrapper.msRequestFullscreen();
+                }
+                slidesContainerWrapper.classList.add('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild beenden'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild beenden'|escapejs %}");
+            } else {
+                // Exit fullscreen
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+        
+        // Listen for fullscreen changes
+        document.addEventListener('fullscreenchange', function() {
+            if (!document.fullscreenElement) {
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+        
+        document.addEventListener('webkitfullscreenchange', function() {
+            if (!document.webkitFullscreenElement) {
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+        
+        document.addEventListener('mozfullscreenchange', function() {
+            if (!document.mozFullScreenElement) {
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+        
+        document.addEventListener('MSFullscreenChange', function() {
+            if (!document.msFullscreenElement) {
+                slidesContainerWrapper.classList.remove('fullscreen');
+                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+            }
+        });
+    }
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,332 @@
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="icon" href="/static/images/favicon.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
+    <meta name="theme-color" content="#51ceec"/>
+    <meta name="description" content="ARK"/>
+    <title>Safety-Score-RESULT</title>
+    <link rel="stylesheet" href="/static/css/app.css">
+    <link rel="stylesheet" href="/static/css/boxings.css">
+    <link rel="stylesheet" href="/static/css/psychologischer.css">
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+
+</head>
+<body>
+<div class="app">
+    <div class="app__head">
+        <header class="header-main container">
+            <div class="header-main__title">
+                <icon classs="icon" onClick="window.open('https://info.arks.ch/');" style="cursor: pointer; position: relative; display: inline-flex; align-items: center;">
+                <span class="icon-logo"></span>
+                <span>ARKS</span>
+                <span class="tooltip-icon arks-logo-tooltip-icon" id="arks-logo-tooltip-icon" style="display: none; margin-left: 8px;">{% trans "Info zu safecircles.ch" %}</span>
+            </icon>
+            </div>
+            <div class="header-main__user">
+                <div class="user">
+                    <div class="user__subtitle">
+                        {{game.name}}
+                    </div>
+                    <img src="{{user.avatar}}" alt="">
+                    <div class="user__title">
+                        {{user.name}}
+                    </div>
+                </div>
+            </div>
+            <div class="header-main__progress">
+                <div class="progress">
+                    <label>{% trans "REALITY CHECK" %}</label>
+                    <div class="progress__bar">
+                        <div style="width: 70%; border-radius: 10px;">70%</div>
+                    </div>
+                </div>
+                <button class="print-button" onclick="window.print()" aria-label="{% trans 'Als PDF speichern' %}" title="{% trans 'Als PDF speichern' %}">
+                    {% trans "Als PDF speichern" %}
+                </button> 
+            </div>
+        </header>
+    </div>
+    <div class="app__body" id="app-1">
+        <div class="container">
+            <main class="screen psychologischer">
+                <h1>
+                    <span class="tooltip-icon psychologischer-tooltip-icon" id="psychologischer-tooltip-icon" style="display: inline-flex; align-items: center; margin-right: 8px; vertical-align: middle; cursor: help;">?</span>
+                    {% trans "Safe oder Unsafe Team – wo steht ihr wirklich?" %}
+                </h1>
+
+                <div class="psychologischer__container">
+                    <div class="distry" tabindex="0" role="group" aria-label="{% trans 'Schwierige Themen können wir meist gut zusammen anschauen.' %}">
+                        <div class="distry__description" style="background-color: #9FE2BF; color: #626262;">
+                            {% trans "Schwierige Themen können wir meist gut zusammen anschauen." %}
+                        </div>
+                        <div class="distry__thumbnails">
+                            <!-- Current user votes: blue circles with avatar -->
+                            <div class="distry__user circle-tooltip highlighted-box" v-for="(item, index) in row0CurrentUser" :key="'row0-current-' + index" data-tippy-content="{% trans 'Du wurdest in diese Box gewählt'|escapejs %}">
+                                <img v-if="currentUserAvatar" :src="currentUserAvatar" :alt="currentUserName || ''" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+                            </div>
+                            <!-- Other players' votes: gray anonymous circles -->
+                            <div class="distry__user anonymous-circle" v-for="(item, index) in row0OtherPlayers" :key="'row0-other-' + index" data-tippy-content="{% trans 'Ein anderer Spieler wurde in diese Box gewählt'|escapejs %}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-average">
+                        <div class="team-average__wrapper">
+                        <div class="team-average__range" v-bind:style="{ width: widthCalc }">
+                                <div class="team-average__circle">[[ score ]]</div>
+                            </div>
+                            <div class="team-average__down">99</div>
+                            <div class="team-average__up">1</div>
+                        </div>
+                    </div>
+                    <div class="distry" tabindex="0" role="group" aria-label="{% trans 'Ich beobachte wie du gelegentlich Menschen im Team ausschliesst.' %}">
+                        <div class="distry__description" style="background-color: #fa5252; color: white;">
+                            {% trans "Ich beobachte wie du gelegentlich Menschen im Team ausschliesst." %}
+                        </div>
+                        <div class="distry__thumbnails">
+                            <!-- Current user votes: blue circles with avatar -->
+                            <div class="distry__user circle-tooltip highlighted-box" v-for="(item, index) in row1CurrentUser" :key="'row1-current-' + index" data-tippy-content="{% trans 'Du wurdest in diese Box gewählt'|escapejs %}">
+                                <img v-if="currentUserAvatar" :src="currentUserAvatar" :alt="currentUserName || ''" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+                            </div>
+                            <!-- Other players' votes: gray anonymous circles -->
+                            <div class="distry__user anonymous-circle" v-for="(item, index) in row1OtherPlayers" :key="'row1-other-' + index" data-tippy-content="{% trans 'Ein anderer Spieler wurde in diese Box gewählt'|escapejs %}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="distry" tabindex="0" role="group" aria-label="{% trans 'Für mich bist du im Team nicht immer sichtbar.' %}">
+                        <div class="distry__description" style="background-color: #FAE03C; color: #626262;">
+                            {% trans "Für mich bist du im Team nicht immer sichtbar." %}
+                        </div>
+                        <div class="distry__thumbnails">
+                            <!-- Current user votes: blue circles with avatar -->
+                            <div class="distry__user circle-tooltip highlighted-box" v-for="(item, index) in row2CurrentUser" :key="'row2-current-' + index" data-tippy-content="{% trans 'Du wurdest in diese Box gewählt'|escapejs %}">
+                                <img v-if="currentUserAvatar" :src="currentUserAvatar" :alt="currentUserName || ''" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+                            </div>
+                            <!-- Other players' votes: gray anonymous circles -->
+                            <div class="distry__user anonymous-circle" v-for="(item, index) in row2OtherPlayers" :key="'row2-other-' + index" data-tippy-content="{% trans 'Ein anderer Spieler wurde in diese Box gewählt'|escapejs %}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="distry" tabindex="0" role="group" aria-label="{% trans 'Ich fühle wie meine Talente von dir gesehen und einbezogen werden.' %}">
+                        <div class="distry__description" style="background-color: #9FE2BF; color: #626262;">
+                            {% trans "Ich fühle wie meine Talente von dir gesehen und einbezogen werden." %}
+                        </div>
+                        <div class="distry__thumbnails">
+                            <!-- Current user votes: blue circles with avatar -->
+                            <div class="distry__user circle-tooltip highlighted-box" v-for="(item, index) in row3CurrentUser" :key="'row3-current-' + index" data-tippy-content="{% trans 'Du wurdest in diese Box gewählt'|escapejs %}">
+                                <img v-if="currentUserAvatar" :src="currentUserAvatar" :alt="currentUserName || ''" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+                            </div>
+                            <!-- Other players' votes: gray anonymous circles -->
+                            <div class="distry__user anonymous-circle" v-for="(item, index) in row3OtherPlayers" :key="'row3-other-' + index" data-tippy-content="{% trans 'Ein anderer Spieler wurde in diese Box gewählt'|escapejs %}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="distry" tabindex="0" role="group" aria-label="{% trans 'Ich habe das Gefühl du reagierst auf Fehler mit Schuldzuweisungen an Einzelne im Team.' %}">
+                        <div class="distry__description" style="background-color: #fa5252; color: white;">
+                            {% trans "Ich habe das Gefühl du reagierst auf Fehler mit Schuldzuweisungen an Einzelne im Team." %}
+                        </div>
+                        <div class="distry__thumbnails">
+                            <!-- Current user votes: blue circles with avatar -->
+                            <div class="distry__user circle-tooltip highlighted-box" v-for="(item, index) in row4CurrentUser" :key="'row4-current-' + index" data-tippy-content="{% trans 'Du wurdest in diese Box gewählt'|escapejs %}">
+                                <img v-if="currentUserAvatar" :src="currentUserAvatar" :alt="currentUserName || ''" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+                            </div>
+                            <!-- Other players' votes: gray anonymous circles -->
+                            <div class="distry__user anonymous-circle" v-for="(item, index) in row4OtherPlayers" :key="'row4-other-' + index" data-tippy-content="{% trans 'Ein anderer Spieler wurde in diese Box gewählt'|escapejs %}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="distry" tabindex="0" role="group" aria-label="{% trans 'Mir fällt es mitunter schwer dich um Hilfe zu bitten.' %}">
+                        <div class="distry__description" style="background-color: #FAE03C; color: #626262;">
+                            {% trans "Mir fällt es mitunter schwer dich um Hilfe zu bitten." %}
+                        </div>
+                        <div class="distry__thumbnails">
+                            <!-- Current user votes: blue circles with avatar -->
+                            <div class="distry__user circle-tooltip highlighted-box" v-for="(item, index) in row5CurrentUser" :key="'row5-current-' + index" data-tippy-content="{% trans 'Du wurdest in diese Box gewählt'|escapejs %}">
+                                <img v-if="currentUserAvatar" :src="currentUserAvatar" :alt="currentUserName || ''" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+                            </div>
+                            <!-- Other players' votes: gray anonymous circles -->
+                            <div class="distry__user anonymous-circle" v-for="(item, index) in row5OtherPlayers" :key="'row5-other-' + index" data-tippy-content="{% trans 'Ein anderer Spieler wurde in diese Box gewählt'|escapejs %}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="center">
+
+                        <p>
+                        <a href="/spannungsfelder/">
+                        <button class="button button-primary" type="button" aria-label="{% trans 'Weiter' %}">
+                            <span class="button-text">{% trans "Weiter" %}</span>
+                            <span class="button-arrow">→</span>
+                        </button></a>
+                        </p>
+                        <div class="copyright-footer">
+                            <a href="https://github.com/joe-the-ark/ark" target="_blank">{% trans "ARKS is published under a GPLv3" %}</a> {% trans "license by" %} 
+                            <a href="https://www.linkedin.com/in/dr-joe-maier/" target="_blank">{% trans "Dr. Joe Maier" %}</a>.
+                        </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</div>
+</body>
+<!-- vue  -->
+<script src="/static/vue.js"></script>
+<script>
+
+    var app = new Vue({
+        delimiters: ['[[', ']]'],
+        el: '#app-1',
+        data() {
+            return {
+                row0CurrentUser: {{row0_current_user|safe}},
+                row0OtherPlayers: {{row0_other_players|safe}},
+                row1CurrentUser: {{row1_current_user|safe}},
+                row1OtherPlayers: {{row1_other_players|safe}},
+                row2CurrentUser: {{row2_current_user|safe}},
+                row2OtherPlayers: {{row2_other_players|safe}},
+                row3CurrentUser: {{row3_current_user|safe}},
+                row3OtherPlayers: {{row3_other_players|safe}},
+                row4CurrentUser: {{row4_current_user|safe}},
+                row4OtherPlayers: {{row4_other_players|safe}},
+                row5CurrentUser: {{row5_current_user|safe}},
+                row5OtherPlayers: {{row5_other_players|safe}},
+                score: '{{score}}',
+                currentUserAvatar: '{{current_user_avatar|safe}}',
+                currentUserName: '{{current_user_name|safe}}',
+            }
+        },
+        mounted() {
+            // Debug: Log array lengths to verify data is correct
+            console.log('=== DEBUG ARRAY INFO ===');
+            console.log('row0CurrentUser:', this.row0CurrentUser, 'length:', this.row0CurrentUser ? this.row0CurrentUser.length : 0);
+            console.log('row0OtherPlayers:', this.row0OtherPlayers, 'length:', this.row0OtherPlayers ? this.row0OtherPlayers.length : 0);
+            var backendCounts = {{debug_counts|safe}};
+            console.log('Backend counts:', backendCounts);
+            console.log('========================');
+        },
+        computed: {
+            widthCalc: function () {
+                if(this.score.length > 1) {
+                    return (100 - Number(this.score.replace(',', ".")) / 5 * 5)+"%"
+                }
+                else {
+                    return (100 - Number(this.score) / 5 * 5)+'%'
+                }
+            }
+        }
+    })
+
+    // ARKS Logo Tooltip
+    function initARKSLogoTooltip() {
+        const arksLogoContainer = document.querySelector('.header-main__title icon');
+        const arksLogoTooltipIcon = document.getElementById('arks-logo-tooltip-icon');
+        
+        if (arksLogoContainer && arksLogoTooltipIcon) {
+            arksLogoContainer.addEventListener('mouseenter', function() {
+                arksLogoTooltipIcon.style.display = 'inline-flex';
+            });
+            arksLogoContainer.addEventListener('mouseleave', function() {
+                arksLogoTooltipIcon.style.display = 'none';
+            });
+            
+            tippy(arksLogoTooltipIcon, {
+                content: "{% trans 'Info zu safecircles.ch'|escapejs %}",
+                placement: 'bottom',
+                theme: 'light',
+                delay: [200, 0],
+                allowHTML: false,
+                interactive: false,
+                trigger: 'mouseenter focus',
+            });
+        }
+    }
+
+    // Psychologischer Tooltip
+    function initPsychologischerTooltip() {
+        const psychologischerTooltipIcon = document.getElementById('psychologischer-tooltip-icon');
+        if (psychologischerTooltipIcon) {
+            const existingInstance = psychologischerTooltipIcon._tippy;
+            if (existingInstance) {
+                existingInstance.destroy();
+            }
+            
+            tippy(psychologischerTooltipIcon, {
+                content: "{% trans 'Werte über 8 gelten als Safe, der Graubereich liegt zwischen 6.5-7.5, unter 6.5 gilt als eher Unsicher – vielleicht wäre externe Unterstützung angezeigt – Werte unter 6 gelten als sehr unsicher.'|escapejs %}",
+                placement: 'bottom',
+                theme: 'light',
+                delay: [200, 0],
+                allowHTML: false,
+                interactive: false,
+                trigger: 'mouseenter focus',
+                maxWidth: 500,
+            });
+        }
+    }
+
+    // Initialize circle tooltips
+    function initCircleTooltips() {
+        // Wait for Vue to render the circles
+        app.$nextTick(function() {
+            // Helper function to initialize tooltips for elements with data-tippy-content
+            function initTooltipsForElements(selector) {
+                const elements = document.querySelectorAll(selector + ':not([data-tippy-initialized])');
+                elements.forEach(function(element) {
+                    const content = element.getAttribute('data-tippy-content');
+                    if (content && !element._tippy) {
+                        tippy(element, {
+                            content: content,
+                            placement: 'top',
+                            theme: 'light',
+                            delay: [200, 0],
+                            allowHTML: false,
+                            interactive: false,
+                            trigger: 'mouseenter focus',
+                            maxWidth: 400,
+                        });
+                        element.setAttribute('data-tippy-initialized', 'true');
+                    }
+                });
+            }
+            
+            // Use MutationObserver to watch for Vue rendering changes
+            const observer = new MutationObserver(function() {
+                // Initialize tooltips for both circle-tooltip and anonymous-circle elements
+                initTooltipsForElements('.circle-tooltip');
+                initTooltipsForElements('.anonymous-circle');
+            });
+            
+            // Observe the container for changes
+            const container = document.querySelector('.psychologischer__container');
+            if (container) {
+                observer.observe(container, {
+                    childList: true,
+                    subtree: true
+                });
+                
+                // Also initialize immediately if circles already exist
+                initTooltipsForElements('.circle-tooltip');
+                initTooltipsForElements('.anonymous-circle');
+            }
+        });
+    }
+
+    // Initialize tooltips after DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+            initARKSLogoTooltip();
+            initPsychologischerTooltip();
+            initCircleTooltips();
+        });
+    } else {
+        initARKSLogoTooltip();
+        initPsychologischerTooltip();
+        initCircleTooltips();
+    }
+</script>
+</html>
+

@@ -1,0 +1,46 @@
+@import './general/xnls';
+@import "general/variables";
+@import "components/custom-graph";
+@import "components/custom-graph-info";
+
+.team-potential {
+
+    p {
+        max-width: 908px;
+        margin: @paragraph-offset;
+
+        .xs(min, {
+            float: left;
+        });
+    }
+
+    .custom-graph-info {
+        .xs(min, {
+            float: right;
+        });
+
+        .xs({
+            justify-content: center;
+        });
+    }
+
+    .custom-graph {
+        clear: both;
+    }
+
+    .forMisha({
+        .custom-graph-info {
+            margin-top: -40px;
+        }
+
+        .custom-graph {
+            padding-top: 20px;
+            padding-bottom: 108px;
+            &__status {
+                top: 20px;
+                height: calc(100% - 128px);
+            }
+        }
+    })
+
+}
