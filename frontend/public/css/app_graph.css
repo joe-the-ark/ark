@@ -38,6 +38,7 @@
     width: calc(100% - 6px);
     background-color: #9FE2BF;
     border: 1px solid #51ceec;
+    z-index: 0;
 }
 
 @media screen and (min-width: 1201px) {
@@ -199,6 +200,12 @@
     border-right: 2px solid var(--ls-between-color);
     left: 50%;
     transform: translateX(-50%);
+    z-index: -1;
+}
+
+/* Ensure polygons are behind avatars in statistic view */
+.statistic .custom-graph__item-polygon {
+    z-index: -1;
 }
 
 .custom-graph__item-foot {
@@ -274,6 +281,11 @@
     pointer-events: none;
 }
 
+/* Ensure lines are behind avatars in statistic view */
+.statistic .custom-graph__item-line {
+    z-index: -1;
+}
+
 .custom-graph__item-avatar {
     width: 60px;
     height: 60px;
@@ -310,6 +322,7 @@
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(22, 4, 73, 0.1);
     transition: all 0.3s ease;
+    z-index: 1;
 }
 
 .custom-graph__status-down,
@@ -385,6 +398,7 @@
         left: 0;
         border-radius: 5px;
         box-shadow: 0 2px 4px rgba(22, 4, 73, 0.1);
+        z-index: 1;
     }
     .custom-graph__status-down {
         left: 0;
@@ -429,10 +443,9 @@
         position: relative;
     }
     .statistic .custom-graph__safezone {
-        right: 32%;
-        width: min(32%);
-        height: 100%;
+        /* Position and size will be set by JavaScript safeArea() */
         border-radius: 10px;
+        z-index: 0;
     }
     .custom-graph__item {
         flex-direction: row;
@@ -496,13 +509,19 @@
     .custom-graph__item-polygon {
         transform: translateY(-50%);
         top: 50%;
-        left: calc(50% + 25px);
-        right: auto;
+        left: auto;
+        right: calc(50% + 25px);
         width: calc(100% - 50px);
         border-right: 0;
         border-top: 2px solid var(--ls-between-color);
         z-index: 0;
         opacity: 0.6;
+    }
+    
+    /* Ensure lines and polygons are behind avatars in statistic view (mobile) */
+    .statistic .custom-graph__item-line,
+    .statistic .custom-graph__item-polygon {
+        z-index: -1;
     }
     .custom-graph__item-foot {
         margin: 0 0 0 -45px;

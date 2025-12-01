@@ -175,6 +175,12 @@
                   <p style="float:none; display: inline">
                     <br>[[ getCircles().length ]] {% trans "SICHERE KREISE bei der Toleranzfenster-Grösse" %} <span style="font-weight: bold; font-size: 42px; color: #626262; vertical-align: middle;">[[ current ]]</span>
                     
+                    <!-- Total Safe Connections Display -->
+                    <div style="display: inline-flex; align-items: center; gap: 10px; margin-left: 20px; padding: 12px 20px; background-color: #9FE2BF; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                        <span style="font-size: 16px; font-weight: bold; color: #FFFFFF;">{% trans "Summe aller sicherer Kreise:" %}</span>
+                        <span style="font-size: 24px; font-weight: bold; color: #FFFFFF;">[[ getTotalSafeConnections() ]]</span>
+                    </div>
+                    
                     <!-- Improved Tolerance Window Input Container -->
                     <div class="tolerance-window-input-container" style="display: flex; flex-direction: column; align-items: center; gap: 15px; margin: 20px 0; padding: 20px; background-color: #f5f5f5; border-radius: 10px; border: 2px solid #9FE2BF;">
                         <div style="display: flex; align-items: center; gap: 10px; width: 100%; max-width: 900px;">
@@ -442,6 +448,22 @@
                             <br><br>
                 </p>
 
+                <p v-if="hasGoldenLines" style="background-color: #FFD700; text-align: left; color: #626262; border-radius: 10px; padding: 0 10px;"><br>
+                            <span 
+                                id="prio4-heading-tooltip-icon"
+                                class="prio4-tooltip-container"
+                                style="display: inline-flex; align-items: center; gap: 4px; margin-right: 8px; vertical-align: middle;"
+                            >
+                                <span 
+                                    id="prio4-tooltip-icon"
+                                    class="tooltip-icon prio4-tooltip-icon"
+                                    title="{% trans 'Klicken für Anweisungen' %}"
+                                >
+                                    ?
+                                </span>
+                            </span>
+                            {% trans "PRIO 4: In-Gruppen und Seilschaften in die Verantwortung nehmen (Goldene Linien)" %}<br><br>
+                </p>
 
                 <p style="background-color: #fffff; text-align: left; color: #00000; border-radius: 10px; padding: 0 10px;"><br>
                             {% trans "" %}<br><br>
@@ -501,6 +523,7 @@
 {{ prio1_tooltip_text|json_script:"prio1-tooltip-text" }}
 {{ prio2_tooltip_text|json_script:"prio2-tooltip-text" }}
 {{ prio3_tooltip_text|json_script:"prio3-tooltip-text" }}
+{{ prio4_tooltip_text|json_script:"prio4-tooltip-text" }}
 {{ circles|json_script:"circles-data" }}
 {{ players|json_script:"players-data" }}
 {{ anchors|json_script:"anchors-data" }}
@@ -585,7 +608,13 @@ var app1 = new Vue({
             playerPositionsArray: [], // Array version for Vue reactivity
             showPlayerDetail: false,
             // View toggle
-            viewMode: 'canvas' // 'canvas' or 'overview'
+            viewMode: 'canvas', // 'canvas' or 'overview'
+            // Hover state
+            hoveredPlayerIndex: null, // Index of currently hovered player
+            // Force-Directed Layout
+            useForceLayout: true, // Toggle between circular and force-directed layout
+            forceLayoutPositions: {}, // Store calculated positions
+            forceLayoutInitialized: false
         };
     },
     created() {
@@ -618,30 +647,195 @@ var app1 = new Vue({
             this._keyboardHandler = null;
         }
     },
-    watch: {
-        current(newVal, oldVal) {
-            // Only animate if values actually changed and oldVal is defined (not initial load)
-            if (oldVal !== undefined && oldVal !== newVal && !this.isAnimating) {
-                console.log('Watch triggered: animating from', oldVal, 'to', newVal);
-                this.animateTransition(oldVal, newVal);
-            } else {
-                // Ensure canvas ref is available before redraw
-                this.$nextTick(() => {
-                    if (this.$refs.canvas) {
-                        this.redraw();
-                    }
-                });
+    computed: {
+        hasGoldenLines() {
+            // Check if there are any golden lines (in-groups/seilschaften) in the team
+            // The inGroups data contains all golden lines with their tolerance ranges
+            const inGroups = this.inGroups;
+            if (!inGroups || !Array.isArray(inGroups) || inGroups.length === 0) {
+                return false;
             }
+            
+            // Simply check if there are any in-groups defined
+            // Each in-group represents a golden line that exists for a range of tolerance values
+            return true;
+        },
+        totalSafeConnectionsLabel() {
+            // Label for total safe connections (sum of all safe circles available to all team members)
+            return 'Summe aller sicherer Kreise:';
         }
     },
     methods: {
+        /**
+         * Force-Directed Layout Calculation
+         */
+        calculateForceLayout(n, circles, dyads, centerX, centerY, baseRadius) {
+            const layoutKey = `${n}_${this.current}`;
+            // Initialize force layout positions storage
+            if (!this.forceLayoutPositions[layoutKey]) {
+                this.forceLayoutPositions[layoutKey] = {};
+            }
+            
+            // Validate inputs
+            if (!circles || !Array.isArray(circles)) {
+                circles = [];
+            }
+            if (!dyads || !Array.isArray(dyads)) {
+                dyads = [];
+            }
+            
+            // Initialize positions in a circle (starting point)
+            const initialPositions = {};
+            const theta = 2 * Math.PI / n;
+            for (let i = 0; i < n; i++) {
+                if (!this.forceLayoutPositions[layoutKey][i]) {
+                    initialPositions[i] = {
+                        x: centerX + baseRadius * Math.cos(theta * i),
+                        y: centerY + baseRadius * Math.sin(theta * i),
+                        vx: 0, // velocity x
+                        vy: 0  // velocity y
+                    };
+                } else {
+                    // Keep existing position but reset velocity
+                    initialPositions[i] = {
+                        x: this.forceLayoutPositions[layoutKey][i].x,
+                        y: this.forceLayoutPositions[layoutKey][i].y,
+                        vx: 0,
+                        vy: 0
+                    };
+                }
+            }
+            
+            // Build connection graph from circles and dyads
+            const connections = new Map();
+            // Add connections from circles
+            circles.forEach(circle => {
+                for (let i = 0; i < circle.length; i++) {
+                    for (let j = i + 1; j < circle.length; j++) {
+                        const a = circle[i];
+                        const b = circle[j];
+                        if (!connections.has(a)) connections.set(a, new Set());
+                        if (!connections.has(b)) connections.set(b, new Set());
+                        connections.get(a).add(b);
+                        connections.get(b).add(a);
+                    }
+                }
+            });
+            // Add connections from dyads
+            dyads.forEach(dyad => {
+                if (dyad.length === 2) {
+                    const a = dyad[0];
+                    const b = dyad[1];
+                    if (!connections.has(a)) connections.set(a, new Set());
+                    if (!connections.has(b)) connections.set(b, new Set());
+                    connections.get(a).add(b);
+                    connections.get(b).add(a);
+                }
+            });
+            
+            // Force simulation parameters
+            const iterations = 100; // Number of simulation steps
+            const k = Math.sqrt((centerX * centerY) / n); // Optimal distance between nodes
+            const repulsionStrength = k * k; // Repulsion force strength
+            const attractionStrength = 0.01; // Attraction force strength
+            const damping = 0.9; // Velocity damping
+            
+            // Run simulation
+            const positions = { ...initialPositions };
+            
+            for (let iter = 0; iter < iterations; iter++) {
+                // Calculate forces
+                const forces = {};
+                for (let i = 0; i < n; i++) {
+                    forces[i] = { fx: 0, fy: 0 };
+                }
+                
+                // Repulsion forces (all nodes repel each other)
+                for (let i = 0; i < n; i++) {
+                    for (let j = i + 1; j < n; j++) {
+                        const dx = positions[i].x - positions[j].x;
+                        const dy = positions[i].y - positions[j].y;
+                        const dist = Math.hypot(dx, dy) || 1; // Avoid division by zero
+                        
+                        // Coulomb repulsion
+                        const force = repulsionStrength / (dist * dist);
+                        const fx = (dx / dist) * force;
+                        const fy = (dy / dist) * force;
+                        
+                        forces[i].fx += fx;
+                        forces[i].fy += fy;
+                        forces[j].fx -= fx;
+                        forces[j].fy -= fy;
+                    }
+                }
+                
+                // Attraction forces (connected nodes attract each other)
+                connections.forEach((neighbors, node) => {
+                    neighbors.forEach(neighbor => {
+                        const dx = positions[neighbor].x - positions[node].x;
+                        const dy = positions[neighbor].y - positions[node].y;
+                        const dist = Math.hypot(dx, dy) || 1;
+                        
+                        // Hooke attraction (towards optimal distance k)
+                        const force = (dist - k) * attractionStrength;
+                        const fx = (dx / dist) * force;
+                        const fy = (dy / dist) * force;
+                        
+                        forces[node].fx += fx;
+                        forces[node].fy += fy;
+                        forces[neighbor].fx -= fx;
+                        forces[neighbor].fy -= fy;
+                    });
+                });
+                
+                // Center attraction (keep nodes near center)
+                const centerAttraction = 0.001;
+                for (let i = 0; i < n; i++) {
+                    const dx = centerX - positions[i].x;
+                    const dy = centerY - positions[i].y;
+                    forces[i].fx += dx * centerAttraction;
+                    forces[i].fy += dy * centerAttraction;
+                }
+                
+                // Update positions
+                for (let i = 0; i < n; i++) {
+                    // Update velocity
+                    positions[i].vx = (positions[i].vx + forces[i].fx) * damping;
+                    positions[i].vy = (positions[i].vy + forces[i].fy) * damping;
+                    
+                    // Update position
+                    positions[i].x += positions[i].vx;
+                    positions[i].y += positions[i].vy;
+                    
+                    // Keep within canvas bounds (with margin)
+                    const margin = 100;
+                    positions[i].x = Math.max(margin, Math.min(this.width - margin, positions[i].x));
+                    positions[i].y = Math.max(margin, Math.min(this.height - margin, positions[i].y));
+                }
+            }
+            
+            // Store final positions (without velocity)
+            for (let i = 0; i < n; i++) {
+                this.forceLayoutPositions[layoutKey][i] = {
+                    x: positions[i].x,
+                    y: positions[i].y
+                };
+            }
+            
+            this.forceLayoutInitialized = true;
+        },
         /**
          * Navigation Methods
          */
         waiting_room() {
             window.location.href = '/waiting-room2/';
         },
-        
+        getTotalSafeConnections() {
+            // Calculate total safe connections (sum of all safe circles available to all team members)
+            const entry = this.circles.circles[this.current] || { circle_count: {} };
+            const circle_count = entry.circle_count || {};
+            return Object.values(circle_count).reduce((s, v) => s + v, 0);
+        },
         /**
          * Tolerance Window Value Methods
          * These methods calculate the minimum, maximum, and optimal tolerance window values
@@ -1035,6 +1229,12 @@ var app1 = new Vue({
                            hoveredPlayer = player;
                            this.showQuestionMarkOverPlayer(player, x, y);
                        }
+                       
+                       // ✅ HOVER: Highlight circles containing this player
+                       if (this.hoveredPlayerIndex !== player) {
+                           this.hoveredPlayerIndex = player;
+                           this.redraw(); // Redraw with hover highlighting
+                       }
                    } else {
                        // Reset cursor
                        canvas.style.cursor = 'default';
@@ -1044,6 +1244,12 @@ var app1 = new Vue({
                            hoveredPlayer = null;
                            this.hideQuestionMark();
                        }
+                       
+                       // ✅ HOVER: Clear hover highlighting
+                       if (this.hoveredPlayerIndex !== null) {
+                           this.hoveredPlayerIndex = null;
+                           this.redraw(); // Redraw without hover highlighting
+                       }
                    }
                });
                
@@ -1052,6 +1258,11 @@ var app1 = new Vue({
                    if (hoveredPlayer !== null) {
                        hoveredPlayer = null;
                        this.hideQuestionMark();
+                   }
+                   // ✅ HOVER: Clear hover highlighting when mouse leaves canvas
+                   if (this.hoveredPlayerIndex !== null) {
+                       this.hoveredPlayerIndex = null;
+                       this.redraw(); // Redraw without hover highlighting
                    }
                });
            },
@@ -1236,6 +1447,9 @@ var app1 = new Vue({
             this._drawToken = drawToken;
 
             ctx.clearRect(0, 0, width, height);
+            
+            // Get hovered player index for highlighting
+            const hoveredIndex = this.hoveredPlayerIndex;
 
             // text
             ctx.textAlign = 'center';
@@ -1254,11 +1468,8 @@ var app1 = new Vue({
             const r1 = r0 * 0.4;
             const theta = 2 * Math.PI / n;
 
-            // header
-            const total = Object.values(circle_count).reduce((s,v) => s + v, 0);
-            ctx.fillStyle = '#000000';
-            ctx.font = '32px Arial'; ctx.fillText('SAFE CIRCLES', cx, cy-32);
-            ctx.font = '60px Arial'; ctx.fillText(total, cx, cy+32);
+            // Calculate total safe connections (sum of all safe circles available to all team members)
+            // This is now displayed in the control area above, not in the canvas
             ctx.font = '18px STheiti, SimHei';
 
             // positions
@@ -1270,14 +1481,44 @@ var app1 = new Vue({
 
             // Calculate actual avatar positions (before drawing, so we can use them for safecircles and in-group lines)
             const avatarPositions = {};
-            players.forEach((name, i) => {
-                const count = circle_count[i] || 0;
-                const isTop = count === maxCount && maxCount > 0;
-                const radius = isTop ? r1 * 0.75 : r1;
-                const px = cx + radius * Math.cos(theta * i);
-                const py = cy + radius * Math.sin(theta * i);
-                avatarPositions[i] = { x: px, y: py };
-            });
+            
+            // ✅ Force-Directed Layout: Calculate positions based on connections
+            const dyads = entry.dyads || [];
+            if (this.useForceLayout && n <= 20) {
+                // Initialize or update force layout positions
+                // Use a key that includes both circles and dyads to detect changes
+                const layoutKey = `${n}_${this.current}`;
+                if (!this.forceLayoutPositions[layoutKey]) {
+                    this.calculateForceLayout(n, circles, dyads, cx, cy, r1);
+                }
+                
+                // Use force-directed positions
+                players.forEach((name, i) => {
+                    const pos = this.forceLayoutPositions[layoutKey] && this.forceLayoutPositions[layoutKey][i];
+                    if (pos) {
+                        avatarPositions[i] = { x: pos.x, y: pos.y };
+                    } else {
+                        // Fallback to circular layout if position not found
+                        const count = circle_count[i] || 0;
+                        const isTop = count === maxCount && maxCount > 0;
+                        const radius = isTop ? r1 * 0.75 : r1;
+                        avatarPositions[i] = { 
+                            x: cx + radius * Math.cos(theta * i),
+                            y: cy + radius * Math.sin(theta * i)
+                        };
+                    }
+                });
+            } else {
+                // Use circular layout (original)
+                players.forEach((name, i) => {
+                    const count = circle_count[i] || 0;
+                    const isTop = count === maxCount && maxCount > 0;
+                    const radius = isTop ? r1 * 0.75 : r1;
+                    const px = cx + radius * Math.cos(theta * i);
+                    const py = cy + radius * Math.sin(theta * i);
+                    avatarPositions[i] = { x: px, y: py };
+                });
+            }
             
             // Create boundary arrays from actual avatar positions (for safecircle drawing)
             // Add dR offset to position the circle edge outside the avatar
@@ -1316,20 +1557,34 @@ var app1 = new Vue({
             };
 
             // draw safe circles
-            const colors=['red','orange','green','blue','purple','yellow','black'];
+            const colors=['#FF4444','#FF8800','#44AA44','#4488FF','#AA44FF','#FFDD00','#333333'];
             // Track which players are in circles for green dot placement
             const playersInCircles = new Set();
             circles.forEach((members,idx)=>{
                 members.forEach(i => playersInCircles.add(i));
+                
+                // ✅ HOVER: If a player is hovered, emphasize circles that contain that player
+                const isHoveredCircle = hoveredIndex !== null && members.includes(hoveredIndex);
+                if (hoveredIndex !== null && !isHoveredCircle) {
+                    // Draw non-hovered circles with very low opacity
+                    ctx.globalAlpha = 0.15;
+                } else {
+                    ctx.globalAlpha = 1.0;
+                }
+                
+                const circleColor = colors[idx%colors.length];
+                
+                // Calculate center for circle drawing
+                let x0=0,y0=0; members.forEach(i=>(x0+=boundaryX[i],y0+=boundaryY[i])); x0/=members.length; y0/=members.length;
+                
+                // Reset alpha after drawing this circle
+                ctx.globalAlpha = 1.0;
                 
                 // Check if all players are in this single circle (perfect circle case)
                 const isAllPlayersCircle = circles.length === 1 && members.length === n;
                 
                 if (isAllPlayersCircle) {
                     // Draw a perfect circle that encompasses all players
-                    // Calculate center as average of all boundary positions
-                let x0=0,y0=0; members.forEach(i=>(x0+=boundaryX[i],y0+=boundaryY[i])); x0/=members.length; y0/=members.length;
-                    
                     // Calculate radius: distance from center to farthest boundary point + dR
                     let maxRadius = 0;
                     members.forEach(i => {
@@ -1338,17 +1593,15 @@ var app1 = new Vue({
                     });
                     const circleRadius = maxRadius + dR;
                     
-                    // Draw perfect circle
-                    ctx.strokeStyle=colors[idx%colors.length]; 
-                    ctx.lineWidth=3; 
+                    // Draw perfect circle outline
+                    ctx.strokeStyle = circleColor; 
+                    ctx.lineWidth = isHoveredCircle ? 5 : 3; // Thicker outline when hovered
                     ctx.setLineDash([]); 
                     ctx.beginPath();
                     ctx.arc(x0, y0, circleRadius, 0, 2 * Math.PI);
                     ctx.stroke();
                 } else {
                     // Draw using Bezier curves (existing logic)
-                    let x0=0,y0=0; members.forEach(i=>(x0+=boundaryX[i],y0+=boundaryY[i])); x0/=members.length; y0/=members.length;
-                    
                     // Calculate average distance between points for dynamic hr adjustment
                     let totalDistance = 0;
                     let distanceCount = 0;
@@ -1365,29 +1618,33 @@ var app1 = new Vue({
                     // Base handle radius (increased from 120 to 180 for rounder appearance)
                     const baseHr = 180;
                     
-                ctx.strokeStyle=colors[idx%colors.length]; ctx.lineWidth=3; ctx.setLineDash([]); ctx.beginPath();
-                members.forEach((pt,j)=>{
-                    const nextIdx=members[(j+1)%members.length];
-                    const [tx,ty,,,th1]=calcEdge(j,members,x0,y0,boundaryX,boundaryY,moveP);
-                    const [nx,ny,,,th2]=calcEdge((j+1)%members.length,members,x0,y0,boundaryX,boundaryY,moveP);
-                        
-                        // Dynamic hr: adjust based on distance between points
-                        // For larger distances, use larger hr; for smaller distances, use smaller hr
-                        const segmentDistance = Math.hypot(nx - tx, ny - ty);
-                        const hr = baseHr * (segmentDistance / avgDistance);
-                        
-                    const c1x = round(tx + hr * Math.cos(th1 - Math.PI / 2));
-                    const c1y = round(ty + hr * Math.sin(th1 - Math.PI / 2));
-                    const c2x = round(nx + hr * Math.cos(th2 + Math.PI / 2));
-                    const c2y = round(ny + hr * Math.sin(th2 + Math.PI / 2));
-                    if(!j)ctx.moveTo(tx,ty);
-                    ctx.bezierCurveTo(c1x,c1y,c2x,c2y,nx,ny);
-                }); ctx.stroke();
+                    ctx.strokeStyle = circleColor; 
+                    ctx.lineWidth = isHoveredCircle ? 5 : 3; // Thicker outline when hovered
+                    ctx.setLineDash([]); 
+                    ctx.beginPath();
+                    members.forEach((pt,j)=>{
+                        const nextIdx=members[(j+1)%members.length];
+                        const [tx,ty,,,th1]=calcEdge(j,members,x0,y0,boundaryX,boundaryY,moveP);
+                        const [nx,ny,,,th2]=calcEdge((j+1)%members.length,members,x0,y0,boundaryX,boundaryY,moveP);
+                            
+                            // Dynamic hr: adjust based on distance between points
+                            // For larger distances, use larger hr; for smaller distances, use smaller hr
+                            const segmentDistance = Math.hypot(nx - tx, ny - ty);
+                            const hr = baseHr * (segmentDistance / avgDistance);
+                            
+                        const c1x = round(tx + hr * Math.cos(th1 - Math.PI / 2));
+                        const c1y = round(ty + hr * Math.sin(th1 - Math.PI / 2));
+                        const c2x = round(nx + hr * Math.cos(th2 + Math.PI / 2));
+                        const c2y = round(ny + hr * Math.sin(th2 + Math.PI / 2));
+                        if(!j)ctx.moveTo(tx,ty);
+                        ctx.bezierCurveTo(c1x,c1y,c2x,c2y,nx,ny);
+                    }); 
+                    ctx.stroke();
                 }
             });
 
-                        // ✅ draw dyads (real safe dyads from backend)
-            const dyads = entry.dyads || [];
+            // ✅ draw dyads (real safe dyads from backend)
+            // Note: dyads is already declared above (line 1489)
             dyads.forEach(pair => {
                 const [i, j] = pair;
                 
@@ -1537,16 +1794,17 @@ var app1 = new Vue({
 */
 
 
-                        // draw players
+            // draw players
             // Clear player positions for click detection
             this.playerPositions = {};
             players.forEach((name,i)=>{
                 const count = circle_count[i]||0;
                 const isTop = count===maxCount && maxCount>0;
                 const size = isTop?Math.floor(baseSize*1.3):baseSize;
-                const radius = isTop? r1*0.75 : r1;
-                const px = cx + radius*Math.cos(theta*i);
-                const py = cy + radius*Math.sin(theta*i);
+                // Use calculated avatar positions (from force layout or circular layout)
+                const pos = avatarPositions[i];
+                const px = pos.x;
+                const py = pos.y;
 
                 // Store player position for click detection
                 this.playerPositions[i] = { x: px, y: py, size: size };
@@ -1595,7 +1853,7 @@ var app1 = new Vue({
                     const bubbleOffset=27, bx=px+bubbleOffset, by=py-bubbleOffset;
                     ctx.beginPath(); ctx.fillStyle='#9FE2BF'; ctx.strokeStyle='white'; ctx.lineWidth=2;
                     ctx.arc(bx,by,20,0,2*Math.PI); ctx.fill(); ctx.stroke();
-                    ctx.fillStyle='black'; ctx.font=`bold ${isTop?36:32}px STheiti, SimHei`;
+                    ctx.fillStyle='black'; ctx.font='bold ' + (isTop ? 36 : 32) + 'px STheiti, SimHei';
                     ctx.textBaseline='middle'; ctx.fillText(count,bx,by); ctx.textBaseline='alphabetic';
                 };
                 if (img.complete) {
@@ -1606,14 +1864,17 @@ var app1 = new Vue({
             });
 
             // helper for edges
-            function calcEdge(i2,members,x0,y0,bX,bY,moveF){
-                const prev=members[(i2-1+members.length)%members.length];
-                const nxt=members[(i2+1)%members.length];
-                const [tx,ty]=moveF(x0,y0,bX[members[i2]],bY[members[i2]]);
-                const [px,py]=moveF(x0,y0,bX[prev],bY[prev]);
-                const [nx,ny]=moveF(x0,y0,bX[nxt],bY[nxt]);
-                const a1=Math.atan2(ny-ty,nx-tx), a2=Math.atan2(py-ty,px-tx);
-                let th=(a1+a2)/2; if(th<a1)th+=Math.PI; return [tx,ty,nx,ny,th];
+            function calcEdge(i2, members, x0, y0, bX, bY, moveF) {
+                const prev = members[(i2 - 1 + members.length) % members.length];
+                const nxt = members[(i2 + 1) % members.length];
+                const [tx, ty] = moveF(x0, y0, bX[members[i2]], bY[members[i2]]);
+                const [px, py] = moveF(x0, y0, bX[prev], bY[prev]);
+                const [nx, ny] = moveF(x0, y0, bX[nxt], bY[nxt]);
+                const a1 = Math.atan2(ny - ty, nx - tx);
+                const a2 = Math.atan2(py - ty, px - tx);
+                let th = (a1 + a2) / 2;
+                if (th < a1) th += Math.PI;
+                return [tx, ty, nx, ny, th];
             }
         },
         showQuestionMarkOverPlayer(playerIndex, mouseX, mouseY) {
@@ -1628,24 +1889,23 @@ var app1 = new Vue({
             const questionMark = document.createElement('div');
             questionMark.id = 'player-question-mark';
             questionMark.textContent = '?';
-            questionMark.style.cssText = `
-                position: absolute;
-                left: ${pos.x}px;
-                top: ${pos.y - pos.size/2 - 35}px;
-                font-size: 28px;
-                font-weight: bold;
-                color: #52CEEC;
-                pointer-events: none;
-                z-index: 1000;
-                text-align: center;
-                width: 36px;
-                height: 36px;
-                line-height: 36px;
-                background-color: rgba(255, 255, 255, 0.95);
-                border-radius: 50%;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-                transform: translateX(-50%);
-            `;
+            const topPos = pos.y - (pos.size / 2) - 35;
+            questionMark.style.cssText = 'position: absolute; ' +
+                'left: ' + pos.x + 'px; ' +
+                'top: ' + topPos + 'px; ' +
+                'font-size: 28px; ' +
+                'font-weight: bold; ' +
+                'color: #52CEEC; ' +
+                'pointer-events: none; ' +
+                'z-index: 1000; ' +
+                'text-align: center; ' +
+                'width: 36px; ' +
+                'height: 36px; ' +
+                'line-height: 36px; ' +
+                'background-color: rgba(255, 255, 255, 0.95); ' +
+                'border-radius: 50%; ' +
+                'box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); ' +
+                'transform: translateX(-50%);';
             
             // Add to canvas container (parent div)
             const canvas = this.$refs.canvas;
@@ -1667,6 +1927,58 @@ var app1 = new Vue({
             }
         }
     },
+    watch: {
+        current(newVal, oldVal) {
+            // Only animate if values actually changed and oldVal is defined (not initial load)
+            if (oldVal !== undefined && newVal !== oldVal && !this.isAnimating) {
+                console.log('Watch triggered: animating from', oldVal, 'to', newVal);
+                // Reset force layout when tolerance window changes (circles may change)
+                if (this.useForceLayout) {
+                    const n = this.circles.players.length;
+                    const oldKey = `${n}_${oldVal}`;
+                    const newKey = `${n}_${newVal}`;
+                    // Clean up old positions (keep only last few to save memory)
+                    if (this.forceLayoutPositions[oldKey]) {
+                        delete this.forceLayoutPositions[oldKey];
+                    }
+                }
+                this.animateTransition(oldVal, newVal);
+            } else {
+                // Ensure canvas ref is available before redraw
+                this.$nextTick(() => {
+                    if (this.$refs.canvas) {
+                        this.redraw();
+                    }
+                });
+            }
+        }
+    },
+    watch: {
+        current(newVal, oldVal) {
+            // Only animate if values actually changed and oldVal is defined (not initial load)
+            if (oldVal !== undefined && newVal !== oldVal && !this.isAnimating) {
+                console.log('Watch triggered: animating from', oldVal, 'to', newVal);
+                // Reset force layout when tolerance window changes (circles may change)
+                if (this.useForceLayout) {
+                    const n = this.circles.players.length;
+                    const oldKey = `${n}_${oldVal}`;
+                    const newKey = `${n}_${newVal}`;
+                    // Clean up old positions (keep only last few to save memory)
+                    if (this.forceLayoutPositions[oldKey]) {
+                        delete this.forceLayoutPositions[oldKey];
+                    }
+                }
+                this.animateTransition(oldVal, newVal);
+            } else {
+                // Ensure canvas ref is available before redraw
+                this.$nextTick(() => {
+                    if (this.$refs.canvas) {
+                        this.redraw();
+                    }
+                });
+            }
+        }
+    }
 });
 
     // Close initTeamPotential function
@@ -1765,6 +2077,7 @@ function initCanvasTooltips() {
             setTimeout(initPrio2IntegratorTooltip, 1000);
             setTimeout(initPrio3HeadingTooltip, 1000);
             setTimeout(initPrio3IntegratorTooltip, 1000);
+            setTimeout(initPrio4HeadingTooltip, 1000);
             setTimeout(initMinValueButtonTooltip, 1000);
             setTimeout(initMaxValueButtonTooltip, 1000);
             setTimeout(initTeamPotentialTitleTooltip, 1000);
@@ -2111,6 +2424,67 @@ function initPrio3IntegratorTooltip() {
         });
     } catch (e) {
         console.error('Error initializing PRIO 3 integrator tooltip:', e);
+    }
+}
+
+// Initialize tooltip for PRIO 4 heading explanation (big card modal)
+function initPrio4HeadingTooltip() {
+    const tooltipContainer = document.getElementById('prio4-heading-tooltip-icon');
+    const tooltipIcon = document.getElementById('prio4-tooltip-icon');
+    if (!tooltipContainer || !tooltipIcon) return;
+    
+    // Get translated tooltip text from Django - using JSON script tag to avoid escaping issues
+    const tooltipTextElement = document.getElementById('prio4-tooltip-text');
+    const tooltipText = tooltipTextElement ? JSON.parse(tooltipTextElement.textContent) : '';
+    
+    // Remove existing tooltips if any
+    if (tooltipIcon._tippy) {
+        tooltipIcon._tippy.destroy();
+    }
+    if (tooltipContainer._tippy) {
+        tooltipContainer._tippy.destroy();
+    }
+    
+    try {
+        // First, add a simple hover tooltip that shows "click for instructions"
+        const hoverTooltipText = "{% trans 'Klicken für Anweisungen'|escapejs %}";
+        tippy(tooltipIcon, {
+            content: hoverTooltipText,
+            placement: 'top',
+            theme: 'light',
+            delay: [300, 0],
+            allowHTML: false,
+            interactive: false,
+            trigger: 'mouseenter focus',
+            maxWidth: 200,
+            animation: 'fade',
+            arrow: true,
+        });
+        
+        // Then, add the big card tooltip on click
+        const parts = tooltipText.split('\n\n');
+        const title = parts[0] || '';
+        const body = parts.slice(1).join('\n\n') || '';
+        
+        // Create a styled card-like tooltip similar to player detail modal
+        const cardContent = '<div style="max-width: 600px; padding: 25px; font-size: 15px; line-height: 1.7; text-align: left; background-color: #ffffff; border-radius: 10px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);"><h3 style="margin: 0 0 15px 0; color: #626262; font-size: 18px; font-weight: bold; border-bottom: 2px solid #FFD700; padding-bottom: 10px;">' + title + '</h3><div style="color: #626262;">' + body.replace(/\n/g, '<br>') + '</div></div>';
+        
+        // Apply big card tooltip to container on click
+        tippy(tooltipContainer, {
+            content: cardContent,
+            placement: 'right',
+            theme: 'light',
+            delay: [0, 0],
+            allowHTML: true,
+            interactive: true,
+            trigger: 'click',
+            maxWidth: 650,
+            animation: 'fade',
+            arrow: true,
+            hideOnClick: true,
+        });
+    } catch (e) {
+        console.error('Error initializing PRIO 4 heading tooltip:', e);
     }
 }
 

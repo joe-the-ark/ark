@@ -90,7 +90,14 @@
   flex-shrink: 0;
   align-self: flex-start;
   margin-top: 0;
-  /* Uses standard tooltip-icon size from app.css */
+  width: 36px !important;
+  height: 36px !important;
+  font-size: 20px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1 !important;
+  padding: 0 !important;
 }
 
 .options__item:hover [class*="icon"],
@@ -287,6 +294,7 @@
   padding: 20px;
   transition: all 0.3s ease;
   opacity: 0.6;
+  display: none;
 }
 
 .arche-scenario-card:hover {
@@ -299,6 +307,7 @@
   border-color: var(--ls-alfa-color);
   background-color: #E8F7FC;
   box-shadow: 0 2px 8px rgba(82, 206, 236, 0.3);
+  display: block;
 }
 
 .arche-scenario-header {
@@ -325,16 +334,19 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 20px;
-  height: 20px;
+  width: 36px;
+  height: 36px;
   background-color: #E29635;
   color: white;
   border-radius: 50%;
-  font-size: 12px;
+  font-size: 20px;
   font-weight: bold;
   cursor: help;
   flex-shrink: 0;
   transition: background-color 0.2s ease;
+  line-height: 1;
+  padding: 0;
+  text-align: center;
 }
 
 .arche-scenario-tooltip-icon:hover {

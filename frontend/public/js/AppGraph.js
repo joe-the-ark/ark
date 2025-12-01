@@ -54,29 +54,67 @@ class AppGraph {
     this.safeLow = low;
     this.safeHigh = high;
     var blue_range = high - low;
-    let halfAvatar =
-      document.querySelector('div.custom-graph__item-avatar').clientHeight / 2;
-    let height = document.querySelector('.custom-graph__item').clientHeight;
-    let width = document.querySelector('.custom-graph__item').clientWidth;
-    let mobRight = Math.round(width * ((100 - high) / 100));
-    let mobWidth = Math.round(width * (blue_range / 100)) - 10;
-    let screenTop = Math.round(height * ((100 - high) / 100));
-    let screenHeight = Math.round(height * (blue_range / 100)) - 10;
-
+    
     let qall = this.container.parentNode.querySelectorAll(
       '.custom-graph__safezone'
     );
+    
+    if (!qall || !qall[this.graphNumber]) {
+      return; // Safezone element not found
+    }
 
+    // Check if this is a statistic graph - check multiple ways
+    const isStatistic = this.statistic || 
+                        (this.container && this.container.closest('.statistic')) || 
+                        (this.container && this.container.querySelector('.statistic')) ||
+                        (this.container && this.container.classList.contains('statistic')) ||
+                        (this.container && this.container.parentElement && this.container.parentElement.classList.contains('statistic')) ||
+                        (this.container && this.container.querySelector('.custom-graph.statistic'));
+    
     if (window.innerWidth <= this.mobile) {
-      qall[this.graphNumber].style['right'] = mobRight.toString() + 'px';
-      qall[this.graphNumber].style['width'] = mobWidth.toString() + 'px';
-      qall[this.graphNumber].style['top'] = '0';
-      qall[this.graphNumber].style['height'] = '100%-2px';
+      if (isStatistic) {
+        // For statistic in mobile: use full width of items container
+        const itemsContainer = this.container.querySelector('.custom-graph__items');
+        if (itemsContainer) {
+          const containerWidth = itemsContainer.clientWidth;
+          const containerHeight = itemsContainer.clientHeight;
+          let mobRight = Math.round(containerWidth * ((100 - high) / 100));
+          let mobWidth = Math.round(containerWidth * (blue_range / 100));
+          
+          // Ensure we use the full available width
+          qall[this.graphNumber].style['right'] = mobRight.toString() + 'px';
+          qall[this.graphNumber].style['width'] = mobWidth.toString() + 'px';
+          qall[this.graphNumber].style['top'] = '0';
+          qall[this.graphNumber].style['height'] = containerHeight + 'px';
+          qall[this.graphNumber].style['left'] = 'auto';
+          qall[this.graphNumber].style['position'] = 'absolute';
+        }
+      } else {
+        // For non-statistic: use item width
+        let halfAvatar =
+          document.querySelector('div.custom-graph__item-avatar').clientHeight / 2;
+        let height = document.querySelector('.custom-graph__item').clientHeight;
+        let width = document.querySelector('.custom-graph__item').clientWidth;
+        let mobRight = Math.round(width * ((100 - high) / 100));
+        let mobWidth = Math.round(width * (blue_range / 100)) - 10;
+        
+        qall[this.graphNumber].style['right'] = mobRight.toString() + 'px';
+        qall[this.graphNumber].style['width'] = mobWidth.toString() + 'px';
+        qall[this.graphNumber].style['top'] = '0';
+        qall[this.graphNumber].style['height'] = '100%';
+        qall[this.graphNumber].style['left'] = 'auto';
+      }
     } else {
+      // Desktop view
+      let height = document.querySelector('.custom-graph__item').clientHeight;
+      let screenTop = Math.round(height * ((100 - high) / 100));
+      let screenHeight = Math.round(height * (blue_range / 100)) - 10;
+      
       qall[this.graphNumber].style['top'] = screenTop.toString() + 'px';
       qall[this.graphNumber].style['height'] = screenHeight.toString() + 'px';
       qall[this.graphNumber].style['right'] = '0';
-      qall[this.graphNumber].style['width'] = '100%-2px';
+      qall[this.graphNumber].style['width'] = '100%';
+      qall[this.graphNumber].style['left'] = 'auto';
     }
   }
 
@@ -127,16 +165,16 @@ buildGraph() {
   this.render();
   this.safeArea();
 
+    let resizeTimeout;
     window.addEventListener('resize', () => {
-      setTimeout(() => {
-        // this.render();
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        // Update safezone and redraw lines/polygons
         this.safeArea();
+        this.update(); // Redraw lines and polygons
         this.updateDots();
         this.isAuto();
-        // window.location.reload()
-      }, 500);
-
-      // setTimeout( ()=> {window.location.reload();}, 500)
+      }, 250); // Reduced timeout for faster response
     });
 
     this.auto
@@ -446,7 +484,11 @@ buildGraph() {
     if (polygon && circle && avatar) {
       const polygonWidth = this.calculateWidth(circle, avatar);
       if (window.innerWidth <= this.mobile) {
-        polygon.style.width = `${polygonWidth}px`;
+        // In Mobile: Linie soll nur bis zum Mittelpunkt des Avatars reichen
+        // Avatar ist 50px breit, also reduzieren um 25px (Hälfte)
+        const avatarRect = this.getRect(avatar);
+        const adjustedWidth = polygonWidth - (avatarRect.width / 2);
+        polygon.style.width = `${Math.max(0, adjustedWidth)}px`;
         polygon.style.height = '0';
       } else {
         polygon.style.height = `${polygonWidth}px`;

@@ -363,13 +363,8 @@
 
         .custom-graph:not(.statistic) & {
             &:after {
-                top: 50%;
-                transform: translateY(-50%);
-                left: 0;
-                width: 100%;
-                height: 0;
-                border-right: 0;
-                border-top: 2px dashed @extra-color;
+                content: none !important;
+                display: none !important;
             }
         }
 
@@ -392,7 +387,8 @@
         transform: translateY(-50%);
         top: 50%;
         left: auto;
-        right: calc(100% - 25px);
+        right: calc(50% + 25px);
+        width: calc(100% - 50px);
         border-right: 0;
         border-top: 2px solid @between-color;
         z-index: -1;

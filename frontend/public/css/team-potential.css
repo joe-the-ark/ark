@@ -195,6 +195,25 @@ button:active {
     position: relative;
 }
 
+/* PRIO 4 Tooltip Icon - Visual Feedback (only for heading icon) */
+.prio4-tooltip-icon {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    width: 48px !important;
+    height: 48px !important;
+    font-size: 32px !important;
+}
+
+.prio4-tooltip-icon:hover {
+    background-color: #c7852a !important;
+    transform: scale(1.15);
+    box-shadow: 0 4px 8px rgba(199, 133, 42, 0.4);
+}
+
+.prio4-tooltip-container {
+    position: relative;
+}
+
 /* PRIO 1, 2, and 3 Tooltip Icons at box-end - original size (24px) */
 #prio1-wie-weiter-tooltip-icon .tooltip-icon,
 #prio2-integrator-tooltip-icon .tooltip-icon,
