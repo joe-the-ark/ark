@@ -1482,9 +1482,6 @@ var app1 = new Vue({
             ctx.fillRect(0, 0, width, height);
             ctx.clearRect(0, 0, width, height);
             
-            // Get hovered player index for highlighting
-            const hoveredIndex = this.hoveredPlayerIndex;
-
             // text
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
@@ -1495,6 +1492,24 @@ var app1 = new Vue({
             const anchors = this.anchors || {};
             const entry = this.circles.circles[this.current] || { circles: [], circle_count: {} };
             const { circles, circle_count } = entry;
+            
+            // Get hovered player index for highlighting
+            const hoveredIndex = this.hoveredPlayerIndex;
+            
+            // Find all players connected to the hovered player (in the same circles)
+            const connectedPlayers = new Set();
+            if (hoveredIndex !== null) {
+                circles.forEach(circle => {
+                    if (circle.includes(hoveredIndex)) {
+                        // Add all players in this circle to connectedPlayers
+                        circle.forEach(playerIndex => {
+                            if (playerIndex !== hoveredIndex) {
+                                connectedPlayers.add(playerIndex);
+                            }
+                        });
+                    }
+                });
+            }
             const n = players.length;
             
             // Canvas size is fixed at 1000x1000, no need to recalculate
@@ -1866,6 +1881,17 @@ var app1 = new Vue({
                 const img = new Image(); img.src = avatars[name];
                 const drawPerson = () => {
                     if (this._drawToken !== drawToken) return;
+                    
+                    // Draw green ring around avatar if this player is connected to hovered player
+                    const isConnected = hoveredIndex !== null && connectedPlayers.has(i);
+                    if (isConnected) {
+                        ctx.strokeStyle = '#9FE2BF';
+                        ctx.lineWidth = 4;
+                        ctx.beginPath();
+                        ctx.arc(px, py, size/2 + 3, 0, 2 * Math.PI);
+                        ctx.stroke();
+                    }
+                    
                     ctx.drawImage(img, px-size/2, py-size/2, size, size);
                     ctx.fillStyle='black'; ctx.font='18px Lato-Regular, sans-serif';
                     const nameY = py+size/2+20;
