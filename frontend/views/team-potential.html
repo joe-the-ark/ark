@@ -57,7 +57,7 @@
                         <div class="progress__bar-fill">85%</div>
                     </div>
                 </div>
-                <button class="button" onclick="window.print()" aria-label="{% trans 'Als PDF speichern' %}" title="{% trans 'Als PDF speichern' %}">{% trans "Als PDF speichern" %}</button> 
+                <button class="button" onclick="prepareCanvasForPrint(); window.print();" aria-label="{% trans 'Als PDF speichern' %}" title="{% trans 'Als PDF speichern' %}">{% trans "Als PDF speichern" %}</button> 
             </div>
 
 
@@ -254,12 +254,12 @@
                     </div>
                     
                     <br/>
-                    <div style="position: relative; display: inline-block;">
+                    <div style="position: relative; display: inline-block; background-color: #f0f0f0;">
                         <canvas 
                             ref="canvas" 
                             :width="width" 
                             :height="height" 
-                            :style="{ width:width+'px', height:height+'px', display: viewMode === 'canvas' ? 'block' : 'none', transition: 'opacity 0.3s ease' }" 
+                            :style="{ width:width+'px', height:height+'px', display: viewMode === 'canvas' ? 'block' : 'none', transition: 'opacity 0.3s ease', backgroundColor: '#FFFFFF' }" 
                             id="team-potential-canvas"
                             role="img"
                             :aria-label="'{% trans 'Team-Potential-Visualisierung' %}: ' + current"
@@ -597,8 +597,8 @@ var app1 = new Vue({
             allResult: allResultData,       // raw statusSide data for each player
             inGroups: inGroupsData,         // in-groups data
             current: 16,
-            width: 800,
-            height: 800,
+            width: 1000,
+            height: 1000,
             // Animation state
             animationFrame: null,
             isAnimating: false,
@@ -623,16 +623,33 @@ var app1 = new Vue({
         this._animationStartTime = 0;
         this.current = this.getValue4();
         this.loading = '{{ loading }}' !== '0';
+        
+        // Calculate optimal canvas size based on team size
+        this.calculateOptimalCanvasSize();
     },
     mounted() {
         // Ensure isAnimating is false on mount
         this.isAnimating = false;
         this._animationStartTime = 0;
         
+        // Recalculate canvas size on mount (in case window size changed)
+        this.calculateOptimalCanvasSize();
+        
         // Use $nextTick to ensure DOM refs are available
         this.$nextTick(() => {
+            // Wait for canvas to be fully initialized and size to be set
             if (this.$refs.canvas) {
-                this.redraw();
+                // Ensure canvas dimensions are set
+                this.$refs.canvas.width = this.width;
+                this.$refs.canvas.height = this.height;
+                // Force a redraw after canvas is ready
+                this.$nextTick(() => {
+                    this.redraw();
+                    // Additional redraw after a short delay to ensure all images are loaded and force layout is complete
+                    setTimeout(() => {
+                        this.redraw();
+                    }, 200);
+                });
             }
             this.setupKeyboardShortcuts();
             this.setupCanvasClickHandlers();
@@ -666,6 +683,14 @@ var app1 = new Vue({
         }
     },
     methods: {
+        /**
+         * Calculate optimal canvas size based on team size and number of circles
+         */
+        calculateOptimalCanvasSize() {
+            // Fixed canvas size: 1000x1000 pixels
+            this.width = 1000;
+            this.height = 1000;
+        },
         /**
          * Force-Directed Layout Calculation
          */
@@ -734,11 +759,12 @@ var app1 = new Vue({
             });
             
             // Force simulation parameters
-            const iterations = 100; // Number of simulation steps
-            const k = Math.sqrt((centerX * centerY) / n); // Optimal distance between nodes
-            const repulsionStrength = k * k; // Repulsion force strength
-            const attractionStrength = 0.01; // Attraction force strength
-            const damping = 0.9; // Velocity damping
+            const iterations = 150; // Increased iterations for better layout
+            // Increase optimal distance to spread nodes further apart
+            const k = Math.sqrt((centerX * centerY) / n) * 1.5; // Optimal distance between nodes (increased by 50%)
+            const repulsionStrength = k * k * 1.2; // Increased repulsion force strength
+            const attractionStrength = 0.008; // Slightly reduced attraction to allow more spread
+            const damping = 0.85; // Slightly reduced damping for more movement
             
             // Run simulation
             const positions = { ...initialPositions };
@@ -807,8 +833,8 @@ var app1 = new Vue({
                     positions[i].x += positions[i].vx;
                     positions[i].y += positions[i].vy;
                     
-                    // Keep within canvas bounds (with margin)
-                    const margin = 100;
+                    // Keep within canvas bounds (with smaller margin to use more space)
+                    const margin = 60; // Reduced margin to use more of the canvas
                     positions[i].x = Math.max(margin, Math.min(this.width - margin, positions[i].x));
                     positions[i].y = Math.max(margin, Math.min(this.height - margin, positions[i].y));
                 }
@@ -1440,12 +1466,20 @@ var app1 = new Vue({
                 console.warn('Canvas ref not available yet');
                 return;
             }
+            // Ensure canvas dimensions match data
+            if (canvas.width !== this.width || canvas.height !== this.height) {
+                canvas.width = this.width;
+                canvas.height = this.height;
+            }
             const ctx    = canvas.getContext('2d');
             const { width, height } = this;
 
             const drawToken = Symbol('draw');
             this._drawToken = drawToken;
 
+            // Clear canvas with white background
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fillRect(0, 0, width, height);
             ctx.clearRect(0, 0, width, height);
             
             // Get hovered player index for highlighting
@@ -1462,15 +1496,19 @@ var app1 = new Vue({
             const entry = this.circles.circles[this.current] || { circles: [], circle_count: {} };
             const { circles, circle_count } = entry;
             const n = players.length;
+            
+            // Canvas size is fixed at 1000x1000, no need to recalculate
             const [cx, cy] = [width/2, height/2];
             const r0 = Math.min(width, height);
             const dR = 16;
-            const r1 = r0 * 0.4;
+            // Increase radius to use more space (from 0.4 to 0.5, scales with team size)
+            const radiusFactor = Math.min(0.55, 0.4 + (n / 100)); // Scales from 0.4 to 0.55 for larger teams
+            const r1 = r0 * radiusFactor;
             const theta = 2 * Math.PI / n;
 
             // Calculate total safe connections (sum of all safe circles available to all team members)
             // This is now displayed in the control area above, not in the canvas
-            ctx.font = '18px STheiti, SimHei';
+            ctx.font = '18px Lato-Regular, sans-serif';
 
             // positions
             const round = v => Math.round(v * 1e5) / 1e5;
@@ -1488,8 +1526,13 @@ var app1 = new Vue({
                 // Initialize or update force layout positions
                 // Use a key that includes both circles and dyads to detect changes
                 const layoutKey = `${n}_${this.current}`;
-                if (!this.forceLayoutPositions[layoutKey]) {
+                if (!this.forceLayoutPositions[layoutKey] || Object.keys(this.forceLayoutPositions[layoutKey]).length === 0) {
                     this.calculateForceLayout(n, circles, dyads, cx, cy, r1);
+                    // Ensure positions are calculated before proceeding
+                    if (!this.forceLayoutPositions[layoutKey] || Object.keys(this.forceLayoutPositions[layoutKey]).length === 0) {
+                        // Fallback: use circular layout if force layout failed
+                        console.warn('Force layout calculation failed, using circular layout');
+                    }
                 }
                 
                 // Use force-directed positions
@@ -1522,6 +1565,13 @@ var app1 = new Vue({
             
             // Create boundary arrays from actual avatar positions (for safecircle drawing)
             // Add dR offset to position the circle edge outside the avatar
+            // Ensure boundaries stay within canvas bounds with margin
+            const margin = 50; // Margin to keep circles within canvas
+            const maxX = width - margin;
+            const maxY = height - margin;
+            const minX = margin;
+            const minY = margin;
+            
             const boundaryX = players.map((_, i) => {
                 const pos = avatarPositions[i];
                 const dx = pos.x - cx;
@@ -1529,9 +1579,11 @@ var app1 = new Vue({
                 const dist = Math.hypot(dx, dy);
                 if (dist > 0) {
                     // Move dR pixels further out from the avatar center
-                    return cx + (dx / dist) * (dist + dR);
+                    const boundaryXValue = cx + (dx / dist) * (dist + dR);
+                    // Clamp to canvas bounds
+                    return Math.max(minX, Math.min(maxX, boundaryXValue));
                 }
-                return pos.x + dR;
+                return Math.max(minX, Math.min(maxX, pos.x + dR));
             });
             const boundaryY = players.map((_, i) => {
                 const pos = avatarPositions[i];
@@ -1540,9 +1592,11 @@ var app1 = new Vue({
                 const dist = Math.hypot(dx, dy);
                 if (dist > 0) {
                     // Move dR pixels further out from the avatar center
-                    return cy + (dy / dist) * (dist + dR);
+                    const boundaryYValue = cy + (dy / dist) * (dist + dR);
+                    // Clamp to canvas bounds
+                    return Math.max(minY, Math.min(maxY, boundaryYValue));
                 }
-                return pos.y + dR;
+                return Math.max(minY, Math.min(maxY, pos.y + dR));
             });
 
             // helpers
@@ -1809,51 +1863,26 @@ var app1 = new Vue({
                 // Store player position for click detection
                 this.playerPositions[i] = { x: px, y: py, size: size };
 
-                    // green filled dot for top players (Integratoren)
-                    // Position dot on line from center to player, touching the player's avatar at one point
-            if (isTop) {
-                const dotRadius = size / 2; 
-                
-                // Calculate direction from center to player
-                const dx = px - cx;
-                const dy = py - cy;
-                const dist = Math.hypot(dx, dy);
-                
-                if (dist > 0) {
-                    // Calculate the distance from center where the dot should be positioned
-                    // The dot should touch the avatar's edge
-                    // Avatar center is at (px, py) with radius size/2
-                    // Dot center should be at distance: dist - size/2 - dotRadius from center
-                    // This positions the dot so it touches the avatar at one point
-                    const dotDistFromCenter = dist - (size / 2) - dotRadius;
-                    
-                    // Position dot on the line from center to player
-                    const dotX = cx + (dx / dist) * dotDistFromCenter;
-                    const dotY = cy + (dy / dist) * dotDistFromCenter;
-                    
-                ctx.beginPath();
-                ctx.fillStyle = '#9FE2BF';
-                    ctx.arc(dotX, dotY, dotRadius, 0, Math.PI * 2);
-                ctx.fill();
-                }
-            }
-
                 const img = new Image(); img.src = avatars[name];
                 const drawPerson = () => {
                     if (this._drawToken !== drawToken) return;
                     ctx.drawImage(img, px-size/2, py-size/2, size, size);
-                    ctx.fillStyle='black'; ctx.font='18px STheiti, SimHei';
-                    ctx.fillText(name, px, py+size/2+20, size+40);
+                    ctx.fillStyle='black'; ctx.font='18px Lato-Regular, sans-serif';
+                    const nameY = py+size/2+20;
+                    // Draw name and safety anchor on the same line
+                    const nameText = name;
                     const safetyAnchor = anchors[name];
                     if (safetyAnchor) {
-                        ctx.fillStyle = '#555555';
-                        ctx.font = '16px STheiti, SimHei';
-                        ctx.fillText(safetyAnchor, px, py+size/2+40, size+80);
+                        // Combine name and safety anchor on one line
+                        const combinedText = name + ' (' + safetyAnchor + ')';
+                        ctx.fillText(combinedText, px, nameY, size+80);
+                    } else {
+                        ctx.fillText(nameText, px, nameY, size+40);
                     }
                     const bubbleOffset=27, bx=px+bubbleOffset, by=py-bubbleOffset;
-                    ctx.beginPath(); ctx.fillStyle='#9FE2BF'; ctx.strokeStyle='white'; ctx.lineWidth=2;
+                    ctx.beginPath(); ctx.fillStyle=isTop ? '#9FE2BF' : '#FFFFFF'; ctx.strokeStyle='white'; ctx.lineWidth=2;
                     ctx.arc(bx,by,20,0,2*Math.PI); ctx.fill(); ctx.stroke();
-                    ctx.fillStyle='black'; ctx.font='bold ' + (isTop ? 36 : 32) + 'px STheiti, SimHei';
+                    ctx.fillStyle='black'; ctx.font='bold ' + (isTop ? 36 : 32) + 'px Lato-Bold, sans-serif';
                     ctx.textBaseline='middle'; ctx.fillText(count,bx,by); ctx.textBaseline='alphabetic';
                 };
                 if (img.complete) {
@@ -1944,32 +1973,7 @@ var app1 = new Vue({
                 }
                 this.animateTransition(oldVal, newVal);
             } else {
-                // Ensure canvas ref is available before redraw
-                this.$nextTick(() => {
-                    if (this.$refs.canvas) {
-                        this.redraw();
-                    }
-                });
-            }
-        }
-    },
-    watch: {
-        current(newVal, oldVal) {
-            // Only animate if values actually changed and oldVal is defined (not initial load)
-            if (oldVal !== undefined && newVal !== oldVal && !this.isAnimating) {
-                console.log('Watch triggered: animating from', oldVal, 'to', newVal);
-                // Reset force layout when tolerance window changes (circles may change)
-                if (this.useForceLayout) {
-                    const n = this.circles.players.length;
-                    const oldKey = `${n}_${oldVal}`;
-                    const newKey = `${n}_${newVal}`;
-                    // Clean up old positions (keep only last few to save memory)
-                    if (this.forceLayoutPositions[oldKey]) {
-                        delete this.forceLayoutPositions[oldKey];
-                    }
-                }
-                this.animateTransition(oldVal, newVal);
-            } else {
+                // On initial load (oldVal is undefined) or when no animation needed, redraw immediately
                 // Ensure canvas ref is available before redraw
                 this.$nextTick(() => {
                     if (this.$refs.canvas) {
@@ -2726,6 +2730,43 @@ function initMaxValueButtonTooltip() {
             }
         });
     }
+
+    // Print optimization: Scale canvas to fit page width
+    let originalCanvasStyle = null;
+    function prepareCanvasForPrint() {
+        const canvas = document.getElementById('team-potential-canvas');
+        if (!canvas) return;
+        
+        // Store original style
+        originalCanvasStyle = {
+            width: canvas.style.width,
+            height: canvas.style.height,
+            maxWidth: canvas.style.maxWidth,
+            maxHeight: canvas.style.maxHeight
+        };
+        
+        // Calculate available print width (A4 landscape: ~27cm = ~1020px at 96dpi, minus margins)
+        const printWidth = Math.min(950, window.innerWidth - 40); // Leave 20px margin on each side
+        const scale = printWidth / 1000; // Scale factor based on canvas width of 1000px
+        
+        // Scale canvas for print
+        canvas.style.width = printWidth + 'px';
+        canvas.style.height = (1000 * scale) + 'px';
+        canvas.style.maxWidth = '100%';
+        canvas.style.maxHeight = 'none';
+    }
+    
+    // Restore canvas size after printing
+    window.addEventListener('afterprint', function() {
+        const canvas = document.getElementById('team-potential-canvas');
+        if (canvas && originalCanvasStyle) {
+            canvas.style.width = originalCanvasStyle.width;
+            canvas.style.height = originalCanvasStyle.height;
+            canvas.style.maxWidth = originalCanvasStyle.maxWidth;
+            canvas.style.maxHeight = originalCanvasStyle.maxHeight;
+            originalCanvasStyle = null;
+        }
+    });
 
 </script>
 

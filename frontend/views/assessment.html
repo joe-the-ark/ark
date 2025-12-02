@@ -17,8 +17,8 @@
     <style>
         @media print {
             @page {
-                size: A4;
-                margin: 0;
+                size: A4 landscape;
+                margin: 1cm;
             }
 
             body {
@@ -27,8 +27,41 @@
                 color-adjust: exact; /* Firefox */
             }
 
-            .header-main__progress, .center, .container {
-                page-break-inside: auto;
+            /* Hide elements that shouldn't be printed */
+            .header-main__progress,
+            button,
+            .tooltip-icon,
+            #pdf,
+            .save {
+                display: none !important;
+            }
+
+            /* Ensure custom graph fits on page */
+            .custom-graph-wrapper {
+                max-width: 100% !important;
+                width: 100% !important;
+                page-break-inside: avoid;
+            }
+
+            .custom-graph {
+                max-width: 100% !important;
+                width: 100% !important;
+                transform: scale(0.85);
+                transform-origin: top left;
+                page-break-inside: avoid;
+            }
+
+            .container {
+                max-width: 100% !important;
+                width: 100% !important;
+                padding: 0 !important;
+                page-break-inside: avoid;
+            }
+
+            /* Ensure text is readable */
+            body {
+                font-size: 10pt;
+                line-height: 1.3;
             }
         }
     </style>
@@ -66,7 +99,7 @@
                     </div>
                 </div>
             </div>
-                <button onclick="window.print()" title="Print or safe this window as PDF">Save as PDF</button> <!-- Print Button Added --> 
+                <button onclick="prepareAssessmentForPrint(); window.print();" title="Print or safe this window as PDF">Save as PDF</button> <!-- Print Button Added --> 
              <div id="pdf" class="save">
 
                 <div class="icon-download"></div>
@@ -1151,6 +1184,41 @@
     </script>
     
     <script>
+    // Print optimization: Scale custom graph to fit page width
+    let originalAssessmentStyle = null;
+    function prepareAssessmentForPrint() {
+        const graphWrapper = document.querySelector('.custom-graph-wrapper');
+        const graph = document.querySelector('.custom-graph');
+        if (!graphWrapper && !graph) return;
+        
+        // Store original styles
+        if (graphWrapper) {
+            originalAssessmentStyle = {
+                transform: graphWrapper.style.transform,
+                maxWidth: graphWrapper.style.maxWidth,
+                width: graphWrapper.style.width
+            };
+            
+            // Calculate available print width (A4 landscape: ~27cm = ~1020px at 96dpi, minus margins)
+            const printWidth = Math.min(950, window.innerWidth - 40);
+            
+            // Scale graph wrapper for print
+            graphWrapper.style.maxWidth = printWidth + 'px';
+            graphWrapper.style.width = printWidth + 'px';
+        }
+    }
+    
+    // Restore graph size after printing
+    window.addEventListener('afterprint', function() {
+        const graphWrapper = document.querySelector('.custom-graph-wrapper');
+        if (graphWrapper && originalAssessmentStyle) {
+            graphWrapper.style.transform = originalAssessmentStyle.transform;
+            graphWrapper.style.maxWidth = originalAssessmentStyle.maxWidth;
+            graphWrapper.style.width = originalAssessmentStyle.width;
+            originalAssessmentStyle = null;
+        }
+    });
+
     // Reload page on window resize to fix graph connection lines
     let resizeTimeout;
     let lastWindowWidth = window.innerWidth;

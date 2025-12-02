@@ -45,7 +45,7 @@
                         <div style="width: 70%; border-radius: 10px;">70%</div>
                     </div>
                 </div>
-                <button class="print-button" onclick="window.print()" aria-label="{% trans 'Als PDF speichern' %}" title="{% trans 'Als PDF speichern' %}">
+                <button class="print-button" onclick="preparePsychologischerForPrint(); window.print();" aria-label="{% trans 'Als PDF speichern' %}" title="{% trans 'Als PDF speichern' %}">
                     {% trans "Als PDF speichern" %}
                 </button> 
             </div>
@@ -327,6 +327,38 @@
         initPsychologischerTooltip();
         initCircleTooltips();
     }
+
+    // Print optimization: Scale psychologischer container to fit page width
+    let originalPsychologischerStyle = null;
+    function preparePsychologischerForPrint() {
+        const container = document.querySelector('.psychologischer__container');
+        if (!container) return;
+        
+        // Store original style
+        originalPsychologischerStyle = {
+            transform: container.style.transform,
+            maxWidth: container.style.maxWidth,
+            width: container.style.width
+        };
+        
+        // Calculate available print width (A4 landscape: ~27cm = ~1020px at 96dpi, minus margins)
+        const printWidth = Math.min(950, window.innerWidth - 40);
+        
+        // Scale container for print
+        container.style.maxWidth = printWidth + 'px';
+        container.style.width = printWidth + 'px';
+    }
+    
+    // Restore container size after printing
+    window.addEventListener('afterprint', function() {
+        const container = document.querySelector('.psychologischer__container');
+        if (container && originalPsychologischerStyle) {
+            container.style.transform = originalPsychologischerStyle.transform;
+            container.style.maxWidth = originalPsychologischerStyle.maxWidth;
+            container.style.width = originalPsychologischerStyle.width;
+            originalPsychologischerStyle = null;
+        }
+    });
 </script>
 </html>
 

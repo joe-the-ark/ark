@@ -13,8 +13,8 @@
     <style>
         @media print {
             @page {
-                size: A4;
-                margin: 0;
+                size: A4 landscape;
+                margin: 1cm;
             }
 
             body {
@@ -23,8 +23,42 @@
                 color-adjust: exact; /* Firefox */
             }
 
-            .header-main__progress, .center, .container {
-                page-break-inside: auto;
+            /* Hide elements that shouldn't be printed */
+            .header-main__progress,
+            .button,
+            .tooltip-icon,
+            .rotate-hint {
+                display: none !important;
+            }
+
+            /* Ensure heatmap fits on page */
+            .heatmap-wrapper {
+                max-width: 100% !important;
+                width: 100% !important;
+                overflow: visible !important;
+                page-break-inside: avoid;
+            }
+
+            .heatmap {
+                max-width: 100% !important;
+                width: 100% !important;
+                transform: scale(0.85);
+                transform-origin: top left;
+                margin: 0 !important;
+                page-break-inside: avoid;
+            }
+
+            .container {
+                max-width: 100% !important;
+                width: 100% !important;
+                padding: 0 !important;
+                page-break-inside: avoid;
+            }
+
+            /* Ensure text is readable */
+            body {
+                font-size: 10pt;
+                line-height: 1.3;
             }
         }
     </style>
@@ -59,7 +93,7 @@
                       <span>{% trans "Bitte dreh dein Gerät um 90° für eine bessere Lesbarkeit." %}</span>
                   </p>
                 </div>
-                <button class="button" onclick="window.print()" aria-label="{% trans 'Als PDF speichern' %}" title="{% trans 'Als PDF speichern' %}">{% trans "Als PDF speichern" %}</button> 
+                <button class="button" onclick="prepareHeatmapForPrint(); window.print();" aria-label="{% trans 'Als PDF speichern' %}" title="{% trans 'Als PDF speichern' %}">{% trans "Als PDF speichern" %}</button> 
             </div>
         </header>
     </div>
@@ -418,7 +452,40 @@
             }
         });
     }
-    </script>
+
+    // Print optimization: Scale heatmap to fit page width
+    let originalHeatmapStyle = null;
+    function prepareHeatmapForPrint() {
+        const heatmap = document.querySelector('.heatmap');
+        const wrapper = document.querySelector('.heatmap-wrapper');
+        if (!heatmap || !wrapper) return;
+        
+        // Store original styles
+        originalHeatmapStyle = {
+            transform: heatmap.style.transform,
+            maxWidth: heatmap.style.maxWidth,
+            width: heatmap.style.width
+        };
+        
+        // Calculate available print width (A4 landscape: ~27cm = ~1020px at 96dpi, minus margins)
+        const printWidth = Math.min(950, window.innerWidth - 40);
+        
+        // Scale heatmap for print
+        heatmap.style.maxWidth = printWidth + 'px';
+        heatmap.style.width = printWidth + 'px';
+    }
+    
+    // Restore heatmap size after printing
+    window.addEventListener('afterprint', function() {
+        const heatmap = document.querySelector('.heatmap');
+        if (heatmap && originalHeatmapStyle) {
+            heatmap.style.transform = originalHeatmapStyle.transform;
+            heatmap.style.maxWidth = originalHeatmapStyle.maxWidth;
+            heatmap.style.width = originalHeatmapStyle.width;
+            originalHeatmapStyle = null;
+        }
+    });
+</script>
 
 </body>
 </html>

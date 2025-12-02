@@ -24,8 +24,18 @@
 
 .options__item {
   position: relative;
-  cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.options__item > a {
+  cursor: pointer;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.options__item:not(:has(> a)) {
+  cursor: pointer;
 }
 
 .options__item:hover {
