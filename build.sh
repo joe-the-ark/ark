@@ -89,36 +89,45 @@ fi
 
 # 4.5. Install meta library (required for the application)
 echo "Installing meta library..."
-python -c "import meta" 2>/dev/null
-if [ $? -ne 0 ]; then
-    echo "Meta library not found, installing..."
-    if [ -d "meta/backend/src" ]; then
-        cd meta/backend/src
-        # Use the Python from virtual environment
+# Always try to install/upgrade meta library to ensure it's available in venv
+if [ -d "meta/backend/src" ]; then
+    echo "Found meta/backend/src, installing meta library..."
+    cd meta/backend/src
+    # Use the Python from virtual environment and pip to ensure it's installed in venv
+    pip install -e . --quiet
+    INSTALL_META_EXIT=$?
+    if [ $INSTALL_META_EXIT -ne 0 ]; then
+        echo "Pip install failed, trying setup.py install..."
         "$PYTHON_BIN" setup.py install
         INSTALL_META_EXIT=$?
-        cd ../../..
-        if [ $INSTALL_META_EXIT -ne 0 ]; then
-            echo "✗ ERROR: Failed to install meta library!"
-            echo "Please install it manually:"
-            echo "  cd meta/backend/src"
-            echo "  python setup.py install"
-            exit 1
-        fi
-        echo "✓ Meta library installed successfully"
-    else
-        echo "⚠ WARNING: meta/backend/src directory not found!"
-        echo "Trying to install meta library via pip..."
-        pip install -e meta/backend/src 2>/dev/null || {
-            echo "✗ ERROR: Could not install meta library!"
-            echo "Please ensure meta/backend/src exists and install manually:"
-            echo "  cd meta/backend/src"
-            echo "  python setup.py install"
-            exit 1
-        }
     fi
+    cd ../../..
+    if [ $INSTALL_META_EXIT -ne 0 ]; then
+        echo "✗ ERROR: Failed to install meta library!"
+        echo "Please install it manually:"
+        echo "  source $VENV_PATH/bin/activate"
+        echo "  cd meta/backend/src"
+        echo "  pip install -e ."
+        exit 1
+    fi
+    echo "✓ Meta library installed successfully"
+    
+    # Verify installation - must be importable with the venv Python
+    echo "Verifying meta library installation..."
+    "$PYTHON_BIN" -c "import meta; print('✓ Meta library imported successfully')" 2>&1
+    if [ $? -ne 0 ]; then
+        echo "✗ ERROR: Meta library installed but not importable with venv Python!"
+        echo "Python path: $PYTHON_BIN"
+        echo "Virtual env: $VIRTUAL_ENV"
+        "$PYTHON_BIN" -c "import sys; print('Python paths:'); [print(p) for p in sys.path]"
+        exit 1
+    fi
+    echo "✓ Meta library verified and ready"
 else
-    echo "✓ Meta library already installed"
+    echo "✗ ERROR: meta/backend/src directory not found!"
+    echo "Current directory: $(pwd)"
+    echo "Please ensure the meta library source code is available."
+    exit 1
 fi
 
 # 5. Compile translations
