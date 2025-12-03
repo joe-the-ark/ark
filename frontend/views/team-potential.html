@@ -99,7 +99,7 @@
                                     ?
                                 </span>
                             </span>
-                            {% trans "PRIO 1: Integratoren stärken – " %}{% trans "diese Konstellation ermöglicht euch ein " %}<button @click="current=getValue4()" style="background-color: #FFFFFF; border: 5px solid #75CBE8; color: black;">{% trans "maximales Mass an psychologischer Sicherheit beim Toleranzfenster" %} [[ getValue4() ]]</button><br>                            {% trans "Wer ist in mehreren sicheren Kreisen und wirkt integrierend?" %}<br>
+                            {% trans "PRIO 1: Integratoren stärken – " %}{% trans "diese Konstellation ermöglicht euch ein " %}<button @click="setToleranceValue(getValue4())" style="background-color: #FFFFFF; border: 5px solid #75CBE8; color: black;">{% trans "maximales Mass an psychologischer Sicherheit beim Toleranzfenster" %} [[ getValue4() ]]</button><br>                            {% trans "Wer ist in mehreren sicheren Kreisen und wirkt integrierend?" %}<br>
                             <span 
                                 id="prio1-integrator-tooltip-icon"
                                 style="display: inline-flex; align-items: center; gap: 4px; margin-left: 0; vertical-align: middle;"
@@ -194,6 +194,8 @@
                                         type="range" 
                                         id="tolerance-window-slider"
                                         v-model.number="current" 
+                                        @input="handleSliderInput"
+                                        @change="handleSliderChange"
                                         :min="getMinTolerance()" 
                                         :max="getValue2()" 
                                         step="1"
@@ -229,16 +231,19 @@
                             </div>
                         </div>
                         <div style="display: flex; align-items: center; gap: 5px; font-size: 14px; color: #626262;">
-                            <button 
-                                @click="hideReadingHelp()"
-                                id="min-value-button"
-                                style="font-weight: bold; font-size: 42px; color: #626262; background: none; border: none; cursor: pointer; padding: 0; margin: 0; text-decoration: underline;"
-                                :aria-label="'{% trans 'Lesehilfe anzeigen'|escapejs %}: ' + getMinTolerance()"
-                                title="{% trans 'Lesehilfe anzeigen' %}"
-                                tabindex="0"
-                            >
-                                [[ getMinTolerance() ]]
-                            </button>
+                            <div style="display: flex; align-items: center; gap: 5px;">
+                                <button 
+                                    @click="hideReadingHelp()"
+                                    id="min-value-button"
+                                    :style="hasInGroupsAtMin() ? 'font-weight: bold; font-size: 42px; color: #FFD700; background: none; border: none; cursor: pointer; padding: 0; margin: 0; text-decoration: underline;' : 'font-weight: bold; font-size: 42px; color: #626262; background: none; border: none; cursor: pointer; padding: 0; margin: 0; text-decoration: underline;'"
+                                    :aria-label="hasInGroupsAtMin() ? '{% trans 'Niedrigster Wert mit In-Groups (goldene Linien)'|escapejs %}: ' + getMinTolerance() : '{% trans 'Niedrigster Wert mit erstem Safecircle'|escapejs %}: ' + getMinTolerance()"
+                                    :title="hasInGroupsAtMin() ? '{% trans 'Niedrigster Wert - zeigt In-Groups (goldene Linien)' %}' : '{% trans 'Niedrigster Wert - zeigt ersten Safecircle' %}'"
+                                    tabindex="0"
+                                >
+                                    [[ getMinTolerance() ]]
+                                </button>
+                                <span v-if="hasInGroupsAtMin()" style="font-size: 24px; color: #FFD700;" title="{% trans 'In-Groups (goldene Linien) vorhanden' %}" aria-label="{% trans 'In-Groups vorhanden' %}">●</span>
+                            </div>
                             <span style="flex: 1; text-align: center; font-style: italic;">{% trans "(niedrige Werte = hoher Stress)" %}</span>
                             <button 
                                 @click="hideMaxValueHelp()"
@@ -259,12 +264,20 @@
                             ref="canvas" 
                             :width="width" 
                             :height="height" 
-                            :style="{ width:width+'px', height:height+'px', display: viewMode === 'canvas' ? 'block' : 'none', transition: 'opacity 0.3s ease', backgroundColor: '#FFFFFF' }" 
+                            :style="{ width:width+'px', height:height+'px', display: (viewMode === 'canvas' || viewMode === 'expanded') ? 'block' : 'none', transition: 'opacity 0.3s ease', backgroundColor: '#FFFFFF' }" 
                             id="team-potential-canvas"
                             role="img"
-                            :aria-label="'{% trans 'Team-Potential-Visualisierung' %}: ' + current"
+                            :aria-label="'{% trans 'Team-Potential-Visualisierung' %}: ' + current + (viewMode === 'expanded' ? ' ({% trans 'erweiterte Ansicht' %})' : '')"
                             tabindex="0"
                         ></canvas>
+                        <!-- Expanded view indicator -->
+                        <div v-if="viewMode === 'expanded'" style="position: absolute; top: 10px; right: 10px; background-color: rgba(255, 255, 255, 0.9); padding: 8px 12px; border-radius: 5px; font-size: 12px; color: #626262; box-shadow: 0 2px 4px rgba(0,0,0,0.2); z-index: 10;">
+                            {% trans "Erweiterte Ansicht" %} - {% trans "Leertaste für normale Ansicht" %}
+                        </div>
+                        <!-- Hint for normal view: how to switch to expanded view -->
+                        <div v-if="viewMode === 'canvas'" style="position: absolute; bottom: 10px; right: 10px; background-color: rgba(255, 255, 255, 0.85); padding: 6px 10px; border-radius: 5px; font-size: 11px; color: #626262; box-shadow: 0 2px 4px rgba(0,0,0,0.15); z-index: 10; pointer-events: none; opacity: 0.8;">
+                            💡 {% trans "Leertaste für erweiterte Ansicht" %}
+                        </div>
                     </div>
                     <div v-if="viewMode === 'overview'" style="min-height: 400px; padding: 20px; background-color: #f5f5f5; border-radius: 10px; text-align: center;">
                         <h3 style="color: #626262; margin-bottom: 20px;">{% trans "Übersichtsansicht" %}</h3>
@@ -402,7 +415,7 @@
                                     ?
                                 </span>
                             </span>
-                       {% trans "PRIO 2: Satelliten integrieren – " %}{% trans "beim Toleranzfenster-Wert von " %}<button @click="current=getValue3()" style="background-color: #FFFFFF; border: 5px solid #52CEEC; color: black;">[[ getValue3() ]] </button>{% trans " (hier klicken) siehst du, wer zuerst SOLO ist. " %}<button @click="current=getValue3()+1" style="background-color: #FFFFFF; border: 5px solid #52CEEC; color: black;">{% trans "Booste Satelliten" %}</button> {% trans " und erkenne, wer Hand in einen sicheren Kreis bieten kann." %}<br>
+                       {% trans "PRIO 2: Satelliten integrieren – " %}{% trans "beim Toleranzfenster-Wert von " %}<button @click="setToleranceValue(getValue3())" style="background-color: #FFFFFF; border: 5px solid #52CEEC; color: black;">[[ getValue3() ]] </button>{% trans " (hier klicken) siehst du, wer zuerst SOLO ist. " %}<button @click="setToleranceValue(getValue3()+1)" style="background-color: #FFFFFF; border: 5px solid #52CEEC; color: black;">{% trans "Booste Satelliten" %}</button> {% trans " und erkenne, wer Hand in einen sicheren Kreis bieten kann." %}<br>
                        <span 
                            id="prio2-integrator-tooltip-icon"
                            style="display: inline-flex; align-items: center; gap: 4px; margin-left: 0; vertical-align: middle;"
@@ -432,7 +445,7 @@
                                     ?
                                 </span>
                             </span>
-                            {% trans "PRIO 3: Boss-Zentralität erhöhen – " %}{% trans "die Konstellation beim " %}<button  @click="current=16" style="border: 5px solid #9FE2BF;">{% trans "Standard-Toleranzfenster von 16" %}</button>{% trans " könnte der IST-Situation im Team nahekommen. Wie sicher verbunden ist der Boss?" %}<br>
+                            {% trans "PRIO 3: Boss-Zentralität erhöhen – " %}{% trans "die Konstellation beim " %}<button  @click="setToleranceValue(16)" style="border: 5px solid #9FE2BF;">{% trans "Standard-Toleranzfenster von 16" %}</button>{% trans " könnte der IST-Situation im Team nahekommen. Wie sicher verbunden ist der Boss?" %}<br>
                             <span 
                                 id="prio3-integrator-tooltip-icon"
                                 style="display: inline-flex; align-items: center; gap: 4px; margin-left: 0; vertical-align: middle;"
@@ -472,12 +485,12 @@
                 <p id="reading-help-section" style="display: none; background-color: #9FE2BF; color: #626262; border-radius: 10px; padding: 0 10px;">
                             <br>
                             {% trans "Eine Lesehilfe: je kleiner der Zahlenwert, desto mehr Stress und negative Trigger zeigen sich, weil sich die Toleranzfenster der Teammitglieder schliessen." %}<br>
-                            <button @click="current=getValue1()" style="border: 5px solid #9FE2BF;">{% trans "Im ersten sicheren Kreise bei" %} [[ getValue1() ]]</button>{% trans " (hier klicken) funktioniert die Zusammenarbeit auch bei sehr grossem Stress noch ohne Drama." %}<br>
+                            <button @click="setToleranceValue(getValue1())" style="border: 5px solid #9FE2BF;">{% trans "Im ersten sicheren Kreise bei" %} [[ getValue1() ]]</button>{% trans " (hier klicken) funktioniert die Zusammenarbeit auch bei sehr grossem Stress noch ohne Drama." %}<br>
                             <br>
                 </p>
 
                 <p id="max-value-help-section" style="display: none; background-color: #fffff; text-align: left; color: #00000; border-radius: 10px; padding: 0 10px;"><br>
-                            {% trans "Aktuell seid ihr beim Toleranzfenster von " %}<button @click="current=getValue2()" style="border: 5px solid #9FE2BF;">[[ getValue2() ]] {% trans " alle in EINEM sicheren Kreis." %}</button><br>{% trans "Wenn Einzelne auf undifferenzierte Einigkeit drängen, zeigt sich das an einer Toleranzfenster-Grösse von über 35, bei dem die Teamdynamik schon sektenartige Züge tragen kann. Ein weiterer Indikator für ein ungesundes Mass an erwarteter Konformität zeigt sich bei Werten unter 25, die auf eine Gefahr von Groupthink deutet." %}<br><br>
+                            {% trans "Aktuell seid ihr beim Toleranzfenster von " %}<button @click="setToleranceValue(getValue2())" style="border: 5px solid #9FE2BF;">[[ getValue2() ]] {% trans " alle in EINEM sicheren Kreis." %}</button><br>{% trans "Wenn Einzelne auf undifferenzierte Einigkeit drängen, zeigt sich das an einer Toleranzfenster-Grösse von über 35, bei dem die Teamdynamik schon sektenartige Züge tragen kann. Ein weiterer Indikator für ein ungesundes Mass an erwarteter Konformität zeigt sich bei Werten unter 25, die auf eine Gefahr von Groupthink deutet." %}<br><br>
                 </p><br>
 
             </div>
@@ -544,9 +557,14 @@
  * - Smooth animations
  */
 
-// Parse JSON data from json_script tags - this ensures proper Unicode handling for Firefox
+/**
+ * Parse JSON data from json_script tags - ensures proper Unicode handling for Firefox
+ * @param {string} id - The ID of the script element containing JSON data
+ * @param {*} defaultValue - Default value to return if parsing fails
+ * @returns {*} Parsed JSON data or defaultValue
+ */
 function parseJsonScript(id, defaultValue) {
-    var element = document.getElementById(id);
+    const element = document.getElementById(id);
     if (!element) {
         console.error('JSON script element not found:', id);
         return defaultValue;
@@ -576,16 +594,16 @@ function initTeamPotential() {
     
     window.teamPotentialInitialized = true;
     
-    var circlesData = parseJsonScript('circles-data', {});
-    var playersData = parseJsonScript('players-data', {});
-    var anchorsData = parseJsonScript('anchors-data', {});
-    var allResultData = parseJsonScript('all-result-data', []);
-    var inGroupsData = parseJsonScript('in-groups-data', []);
+    const circlesData = parseJsonScript('circles-data', {});
+    const playersData = parseJsonScript('players-data', {});
+    const anchorsData = parseJsonScript('anchors-data', {});
+    const allResultData = parseJsonScript('all-result-data', []);
+    const inGroupsData = parseJsonScript('in-groups-data', []);
     
     // Store allResultData globally for later use
     window.allResultData = allResultData;
 
-var app1 = new Vue({
+const app1 = new Vue({
     delimiters: ['[[', ']]'],
     el: '#app-1',
     data() {
@@ -608,7 +626,8 @@ var app1 = new Vue({
             playerPositionsArray: [], // Array version for Vue reactivity
             showPlayerDetail: false,
             // View toggle
-            viewMode: 'canvas', // 'canvas' or 'overview'
+            viewMode: 'canvas', // 'canvas', 'overview', or 'expanded'
+            expandedPadding: 300, // Additional padding in pixels for expanded view
             // Hover state
             hoveredPlayerIndex: null, // Index of currently hovered player
             // Force-Directed Layout
@@ -624,7 +643,7 @@ var app1 = new Vue({
         this.current = this.getValue4();
         this.loading = '{{ loading }}' !== '0';
         
-        // Calculate optimal canvas size based on team size
+        // Calculate optimal canvas size based on team size and view mode
         this.calculateOptimalCanvasSize();
     },
     mounted() {
@@ -687,12 +706,25 @@ var app1 = new Vue({
          * Calculate optimal canvas size based on team size and number of circles
          */
         calculateOptimalCanvasSize() {
-            // Fixed canvas size: 1000x1000 pixels
-            this.width = 1000;
-            this.height = 1000;
+            // Base canvas size: 1000x1000 pixels
+            // In expanded mode, add padding to show content that might be cut off
+            const baseSize = 1000;
+            if (this.viewMode === 'expanded') {
+                this.width = baseSize + (this.expandedPadding * 2);
+                this.height = baseSize + (this.expandedPadding * 2);
+            } else {
+                this.width = baseSize;
+                this.height = baseSize;
+            }
         },
         /**
          * Force-Directed Layout Calculation
+         * @param {number} n - Number of players
+         * @param {Array} circles - Array of circles (arrays of player indices)
+         * @param {Array} dyads - Array of dyads (pairs of player indices)
+         * @param {number} centerX - Center X coordinate
+         * @param {number} centerY - Center Y coordinate
+         * @param {number} baseRadius - Base radius for initial positioning
          */
         calculateForceLayout(n, circles, dyads, centerX, centerY, baseRadius) {
             const layoutKey = `${n}_${this.current}`;
@@ -760,8 +792,23 @@ var app1 = new Vue({
             
             // Force simulation parameters
             const iterations = 150; // Increased iterations for better layout
+            
+            // Adaptive force parameters based on circle structure
+            // Detect if we have a single large circle (high tolerance values)
+            const circleCount = circles.length;
+            const largestCircleSize = circles.length > 0 ? Math.max(...circles.map(c => c.length)) : 0;
+            const isSingleLargeCircle = circleCount === 1 && largestCircleSize >= n * 0.8;
+            
+            // Increase optimal distance more when there's a single large circle
+            let distanceMultiplier = 1.5; // Default multiplier
+            if (isSingleLargeCircle) {
+                distanceMultiplier = 1.8; // More space for single large circles
+            } else if (circleCount === 1 && largestCircleSize > 0) {
+                distanceMultiplier = 1.65; // Moderate increase
+            }
+            
             // Increase optimal distance to spread nodes further apart
-            const k = Math.sqrt((centerX * centerY) / n) * 1.5; // Optimal distance between nodes (increased by 50%)
+            const k = Math.sqrt((centerX * centerY) / n) * distanceMultiplier;
             const repulsionStrength = k * k * 1.2; // Increased repulsion force strength
             const attractionStrength = 0.008; // Slightly reduced attraction to allow more spread
             const damping = 0.85; // Slightly reduced damping for more movement
@@ -824,6 +871,13 @@ var app1 = new Vue({
                 }
                 
                 // Update positions
+                // Calculate adaptive margin based on circle structure
+                const circleCount = circles.length;
+                const largestCircleSize = circles.length > 0 ? Math.max(...circles.map(c => c.length)) : 0;
+                const isSingleLargeCircle = circleCount === 1 && largestCircleSize >= n * 0.8;
+                // Use smaller margin for single large circles to allow more spread
+                const margin = isSingleLargeCircle ? 50 : 60;
+                
                 for (let i = 0; i < n; i++) {
                     // Update velocity
                     positions[i].vx = (positions[i].vx + forces[i].fx) * damping;
@@ -833,8 +887,7 @@ var app1 = new Vue({
                     positions[i].x += positions[i].vx;
                     positions[i].y += positions[i].vy;
                     
-                    // Keep within canvas bounds (with smaller margin to use more space)
-                    const margin = 60; // Reduced margin to use more of the canvas
+                    // Keep within canvas bounds
                     positions[i].x = Math.max(margin, Math.min(this.width - margin, positions[i].x));
                     positions[i].y = Math.max(margin, Math.min(this.height - margin, positions[i].y));
                 }
@@ -987,16 +1040,69 @@ var app1 = new Vue({
            /**
             * UI Interaction Methods
             */
+           /**
+            * Safely set tolerance window value, ensuring canvas updates
+            * Cancels any running animation and forces immediate redraw
+            * @param {number} newValue - The new tolerance window value
+            */
+           setToleranceValue(newValue) {
+               // Cancel any running animation
+               if (this.isAnimating) {
+                   console.log('Cancelling animation to set new value:', newValue);
+                   this.isAnimating = false;
+                   if (this.animationFrame) {
+                       clearTimeout(this.animationFrame);
+                       this.animationFrame = null;
+                   }
+               }
+               
+               // Clamp value to valid range
+               const min = this.getMinTolerance();
+               const max = this.getValue2();
+               const clampedValue = Math.max(min, Math.min(max, newValue));
+               
+               // Set the value - this will trigger the watcher
+               this.current = clampedValue;
+               
+               // Force immediate redraw to ensure canvas updates
+               this.$nextTick(() => {
+                   if (this.$refs.canvas) {
+                       this.redraw();
+                   }
+               });
+           },
+           /**
+            * Check if there are in-groups at the minimum tolerance value
+            * @returns {boolean} True if in-groups exist at lower tolerance values than the first safecircle
+            */
+           hasInGroupsAtMin() {
+               const inGroups = this.inGroups || [];
+               if (inGroups.length === 0) {
+                   return false;
+               }
+               
+               const firstSafecircle = this.getValue1();
+               
+               // Check if any in-group has a tolerance value lower than the first safecircle
+               return inGroups.some(group => {
+                   if (group.tolerance !== undefined) {
+                       return group.tolerance < firstSafecircle;
+                   }
+                   return false;
+               });
+           },
            hideReadingHelp() {
                /**
-                * Hides the reading help section and sets tolerance to first safe circle value.
+                * Hides the reading help section and sets tolerance to the minimum available value.
+                * This includes in-groups if they exist at lower tolerance values than the first safecircle.
                 */
                const section = document.getElementById('reading-help-section');
                if (section) {
                    section.style.display = 'none';
                }
-               // Set current to first safe circle value to display it
-               this.current = this.getValue1();
+               // Use getMinTolerance() to include in-groups if they exist at lower values
+               // This ensures the button shows and sets the same value
+               this.setToleranceValue(this.getMinTolerance());
            },
            hideMaxValueHelp() {
                /**
@@ -1006,8 +1112,8 @@ var app1 = new Vue({
                if (section) {
                    section.style.display = 'none';
                }
-               // Set current to highest tolerance window value to display it
-               this.current = this.getValue2();
+               // Use setToleranceValue to ensure canvas updates
+               this.setToleranceValue(this.getValue2());
            },
            
            /**
@@ -1143,18 +1249,8 @@ var app1 = new Vue({
                               const newValue = Math.max(min, currentBeforeLeft - 1);
                               console.log('Setting current to:', newValue, 'from:', currentBeforeLeft);
                               
-                              // Set value directly without animation for immediate response
-                              self.current = newValue;
-                              
-                              // Immediately redraw to prevent flickering
-                              self.$nextTick(() => {
-                                  if (self.$refs.canvas) {
-                                      self.redraw();
-                                  }
-                                  // Re-enable animation flag after redraw
-                                  self.isAnimating = false;
-                                  console.log('Current after Vue update and redraw:', self.current);
-                              });
+                              // Use setToleranceValue for consistent behavior
+                              self.setToleranceValue(newValue);
                           } else {
                               // Re-enable animation if no change
                               self.isAnimating = wasAnimating;
@@ -1181,18 +1277,8 @@ var app1 = new Vue({
                               const newValue = Math.min(max, currentBeforeRight + 1);
                               console.log('Setting current to:', newValue, 'from:', currentBeforeRight);
                               
-                              // Set value directly without animation for immediate response
-                              self.current = newValue;
-                              
-                              // Immediately redraw to prevent flickering
-                              self.$nextTick(() => {
-                                  if (self.$refs.canvas) {
-                                      self.redraw();
-                                  }
-                                  // Re-enable animation flag after redraw
-                                  self.isAnimating = false;
-                                  console.log('Current after Vue update and redraw:', self.current);
-                              });
+                              // Use setToleranceValue for consistent behavior
+                              self.setToleranceValue(newValue);
                           } else {
                               // Re-enable animation if no change
                               self.isAnimating = false;
@@ -1212,12 +1298,82 @@ var app1 = new Vue({
               
               console.log('Keyboard shortcuts initialized, handler bound to:', this._keyboardHandler);
           },
+           /**
+            * Handle slider input events (while dragging)
+            * Ensures immediate canvas update for responsive feedback
+            */
+           handleSliderInput(event) {
+               // Cancel any running animation for immediate response
+               if (this.isAnimating) {
+                   this.isAnimating = false;
+                   if (this.animationFrame) {
+                       clearTimeout(this.animationFrame);
+                       this.animationFrame = null;
+                   }
+               }
+               // Get the new value from the slider
+               const newValue = parseInt(event.target.value);
+               // Update current value if it changed (v-model should handle this, but ensure it's set)
+               if (newValue !== this.current) {
+                   this.current = newValue;
+               }
+               // Force immediate redraw for responsive slider feedback
+               // Don't wait for watcher - redraw immediately
+               if (this.$refs.canvas) {
+                   this.redraw();
+               } else {
+                   // If canvas not ready, wait for next tick
+                   this.$nextTick(() => {
+                       if (this.$refs.canvas) {
+                           this.redraw();
+                       }
+                   });
+               }
+           },
+           /**
+            * Handle slider change events (when released/clicked)
+            * Ensures final canvas update after slider interaction
+            */
+           handleSliderChange(event) {
+               const newValue = parseInt(event.target.value);
+               // Ensure value is set (v-model should handle this)
+               if (newValue !== this.current) {
+                   this.current = newValue;
+               }
+               // Ensure final redraw after slider interaction completes
+               this.$nextTick(() => {
+                   if (this.$refs.canvas) {
+                       this.redraw();
+                   }
+               });
+           },
            toggleView() {
-               this.viewMode = this.viewMode === 'canvas' ? 'overview' : 'canvas';
+               // Cycle through: canvas -> expanded -> canvas
+               if (this.viewMode === 'canvas') {
+                   this.viewMode = 'expanded';
+               } else if (this.viewMode === 'expanded') {
+                   this.viewMode = 'canvas';
+               } else {
+                   // If in overview mode, go to canvas
+                   this.viewMode = 'canvas';
+               }
+               
+               // Recalculate canvas size based on new view mode
+               this.calculateOptimalCanvasSize();
+               
                // Close player detail when toggling
                if (this.showPlayerDetail) {
                    this.closePlayerDetail();
                }
+               
+               // Redraw canvas with new dimensions
+               this.$nextTick(() => {
+                   if (this.$refs.canvas) {
+                       this.$refs.canvas.width = this.width;
+                       this.$refs.canvas.height = this.height;
+                       this.redraw();
+                   }
+               });
            },
            // Player detail view methods
            setupCanvasClickHandlers() {
@@ -1516,8 +1672,30 @@ var app1 = new Vue({
             const [cx, cy] = [width/2, height/2];
             const r0 = Math.min(width, height);
             const dR = 16;
-            // Increase radius to use more space (from 0.4 to 0.5, scales with team size)
-            const radiusFactor = Math.min(0.55, 0.4 + (n / 100)); // Scales from 0.4 to 0.55 for larger teams
+            
+            // Adaptive radius calculation based on circle structure
+            // When there's only one large circle (high tolerance values), use more space
+            const circleCount = circles.length;
+            const largestCircleSize = circles.length > 0 ? Math.max(...circles.map(c => c.length)) : 0;
+            const isSingleLargeCircle = circleCount === 1 && largestCircleSize >= n * 0.8; // 80% or more in one circle
+            
+            // Base radius factor scales with team size
+            let baseRadiusFactor = Math.min(0.55, 0.4 + (n / 100)); // Scales from 0.4 to 0.55 for larger teams
+            
+            // Increase radius when there's only one large circle (high tolerance values)
+            // This prevents avatars from being too close together
+            if (isSingleLargeCircle) {
+                // Use more space when all players are in one circle
+                baseRadiusFactor = Math.min(0.65, 0.5 + (n / 80)); // Scales from 0.5 to 0.65
+            } else if (circleCount === 1 && largestCircleSize > 0) {
+                // Single circle but not all players - moderate increase
+                baseRadiusFactor = Math.min(0.6, 0.45 + (n / 90));
+            } else if (circleCount <= 2 && largestCircleSize >= n * 0.6) {
+                // Few circles with large membership - slight increase
+                baseRadiusFactor = Math.min(0.58, 0.42 + (n / 95));
+            }
+            
+            const radiusFactor = baseRadiusFactor;
             const r1 = r0 * radiusFactor;
             const theta = 2 * Math.PI / n;
 
@@ -1580,10 +1758,12 @@ var app1 = new Vue({
             
             // Create boundary arrays from actual avatar positions (for safecircle drawing)
             // Add dR offset to position the circle edge outside the avatar
-            // Ensure boundaries stay within canvas bounds with margin
-            const margin = 50; // Margin to keep circles within canvas
-            const maxX = width - margin;
-            const maxY = height - margin;
+            // In expanded mode, allow content to extend beyond normal bounds
+            const padding = this.viewMode === 'expanded' ? this.expandedPadding : 0;
+            const margin = 50; // Base margin to keep circles within canvas
+            // In expanded mode, use larger bounds to allow content to extend
+            const maxX = this.viewMode === 'expanded' ? width - margin : width - margin;
+            const maxY = this.viewMode === 'expanded' ? height - margin : height - margin;
             const minX = margin;
             const minY = margin;
             
@@ -1595,10 +1775,17 @@ var app1 = new Vue({
                 if (dist > 0) {
                     // Move dR pixels further out from the avatar center
                     const boundaryXValue = cx + (dx / dist) * (dist + dR);
-                    // Clamp to canvas bounds
+                    // In expanded mode, allow boundaries to extend into padding area
+                    if (this.viewMode === 'expanded') {
+                        return Math.max(minX - padding, Math.min(maxX + padding, boundaryXValue));
+                    }
+                    // Clamp to canvas bounds in normal mode
                     return Math.max(minX, Math.min(maxX, boundaryXValue));
                 }
-                return Math.max(minX, Math.min(maxX, pos.x + dR));
+                const fallbackX = pos.x + dR;
+                return this.viewMode === 'expanded' 
+                    ? Math.max(minX - padding, Math.min(maxX + padding, fallbackX))
+                    : Math.max(minX, Math.min(maxX, fallbackX));
             });
             const boundaryY = players.map((_, i) => {
                 const pos = avatarPositions[i];
@@ -1608,10 +1795,17 @@ var app1 = new Vue({
                 if (dist > 0) {
                     // Move dR pixels further out from the avatar center
                     const boundaryYValue = cy + (dy / dist) * (dist + dR);
-                    // Clamp to canvas bounds
+                    // In expanded mode, allow boundaries to extend into padding area
+                    if (this.viewMode === 'expanded') {
+                        return Math.max(minY - padding, Math.min(maxY + padding, boundaryYValue));
+                    }
+                    // Clamp to canvas bounds in normal mode
                     return Math.max(minY, Math.min(maxY, boundaryYValue));
                 }
-                return Math.max(minY, Math.min(maxY, pos.y + dR));
+                const fallbackY = pos.y + dR;
+                return this.viewMode === 'expanded'
+                    ? Math.max(minY - padding, Math.min(maxY + padding, fallbackY))
+                    : Math.max(minY, Math.min(maxY, fallbackY));
             });
 
             // helpers
@@ -1898,12 +2092,15 @@ var app1 = new Vue({
                     // Draw name and safety anchor on the same line
                     const nameText = name;
                     const safetyAnchor = anchors[name];
+                    // In expanded mode, allow text to extend further to prevent clipping
+                    const maxTextWidth = this.viewMode === 'expanded' ? size + 150 : size + 80;
+                    const maxTextWidthSimple = this.viewMode === 'expanded' ? size + 100 : size + 40;
                     if (safetyAnchor) {
                         // Combine name and safety anchor on one line
                         const combinedText = name + ' (' + safetyAnchor + ')';
-                        ctx.fillText(combinedText, px, nameY, size+80);
+                        ctx.fillText(combinedText, px, nameY, maxTextWidth);
                     } else {
-                        ctx.fillText(nameText, px, nameY, size+40);
+                        ctx.fillText(nameText, px, nameY, maxTextWidthSimple);
                     }
                     const bubbleOffset=27, bx=px+bubbleOffset, by=py-bubbleOffset;
                     ctx.beginPath(); ctx.fillStyle=isTop ? '#9FE2BF' : '#FFFFFF'; ctx.strokeStyle='white'; ctx.lineWidth=2;
@@ -1983,29 +2180,78 @@ var app1 = new Vue({
         }
     },
     watch: {
-        current(newVal, oldVal) {
-            // Only animate if values actually changed and oldVal is defined (not initial load)
-            if (oldVal !== undefined && newVal !== oldVal && !this.isAnimating) {
-                console.log('Watch triggered: animating from', oldVal, 'to', newVal);
-                // Reset force layout when tolerance window changes (circles may change)
-                if (this.useForceLayout) {
-                    const n = this.circles.players.length;
-                    const oldKey = `${n}_${oldVal}`;
-                    const newKey = `${n}_${newVal}`;
-                    // Clean up old positions (keep only last few to save memory)
-                    if (this.forceLayoutPositions[oldKey]) {
-                        delete this.forceLayoutPositions[oldKey];
-                    }
-                }
-                this.animateTransition(oldVal, newVal);
-            } else {
-                // On initial load (oldVal is undefined) or when no animation needed, redraw immediately
-                // Ensure canvas ref is available before redraw
+        viewMode(newVal, oldVal) {
+            // When view mode changes, recalculate canvas size and redraw
+            if (newVal !== oldVal) {
+                this.calculateOptimalCanvasSize();
                 this.$nextTick(() => {
                     if (this.$refs.canvas) {
+                        this.$refs.canvas.width = this.width;
+                        this.$refs.canvas.height = this.height;
                         this.redraw();
                     }
                 });
+            }
+        },
+        current(newVal, oldVal) {
+            // Skip if value hasn't actually changed
+            if (newVal === oldVal) {
+                return;
+            }
+            
+            // Reset force layout when tolerance window changes (circles may change)
+            if (this.useForceLayout && oldVal !== undefined) {
+                const n = this.circles.players.length;
+                const oldKey = `${n}_${oldVal}`;
+                // Clean up old positions (keep only last few to save memory)
+                if (this.forceLayoutPositions[oldKey]) {
+                    delete this.forceLayoutPositions[oldKey];
+                }
+            }
+            
+            // Cancel any running animation if a new value is set
+            if (this.isAnimating && oldVal !== undefined) {
+                console.log('Cancelling animation due to new value:', newVal);
+                this.isAnimating = false;
+                if (this.animationFrame) {
+                    clearTimeout(this.animationFrame);
+                    this.animationFrame = null;
+                }
+            }
+            
+            // Only animate if values actually changed and oldVal is defined (not initial load)
+            // Don't animate if the change was very small (likely from slider dragging)
+            // For slider interactions, always redraw immediately for responsive feedback
+            const changeAmount = Math.abs(newVal - oldVal);
+            const shouldAnimate = oldVal !== undefined && 
+                                 changeAmount > 1 && 
+                                 !this.isAnimating;
+            
+            if (shouldAnimate) {
+                console.log('Watch triggered: animating from', oldVal, 'to', newVal);
+                this.animateTransition(oldVal, newVal);
+            } else {
+                // On initial load, slider dragging (including step-by-step), or button clicks, redraw immediately
+                // Ensure canvas ref is available before redraw
+                // Force immediate redraw for slider interactions
+                if (this.$refs.canvas) {
+                    // Canvas is ready, redraw immediately
+                    this.redraw();
+                } else {
+                    // Canvas not ready yet, wait for next tick
+                    this.$nextTick(() => {
+                        if (this.$refs.canvas) {
+                            this.redraw();
+                        } else {
+                            // If canvas still not ready, try again after a short delay
+                            setTimeout(() => {
+                                if (this.$refs.canvas) {
+                                    this.redraw();
+                                }
+                            }, 50);
+                        }
+                    });
+                }
             }
         }
     }
@@ -2032,6 +2278,101 @@ if (!window.teamPotentialInitStarted) {
     }
 }
 
+/**
+ * Tooltip Utility Functions
+ * Centralized tooltip initialization helpers to reduce code duplication
+ */
+
+/**
+ * Initialize a simple tooltip with standard configuration
+ * @param {string|HTMLElement} element - Element ID or element reference
+ * @param {string|Function} content - Tooltip content or function that returns content
+ * @param {Object} options - Additional tippy.js options
+ */
+function initSimpleTooltip(element, content, options = {}) {
+    const el = typeof element === 'string' ? document.getElementById(element) : element;
+    if (!el) return;
+    
+    // Remove existing tooltip if any
+    if (el._tippy) {
+        el._tippy.destroy();
+    }
+    
+    try {
+        tippy(el, {
+            content: content,
+            placement: options.placement || 'top',
+            theme: options.theme || 'light',
+            delay: options.delay || [200, 0],
+            allowHTML: options.allowHTML !== undefined ? options.allowHTML : false,
+            interactive: options.interactive !== undefined ? options.interactive : false,
+            trigger: options.trigger || 'mouseenter focus',
+            maxWidth: options.maxWidth || 400,
+            animation: options.animation || 'fade',
+            arrow: options.arrow !== undefined ? options.arrow : true,
+            ...options
+        });
+    } catch (e) {
+        console.error('Error initializing tooltip:', e);
+    }
+}
+
+/**
+ * Initialize a card-style tooltip with title and body
+ * @param {string} containerId - Container element ID
+ * @param {string} iconId - Icon element ID
+ * @param {string} textElementId - JSON script element ID containing tooltip text
+ * @param {string} borderColor - Border color for the card (e.g., '#9FE2BF')
+ */
+function initCardTooltip(containerId, iconId, textElementId, borderColor = '#9FE2BF') {
+    const tooltipContainer = document.getElementById(containerId);
+    const tooltipIcon = document.getElementById(iconId);
+    if (!tooltipContainer || !tooltipIcon) return;
+    
+    // Get translated tooltip text from Django - using JSON script tag
+    const tooltipTextElement = document.getElementById(textElementId);
+    const tooltipText = tooltipTextElement ? JSON.parse(tooltipTextElement.textContent) : '';
+    
+    // Remove existing tooltips if any
+    if (tooltipIcon._tippy) {
+        tooltipIcon._tippy.destroy();
+    }
+    if (tooltipContainer._tippy) {
+        tooltipContainer._tippy.destroy();
+    }
+    
+    try {
+        // First, add a simple hover tooltip that shows "click for instructions"
+        const hoverTooltipText = "{% trans 'Klicken für Anweisungen'|escapejs %}";
+        initSimpleTooltip(tooltipIcon, hoverTooltipText, {
+            placement: 'top',
+            delay: [300, 0],
+            maxWidth: 200
+        });
+        
+        // Then, add the big card tooltip on click
+        const parts = tooltipText.split('\n\n');
+        const title = parts[0] || '';
+        const body = parts.slice(1).join('\n\n') || '';
+        
+        // Create a styled card-like tooltip
+        const cardContent = `<div style="max-width: 600px; padding: 25px; font-size: 15px; line-height: 1.7; text-align: left; background-color: #ffffff; border-radius: 10px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);"><h3 style="margin: 0 0 15px 0; color: #626262; font-size: 18px; font-weight: bold; border-bottom: 2px solid ${borderColor}; padding-bottom: 10px;">${title}</h3><div style="color: #626262;">${body.replace(/\n/g, '<br>')}</div></div>`;
+        
+        // Apply big card tooltip to container on click
+        initSimpleTooltip(tooltipContainer, cardContent, {
+            placement: 'right',
+            delay: [0, 0],
+            allowHTML: true,
+            interactive: true,
+            trigger: 'click',
+            maxWidth: 650,
+            hideOnClick: true
+        });
+    } catch (e) {
+        console.error(`Error initializing card tooltip for ${containerId}:`, e);
+    }
+}
+
 // Initialize tooltips for canvas elements
 function initCanvasTooltips() {
     const canvas = document.getElementById('team-potential-canvas');
@@ -2045,29 +2386,14 @@ function initCanvasTooltips() {
         goldenLine: "{% trans 'Goldene Linie = In-Group'|escapejs %}"
     };
     
-    // Remove existing tooltip if any
-    if (canvas._tippy) {
-        canvas._tippy.destroy();
-    }
-    
     // Create a comprehensive tooltip for the canvas
     // Since we can't add tooltips to individual canvas elements easily,
     // we'll add a tooltip to the canvas itself that explains all elements
-    const combinedTooltip = tooltipTexts.integrators + '<br>' + tooltipTexts.bubbleNumbers + '<br>' + tooltipTexts.centerCount + '<br>' + tooltipTexts.goldenLine;
+    const combinedTooltip = `${tooltipTexts.integrators}<br>${tooltipTexts.bubbleNumbers}<br>${tooltipTexts.centerCount}<br>${tooltipTexts.goldenLine}`;
     
-    try {
-        tippy(canvas, {
-            content: combinedTooltip,
-            placement: 'top',
-            theme: 'light',
-            delay: [200, 0],
-            allowHTML: true,
-            interactive: false,
-            trigger: 'mouseenter focus',
-        });
-    } catch (e) {
-        console.error('Error initializing canvas tooltip:', e);
-    }
+    initSimpleTooltip(canvas, combinedTooltip, {
+        allowHTML: true
+    });
 }
 
 // Initialize tooltips after page load
@@ -2084,14 +2410,8 @@ function initCanvasTooltips() {
                 arksLogoTooltipIcon.style.display = 'none';
             });
             
-            tippy(arksLogoTooltipIcon, {
-                content: "{% trans 'Info zu safecircles.ch'|escapejs %}",
-                placement: 'bottom',
-                theme: 'light',
-                delay: [200, 0],
-                allowHTML: false,
-                interactive: false,
-                trigger: 'mouseenter focus',
+            initSimpleTooltip(arksLogoTooltipIcon, "{% trans 'Info zu safecircles.ch'|escapejs %}", {
+                placement: 'bottom'
             });
         }
     }
@@ -2128,394 +2448,51 @@ function initCanvasTooltips() {
 
 // Initialize tooltip for team potential title
 function initTeamPotentialTitleTooltip() {
-    const tooltipIcon = document.getElementById('team-potential-title-tooltip-icon');
-    if (!tooltipIcon) return;
-    
-    // Get translated tooltip text from Django - this is the old title
-    const tooltipText = "{% trans 'Schafft sicher verbundene Kreise, in denen Defensivreaktionen überflüssig werden.'|escapejs %}";
-    
-    // Remove existing tooltip if any
-    if (tooltipIcon._tippy) {
-        tooltipIcon._tippy.destroy();
-    }
-    
-    try {
-        tippy(tooltipIcon, {
-            content: tooltipText,
-            placement: 'top',
-            theme: 'light',
-            delay: [200, 0],
-            allowHTML: false,
-            interactive: false,
-            trigger: 'mouseenter focus',
-            maxWidth: 400,
-        });
-    } catch (e) {
-        console.error('Error initializing team potential title tooltip:', e);
-    }
+    initSimpleTooltip('team-potential-title-tooltip-icon', "{% trans 'Schafft sicher verbundene Kreise, in denen Defensivreaktionen überflüssig werden.'|escapejs %}");
 }
 
 // Initialize tooltip for tolerance window input
 function initToleranceWindowTooltip() {
-    const tooltipIcon = document.getElementById('tolerance-window-tooltip-icon');
-    if (!tooltipIcon) return;
-    
-    // Get translated tooltip text from Django
-    const tooltipText = "{% trans 'Das Toleranzfenster ist in der Arche der zentrale Mechanismus zur Visualisierung psychologischer Sicherheit. Es wird als grüner Bereich um den Team-Mittelwert herum definiert, dessen Breite ein festgelegtes Sicherheitsintervall (z.B. ±16 Punkte) vorgibt. Dieser Bereich markiert, welche Unterschiede in der gegenseitigen Wahrnehmung als sicher und akzeptabel gelten. Der erstrebenswerte Team-Sweetspot ist jenes Intervall, in dem die maximale Anzahl psychologisch sicherer Kreise entsteht – also stabile Verbindungen, in denen auch schwierige Themen offen besprochen werden können. Ein zu enges Fenster führt zu Stress und defensiven Reaktionen, da bereits kleine Abweichungen als Bedrohung wahrgenommen werden. Ein zu weites Toleranzfenster hingegen kann auf problematische Uniformität hindeuten: Es fehlt an notwendigen, herausfordernden Perspektiven, was zu Groupthink und erstarrenden Dynamiken führen kann. Das Ziel ist somit die Balance – ein Gruppen-Toleranzfenster, das Sicherheit gewährt, ohne Lernprozesse zu ersticken.'|escapejs %}";
-    
-    // Remove existing tooltip if any
-    if (tooltipIcon._tippy) {
-        tooltipIcon._tippy.destroy();
-    }
-    
-    try {
-        tippy(tooltipIcon, {
-            content: tooltipText,
-            placement: 'top',
-            theme: 'light',
-            delay: [200, 0],
-            allowHTML: false,
-            interactive: false,
-            trigger: 'mouseenter focus',
-            maxWidth: 400,
-        });
-    } catch (e) {
-        console.error('Error initializing tolerance window tooltip:', e);
-    }
+    initSimpleTooltip('tolerance-window-tooltip-icon', "{% trans 'Das Toleranzfenster ist in der Arche der zentrale Mechanismus zur Visualisierung psychologischer Sicherheit. Es wird als grüner Bereich um den Team-Mittelwert herum definiert, dessen Breite ein festgelegtes Sicherheitsintervall (z.B. ±16 Punkte) vorgibt. Dieser Bereich markiert, welche Unterschiede in der gegenseitigen Wahrnehmung als sicher und akzeptabel gelten. Der erstrebenswerte Team-Sweetspot ist jenes Intervall, in dem die maximale Anzahl psychologisch sicherer Kreise entsteht – also stabile Verbindungen, in denen auch schwierige Themen offen besprochen werden können. Ein zu enges Fenster führt zu Stress und defensiven Reaktionen, da bereits kleine Abweichungen als Bedrohung wahrgenommen werden. Ein zu weites Toleranzfenster hingegen kann auf problematische Uniformität hindeuten: Es fehlt an notwendigen, herausfordernden Perspektiven, was zu Groupthink und erstarrenden Dynamiken führen kann. Das Ziel ist somit die Balance – ein Gruppen-Toleranzfenster, das Sicherheit gewährt, ohne Lernprozesse zu ersticken.'|escapejs %}");
 }
 
 // Initialize tooltip for PRIO 1 heading explanation (big card modal)
 function initPrio1HeadingTooltip() {
-    const tooltipContainer = document.getElementById('prio1-heading-tooltip-icon');
-    const tooltipIcon = document.getElementById('prio1-tooltip-icon');
-    if (!tooltipContainer || !tooltipIcon) return;
-    
-    // Get translated tooltip text from Django - using JSON script tag to avoid escaping issues
-    const tooltipTextElement = document.getElementById('prio1-tooltip-text');
-    const tooltipText = tooltipTextElement ? JSON.parse(tooltipTextElement.textContent) : '';
-    
-    // Remove existing tooltips if any
-    if (tooltipIcon._tippy) {
-        tooltipIcon._tippy.destroy();
-    }
-    if (tooltipContainer._tippy) {
-        tooltipContainer._tippy.destroy();
-    }
-    
-    try {
-        // First, add a simple hover tooltip that shows "click for instructions"
-        const hoverTooltipText = "{% trans 'Klicken für Anweisungen'|escapejs %}";
-        tippy(tooltipIcon, {
-            content: hoverTooltipText,
-            placement: 'top',
-            theme: 'light',
-            delay: [300, 0],
-            allowHTML: false,
-            interactive: false,
-            trigger: 'mouseenter focus',
-            maxWidth: 200,
-            animation: 'fade',
-            arrow: true,
-        });
-        
-        // Then, add the big card tooltip on click
-        const parts = tooltipText.split('\n\n');
-        const title = parts[0] || '';
-        const body = parts.slice(1).join('\n\n') || '';
-        
-        // Create a styled card-like tooltip similar to player detail modal
-        const cardContent = '<div style="max-width: 600px; padding: 25px; font-size: 15px; line-height: 1.7; text-align: left; background-color: #ffffff; border-radius: 10px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);"><h3 style="margin: 0 0 15px 0; color: #626262; font-size: 18px; font-weight: bold; border-bottom: 2px solid #9FE2BF; padding-bottom: 10px;">' + title + '</h3><div style="color: #626262;">' + body.replace(/\n/g, '<br>') + '</div></div>';
-        
-        // Apply big card tooltip to container on click
-        tippy(tooltipContainer, {
-            content: cardContent,
-            placement: 'right',
-            theme: 'light',
-            delay: [0, 0],
-            allowHTML: true,
-            interactive: true,
-            trigger: 'click',
-            maxWidth: 650,
-            animation: 'fade',
-            arrow: true,
-            hideOnClick: true,
-        });
-    } catch (e) {
-        console.error('Error initializing PRIO 1 heading tooltip:', e);
-    }
+    initCardTooltip('prio1-heading-tooltip-icon', 'prio1-tooltip-icon', 'prio1-tooltip-text', '#9FE2BF');
 }
 
 // Initialize tooltip for PRIO 2 heading explanation (big card modal)
 function initPrio2HeadingTooltip() {
-    const tooltipContainer = document.getElementById('prio2-heading-tooltip-icon');
-    const tooltipIcon = document.getElementById('prio2-tooltip-icon');
-    if (!tooltipContainer || !tooltipIcon) return;
-    
-    // Get translated tooltip text from Django - using JSON script tag to avoid escaping issues
-    const tooltipTextElement = document.getElementById('prio2-tooltip-text');
-    const tooltipText = tooltipTextElement ? JSON.parse(tooltipTextElement.textContent) : '';
-    
-    // Remove existing tooltips if any
-    if (tooltipIcon._tippy) {
-        tooltipIcon._tippy.destroy();
-    }
-    if (tooltipContainer._tippy) {
-        tooltipContainer._tippy.destroy();
-    }
-    
-    try {
-        // First, add a simple hover tooltip that shows "click for instructions"
-        const hoverTooltipText = "{% trans 'Klicken für Anweisungen'|escapejs %}";
-        tippy(tooltipIcon, {
-            content: hoverTooltipText,
-            placement: 'top',
-            theme: 'light',
-            delay: [300, 0],
-            allowHTML: false,
-            interactive: false,
-            trigger: 'mouseenter focus',
-            maxWidth: 200,
-            animation: 'fade',
-            arrow: true,
-        });
-        
-        // Then, add the big card tooltip on click
-        const parts = tooltipText.split('\n\n');
-        const title = parts[0] || '';
-        const body = parts.slice(1).join('\n\n') || '';
-        
-        // Create a styled card-like tooltip similar to player detail modal
-        const cardContent = '<div style="max-width: 600px; padding: 25px; font-size: 15px; line-height: 1.7; text-align: left; background-color: #ffffff; border-radius: 10px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);"><h3 style="margin: 0 0 15px 0; color: #626262; font-size: 18px; font-weight: bold; border-bottom: 2px solid #52CEEC; padding-bottom: 10px;">' + title + '</h3><div style="color: #626262;">' + body.replace(/\n/g, '<br>') + '</div></div>';
-        
-        // Apply big card tooltip to container on click
-        tippy(tooltipContainer, {
-            content: cardContent,
-            placement: 'right',
-            theme: 'light',
-            delay: [0, 0],
-            allowHTML: true,
-            interactive: true,
-            trigger: 'click',
-            maxWidth: 650,
-            animation: 'fade',
-            arrow: true,
-            hideOnClick: true,
-        });
-    } catch (e) {
-        console.error('Error initializing PRIO 2 heading tooltip:', e);
-    }
+    initCardTooltip('prio2-heading-tooltip-icon', 'prio2-tooltip-icon', 'prio2-tooltip-text', '#52CEEC');
 }
 
 // Initialize tooltip for PRIO 3 heading explanation (big card modal)
 function initPrio3HeadingTooltip() {
-    const tooltipContainer = document.getElementById('prio3-heading-tooltip-icon');
-    const tooltipIcon = document.getElementById('prio3-tooltip-icon');
-    if (!tooltipContainer || !tooltipIcon) return;
-    
-    // Get translated tooltip text from Django - using JSON script tag to avoid escaping issues
-    const tooltipTextElement = document.getElementById('prio3-tooltip-text');
-    const tooltipText = tooltipTextElement ? JSON.parse(tooltipTextElement.textContent) : '';
-    
-    // Remove existing tooltips if any
-    if (tooltipIcon._tippy) {
-        tooltipIcon._tippy.destroy();
-    }
-    if (tooltipContainer._tippy) {
-        tooltipContainer._tippy.destroy();
-    }
-    
-    try {
-        // First, add a simple hover tooltip that shows "click for instructions"
-        const hoverTooltipText = "{% trans 'Klicken für Anweisungen'|escapejs %}";
-        tippy(tooltipIcon, {
-            content: hoverTooltipText,
-            placement: 'top',
-            theme: 'light',
-            delay: [300, 0],
-            allowHTML: false,
-            interactive: false,
-            trigger: 'mouseenter focus',
-            maxWidth: 200,
-            animation: 'fade',
-            arrow: true,
-        });
-        
-        // Then, add the big card tooltip on click
-        const parts = tooltipText.split('\n\n');
-        const title = parts[0] || '';
-        const body = parts.slice(1).join('\n\n') || '';
-        
-        // Create a styled card-like tooltip similar to player detail modal
-        const cardContent = '<div style="max-width: 600px; padding: 25px; font-size: 15px; line-height: 1.7; text-align: left; background-color: #ffffff; border-radius: 10px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);"><h3 style="margin: 0 0 15px 0; color: #626262; font-size: 18px; font-weight: bold; border-bottom: 2px solid #9FE2BF; padding-bottom: 10px;">' + title + '</h3><div style="color: #626262;">' + body.replace(/\n/g, '<br>') + '</div></div>';
-        
-        // Apply big card tooltip to container on click
-        tippy(tooltipContainer, {
-            content: cardContent,
-            placement: 'right',
-            theme: 'light',
-            delay: [0, 0],
-            allowHTML: true,
-            interactive: true,
-            trigger: 'click',
-            maxWidth: 650,
-            animation: 'fade',
-            arrow: true,
-            hideOnClick: true,
-        });
-    } catch (e) {
-        console.error('Error initializing PRIO 3 heading tooltip:', e);
-    }
+    initCardTooltip('prio3-heading-tooltip-icon', 'prio3-tooltip-icon', 'prio3-tooltip-text', '#9FE2BF');
 }
 
-// Initialize tooltip for PRIO 1 integrator explanation
+// Initialize tooltip for PRIO integrator explanations
 function initPrio1IntegratorTooltip() {
-    const tooltipIcon = document.getElementById('prio1-integrator-tooltip-icon');
-    if (!tooltipIcon) return;
-    
-    // Get translated tooltip text from Django
-    const tooltipText = "{% trans 'Lasst diese Integratoren Babysteps vorschlagen, die für gleichberechtigte Redeanteile sorgen, eure Sicherheitsankern gerecht werden und Triggersituationen entspannen können.'|escapejs %}";
-    
-    // Remove existing tooltip if any
-    if (tooltipIcon._tippy) {
-        tooltipIcon._tippy.destroy();
-    }
-    
-    try {
-        // Apply tooltip to the entire span (including "Wie weiter?" text)
-        tippy(tooltipIcon, {
-            content: tooltipText,
-            placement: 'top',
-            theme: 'light',
-            delay: [200, 0],
-            allowHTML: false,
-            interactive: false,
-            trigger: 'mouseenter focus',
-            maxWidth: 350,
-        });
-    } catch (e) {
-        console.error('Error initializing PRIO 1 integrator tooltip:', e);
-    }
+    initSimpleTooltip('prio1-integrator-tooltip-icon', "{% trans 'Lasst diese Integratoren Babysteps vorschlagen, die für gleichberechtigte Redeanteile sorgen, eure Sicherheitsankern gerecht werden und Triggersituationen entspannen können.'|escapejs %}", {
+        maxWidth: 350
+    });
 }
 
-// Initialize tooltip for PRIO 2 integrator explanation
 function initPrio2IntegratorTooltip() {
-    const tooltipIcon = document.getElementById('prio2-integrator-tooltip-icon');
-    if (!tooltipIcon) return;
-    
-    // Get translated tooltip text from Django
-    const tooltipText = "{% trans 'Lasst die Personen im ersten sicheren Kreis Vorschläge machen, wie eine Integration, sofern gewünscht, noch besser gelingen kann.'|escapejs %}";
-    
-    // Remove existing tooltip if any
-    if (tooltipIcon._tippy) {
-        tooltipIcon._tippy.destroy();
-    }
-    
-    try {
-        // Apply tooltip to the entire span (including "Wie weiter?" text)
-        tippy(tooltipIcon, {
-            content: tooltipText,
-            placement: 'top',
-            theme: 'light',
-            delay: [200, 0],
-            allowHTML: false,
-            interactive: false,
-            trigger: 'mouseenter focus',
-            maxWidth: 350,
-        });
-    } catch (e) {
-        console.error('Error initializing PRIO 2 integrator tooltip:', e);
-    }
+    initSimpleTooltip('prio2-integrator-tooltip-icon', "{% trans 'Lasst die Personen im ersten sicheren Kreis Vorschläge machen, wie eine Integration, sofern gewünscht, noch besser gelingen kann.'|escapejs %}", {
+        maxWidth: 350
+    });
 }
 
-// Initialize tooltip for PRIO 3 integrator explanation
 function initPrio3IntegratorTooltip() {
-    const tooltipIcon = document.getElementById('prio3-integrator-tooltip-icon');
-    if (!tooltipIcon) return;
-    
-    // Get translated tooltip text from Django
-    const tooltipText = "{% trans 'Welchen Einsatz kann die Führungskraft leisten, um das Team vom Ist-Wert zur optimalen Konstellation aus Prio 1 zu entwickeln?'|escapejs %}";
-    
-    // Remove existing tooltip if any
-    if (tooltipIcon._tippy) {
-        tooltipIcon._tippy.destroy();
-    }
-    
-    try {
-        // Apply tooltip to the entire span (including "Wie weiter?" text)
-        tippy(tooltipIcon, {
-            content: tooltipText,
-            placement: 'top',
-            theme: 'light',
-            delay: [200, 0],
-            allowHTML: false,
-            interactive: false,
-            trigger: 'mouseenter focus',
-            maxWidth: 350,
-        });
-    } catch (e) {
-        console.error('Error initializing PRIO 3 integrator tooltip:', e);
-    }
+    initSimpleTooltip('prio3-integrator-tooltip-icon', "{% trans 'Welchen Einsatz kann die Führungskraft leisten, um das Team vom Ist-Wert zur optimalen Konstellation aus Prio 1 zu entwickeln?'|escapejs %}", {
+        maxWidth: 350
+    });
 }
 
 // Initialize tooltip for PRIO 4 heading explanation (big card modal)
 function initPrio4HeadingTooltip() {
-    const tooltipContainer = document.getElementById('prio4-heading-tooltip-icon');
-    const tooltipIcon = document.getElementById('prio4-tooltip-icon');
-    if (!tooltipContainer || !tooltipIcon) return;
-    
-    // Get translated tooltip text from Django - using JSON script tag to avoid escaping issues
-    const tooltipTextElement = document.getElementById('prio4-tooltip-text');
-    const tooltipText = tooltipTextElement ? JSON.parse(tooltipTextElement.textContent) : '';
-    
-    // Remove existing tooltips if any
-    if (tooltipIcon._tippy) {
-        tooltipIcon._tippy.destroy();
-    }
-    if (tooltipContainer._tippy) {
-        tooltipContainer._tippy.destroy();
-    }
-    
-    try {
-        // First, add a simple hover tooltip that shows "click for instructions"
-        const hoverTooltipText = "{% trans 'Klicken für Anweisungen'|escapejs %}";
-        tippy(tooltipIcon, {
-            content: hoverTooltipText,
-            placement: 'top',
-            theme: 'light',
-            delay: [300, 0],
-            allowHTML: false,
-            interactive: false,
-            trigger: 'mouseenter focus',
-            maxWidth: 200,
-            animation: 'fade',
-            arrow: true,
-        });
-        
-        // Then, add the big card tooltip on click
-        const parts = tooltipText.split('\n\n');
-        const title = parts[0] || '';
-        const body = parts.slice(1).join('\n\n') || '';
-        
-        // Create a styled card-like tooltip similar to player detail modal
-        const cardContent = '<div style="max-width: 600px; padding: 25px; font-size: 15px; line-height: 1.7; text-align: left; background-color: #ffffff; border-radius: 10px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);"><h3 style="margin: 0 0 15px 0; color: #626262; font-size: 18px; font-weight: bold; border-bottom: 2px solid #FFD700; padding-bottom: 10px;">' + title + '</h3><div style="color: #626262;">' + body.replace(/\n/g, '<br>') + '</div></div>';
-        
-        // Apply big card tooltip to container on click
-        tippy(tooltipContainer, {
-            content: cardContent,
-            placement: 'right',
-            theme: 'light',
-            delay: [0, 0],
-            allowHTML: true,
-            interactive: true,
-            trigger: 'click',
-            maxWidth: 650,
-            animation: 'fade',
-            arrow: true,
-            hideOnClick: true,
-        });
-    } catch (e) {
-        console.error('Error initializing PRIO 4 heading tooltip:', e);
-    }
+    initCardTooltip('prio4-heading-tooltip-icon', 'prio4-tooltip-icon', 'prio4-tooltip-text', '#FFD700');
 }
 
 // Initialize tooltip for min value button
@@ -2523,27 +2500,34 @@ function initMinValueButtonTooltip() {
     const button = document.getElementById('min-value-button');
     if (!button) return;
     
-    // Get translated tooltip text from Django
-    const tooltipText = "{% trans 'Eine Lesehilfe: je kleiner der Zahlenwert, desto mehr Stress und negative Trigger zeigen sich, weil sich die Toleranzfenster der Teammitglieder schliessen. Im ersten sicheren Kreise funktioniert die Zusammenarbeit auch bei sehr grossem Stress noch ohne Drama.'|escapejs %}";
-    
-    // Remove existing tooltip if any
-    if (button._tippy) {
-        button._tippy.destroy();
-    }
-    
     try {
-        tippy(button, {
-            content: tooltipText,
-            placement: 'top',
-            theme: 'light',
-            delay: [200, 0],
-            allowHTML: false,
-            interactive: false,
-            trigger: 'mouseenter focus',
-            maxWidth: 400,
+        // Use a function to get dynamic content based on whether in-groups exist
+        initSimpleTooltip(button, function() {
+            const vueApp = window.app1; // Use the global app1 instance
+            if (!vueApp) {
+                return "{% trans 'Niedrigster verfügbarer Toleranzfenster-Wert'|escapejs %}";
+            }
+            
+            const hasInGroups = vueApp.hasInGroupsAtMin ? vueApp.hasInGroupsAtMin() : false;
+            const minValue = vueApp.getMinTolerance ? vueApp.getMinTolerance() : '';
+            const firstSafecircle = vueApp.getValue1 ? vueApp.getValue1() : '';
+            
+            let tooltipText = "{% trans 'Eine Lesehilfe: je kleiner der Zahlenwert, desto mehr Stress und negative Trigger zeigen sich, weil sich die Toleranzfenster der Teammitglieder schliessen.'|escapejs %}";
+            
+            if (hasInGroups) {
+                tooltipText += "\n\n{% trans 'Dieser Wert zeigt In-Groups (goldene Linien) an, die bei niedrigeren Toleranzfenster-Werten existieren als der erste Safecircle. Klicken, um diese Konstellation anzuzeigen.'|escapejs %}";
+            } else {
+                tooltipText += "\n\n{% trans 'Im ersten sicheren Kreise (bei Toleranzfenster '|escapejs %}" + firstSafecircle + "{% trans ') funktioniert die Zusammenarbeit auch bei sehr grossem Stress noch ohne Drama.'|escapejs %}";
+            }
+            
+            return tooltipText;
+        }, {
+            maxWidth: 450
         });
     } catch (e) {
         console.error('Error initializing min value button tooltip:', e);
+        // Fallback to simple tooltip
+        initSimpleTooltip('min-value-button', "{% trans 'Niedrigster verfügbarer Toleranzfenster-Wert'|escapejs %}");
     }
 }
 
@@ -2565,20 +2549,11 @@ function initMaxValueButtonTooltip() {
     
     try {
         // Use a function to get dynamic content
-        tippy(button, {
-            content: function() {
-                // Get the Vue instance to access getValue2()
-                const vueApp = window.app1; // Use the global app1 instance
-                const maxValue = vueApp ? vueApp.getValue2() : '';
-                return tooltipTextPart1 + maxValue + ' ' + tooltipTextPart2 + '\n\n' + tooltipTextPart3;
-            },
-            placement: 'top',
-            theme: 'light',
-            delay: [200, 0],
-            allowHTML: false,
-            interactive: false,
-            trigger: 'mouseenter focus',
-            maxWidth: 400,
+        initSimpleTooltip(button, function() {
+            // Get the Vue instance to access getValue2()
+            const vueApp = window.app1; // Use the global app1 instance
+            const maxValue = vueApp ? vueApp.getValue2() : '';
+            return `${tooltipTextPart1}${maxValue} ${tooltipTextPart2}\n\n${tooltipTextPart3}`;
         });
     } catch (e) {
         console.error('Error initializing max value button tooltip:', e);
@@ -2680,110 +2655,135 @@ function initMaxValueButtonTooltip() {
     //    log(app.getData())
     //});
 
-    // Google Slides Fullscreen functionality
+    /**
+     * Google Slides Fullscreen functionality
+     * Handles entering/exiting fullscreen mode with cross-browser compatibility
+     */
     const fullscreenButton = document.getElementById('google-slides-fullscreen-button');
     const slidesContainerWrapper = document.querySelector('.google-slides-container-wrapper');
     
     if (fullscreenButton && slidesContainerWrapper) {
-        fullscreenButton.addEventListener('click', function() {
-            if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.mozFullScreenElement && !document.msFullscreenElement) {
-                // Enter fullscreen
-                if (slidesContainerWrapper.requestFullscreen) {
-                    slidesContainerWrapper.requestFullscreen();
-                } else if (slidesContainerWrapper.webkitRequestFullscreen) {
-                    slidesContainerWrapper.webkitRequestFullscreen();
-                } else if (slidesContainerWrapper.mozRequestFullScreen) {
-                    slidesContainerWrapper.mozRequestFullScreen();
-                } else if (slidesContainerWrapper.msRequestFullscreen) {
-                    slidesContainerWrapper.msRequestFullscreen();
-                }
+        const fullscreenIcon = fullscreenButton.querySelector('.fullscreen-icon');
+        const enterFullscreenLabel = "{% trans 'Vollbild anzeigen'|escapejs %}";
+        const exitFullscreenLabel = "{% trans 'Vollbild beenden'|escapejs %}";
+        
+        /**
+         * Check if currently in fullscreen mode
+         * @returns {boolean}
+         */
+        const isFullscreen = () => {
+            return !!(document.fullscreenElement || 
+                     document.webkitFullscreenElement || 
+                     document.mozFullScreenElement || 
+                     document.msFullscreenElement);
+        };
+        
+        /**
+         * Request fullscreen with cross-browser support
+         */
+        const requestFullscreen = () => {
+            const element = slidesContainerWrapper;
+            if (element.requestFullscreen) {
+                element.requestFullscreen().catch(err => {
+                    console.error('Error entering fullscreen:', err);
+                });
+            } else if (element.webkitRequestFullscreen) {
+                element.webkitRequestFullscreen();
+            } else if (element.mozRequestFullScreen) {
+                element.mozRequestFullScreen();
+            } else if (element.msRequestFullscreen) {
+                element.msRequestFullscreen();
+            }
+        };
+        
+        /**
+         * Exit fullscreen with cross-browser support
+         */
+        const exitFullscreen = () => {
+            if (document.exitFullscreen) {
+                document.exitFullscreen().catch(err => {
+                    console.error('Error exiting fullscreen:', err);
+                });
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
+        };
+        
+        /**
+         * Update UI state based on fullscreen status
+         */
+        const updateFullscreenUI = () => {
+            if (isFullscreen()) {
                 slidesContainerWrapper.classList.add('fullscreen');
-                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
-                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild beenden'|escapejs %}");
-                fullscreenButton.setAttribute('title', "{% trans 'Vollbild beenden'|escapejs %}");
+                if (fullscreenIcon) fullscreenIcon.textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', exitFullscreenLabel);
+                fullscreenButton.setAttribute('title', exitFullscreenLabel);
             } else {
-                // Exit fullscreen
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                } else if (document.webkitExitFullscreen) {
-                    document.webkitExitFullscreen();
-                } else if (document.mozCancelFullScreen) {
-                    document.mozCancelFullScreen();
-                } else if (document.msExitFullscreen) {
-                    document.msExitFullscreen();
-                }
                 slidesContainerWrapper.classList.remove('fullscreen');
-                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
-                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
-                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
+                if (fullscreenIcon) fullscreenIcon.textContent = '⛶';
+                fullscreenButton.setAttribute('aria-label', enterFullscreenLabel);
+                fullscreenButton.setAttribute('title', enterFullscreenLabel);
+            }
+        };
+        
+        // Toggle fullscreen on button click
+        fullscreenButton.addEventListener('click', () => {
+            if (isFullscreen()) {
+                exitFullscreen();
+            } else {
+                requestFullscreen();
             }
         });
         
-        // Listen for fullscreen changes
-        document.addEventListener('fullscreenchange', function() {
-            if (!document.fullscreenElement) {
-                slidesContainerWrapper.classList.remove('fullscreen');
-                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
-                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
-                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
-            }
-        });
-        
-        document.addEventListener('webkitfullscreenchange', function() {
-            if (!document.webkitFullscreenElement) {
-                slidesContainerWrapper.classList.remove('fullscreen');
-                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
-                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
-                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
-            }
-        });
-        
-        document.addEventListener('mozfullscreenchange', function() {
-            if (!document.mozFullScreenElement) {
-                slidesContainerWrapper.classList.remove('fullscreen');
-                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
-                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
-                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
-            }
-        });
-        
-        document.addEventListener('MSFullscreenChange', function() {
-            if (!document.msFullscreenElement) {
-                slidesContainerWrapper.classList.remove('fullscreen');
-                fullscreenButton.querySelector('.fullscreen-icon').textContent = '⛶';
-                fullscreenButton.setAttribute('aria-label', "{% trans 'Vollbild anzeigen'|escapejs %}");
-                fullscreenButton.setAttribute('title', "{% trans 'Vollbild anzeigen'|escapejs %}");
-            }
+        // Listen for fullscreen changes (cross-browser)
+        const fullscreenEvents = ['fullscreenchange', 'webkitfullscreenchange', 'mozfullscreenchange', 'MSFullscreenChange'];
+        fullscreenEvents.forEach(event => {
+            document.addEventListener(event, updateFullscreenUI);
         });
     }
 
-    // Print optimization: Scale canvas to fit page width
+    /**
+     * Print optimization: Scale canvas to fit page width
+     * Stores original canvas dimensions and restores them after printing
+     */
     let originalCanvasStyle = null;
+    
     function prepareCanvasForPrint() {
         const canvas = document.getElementById('team-potential-canvas');
-        if (!canvas) return;
+        if (!canvas) {
+            console.warn('Canvas element not found for print preparation');
+            return;
+        }
         
-        // Store original style
-        originalCanvasStyle = {
-            width: canvas.style.width,
-            height: canvas.style.height,
-            maxWidth: canvas.style.maxWidth,
-            maxHeight: canvas.style.maxHeight
-        };
+        // Store original style if not already stored
+        if (!originalCanvasStyle) {
+            originalCanvasStyle = {
+                width: canvas.style.width || '',
+                height: canvas.style.height || '',
+                maxWidth: canvas.style.maxWidth || '',
+                maxHeight: canvas.style.maxHeight || ''
+            };
+        }
         
         // Calculate available print width (A4 landscape: ~27cm = ~1020px at 96dpi, minus margins)
         const printWidth = Math.min(950, window.innerWidth - 40); // Leave 20px margin on each side
         const scale = printWidth / 1000; // Scale factor based on canvas width of 1000px
         
         // Scale canvas for print
-        canvas.style.width = printWidth + 'px';
-        canvas.style.height = (1000 * scale) + 'px';
+        canvas.style.width = `${printWidth}px`;
+        canvas.style.height = `${1000 * scale}px`;
         canvas.style.maxWidth = '100%';
         canvas.style.maxHeight = 'none';
     }
     
-    // Restore canvas size after printing
-    window.addEventListener('afterprint', function() {
+    /**
+     * Restore canvas size after printing
+     */
+    function restoreCanvasAfterPrint() {
         const canvas = document.getElementById('team-potential-canvas');
         if (canvas && originalCanvasStyle) {
             canvas.style.width = originalCanvasStyle.width;
@@ -2791,6 +2791,16 @@ function initMaxValueButtonTooltip() {
             canvas.style.maxWidth = originalCanvasStyle.maxWidth;
             canvas.style.maxHeight = originalCanvasStyle.maxHeight;
             originalCanvasStyle = null;
+        }
+    }
+    
+    // Listen for print events
+    window.addEventListener('afterprint', restoreCanvasAfterPrint);
+    
+    // Also restore on beforeunload to ensure cleanup
+    window.addEventListener('beforeunload', () => {
+        if (originalCanvasStyle) {
+            restoreCanvasAfterPrint();
         }
     });
 

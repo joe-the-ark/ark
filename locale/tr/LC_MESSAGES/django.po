@@ -1563,6 +1563,9 @@ msgstr "tolerans penceresi değerinde "
 msgid "PRIO 3: Boss-Zentralität erhöhen – "
 msgstr "ÖNCELİK 3: Patron Merkeziliğini Artır – "
 
+msgid "PRIO 4: In-Gruppen und Seilschaften in die Verantwortung nehmen (Goldene Linien)"
+msgstr "ÖNCELİK 4: İç Grupları ve Klikleri Sorumlu Tutmak (Altın Çizgiler)"
+
 msgid "die Konstellation beim "
 msgstr "konstelasyon "
 
@@ -1617,6 +1620,18 @@ msgstr "EĞİTİM: Güvenli Dairelerin nasıl hesaplandığının açıklaması"
 
 msgid "Für eine professionelle Intervention nimm Kontakt mit deinem Coach oder mit Dr. Joe Maier auf. Das Ziel ist die Erweiterung eurer Psychological Safe Circles. (Empfohlen für Teams mit einem psychologischen Sicherheitswert unter 60)."
 msgstr "Profesyonel müdahale için koçunuz veya Dr. Joe Maier ile iletişime geçin. Amaç, Psikolojik Güvenli Dairelerinizi genişletmektir. (Psikolojik güvenlik değeri 60'ın altında olan ekipler için önerilir)."
+
+msgid "Erweiterte Ansicht"
+msgstr "Genişletilmiş Görünüm"
+
+msgid "Leertaste für normale Ansicht"
+msgstr "Normal görünüm için Boşluk tuşuna basın"
+
+msgid "erweiterte Ansicht"
+msgstr "genişletilmiş görünüm"
+
+msgid "Leertaste für erweiterte Ansicht"
+msgstr "Genişletilmiş görünüm için Boşluk tuşuna basın"
 
 msgid "In diesem Video erklären wir, wie die Safecircles berechnet werden. Eure Safecircles sind eine Selbstbeschreibung durch das Team mit Hilfe eines soziometrischen Verfahrens und KEIN Test."
 msgstr "Bu videoda, Güvenli Dairelerin nasıl hesaplandığını açıklıyoruz. Güvenli Daireleriniz, bir sosyometrik yöntem kullanarak ekip tarafından yapılan bir öz tanımlamadır ve bir TEST DEĞİLDİR."

@@ -1669,6 +1669,9 @@ msgstr "Priority 2: Integrate Solists / Satellites\n\nSatellites are team member
 msgid "PRIO 3: Boss-Zentralität erhöhen – "
 msgstr "PRIO 3: Increase Boss Centrality – "
 
+msgid "PRIO 4: In-Gruppen und Seilschaften in die Verantwortung nehmen (Goldene Linien)"
+msgstr "PRIORITY 4: Hold In-Groups and Cliques Accountable (Golden Lines)"
+
 msgid "die Konstellation beim "
 msgstr "the constellation at "
 
@@ -1711,3 +1714,15 @@ msgstr "For professional intervention, contact your coach or Dr. Joe Maier. The 
 
 msgid "In diesem Video erklären wir, wie die Safecircles berechnet werden. Eure Safecircles sind eine Selbstbeschreibung durch das Team mit Hilfe eines soziometrischen Verfahrens und KEIN Test."
 msgstr "In this video, we explain how the Safecircles are calculated. Your Safecircles are a self-description by the team using a sociometric method and are NOT a test."
+
+msgid "Erweiterte Ansicht"
+msgstr "Expanded View"
+
+msgid "Leertaste für normale Ansicht"
+msgstr "Press Space for normal view"
+
+msgid "erweiterte Ansicht"
+msgstr "expanded view"
+
+msgid "Leertaste für erweiterte Ansicht"
+msgstr "Press Space for expanded view"

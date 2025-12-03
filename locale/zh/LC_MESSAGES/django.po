@@ -1633,6 +1633,9 @@ msgstr "在容差窗口值为 "
 msgid "PRIO 3: Boss-Zentralität erhöhen – "
 msgstr "优先级3：提高老板中心性 – "
 
+msgid "PRIO 4: In-Gruppen und Seilschaften in die Verantwortung nehmen (Goldene Linien)"
+msgstr "优先级4：让内部群体和小团体承担责任（金线）"
+
 msgid "die Konstellation beim "
 msgstr "在 "
 
@@ -1687,6 +1690,18 @@ msgstr "教程：关于安全圈计算方法的说明"
 
 msgid "Für eine professionelle Intervention nimm Kontakt mit deinem Coach oder mit Dr. Joe Maier auf. Das Ziel ist die Erweiterung eurer Psychological Safe Circles. (Empfohlen für Teams mit einem psychologischen Sicherheitswert unter 60)."
 msgstr "如需专业干预，请联系您的教练或 Joe Maier 博士。目标是扩展您的心理安全圈。（建议心理安全值低于 60 的团队使用）。"
+
+msgid "Erweiterte Ansicht"
+msgstr "扩展视图"
+
+msgid "Leertaste für normale Ansicht"
+msgstr "按空格键返回正常视图"
+
+msgid "erweiterte Ansicht"
+msgstr "扩展视图"
+
+msgid "Leertaste für erweiterte Ansicht"
+msgstr "按空格键切换到扩展视图"
 
 msgid "In diesem Video erklären wir, wie die Safecircles berechnet werden. Eure Safecircles sind eine Selbstbeschreibung durch das Team mit Hilfe eines soziometrischen Verfahrens und KEIN Test."
 msgstr "在本视频中，我们解释了安全圈是如何计算的。您的安全圈是团队使用社会测量方法进行的自我描述，而不是测试。"

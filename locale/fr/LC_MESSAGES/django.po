@@ -1677,6 +1677,9 @@ msgstr "à une valeur de fenêtre de tolérance de "
 msgid "PRIO 3: Boss-Zentralität erhöhen – "
 msgstr "PRIO 3: Augmenter la centralité du patron – "
 
+msgid "PRIO 4: In-Gruppen und Seilschaften in die Verantwortung nehmen (Goldene Linien)"
+msgstr "PRIORITÉ 4 : Tenir les groupes internes et les cliques responsables (Lignes dorées)"
+
 msgid "die Konstellation beim "
 msgstr "la constellation au "
 
@@ -1728,6 +1731,18 @@ msgstr "COUNSELLING: Pour une intervention professionnelle visant à élargir vo
 
 msgid "TUTORIAL: Erklärung zur Berechnung der Safecircles"
 msgstr "TUTORIEL: Explication du calcul des Cercles de Sécurité"
+
+msgid "Erweiterte Ansicht"
+msgstr "Vue étendue"
+
+msgid "Leertaste für normale Ansicht"
+msgstr "Appuyez sur Espace pour la vue normale"
+
+msgid "erweiterte Ansicht"
+msgstr "vue étendue"
+
+msgid "Leertaste für erweiterte Ansicht"
+msgstr "Appuyez sur Espace pour la vue étendue"
 
 msgid "Für eine professionelle Intervention nimm Kontakt mit deinem Coach oder mit Dr. Joe Maier auf. Das Ziel ist die Erweiterung eurer Psychological Safe Circles. (Empfohlen für Teams mit einem psychologischen Sicherheitswert unter 60)."
 msgstr "Pour une intervention professionnelle, contactez votre coach ou le Dr. Joe Maier. L'objectif est d'élargir vos Cercles de Sécurité Psychologique. (Recommandé pour les équipes avec une valeur de sécurité psychologique inférieure à 60)."
