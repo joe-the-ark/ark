@@ -49,8 +49,13 @@ if [ -z "$VIRTUAL_ENV" ]; then
     exit 1
 fi
 
-echo "Using Python: $(which python)"
+# Store the Python path for later use
+PYTHON_BIN="$(which python)"
+PYTHON_PATH="$PYTHON_BIN"
+
+echo "Using Python: $PYTHON_BIN"
 echo "Python version: $(python --version)"
+echo "Virtual environment: $VIRTUAL_ENV"
 
 # 3. Upgrade pip
 echo "Upgrading pip..."
@@ -82,10 +87,45 @@ if [ $? -ne 0 ]; then
     fi
 fi
 
+# 4.5. Install meta library (required for the application)
+echo "Installing meta library..."
+python -c "import meta" 2>/dev/null
+if [ $? -ne 0 ]; then
+    echo "Meta library not found, installing..."
+    if [ -d "meta/backend/src" ]; then
+        cd meta/backend/src
+        # Use the Python from virtual environment
+        "$PYTHON_BIN" setup.py install
+        INSTALL_META_EXIT=$?
+        cd ../../..
+        if [ $INSTALL_META_EXIT -ne 0 ]; then
+            echo "✗ ERROR: Failed to install meta library!"
+            echo "Please install it manually:"
+            echo "  cd meta/backend/src"
+            echo "  python setup.py install"
+            exit 1
+        fi
+        echo "✓ Meta library installed successfully"
+    else
+        echo "⚠ WARNING: meta/backend/src directory not found!"
+        echo "Trying to install meta library via pip..."
+        pip install -e meta/backend/src 2>/dev/null || {
+            echo "✗ ERROR: Could not install meta library!"
+            echo "Please ensure meta/backend/src exists and install manually:"
+            echo "  cd meta/backend/src"
+            echo "  python setup.py install"
+            exit 1
+        }
+    fi
+else
+    echo "✓ Meta library already installed"
+fi
+
 # 5. Compile translations
 echo "Compiling translations..."
 cd backend
-python manage.py compilemessages --settings=backend.settings_prod
+# Use the Python from virtual environment
+"$PYTHON_BIN" manage.py compilemessages --settings=backend.settings_prod
 COMPILE_EXIT=$?
 cd ..
 if [ $COMPILE_EXIT -ne 0 ]; then
@@ -95,7 +135,8 @@ fi
 # 6. Run Django migrations
 echo "Running database migrations..."
 cd backend
-python manage.py migrate --settings=backend.settings_prod
+# Use the Python from virtual environment
+"$PYTHON_BIN" manage.py migrate --settings=backend.settings_prod
 MIGRATE_EXIT=$?
 if [ $MIGRATE_EXIT -ne 0 ]; then
     echo "✗ ERROR: Migration failed!"
@@ -107,7 +148,8 @@ cd ..
 # 7. Collect static files
 echo "Collecting static files..."
 cd backend
-python manage.py collectstatic --no-input --settings=backend.settings_prod
+# Use the Python from virtual environment
+"$PYTHON_BIN" manage.py collectstatic --no-input --settings=backend.settings_prod
 COLLECT_EXIT=$?
 cd ..
 if [ $COLLECT_EXIT -ne 0 ]; then
