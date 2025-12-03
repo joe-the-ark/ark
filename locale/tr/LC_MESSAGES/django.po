@@ -1285,6 +1285,9 @@ msgstr "Benzerlik:"
 msgid "Integrator"
 msgstr "Entegratör"
 
+msgid "Toleranzfenster"
+msgstr "Tolerans penceresi"
+
 msgid "Toleranzfenster:"
 msgstr "Tolerans penceresi:"
 
@@ -1632,6 +1635,15 @@ msgstr "genişletilmiş görünüm"
 
 msgid "Leertaste für erweiterte Ansicht"
 msgstr "Genişletilmiş görünüm için Boşluk tuşuna basın"
+
+msgid "Pfeiltasten für Toleranzfenster"
+msgstr "Tolerans penceresi için ok tuşları"
+
+msgid "Toleranzfenster verringern"
+msgstr "Tolerans penceresini azalt"
+
+msgid "Toleranzfenster erhöhen"
+msgstr "Tolerans penceresini artır"
 
 msgid "In diesem Video erklären wir, wie die Safecircles berechnet werden. Eure Safecircles sind eine Selbstbeschreibung durch das Team mit Hilfe eines soziometrischen Verfahrens und KEIN Test."
 msgstr "Bu videoda, Güvenli Dairelerin nasıl hesaplandığını açıklıyoruz. Güvenli Daireleriniz, bir sosyometrik yöntem kullanarak ekip tarafından yapılan bir öz tanımlamadır ve bir TEST DEĞİLDİR."

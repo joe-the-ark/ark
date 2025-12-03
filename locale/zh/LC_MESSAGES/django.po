@@ -1353,6 +1353,9 @@ msgstr "相似度:"
 msgid "Integrator"
 msgstr "整合者"
 
+msgid "Toleranzfenster"
+msgstr "容差窗口"
+
 msgid "Toleranzfenster:"
 msgstr "容差窗口:"
 
@@ -1702,6 +1705,15 @@ msgstr "扩展视图"
 
 msgid "Leertaste für erweiterte Ansicht"
 msgstr "按空格键切换到扩展视图"
+
+msgid "Pfeiltasten für Toleranzfenster"
+msgstr "使用方向键调整容差窗口"
+
+msgid "Toleranzfenster verringern"
+msgstr "减少容差窗口"
+
+msgid "Toleranzfenster erhöhen"
+msgstr "增加容差窗口"
 
 msgid "In diesem Video erklären wir, wie die Safecircles berechnet werden. Eure Safecircles sind eine Selbstbeschreibung durch das Team mit Hilfe eines soziometrischen Verfahrens und KEIN Test."
 msgstr "在本视频中，我们解释了安全圈是如何计算的。您的安全圈是团队使用社会测量方法进行的自我描述，而不是测试。"

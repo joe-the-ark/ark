@@ -267,16 +267,82 @@
                             :style="{ width:width+'px', height:height+'px', display: (viewMode === 'canvas' || viewMode === 'expanded') ? 'block' : 'none', transition: 'opacity 0.3s ease', backgroundColor: '#FFFFFF' }" 
                             id="team-potential-canvas"
                             role="img"
-                            :aria-label="'{% trans 'Team-Potential-Visualisierung' %}: ' + current + (viewMode === 'expanded' ? ' ({% trans 'erweiterte Ansicht' %})' : '')"
+                            :aria-label="'{% trans 'Team-Potential-Visualisierung' %}: {% trans 'Toleranzfenster' %} ' + current + (viewMode === 'expanded' ? ' ({% trans 'erweiterte Ansicht' %})' : '')"
                             tabindex="0"
                         ></canvas>
-                        <!-- Expanded view indicator -->
-                        <div v-if="viewMode === 'expanded'" style="position: absolute; top: 10px; right: 10px; background-color: rgba(255, 255, 255, 0.9); padding: 8px 12px; border-radius: 5px; font-size: 12px; color: #626262; box-shadow: 0 2px 4px rgba(0,0,0,0.2); z-index: 10;">
-                            {% trans "Erweiterte Ansicht" %} - {% trans "Leertaste für normale Ansicht" %}
+                        <!-- Expanded view indicator (simplified) -->
+                        <div v-if="viewMode === 'expanded'" style="position: absolute; top: 10px; right: 10px; background-color: rgba(255, 255, 255, 0.95); padding: 8px 12px; border-radius: 8px; font-size: 12px; color: #626262; box-shadow: 0 2px 6px rgba(0,0,0,0.25); z-index: 10;">
+                            {% trans "Leertaste" %} - {% trans "für normale Ansicht" %}
+                        </div>
+                        <!-- Clickable arrow navigation with tolerance value display (expanded view) -->
+                        <div v-if="viewMode === 'expanded'" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: flex; align-items: center; gap: 15px; z-index: 10;">
+                            <!-- Left arrow button -->
+                            <button 
+                                @click="decreaseTolerance"
+                                :disabled="current <= getMinTolerance()"
+                                :style="{
+                                    backgroundColor: current <= getMinTolerance() ? 'rgba(200, 200, 200, 0.5)' : 'rgba(255, 255, 255, 0.95)',
+                                    border: 'none',
+                                    borderRadius: '50%',
+                                    width: '60px',
+                                    height: '60px',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    boxShadow: current <= getMinTolerance() ? '0 1px 3px rgba(0,0,0,0.1)' : '0 2px 8px rgba(0,0,0,0.25)',
+                                    cursor: current <= getMinTolerance() ? 'not-allowed' : 'pointer',
+                                    transition: 'all 0.2s ease',
+                                    opacity: current <= getMinTolerance() ? 0.5 : 1
+                                }"
+                                @mouseenter="e => { if (current > getMinTolerance()) e.target.style.transform = 'scale(1.1)'; }"
+                                @mouseleave="e => { e.target.style.transform = 'scale(1)'; }"
+                                aria-label="{% trans 'Toleranzfenster verringern' %}"
+                            >
+                                <span style="font-size: 28px; color: #626262;">←</span>
+                            </button>
+                            
+                            <!-- Tolerance value display -->
+                            <div style="background-color: rgba(255, 255, 255, 0.95); padding: 12px 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.25); min-width: 100px; text-align: center;">
+                                <div style="font-size: 11px; color: #999; margin-bottom: 4px; text-transform: uppercase;">{% trans "Toleranzfenster" %}</div>
+                                <div style="font-weight: bold; font-size: 32px; color: #E29635; line-height: 1;">[[ current ]]</div>
+                                <div style="font-size: 10px; color: #999; margin-top: 4px;">
+                                    [[ getMinTolerance() ]] - [[ getValue2() ]]
+                                </div>
+                            </div>
+                            
+                            <!-- Right arrow button -->
+                            <button 
+                                @click="increaseTolerance"
+                                :disabled="current >= getValue2()"
+                                :style="{
+                                    backgroundColor: current >= getValue2() ? 'rgba(200, 200, 200, 0.5)' : 'rgba(255, 255, 255, 0.95)',
+                                    border: 'none',
+                                    borderRadius: '50%',
+                                    width: '60px',
+                                    height: '60px',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    boxShadow: current >= getValue2() ? '0 1px 3px rgba(0,0,0,0.1)' : '0 2px 8px rgba(0,0,0,0.25)',
+                                    cursor: current >= getValue2() ? 'not-allowed' : 'pointer',
+                                    transition: 'all 0.2s ease',
+                                    opacity: current >= getValue2() ? 0.5 : 1
+                                }"
+                                @mouseenter="e => { if (current < getValue2()) e.target.style.transform = 'scale(1.1)'; }"
+                                @mouseleave="e => { e.target.style.transform = 'scale(1)'; }"
+                                aria-label="{% trans 'Toleranzfenster erhöhen' %}"
+                            >
+                                <span style="font-size: 28px; color: #626262;">→</span>
+                            </button>
                         </div>
                         <!-- Hint for normal view: how to switch to expanded view -->
                         <div v-if="viewMode === 'canvas'" style="position: absolute; bottom: 10px; right: 10px; background-color: rgba(255, 255, 255, 0.85); padding: 6px 10px; border-radius: 5px; font-size: 11px; color: #626262; box-shadow: 0 2px 4px rgba(0,0,0,0.15); z-index: 10; pointer-events: none; opacity: 0.8;">
                             💡 {% trans "Leertaste für erweiterte Ansicht" %}
+                        </div>
+                        <!-- Keyboard navigation hint (always visible when canvas is shown) -->
+                        <div v-if="viewMode === 'canvas' || viewMode === 'expanded'" style="position: absolute; bottom: 10px; left: 10px; background-color: rgba(255, 255, 255, 0.85); padding: 6px 10px; border-radius: 5px; font-size: 11px; color: #626262; box-shadow: 0 2px 4px rgba(0,0,0,0.15); z-index: 10; pointer-events: none; opacity: 0.7; display: flex; align-items: center; gap: 4px;">
+                            <span style="font-size: 14px;">← →</span>
+                            <span>{% trans "Pfeiltasten für Toleranzfenster" %}</span>
                         </div>
                     </div>
                     <div v-if="viewMode === 'overview'" style="min-height: 400px; padding: 20px; background-color: #f5f5f5; border-radius: 10px; text-align: center;">
@@ -1346,6 +1412,24 @@ const app1 = new Vue({
                        this.redraw();
                    }
                });
+           },
+           /**
+            * Decrease tolerance value (for left arrow button)
+            */
+           decreaseTolerance() {
+               const min = this.getMinTolerance();
+               if (this.current > min) {
+                   this.setToleranceValue(this.current - 1);
+               }
+           },
+           /**
+            * Increase tolerance value (for right arrow button)
+            */
+           increaseTolerance() {
+               const max = this.getValue2();
+               if (this.current < max) {
+                   this.setToleranceValue(this.current + 1);
+               }
            },
            toggleView() {
                // Cycle through: canvas -> expanded -> canvas

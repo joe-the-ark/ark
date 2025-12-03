@@ -1373,6 +1373,9 @@ msgstr "Similarity:"
 msgid "Integrator"
 msgstr "Integrator"
 
+msgid "Toleranzfenster"
+msgstr "Tolerance window"
+
 msgid "Toleranzfenster:"
 msgstr "Tolerance window:"
 
@@ -1726,3 +1729,12 @@ msgstr "expanded view"
 
 msgid "Leertaste für erweiterte Ansicht"
 msgstr "Press Space for expanded view"
+
+msgid "Pfeiltasten für Toleranzfenster"
+msgstr "Arrow keys for tolerance window"
+
+msgid "Toleranzfenster verringern"
+msgstr "Decrease tolerance window"
+
+msgid "Toleranzfenster erhöhen"
+msgstr "Increase tolerance window"

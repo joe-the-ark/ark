@@ -1397,6 +1397,9 @@ msgstr "Similarité:"
 msgid "Integrator"
 msgstr "Intégrateur"
 
+msgid "Toleranzfenster"
+msgstr "Fenêtre de tolérance"
+
 msgid "Toleranzfenster:"
 msgstr "Fenêtre de tolérance:"
 
@@ -1743,6 +1746,15 @@ msgstr "vue étendue"
 
 msgid "Leertaste für erweiterte Ansicht"
 msgstr "Appuyez sur Espace pour la vue étendue"
+
+msgid "Pfeiltasten für Toleranzfenster"
+msgstr "Touches fléchées pour la fenêtre de tolérance"
+
+msgid "Toleranzfenster verringern"
+msgstr "Diminuer la fenêtre de tolérance"
+
+msgid "Toleranzfenster erhöhen"
+msgstr "Augmenter la fenêtre de tolérance"
 
 msgid "Für eine professionelle Intervention nimm Kontakt mit deinem Coach oder mit Dr. Joe Maier auf. Das Ziel ist die Erweiterung eurer Psychological Safe Circles. (Empfohlen für Teams mit einem psychologischen Sicherheitswert unter 60)."
 msgstr "Pour une intervention professionnelle, contactez votre coach ou le Dr. Joe Maier. L'objectif est d'élargir vos Cercles de Sécurité Psychologique. (Recommandé pour les équipes avec une valeur de sécurité psychologique inférieure à 60)."
