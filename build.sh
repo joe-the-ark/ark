@@ -89,19 +89,37 @@ fi
 
 # 4.5. Install meta library (required for the application)
 echo "Installing meta library..."
-# Always try to install/upgrade meta library to ensure it's available in venv
+# Always reinstall meta library to ensure it's available in venv
 if [ -d "meta/backend/src" ]; then
-    echo "Found meta/backend/src, installing meta library..."
+    echo "Found meta/backend/src, installing meta library in virtual environment..."
     cd meta/backend/src
-    # Use the Python from virtual environment and pip to ensure it's installed in venv
-    pip install -e . --quiet
+    
+    # First, try to uninstall any existing meta installation
+    pip uninstall -y meta 2>/dev/null || true
+    
+    # Install dependencies first (Crypto, pycrypto)
+    echo "Installing meta library dependencies..."
+    "$PYTHON_BIN" -m pip install pycrypto --quiet 2>/dev/null || true
+    
+    # Install using pip with editable mode to ensure it's in venv
+    echo "Installing meta library with pip (editable mode)..."
+    "$PYTHON_BIN" -m pip install -e . --quiet
     INSTALL_META_EXIT=$?
+    
+    if [ $INSTALL_META_EXIT -ne 0 ]; then
+        echo "Pip editable install failed, trying regular install..."
+        "$PYTHON_BIN" -m pip install . --quiet
+        INSTALL_META_EXIT=$?
+    fi
+    
     if [ $INSTALL_META_EXIT -ne 0 ]; then
         echo "Pip install failed, trying setup.py install..."
         "$PYTHON_BIN" setup.py install
         INSTALL_META_EXIT=$?
     fi
+    
     cd ../../..
+    
     if [ $INSTALL_META_EXIT -ne 0 ]; then
         echo "✗ ERROR: Failed to install meta library!"
         echo "Please install it manually:"
@@ -110,16 +128,26 @@ if [ -d "meta/backend/src" ]; then
         echo "  pip install -e ."
         exit 1
     fi
-    echo "✓ Meta library installed successfully"
     
-    # Verify installation - must be importable with the venv Python
-    echo "Verifying meta library installation..."
-    "$PYTHON_BIN" -c "import meta; print('✓ Meta library imported successfully')" 2>&1
-    if [ $? -ne 0 ]; then
-        echo "✗ ERROR: Meta library installed but not importable with venv Python!"
-        echo "Python path: $PYTHON_BIN"
+    echo "✓ Meta library installation completed"
+    
+    # CRITICAL: Verify installation - must be importable with the venv Python
+    echo "Verifying meta library installation with venv Python..."
+    VERIFY_OUTPUT=$("$PYTHON_BIN" -c "import meta; print('SUCCESS')" 2>&1)
+    if [ $? -ne 0 ] || [ "$VERIFY_OUTPUT" != "SUCCESS" ]; then
+        echo "✗ ERROR: Meta library installed but NOT importable with venv Python!"
+        echo "Verification output: $VERIFY_OUTPUT"
+        echo "Python binary: $PYTHON_BIN"
         echo "Virtual env: $VIRTUAL_ENV"
-        "$PYTHON_BIN" -c "import sys; print('Python paths:'); [print(p) for p in sys.path]"
+        echo ""
+        echo "Checking Python paths:"
+        "$PYTHON_BIN" -c "import sys; [print(p) for p in sys.path]"
+        echo ""
+        echo "Checking if meta is installed:"
+        "$PYTHON_BIN" -m pip list | grep meta || echo "meta not found in pip list"
+        echo ""
+        echo "Trying to find meta installation:"
+        find "$VIRTUAL_ENV" -name "meta" -type d 2>/dev/null | head -5
         exit 1
     fi
     echo "✓ Meta library verified and ready"
