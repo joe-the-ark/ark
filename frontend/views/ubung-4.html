@@ -970,6 +970,60 @@
             this.updateProgress();
         }
     })
+    
+    // Keyboard shortcut: Ctrl+R (or Cmd+R on Mac) to randomly assign all players to statements
+    document.addEventListener('keydown', function(e) {
+        // Check for Ctrl+R (Windows/Linux) or Cmd+R (Mac)
+        if ((e.ctrlKey || e.metaKey) && e.key === 'r') {
+            // Prevent browser reload
+            e.preventDefault();
+            
+            // Check if app instance exists
+            if (!app || !app.containersTo || !app.data) {
+                console.warn('Dnd app not initialized');
+                return;
+            }
+            
+            // Clear all current assignments
+            app.containersTo.forEach(function(container) {
+                container.items = [];
+            });
+            
+            // Reset all players to visible
+            app.data.forEach(function(player) {
+                player.hidden = false;
+            });
+            
+            // Randomly assign each player to one of the 6 statements
+            app.data.forEach(function(player) {
+                // Randomly select a container (0-5)
+                var randomContainerIndex = Math.floor(Math.random() * 6);
+                
+                // Create a copy of the player object for the container
+                var assignedPlayer = {
+                    name: player.name,
+                    avatar: player.avatar,
+                    id: player.id
+                };
+                
+                // Add player to the randomly selected container
+                app.containersTo[randomContainerIndex].items.push(assignedPlayer);
+                
+                // Mark player as hidden (assigned)
+                player.hidden = true;
+            });
+            
+            // Re-render the UI
+            app.render();
+            
+            // Update progress
+            if (window.app1) {
+                window.app1.updateProgress();
+            }
+            
+            console.log('Randomly assigned all ' + app.data.length + ' players to statements');
+        }
+    });
 
 </script>
 
