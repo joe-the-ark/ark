@@ -411,8 +411,8 @@
   }
   .custom-graph__item input {
     position: absolute;
-    width: calc(100% - 30px);
-    left: 30px;
+    width: calc(100% - 120px);
+    left: 0px;
     top: 50%;
     transform: translateY(-50%);
     height: 80%;
@@ -425,8 +425,8 @@
     top: 50%;
     transform: translateY(-50%);
     height: 100%;
-    left: 30px;
-    width: calc(100% - 30px);
+    left: 0px;
+    width: calc(100% - 120px);
     background: linear-gradient(to right, #51ceec, transparent);
   }
   .custom-graph:not(.statistic) .custom-graph__item:after {
@@ -501,7 +501,17 @@
     color: Black;
     font-size: var(--ls-font-base);
     line-height: 22px;
-    margin: auto;
+    position: absolute;
+    left: calc(100% - 115px);
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+    z-index: 10;
+    text-align: left;
+    padding-left: 10px;
+    max-width: 110px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 .ubung-5 p {
