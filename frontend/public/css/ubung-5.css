@@ -502,7 +502,7 @@
     font-size: var(--ls-font-base);
     line-height: 22px;
     position: absolute;
-    left: calc(100% - 115px);
+    left: calc(100% - 35px);
     top: 50%;
     transform: translateY(-50%);
     white-space: nowrap;
