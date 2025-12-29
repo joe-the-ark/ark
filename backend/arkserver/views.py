@@ -1264,6 +1264,11 @@ def waiting_room2(request, user):
     ctx = {}
     ctx['game'] = game = Game.objects.filter(link=request.session['link']).first()
 
+    # Prüfe ob das Spiel bereits gestartet wurde (wie im ersten Wartezimmer)
+    waiting2 = Waitingroom2Start.objects.filter(game=game).first()
+    if waiting2 and waiting2.status == 1:
+        return redirect('/psychologischer/')
+
     ctx['avatar'] = user.avatar
     ctx['player_name'] = user.name
     ctx['player_id'] = user.id
@@ -1449,6 +1454,12 @@ def waiting_room2_game_start(link):
 def waiting_room3(request, user):
     ctx = {}
     ctx['game'] = game = Game.objects.filter(link=request.session['link']).first()
+
+    # Prüfe ob das Spiel bereits gestartet wurde (wie im ersten Wartezimmer)
+    waiting3 = Waitingroom3Start.objects.filter(game=game).first()
+    if waiting3 and waiting3.status == 1:
+        return redirect('/assessment/')
+
     ctx['avatar'] = user.avatar
     ctx['player_name'] = user.name
     ctx['player_id'] = user.id

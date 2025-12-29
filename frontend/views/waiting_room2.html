@@ -531,8 +531,8 @@
         <div class="popup_content">
             <form class="popup_form" action="#" method="post">
               {% csrf_token %}
-              <button class="modal_button button" type="submit" id="button" aria-label="{% trans 'Fortfahren wenn alle Spieler grün sind' %}">
-                  {% trans "Fortfahren, sobald alle Spieler GRÜN sind" %}
+              <button class="modal_button button" type="submit" id="button" aria-label="{% trans 'Reise mit grünen Spielern fortsetzen' %}">
+                  {% trans "Reise mit" %}<br>{% trans "grünen Spielern fortsetzen" %}
               </button>
               <button class="modal_button button" type="button" aria-label="{% trans 'Auf weitere Spieler warten' %}">
                   {% trans "Auf weitere Spieler warten" %}
