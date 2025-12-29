@@ -513,6 +513,41 @@
     
     // Also update periodically to catch any missed updates
     setInterval(updateUbung5ProgressBar, 300);
+    
+    // Keyboard shortcut: Ctrl+R (or Cmd+R on Mac) to fill all sliders with random values
+    document.addEventListener('keydown', function(e) {
+        // Check for Ctrl+R (Windows/Linux) or Cmd+R (Mac)
+        if ((e.ctrlKey || e.metaKey) && e.key === 'r') {
+            // Prevent browser reload
+            e.preventDefault();
+            
+            // Get all sliders
+            var allSliders = document.querySelectorAll('.custom-graph__range');
+            
+            if (allSliders.length === 0) {
+                console.warn('No sliders found to fill with random values');
+                return;
+            }
+            
+            // Fill each slider with a random value between 0 and 100
+            allSliders.forEach(function(slider) {
+                var randomValue = Math.floor(Math.random() * 101); // 0 to 100
+                slider.value = randomValue;
+                
+                // Trigger input and change events to update the graph
+                slider.dispatchEvent(new Event('input', { bubbles: true }));
+                slider.dispatchEvent(new Event('change', { bubbles: true }));
+            });
+            
+            // Save to localStorage
+            saveSliderValues();
+            
+            // Update progress bar
+            updateUbung5ProgressBar();
+            
+            console.log('Filled all ' + allSliders.length + ' sliders with random values');
+        }
+    });
     // window.addEventListener('resize', () => {
     //         console.log("resize");
             
