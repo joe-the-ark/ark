@@ -725,9 +725,13 @@
 
         renderContainersTo(item, i) {
             const {name, items} = item;
+            
+            // Color mapping: 0=green, 1=red, 2=orange, 3=green, 4=red, 5=orange
+            const colorMap = ['green', 'red', 'orange', 'green', 'red', 'orange'];
+            const colorClass = colorMap[i] || '';
 
             return `<div class="distribution__item">
-                        <div class="distry" data-id="${i}">
+                        <div class="distry distry--${colorClass}" data-id="${i}" data-color="${colorClass}">
                             <div class="distry__description">
                                 ${name}
                             </div>

@@ -134,6 +134,181 @@
   transition: all 0.3s ease;
 }
 
+/* Color-coded statement boxes - Using exact project colors: #9FE2BF (green), #E29635 (orange), #fa5252 (red) */
+.distry--green {
+  border-color: #9FE2BF;
+  border-width: 4px;
+  background: linear-gradient(to bottom, 
+      #9FE2BF 0%, 
+      rgba(159, 226, 191, 0.6) 20%,
+      rgba(159, 226, 191, 0.4) 50%,
+      rgba(159, 226, 191, 0.2) 80%,
+      rgba(255, 255, 255, 0.95) 100%);
+  box-shadow: 0 3px 12px rgba(159, 226, 191, 0.6), inset 0 1px 0 rgba(159, 226, 191, 0.4);
+}
+
+.distry--green .distry__description {
+  background: linear-gradient(to right, 
+      #9FE2BF 0%, 
+      rgba(159, 226, 191, 0.7) 30%,
+      rgba(159, 226, 191, 0.5) 60%,
+      rgba(159, 226, 191, 0.3) 85%,
+      transparent 100%);
+  border-right-color: #9FE2BF;
+  border-right-width: 3px;
+  color: #161449;
+  font-weight: 700;
+}
+
+.distry--green .distry__thumbnails {
+  background: linear-gradient(to left, 
+      rgba(159, 226, 191, 0.5) 0%, 
+      rgba(159, 226, 191, 0.4) 30%,
+      rgba(159, 226, 191, 0.3) 60%,
+      rgba(159, 226, 191, 0.15) 85%,
+      transparent 100%);
+}
+
+.distry--green:hover {
+  border-color: #9FE2BF;
+  border-width: 5px;
+  box-shadow: 0 6px 20px rgba(159, 226, 191, 0.7), inset 0 2px 0 rgba(159, 226, 191, 0.5);
+  background: linear-gradient(to bottom, 
+      #9FE2BF 0%, 
+      rgba(159, 226, 191, 0.7) 20%,
+      rgba(159, 226, 191, 0.5) 50%,
+      rgba(159, 226, 191, 0.3) 80%,
+      rgba(255, 255, 255, 0.95) 100%);
+}
+
+.distry--green.active {
+  border-color: #9FE2BF;
+  border-width: 5px;
+  box-shadow: 0 8px 24px rgba(159, 226, 191, 0.8), inset 0 2px 0 rgba(159, 226, 191, 0.6);
+  background: linear-gradient(to bottom, 
+      #9FE2BF 0%, 
+      rgba(159, 226, 191, 0.75) 20%,
+      rgba(159, 226, 191, 0.55) 50%,
+      rgba(159, 226, 191, 0.35) 80%,
+      rgba(255, 255, 255, 0.95) 100%);
+}
+
+.distry--orange {
+  border-color: #E29635;
+  border-width: 4px;
+  background: linear-gradient(to bottom, 
+      #E29635 0%, 
+      rgba(226, 150, 53, 0.6) 20%,
+      rgba(226, 150, 53, 0.4) 50%,
+      rgba(226, 150, 53, 0.2) 80%,
+      rgba(255, 255, 255, 0.95) 100%);
+  box-shadow: 0 3px 12px rgba(226, 150, 53, 0.6), inset 0 1px 0 rgba(226, 150, 53, 0.4);
+}
+
+.distry--orange .distry__description {
+  background: linear-gradient(to right, 
+      #E29635 0%, 
+      rgba(226, 150, 53, 0.7) 30%,
+      rgba(226, 150, 53, 0.5) 60%,
+      rgba(226, 150, 53, 0.3) 85%,
+      transparent 100%);
+  border-right-color: #E29635;
+  border-right-width: 3px;
+  color: #161449;
+  font-weight: 700;
+}
+
+.distry--orange .distry__thumbnails {
+  background: linear-gradient(to left, 
+      rgba(226, 150, 53, 0.5) 0%, 
+      rgba(226, 150, 53, 0.4) 30%,
+      rgba(226, 150, 53, 0.3) 60%,
+      rgba(226, 150, 53, 0.15) 85%,
+      transparent 100%);
+}
+
+.distry--orange:hover {
+  border-color: #E29635;
+  border-width: 5px;
+  box-shadow: 0 6px 20px rgba(226, 150, 53, 0.7), inset 0 2px 0 rgba(226, 150, 53, 0.5);
+  background: linear-gradient(to bottom, 
+      #E29635 0%, 
+      rgba(226, 150, 53, 0.7) 20%,
+      rgba(226, 150, 53, 0.5) 50%,
+      rgba(226, 150, 53, 0.3) 80%,
+      rgba(255, 255, 255, 0.95) 100%);
+}
+
+.distry--orange.active {
+  border-color: #E29635;
+  border-width: 5px;
+  box-shadow: 0 8px 24px rgba(226, 150, 53, 0.8), inset 0 2px 0 rgba(226, 150, 53, 0.6);
+  background: linear-gradient(to bottom, 
+      #E29635 0%, 
+      rgba(226, 150, 53, 0.75) 20%,
+      rgba(226, 150, 53, 0.55) 50%,
+      rgba(226, 150, 53, 0.35) 80%,
+      rgba(255, 255, 255, 0.95) 100%);
+}
+
+.distry--red {
+  border-color: #fa5252;
+  border-width: 4px;
+  background: linear-gradient(to bottom, 
+      #fa5252 0%, 
+      rgba(250, 82, 82, 0.6) 20%,
+      rgba(250, 82, 82, 0.4) 50%,
+      rgba(250, 82, 82, 0.2) 80%,
+      rgba(255, 255, 255, 0.95) 100%);
+  box-shadow: 0 3px 12px rgba(250, 82, 82, 0.6), inset 0 1px 0 rgba(250, 82, 82, 0.4);
+}
+
+.distry--red .distry__description {
+  background: linear-gradient(to right, 
+      #fa5252 0%, 
+      rgba(250, 82, 82, 0.7) 30%,
+      rgba(250, 82, 82, 0.5) 60%,
+      rgba(250, 82, 82, 0.3) 85%,
+      transparent 100%);
+  border-right-color: #fa5252;
+  border-right-width: 3px;
+  color: #161449;
+  font-weight: 700;
+}
+
+.distry--red .distry__thumbnails {
+  background: linear-gradient(to left, 
+      rgba(250, 82, 82, 0.5) 0%, 
+      rgba(250, 82, 82, 0.4) 30%,
+      rgba(250, 82, 82, 0.3) 60%,
+      rgba(250, 82, 82, 0.15) 85%,
+      transparent 100%);
+}
+
+.distry--red:hover {
+  border-color: #fa5252;
+  border-width: 5px;
+  box-shadow: 0 6px 20px rgba(250, 82, 82, 0.7), inset 0 2px 0 rgba(250, 82, 82, 0.5);
+  background: linear-gradient(to bottom, 
+      #fa5252 0%, 
+      rgba(250, 82, 82, 0.7) 20%,
+      rgba(250, 82, 82, 0.5) 50%,
+      rgba(250, 82, 82, 0.3) 80%,
+      rgba(255, 255, 255, 0.95) 100%);
+}
+
+.distry--red.active {
+  border-color: #fa5252;
+  border-width: 5px;
+  box-shadow: 0 8px 24px rgba(250, 82, 82, 0.8), inset 0 2px 0 rgba(250, 82, 82, 0.6);
+  background: linear-gradient(to bottom, 
+      #fa5252 0%, 
+      rgba(250, 82, 82, 0.75) 20%,
+      rgba(250, 82, 82, 0.55) 50%,
+      rgba(250, 82, 82, 0.35) 80%,
+      rgba(255, 255, 255, 0.95) 100%);
+}
+
 .distry:hover {
   box-shadow: 0 4px 12px rgba(22, 4, 73, 0.12);
   transform: translateY(-2px);
@@ -190,6 +365,52 @@
   box-shadow: 0 2px 6px rgba(22, 4, 73, 0.1);
   transition: all 0.3s ease;
   overflow: hidden;
+}
+
+/* Color-coded avatar borders - Using exact project colors */
+.distry--green .distry__user {
+  border-color: #9FE2BF;
+  border-width: 4px;
+  box-shadow: 0 3px 10px rgba(159, 226, 191, 0.6), inset 0 0 0 1px rgba(159, 226, 191, 0.3);
+  background-color: rgba(159, 226, 191, 0.15);
+}
+
+.distry--green .distry__user:hover {
+  border-color: #9FE2BF;
+  border-width: 5px;
+  box-shadow: 0 5px 16px rgba(159, 226, 191, 0.7), inset 0 0 0 2px rgba(159, 226, 191, 0.4);
+  background-color: rgba(159, 226, 191, 0.25);
+  transform: scale(1.15);
+}
+
+.distry--orange .distry__user {
+  border-color: #E29635;
+  border-width: 4px;
+  box-shadow: 0 3px 10px rgba(226, 150, 53, 0.6), inset 0 0 0 1px rgba(226, 150, 53, 0.3);
+  background-color: rgba(226, 150, 53, 0.15);
+}
+
+.distry--orange .distry__user:hover {
+  border-color: #E29635;
+  border-width: 5px;
+  box-shadow: 0 5px 16px rgba(226, 150, 53, 0.7), inset 0 0 0 2px rgba(226, 150, 53, 0.4);
+  background-color: rgba(226, 150, 53, 0.25);
+  transform: scale(1.15);
+}
+
+.distry--red .distry__user {
+  border-color: #fa5252;
+  border-width: 4px;
+  box-shadow: 0 3px 10px rgba(250, 82, 82, 0.6), inset 0 0 0 1px rgba(250, 82, 82, 0.3);
+  background-color: rgba(250, 82, 82, 0.15);
+}
+
+.distry--red .distry__user:hover {
+  border-color: #fa5252;
+  border-width: 5px;
+  box-shadow: 0 5px 16px rgba(250, 82, 82, 0.7), inset 0 0 0 2px rgba(250, 82, 82, 0.4);
+  background-color: rgba(250, 82, 82, 0.25);
+  transform: scale(1.15);
 }
 
 .distry__user:hover {
@@ -284,13 +505,51 @@
 .distry.keyboard-selected,
 .distry:focus,
 .distry.ready-to-assign {
-  border-color: #E29635;
-  box-shadow: 0 0 0 4px rgba(226, 150, 53, 0.25), 0 4px 16px rgba(226, 150, 53, 0.15);
-  background: linear-gradient(to bottom, 
-      rgba(226, 150, 53, 0.08) 0%, 
-      rgba(255, 255, 255, 0.95) 100%);
   transform: translateY(-2px);
   transition: all 0.3s ease;
+}
+
+/* Color-specific keyboard and focus states - Using exact project colors */
+.distry--green.keyboard-selected,
+.distry--green:focus,
+.distry--green.ready-to-assign {
+  border-color: #9FE2BF;
+  border-width: 5px;
+  box-shadow: 0 0 0 5px rgba(159, 226, 191, 0.5), 0 8px 24px rgba(159, 226, 191, 0.4), inset 0 2px 0 rgba(159, 226, 191, 0.5);
+  background: linear-gradient(to bottom, 
+      #9FE2BF 0%, 
+      rgba(159, 226, 191, 0.75) 20%,
+      rgba(159, 226, 191, 0.55) 50%,
+      rgba(159, 226, 191, 0.35) 80%,
+      rgba(255, 255, 255, 0.95) 100%);
+}
+
+.distry--orange.keyboard-selected,
+.distry--orange:focus,
+.distry--orange.ready-to-assign {
+  border-color: #E29635;
+  border-width: 5px;
+  box-shadow: 0 0 0 5px rgba(226, 150, 53, 0.5), 0 8px 24px rgba(226, 150, 53, 0.4), inset 0 2px 0 rgba(226, 150, 53, 0.5);
+  background: linear-gradient(to bottom, 
+      #E29635 0%, 
+      rgba(226, 150, 53, 0.75) 20%,
+      rgba(226, 150, 53, 0.55) 50%,
+      rgba(226, 150, 53, 0.35) 80%,
+      rgba(255, 255, 255, 0.95) 100%);
+}
+
+.distry--red.keyboard-selected,
+.distry--red:focus,
+.distry--red.ready-to-assign {
+  border-color: #fa5252;
+  border-width: 5px;
+  box-shadow: 0 0 0 5px rgba(250, 82, 82, 0.5), 0 8px 24px rgba(250, 82, 82, 0.4), inset 0 2px 0 rgba(250, 82, 82, 0.5);
+  background: linear-gradient(to bottom, 
+      #fa5252 0%, 
+      rgba(250, 82, 82, 0.75) 20%,
+      rgba(250, 82, 82, 0.55) 50%,
+      rgba(250, 82, 82, 0.35) 80%,
+      rgba(255, 255, 255, 0.95) 100%);
 }
 .distry__user.outline {
   outline: 2px solid #E29635;

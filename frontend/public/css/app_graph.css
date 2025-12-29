@@ -30,15 +30,30 @@
     pointer-events: none;
 }
 
+/* Hide safezone by default (for non-statistic views like ubung-5) */
+.custom-graph__safezone {
+    display: none;
+    visibility: hidden;
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Show and style safezone only for statistic views */
 .statistic .custom-graph__safezone {
     content: " ";
+    display: block;
+    visibility: visible;
     position: absolute;
     border-radius: 10px;
-
     width: calc(100% - 6px);
     background-color: #9FE2BF;
     border: 1px solid #51ceec;
     z-index: 0;
+    opacity: 1;
+    pointer-events: auto;
 }
 
 @media screen and (min-width: 1201px) {
@@ -442,10 +457,26 @@
         overflow: visible;
         position: relative;
     }
+    /* Hide safezone by default in mobile view (for non-statistic views) */
+    .custom-graph__safezone {
+        display: none;
+        visibility: hidden;
+        position: absolute;
+        width: 0;
+        height: 0;
+        opacity: 0;
+        pointer-events: none;
+    }
+    
+    /* Show and style safezone only for statistic views in mobile */
     .statistic .custom-graph__safezone {
+        display: block;
+        visibility: visible;
         /* Position and size will be set by JavaScript safeArea() */
         border-radius: 10px;
         z-index: 0;
+        opacity: 1;
+        pointer-events: auto;
     }
     .custom-graph__item {
         flex-direction: row;

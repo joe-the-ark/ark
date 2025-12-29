@@ -1599,22 +1599,34 @@ def psychologischer(request, user):
     row5_other_players = [p for p in row5_all if p.get('id') != user.id]
     
     # Count occurrences for score calculation
-    row_0 = len(row0_current_user)
-    row_1 = len(row1_current_user)
-    row_2 = len(row2_current_user)
-    row_3 = len(row3_current_user)
-    row_4 = len(row4_current_user)
-    row_5 = len(row5_current_user)
+    # IMPORTANT: Count ALL votes across all players for team score, not just current user
+    # The score should be the same for all team members (it's a team metric)
+    row_0 = len(row0_all)  # Total votes in row0 (all players)
+    row_1 = len(row1_all)  # Total votes in row1 (all players)
+    row_2 = len(row2_all)  # Total votes in row2 (all players)
+    row_3 = len(row3_all)  # Total votes in row3 (all players)
+    row_4 = len(row4_all)  # Total votes in row4 (all players)
+    row_5 = len(row5_all)  # Total votes in row5 (all players)
+    
+    # Count current user's votes separately (for display purposes)
+    row_0_current = len(row0_current_user)
+    row_1_current = len(row1_current_user)
+    row_2_current = len(row2_current_user)
+    row_3_current = len(row3_current_user)
+    row_4_current = len(row4_current_user)
+    row_5_current = len(row5_current_user)
     
     # Debug: Print info
     print(f"DEBUG psychologischer: user {user.id} ({user.name}) appears:")
-    print(f"  row0: {row_0} times (others: {len(row0_other_players)})")
-    print(f"  row1: {row_1} times (others: {len(row1_other_players)})")
-    print(f"  row2: {row_2} times (others: {len(row2_other_players)})")
-    print(f"  row3: {row_3} times (others: {len(row3_other_players)})")
-    print(f"  row4: {row_4} times (others: {len(row4_other_players)})")
-    print(f"  row5: {row_5} times (others: {len(row5_other_players)})")
+    print(f"  row0: {row_0_current} times (others: {len(row0_other_players)}, total: {row_0})")
+    print(f"  row1: {row_1_current} times (others: {len(row1_other_players)}, total: {row_1})")
+    print(f"  row2: {row_2_current} times (others: {len(row2_other_players)}, total: {row_2})")
+    print(f"  row3: {row_3_current} times (others: {len(row3_other_players)}, total: {row_3})")
+    print(f"  row4: {row_4_current} times (others: {len(row4_other_players)}, total: {row_4})")
+    print(f"  row5: {row_5_current} times (others: {len(row5_other_players)}, total: {row_5})")
 
+    # Calculate psychological safety score using ALL votes (team metric)
+    # Formula: (row_0×4 + row_1×1 + row_2×3 + row_3×5 + row_4×0 + row_5×2) × 20 / (players²)
     score = (row_0 * 4 + row_1 * 1 + row_2 * 3 + row_3 * 5 + row_4 * 0 + row_5 * 2) * 20
     num = (WaitingRoomMember.objects.filter(game=game,state=1).count()) ** 2
     score = score / num if num > 0 else 0
@@ -1623,18 +1635,19 @@ def psychologischer(request, user):
     
     # Pass arrays for Vue.js
     # Each row has two arrays: current_user (blue circles with avatar) and other_players (gray anonymous circles)
+    # Use the current user counts (not total counts) for display
     import json
-    ctx['row0_current_user'] = json.dumps([{} for _ in range(max(0, row_0))])
+    ctx['row0_current_user'] = json.dumps([{} for _ in range(max(0, row_0_current))])
     ctx['row0_other_players'] = json.dumps([{} for _ in range(max(0, len(row0_other_players)))])
-    ctx['row1_current_user'] = json.dumps([{} for _ in range(max(0, row_1))])
+    ctx['row1_current_user'] = json.dumps([{} for _ in range(max(0, row_1_current))])
     ctx['row1_other_players'] = json.dumps([{} for _ in range(max(0, len(row1_other_players)))])
-    ctx['row2_current_user'] = json.dumps([{} for _ in range(max(0, row_2))])
+    ctx['row2_current_user'] = json.dumps([{} for _ in range(max(0, row_2_current))])
     ctx['row2_other_players'] = json.dumps([{} for _ in range(max(0, len(row2_other_players)))])
-    ctx['row3_current_user'] = json.dumps([{} for _ in range(max(0, row_3))])
+    ctx['row3_current_user'] = json.dumps([{} for _ in range(max(0, row_3_current))])
     ctx['row3_other_players'] = json.dumps([{} for _ in range(max(0, len(row3_other_players)))])
-    ctx['row4_current_user'] = json.dumps([{} for _ in range(max(0, row_4))])
+    ctx['row4_current_user'] = json.dumps([{} for _ in range(max(0, row_4_current))])
     ctx['row4_other_players'] = json.dumps([{} for _ in range(max(0, len(row4_other_players)))])
-    ctx['row5_current_user'] = json.dumps([{} for _ in range(max(0, row_5))])
+    ctx['row5_current_user'] = json.dumps([{} for _ in range(max(0, row_5_current))])
     ctx['row5_other_players'] = json.dumps([{} for _ in range(max(0, len(row5_other_players)))])
     
     # Pass current user's avatar and name to frontend
@@ -1643,19 +1656,27 @@ def psychologischer(request, user):
     
     # Debug: Add counts to context for debugging
     ctx['debug_counts'] = json.dumps({
-        'row0_current_user': row_0,
+        'row0_current_user': row_0_current,
         'row0_other_players': len(row0_other_players),
-        'row1_current_user': row_1,
+        'row0_total': row_0,
+        'row1_current_user': row_1_current,
         'row1_other_players': len(row1_other_players),
-        'row2_current_user': row_2,
+        'row1_total': row_1,
+        'row2_current_user': row_2_current,
         'row2_other_players': len(row2_other_players),
-        'row3_current_user': row_3,
+        'row2_total': row_2,
+        'row3_current_user': row_3_current,
         'row3_other_players': len(row3_other_players),
-        'row4_current_user': row_4,
+        'row3_total': row_3,
+        'row4_current_user': row_4_current,
         'row4_other_players': len(row4_other_players),
-        'row5_current_user': row_5,
+        'row4_total': row_4,
+        'row5_current_user': row_5_current,
         'row5_other_players': len(row5_other_players),
+        'row5_total': row_5,
         'total_ubung4_entries': len(game_place),
+        'team_score': ctx['score'],
+        'num_players': WaitingRoomMember.objects.filter(game=game,state=1).count(),
     })
     
     return render(request, './views/psychologischer.html', ctx)

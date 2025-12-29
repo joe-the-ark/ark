@@ -31,6 +31,37 @@ class AppGraph {
   }
 
   safeArea() {
+    let qall = this.container.parentNode.querySelectorAll(
+      '.custom-graph__safezone'
+    );
+    
+    if (!qall || !qall[this.graphNumber]) {
+      return; // Safezone element not found
+    }
+
+    // Check if this is a statistic graph - check multiple ways
+    const isStatistic = this.statistic || 
+                        (this.container && this.container.closest('.statistic')) || 
+                        (this.container && this.container.querySelector('.statistic')) ||
+                        (this.container && this.container.classList.contains('statistic')) ||
+                        (this.container && this.container.parentElement && this.container.parentElement.classList.contains('statistic')) ||
+                        (this.container && this.container.querySelector('.custom-graph.statistic'));
+    
+    // If not a statistic view, hide the safezone and return early
+    if (!isStatistic) {
+      qall[this.graphNumber].style.display = 'none';
+      qall[this.graphNumber].style.visibility = 'hidden';
+      qall[this.graphNumber].style.width = '0';
+      qall[this.graphNumber].style.height = '0';
+      qall[this.graphNumber].style.opacity = '0';
+      qall[this.graphNumber].style.pointerEvents = 'none';
+      qall[this.graphNumber].style.position = 'absolute';
+      qall[this.graphNumber].style.left = '-9999px';
+      qall[this.graphNumber].style.top = '-9999px';
+      return;
+    }
+    
+    // Only proceed if it's a statistic view
     let sum = () => {
       let itog = 0;
       for (let item of this.safezoneData) {
@@ -38,6 +69,14 @@ class AppGraph {
       }
       return itog;
     };
+    
+    // Check if safezoneData is empty
+    if (!this.safezoneData || this.safezoneData.length === 0) {
+      qall[this.graphNumber].style.display = 'none';
+      qall[this.graphNumber].style.visibility = 'hidden';
+      return;
+    }
+    
     let median = Math.round(sum() / this.safezoneData.length);
     var low = median - 16;
     var high = median + 16;
@@ -55,21 +94,11 @@ class AppGraph {
     this.safeHigh = high;
     var blue_range = high - low;
     
-    let qall = this.container.parentNode.querySelectorAll(
-      '.custom-graph__safezone'
-    );
-    
-    if (!qall || !qall[this.graphNumber]) {
-      return; // Safezone element not found
-    }
-
-    // Check if this is a statistic graph - check multiple ways
-    const isStatistic = this.statistic || 
-                        (this.container && this.container.closest('.statistic')) || 
-                        (this.container && this.container.querySelector('.statistic')) ||
-                        (this.container && this.container.classList.contains('statistic')) ||
-                        (this.container && this.container.parentElement && this.container.parentElement.classList.contains('statistic')) ||
-                        (this.container && this.container.querySelector('.custom-graph.statistic'));
+    // Make sure safezone is visible for statistic views
+    qall[this.graphNumber].style.display = 'block';
+    qall[this.graphNumber].style.visibility = 'visible';
+    qall[this.graphNumber].style.opacity = '1';
+    qall[this.graphNumber].style.pointerEvents = 'auto';
     
     if (window.innerWidth <= this.mobile) {
       if (isStatistic) {
@@ -89,23 +118,9 @@ class AppGraph {
           qall[this.graphNumber].style['left'] = 'auto';
           qall[this.graphNumber].style['position'] = 'absolute';
         }
-      } else {
-        // For non-statistic: use item width
-        let halfAvatar =
-          document.querySelector('div.custom-graph__item-avatar').clientHeight / 2;
-        let height = document.querySelector('.custom-graph__item').clientHeight;
-        let width = document.querySelector('.custom-graph__item').clientWidth;
-        let mobRight = Math.round(width * ((100 - high) / 100));
-        let mobWidth = Math.round(width * (blue_range / 100)) - 10;
-        
-        qall[this.graphNumber].style['right'] = mobRight.toString() + 'px';
-        qall[this.graphNumber].style['width'] = mobWidth.toString() + 'px';
-        qall[this.graphNumber].style['top'] = '0';
-        qall[this.graphNumber].style['height'] = '100%';
-        qall[this.graphNumber].style['left'] = 'auto';
       }
     } else {
-      // Desktop view
+      // Desktop view (only for statistic)
       let height = document.querySelector('.custom-graph__item').clientHeight;
       let screenTop = Math.round(height * ((100 - high) / 100));
       let screenHeight = Math.round(height * (blue_range / 100)) - 10;
@@ -115,6 +130,7 @@ class AppGraph {
       qall[this.graphNumber].style['right'] = '0';
       qall[this.graphNumber].style['width'] = '100%';
       qall[this.graphNumber].style['left'] = 'auto';
+      qall[this.graphNumber].style['position'] = 'absolute';
     }
   }
 

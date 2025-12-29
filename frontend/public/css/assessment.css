@@ -341,7 +341,7 @@
   height: 80px;
   border-radius: 50%;
   box-sizing: border-box;
-  border: 4px solid #3781ee;
+  border: 4px solid #52CEEC;
   position: absolute;
   bottom: calc(100% + 18px);
   left: 100%;
@@ -375,8 +375,10 @@
   align-items: stretch;
   width: min(560px, 100%);
   margin: 0 auto;
-  border: 1px solid var(--ls-between-color);
-  border-radius: 10px; 
+  border: 3px solid transparent;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 .distry.active {
   border-color: #3781EE;
@@ -393,7 +395,8 @@
   width: calc(50% + 70px);
   min-height: 152px;
   max-width: 307px;
-  border-radius: 10px; 
+  border-radius: 10px;
+  font-weight: 700;
 }
 .distry__thumbnails {
   display: flex;
@@ -403,6 +406,158 @@
   padding: 20px 20px 10px;
   margin: 0 -5px;
   width: calc(50% - 70px);
+  transition: background 0.3s ease;
+}
+
+/* Color-coded statement boxes - Synchronized with ubung-4.css styling */
+/* Green boxes (#9FE2BF) */
+.psychologischer__container .distry:has(.distry__description[style*="#9FE2BF"]),
+.assessment .distry:has(.distry__description[style*="#9FE2BF"]) {
+    border-color: #9FE2BF;
+    border-width: 4px;
+    background: linear-gradient(to bottom, 
+        #9FE2BF 0%, 
+        rgba(159, 226, 191, 0.6) 20%,
+        rgba(159, 226, 191, 0.4) 50%,
+        rgba(159, 226, 191, 0.2) 80%,
+        rgba(255, 255, 255, 0.95) 100%);
+    box-shadow: 0 3px 12px rgba(159, 226, 191, 0.6), inset 0 1px 0 rgba(159, 226, 191, 0.4);
+}
+
+.psychologischer__container .distry:has(.distry__description[style*="#9FE2BF"]):hover,
+.assessment .distry:has(.distry__description[style*="#9FE2BF"]):hover {
+    border-color: #9FE2BF;
+    border-width: 5px;
+    box-shadow: 0 6px 20px rgba(159, 226, 191, 0.7), inset 0 2px 0 rgba(159, 226, 191, 0.5);
+    background: linear-gradient(to bottom, 
+        #9FE2BF 0%, 
+        rgba(159, 226, 191, 0.7) 20%,
+        rgba(159, 226, 191, 0.5) 50%,
+        rgba(159, 226, 191, 0.3) 80%,
+        rgba(255, 255, 255, 0.95) 100%);
+}
+
+.psychologischer__container .distry__description[style*="#9FE2BF"],
+.assessment .distry__description[style*="#9FE2BF"] {
+    background: linear-gradient(to right, 
+        #9FE2BF 0%, 
+        rgba(159, 226, 191, 0.7) 30%,
+        rgba(159, 226, 191, 0.5) 60%,
+        rgba(159, 226, 191, 0.3) 85%,
+        transparent 100%) !important;
+    color: #161449 !important;
+    border-right-color: #9FE2BF;
+    border-right-width: 3px;
+}
+
+.psychologischer__container .distry:has(.distry__description[style*="#9FE2BF"]) .distry__thumbnails,
+.assessment .distry:has(.distry__description[style*="#9FE2BF"]) .distry__thumbnails {
+    background: linear-gradient(to left, 
+        rgba(159, 226, 191, 0.5) 0%, 
+        rgba(159, 226, 191, 0.4) 30%,
+        rgba(159, 226, 191, 0.3) 60%,
+        rgba(159, 226, 191, 0.15) 85%,
+        transparent 100%);
+}
+
+/* Orange boxes (#E29635) */
+.psychologischer__container .distry:has(.distry__description[style*="#E29635"]),
+.assessment .distry:has(.distry__description[style*="#E29635"]) {
+    border-color: #E29635;
+    border-width: 4px;
+    background: linear-gradient(to bottom, 
+        #E29635 0%, 
+        rgba(226, 150, 53, 0.6) 20%,
+        rgba(226, 150, 53, 0.4) 50%,
+        rgba(226, 150, 53, 0.2) 80%,
+        rgba(255, 255, 255, 0.95) 100%);
+    box-shadow: 0 3px 12px rgba(226, 150, 53, 0.6), inset 0 1px 0 rgba(226, 150, 53, 0.4);
+}
+
+.psychologischer__container .distry:has(.distry__description[style*="#E29635"]):hover,
+.assessment .distry:has(.distry__description[style*="#E29635"]):hover {
+    border-color: #E29635;
+    border-width: 5px;
+    box-shadow: 0 6px 20px rgba(226, 150, 53, 0.7), inset 0 2px 0 rgba(226, 150, 53, 0.5);
+    background: linear-gradient(to bottom, 
+        #E29635 0%, 
+        rgba(226, 150, 53, 0.7) 20%,
+        rgba(226, 150, 53, 0.5) 50%,
+        rgba(226, 150, 53, 0.3) 80%,
+        rgba(255, 255, 255, 0.95) 100%);
+}
+
+.psychologischer__container .distry__description[style*="#E29635"],
+.assessment .distry__description[style*="#E29635"] {
+    background: linear-gradient(to right, 
+        #E29635 0%, 
+        rgba(226, 150, 53, 0.7) 30%,
+        rgba(226, 150, 53, 0.5) 60%,
+        rgba(226, 150, 53, 0.3) 85%,
+        transparent 100%) !important;
+    color: #161449 !important;
+    border-right-color: #E29635;
+    border-right-width: 3px;
+}
+
+.psychologischer__container .distry:has(.distry__description[style*="#E29635"]) .distry__thumbnails,
+.assessment .distry:has(.distry__description[style*="#E29635"]) .distry__thumbnails {
+    background: linear-gradient(to left, 
+        rgba(226, 150, 53, 0.5) 0%, 
+        rgba(226, 150, 53, 0.4) 30%,
+        rgba(226, 150, 53, 0.3) 60%,
+        rgba(226, 150, 53, 0.15) 85%,
+        transparent 100%);
+}
+
+/* Red boxes (#fa5252) */
+.psychologischer__container .distry:has(.distry__description[style*="#fa5252"]),
+.assessment .distry:has(.distry__description[style*="#fa5252"]) {
+    border-color: #fa5252;
+    border-width: 4px;
+    background: linear-gradient(to bottom, 
+        #fa5252 0%, 
+        rgba(250, 82, 82, 0.6) 20%,
+        rgba(250, 82, 82, 0.4) 50%,
+        rgba(250, 82, 82, 0.2) 80%,
+        rgba(255, 255, 255, 0.95) 100%);
+    box-shadow: 0 3px 12px rgba(250, 82, 82, 0.6), inset 0 1px 0 rgba(250, 82, 82, 0.4);
+}
+
+.psychologischer__container .distry:has(.distry__description[style*="#fa5252"]):hover,
+.assessment .distry:has(.distry__description[style*="#fa5252"]):hover {
+    border-color: #fa5252;
+    border-width: 5px;
+    box-shadow: 0 6px 20px rgba(250, 82, 82, 0.7), inset 0 2px 0 rgba(250, 82, 82, 0.5);
+    background: linear-gradient(to bottom, 
+        #fa5252 0%, 
+        rgba(250, 82, 82, 0.7) 20%,
+        rgba(250, 82, 82, 0.5) 50%,
+        rgba(250, 82, 82, 0.3) 80%,
+        rgba(255, 255, 255, 0.95) 100%);
+}
+
+.psychologischer__container .distry__description[style*="#fa5252"],
+.assessment .distry__description[style*="#fa5252"] {
+    background: linear-gradient(to right, 
+        #fa5252 0%, 
+        rgba(250, 82, 82, 0.7) 30%,
+        rgba(250, 82, 82, 0.5) 60%,
+        rgba(250, 82, 82, 0.3) 85%,
+        transparent 100%) !important;
+    color: white !important;
+    border-right-color: #fa5252;
+    border-right-width: 3px;
+}
+
+.psychologischer__container .distry:has(.distry__description[style*="#fa5252"]) .distry__thumbnails,
+.assessment .distry:has(.distry__description[style*="#fa5252"]) .distry__thumbnails {
+    background: linear-gradient(to left, 
+        rgba(250, 82, 82, 0.5) 0%, 
+        rgba(250, 82, 82, 0.4) 30%,
+        rgba(250, 82, 82, 0.3) 60%,
+        rgba(250, 82, 82, 0.15) 85%,
+        transparent 100%);
 }
 .distry__user {
   width: 50px;

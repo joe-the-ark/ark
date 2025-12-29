@@ -43,8 +43,7 @@
             <div class="header-main__progress">
                 <div class="progress">
                 <p class="rotate-hint">
-                    <span class="rotate-hint-icon">📱</span>
-                    <span>{% trans "Bitte dreh dein Gerät um 90° für eine bessere Lesbarkeit." %}</span>
+                    {% trans "Bitte dreh dein Gerät um 90° für eine bessere Lesbarkeit." %}
                 </p>
                     <div class="progress__bar">
                         <div id="ubung5-progress-bar" class="progress-bar-fill">40%</div>
@@ -97,11 +96,11 @@
         </div>
     </div>
 </div>
-<script src="/static/js/AppGraph.js"></script>
 <script src="/static/jquery-3.5.1.min.js"></script>
 <script src="/static/axios.min.js"></script>
-    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
-    <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+<script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+<script src="/static/js/AppGraph.js"></script>
 
 <script>
 
@@ -448,171 +447,6 @@
         mobile: 1200,
         data: {{ member_list|safe }},
 
-    });
-    
-    // Override render method to set justify-content: flex-start from the start
-    const originalRender = app.render.bind(app);
-    app.render = function() {
-        const result = originalRender();
-        // Immediately set justify-content after render
-        setTimeout(function() {
-            const itemsContainer = document.querySelector('.ubung-5 .custom-graph__items');
-            if (itemsContainer) {
-                itemsContainer.style.setProperty('justify-content', 'flex-start', 'important');
-            }
-        }, 0);
-        return result;
-    };
-    
-    // Force left alignment of items after graph is rendered
-    function forceLeftAlignment() {
-        const itemsContainer = document.querySelector('.ubung-5 .custom-graph__items');
-        if (itemsContainer) {
-            console.log('Setting justify-content to flex-start');
-            // Use setProperty with important flag FIRST
-            itemsContainer.style.setProperty('justify-content', 'flex-start', 'important');
-            itemsContainer.style.setProperty('display', 'flex', 'important');
-            
-            // Get all items once
-            const allItems = itemsContainer.querySelectorAll('.custom-graph__item');
-            
-            // Force reflow by removing and re-adding each item to force recalculation
-            allItems.forEach(function(item) {
-                const parent = item.parentNode;
-                const nextSibling = item.nextSibling;
-                parent.removeChild(item);
-                parent.insertBefore(item, nextSibling);
-            });
-            
-            // Force browser to recalculate layout
-            void itemsContainer.offsetHeight;
-            
-            // Also ensure no margin-left: auto on items and check computed styles
-            allItems.forEach(function(item, index) {
-                const itemComputed = window.getComputedStyle(item);
-                console.log('Item', index, 'computed margin-left:', itemComputed.marginLeft, 'margin-right:', itemComputed.marginRight);
-                console.log('Item', index, 'computed flex properties:', itemComputed.flex, itemComputed.flexGrow, itemComputed.flexShrink, itemComputed.flexBasis);
-                
-                // Force remove any auto margins
-                item.style.setProperty('margin-left', '0', 'important');
-                item.style.setProperty('margin-right', '2px', 'important');
-                item.style.setProperty('flex', '0 0 auto', 'important');
-                
-                // Reset any transform that might be affecting position
-                item.style.setProperty('transform', 'none', 'important');
-                item.style.setProperty('left', 'auto', 'important');
-                item.style.setProperty('right', 'auto', 'important');
-            });
-            
-            // Force another reflow
-            void itemsContainer.offsetHeight;
-            
-            // If items are still not at left position after a delay, force reflow
-            setTimeout(function() {
-                const containerRect = itemsContainer.getBoundingClientRect();
-                let needsRepositioning = false;
-                allItems.forEach(function(item) {
-                    const rect = item.getBoundingClientRect();
-                    const currentRelativeLeft = rect.left - containerRect.left;
-                    if (currentRelativeLeft > 100) {
-                        needsRepositioning = true;
-                    }
-                });
-                
-                if (needsRepositioning) {
-                    console.log('Items still not left-aligned, forcing reflow by removing/adding container');
-                    isRepositioning = true;
-                    const parent = itemsContainer.parentNode;
-                    const nextSibling = itemsContainer.nextSibling;
-                    parent.removeChild(itemsContainer);
-                    // Force reflow
-                    void parent.offsetHeight;
-                    parent.insertBefore(itemsContainer, nextSibling);
-                    // Set justify-content again
-                    itemsContainer.style.setProperty('justify-content', 'flex-start', 'important');
-                    isRepositioning = false;
-                }
-            }, 100);
-            
-            const computed = window.getComputedStyle(itemsContainer);
-            const containerRect = itemsContainer.getBoundingClientRect();
-            console.log('Applied styles. Computed justify-content:', computed.justifyContent);
-            console.log('Container width:', itemsContainer.offsetWidth, 'Container left:', itemsContainer.offsetLeft);
-            console.log('Container getBoundingClientRect - left:', containerRect.left, 'right:', containerRect.right, 'width:', containerRect.width);
-            console.log('Container padding-left:', computed.paddingLeft, 'padding-right:', computed.paddingRight);
-            
-            // Check all items positions relative to container
-            console.log('Total items:', allItems.length);
-            allItems.forEach(function(item, index) {
-                const rect = item.getBoundingClientRect();
-                const relativeLeft = rect.left - containerRect.left;
-                const itemComputed = window.getComputedStyle(item);
-                console.log('Item', index, '- left:', relativeLeft, 'width:', rect.width, 'right:', relativeLeft + rect.width);
-                console.log('Item', index, '- margin-left:', itemComputed.marginLeft, 'margin-right:', itemComputed.marginRight);
-                console.log('Item', index, '- transform:', itemComputed.transform);
-            });
-            
-            // Check if items are bunched up on the right
-            if (allItems.length > 0) {
-                const lastItem = allItems[allItems.length - 1];
-                const lastItemRect = lastItem.getBoundingClientRect();
-                const lastItemRight = lastItemRect.right - containerRect.left;
-                const containerWidth = containerRect.width;
-                const unusedSpace = containerWidth - lastItemRight;
-                console.log('Last item ends at:', lastItemRight, 'Container width:', containerWidth, 'Unused space on right:', unusedSpace);
-            }
-        } else {
-            console.log('Items container not found');
-        }
-    }
-    
-    // Use MutationObserver to watch for style changes and reapply (but ignore transform changes)
-    let isRepositioning = false;
-    const observer = new MutationObserver(function(mutations) {
-        if (isRepositioning) return; // Don't react during repositioning
-        
-        mutations.forEach(function(mutation) {
-            if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
-                const target = mutation.target;
-                // Ignore changes to items (they might be repositioned)
-                if (target.classList && target.classList.contains('custom-graph__item')) {
-                    return;
-                }
-                
-                const itemsContainer = document.querySelector('.ubung-5 .custom-graph__items');
-                if (itemsContainer && mutation.target === itemsContainer) {
-                    const computed = window.getComputedStyle(itemsContainer).justifyContent;
-                    if (computed !== 'flex-start') {
-                        console.log('Style was changed to:', computed, '- reapplying flex-start');
-                        forceLeftAlignment();
-                    }
-                }
-            }
-        });
-    });
-    
-    // Start observing after a delay to let the DOM render
-    setTimeout(function() {
-        const itemsContainer = document.querySelector('.ubung-5 .custom-graph__items');
-        if (itemsContainer) {
-            observer.observe(itemsContainer, {
-                attributes: true,
-                attributeFilter: ['style']
-            });
-            forceLeftAlignment();
-        }
-    }, 100);
-    
-    // Try multiple times to catch the render
-    setTimeout(forceLeftAlignment, 200);
-    setTimeout(forceLeftAlignment, 500);
-    setTimeout(forceLeftAlignment, 1000);
-    
-    // Also force alignment on resize (use different variable name to avoid conflict)
-    let ubung5ResizeTimeout;
-    window.addEventListener('resize', function() {
-        clearTimeout(ubung5ResizeTimeout);
-        ubung5ResizeTimeout = setTimeout(forceLeftAlignment, 100);
     });
 
     document.getElementById('button').addEventListener('click', function (e) {
