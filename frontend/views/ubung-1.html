@@ -138,7 +138,8 @@
     // TODO Code bellow Link must be from backend.
     var temp_link = '{{game.link}}';
     var url_host = window.location.host;
-    var temp_link_ = url_host + '/link/' + temp_link + '/';
+    var protocol = window.location.protocol;
+    var temp_link_ = protocol + '//' + url_host + '/link/' + temp_link + '/';
     document.querySelector('.icon-link').dataset.clipboardText = temp_link_;
 
     function sleep (time) {
