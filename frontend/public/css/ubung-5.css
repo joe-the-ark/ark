@@ -411,8 +411,8 @@
   }
   .custom-graph__item input {
     position: absolute;
-    width: calc(100% - 60px);
-    left: 60px;
+    width: calc(100% - 30px);
+    left: 30px;
     top: 50%;
     transform: translateY(-50%);
     height: 80%;
@@ -425,8 +425,8 @@
     top: 50%;
     transform: translateY(-50%);
     height: 100%;
-    left: 60px;
-    width: calc(100% - 60px);
+    left: 30px;
+    width: calc(100% - 30px);
     background: linear-gradient(to right, #51ceec, transparent);
   }
   .custom-graph:not(.statistic) .custom-graph__item:after {
