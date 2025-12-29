@@ -411,21 +411,22 @@
   }
   .custom-graph__item input {
     position: absolute;
-    width: calc(100% + 60px);
-    left: -30px;
+    width: calc(100% - 60px);
+    left: 60px;
     top: 50%;
     transform: translateY(-50%);
     height: 80%;
     will-change: auto;
     backface-visibility: hidden;
-    padding: 0 30px;
-    box-sizing: content-box;
+    padding: 0;
+    box-sizing: border-box;
   }
   .custom-graph__item:before {
     top: 50%;
     transform: translateY(-50%);
     height: 100%;
-    left: -15px;
+    left: 60px;
+    width: calc(100% - 60px);
     background: linear-gradient(to right, #51ceec, transparent);
   }
   .custom-graph:not(.statistic) .custom-graph__item:after {

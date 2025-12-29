@@ -23,7 +23,7 @@
     <div class="app__head">
         <header class="header-main container">
             <div class="header-main__title">
-                <icon classs="icon" onClick="window.open('https://info.arks.ch/');" style="cursor: pointer; position: relative; display: inline-flex; align-items: center;">
+                <icon class="icon" onClick="window.open('https://info.arks.ch/');" style="cursor: pointer; position: relative; display: inline-flex; align-items: center;">
                 <span class="icon-logo"></span>
                 <span>ARKS</span>
                 <span class="tooltip-icon arks-logo-tooltip-icon" id="arks-logo-tooltip-icon" style="display: none; margin-left: 8px;">{% trans "Info zu safecircles.ch" %}</span>
@@ -389,6 +389,8 @@
                 }
                 
                 if (result === 1){
+                    // Clear saved slider values after successful submission
+                    localStorage.removeItem(sliderStorageKey);
                     //window.location.href="/team-potential/";
                     window.location.href="/ubung-5/";
                 }else{
@@ -521,33 +523,110 @@
     </script>
     
     <script>
+    // Save slider values to localStorage to prevent data loss on reload
+    var sliderStorageKey = 'ubung5_sliders_{{game.link|escapejs}}_{{user.id}}_{{ubung1.id}}_{{ubung3.id}}';
+    
+    function saveSliderValues() {
+        var allSliders = document.querySelectorAll('.custom-graph__range');
+        var sliderValues = {};
+        allSliders.forEach(function(slider, index) {
+            sliderValues[index] = slider.value;
+        });
+        localStorage.setItem(sliderStorageKey, JSON.stringify(sliderValues));
+    }
+    
+    function restoreSliderValues() {
+        var saved = localStorage.getItem(sliderStorageKey);
+        if (saved) {
+            try {
+                var sliderValues = JSON.parse(saved);
+                var allSliders = document.querySelectorAll('.custom-graph__range');
+                allSliders.forEach(function(slider, index) {
+                    if (sliderValues[index] !== undefined) {
+                        slider.value = sliderValues[index];
+                        // Trigger input event to update the graph
+                        slider.dispatchEvent(new Event('input', { bubbles: true }));
+                    }
+                });
+            } catch (e) {
+                console.warn('Failed to restore slider values:', e);
+            }
+        }
+    }
+    
+    // Save slider values whenever they change
+    document.addEventListener('input', function(e) {
+        if (e.target && e.target.classList && e.target.classList.contains('custom-graph__range')) {
+            saveSliderValues();
+        }
+    });
+    
+    // Restore slider values on page load (after graph is built)
+    // Wait for graph to be fully initialized
+    function attemptRestore() {
+        var allSliders = document.querySelectorAll('.custom-graph__range');
+        if (allSliders.length > 0) {
+            restoreSliderValues();
+        } else {
+            // Graph not ready yet, try again
+            setTimeout(attemptRestore, 200);
+        }
+    }
+    
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(attemptRestore, 500);
+        });
+    } else {
+        setTimeout(attemptRestore, 500);
+    }
+    
     // Reload page on window resize to fix graph connection lines
+    // BUT: Disable reload on mobile devices to prevent data loss during scrolling
     let resizeTimeout;
     let lastWindowWidth = window.innerWidth;
     let lastWindowHeight = window.innerHeight;
+    let isMobile = window.innerWidth <= 1200;
     
     window.addEventListener('resize', function() {
-        // Clear existing timeout
+        const currentWidth = window.innerWidth;
+        const currentHeight = window.innerHeight;
+        const newIsMobile = currentWidth <= 1200;
+        
+        // If switching between mobile/desktop, allow reload
+        if (isMobile !== newIsMobile) {
+            isMobile = newIsMobile;
+            // Save before reload
+            saveSliderValues();
+            location.reload();
+            return;
+        }
+        
+        // On mobile, don't reload - just save slider values
+        if (isMobile) {
+            saveSliderValues();
+            return;
+        }
+        
+        // On desktop, only reload on significant size changes (likely rotation or window resize)
         if (resizeTimeout) {
             clearTimeout(resizeTimeout);
         }
         
-        // Debounce resize event - wait 500ms after last resize before reloading
         resizeTimeout = setTimeout(function() {
-            const currentWidth = window.innerWidth;
-            const currentHeight = window.innerHeight;
-            
-            // Only reload if there's a significant size change (more than 50px difference)
-            // This prevents unnecessary reloads during continuous resizing
             const widthDiff = Math.abs(currentWidth - lastWindowWidth);
             const heightDiff = Math.abs(currentHeight - lastWindowHeight);
             
-            if (widthDiff > 50 || heightDiff > 50) {
+            // Only reload if there's a significant size change (more than 100px difference)
+            // This prevents reloads from minor viewport changes
+            if (widthDiff > 100 || heightDiff > 100) {
                 lastWindowWidth = currentWidth;
                 lastWindowHeight = currentHeight;
+                // Save before reload
+                saveSliderValues();
                 location.reload();
             }
-        }, 500);
+        }, 1000);
     });
 </script>
 </body>
