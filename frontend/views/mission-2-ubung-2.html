@@ -620,6 +620,52 @@
         initARKSLogoTooltip();
     }
 
+    // Keyboard shortcut: Ctrl+R (or Cmd+R on Mac) to fill all feedback textareas with 30 words
+    document.addEventListener('keydown', function(e) {
+        // Check for Ctrl+R (Windows/Linux) or Cmd+R (Mac)
+        if ((e.ctrlKey || e.metaKey) && e.key === 'r') {
+            // Prevent browser reload
+            e.preventDefault();
+            
+            // Generate 30 words of text
+            const words = [
+                'Das', 'Team', 'arbeitet', 'sehr', 'gut', 'zusammen', 'und', 'kommuniziert', 'offen', 'miteinander',
+                'Wir', 'unterstützen', 'uns', 'gegenseitig', 'bei', 'schwierigen', 'Aufgaben', 'und', 'teilen', 'unsere',
+                'Erfahrungen', 'regelmäßig', 'Die', 'Zusammenarbeit', 'ist', 'effektiv', 'und', 'wir', 'respektieren', 'unsere',
+                'verschiedenen', 'Perspektiven', 'Feedback', 'wird', 'konstruktiv', 'gegeben', 'und', 'angenommen', 'ohne', 'Defensivität',
+                'Wir', 'fühlen', 'uns', 'sicher', 'darin', 'Ideen', 'zu', 'teilen', 'und', 'Fehler',
+                'zuzugeben', 'ohne', 'Angst', 'vor', 'negativen', 'Konsequenzen', 'Die', 'Atmosphäre', 'ist', 'vertrauensvoll'
+            ];
+            
+            // Create text with exactly 30 words
+            const randomText = words.slice(0, 30).join(' ') + '.';
+            
+            // Get all feedback textareas
+            const allTextareas = document.querySelectorAll('[data-word-input]');
+            
+            if (allTextareas.length === 0) {
+                console.warn('No feedback textareas found to fill with random text');
+                return;
+            }
+            
+            // Fill each textarea with 30 words
+            allTextareas.forEach(function(textarea) {
+                textarea.value = randomText;
+                
+                // Trigger input event to update word counter
+                textarea.dispatchEvent(new Event('input', { bubbles: true }));
+                
+                // Update word indicator
+                updateWordIndicator(textarea);
+            });
+            
+            // Refresh the form data
+            refresh();
+            
+            console.log('Filled all ' + allTextareas.length + ' feedback textareas with 30 words');
+        }
+    });
+
 </script>
 <script src="/static/js/update_fix.js"></script>
 </body>
